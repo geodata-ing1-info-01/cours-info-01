@@ -159,6 +159,54 @@ est affiché ({ref}`VS Code, section Choisir le terminal à ouvrir
 `bash.exe`, et bash trouve `git`, `ls` et les autres tout seul
 ([Git Bash : une fenêtre, bash et des programmes](../notions/git_bash.md)).
 
+### conda dans le terminal Git Bash
+
+Git Bash ne connaît pas la commande `conda` à son ouverture : rien ne
+charge `conda.sh`, le script d'Anaconda qui la définit pour bash
+([Environnements](../notions/environnements.md)). Deux façons de le
+charger à chaque terminal.
+
+**Par `conda init bash`**, comme à l'étape 0.3 du TD 3a. `conda init`
+écrit le chargement dans `~/.bash_profile`, que Git Bash lit à chaque
+ouverture, dans VS Code comme hors de VS Code :
+
+```text
+echo 'cygpath() { /usr/bin/cygpath "$@"; }' >> ~/.bash_profile
+source /c/ProgramData/anaconda3/etc/profile.d/conda.sh
+conda init bash
+```
+
+**Par les réglages de VS Code seuls**, sans rien écrire dans le compte :
+un profil de terminal lance bash avec un fichier de démarrage donné en
+argument, comme le profil « Anaconda Prompt » lance `cmd` avec
+`activate.bat`. À ajouter dans `terminal.integrated.profiles.windows`,
+à côté du profil « Anaconda Prompt » :
+
+```json
+"Git Bash (Anaconda)": {
+  "path": "C:\\Program Files\\Git\\bin\\bash.exe",
+  "args": ["-c", "exec bash --rcfile <(echo 'source /etc/profile; cygpath() { /usr/bin/cygpath \"$@\"; }; source /c/ProgramData/anaconda3/etc/profile.d/conda.sh; conda activate base') -i"]
+}
+```
+
+Le fichier de démarrage lit `/etc/profile`, comme un Git Bash ordinaire
+(invite, `PATH`), puis charge `conda.sh` et active `base`. Le terminal se
+choisit par la flèche à côté du `+` ; l'invite commence par `(base)`, et
+`which python` affiche `/c/ProgramData/anaconda3/python`. Ce profil ne lit
+ni `~/.bashrc` ni `~/.bash_profile`, et ne vaut que dans VS Code. Avec ces
+arguments, VS Code n'y ajoute pas son intégration du terminal (les
+marques à gauche des commandes).
+
+Dans les deux cas, la ligne `cygpath() { … }` corrige un défaut de
+l'installation de la salle. Anaconda y fournit son propre `cygpath`, dans
+`C:\ProgramData\anaconda3\Library\usr\bin`, qui échoue sous Git Bash ;
+une fois `base` activé, ce dossier passe avant ceux de Git dans le `PATH`.
+Sans la ligne, chaque `conda activate` affiche l'aide de `cygpath`
+(`Usage: cygpath …`) puis `bash: : No such file or directory`, et le
+script d'OpenSSL d'Anaconda n'est pas chargé : l'environnement est activé,
+mais `SSL_CERT_FILE` n'est pas posée. La fonction `cygpath` passe avant
+le `PATH`, et appelle toujours celui de Git.
+
 ## Sur un ordinateur personnel
 
 L'installateur de Git for Windows, avec ses options par défaut, met git,

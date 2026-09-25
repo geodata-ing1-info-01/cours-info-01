@@ -160,6 +160,16 @@ un autre dossier du poste. Essayer
 `source /c/Users/$USERNAME/anaconda3/etc/profile.d/conda.sh`, ou demander à
 l'enseignant.
 
+Si chaque nouveau terminal affiche l'aide de `cygpath` (`Usage: cygpath …`)
+puis `bash: : No such file or directory`, l'environnement est tout de même
+activé. Le message vient d'un `cygpath` fourni par Anaconda, qui échoue
+sous Git Bash. Pour le faire disparaître, taper une fois, puis ouvrir un
+nouveau terminal :
+
+```text
+sed -i '1i cygpath() { /usr/bin/cygpath "$@"; }' ~/.bash_profile
+```
+
 ### 0.4 Créer le dépôt git
 
 Dans le terminal, dans `travail/` :
