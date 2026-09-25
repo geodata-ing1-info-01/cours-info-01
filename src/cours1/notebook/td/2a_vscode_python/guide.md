@@ -251,7 +251,7 @@ par l'invite de commandes `cmd`, sans demander de droits d'administrateur.
 
 1. Palette, « Preferences: Open User Settings (JSON) ».
 2. Si le fichier est vide, y recopier le bloc suivant en entier. S'il
-   contient déjà des réglages, ajouter les cinq lignes du milieu avant
+   contient déjà des réglages, ajouter les lignes du milieu avant
    l'accolade fermante, en mettant une virgule à la fin de la ligne qui les
    précède.
 
@@ -261,7 +261,13 @@ par l'invite de commandes `cmd`, sans demander de droits d'administrateur.
      "python.defaultInterpreterPath": "C:\\ProgramData\\anaconda3\\python.exe",
      "python-envs.defaultEnvManager": "ms-python.python:conda",
      "python-envs.defaultPackageManager": "ms-python.python:conda",
-     "terminal.integrated.defaultProfile.windows": "Command Prompt"
+     "terminal.integrated.profiles.windows": {
+       "Anaconda Prompt": {
+         "path": "C:\\Windows\\System32\\cmd.exe",
+         "args": ["/K", "C:\\ProgramData\\anaconda3\\Scripts\\activate.bat", "C:\\ProgramData\\anaconda3"]
+       }
+     },
+     "terminal.integrated.defaultProfile.windows": "Anaconda Prompt"
    }
    ```
 
@@ -272,31 +278,14 @@ par l'invite de commandes `cmd`, sans demander de droits d'administrateur.
 
 Les guillemets, les virgules et les doubles barres obliques inverses sont
 ceux du format JSON, et se recopient tels quels. VS Code souligne en rouge
-la ligne qui contient une erreur de recopie. La dernière ligne fait
-de `cmd` le terminal par défaut ; les quatre autres indiquent à l'extension
-Python où est conda, et quel interpréteur employer tant qu'on n'en a pas
-choisi.
+la ligne qui contient une erreur de recopie. Les dernières lignes décrivent
+à VS Code le terminal de l'Anaconda Prompt, un `cmd` déjà activé à
+l'ouverture, et en font le terminal par défaut ; les quatre premières
+indiquent à l'extension Python où est conda, et quel interpréteur employer
+tant qu'on n'en a pas choisi.
 
-**Vérification** : l'onglet du terminal s'appelle « Command Prompt », une
-ligne qui contient `activate && conda activate base` s'écrit seule, et
+**Vérification** : l'onglet du terminal s'appelle « Anaconda Prompt », et
 l'invite commence par `(base)`.
-
-Si l'invite ne commence toujours pas par `(base)`, remplacer la dernière
-ligne du fichier par le réglage suivant, qui décrit à VS Code le terminal de
-l'Anaconda Prompt lui-même, déjà activé à l'ouverture :
-
-```json
-"terminal.integrated.profiles.windows": {
-  "Anaconda Prompt": {
-    "path": "C:\\Windows\\System32\\cmd.exe",
-    "args": ["/K", "C:\\ProgramData\\anaconda3\\Scripts\\activate.bat", "C:\\ProgramData\\anaconda3"]
-  }
-},
-"terminal.integrated.defaultProfile.windows": "Anaconda Prompt"
-```
-
-Enregistrer, recharger la fenêtre et ouvrir un nouveau terminal, comme
-plus haut : l'onglet s'appelle alors « Anaconda Prompt ».
 
 Les chemins `C:\ProgramData\anaconda3` sont ceux de l'installation de la
 salle. Sur un autre ordinateur, ils se lisent dans le raccourci de

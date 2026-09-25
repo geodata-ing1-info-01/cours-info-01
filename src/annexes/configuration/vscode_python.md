@@ -168,7 +168,10 @@ compte.
   comme interpréteur. Dans un `cmd`, c'est
   `C:\ProgramData\anaconda3\Scripts\activate && conda activate base`, avec
   le chemin complet : elle fonctionne sans que `conda` soit dans le `PATH`.
-  C'est ce qui fait apparaître `(base)` dans l'invite. Dans PowerShell, la
+  C'est ce qui fait apparaître `(base)` dans l'invite. Quand l'extension
+  n'a pas pu lire les informations d'activation de conda, elle tape
+  seulement `conda activate base`, qui échoue dans un `cmd` sans
+  `conda init` (section suivante). Dans PowerShell, la
   commande passe par un script, `conda-hook.ps1`, que les postes de la
   salle refusent ({ref}`A7 <dep-a7>`) ; le remède est de changer de
   terminal (section suivante), pas de mettre ce réglage à `off` : sans
@@ -205,30 +208,13 @@ compte.
 Par défaut, le terminal de VS Code est un PowerShell, et sur les postes de
 la salle PowerShell ne peut pas activer l'environnement d'Anaconda
 ({ref}`A7 <dep-a7>`). On lui substitue un `cmd`
-([Les terminaux](../notions/terminaux.md)) : VS Code en a un parmi ses
-profils, « Command Prompt », et l'extension Python y tape la commande
-d'activation à l'ouverture.
+([Les terminaux](../notions/terminaux.md)), celui de l'Anaconda Prompt :
+on le décrit à VS Code comme un profil de terminal, qui s'ouvre activé
+quoi qu'il arrive, y compris sans interpréteur choisi ou avec l'activation
+automatique coupée.
 
 Palette, « Preferences: Open User Settings (JSON) ». Ajouter entre les deux
 accolades du fichier (après une virgule, s'il y a déjà quelque chose) :
-
-```json
-"terminal.integrated.defaultProfile.windows": "Command Prompt"
-```
-
-Enregistrer (`Ctrl` + `S`). Puis menu Terminal, New Terminal. L'onglet
-s'appelle « Command Prompt », une ligne `activate && conda activate base`
-s'écrit seule, et l'invite commence par `(base)`, ou par le nom de
-l'environnement choisi comme interpréteur. Si rien ne change : palette,
-« Developer: Reload Window ». Si le terminal affiche une erreur :
-{ref}`V5 <dep-v5>`.
-
-### Variante : le terminal de l'Anaconda Prompt
-
-L'activation ci-dessus dépend de l'extension Python. Pour un terminal qui
-s'ouvre activé quoi qu'il arrive, y compris sans interpréteur choisi ou
-avec l'activation automatique coupée, on décrit à VS Code le terminal de
-l'Anaconda Prompt lui-même, à la place du réglage précédent :
 
 ```json
 "terminal.integrated.profiles.windows": {
@@ -240,9 +226,29 @@ l'Anaconda Prompt lui-même, à la place du réglage précédent :
 "terminal.integrated.defaultProfile.windows": "Anaconda Prompt"
 ```
 
-L'onglet s'appelle alors « Anaconda Prompt ». L'extension y tape tout de
-même sa commande d'activation, dans un terminal déjà activé ; c'est sans
-effet.
+Enregistrer (`Ctrl` + `S`). Puis menu Terminal, New Terminal. L'onglet
+s'appelle « Anaconda Prompt », et l'invite commence par `(base)`.
+L'extension y tape tout de même sa commande d'activation, dans un
+terminal déjà activé, pour l'environnement choisi comme interpréteur. Si
+rien ne change : palette, « Developer: Reload Window ». Si le terminal
+affiche une erreur : {ref}`V5 <dep-v5>`.
+
+### Variante : le profil « Command Prompt »
+
+VS Code a parmi ses profils un `cmd` ordinaire, « Command Prompt », où
+l'extension Python tape la commande d'activation à l'ouverture :
+
+```json
+"terminal.integrated.defaultProfile.windows": "Command Prompt"
+```
+
+Il ne suffit que si `conda activate` marche dans un `cmd` ordinaire du
+poste. Quand l'extension n'a pas pu lire les informations d'activation de
+conda (panneau Output, « Python Environments » : `Conda environment
+manager is not available, using default conda activation paths`), elle
+tape seulement `conda activate base`, qui répond `CondaError: Run 'conda
+init' before 'conda activate'` si `conda init cmd.exe` n'a jamais été fait
+pour le compte ({ref}`V5 <dep-v5>`).
 
 :::{note}
 Les deux chemins `C:\ProgramData\anaconda3` sont ceux de l'installation

@@ -111,8 +111,9 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
 
 Répondre `O`, puis fermer la fenêtre. Si la réponse est un message
-d'erreur, le poste impose sa stratégie : passer à la suite, la dernière
-ligne des réglages du compte, plus bas, remplace PowerShell par un `cmd`.
+d'erreur, le poste impose sa stratégie : passer à la suite, les dernières
+lignes des réglages du compte, plus bas, remplacent PowerShell par un
+`cmd` déjà activé.
 
 ### Ouvrir VS Code sur le dossier de la séance
 
@@ -139,7 +140,7 @@ pas : {ref}`V3 <dep-v3>`.
 
 Palette (`Ctrl` + `Maj` + `P`), « Preferences: Open User Settings
 (JSON) ». Si le fichier est vide, y recopier le bloc suivant en entier.
-S'il contient déjà des réglages, ajouter les cinq lignes entre les
+S'il contient déjà des réglages, ajouter les lignes du bloc entre les
 accolades, après une virgule.
 
 ```json
@@ -148,11 +149,19 @@ accolades, après une virgule.
   "python.defaultInterpreterPath": "C:\\ProgramData\\anaconda3\\python.exe",
   "python-envs.defaultEnvManager": "ms-python.python:conda",
   "python-envs.defaultPackageManager": "ms-python.python:conda",
-  "terminal.integrated.defaultProfile.windows": "Command Prompt"
+  "terminal.integrated.profiles.windows": {
+    "Anaconda Prompt": {
+      "path": "C:\\Windows\\System32\\cmd.exe",
+      "args": ["/K", "C:\\ProgramData\\anaconda3\\Scripts\\activate.bat", "C:\\ProgramData\\anaconda3"]
+    }
+  },
+  "terminal.integrated.defaultProfile.windows": "Anaconda Prompt"
 }
 ```
 
 Enregistrer (`Ctrl` + `S`), puis palette, « Developer: Reload Window ».
+Les dernières lignes décrivent à VS Code le terminal de l'Anaconda Prompt,
+qui s'ouvre déjà activé, sans dépendre de l'extension Python.
 Ce que fait chaque ligne est expliqué dans [Fichiers de
 réglages](../annexes/configuration/vscode_reglages.md).
 
@@ -161,7 +170,7 @@ réglages](../annexes/configuration/vscode_reglages.md).
 | Ce qu'on fait | Ce qu'on doit voir | Sinon |
 |---|---|---|
 | Palette, « Python: Select Interpreter » | une ligne `base`, type Conda, chemin `C:\ProgramData\anaconda3\python.exe`, cochée | {ref}`V6 <dep-v6>` |
-| Menu Terminal, New Terminal | un onglet « Command Prompt », une invite `(base) C:\…>` | {ref}`V5 <dep-v5>` |
+| Menu Terminal, New Terminal | un onglet « Anaconda Prompt », une invite `(base) C:\…>` | {ref}`V5 <dep-v5>` |
 | Dans ce terminal, `python -c "import sys; print(sys.executable)"` | `C:\ProgramData\anaconda3\python.exe` | {ref}`V7 <dep-v7>` |
 | Ouvrir un `.ipynb`, bouton « Select Kernel », « Python Environments… » | `base` en tête de liste | {ref}`J1 <dep-j1>` |
 

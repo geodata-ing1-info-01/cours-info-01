@@ -90,21 +90,25 @@ Remède
 Ce qu'on voit
 : À chaque nouveau terminal, une ligne de commande s'écrit toute seule,
   puis `… activate.ps1 cannot be loaded because running scripts is disabled
-  on this system` ({ref}`A7 <dep-a7>`), ou `'conda' n'est pas reconnu`
-  ({ref}`A2 <dep-a2>`). L'invite ne commence pas par `(base)`.
+  on this system` ({ref}`A7 <dep-a7>`), `'conda' n'est pas reconnu`
+  ({ref}`A2 <dep-a2>`), ou `CondaError: Run 'conda init' before 'conda
+  activate'`. L'invite ne commence pas par `(base)`.
 
 Cause
 : Le terminal est un PowerShell, qui ne peut pas activer l'environnement
-  sur les postes de la salle.
+  sur les postes de la salle. Ou c'est un « Command Prompt » ordinaire, où
+  l'extension Python tape `conda activate base` : cette commande ne marche
+  dans un `cmd` qu'après un `conda init cmd.exe`, rarement fait sur les
+  postes.
 
 Remède
-: Faire le réglage du terminal ([Python et environnement
-  conda](../configuration/vscode_python.md)). S'il est fait et que l'erreur
-  reste : vérifier que le fichier a été enregistré, que la valeur est bien
-  `Command Prompt` (ou, pour la variante « Anaconda Prompt », que les
-  chemins sont ceux du raccourci Anaconda Prompt), et faire palette,
-  « Developer: Reload Window ». Si le fichier de réglages est souligné en
-  rouge : {ref}`V10 <dep-v10>`.
+: Faire le réglage du terminal, profil « Anaconda Prompt » ([Python et
+  environnement conda](../configuration/vscode_python.md)). S'il est fait
+  et que l'erreur reste : vérifier que le fichier a été enregistré, que
+  l'onglet du terminal s'appelle « Anaconda Prompt », que les chemins sont
+  ceux du raccourci Anaconda Prompt, et faire palette, « Developer: Reload
+  Window ». Si le fichier de réglages est souligné en rouge :
+  {ref}`V10 <dep-v10>`.
 
 (dep-v6)=
 ### V6. « Python: Select Interpreter » ne propose pas Anaconda
