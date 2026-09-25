@@ -34,6 +34,15 @@ que `outils/livrer_tds.py` ne livre pas, et c'est elle que `--executer`
 exécute. C'est le pendant du `reponse[…]` des diapositives : ce que l'étudiant
 produit est masqué, la consigne ne l'est jamais.
 
+Un trou plus court se marque ligne par ligne, par le commentaire final
+`# à compléter`, dans n'importe quelle cellule de code. Le livré garde la
+cellule entière et ne remplace que ces lignes : `x = expression  # à compléter`
+devient `x = ...  # à compléter`, une ligne sans affectation devient
+`...  # à compléter`. Une cellule Markdown « Réponse », repliée par
+`<details>`, suit la cellule et donne les lignes complètes ; JupyterLab et
+VS Code l'affichent fermée, un clic l'ouvre. Le corrigé garde les lignes,
+sans le commentaire.
+
 Sort en code 1 si une conversion ou une exécution échoue.
 """
 
@@ -41,12 +50,15 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import shutil
 import subprocess
 import sys
 from pathlib import Path
 
 ETIQUETTE = "corrige"
+MARQUE = "# à compléter"
+AFFECTATION = re.compile(r"^(\s*)([\w.\[\]\"', ]+?)\s*=(?!=)")
 
 RACINE = Path(__file__).resolve().parent.parent
 SOURCES = sorted((RACINE / "src").glob("cours*/notebook/td/**/*.md"))
@@ -91,19 +103,67 @@ def consigne(source_cellule: str) -> str:
     return "\n".join(lignes) + "\n" if lignes else "# à compléter\n"
 
 
+def ligne_a_trou(ligne: str) -> str:
+    """La ligne livrée : la valeur remplacée par `...`, le nom affecté conservé."""
+    affectation = AFFECTATION.match(ligne)
+    if affectation:
+        indentation, nom = affectation.groups()
+        return f"{indentation}{nom} = ...  {MARQUE}"
+    indentation = ligne[:len(ligne) - len(ligne.lstrip())]
+    return f"{indentation}...  {MARQUE}"
+
+
+def sans_marque(ligne: str) -> str:
+    return ligne[:-len(MARQUE)].rstrip()
+
+
+def reponse(lignes: list[str]) -> dict:
+    """La cellule Markdown repliée qui donne les lignes complètes."""
+    texte = "\n".join(lignes)
+    return {
+        "cell_type": "markdown",
+        "metadata": {},
+        "source": f"<details><summary>Réponse</summary>\n\n```python\n{texte}\n```\n\n</details>",
+    }
+
+
 def a_trous(complet: Path, livre: Path) -> bool:
-    """Écrit la version livrée du notebook ; dit s'il y avait des cellules à masquer."""
+    """Écrit la version livrée du notebook ; dit s'il y avait des cellules à masquer.
+
+    Le notebook complet est réécrit au passage, sans les commentaires
+    `# à compléter`.
+    """
     notebook = json.loads(complet.read_text(encoding="utf-8"))
+    cellules_livrees = []
     masquees = 0
     for cellule in notebook["cells"]:
+        cellules_livrees.append(cellule)
         if cellule["cell_type"] != "code":
             continue
-        if ETIQUETTE in cellule.get("metadata", {}).get("tags", []):
-            cellule["source"] = consigne("".join(cellule["source"]))
+        lignes = "".join(cellule["source"]).splitlines()
+        trous = [ligne for ligne in lignes if ligne.rstrip().endswith(MARQUE)]
+        if trous:
+            complete = [sans_marque(ligne) if ligne in trous else ligne for ligne in lignes]
+            livree = dict(cellule)
+            livree["source"] = "\n".join(
+                ligne_a_trou(sans_marque(ligne)) if ligne in trous else ligne for ligne in lignes
+            )
+            cellule["source"] = "\n".join(complete)
+            cellules_livrees[-1] = livree
+            cellules_livrees.append(reponse([sans_marque(ligne).strip() for ligne in trous]))
             masquees += 1
-        cellule["outputs"] = []
-        cellule["execution_count"] = None
+        elif ETIQUETTE in cellule.get("metadata", {}).get("tags", []):
+            livree = dict(cellule)
+            livree["source"] = consigne("".join(cellule["source"]))
+            cellules_livrees[-1] = livree
+            masquees += 1
     if masquees:
+        complet.write_text(json.dumps(notebook, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+        notebook["cells"] = cellules_livrees
+        for cellule in notebook["cells"]:
+            if cellule["cell_type"] == "code":
+                cellule["outputs"] = []
+                cellule["execution_count"] = None
         livre.write_text(json.dumps(notebook, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     return bool(masquees)
 

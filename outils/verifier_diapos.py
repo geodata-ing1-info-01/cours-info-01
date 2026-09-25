@@ -20,6 +20,10 @@ aux notes de conduite : elle mérite le même passage.
     typst compile --root . --input notes=true src/cours1/diapo/cours1.typ notes.pdf
     python outils/verifier_diapos.py notes.pdf
 
+Une page qui porte du texte sans aucune ligne à la taille d'un titre est
+aussi signalée : c'est la suite d'une diapositive qui a débordé sur une page
+de plus, que l'écart seul ne voit pas.
+
 Sort en code 1 si au moins une diapositive est signalée, pour un enchaînement
 dans un script.
 """
@@ -43,6 +47,9 @@ ECART_MINIMAL = 20.0
 
 # Le pied de page occupe les derniers points de la hauteur ; on l'écarte.
 BANDE_PIED = 40.0
+
+# Le texte d'une page de débordement commence dans cette bande, en haut.
+BANDE_HAUTE = 80.0
 
 
 # La version annotée pose les notes à droite, sur une page deux fois plus large.
@@ -108,6 +115,15 @@ def examiner(chemin, seuil):
     for numero, page in enumerate(racine.iter(NS + "page"), 1):
         hauteur = float(page.get("height"))
         gs = [g for g in lignes(page) if g[0] < hauteur - BANDE_PIED]
+        if (gs and all(bas - haut < HAUTEUR_TITRE for haut, bas, _ in gs)
+                and gs[0][0] < BANDE_HAUTE
+                and not gs[0][2].startswith("TRAVAUX DIRIGÉS")):
+            # Du texte en haut de page, mais aucune ligne à la taille d'un
+            # titre : la suite d'une diapositive qui a débordé sur une page
+            # de plus. Le sommaire des TD (« TRAVAUX DIRIGÉS ») et une image
+            # pleine page, créditée en bas, n'en sont pas.
+            signalees.append((numero, 0.0, "page sans titre : " + gs[0][2]))
+            continue
         if not gs or gs[0][1] - gs[0][0] < HAUTEUR_TITRE:
             continue  # page de titre ou de séparation : pas de corps à mesurer
         fin_titre, i = bloc_titre(gs)

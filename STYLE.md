@@ -149,6 +149,27 @@ l'un et l'autre.
 Les captures ne sont pas versionnées, et leur fabrication est décrite dans
 [`illustrations/cours1/README.md`](illustrations/cours1/README.md).
 
+## Tournures corrigées en relecture
+
+Les relectures de septembre 2026 (cours 2, 3 et 5) ont corrigé les mêmes
+tournures, y compris dans des diapositives réécrites après une première
+correction. Elles s'ajoutent à la table précédente.
+
+| Tournure | Écrit | Corrigé |
+|----------|-------|---------|
+| Contraste « X, pas Y », « plutôt que », « et non » | « La ligne du disque est un calcul, pas une mesure » | « La ligne du disque est un calcul » |
+| Formule « c'est » | « C'est la diapositive à retenir de la partie » | « Diapositive à retenir » (notes) |
+| Chute après deux-points | « La carte mère ne calcule pas : elle relie » | « La carte mère relie les composants par des pistes de cuivre » |
+| Image, personnification | « le dépôt vit dans… », « tiré par l'IA », « se suit seul » | « le dépôt reste dans… », « surtout par l'IA », « autonome » |
+| Annonce sans verbe | « Dans l'Anaconda Prompt. » | « Les commandes se tapent dans l'Anaconda Prompt. » |
+| Annonce qui reformule le titre | « Chaque étape corrige une limite de la précédente » sous un tableau dont une colonne s'intitule « Limite corrigée » | pas d'annonce |
+| Verbe vague ou elliptique | « un `import` suffit » | « s'importent sans installation » |
+
+Une restructuration réécrit des phrases : le texte nouveau repasse par ces
+deux tables, et un texte déjà relu se déplace sans être reformulé.
+`python outils/verifier_style.py` relève les tournures repérables
+automatiquement dans les lignes ajoutées depuis le dernier commit.
+
 ## Encadrés
 
 Un encadré n'est pas un moyen de mettre du texte en valeur. Il signale un
@@ -180,6 +201,7 @@ Pas d'encadré « à retenir » qui recopie le paragraphe précédent.
 - [ ] Un TD nouveau est un fichier de `tds/` nommé comme son dossier, avec son dictionnaire `td` en tête, importé et inclus par `cours<n>.typ`.
 - [ ] Les chemins cités dans un TD sont ceux de l'archive livrée : `cours1/2a_vscode_python/`, sans `data/` ni `produit/`.
 - [ ] `python outils/verifier_diapos.py` ne signale rien.
+- [ ] `python outils/verifier_style.py` ne signale rien, ou chaque signalement a été relu.
 
 ## Sources
 
