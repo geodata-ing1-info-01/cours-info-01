@@ -23,7 +23,7 @@
     [Vu aux cours 1 et 2], [Aujourd'hui, en Python],
     [chemin relatif, chemin absolu ], [`Path`, `/`, `resolve()`, `Path(__file__)`],
     [fichier texte, encodage (cours 1)], [`open(file_path, encoding="utf-8")`, `fichier.write(..)`],
-    [texte et binaire (cours 1)], [`open(file_path, "wb", ..`, une image écrite en format texte et binaire],
+    [caractères et octets (cours 1)], [`encode("utf-8")`, ASCII et UTF-8],
     [lancer un programme au terminal (cours 2)], [`subprocess.run([...])`,  avec pandoc  md -> html],
     [Ecrire une ligne de commande], [`argparse`, dans un programme qu'on écrit],
   )
@@ -37,96 +37,25 @@
 // --------------------------------------------
 #d("Contenu de la séance")[
   #annonce[
-    La séance contient trois notebooks ; les deux premiers s'exécutent pendant la présentation du cours. 
-    Chaque TD a son dossier dans l'archive `cours3/`, avec ses propres données.
+    La séance comprend deux notebooks autonomes, puis l'écriture d'un script dans l'éditeur.
+    Chaque TD a son dossier dans l'archive `cours3/`.
   ]
 
   #tableau(
     columns: (auto, auto, 1fr, auto),
     align: (left + horizon, left + horizon, left + horizon, center + horizon),
     [Partie], [Fichier], [Contenu], [Durée],
-    [Préparation du poste de travail], [], [récupérer l'archive, lancer JupyterLab], [10 min],
-    [Environnement (selon les groupes)], [TD 0a], [`cours3`, avec pandoc et Pillow], [+15 min],
-    [Chemins], [`recette.ipynb`], [chemins ; appeler une commande depuis Python], [20 min],
-    [Texte et binaire], [`fichiers.ipynb` #linebreak() `images.ipynb`], [lire et écrire un fichier ; texte et binaire ; UTF-8], [30 min],
+    [Préparation du poste de travail], [TD 0a], [récupérer l'archive, lancer JupyterLab], [10 min],
+    [Environnement (selon les groupes)], [TD 0a], [`info01-cours3` : pandoc, Pillow], [+15 min],
+    [Chemins et programmes externes], [`recette.ipynb`], [`pathlib` ; pandoc lancé par `subprocess`], [20 min],
+    [Fichiers texte et encodage], [`fichiers.ipynb` #linebreak() `images.ipynb` § 1], [lire et écrire un fichier ; ASCII et UTF-8], [30 min],
     [Ligne de commande], [`recette.py`], [`main`, `argparse` ; un commit par étape], [45 min],
   )
 
   #notes[
-    Les trois notebooks sont a faire en même temps que l'exposé : chaque diapositive qui porte un cartouche « § n » correspond à une section du notebook, à exécuter à ce moment. 
-    La dernière partie est un TD classique : cinq diapositives d'exposé, puis le déroulé du TD détaillé.
-  ]
-]
-
-// --------------------------------------------
-#d("Lancement de la séance : récupération données")[
-  #annonce[
-    L'archive `info01-cours3.zip` est dans le dossier partagé `formationTemp`.
-    Il faut la copier sur le Bureau (ou autre dossier de votre préférence) puis la décompresser. 
-  ]
-
-  #tableau(
-    columns: (auto, 1.4fr, 1fr),
-    align: left + horizon,
-    [], [Ce qu'il faut faire], [Ce que vous devez obtenir],
-    [1], [ouvrir le dossier partagé `formationTemp`, copier `info01-cours3.zip` sur le Bureau],
-      [l'archive sur le Bureau, 14 Mo],
-    [2], [clic droit sur l'archive #sym.arrow.r Extraire tout],
-      [un dossier `cours3/`, quatre sous-dossiers `1a_recette/`, `2a_fichiers/`, `2b_images/`, `3a_cli/`],
-    [3], [ouvrir `cours3/1a_recette/` : `depart/`, `travail/` vide, la feuille du TD],
-      [`depart/notebook/` contient `recette.ipynb`],
-  )
-
-  #avertissement[
-    Ne pas travailler dans le dossier partagé, ne pas chercher à ouvrir un fichier
-    de l'archive avec vscode ou autre.
-  ]
-
-  #notes[
-    Vécu à la séance 1 : des fichiers ouverts depuis l'archive sans
-    extraction, et du travail fait dans le dossier partagé, perdu ou écrasé
-    par le voisin. 
-    Faire les trois étapes avec les étudiants, avant de lancer quoi que ce soit.
-  ]
-]
-
-// --------------------------------------------
-#d("Lancement de la séance : test notebook")[
-  #annonce[
-    La séance demande d'exécuter des notebooks et d'écrire du code Python.
-    Avant de commencer, chacun vérifie que ses outils se lancent.\ 
-    Par défault on utilisera vscode ou jupyter lab.
-    Si ça ne fonctionne pas demandez, selon les cas ça sera dépannage ou changement de poste.
-  ]
-
-  #tableau(
-    columns: (auto, 1.3fr, 1fr),
-    align: left + horizon,
-    [Outil], [Comment le lancer], [Ce qui doit apparaître],
-    [JupyterLab], [Anaconda Navigator #sym.arrow.r fiche JupyterLab #sym.arrow.r *Launch* ; si rien ne vient après trente secondes : Anaconda Prompt, puis `jupyter lab`],
-      [un onglet du navigateur, adresse `localhost`],
-    [Un éditeur], [VS Code, configuré au TD 2a du cours 1 ; sinon Spyder, depuis Navigator],
-      [l'éditeur, avec un terminal qui répond à `python --version`],
-    [Un terminal], [menu Démarrer #sym.arrow.r Anaconda Prompt],
-      [`(base)` en tête de ligne],
-  )
-
-  #legende[
-    En cas de problème : les pages « Avant les séances » du support, ou la
-    main levée.
-  ]
-
-  #notes[
-    Groupes qui font le TD 0a : ne vérifier ici que l'Anaconda Prompt ;
-    JupyterLab se lance à la fin du TD 0a, depuis l'environnement `cours3`.
-
-    Dix minutes, pas plus. 
-    Navigator a été lent ou muet sur les VM à la séance 1 : donner la commande `jupyter lab` tout de suite à ceux qui n'ont rien au bout de trente secondes.
-
-    VS Code sert pour le TD 3a, pas pour les notebooks. 
-    Si pb d'environnement d'Anaconda sur ces postes avec vscode, et pas le temps de configurer tenter spyder.
-
-    Un poste qui ne lance ni JupyterLab ni un éditeur en dix minutes : en
-    changer ou suivre avec un collègue, la séance ne peut pas attendre.
+    Chaque partie commence par quelques diapositives (le programme, ses améliorations, les bibliothèques), puis travail autonome sur le notebook : un texte explicatif par section, une réponse repliée sous chaque ligne à compléter.
+    Le cartouche « § n » d'une diapositive renvoie à la section du notebook qui la reprend.
+    Les sections d'`images.ipynb` sur les images (PGM, formats, compression) sont facultatives.
+    La dernière partie est le TD 3a seul : le passage en script, `main` et `argparse` sont présentés dans la partie 1.
   ]
 ]

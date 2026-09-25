@@ -17,9 +17,9 @@ code.
 
 ## Contenu de la séance
 
-Trois notebooks exécutés pendant l'exposé, puis un programme écrit dans
-l'éditeur et lancé au terminal. Les diapositives qui accompagnent un notebook
-portent le numéro de la section à exécuter à ce moment.
+Deux notebooks autonomes, chacun présenté par quelques
+diapositives, la première section d'un troisième sur ASCII et UTF-8, puis un
+programme écrit dans l'éditeur et lancé au terminal.
 
 ```{list-table}
 :header-rows: 1
@@ -30,11 +30,11 @@ portent le numéro de la section à exécuter à ce moment.
 * - Préparation du poste de travail
   - récupérer l'archive du dossier partagé sur le Bureau ; vérifier que JupyterLab et l'éditeur se lancent
   - 10 min
-* - Chemins
-  - améliorer le code de génération de recette : chemins en dur, `pathlib`, pandoc
+* - Chemins et programmes externes
+  - améliorer le code de génération de recette : chemins en dur, `pathlib`, pandoc appelé par `subprocess`
   - 20 min
-* - Texte et binaire
-  - `open`, `with`, les modes d'ouverture ; puis une image PGM en chiffres et en octets, les signatures de format, le poids et le temps de lecture, ce qu'un caractère pèse
+* - Fichiers texte et encodage
+  - `open`, `with`, les modes d'ouverture ; ASCII et UTF-8, ce qu'un caractère pèse
   - 45 min
 * - Ligne de commande
   - le notebook devient un programme : un fichier, `main`, `argparse`, un README, un commit par étape
@@ -54,15 +54,15 @@ décompresse dans le dossier `info01` du Bureau ([Récupérer les fichiers
 d'une séance](../avant/donnees.md)), et rien ne se fait dans le dossier
 partagé ni depuis l'archive. Les notebooks, livrés dans `depart/notebook/`, se copient
 dans `travail/` avant d'être ouverts dans JupyterLab, depuis Anaconda
-Navigator ou par `jupyter lab` dans Anaconda Prompt. Les cellules qui ne contiennent qu'un
-commentaire sont à compléter en séance ; la version complète est distribuée
-après.
+Navigator ou par `jupyter lab` dans Anaconda Prompt. Une ligne de code terminée par `# à compléter` est à
+écrire en séance ; sa réponse est repliée dans la cellule « Réponse » qui la
+suit, et la version complète est distribuée après.
 
 | TD | Fichier | Ce qu'on y fait |
 |---|---|---|
 | 1a | `recette.ipynb` | le code de génération de recette, ses chemins refaits avec `pathlib`, converti par pandoc |
 | 2a | `fichiers.ipynb` | comment le code de la recette ouvre, lit et écrit ses fichiers texte |
-| 2b | `images.ipynb` | un motif PGM de seize pixels en texte et en binaire, *La Grande Vague* en cinq formats, la compression, ASCII et UTF-8 |
+| 2b | `images.ipynb` | ASCII et UTF-8 ; en option, un motif PGM de seize pixels en texte et en binaire, *La Grande Vague* en cinq formats, la compression |
 | 3a | `recette.py` | le code du notebook dans un fichier, puis `main`, `argparse`, un README ; un commit par étape |
 
 Les images sont libres : *Under the Wave off Kanagawa*

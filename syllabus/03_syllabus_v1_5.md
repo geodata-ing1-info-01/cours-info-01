@@ -37,7 +37,7 @@
 Objectif inchangé. La séance est allégée pour laisser la place, selon les groupes, à un TD d'environnement : la partie 4 du cours 1 (bibliothèques et environnements) n'a pas été jouée.
 
 - **⌨️ 10′ · Préparation du poste** : copier l'archive, lancer JupyterLab. Inchangé.
-- **⌨️ 20′ · TD 0a, facultatif selon les groupes · Un environnement pour la séance** *(nouveau)* : dans l'Anaconda Prompt, `conda create -n cours3 -c conda-forge python=3.12 jupyterlab`, `conda activate cours3` ; constater que `pandoc --version` échoue et que `import PIL` lève `ModuleNotFoundError` ; `conda install -c conda-forge pandoc pillow` ; relancer les deux vérifications ; `jupyter lab` depuis le dossier `cours3/`. Une diapositive d'exposé : ce qu'est un environnement, les cinq commandes (`create`, `activate`, `install`, `list`, `env list`).
+- **⌨️ 10′ + 20′ · TD 0a · Préparation du poste de travail** *(révisé le 25/09/2026 : les diapositives de récupération de l'archive et de test des outils, jusque-là dans l'ouverture, y passent ; seule la dernière diapositive, l'environnement, dépend des groupes)* : récupérer l'archive, vérifier que les outils se lancent ; puis, selon les groupes, dans l'Anaconda Prompt, une seule commande crée l'environnement avec ses paquets, `conda create -n info01-cours3 -c conda-forge python=3.12 jupyterlab pandoc pillow` ; `conda activate info01-cours3`, `conda env list` ; vérifier `pandoc --version` et `import PIL` ; `jupyter lab` depuis le dossier `cours3/`. Une seule diapositive, les étapes ; l'annonce définit un environnement (révisé le 25/09/2026 : nom préfixé par le module, plus de diapositive de rappel des commandes, plus d'installation en deux temps).
 - **Chemins (20′)** : `recette.ipynb`, inchangé.
 - **Texte et binaire (30′)**
   - ⌨️ **TD 2a · 15′ · `fichiers.ipynb`**, § 0 à 4 (`open`, `with`, modes, `encoding`, ligne par ligne). Les § 5 (CSV) et 6 (`read_text`, `write_text`, `read_bytes`) se lisent après la séance ; une diapositive en donne le contenu et montre les deux lignes `read_text` et `read_bytes`, qu'`images.ipynb` emploie.
@@ -51,7 +51,7 @@ Objectif inchangé. La séance est allégée pour laisser la place, selon les gr
 
 | Fichier | Modification |
 |---|---|
-| [`src/cours3/diapo/tds/0a_environnement.typ`](../src/cours3/diapo/tds/0a_environnement.typ) | nouveau : trois diapositives, feuille de TD dans `data/cours3/0a_environnement/` |
+| [`src/cours3/diapo/tds/0a_preparation.typ`](../src/cours3/diapo/tds/0a_preparation.typ) | trois diapositives : archive, outils, environnement (selon les groupes) |
 | [`src/cours3/diapo/cours3.typ`](../src/cours3/diapo/cours3.typ) | inclut le TD 0a après l'ouverture |
 | [`src/cours3/diapo/parties/00_ouverture.typ`](../src/cours3/diapo/parties/00_ouverture.typ) | tableau « Contenu de la séance » : ligne du TD 0a, durées ; note de conduite pour les groupes qui font le TD 0a |
 | [`src/cours3/diapo/parties/02a_fichiers.typ`](../src/cours3/diapo/parties/02a_fichiers.typ) | « Lire un fichier CSV » et « Les raccourcis de pathlib » remplacées par « À lire après la séance : § 5 et 6 » |
@@ -100,7 +100,7 @@ Document de conception : [`cours/7_projet_effets/contenu_detaille.md`](cours/7_p
 
 ## À vérifier avant les séances
 
-1. **Avant le 29/09** : durée de `conda create -n cours3 -c conda-forge python=3.12 jupyterlab` sur un poste de la salle ; si elle dépasse cinq minutes, lancer la création dès le début de la séance (note de conduite du TD 0a).
+1. **Avant le 29/09** : durée de `conda create -n info01-cours3 -c conda-forge python=3.12 jupyterlab pandoc pillow` sur un poste de la salle ; si elle dépasse cinq minutes, lancer la création dès le début de la séance (note de conduite du TD 0a).
 2. **Avant le 29/09** : dans un environnement activé autre que `base`, `pandoc --version` échoue-t-il bien sur les postes (pandoc de `base` hors du `PATH`) ?
 3. **Avant le 6/10** : les dossiers `travail/` et les environnements conda sont-ils conservés d'une séance à l'autre sur les postes ? Sinon, le dépôt du projet 4 doit être emporté (clé USB, espace réseau) pour le cours 6.
 4. **Avant le 20/10** : le pare-feu de l'école laisse-t-il passer SSH vers GitHub (port 22) ? Sinon, `ssh.github.com` sur le port 443.

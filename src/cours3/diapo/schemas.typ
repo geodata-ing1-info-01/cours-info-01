@@ -1,28 +1,6 @@
-// Schémas propres au cours 3 : des pixels dessinés, pour montrer une image
-// à côté du texte qui la définit. Les gabarits communs sont dans
-// `src/commun/schemas.typ`.
+// Gabarits propres au cours 3, pour montrer du code et ses sorties. Les
+// gabarits communs sont dans `src/commun/schemas.typ`.
 #import "../../commun/prelude.typ": *
-
-// Une grille de pixels gris, à partir des valeurs 0–255 d'un PGM, une liste
-// par rangée. `cote` est la taille d'un pixel à l'écran.
-#let pixels-gris(rangees, cote: 24pt) = grid(
-  columns: rangees.at(0).len(),
-  ..rangees.flatten().map(v => rect(
-    width: cote, height: cote, fill: luma(v), stroke: 0.5pt + gris.darken(25%),
-  )),
-)
-
-// Un dessin en lettres, une lettre par pixel, et la couleur de chaque
-// lettre : ce que le notebook fait avec `DESSIN` et `COULEURS`.
-#let pixel-art(dessin, couleurs, cote: 20pt) = {
-  let rangees = dessin.split("\n").filter(l => l.trim() != "")
-  grid(
-    columns: rangees.at(0).len(),
-    ..rangees.map(r => r.clusters().map(lettre => rect(
-      width: cote, height: cote, fill: couleurs.at(lettre), stroke: 0.5pt + gris.darken(25%),
-    ))).flatten(),
-  )
-}
 
 // Une sortie de terminal ou de cellule, passée en chaîne (les `\n` y sont
 // des retours à la ligne) : rendue en `raw` pour que les colonnes restent

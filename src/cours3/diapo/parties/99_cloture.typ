@@ -12,11 +12,9 @@
     [`encoding="utf-8"`], [dans chaque lecture et chaque écriture de texte],
     [`subprocess.run([...])`], [un programme externe, appelé depuis Python, en liste],
     [`if __name__ == "__main__":`], [`main()` s'exécute quand le fichier est lancé par `python` ; un `import` ne l'exécute pas],
-    [Un fichier binaire], [des octets qui sont déjà les valeurs ; le texte les écrit en chiffres],
-    [Une signature], [les premiers octets identifient le format ; l'extension le rappelle],
     [Un caractère], [un nombre ; ASCII en a 128, sur un octet ; UTF-8 écrit les autres sur deux à quatre],
     [`argparse`], [les valeurs sur la ligne de commande, vérifiées, et l'aide de `--help`],
-    [Un environnement conda], [un Python et ses paquets ; `conda install` ajoute un paquet à l'environnement actif (TD 0a, selon les groupes)],
+    [Un environnement conda], [un Python et ses paquets ; `conda create -n nom … paquets` le crée avec eux (TD 0a, selon les groupes)],
   )
 
   #notes[

@@ -238,7 +238,7 @@ Pas de commit à cette étape : le premier commit vient avec le code.
 > **À obtenir :** `python recette.py` écrit `sortie/crepes.html` ; `git log --oneline` affiche une ligne.
 
 **Entrée** : les cellules du notebook `recette.ipynb` (TD 1a), dans leur
-version finale : sections 1, 3.3 et 4.4.
+version finale : sections 1, 3.1, 3.3 et 4.4.
 
 **Sortie** : un fichier `travail/recette.py` ; lancé par
 `python recette.py`, il écrit `sortie/crepes.html`.
@@ -331,7 +331,8 @@ définissent les fonctions sans les exécuter.
 
 ### 1.3 Le programme : la recette complétée en Markdown
 
-Sous les fonctions, coller le programme de la section 3.3 du notebook. Les
+Sous les fonctions, écrire le programme, qui reprend le corps de la fonction
+`generer` du notebook (section 3.1) avec les chemins de la section 3.3. Les
 deux blocs `with` du notebook sont écrits ici avec `read_text` et
 `write_text` (notebook `fichiers.ipynb`, section 6).
 

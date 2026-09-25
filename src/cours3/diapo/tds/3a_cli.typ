@@ -118,6 +118,48 @@
   ]
 ]
 
+#d("Le même code, dans un fichier")[
+  #annonce[
+    Copier dans un script python, fichier `recette.py`, le code des cellules, dans
+    leur ordre (dernière version). 
+    `python recette.py` l'exécute en entier.
+  ]
+
+  #tableau(
+    columns: (1fr, 1fr, 1fr),
+    align: left + horizon,
+    [], [Notebook], [Script],
+    [Afficher], [la dernière expression de la cellule], [`print` ; une expression seule n'affiche rien],
+    [Dossier courant], [celui du fichier `.ipynb`], [celui du terminal],
+    [Les valeurs (recette, personnes, unités)], [modifiées dans la cellule, puis la cellule relancée], [passées sur la ligne de commande],
+    [Les fonctions], [la cellule des `def`, exécutée en premier], [les `def` en haut du fichier ; le corps d'une fonction s'exécute à chaque appel],
+  )
+
+  #legende[
+    Python lit le fichier de haut en bas. Les fonctions sont écrites avant
+    la première ligne qui les appelle : au moment de l'appel, elles existent.
+  ]
+
+  #notes[
+    Première ligne : dans un script, une expression seule n'affiche rien ;
+    `print` partout où le notebook affichait.
+
+    Deuxième ligne : le § 3.3 de `recette.ipynb`. Dans le TD, le script est lancé depuis le dossier qui contient
+    `recettes/`, et `RACINE = Path.cwd()`.
+
+    Troisième ligne : les valeurs en tête de fichier obligent à ouvrir le
+    fichier pour les changer. `argparse` permet de les passer sur la ligne
+    de commande.
+
+    Quatrième ligne : un `def` définit la fonction sans exécuter son corps.
+    Un `import recette` depuis un autre fichier fait la même lecture de haut
+    en bas : les `def` définissent les fonctions, et les lignes du programme
+    s'exécutent aussi. La fonction `main` (partie 1, puis étape 2) règle ce
+    problème.
+  ]
+]
+
+// --------------------------------------------
 #d("Étape 1 : le code du notebook dans un fichier")[
   #annonce[
     Un fichier `recette.py`, écrit dans l'éditeur, qui reprend les cellules
@@ -130,7 +172,7 @@
     [], [Ce qu'il faut faire], [Ce que vous constatez],
     [1], [en tête : les `import` (`csv`, `shutil`, `subprocess`, `Path`) ; `NOM = "crepes"`, `PERSONNES = 4`, `UNITES = "SI"` ; `RACINE = Path.cwd()`, puis `RECETTES`, `STYLE` et `SORTIE` déduits],
       reponse[`python recette.py` ne fait encore rien : pas d'erreur, pas de sortie],
-    [2], [copier les fonctions utiles (section 1), le programme (section 3.3, avec `read_text` et `write_text`), l'appel de pandoc (section 4.4) ; finir par un `print` du chemin de la page],
+    [2], [copier les fonctions utiles (section 1), le programme (la fonction `generer` de la section 3.1 et les chemins de la section 3.3, avec `read_text` et `write_text`), l'appel de pandoc (section 4.4) ; finir par un `print` du chemin de la page],
       reponse[`python recette.py` écrit `sortie/crepes.html` ; la page s'ouvre par un double-clic],
     [3], [`git add .`, puis `git commit -m "Le programme du notebook, dans un fichier"`],
       reponse[`git status` : rien à valider ; `sortie/` n'est pas listé],

@@ -12,22 +12,29 @@ python outils/compiler_tds.py --cours 3               # une feuille par TD
 python outils/verifier_diapos.py src/cours3/diapo/cours3.pdf
 ```
 
-Ce que cette séance a de particulier : les parties 1 et 2 se jouent pendant
-que les étudiants exécutent un notebook. Leurs diapositives passent
-`cellule: n` au gabarit `d` : la ligne de titre reçoit le cartouche « § n »,
-en brun, la couleur des TD, de la section du notebook à exécuter à ce
-moment ; l'ouverture est commune à la partie et au TD,
-`separateur-cours-td` dans `cours3.typ` (page partagée par une oblique, bleu
-de l'exposé à gauche, brun du TD à droite), et `cours3.typ` inclut les TD 1a
-et 2a avant les parties 1 et 2, et le TD 2b entre les deux moitiés de la
-partie 2 (`02a_fichiers.typ`, `02b_images.typ`). Compilé seul en feuille de TD, le fichier du
-TD remet son ouverture brune (`feuille-seule`).
+Ce que cette séance a de particulier : les parties 1 et 2 sont de l'exposé
+seul, et leurs notebooks (`recette.ipynb`, `fichiers.ipynb`, `images.ipynb`)
+se font en autonomie ; les TD 1a, 2a et 2b n'ont plus de diapositive dans le
+déroulé, et leurs fichiers `tds/` ne servent plus qu'aux feuilles de TD. La
+partie 1 (`01_programme.typ`) présente l'objectif et les étapes du programme
+de la recette, ses données, le code de départ et ses trois problèmes, les
+améliorations jusqu'à la ligne de commande, puis `pathlib`, `subprocess`,
+`main` et `argparse`, avec un script minimal et son appel. La partie 2
+présente les lignes du programme qui manipulent des fichiers, l'objet fichier
+et sa position de lecture, `with`, la lecture en bloc ou ligne par ligne
+(`02a_fichiers.typ`), puis ASCII et UTF-8 (`02b_encodage.typ`). La partie 3
+ne contient que son ouverture et le TD 3a, qui commence par la différence
+entre notebook et script. Une diapositive reprise par une section de notebook
+passe `cellule:` au gabarit `d`, qui ajoute à la ligne de titre le cartouche
+« § n » de cette section.
 
-`schemas.typ` porte trois gabarits propres à la séance : `pixels-gris` (une
-grille de pixels depuis les valeurs d'un PGM), `pixel-art` (un dessin en
-lettres et sa table de couleurs, comme dans le notebook) et `sortie` (une
-sortie de terminal ou de cellule, en `raw`, sur fond gris).
+`schemas_notebook.typ` et `schemas_fichiers.typ` portent les schémas dessinés
+avec cetz : le notebook dont une valeur change, et la position de lecture
+d'un fichier.
 
-Les nombres cités dans la partie 2 (tailles, temps de lecture) sont ceux
-d'une exécution du notebook `images.ipynb` sur un poste ; ils changent d'un
-poste à l'autre, pas leurs rapports.
+Le détail est dans le texte des notebooks. Une ligne de code terminée par
+`# à compléter` y est livrée avec `...` à la place de sa valeur, suivie d'une
+réponse repliée : voir `outils/construire_notebooks.py`.
+
+`schemas.typ` porte deux gabarits propres à la séance : `sortie` (une sortie
+de terminal ou de cellule, en `raw`, sur fond gris) et `code-commente`.

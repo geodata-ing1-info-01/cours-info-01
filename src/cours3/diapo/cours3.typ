@@ -2,11 +2,10 @@
 //
 // Même organisation que le cours 1 : `parties/` porte l'exposé, `tds/` les
 // TD, et ce fichier ne pose que les réglages globaux et l'ordre. Particularité
-// de cette séance : les deux premiers blocs d'exposé se jouent pendant que
-// les étudiants exécutent un notebook (un pour la partie 1, deux pour la
-// partie 2 : TD 2a puis TD 2b), et leurs diapositives portent le cartouche
-// `cellule` qui renvoie à la section du notebook. L'ouverture du TD (lancer JupyterLab,
-// ouvrir le fichier) précède donc l'exposé qu'elle accompagne.
+// de cette séance : les parties 1 et 2 sont de l'exposé seul, et les
+// notebooks qui les accompagnent (`recette.ipynb`, `fichiers.ipynb`,
+// `images.ipynb`) se font en autonomie. Une diapositive reprise par une
+// section de notebook porte le cartouche `cellule` de cette section.
 //
 //   python outils/compiler_diapos.py --cours 3
 //   python outils/compiler_diapos.py --cours 3 --notes
@@ -22,21 +21,18 @@
 
 #let tds = sys.inputs.at("tds", default: "") != "false"
 
-#import "tds/0a_environnement.typ": td as td-0a
-#import "tds/1a_recette.typ": td as td-1a
-#import "tds/2a_fichiers.typ": td as td-2a
-#import "tds/2b_images.typ": td as td-2b
+#import "tds/0a_preparation.typ": td as td-0a
 #import "tds/3a_cli.typ": td as td-3a
 
 // Les parties 1 et 2 se jouent notebook ouvert : leur ouverture est commune
 // au TD, une page partagée entre le bleu de l'exposé et le brun du TD.
 #let partie-1 = (
-  titre: "Chemins",
-  annonce: "Améliorer le code de génération de recette : ses chemins avec pathlib, sa conversion avec pandoc",
+  titre: "Chemins et programmes externes",
+  annonce: "Améliorer le code de génération de recette : ses chemins avec pathlib, sa conversion par pandoc avec subprocess, ses paramètres avec argparse",
 )
 #let partie-2 = (
-  titre: "Texte et binaire",
-  annonce: "Comment le code ouvre, lit et écrit ses fichiers texte ; puis, sur des images au format PGM, ce qu'un fichier binaire contient et ce que le format change au poids et au temps de lecture",
+  titre: "Fichiers texte et encodage",
+  annonce: "Comment le code ouvre, lit et écrit ses fichiers texte ; puis comment ASCII et UTF-8 écrivent les caractères en octets",
 )
 
 #include "parties/00_ouverture.typ"
@@ -44,42 +40,21 @@
 // TD d'environnement, selon les groupes (syllabus v1.5) : la partie 4 du
 // cours 1 n'a pas été jouée en 2026.
 #if tds {
-  include "tds/0a_environnement.typ"
+  include "tds/0a_preparation.typ"
 } else {
   sommaire-td(td-0a)
 }
 
-// L'ouverture commune vaut aussi sans les TD : l'exposé se suit notebook
-// ouvert, et la page dit lequel.
-#separateur-cours-td(
-  partie-1.titre, annonce-partie: partie-1.annonce,
-  notebook: "recette.ipynb", ..td-1a,
-)
-#if tds {
-  include "tds/1a_recette.typ"
-} else {
-  sommaire-td(td-1a)
-}
-#include "parties/01_chemins.typ"
+// Les parties 1 et 2 sont de l'exposé seul, depuis le 25/09/2026 : les
+// notebooks se font en autonomie, et les TD 1a, 2a et 2b n'ont plus de
+// diapositive dans le déroulé. Leurs fichiers `tds/` restent, pour les
+// feuilles de TD livrées dans l'archive (`outils/compiler_tds.py`).
+#separateur(partie-1.titre, annonce: partie-1.annonce)
+#include "parties/01_programme.typ"
 
-#separateur-cours-td(
-  partie-2.titre, annonce-partie: partie-2.annonce,
-  notebook: "fichiers.ipynb", ..td-2a,
-)
-#if tds {
-  include "tds/2a_fichiers.typ"
-} else {
-  sommaire-td(td-2a)
-}
+#separateur(partie-2.titre, annonce: partie-2.annonce)
 #include "parties/02a_fichiers.typ"
-
-// Seconde moitié de la partie 2 : le TD 2b fait ouvrir le notebook des images.
-#if tds {
-  include "tds/2b_images.typ"
-} else {
-  sommaire-td(td-2b)
-}
-#include "parties/02b_images.typ"
+#include "parties/02b_encodage.typ"
 
 #include "parties/03_cli.typ"
 #if tds {

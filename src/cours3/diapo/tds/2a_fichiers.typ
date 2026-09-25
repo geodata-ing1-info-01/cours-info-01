@@ -5,14 +5,14 @@
 // fichier inclus n'hérite pas des imports de son appelant.
 //
 // Comme le TD 1a, ce fichier ouvre le notebook que la première moitié de la
-// partie 2 fait exécuter section par section : `fichiers.ipynb`. Le TD 2b
-// ouvre ensuite `images.ipynb`, pour la seconde moitié.
+// partie 2 vient de présenter : `fichiers.ipynb`. Le TD 2b ouvre ensuite
+// `images.ipynb`, pour la seconde moitié.
 #import "../../../commun/prelude.typ": *
 
 #let td = (
   numero: "2a",
   titre: "Lire et écrire des fichiers texte",
-  annonce: "Ouvrir fichiers.ipynb ; le notebook se fait pendant l'exposé, section par section",
+  annonce: "Ouvrir fichiers.ipynb ; chaque section du notebook explique ce qu'elle fait",
   dossier: "cours3/2a_fichiers/",
   duree: "15′",
 )
@@ -38,6 +38,8 @@
       reponse[un second onglet, à côté du premier],
     [3], [exécuter la section 0],
       reponse[`True True` : les chemins de la section 3.3, retrouvés],
+    [4], [exécuter les sections 1 à 4 ; les sections 5 et 6 se font après la séance],
+      reponse[`essai.txt` écrit, complété, remplacé ; « Ã© » lu en `cp1252`],
   )
 
   #legende[
