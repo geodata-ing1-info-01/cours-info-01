@@ -23,6 +23,7 @@
 
 #import "tds/0a_preparation.typ": td as td-0a
 #import "tds/3a_cli.typ": td as td-3a
+#import "tds/3b_markdown.typ": td as td-3b
 
 // Les parties 1 et 2 se jouent notebook ouvert : leur ouverture est commune
 // au TD, une page partagée entre le bleu de l'exposé et le brun du TD.
@@ -57,11 +58,15 @@
 #include "parties/02b_encodage.typ"
 #include "parties/02c_fichiers.typ"
 
+// Partie 3, au choix : le TD 3a (parcours avancé) ou le TD 3b (parcours
+// standard), annoncés à l'ouverture.
 #include "parties/03_cli.typ"
 #if tds {
   include "tds/3a_cli.typ"
+  include "tds/3b_markdown.typ"
 } else {
   sommaire-td(td-3a)
+  sommaire-td(td-3b)
 }
 
 #include "parties/99_cloture.typ"

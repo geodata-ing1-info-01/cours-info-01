@@ -15,7 +15,7 @@
 #let td = (
   numero: "3a",
   titre: "Une ligne de commande pour la recette",
-  annonce: "Construire recette.py depuis les cellules du notebook : un fichier, une fonction main, argparse, un README ; un commit par étape",
+  annonce: "Parcours avancé : construire recette.py depuis les cellules du notebook, un fichier, une fonction main, argparse, un README ; un commit par étape",
   dossier: "cours3/3a_cli/",
   duree: "45′",
 )

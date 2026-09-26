@@ -10,6 +10,7 @@ Quatre TD, et deux dossiers de la séance qui ne sont pas livrés :
 | `2a_fichiers/` | notebook `fichiers.ipynb` : comment le code de la recette ouvre, lit et écrit ses fichiers (`open`, la position de lecture, octets et encodage, ASCII et UTF-8, fin de ligne, mode binaire, `with`, les modes, `csv`) |
 | `2b_images/` | notebook `images.ipynb`, facultatif : texte et binaire sur des images PGM, formats d'image, compression |
 | `3a_cli/` | `recette.py` construit depuis le notebook et transformé en ligne de commande, un commit par étape ; modèles de README et de `pyproject.toml` |
+| `3b_markdown/` | parcours standard : la recette des gaufres en Markdown, mise en page par le programme de `recette.ipynb`, un dépôt git |
 
 Les données sont dupliquées d'un TD à l'autre plutôt que citées par un chemin
 relatif : chaque dossier se suffit.

@@ -10,6 +10,6 @@
 #import "../schemas.typ": *
 
 #separateur(
-  "Du notebook au programme",
-  annonce: "Le code du notebook dans un fichier .py, lancé depuis un terminal ; ses trois paramètres passées via la ligne de commande",
+  "Deux parcours",
+  annonce: "Parcours avancé, TD 3a : le code du notebook dans un fichier .py, lancé depuis un terminal. Parcours standard, TD 3b : une recette écrite en Markdown, mise en page par le programme du TD 1a",
 )

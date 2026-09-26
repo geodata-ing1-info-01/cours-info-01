@@ -217,3 +217,60 @@
     de Git Bash.
   ])
 }
+
+// La fenêtre de VS Code, un fichier Markdown à gauche et son aperçu à droite.
+// `source` : les lignes du fichier ; `apercu` : le rendu, en contenu typst.
+#let vscode-apercu(dossier, fichier, source, apercu, fichiers: ()) = {
+  set text(font: police-texte, size: 10pt, fill: accent, lang: "fr")
+  let bord = 0.8pt + accent.lighten(55%)
+  block(width: 17cm, stroke: bord, clip: true)[
+    #block(width: 100%, fill: gris, inset: (x: 8pt, y: 5pt))[
+      Fichier #h(8pt) Édition #h(8pt) Sélection #h(8pt) Affichage #h(8pt) Exécuter #h(8pt) Terminal #h(8pt) Aide
+      #h(1fr) #text(fill: estompe)[#dossier — Visual Studio Code]
+    ]
+    #grid(
+      columns: (4.3cm, 1fr, 1fr),
+      block(width: 100%, height: 7.4cm, fill: gris.lighten(40%), inset: 8pt, stroke: (right: bord))[
+        #text(size: 8.5pt, weight: demi-gras, fill: estompe)[EXPLORATEUR]
+        #v(4pt)
+        #text(size: 9.5pt, weight: demi-gras)[#dossier]
+        #for f in fichiers [
+          #v(1pt)
+          #h(6pt) #text(size: 8.5pt)[#f]
+        ]
+      ],
+      // L'éditeur, avec l'icône de l'aperçu en haut à droite de ses onglets
+      block(width: 100%, height: 7.4cm, stroke: (right: bord))[
+        #block(width: 100%, inset: (x: 8pt, y: 4pt), stroke: (bottom: bord), fill: gris.lighten(40%))[
+          #text(size: 9pt, weight: demi-gras)[#fichier]
+          #h(1fr)
+          #box(stroke: 1.2pt + brun, inset: (x: 3pt, y: 1pt), radius: 2pt)[#text(size: 8.5pt)[◫]] #h(3pt) #_repere(1)
+        ]
+        #block(inset: 8pt, width: 100%)[
+          #set align(left)
+          #set par(leading: 0.5em)
+          #for l in source [
+            #text(font: police-code, size: 7.5pt, raw(l)) \
+          ]
+        ]
+      ],
+      // L'aperçu
+      block(width: 100%, height: 7.4cm)[
+        #block(width: 100%, inset: (x: 8pt, y: 4pt), stroke: (bottom: bord), fill: gris.lighten(40%))[
+          #text(size: 9pt)[Aperçu #fichier] #h(1fr) #_repere(2)
+        ]
+        #block(inset: 8pt, width: 100%)[
+          #set align(left)
+          #set text(size: 8.5pt)
+          #apercu
+        ]
+      ],
+    )
+  ]
+  v(4pt)
+  block(width: 17cm, text(size: 9.5pt, fill: estompe)[
+    #_repere(1) l'icône de l'aperçu sur le côté, en haut à droite de l'éditeur
+    (ou `Ctrl` + `K` puis `V`) ; #_repere(2) l'aperçu, mis à jour pendant la
+    frappe.
+  ])
+}

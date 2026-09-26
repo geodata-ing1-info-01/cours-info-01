@@ -536,7 +536,9 @@ reçoit que des chaînes de caractères.
 
 La fonction `generer_page` enchaîne les deux étapes du programme : `generer`
 écrit la recette en Markdown, puis pandoc la convertit en page HTML, à côté,
-avec la même feuille de style. Le TD 3a reprend cette forme dans un script.
+avec la même feuille de style. `pagetitle` donne le titre de l'onglet du
+navigateur, sans ajouter de titre dans la page : la recette a déjà le sien.
+Le TD 3a reprend cette forme dans un script.
 
 ```{code-cell} ipython3
 def generer_page(fichier_ingredients, fichier_recette, fichier_sortie, personnes=4, unites="SI"):
@@ -545,7 +547,7 @@ def generer_page(fichier_ingredients, fichier_recette, fichier_sortie, personnes
 
     page = fichier_sortie.with_suffix(".html")                 # travail/crepes.md -> travail/crepes.html
     commande = ["pandoc", str(fichier_sortie), "-o", str(page), "--standalone",
-                "--metadata", "title=" + fichier_sortie.stem, "--css", "style.css"]
+                "--metadata", "pagetitle=" + fichier_sortie.stem, "--css", "style.css"]
     subprocess.run(commande, check=True)
     print(page, "écrit")
 ```

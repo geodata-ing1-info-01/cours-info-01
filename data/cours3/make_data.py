@@ -4,8 +4,8 @@ Le dépôt versionne les recettes (`recettes/`), les modèles et le programme de
 secours du TD 3a ; tout ce qui vient d'ailleurs est téléchargé une fois dans `fourni/`,
 et `build` recopie ou dérive ce que chaque TD reçoit dans son `produit/`.
 
-    python make_data.py fetch    # télécharge dans 2b_images/fourni/ et 3a_cli/fourni/
-    python make_data.py build    # remplit produit/ des quatre TD, depuis recettes/ et fourni/
+    python make_data.py fetch    # télécharge dans 2b_images/fourni/, 3a_cli/fourni/ et 3b_markdown/fourni/
+    python make_data.py build    # remplit produit/ des cinq TD, depuis recettes/, 3b_markdown/ et fourni/
 
 Chaque TD reçoit sa propre copie des données : un dossier livré se suffit,
 aucun TD ne renvoie à un chemin d'un TD précédent.
@@ -34,6 +34,7 @@ TD_RECETTE = ICI / "1a_recette"
 TD_FICHIERS = ICI / "2a_fichiers"
 TD_IMAGES = ICI / "2b_images"
 TD_CLI = ICI / "3a_cli"
+TD_MARKDOWN = ICI / "3b_markdown"
 
 # Commons et le Met demandent un User-Agent identifiable.
 ENTETES = {"User-Agent": "info01-cours (https://github.com/ ; cours d'introduction à l'informatique)"}
@@ -73,6 +74,12 @@ PHOTOS = {
     },
 }
 LARGEUR_PHOTO = 960
+
+# La photo de la recette écrite au TD 3b, qui n'est pas dans `recettes/`.
+PHOTO_GAUFRES = {
+    "fichier": "Gaufre molle.jpg",
+    "auteur": "Jre", "licence": "domaine public",
+}
 
 # --- ImageMagick portable (TD 3a, option) -------------------------------------
 
@@ -125,6 +132,10 @@ def fetch() -> None:
         telecharger(url_commons(meta["fichier"], LARGEUR_PHOTO), photos / f"{nom}.jpg")
 
     telecharger(MAGICK_URL, TD_CLI / "fourni" / MAGICK_ARCHIVE)
+
+    (TD_MARKDOWN / "fourni").mkdir(parents=True, exist_ok=True)
+    telecharger(url_commons(PHOTO_GAUFRES["fichier"], LARGEUR_PHOTO),
+                TD_MARKDOWN / "fourni" / "gaufres.jpg")
 
 
 def vider(produit: Path) -> None:
@@ -238,6 +249,27 @@ def build() -> None:
     if corrige.is_dir():
         shutil.copytree(corrige, produit / "_corrige")
     print(f"✓ {TD_CLI.name}/produit/depart/")
+
+    # TD 3b : le texte de la recette et le résultat attendu sont versionnés
+    # dans `3b_markdown/depart/` ; `produit/` y ajoute la photo, la feuille de
+    # style de la page et les crédits.
+    produit = TD_MARKDOWN / "produit"
+    vider(produit)
+    (produit / "travail").mkdir()
+    depart = produit / "depart"
+    (depart / "gaufres").mkdir(parents=True)
+    shutil.copy2(RECETTES / "style.css", depart / "gaufres" / "style.css")
+    photo = TD_MARKDOWN / "fourni" / "gaufres.jpg"
+    if photo.exists():
+        shutil.copy2(photo, depart / "gaufres" / "photo.jpg")
+    else:
+        print(f"! {photo.relative_to(ICI)} absent — lancer `fetch`")
+    page = "https://commons.wikimedia.org/wiki/File:" + PHOTO_GAUFRES["fichier"].replace(" ", "_")
+    (depart / "CREDITS.md").write_text(
+        "# Photo\n\n"
+        f"- `gaufres/photo.jpg` : {PHOTO_GAUFRES['auteur']}, {PHOTO_GAUFRES['licence']}, <{page}>\n",
+        encoding="utf-8")
+    print(f"✓ {TD_MARKDOWN.name}/produit/depart/")
 
 
 def main() -> None:
