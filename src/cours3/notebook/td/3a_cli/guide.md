@@ -25,6 +25,10 @@ Le TD transforme le code du notebook `recette.ipynb` (TD 1a) en un programme
 `recette.py`, lancé depuis un terminal. Chaque étape se termine par un commit
 git.
 
+Le code de ce guide se copie depuis `guide_3a_cli.html`, ouvert dans un
+navigateur, ou depuis `guide.ipynb`, ouvert dans JupyterLab. Copié depuis le
+PDF, il perd ses indentations, qu'il faut alors refaire dans VS Code.
+
 Le tableau résume les étapes ; chaque numéro d'étape renvoie à la page qui
 la détaille. Chaque page commence par un encadré qui résume l'étape.
 
@@ -191,33 +195,47 @@ suivis »). Si
 `travail/` : supprimer le dossier caché `3a_cli/.git`, revenir dans
 `travail/` et recommencer.
 
-Vérifier aussi que git connaît votre nom (réglé au cours 2) :
+Régler ensuite votre nom et votre adresse pour ce dépôt. Le poste est
+partagé : le réglage se fait dans le dépôt, sans `--global`, et ne vaut que
+pour lui. Le réglage du cours 2 avait été fait dans un autre dépôt.
 
 ```text
-git config user.name
+git config user.name "Prénom Nom"
+git config user.email "prenom.nom@exemple.fr"
 ```
 
-Si la commande n'affiche rien :
-
-```text
-git config --global user.name "Prénom Nom"
-git config --global user.email "prenom.nom@example.com"
-```
+`git config user.name`, sans valeur, affiche le nom enregistré pour ce dépôt.
 
 ### 0.5 Le fichier `.gitignore`
 
 Le programme écrira ses pages dans un dossier `sortie/`. Ces fichiers sont
 produits par le programme : ils ne sont pas versionnés.
 
-Dans le terminal, dans `travail/` :
+`.gitignore` est un fichier texte, placé dans le dossier du dépôt. Chaque
+ligne de ce fichier nomme un fichier ou un dossier que git ne suit pas. Son
+nom commence par un point et n'a pas d'autre extension.
 
-```text
-echo "sortie/" > .gitignore
-cat .gitignore
-```
+1. Créer le fichier vide. Dans le terminal, dans `travail/` :
 
-**Vérification** : `cat` affiche `sortie/` ; `git status` affiche aussi
-`.gitignore` parmi les fichiers non suivis.
+   ```text
+   touch .gitignore
+   ```
+
+   Le fichier se crée aussi dans VS Code : dans l'explorateur, clic droit,
+   « New File… » (« Nouveau fichier… »), puis le nom `.gitignore`.
+
+2. Ouvrir `.gitignore` dans VS Code, y écrire une seule ligne, puis
+   enregistrer (Ctrl+S). Le fichier contient alors exactement :
+
+   ```text
+   sortie/
+   ```
+
+   La barre oblique finale désigne un dossier : tout ce que contiendra
+   `sortie/` est ignoré.
+
+**Vérification** : l'onglet `.gitignore` de VS Code montre la ligne
+`sortie/` ; `git status` affiche `.gitignore` parmi les fichiers non suivis.
 
 **Dossier à la fin de l'étape 0** :
 
@@ -238,7 +256,7 @@ Pas de commit à cette étape : le premier commit vient avec le code.
 > **À obtenir :** `python recette.py` écrit `sortie/crepes.html` ; `git log --oneline` affiche une ligne.
 
 **Entrée** : les cellules du notebook `recette.ipynb` (TD 1a), dans leur
-version finale : sections 1, 3.1, 3.3 et 4.4.
+version finale : sections 1, 3.1, 3.3 et 4.3.
 
 **Sortie** : un fichier `travail/recette.py` ; lancé par
 `python recette.py`, il écrit `sortie/crepes.html`.
@@ -509,6 +527,19 @@ git diff
 `def main():` et `if __name__ …` sont en vert. Taper `q` pour quitter
 l'affichage.
 
+La même comparaison s'affiche dans VS Code. Cliquer sur l'icône du contrôle
+de code source, dans la barre de gauche (raccourci Ctrl+Maj+G) : le panneau
+liste sous « Modifications » les fichiers modifiés depuis le dernier commit,
+marqués `M`. Un clic sur `recette.py` ouvre l'éditeur de comparaison : à
+gauche le fichier du dernier commit, à droite le fichier modifié. Les lignes
+ajoutées sont sur fond vert, les lignes supprimées sur fond rouge.
+
+![Le panneau du contrôle de code source et la comparaison de recette.py](illustrations/diff.png)
+
+Les lignes seulement décalées de quatre espaces n'y sont pas marquées : par
+défaut, l'éditeur de comparaison ignore les espaces en début et en fin de
+ligne, alors que `git diff` les affiche.
+
 ```text
 git commit -am "Une fonction main"
 git log --oneline
@@ -546,6 +577,12 @@ git branch
 
 **Vérification** : `git branch` affiche `master` et `* arguments` ;
 l'étoile marque la branche courante.
+
+VS Code affiche aussi la branche courante, en bas à gauche de la fenêtre,
+dans la barre d'état. L'invite de Git Bash la donne entre parenthèses, après
+le dossier courant.
+
+![La branche courante dans la barre d'état de VS Code et dans l'invite de Git Bash](illustrations/branche_courante.png)
 
 ### 3.2 Premier argument : le nom de la recette
 

@@ -41,18 +41,19 @@ Cause
   qu'on ne les lui a pas donnés.
 
 Remède
-: Une fois par compte, dans le terminal :
+: Dans le terminal, dans le dossier du dépôt :
 
 ```
-git config --global user.name "Prénom Nom"
-git config --global user.email "prenom.nom@exemple.fr"
+git config user.name "Prénom Nom"
+git config user.email "prenom.nom@exemple.fr"
 ```
 
-`git config --global user.name`, sans valeur, affiche ce qui est
-enregistré. Sur un poste dont le compte Windows est commun à plusieurs
-élèves, régler sans `--global`, dans le dépôt : le réglage ne vaut que
-pour ce dépôt, et ne reste pas pour l'élève suivant ([Git et Git
-Bash](../configuration/git.md)).
+Sans `--global`, le réglage ne vaut que pour ce dépôt. Sur un poste de la
+salle, dont le compte Windows est commun à plusieurs élèves, il ne reste
+donc pas pour l'élève suivant ([Git et Git Bash](../configuration/git.md)).
+`git config user.name`, sans valeur, affiche ce qui est enregistré. Sur un
+ordinateur personnel, `git config --global user.name "Prénom Nom"`
+l'enregistre une fois pour tous les dépôts du compte.
 
 (dep-g3)=
 ### G3. « warning: … LF will be replaced by CRLF »

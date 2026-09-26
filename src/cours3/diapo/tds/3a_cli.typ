@@ -98,7 +98,7 @@
       reponse[`recettes/` et `style.css` dans l'explorateur ; `pwd` se termine par `travail`],
     [2], [une fois par poste : `source /c/ProgramData/anaconda3/etc/profile.d/conda.sh`, puis `conda init bash`, et un nouveau terminal],
       reponse[l'invite commence par `(base)` ; `which python` : le Python d'Anaconda],
-    [3], [`git init` ; `echo "sortie/" > .gitignore`],
+    [3], [`git init` ; créer le fichier texte `.gitignore` (`touch .gitignore`), puis y écrire dans VS Code la ligne `sortie/`],
       reponse[`git status` liste `recettes/`, `style.css` et `.gitignore` non suivis],
   )
 

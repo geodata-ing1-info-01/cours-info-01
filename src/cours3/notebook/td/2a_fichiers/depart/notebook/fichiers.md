@@ -21,7 +21,8 @@ diapositives de la partie 2 :
 - 3 à 6 : le fichier, une suite d'octets ; ASCII et UTF-8 ; la fin de ligne ;
   le mode binaire ;
 - 7 à 9 : `with`, la lecture ligne par ligne, les modes d'écriture ;
-- 10 et 11, après la séance : le CSV, les raccourcis de `pathlib`.
+- 10 et 11, après la séance : le CSV, les raccourcis de `pathlib` ;
+- 12, facultative : un fichier binaire lu à la main, le format `.npy`.
 
 Comme le précédent, il se copie de `depart/notebook/` dans `travail/` avant
 d'être ouvert. Une ligne qui se termine par `# à compléter` est à écrire ; la
@@ -201,21 +202,30 @@ for texte in ("a", "é", "œ", "😀"):
 "œ".encode("ascii")   # œ n'a pas de code ASCII : UnicodeEncodeError
 ```
 
-En UTF-8, le premier octet d'un caractère indique sur combien d'octets le
-caractère est écrit. Le nombre d'octets se lit sur les premiers bits de cet
-octet, écrit en binaire :
+En UTF-8, chaque octet, écrit en binaire, commence par un certain nombre de
+`1`, suivis d'un `0`. Ce nombre de `1` en tête donne le rôle de l'octet :
 
-| Premier octet, en binaire | En hexadécimal | Nombre d'octets du caractère |
-|---|---|---|
-| `0xxxxxxx` | `00` à `7f` | 1 : les 128 caractères ASCII |
-| `110xxxxx` | `c2` à `df` | 2 |
-| `1110xxxx` | `e0` à `ef` | 3 |
-| `11110xxx` | `f0` à `f4` | 4 |
+| Début de l'octet, en binaire | `1` en tête | Rôle de l'octet | En hexadécimal |
+|---|---|---|---|
+| `0xxxxxxx` | 0 | un caractère ASCII, écrit sur un seul octet | `00` à `7f` |
+| `10xxxxxx` | 1 | un octet de suite, qui continue un caractère | `80` à `bf` |
+| `110xxxxx` | 2 | le premier octet d'un caractère de 2 octets | `c2` à `df` |
+| `1110xxxx` | 3 | le premier octet d'un caractère de 3 octets | `e0` à `ef` |
+| `11110xxx` | 4 | le premier octet d'un caractère de 4 octets | `f0` à `f4` |
 
-Les octets suivants du caractère commencent tous par `10` en binaire (`80` à
-`bf` en hexadécimal). Un premier octet ne commence jamais par `10` : un
-programme ne peut donc pas les confondre. Les bits notés `x`, mis bout à
-bout, forment le numéro du caractère.
+Le premier octet d'un caractère écrit sur plusieurs octets porte autant de `1`
+en tête que le caractère compte d'octets : deux `1` pour deux octets, trois
+pour trois, quatre pour quatre. Le début `10`, avec un seul `1`, est réservé
+aux octets de suite. Un premier octet a donc toujours au moins deux `1` en
+tête, et un programme qui lit les octets un par un distingue sans erreur le
+début d'un caractère de sa suite.
+
+Les octets de suite commencent par `1` : aucun octet d'un caractère écrit sur
+plusieurs octets ne ressemble à un caractère ASCII. Un octet `0a`, par
+exemple, est toujours une fin de ligne, jamais une partie de `é`.
+
+Les bits notés `x`, mis bout à bout, forment le numéro du caractère. La
+fonction `ord` renvoie ce numéro, et `chr` le caractère qui porte un numéro.
 
 ```{code-cell} ipython3
 # Chaque octet en hexadécimal, puis en binaire sur 8 bits
@@ -224,8 +234,25 @@ for texte in ("a", "é", "œ", "😀"):
 ```
 
 Pour `é`, le premier octet `c3` s'écrit `11000011` : il commence par `110`,
-le caractère occupe donc deux octets, `c3 a9`. Pour `😀`, le premier octet
-`f0` commence par `11110` : le caractère occupe quatre octets.
+deux `1` en tête, et le caractère occupe donc deux octets, `c3 a9`. Le second,
+`a9`, s'écrit `10101001` : il commence par `10`, un seul `1`, comme tout octet de suite. Pour
+`😀`, le premier octet `f0` commence par `11110`, quatre `1` en tête : le
+caractère occupe quatre octets.
+
+La cellule suivante retrouve le numéro de `é` à partir de ses deux octets :
+elle retire les bits de début, `110` puis `10`, et lit les bits `x` restants
+comme un nombre écrit en binaire.
+
+```{code-cell} ipython3
+octets = "é".encode("utf-8")
+premier = f"{octets[0]:08b}"   # 11000011 : le premier octet, en binaire sur 8 bits
+second = f"{octets[1]:08b}"    # 10101001 : l'octet de suite
+
+bits = premier[3:] + second[2:]   # sans « 110 » ni « 10 » : 00011 suivi de 101001
+print(bits)
+print(int(bits, 2))               # int(…, 2) lit un nombre écrit en binaire : 233
+print(ord("é"), chr(233))         # le numéro de é, et le caractère numéro 233
+```
 
 Un programme qui lit un fichier en UTF-8 applique cette règle octet après
 octet. En pseudo-code :
@@ -482,3 +509,121 @@ print((SORTIE / "essai.md").read_text(encoding="utf-8")[:120])
 `read_text` lit tout le fichier en une fois. Pour un fichier trop gros pour
 la mémoire, ou pour arrêter la lecture avant la fin, on garde la boucle
 `for ligne in fichier_ouvert` de la section 8.
+
+## 12 · Facultatif : lire un fichier `.npy` à la main
+
+*Cette section est facultative. Elle demande la bibliothèque numpy, présente
+dans l'environnement `base` d'Anaconda ; dans l'environnement
+`info01-cours3`, l'installer par `conda install -c conda-forge numpy`.*
+
+Le format `.npy` enregistre un tableau numpy dans un fichier binaire. Le
+fichier commence par un en-tête, puis contient les valeurs du tableau à la
+suite, ligne par ligne, sans séparateur. Documentation :
+[numpy.org/doc/stable/reference/generated/numpy.lib.format.html](https://numpy.org/doc/stable/reference/generated/numpy.lib.format.html).
+
+| Octets | Contenu |
+|---|---|
+| 6 | la signature du format, `\x93NUMPY` |
+| 2 | la version du format, `01 00` pour 1.0 |
+| 2 | la longueur de l'en-tête, un entier écrit sur deux octets |
+| la longueur lue | l'en-tête : du texte ASCII qui décrit le tableau, complété par des espaces |
+| le reste | les valeurs du tableau |
+
+La cellule suivante crée un tableau de 10 lignes de 10 entiers, de 0 à 99,
+de type `uint8` : un entier sans signe écrit sur un octet, de 0 à 255. Elle
+l'enregistre dans `travail/tableau_uint8.npy`.
+
+```{code-cell} ipython3
+import numpy as np
+
+tableau = np.arange(100, dtype=np.uint8).reshape(10, 10)   # les entiers 0 à 99, sur 10 lignes de 10
+print(tableau)
+
+np.save(SORTIE / "tableau_uint8.npy", tableau)
+print((SORTIE / "tableau_uint8.npy").stat().st_size, "octets")
+```
+
+Le fichier se relit en mode binaire, dans l'ordre du tableau ci-dessus. Un
+entier écrit sur plusieurs octets se lit ici en commençant par l'octet de
+poids faible : `int.from_bytes(octets, "little")` fait ce calcul. Les deux
+octets `76 00` donnent `0x0076`, soit 118.
+
+```{code-cell} ipython3
+fichier_ouvert = open(SORTIE / "tableau_uint8.npy", "rb")
+signature = fichier_ouvert.read(6)             # b'\x93NUMPY'
+version = fichier_ouvert.read(2)               # b'\x01\x00' : la version 1.0
+taille = fichier_ouvert.read(2)                # la longueur de l'en-tête, sur deux octets
+longueur = int.from_bytes(taille, "little")    # les deux octets lus comme un entier
+entete = fichier_ouvert.read(longueur)         # l'en-tête, du texte ASCII
+donnees = fichier_ouvert.read()                # les valeurs, jusqu'à la fin du fichier
+fichier_ouvert.close()
+
+print(signature, version, taille.hex(" "), longueur)
+print(entete.decode("ascii"))
+print(len(donnees), "octets de données")
+```
+
+L'en-tête décrit le tableau : `'descr': '|u1'` pour un entier sans signe sur
+un octet, `'shape': (10, 10)` pour 10 lignes de 10. Les 100 octets suivants
+sont les 100 valeurs, une par octet. Chaque ligne du tableau en occupe 10.
+
+```{code-cell} ipython3
+for ligne in range(10):
+    debut = ligne * 10                         # la ligne numéro « ligne » commence à l'octet ligne * 10
+    print(donnees[debut:debut + 10].hex(" "))  # ses 10 octets, en hexadécimal
+
+print(list(donnees[10:20]))                    # la deuxième ligne, en entiers : 10 à 19
+```
+
+Avec le type `uint16`, chaque valeur occupe deux octets et va de 0 à 65 535.
+Le tableau suivant multiplie les valeurs par 300 : elles vont jusqu'à 29 700,
+au-delà de 255, la plus grande valeur qu'un octet peut écrire.
+
+```{code-cell} ipython3
+tableau16 = np.arange(100, dtype=np.uint16).reshape(10, 10) * 300
+np.save(SORTIE / "tableau_uint16.npy", tableau16)
+
+fichier_ouvert = open(SORTIE / "tableau_uint16.npy", "rb")
+debut = fichier_ouvert.read(8)                 # la signature et la version
+taille = fichier_ouvert.read(2)
+longueur = int.from_bytes(taille, "little")
+entete = fichier_ouvert.read(longueur)
+donnees = fichier_ouvert.read()
+fichier_ouvert.close()
+
+print(entete.decode("ascii"))
+print(len(donnees), "octets de données")
+print(donnees[:8].hex(" "))                    # les quatre premières valeurs, deux octets chacune
+```
+
+L'en-tête porte `'<u2'` : un entier sans signe sur deux octets, `<` indiquant
+l'octet de poids faible en premier. 300 s'écrit `012c` en hexadécimal, et le
+fichier porte `2c 01`. La valeur numéro `i` occupe les octets `2 * i` et
+`2 * i + 1`.
+
+```{code-cell} ipython3
+valeurs = []
+for i in range(10):
+    deux_octets = donnees[2 * i:2 * i + 2]                   # les deux octets de la valeur numéro i
+    valeurs.append(int.from_bytes(deux_octets, "little"))
+
+print(valeurs)          # lues à la main
+print(tableau16[0])     # la première ligne du tableau numpy
+```
+
+`np.load` relit le fichier en une ligne, avec son type et sa forme. Les autres
+types s'écrivent de la même façon, et l'en-tête les nomme :
+
+| Type numpy | Dans l'en-tête | Octets par valeur | Valeurs |
+|---|---|---|---|
+| `uint8` | `\|u1` | 1 | entiers de 0 à 255 |
+| `uint16` | `<u2` | 2 | entiers de 0 à 65 535 |
+| `int16` | `<i2` | 2 | entiers de −32 768 à 32 767 |
+| `float32` | `<f4` | 4 | nombres à virgule |
+| `float64` | `<f8` | 8 | nombres à virgule, plus précis |
+
+```{code-cell} ipython3
+relu = np.load(SORTIE / "tableau_uint16.npy")
+print(relu.dtype, relu.shape)
+print(relu[0])
+```
