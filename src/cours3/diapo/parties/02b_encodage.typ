@@ -1,20 +1,50 @@
-// Partie 2 du cours 3, seconde moitié — ASCII et UTF-8.
+// Partie 2 du cours 3, suite : le fichier comme suite d'octets et
+// l'encodage, ASCII et UTF-8, la fin de ligne, puis le mode binaire, qui lit
+// les octets sans les décoder.
 //
-// Incluse par `cours3.typ`, après `02a_fichiers.typ`. La section 1
-// d'`images.ipynb` reprend ces diapositives. Les sections suivantes (PGM, formats
-// d'image, compression) sont facultatives et n'ont plus de diapositive ;
+// Incluse par `cours3.typ`, entre `02a_lecture.typ` et `02c_fichiers.typ`.
+// Les sections 3 à 6 de `fichiers.ipynb` reprennent ces diapositives, dans
+// le même ordre. `images.ipynb` (PGM, formats d'image, compression) est
+// facultatif et n'ont plus de diapositive ;
 // celles qui les présentaient sont dans l'historique git (avant le
 // 25/09/2026).
 // Un fichier inclus n'hérite pas des imports de son appelant.
 #import "../../../commun/prelude.typ": *
 #import "../schemas.typ": *
+#import "../schemas_fichiers.typ": schema-decodage, schema-fin-de-ligne, schema-position-octets
 
 // --------------------------------------------
-#d("ASCII et UTF-8", cellule: 1, fichier: "images.ipynb")[
+#d("Fichier texte : une suite d'octets", cellule: 3, fichier: "fichiers.ipynb")[
   #annonce[
-    Un caractère est un nombre. ASCII en définit 128, sur un octet chacun :
-    lettres sans accent, chiffres, ponctuation. UTF-8 garde ces 128 octets
-    et écrit tous les autres caractères sur deux, trois ou quatre octets.
+    Sur le disque, un fichier est une suite d'octets. L'encodage, donné par
+    l'argument `encoding` de `open`, définit le caractère qui correspond à
+    chaque octet ou groupe d'octets. Décodés avec un autre encodage, les
+    mêmes octets donnent d'autres caractères.
+  ]
+
+  #align(center, schema-decodage())
+
+  #legende[
+    `␣` représente l'espace, `⏎` le retour à la ligne. Sans l'argument
+    `encoding`, Python sous Windows décode en cp1252, et `Crêpes` s'affiche
+    `CrÃªpes`.
+  ]
+
+  #notes[
+    Même cause pour `é` : `c3 a9` relu en cp1252 donne `Ã©` (§ 3 de
+    `fichiers.ipynb`).
+
+    Python 3.15 lira en UTF-8 par défaut (PEP 686) ; les postes de la salle
+    sont en 3.13.
+  ]
+]
+
+// --------------------------------------------
+#d("Encodage texte : ASCII et UTF-8", cellule: 4, fichier: "fichiers.ipynb")[
+  #annonce[
+    Un encodage écrit chaque caractère en octets. ASCII code 128 caractères
+    sur un octet : lettres sans accent, chiffres, ponctuation. UTF-8 code
+    ces 128 de la même façon, et les autres sur deux à quatre octets.
   ]
 
   #face-a-face(
@@ -40,23 +70,19 @@
     ],
   )
 
-  #v(0.3em)
   #code-commente(
     taille-code: 12.5pt, taille-texte: 12pt,
-    ("\"œuf\".encode(\"utf-8\").hex(\" \")", "les octets : `len` compte les caractères, `encode` les octets"),
-    ("\"œ\".encode(\"ascii\")", "`UnicodeEncodeError` : pas de code ASCII pour `œ`"),
+    ("\"œuf\".encode(\"utf-8\").hex(\" \")", "`encode` renvoie les octets, `hex` les affiche en hexadécimal"),
+    ("\"œ\".encode(\"ascii\")", "lève `UnicodeEncodeError` : `œ` n'a pas de code ASCII"),
   )
 
-  #legende[
-    `œ` manque aussi en ISO 8859-1, l'encodage des textes français avant
-    UTF-8 : d'où « oeuf » dans les fichiers anciens.
-  ]
-
   #notes[
-    Section 1 : une ligne à compléter dans la première boucle ; `len`
-    vaut 1 quatre fois, les octets vont de un à quatre. Explication du
-    `Ã©` de `fichiers.ipynb` : `é` écrit en deux octets UTF-8, relus en
-    cp1252, donne deux caractères.
+    § 4 : une ligne à compléter dans la première boucle ; `len`
+    vaut 1 quatre fois, les octets vont de un à quatre.
+
+    `len` compte les caractères. ISO 8859-1, l'encodage des textes
+    français avant UTF-8, n'a pas de code pour `œ` : les fichiers anciens
+    écrivent « oeuf ».
 
     UTF-8 est ce qu'on écrit dans `encoding=`. Les autres encodages
     existent ; ne pas les détailler.
@@ -64,36 +90,47 @@
 ]
 
 // --------------------------------------------
-#d("Des noms de lieux", cellule: 1, fichier: "images.ipynb")[
+#d("Fin de ligne", cellule: 5, fichier: "fichiers.ipynb")[
   #annonce[
-    Des noms de communes portent des caractères hors ASCII. Pour les écrire
-    tels quels sur une carte, le fichier qui les porte est en UTF-8, et le
-    programme qui le lit écrit `encoding="utf-8"`.
+    La fin de ligne est un caractère de contrôle, écrit `\n` en Python.
+    Sous Linux et macOS, un fichier texte la code par l'octet `0a` ; sous
+    Windows, par les deux octets `0d 0a`, écrits `\r\n`.
   ]
 
-  #tableau(
-    columns: (1.3fr, auto, 1fr, auto),
-    align: (left + horizon, center + horizon, left + horizon, right + horizon),
-    [Commune], [Lettre], [Ce qu'un fichier ASCII peut écrire], [Octets UTF-8],
-    [Œuilly (Aisne ; Marne)], [`Œ`], [Oeuilly], [7 pour 6 caractères],
-    [Plœuc-L'Hermitage (Côtes-d'Armor)], [`œ`], [Ploeuc-L'Hermitage], [18 pour 17],
-    [L'Haÿ-les-Roses (Val-de-Marne)], [`ÿ`], [L'Hay-les-Roses], [16 pour 15],
-    [Aÿ-Champagne (Marne)], [`ÿ`], [Ay-Champagne], [13 pour 12],
-  )
+  #align(center, schema-fin-de-ligne())
 
   #legende[
-    La dernière cellule de la section 1 compte, pour chaque nom, les
-    caractères et les octets.
+    En mode texte, Python remplace `\r\n` par `\n` à la lecture. À
+    l'écriture sous Windows, il remplace chaque `\n` par `\r\n`. Dans le
+    programme, les lignes sont toujours séparées par `\n`.
   ]
 
   #notes[
-    Le lien avec le métier : les toponymes sont des données, et ils passent
-    par des fichiers. Un CSV de communes lu sans `encoding="utf-8"` sur un
-    poste Windows donne « PlÅ“uc » ; le même écrit en ASCII a perdu la
-    lettre. Les deux erreurs se voient sur la carte.
+    § 5 : la cellule écrit le fichier avec `newline="\r\n"`. `\r` seul (anciens Mac)
+    est aussi lu comme `\n`. `newline=""` supprime la conversion : le
+    module `csv` le demande (§ 10).
+  ]
+]
 
-    Les sections 2 à 6 du notebook (PGM texte et binaire, signatures,
-    compression, temps de lecture) sont facultatives. Le poids et la
-    compression reviennent au projet 7.
+// --------------------------------------------
+#d("Mode binaire : des octets", cellule: 6, fichier: "fichiers.ipynb")[
+  #annonce[
+    Le deuxième argument de `open` est le mode d'ouverture. Avec le mode
+    `"rb"`, Python lit les octets du fichier sans les décoder : `read`
+    renvoie un objet `bytes`, et les fins de ligne restent `\r\n`. La
+    position compte des octets.
+  ]
+
+  #align(center, schema-position-octets())
+
+  #legende[
+    Le mode `"wb"` écrit des octets : `f.write(b"...")`. Un programme lit
+    et écrit une image en mode binaire (`images.ipynb`, facultatif).
+  ]
+
+  #notes[
+    Même fichier que la diapositive de la fin de ligne, écrit sous Windows.
+    `read(n)` lit au plus `n` octets. `chemin.read_bytes()` équivaut à
+    `open(chemin, "rb")` puis `read()` (§ 11).
   ]
 ]

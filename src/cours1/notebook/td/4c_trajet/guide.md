@@ -1,6 +1,13 @@
 ---
 title: "TD 4c — Installer un projet en lisant son README (facultatif)"
 subtitle: Guide détaillé, étape par étape
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  name: python3
+  display_name: Python 3
 ---
 
 Le projet `trajet` produit une vidéo commentée du trajet à pied entre la

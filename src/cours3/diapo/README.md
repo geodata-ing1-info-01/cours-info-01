@@ -20,17 +20,22 @@ partie 1 (`01_programme.typ`) présente l'objectif et les étapes du programme
 de la recette, ses données, le code de départ et ses trois problèmes, les
 améliorations jusqu'à la ligne de commande, puis `pathlib`, `subprocess`,
 `main` et `argparse`, avec un script minimal et son appel. La partie 2
-présente les lignes du programme qui manipulent des fichiers, l'objet fichier
-et sa position de lecture, `with`, la lecture en bloc ou ligne par ligne
-(`02a_fichiers.typ`), puis ASCII et UTF-8 (`02b_encodage.typ`). La partie 3
+descend d'un niveau à chaque diapositive : lire un fichier (ouvrir, lire,
+fermer), le texte vu comme une suite de caractères et la position de lecture
+(`02a_lecture.typ`) ; le fichier vu comme une suite d'octets décodés selon
+l'encodage, ASCII et UTF-8, la fin de ligne, puis le mode binaire, qui lit
+les octets sans les décoder (`02b_encodage.typ`) ; enfin `with`, les modes
+`"w"` et `"a"`, et les lignes du programme qui lisent et écrivent un fichier
+(`02c_fichiers.typ`). La partie 3
 ne contient que son ouverture et le TD 3a, qui commence par la différence
 entre notebook et script. Une diapositive reprise par une section de notebook
 passe `cellule:` au gabarit `d`, qui ajoute à la ligne de titre le cartouche
 « § n » de cette section.
 
 `schemas_notebook.typ` et `schemas_fichiers.typ` portent les schémas dessinés
-avec cetz : le notebook dont une valeur change, et la position de lecture
-d'un fichier.
+avec cetz : le notebook dont une valeur change ; les octets d'un fichier,
+leur décodage, la fin de ligne, la position de lecture en mode texte et en
+mode binaire, les modes d'écriture.
 
 Le détail est dans le texte des notebooks. Une ligne de code terminée par
 `# à compléter` y est livrée avec `...` à la place de sa valeur, suivie d'une

@@ -31,8 +31,8 @@
   annonce: "Améliorer le code de génération de recette : ses chemins avec pathlib, sa conversion par pandoc avec subprocess, ses paramètres avec argparse",
 )
 #let partie-2 = (
-  titre: "Fichiers texte et encodage",
-  annonce: "Comment le code ouvre, lit et écrit ses fichiers texte ; puis comment ASCII et UTF-8 écrivent les caractères en octets",
+  titre: "Fichiers et encodage",
+  annonce: "Lire un fichier ; son contenu, une suite de caractères, puis une suite d'octets décodés selon l'encodage ; le mode binaire ; écrire un fichier",
 )
 
 #include "parties/00_ouverture.typ"
@@ -53,8 +53,9 @@
 #include "parties/01_programme.typ"
 
 #separateur(partie-2.titre, annonce: partie-2.annonce)
-#include "parties/02a_fichiers.typ"
+#include "parties/02a_lecture.typ"
 #include "parties/02b_encodage.typ"
+#include "parties/02c_fichiers.typ"
 
 #include "parties/03_cli.typ"
 #if tds {

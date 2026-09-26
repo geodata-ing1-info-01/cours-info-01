@@ -151,7 +151,7 @@ Gabarit fourni :
 
 - Appliquer deux effets à la suite (`--effet` répété : `action="append"` dans `argparse`).
 - Pour le TD de la montre : l'incrustation sur une photo choisie par l'élève, à la place du fond blanc (le fond de la Vague n'est pas uni, l'effet ne s'y applique pas).
-- Repris des § 5 et 6 d'`images.ipynb` du cours 3 : taille d'une image non compressée (hauteur × largeur × 3 octets) comparée à celle des fichiers PNG ; taille du dossier `sortie/images/` comparée à celle de la vidéo ; temps de lecture de la série en PNG et en `.npy` (`np.save`, `np.load`).
+- Repris des § 4 et 5 d'`images.ipynb` du cours 3 : taille d'une image non compressée (hauteur × largeur × 3 octets) comparée à celle des fichiers PNG ; taille du dossier `sortie/images/` comparée à celle de la vidéo ; temps de lecture de la série en PNG et en `.npy` (`np.save`, `np.load`).
 
 ## Le guide
 

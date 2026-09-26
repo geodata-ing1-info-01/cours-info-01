@@ -1,6 +1,13 @@
 ---
 title: "TD 3a — Mettre en forme une recette en Markdown"
 subtitle: Guide détaillé, étape par étape
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  name: python3
+  display_name: Python 3
 ---
 
 Le TD part d'un texte brut, une recette de crêpes écrite sans aucune

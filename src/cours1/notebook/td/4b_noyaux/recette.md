@@ -1,6 +1,7 @@
 ---
 title: Recette
 subtitle: Le programme du TD 4a, une fonction par cellule
+execution: ..
 jupytext:
   text_representation:
     extension: .md

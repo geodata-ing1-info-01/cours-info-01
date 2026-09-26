@@ -48,14 +48,14 @@
     [Préparation du poste de travail], [TD 0a], [récupérer l'archive, lancer JupyterLab], [10 min],
     [Environnement (selon les groupes)], [TD 0a], [`info01-cours3` : pandoc, Pillow], [+15 min],
     [Chemins et programmes externes], [`recette.ipynb`], [`pathlib` ; pandoc lancé par `subprocess`], [20 min],
-    [Fichiers texte et encodage], [`fichiers.ipynb` #linebreak() `images.ipynb` § 1], [lire et écrire un fichier ; ASCII et UTF-8], [30 min],
+    [Fichiers texte et encodage], [`fichiers.ipynb`], [lire et écrire un fichier ; ASCII et UTF-8], [30 min],
     [Ligne de commande], [`recette.py`], [`main`, `argparse` ; un commit par étape], [45 min],
   )
 
   #notes[
     Chaque partie commence par quelques diapositives (le programme, ses améliorations, les bibliothèques), puis travail autonome sur le notebook : un texte explicatif par section, une réponse repliée sous chaque ligne à compléter.
     Le cartouche « § n » d'une diapositive renvoie à la section du notebook qui la reprend.
-    Les sections d'`images.ipynb` sur les images (PGM, formats, compression) sont facultatives.
+    `images.ipynb` (PGM, formats d'image, compression) est facultatif.
     La dernière partie est le TD 3a seul : le passage en script, `main` et `argparse` sont présentés dans la partie 1.
   ]
 ]

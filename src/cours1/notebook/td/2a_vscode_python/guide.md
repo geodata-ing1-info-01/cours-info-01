@@ -1,6 +1,13 @@
 ---
 title: "TD 2a — Configurer l'éditeur de code, et lancer un programme"
 subtitle: Guide détaillé, étape par étape
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  name: python3
+  display_name: Python 3
 ---
 
 Le TD prépare l'éditeur de code du module, Visual Studio Code (VS Code),

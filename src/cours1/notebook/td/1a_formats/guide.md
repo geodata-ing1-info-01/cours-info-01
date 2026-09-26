@@ -1,6 +1,13 @@
 ---
 title: "TD 1a — Fichiers, formats et extensions"
 subtitle: Guide détaillé, étape par étape
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  name: python3
+  display_name: Python 3
 ---
 
 Le TD manipule les fichiers d'un même texte, le poème *The Raven* d'Edgar

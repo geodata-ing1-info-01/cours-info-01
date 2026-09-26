@@ -7,8 +7,8 @@ Quatre TD, et deux dossiers de la séance qui ne sont pas livrés :
 | `recettes/` | les quatre recettes (`recette.md`, `ingredients.csv`, pour une personne en SI) et `style.css` : la source, versionnée, que `make_data.py` recopie dans les TD qui s'en servent |
 | `corriges/` | le TD 3a étape par étape (`3a_cli/etape<n>/`), versionné ici pour ne pas partir dans l'archive |
 | `1a_recette/` | notebook `recette.ipynb` : chemins, `pathlib`, pandoc par `subprocess` |
-| `2a_fichiers/` | notebook `fichiers.ipynb` : comment le code de la recette ouvre, lit et écrit ses fichiers (`open`, `with`, les modes, `csv`) |
-| `2b_images/` | notebook `images.ipynb` : texte et binaire sur des images PGM, compression, ASCII et UTF-8 |
+| `2a_fichiers/` | notebook `fichiers.ipynb` : comment le code de la recette ouvre, lit et écrit ses fichiers (`open`, la position de lecture, octets et encodage, ASCII et UTF-8, fin de ligne, mode binaire, `with`, les modes, `csv`) |
+| `2b_images/` | notebook `images.ipynb`, facultatif : texte et binaire sur des images PGM, formats d'image, compression |
 | `3a_cli/` | `recette.py` construit depuis le notebook et transformé en ligne de commande, un commit par étape ; modèles de README et de `pyproject.toml` |
 
 Les données sont dupliquées d'un TD à l'autre plutôt que citées par un chemin

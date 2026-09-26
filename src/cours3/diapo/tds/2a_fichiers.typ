@@ -5,8 +5,8 @@
 // fichier inclus n'hérite pas des imports de son appelant.
 //
 // Comme le TD 1a, ce fichier ouvre le notebook que la première moitié de la
-// partie 2 vient de présenter : `fichiers.ipynb`. Le TD 2b ouvre ensuite
-// `images.ipynb`, pour la seconde moitié.
+// partie 2 vient de présenter : `fichiers.ipynb`, dont les sections suivent
+// les diapositives de la partie. Le TD 2b, facultatif, ouvre `images.ipynb`.
 #import "../../../commun/prelude.typ": *
 
 #let td = (
@@ -38,13 +38,13 @@
       reponse[un second onglet, à côté du premier],
     [3], [exécuter la section 0],
       reponse[`True True` : les chemins de la section 3.3, retrouvés],
-    [4], [exécuter les sections 1 à 4 ; les sections 5 et 6 se font après la séance],
-      reponse[`essai.txt` écrit, complété, remplacé ; « Ã© » lu en `cp1252`],
+    [4], [exécuter les sections 1 à 9 ; les sections 10 et 11 se font après la séance],
+      reponse[« Ãª » lu en `cp1252` ; `b'\xc3\xaa'` en mode binaire ; `essai.txt` écrit, complété, remplacé],
   )
 
   #legende[
     `recette.ipynb` peut rester ouvert. Le notebook des images, dans
-    `2b_images/`, s'ouvre au TD 2b.
+    `2b_images/`, est facultatif.
   ]
 
   #notes[

@@ -59,7 +59,7 @@
 
   // Les cellules qui utilisent ces valeurs : leur numéro est celui de
   // l'exécution précédente, elles sont à relancer.
-  _cellule(4.1, 6.0, "[6]:", ("RECETTE = RECETTES / NOM", "generer(RECETTE / \"ingredients.csv\", …,",
+  _cellule(4.1, 6.0, "[6]:", ("RECETTE = DONNEES / NOM", "generer(RECETTE / \"ingredients.csv\", …,",
                               "        PERSONNES, UNITES)"), 2.2pt + brun)
   _etiquette(12.55, 6.0, "2. à réexécuter", brun)
 

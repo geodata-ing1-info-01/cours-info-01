@@ -1,6 +1,13 @@
 ---
 title: "TD 2b — Trois programmes fautifs"
 subtitle: Guide détaillé, étape par étape
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  name: python3
+  display_name: Python 3
 ---
 
 Le TD fait afficher par l'éditeur de code les caractères qu'on ne voit pas,

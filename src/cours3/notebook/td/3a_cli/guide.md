@@ -265,7 +265,7 @@ UNITES = "SI"      # "SI" ou "US"
 
 # Les chemins partent du dossier du terminal (section 3.3 du notebook)
 RACINE = Path.cwd()
-RECETTES = RACINE / "recettes"
+DONNEES = RACINE / "recettes"
 STYLE = RACINE / "style.css"
 SORTIE = RACINE / "sortie"
 ```
@@ -334,15 +334,16 @@ définissent les fonctions sans les exécuter.
 Sous les fonctions, écrire le programme, qui reprend le corps de la fonction
 `generer` du notebook (section 3.1) avec les chemins de la section 3.3. Les
 deux blocs `with` du notebook sont écrits ici avec `read_text` et
-`write_text` (notebook `fichiers.ipynb`, section 6).
+`write_text` (notebook `fichiers.ipynb`, section 11).
 
 ```python
 # La recette : le tableau des ingrédients inséré sous « ## Ingrédients »
-ingredients = lire_ingredients(RECETTES / NOM / "ingredients.csv")
+ingredients = lire_ingredients(DONNEES / NOM / "ingredients.csv")
 ingredients = adapter(ingredients, PERSONNES, UNITES)
-source = (RECETTES / NOM / "recette.md").read_text(encoding="utf-8")
+source = (DONNEES / NOM / "recette.md").read_text(encoding="utf-8")
 titre = source.splitlines()[0].lstrip("# ")
-complete = source.replace("## Ingrédients", "## Ingrédients\n\n" + tableau(ingredients))
+intitule = f"## Ingrédients pour {PERSONNES} personnes en {UNITES}"   # les valeurs entre accolades sont insérées dans le texte
+complete = source.replace("## Ingrédients", intitule + "\n\n" + tableau(ingredients))
 
 # Le Markdown complet et la feuille de style, dans sortie/
 SORTIE.mkdir(exist_ok=True)
@@ -363,7 +364,7 @@ tableau des ingrédients est sous « ## Ingrédients ».
 
 ### 1.4 Le programme : la page HTML par pandoc
 
-À la fin du fichier, coller l'appel de pandoc de la section 4.4 du notebook :
+À la fin du fichier, coller l'appel de pandoc de la section 4.3 du notebook :
 
 ```python
 # La page HTML, par pandoc
@@ -471,7 +472,7 @@ Le bas du fichier doit ressembler à ceci :
 ```python
 def main():
     # La recette : le tableau des ingrédients inséré sous « ## Ingrédients »
-    ingredients = lire_ingredients(RECETTES / NOM / "ingredients.csv")
+    ingredients = lire_ingredients(DONNEES / NOM / "ingredients.csv")
     ...
     print(page, ":", PERSONNES, "personne(s), unités", UNITES)
 ```
@@ -566,7 +567,7 @@ gardant les quatre espaces d'indentation) :
     analyseur = argparse.ArgumentParser(description="Met une recette à l'échelle et en fait une page HTML.")
     # Les recettes disponibles : les dossiers de recettes/ (section 3.4 du notebook)
     recettes_disponibles = []
-    for dossier in sorted(RECETTES.iterdir()):
+    for dossier in sorted(DONNEES.iterdir()):
         if dossier.is_dir():
             recettes_disponibles.append(dossier.name)
     analyseur.add_argument("nom", choices=recettes_disponibles, help="la recette")
@@ -653,7 +654,7 @@ def main():
     analyseur = argparse.ArgumentParser(description="Met une recette à l'échelle et en fait une page HTML.")
     # Les recettes disponibles : les dossiers de recettes/ (section 3.4 du notebook)
     recettes_disponibles = []
-    for dossier in sorted(RECETTES.iterdir()):
+    for dossier in sorted(DONNEES.iterdir()):
         if dossier.is_dir():
             recettes_disponibles.append(dossier.name)
     analyseur.add_argument("nom", choices=recettes_disponibles, help="la recette")
@@ -792,7 +793,7 @@ Dans `src/recette.py`, remplacer les quatre lignes de chemins :
 
 ```python
 RACINE = Path.cwd()
-RECETTES = RACINE / "recettes"
+DONNEES = RACINE / "recettes"
 STYLE = RACINE / "style.css"
 SORTIE = RACINE / "sortie"
 ```
@@ -803,7 +804,7 @@ par :
 # Les données partent du dossier du script, la sortie du dossier du terminal
 ICI = Path(__file__).resolve().parent      # src/
 RACINE = ICI.parent                        # le dossier du projet
-RECETTES = RACINE / "data" / "recettes"
+DONNEES = RACINE / "data" / "recettes"
 STYLE = RACINE / "data" / "style.css"
 SORTIE = Path.cwd() / "sortie"
 ```

@@ -1,30 +1,29 @@
-// TD 2b du cours 3 — « ASCII et UTF-8 ».
+// TD 2b du cours 3 — « Images : texte et binaire », facultatif.
 //
 // Inclus par `cours3.typ`, entre les deux moitiés de la partie 2, qui porte
 // les réglages globaux et importe `td` pour le sommaire des TD ; compilable
 // seul par `outils/compiler_tds.py`. Un fichier inclus n'hérite pas des
 // imports de son appelant.
 //
-// Ce fichier fait ouvrir `images.ipynb`, dont la section 1 accompagne les
-// diapositives de `parties/02b_encodage.typ`. Les sections 2 à 6 (images
-// PGM, formats, compression) sont facultatives : le dossier du TD garde son
-// nom, `2b_images/`.
+// Ce fichier fait ouvrir `images.ipynb` : images PGM, formats, compression.
+// ASCII et UTF-8, qui en formaient la section 1, sont passés dans
+// `fichiers.ipynb` (section 4) le 25/09/2026.
 #import "../../../commun/prelude.typ": *
 
 #let td = (
   numero: "2b",
-  titre: "ASCII et UTF-8",
-  annonce: "Ouvrir images.ipynb ; la section 1 se fait en séance, les sections sur les images sont facultatives",
+  titre: "Images : texte et binaire",
+  annonce: "Facultatif, après la séance : ouvrir images.ipynb, une image en texte et en binaire",
   dossier: "cours3/2b_images/",
   duree: "10′",
 )
 #separateur-td(..td)
 
 // --------------------------------------------
-#d("Ouvrir le notebook des caractères et des images")[
+#d("Ouvrir le notebook des images")[
   #annonce[
-    La section 1 d'`images.ipynb`, sur les caractères, se fait en séance.
-    Les sections 2 à 6, sur les images, sont facultatives.
+    `images.ipynb` est facultatif. Il suppose connues les sections 3 à 6 de
+    `fichiers.ipynb`.
   ]
 
   #tableau(
@@ -33,9 +32,7 @@
     [], [Ce qu'il faut faire], [Ce que vous constatez],
     [1], [dans le panneau de gauche de JupyterLab, ouvrir `cours3/2b_images/images.ipynb`],
       reponse[un troisième onglet],
-    [2], [exécuter la section 1, ASCII et UTF-8 ; compléter la ligne marquée],
-      reponse[`é`, `œ` : deux octets ; `😀` : quatre ; « Plœuc » : un octet de plus que de caractères],
-    [3], [après la séance, si vous le souhaitez : les sections 2 à 6, une image en texte et en binaire],
+    [2], [exécuter les sections 1 à 5, une image en texte et en binaire],
       reponse[le PGM texte, plus de trois fois plus gros et plus lent à lire que le binaire],
   )
 

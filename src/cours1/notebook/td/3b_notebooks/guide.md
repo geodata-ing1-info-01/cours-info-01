@@ -1,6 +1,13 @@
 ---
 title: "TD 3b — Le notebook, ouvert de trois façons"
 subtitle: Guide détaillé, étape par étape
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  name: python3
+  display_name: Python 3
 ---
 
 Le TD ouvre un même notebook, `altitudes.ipynb`, de trois façons : dans le

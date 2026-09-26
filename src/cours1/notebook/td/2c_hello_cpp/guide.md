@@ -1,6 +1,13 @@
 ---
 title: "TD 2c — Le même programme en C++ (facultatif)"
 subtitle: Guide détaillé, étape par étape
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  name: python3
+  display_name: Python 3
 ---
 
 Le TD reprend le programme `bonjour.py` du TD 2a, réécrit en C++ dans

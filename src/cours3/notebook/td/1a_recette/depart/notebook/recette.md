@@ -16,6 +16,8 @@ Ce notebook améliore un programme qui génère une page de recette, avec deux
 bibliothèques livrées avec Python : `pathlib` pour les chemins, `subprocess`
 pour lancer un autre programme.
 
+![Les deux fichiers de la recette des crêpes, et la page HTML produite pour quatre personnes](../illustrations/objectif_programme.png)
+
 Le notebook suit l'évolution du programme :
 
 1. les fonctions utiles, reprises du cours 1 ;
@@ -30,8 +32,10 @@ dans `travail/` et ouvrir la copie : `depart/` ne se modifie pas, et les
 fichiers produits sont écrits dans `travail/`.
 
 Une ligne de code qui se termine par `# à compléter` contient `...` à la place
-de sa valeur, à remplacer par le code attendu. La cellule « Réponse » qui suit
+de sa valeur est à remplacer par le code attendu. La cellule « Réponse » qui suit
 est repliée ; un clic sur « Réponse » l'ouvre.
+Une ligne qui se termine par `# à remplacer` contient un chemin écrit en dur,
+à remplacer ; la cellule « Réponse » donne la ligne corrigée.
 
 ## 1 · Les fonctions utiles
 
@@ -104,9 +108,11 @@ def tableau(ingredients):
 
 Le programme lit les ingrédients, les adapte à quatre personnes, puis insère
 leur tableau dans le texte de `recette.md`. Dans ce fichier, le titre
-`## Ingrédients` n'est suivi d'aucune ligne : `replace` le remplace par le
-même titre suivi du tableau. Le texte obtenu est écrit dans
-`travail/crepes.md`.
+`## Ingrédients` n'est suivi d'aucune ligne : `replace` le remplace par un
+titre qui donne le nombre de personnes et les unités, suivi du tableau. Le
+texte obtenu est écrit dans `travail/crepes.md`.
+
+![Des fichiers de la recette à la page HTML : generer, puis pandoc](../illustrations/etapes_programme.png)
 
 Les chemins sont écrits en dur : chacun est écrit en entier, depuis la racine
 du disque, et n'existe que sur un poste. Ce n'est pas une bonne pratique,
@@ -121,7 +127,7 @@ ingredients = adapter(ingredients, 4, "SI")
 
 with open("C:/Users/alice/Desktop/cours3/1a_recette/depart/recettes/crepes/recette.md", encoding="utf-8") as fichier:
     source = fichier.read()
-complete = source.replace("## Ingrédients", "## Ingrédients\n\n" + tableau(ingredients))
+complete = source.replace("## Ingrédients", "## Ingrédients pour 4 personnes en SI\n\n" + tableau(ingredients))
 
 with open("C:/Users/alice/Desktop/cours3/1a_recette/travail/crepes.md", "w", encoding="utf-8") as fichier:
     fichier.write(complete)
@@ -147,23 +153,55 @@ lignes.
 
 ### 3.1 · Le programme dans une fonction
 
+Le code de la section 2 écrit chaque chemin dans la ligne qui l'utilise. La
+cellule suivante rassemble les trois chemins en tête du programme, dans trois
+variables : un chemin se lit et se modifie à un seul endroit.
+
+:::{admonition} À faire
+Remplacez `C:/Users/alice/Desktop/cours3` par le chemin de votre dossier
+`cours3`, comme à la section 2, dans les trois variables.
+:::
+
+```{code-cell} ipython3
+FICHIER_INGREDIENTS = "C:/Users/alice/Desktop/cours3/1a_recette/depart/recettes/crepes/ingredients.csv"
+FICHIER_RECETTE = "C:/Users/alice/Desktop/cours3/1a_recette/depart/recettes/crepes/recette.md"
+FICHIER_SORTIE = "C:/Users/alice/Desktop/cours3/1a_recette/travail/crepes.md"
+```
+
 Le programme est placé dans une fonction, `generer`, dont les trois chemins
 sont les paramètres. Le corps de la fonction ne contient plus aucun chemin ;
 les chemins sont passés à l'appel. La suite du notebook ne change plus
 que la façon de construire ces trois chemins.
+
+:::{admonition} À faire
+Dans la fonction, la ligne marquée `# à remplacer` contient encore un chemin
+écrit en dur. Remplacez ce chemin par le paramètre de la fonction qui le
+reçoit, puis exécutez la cellule.
+:::
 
 ```{code-cell} ipython3
 def generer(fichier_ingredients, fichier_recette, fichier_sortie, personnes=4, unites="SI"):
     """Écrit la recette complétée par le tableau des ingrédients."""
     ingredients = adapter(lire_ingredients(fichier_ingredients), personnes, unites)
 
-    with open(fichier_recette, encoding="utf-8") as fichier:
+    # livré : with open("C:/Users/alice/Desktop/cours3/1a_recette/depart/recettes/crepes/recette.md", encoding="utf-8") as fichier:
+    with open(fichier_recette, encoding="utf-8") as fichier:  # à remplacer
         source = fichier.read()
-    complete = source.replace("## Ingrédients", "## Ingrédients\n\n" + tableau(ingredients))
+    intitule = f"## Ingrédients pour {personnes} personnes en {unites}"   # les valeurs entre accolades sont insérées dans le texte
+    complete = source.replace("## Ingrédients", intitule + "\n\n" + tableau(ingredients))
 
     with open(fichier_sortie, "w", encoding="utf-8") as fichier:
         fichier.write(complete)
     print(fichier_sortie, "écrit")
+```
+
+L'appel passe les trois variables à la fonction. Il doit écrire
+`travail/crepes.md`.
+
+```{code-cell} ipython3
+:tags: [raises-exception]
+
+generer(FICHIER_INGREDIENTS, FICHIER_RECETTE, FICHIER_SORTIE)
 ```
 
 ### 3.2 · Une seule valeur en dur : la racine
@@ -187,17 +225,19 @@ print(dossier / "depart" / "recettes")
 ```
 
 Avec `pathlib`, seul le chemin de la racine du TD, le dossier `1a_recette/`,
-reste écrit en dur. Les autres chemins sont construits à partir de la racine
-en suivant l'arborescence :
+reste écrit en dur. Deux dossiers sont construits à partir de la racine :
+`DONNEES`, qui contient les données en entrée, et `SORTIE`, où le programme
+écrit les fichiers produits. Les chemins des fichiers partent de l'un ou de
+l'autre, en suivant l'arborescence :
 
 ```text
 1a_recette/                      ← RACINE
 ├── depart/
-│   └── recettes/
+│   └── recettes/                ← DONNEES
 │       └── crepes/              ← RECETTE
 │           ├── ingredients.csv  ← FICHIER_INGREDIENTS
 │           └── recette.md       ← FICHIER_RECETTE
-└── travail/                     ← dossier courant
+└── travail/                     ← SORTIE, le dossier courant
     ├── recette.ipynb            ← le notebook
     └── crepes.md                ← FICHIER_SORTIE
 ```
@@ -205,6 +245,8 @@ en suivant l'arborescence :
 :::{admonition} À faire
 Remplacez la valeur de `RACINE` par le chemin de votre dossier `1a_recette/`,
 puis complétez les deux chemins marqués sur le modèle de `FICHIER_INGREDIENTS`.
+Le commentaire au-dessus de chacun donne le même chemin écrit en dur, comme
+à la section 2.
 :::
 
 ```{code-cell} ipython3
@@ -212,10 +254,15 @@ puis complétez les deux chemins marqués sur le modèle de `FICHIER_INGREDIENTS
 
 RACINE = Path("C:/Users/alice/Desktop/cours3/1a_recette")
 
-RECETTE = RACINE / "depart" / "recettes" / "crepes"
+DONNEES = RACINE / "depart" / "recettes"   # les données en entrée
+SORTIE = RACINE / "travail"                # les fichiers produits
+
+RECETTE = DONNEES / "crepes"
 FICHIER_INGREDIENTS = RECETTE / "ingredients.csv"
+# en dur : "C:/Users/alice/Desktop/cours3/1a_recette/depart/recettes/crepes/recette.md"
 FICHIER_RECETTE = RECETTE / "recette.md"  # à compléter
-FICHIER_SORTIE = RACINE / "travail" / "crepes.md"  # à compléter
+# en dur : "C:/Users/alice/Desktop/cours3/1a_recette/travail/crepes.md"
+FICHIER_SORTIE = SORTIE / "crepes.md"  # à compléter
 
 generer(FICHIER_INGREDIENTS, FICHIER_RECETTE, FICHIER_SORTIE)
 ```
@@ -247,16 +294,34 @@ print(Path("..") / "depart" / "recettes")             # en relatif, tel qu'écri
 print((Path("..") / "depart" / "recettes").resolve()) # le même dossier, en absolu
 ```
 
+Dans l'arborescence du TD, le dossier courant est `travail/`, et la racine
+est le dossier au-dessus :
+
+```text
+1a_recette/                      ← RACINE, Path.cwd().parent
+├── depart/
+│   └── recettes/                ← DONNEES
+│       └── crepes/              ← RECETTE
+│           ├── ingredients.csv  ← FICHIER_INGREDIENTS
+│           └── recette.md       ← FICHIER_RECETTE
+└── travail/                     ← SORTIE, Path.cwd(), le dossier courant
+    ├── recette.ipynb            ← le notebook
+    └── crepes.md                ← FICHIER_SORTIE
+```
+
 La racine est maintenant calculée à partir du dossier courant, et plus aucun
 chemin n'est écrit en dur.
 
 ```{code-cell} ipython3
 RACINE = Path.cwd().parent  # à compléter
 
-RECETTE = RACINE / "depart" / "recettes" / "crepes"
+DONNEES = RACINE / "depart" / "recettes"
+SORTIE = RACINE / "travail"
+
+RECETTE = DONNEES / "crepes"
 FICHIER_INGREDIENTS = RECETTE / "ingredients.csv"
 FICHIER_RECETTE = RECETTE / "recette.md"
-FICHIER_SORTIE = RACINE / "travail" / "crepes.md"
+FICHIER_SORTIE = SORTIE / "crepes.md"
 
 generer(FICHIER_INGREDIENTS, FICHIER_RECETTE, FICHIER_SORTIE)
 ```
@@ -274,13 +339,13 @@ dossier.
 ```text
 1a_recette/                      ← RACINE
 ├── depart/
-│   └── recettes/                ← RECETTES
+│   └── recettes/                ← DONNEES
 │       ├── crepes/              ← dossier, à la première itération
 │       │   ├── ingredients.csv
 │       │   └── recette.md
 │       ├── …
 │       └── salade_lentilles/    ← dossier, à la dernière itération
-└── travail/
+└── travail/                     ← SORTIE
     ├── crepes.md                ← produit à la première itération
     ├── …
     └── salade_lentilles.md      ← produit à la dernière itération
@@ -291,9 +356,7 @@ ordre garanti : `sorted` les trie. `is_dir()` ne garde que les dossiers, et
 `name` donne le nom seul, sans le chemin.
 
 ```{code-cell} ipython3
-RECETTES = RACINE / "depart" / "recettes"
-
-for dossier in sorted(RECETTES.iterdir()):
+for dossier in sorted(DONNEES.iterdir()):
     print(dossier.name, dossier.is_dir())
 ```
 
@@ -301,26 +364,31 @@ for dossier in sorted(RECETTES.iterdir()):
 suivants portent sur le fichier de la recette des crêpes.
 
 ```{code-cell} ipython3
-chemin = RECETTES / "crepes" / "recette.md"
+chemin = DONNEES / "crepes" / "recette.md"
 
-print(chemin.name)                     # le nom du fichier : recette.md
-print(chemin.stem)                     # le nom sans l'extension : recette
-print(chemin.suffix)                   # l'extension, point compris : .md
-print(chemin.parent)                   # le dossier qui le contient
-print(chemin.parent.name)              # le nom de ce dossier : crepes
-print(chemin.relative_to(RACINE))      # le chemin à partir de RACINE
-print(chemin.with_suffix(".html"))     # le même chemin, autre extension
-print(chemin.with_name("ingredients.csv"))  # le même dossier, autre nom de fichier
+print("name, le nom du fichier :\t\t\t", chemin.name)
+print("stem, le nom sans l'extension :\t\t\t", chemin.stem)
+print("suffix, l'extension, point compris :\t\t", chemin.suffix)
+print("parent, le dossier qui le contient :\t\t", chemin.parent)
+print("parent.name, le nom de ce dossier :\t\t", chemin.parent.name)
+print("relative_to(RACINE), à partir de RACINE :\t", chemin.relative_to(RACINE))
+print("with_suffix, autre extension :\t\t\t", chemin.with_suffix(".html"))
+print("with_name, autre nom de fichier :\t\t", chemin.with_name("ingredients.csv"))
 ```
+
+Dans les chaînes affichées, `\t` insère une tabulation, qui aligne les
+valeurs en colonne. La tabulation est un caractère de contrôle, sans symbole
+visible, comme la fin de ligne `\n` : `fichiers.ipynb` présente ces
+caractères à la section 2, avec l'encodage.
 
 Le programme appelle `generer` une fois par dossier de recette. Le fichier
 produit porte le nom du dossier, avec l'extension `.md` : `with_suffix(".md")`
 l'ajoute au chemin `travail/crepes`.
 
 ```{code-cell} ipython3
-for dossier in sorted(RECETTES.iterdir()):
+for dossier in sorted(DONNEES.iterdir()):
     if dossier.is_dir():
-        fichier_sortie = (RACINE / "travail" / dossier.name).with_suffix(".md")  # à compléter
+        fichier_sortie = (SORTIE / dossier.name).with_suffix(".md")  # à compléter
         generer(dossier / "ingredients.csv", dossier / "recette.md", fichier_sortie)
 ```
 
@@ -412,10 +480,87 @@ Markdown. `--list-output-formats` donne la liste complète.
 print(Path("retour.md").read_text(encoding="utf-8")[:300])
 ```
 
-### 4.3 · Où le terminal trouve pandoc
+### 4.3 · Appeler pandoc depuis Python
 
-*Cette section se lit et s'exécute après la séance. En séance, passer à la
-section 4.4.*
+La syntaxe `!` ne fonctionne que dans un notebook. Dans un programme Python,
+une commande se lance avec la bibliothèque standard, de deux façons :
+
+- `os.system` reçoit la ligne de commande en une seule chaîne, et renvoie le
+  code de retour du programme, 0 si tout s'est bien passé ;
+- `subprocess.run` reçoit le programme et ses arguments dans une liste.
+
+`subprocess.run` est la forme à utiliser : chaque élément de la liste arrive
+au programme tel quel, espaces et accents compris, l'affichage du programme
+peut être récupéré, et `check=True` déclenche une erreur Python si la
+commande échoue.
+
+```{code-cell} ipython3
+import os
+
+code = os.system("pandoc crepes.md -o crepes.html --standalone --metadata title=Crêpes")
+print(code)
+```
+
+Avec `subprocess.run`, la commande `pandoc --version` s'écrit sous forme de
+liste, un élément par mot de la ligne de commande :
+
+```{code-cell} ipython3
+import subprocess
+
+commande = ["pandoc", "--version"]   # pandoc --version : deux mots, deux éléments
+subprocess.run(commande, check=True)
+```
+
+:::{admonition} À faire
+Sur le même modèle, écrivez sous forme de liste la commande de conversion de
+la cellule `os.system` ci-dessus : un élément par mot, `"pandoc"` compris.
+:::
+
+```{code-cell} ipython3
+# modèle : ["pandoc", "--version"]
+commande = ["pandoc", "crepes.md", "-o", "crepes.html", "--standalone", "--metadata", "title=Crêpes"]  # à compléter
+subprocess.run(commande, check=True)
+```
+
+`capture_output=True` récupère ce que le programme affiche, et `text=True`
+le convertit en chaîne.
+
+```{code-cell} ipython3
+resultat = subprocess.run(["pandoc", "--version"], capture_output=True, text=True)
+print(resultat.returncode)
+print(resultat.stdout.splitlines()[0])
+```
+
+Un chemin `Path` se passe à `subprocess` par `str(chemin)` : la commande ne
+reçoit que des chaînes de caractères.
+
+La fonction `generer_page` enchaîne les deux étapes du programme : `generer`
+écrit la recette en Markdown, puis pandoc la convertit en page HTML, à côté,
+avec la même feuille de style. Le TD 3a reprend cette forme dans un script.
+
+```{code-cell} ipython3
+def generer_page(fichier_ingredients, fichier_recette, fichier_sortie, personnes=4, unites="SI"):
+    """Écrit la recette en Markdown, puis la page HTML par pandoc."""
+    generer(fichier_ingredients, fichier_recette, fichier_sortie, personnes, unites)
+
+    page = fichier_sortie.with_suffix(".html")                 # travail/crepes.md -> travail/crepes.html
+    commande = ["pandoc", str(fichier_sortie), "-o", str(page), "--standalone",
+                "--metadata", "title=" + fichier_sortie.stem, "--css", "style.css"]
+    subprocess.run(commande, check=True)
+    print(page, "écrit")
+```
+
+L'appel produit la page des crêpes pour six personnes. Ouvrir
+`travail/crepes.html` par un double-clic : le titre des ingrédients donne le
+nombre de personnes.
+
+```{code-cell} ipython3
+generer_page(FICHIER_INGREDIENTS, FICHIER_RECETTE, FICHIER_SORTIE, personnes=6)
+```
+
+### 4.4 · Où le terminal trouve pandoc
+
+*Cette section se lit et s'exécute après la séance.*
 
 Le terminal a lancé `pandoc` sans qu'on lui dise où est le programme. Il l'a
 cherché dans une liste de dossiers, la variable d'environnement `PATH`.
@@ -452,48 +597,3 @@ cette liste. `conda activate` modifie le `PATH` ; une commande peut donc
 exister dans un environnement et manquer dans un autre. Sous
 Windows, conda range les programmes qui ne sont pas du Python, pandoc compris,
 dans `Library\bin`.
-
-### 4.4 · Appeler pandoc depuis Python
-
-La syntaxe `!` ne fonctionne que dans un notebook. Dans un programme Python,
-une commande se lance avec la bibliothèque standard, de deux façons :
-
-- `os.system` reçoit la ligne de commande en une seule chaîne, et renvoie le
-  code de retour du programme, 0 si tout s'est bien passé ;
-- `subprocess.run` reçoit le programme et ses arguments dans une liste.
-
-`subprocess.run` est la forme à utiliser : chaque élément de la liste arrive
-au programme tel quel, espaces et accents compris, l'affichage du programme
-peut être récupéré, et `check=True` déclenche une erreur Python si la
-commande échoue.
-
-```{code-cell} ipython3
-import os
-
-code = os.system("pandoc crepes.md -o crepes.html --standalone --metadata title=Crêpes")
-print(code)
-```
-
-:::{admonition} À faire
-Écrivez la même commande sous forme de liste : un élément par mot de la
-ligne de commande, `"pandoc"` compris.
-:::
-
-```{code-cell} ipython3
-import subprocess
-
-commande = ["pandoc", "crepes.md", "-o", "crepes.html", "--standalone", "--metadata", "title=Crêpes"]  # à compléter
-subprocess.run(commande, check=True)
-```
-
-`capture_output=True` récupère ce que le programme affiche, et `text=True`
-le convertit en chaîne.
-
-```{code-cell} ipython3
-resultat = subprocess.run(["pandoc", "--version"], capture_output=True, text=True)
-print(resultat.returncode)
-print(resultat.stdout.splitlines()[0])
-```
-
-Un chemin `Path` se passe à `subprocess` par `str(chemin)` : la commande ne
-reçoit que des chaînes de caractères. Le TD 3a emploie cette forme.

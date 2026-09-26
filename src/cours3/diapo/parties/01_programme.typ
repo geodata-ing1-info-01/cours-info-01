@@ -11,6 +11,7 @@
 #import "../../../commun/prelude.typ": *
 #import "../schemas.typ": *
 #import "../schemas_notebook.typ": schema-notebook-valeurs
+#import "../schemas_programme.typ": schema-objectif, schema-etapes
 
 // L'ouverture de la partie est commune au TD qui l'accompagne : voir
 // `separateur-cours-td` dans `cours3.typ`.
@@ -23,33 +24,7 @@
     Markdown, et produit une page HTML.
   ]
 
-  #grid(
-    columns: (1fr, 1.15fr, auto, 1.35fr),
-    column-gutter: 10pt,
-    align: top,
-    panneau("ingredients.csv")[
-      #sortie("ingredient,quantite,unite\nFarine,60,g\nLait,125,ml\nŒufs,1,\nSel,1,g\nBeurre fondu,12,g", taille: 10pt)
-    ],
-    panneau("recette.md")[
-      #sortie("# Crêpes\n\n*10 minutes de préparation,\n1 heure de repos.*\n\n## Ingrédients\n\n## Préparation\n\n1. Mélanger la farine…\n2. Casser les œufs…", taille: 10pt)
-    ],
-    pad(top: 70pt, text(size: 20pt, fill: accent)[→]),
-    fenetre("crepes.html")[
-      #set text(size: 11pt)
-      #text(size: 15pt, weight: demi-gras)[Crêpes] \
-      #emph[10 minutes de préparation, 1 heure de repos.]
-      #v(0.2em)
-      #text(weight: demi-gras)[Ingrédients]
-      #table(
-        columns: (auto, auto), inset: (x: 5pt, y: 2.5pt), stroke: 0.5pt + gris.darken(20%),
-        [Ingrédient], [Quantité],
-        [Farine], [240 g], [Lait], [500 ml], [Œufs], [4], [Sel], [4 g], [Beurre fondu], [48 g],
-      )
-      #v(0.1em)
-      #text(weight: demi-gras)[Préparation] \
-      1. Mélanger la farine…
-    ],
-  )
+  #schema-objectif()
 
   #legende[
     La page produite pour quatre personnes, en unités SI. Le fichier CSV
@@ -71,26 +46,7 @@
     HTML.
   ]
 
-  #grid(
-    columns: (1fr, auto, 1.1fr, auto, 1fr, auto, 0.8fr),
-    column-gutter: 8pt,
-    align: top,
-    panneau("crepes/")[
-      #sortie("ingredients.csv\nFarine,60,g\nLait,125,ml\n…\n\nrecette.md\n# Crêpes\n## Ingrédients\n## Préparation", taille: 10.5pt)
-    ],
-    pad(top: 58pt, text(size: 20pt, fill: accent)[→]),
-    panneau("generer(…)")[
-      #sortie("lire_ingredients\nadapter : 4 personnes\ntableau\nreplace sous\n« ## Ingrédients »", taille: 10.5pt)
-    ],
-    pad(top: 58pt, text(size: 20pt, fill: accent)[→]),
-    panneau("travail/crepes.md")[
-      #sortie("# Crêpes\n## Ingrédients\n| Farine | 240 g |\n| Lait | 500 ml |\n…\n## Préparation", taille: 10.5pt)
-    ],
-    pad(top: 58pt, text(size: 20pt, fill: accent)[→]),
-    panneau("pandoc")[
-      #sortie("crepes.html", taille: 10.5pt)
-    ],
-  )
+  #schema-etapes()
 
   #notes[
     Fonctions utiles : reprises du cours 1, résumées dans un tableau du
@@ -155,7 +111,7 @@
     [], [Problème], [Correction dans `recette.ipynb`],
     [1], [le même début de chemin écrit trois fois : trois lignes à modifier pour changer de poste ou de recette], [une seule racine, les autres chemins construits avec `/` (§ 3.1 et 3.2)],
     [2], [un chemin absolu, propre à un poste : `C:/Users/alice/…` n'existe pas ailleurs, ni après un déplacement du dossier], [la racine déduite du dossier courant, `Path.cwd().parent` (§ 3.3)],
-    [3], [la page HTML à produire à la main : pandoc lancé dans le terminal après le programme], [pandoc lancé par le programme, avec `subprocess` (§ 4.4)],
+    [3], [la page HTML à produire à la main : pandoc lancé dans le terminal après le programme], [pandoc lancé par le programme, avec `subprocess` (§ 4.3)],
   )
 
   #legende[
@@ -254,10 +210,10 @@
 
   #face-a-face(
     panneau("L'arborescence du TD")[
-      #sortie("1a_recette/                ← RACINE\n├── depart/\n│   └── recettes/\n│       └── crepes/\n│           ├── ingredients.csv\n│           └── recette.md\n└── travail/               ← dossier courant\n    └── crepes.md", taille: 12pt)
+      #sortie("1a_recette/                ← RACINE\n├── depart/\n│   └── recettes/          ← DONNEES\n│       └── crepes/\n│           ├── ingredients.csv\n│           └── recette.md\n└── travail/               ← SORTIE\n    └── crepes.md", taille: 12pt)
     ],
     panneau("Le code")[
-      #sortie("from pathlib import Path\n\nRACINE = Path.cwd().parent\nRECETTES = RACINE / \"depart\" / \"recettes\"\nRECETTES / \"crepes\" / \"recette.md\"\n\nfor dossier in RECETTES.iterdir():\n    print(dossier.name)", taille: 12pt)
+      #sortie("from pathlib import Path\n\nRACINE = Path.cwd().parent\nDONNEES = RACINE / \"depart\" / \"recettes\"\nSORTIE = RACINE / \"travail\"\nDONNEES / \"crepes\" / \"recette.md\"\n\nfor dossier in DONNEES.iterdir():\n    print(dossier.name)", taille: 12pt)
     ],
   )
 
@@ -275,7 +231,7 @@
 
 
 // --------------------------------------------
-#d("subprocess : appel d'un programme externe", cellule: "4.4")[
+#d("subprocess : appel d'un programme externe", cellule: "4.3")[
   #annonce[
     `subprocess.run` reçoit la commande du terminal sous forme de liste, qui
     contient le nom du programme puis ses arguments.
@@ -299,7 +255,7 @@
     espaces et accents compris. `os.system` et la syntaxe `!` du
     notebook sont montrés dans le notebook, § 4.2 et 4.4.
 
-    Le terminal trouve pandoc dans les dossiers de `PATH` : § 4.3, à lire
+    Le terminal trouve pandoc dans les dossiers de `PATH` : § 4.4, à lire
     après la séance.
   ]
 ]

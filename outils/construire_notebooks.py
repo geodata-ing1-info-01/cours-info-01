@@ -25,6 +25,9 @@ relativement au notebook livré, depuis quel dossier il s'exécute
 `--executer` remplit les sorties : c'est ce qu'on distribue aux étudiants quand
 on veut qu'ils voient le résultat attendu sans avoir à tout relancer. Sans
 l'option, les cellules sont vides, ce qui est la forme à ouvrir en séance.
+Un notebook qui ne tourne que dans l'environnement que son TD fait créer
+(`outils_video` du TD 4c du cours 1, dans `trajet_ensg`) porte
+`executer: false` dans son en-tête : il est converti, jamais exécuté.
 
 Un notebook à compléter en séance marque ses cellules de solution par
 l'étiquette `corrige` (`:tags: [corrige]` sous la clôture ```{code-cell}). Le
@@ -43,7 +46,23 @@ devient `x = ...  # à compléter`, une ligne sans affectation devient
 VS Code l'affichent fermée, un clic l'ouvre. Le corrigé garde les lignes,
 sans le commentaire.
 
-Sort en code 1 si une conversion ou une exécution échoue.
+Une ligne à corriger plutôt qu'à écrire se marque `# à remplacer`, précédée
+d'un commentaire `# livré : <code>` qui donne la version livrée :
+
+    # livré : with open("C:/…/recette.md", encoding="utf-8") as fichier:
+    with open(fichier_recette, encoding="utf-8") as fichier:  # à remplacer
+
+Le livré porte la ligne du commentaire, suivie de `# à remplacer` ; le
+corrigé et la réponse repliée, la ligne correcte. Le commentaire `# livré`
+n'apparaît dans aucun des deux.
+
+Les illustrations d'un TD sont des schémas de diapositive, écrits en typst
+dans `src/cours<n>/notebook/td/<td>/illustrations/<nom>.typ`. Le script les
+compile en `produit/illustrations/<nom>.png` du TD, que `livrer_tds.py` met à
+plat dans `<td>/illustrations/`. Un notebook ouvert depuis `travail/` les
+affiche par `![…](../illustrations/<nom>.png)`.
+
+Sort en code 1 si une conversion, une exécution ou une illustration échoue.
 """
 
 from __future__ import annotations
@@ -58,6 +77,8 @@ from pathlib import Path
 
 ETIQUETTE = "corrige"
 MARQUE = "# à compléter"
+REMPLACER = "# à remplacer"
+LIVRE = "# livré : "
 AFFECTATION = re.compile(r"^(\s*)([\w.\[\]\"', ]+?)\s*=(?!=)")
 
 RACINE = Path(__file__).resolve().parent.parent
@@ -83,6 +104,36 @@ def destination(source: Path) -> tuple[Path, Path] | None:
             sous = Path(*relatif.parts[1:-1])
             return td / "produit", sous
     return None
+
+
+def illustrer() -> int:
+    """Compile les illustrations des TD en PNG ; renvoie le nombre d'échecs."""
+    echecs = 0
+    for figure in sorted((RACINE / "src").glob("cours*/notebook/td/*/illustrations/*.typ")):
+        td = figure.parent.parent
+        cours = td.parents[2].name
+        produit = RACINE / "data" / cours / td.name / "produit"
+        if not produit.parent.is_dir():
+            continue
+        cible = produit / "illustrations" / (figure.stem + ".png")
+        cible.parent.mkdir(parents=True, exist_ok=True)
+        code = subprocess.run(
+            ["typst", "compile", "--root", str(RACINE), "--format", "png", "--ppi", "144",
+             str(figure), str(cible)],
+            check=False,
+        ).returncode
+        if code != 0:
+            print(f"{figure.relative_to(RACINE)} : illustration échouée", file=sys.stderr)
+            echecs += 1
+        else:
+            print(f"  {cible.relative_to(RACINE)}")
+    return echecs
+
+
+def a_executer_ici(notebook: Path) -> bool:
+    """Faux si l'en-tête porte `executer: false` : le notebook tourne ailleurs."""
+    metadonnees = json.loads(notebook.read_text(encoding="utf-8")).get("metadata", {})
+    return metadonnees.get("executer", True) is not False
 
 
 def dossier_execution(notebook: Path) -> Path:
@@ -141,16 +192,34 @@ def a_trous(complet: Path, livre: Path) -> bool:
         if cellule["cell_type"] != "code":
             continue
         lignes = "".join(cellule["source"]).splitlines()
-        trous = [ligne for ligne in lignes if ligne.rstrip().endswith(MARQUE)]
-        if trous:
-            complete = [sans_marque(ligne) if ligne in trous else ligne for ligne in lignes]
+        complete, livree_lignes, reponses = [], [], []
+        i = 0
+        while i < len(lignes):
+            ligne = lignes[i]
+            suivante = lignes[i + 1].rstrip() if i + 1 < len(lignes) else ""
+            if ligne.lstrip().startswith(LIVRE) and suivante.endswith(REMPLACER):
+                # la ligne livrée vient du commentaire, la correcte de la suivante
+                indentation = ligne[:len(ligne) - len(ligne.lstrip())]
+                correcte = suivante[:-len(REMPLACER)].rstrip()
+                livree_lignes.append(f"{indentation}{ligne.strip()[len(LIVRE):]}  {REMPLACER}")
+                complete.append(correcte)
+                reponses.append(correcte.strip())
+                i += 2
+                continue
+            if ligne.rstrip().endswith(MARQUE):
+                livree_lignes.append(ligne_a_trou(sans_marque(ligne)))
+                complete.append(sans_marque(ligne))
+                reponses.append(sans_marque(ligne).strip())
+            else:
+                livree_lignes.append(ligne)
+                complete.append(ligne)
+            i += 1
+        if reponses:
             livree = dict(cellule)
-            livree["source"] = "\n".join(
-                ligne_a_trou(sans_marque(ligne)) if ligne in trous else ligne for ligne in lignes
-            )
+            livree["source"] = "\n".join(livree_lignes)
             cellule["source"] = "\n".join(complete)
             cellules_livrees[-1] = livree
-            cellules_livrees.append(reponse([sans_marque(ligne).strip() for ligne in trous]))
+            cellules_livrees.append(reponse(reponses))
             masquees += 1
         elif ETIQUETTE in cellule.get("metadata", {}).get("tags", []):
             livree = dict(cellule)
@@ -206,6 +275,9 @@ def convertir(source: Path, executer: bool) -> bool:
 
     if not executer:
         return True
+    if not a_executer_ici(cible):
+        print("    non exécuté (executer: false)")
+        return True
 
     # Le notebook s'exécute là où l'étudiant l'ouvre : son propre dossier, ou
     # celui que sa clé `execution` désigne (la copie dans `travail/`). nbconvert
@@ -252,7 +324,7 @@ def main() -> int:
         print("aucun notebook MyST trouvé sous src/cours*/notebook/", file=sys.stderr)
         return 1
 
-    echecs = 0
+    echecs = illustrer()
     for source in SOURCES:
         print(f"{source.relative_to(RACINE)}")
         if not convertir(source, options.executer):

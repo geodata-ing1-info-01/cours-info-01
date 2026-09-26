@@ -1,7 +1,7 @@
 # Images : texte et binaire — TD 2b, cours 3
 
-`images.ipynb` s'exécute pendant l'exposé. Les cellules qui ne contiennent
-qu'un commentaire sont à compléter avec ce que la diapositive montre.
+`images.ipynb` est facultatif, à faire après la séance. Il suppose connues
+les sections 3 à 6 de `fichiers.ipynb` (octets, UTF-8, mode binaire).
 
 | Dossier | Ce qu'il contient |
 |---|---|

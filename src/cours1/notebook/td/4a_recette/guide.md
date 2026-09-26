@@ -1,6 +1,13 @@
 ---
 title: "TD 4a — Installer un projet Python, et décrire son installation"
 subtitle: Guide détaillé, étape par étape
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  name: python3
+  display_name: Python 3
 ---
 
 Le TD part d'un petit projet Python, `recette`, qui lit une recette écrite en

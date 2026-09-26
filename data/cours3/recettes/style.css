@@ -1,43 +1,84 @@
 /* Feuille de style de la page produite par le projet `recette`.
 
    Même rôle que le `style.css` de la première partie : le contenu est dans le
-   fichier HTML, la présentation ici, et l'un change sans l'autre. */
+   fichier HTML, la présentation ici, et l'un change sans l'autre.
+
+   pandoc écrit le contenu directement dans <body>, précédé de l'en-tête
+   <header id="title-block-header"> et, avec --toc, de <nav id="TOC"> : la
+   largeur et le centrage se règlent donc sur body. */
 
 body {
   font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.05rem;
   line-height: 1.6;
   color: #2b2b2b;
   background: #faf8f4;
-  margin: 0;
-  padding: 2rem 1rem;
-}
-
-article {
-  max-width: 34rem;
-  margin: 0 auto;
+  max-width: 42rem;          /* une ligne de 70 caractères environ */
+  margin: 0 auto;            /* centré dans la fenêtre */
+  padding: 2.5rem 1.5rem 4rem;
 }
 
 h1 {
-  font-size: 1.9rem;
-  margin-bottom: 0.2rem;
+  font-size: 2rem;
+  line-height: 1.2;
+  margin: 0 0 0.3rem;
 }
 
 h2 {
-  font-size: 1.2rem;
-  margin-top: 2rem;
+  font-size: 1.25rem;
+  margin-top: 2.2rem;
   border-bottom: 1px solid #ddd8cd;
   padding-bottom: 0.2rem;
+}
+
+a {
+  color: #8a5a2b;
+}
+
+/* L'en-tête que pandoc écrit à partir de --metadata title */
+#title-block-header {
+  margin-bottom: 1.5rem;
+}
+
+/* La table des matières de --toc */
+nav#TOC {
+  background: #f0ece4;
+  border-left: 3px solid #c8b99a;
+  padding: 0.6rem 1rem;
+  margin-bottom: 2rem;
+}
+
+nav#TOC ul {
+  margin: 0;
+  padding-left: 1.2rem;
 }
 
 table {
   border-collapse: collapse;
   width: 100%;
+  margin: 1rem 0;
 }
 
 th, td {
   text-align: left;
-  padding: 0.3rem 0.6rem;
+  padding: 0.35rem 0.7rem;
   border-bottom: 1px solid #ddd8cd;
+}
+
+th {
+  background: #f0ece4;
+}
+
+/* Les quantités, dans la seconde colonne, alignées à droite */
+td:last-child, th:last-child {
+  text-align: right;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1rem auto;
 }
 
 blockquote {

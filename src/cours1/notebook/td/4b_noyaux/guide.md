@@ -1,6 +1,13 @@
 ---
 title: "TD 4b — Le client, le noyau, et où ils sont installés (facultatif)"
 subtitle: Guide détaillé, étape par étape
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  name: python3
+  display_name: Python 3
 ---
 
 L'exécution d'un notebook fait intervenir deux programmes : un client, qui

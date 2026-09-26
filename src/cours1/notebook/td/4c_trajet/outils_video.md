@@ -1,6 +1,7 @@
 ---
 title: ImageMagick et ffmpeg, depuis un notebook
 subtitle: Appeler un programme qui n'est pas une bibliothèque Python
+executer: false
 jupytext:
   text_representation:
     extension: .md

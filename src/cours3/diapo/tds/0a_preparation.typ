@@ -106,17 +106,13 @@
   ]
 
   #tableau(
-    columns: (auto, 1.5fr, 1fr),
+    columns: (auto, 1fr),
     align: left + horizon,
-    [], [Ce qu'il faut faire, dans l'Anaconda Prompt], [Ce que vous constatez],
-    [1], [`conda create -n info01-cours3 -c conda-forge python=3.12 jupyterlab pandoc pillow`, puis `y`],
-      reponse[la liste des paquets à installer, puis `done`],
+    [], [Ce qu'il faut faire, dans l'Anaconda Prompt],
+    [1], [`conda create -n info01-cours3 -c conda-forge python=3.12 jupyterlab jupyterlab-myst pandoc pillow`, puis `y`],
     [2], [`conda activate info01-cours3`],
-      reponse[`(info01-cours3)` en tête de l'invite],
     [3], [`pandoc --version`, puis `python -c "import PIL"`],
-      reponse[le numéro de version de pandoc ; aucune erreur pour Pillow],
     [4], [`cd` vers le dossier `cours3/` extrait sur le Bureau, puis `jupyter lab`],
-      reponse[JupyterLab dans le navigateur, le dossier `cours3/` dans le panneau de gauche],
   )
 
   #legende[
@@ -134,6 +130,10 @@
     `conda env list` liste les environnements du poste, `*` sur l'actif :
     à montrer à ceux qui vont vite.
 
+    `jupyterlab-myst` : affiche les encadrés MyST des notebooks
+    (`:::{admonition} À faire`). Dans `base`, sans l'extension, ils
+    s'affichent en texte brut.
+
     Préfixe `info01-` : distingue l'environnement de ceux des autres
     enseignements sur le même poste.
 
@@ -144,7 +144,7 @@
     pas du Python, comme pandoc ou ffmpeg (projet 4).
 
     Pour écrire le chemin après `cd`, glisser le dossier `cours3/` depuis
-    l'explorateur dans la fenêtre du terminal. À la section 4.3 de
+    l'explorateur dans la fenêtre du terminal. À la section 4.4 de
     `recette.ipynb`, `shutil.which("pandoc")` renvoie un chemin dans
     `envs\info01-cours3\Library\bin`.
 

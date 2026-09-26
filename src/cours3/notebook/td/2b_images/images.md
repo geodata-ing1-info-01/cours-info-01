@@ -1,5 +1,5 @@
 ---
-title: Caractères et images
+title: "Images : texte et binaire"
 subtitle: Ce qu'un fichier texte et un fichier binaire contiennent
 jupytext:
   text_representation:
@@ -10,123 +10,17 @@ kernelspec:
   display_name: Python 3
 ---
 
-# Caractères et images : texte et binaire
+# Images : texte et binaire
 
-Ce notebook montre ce qu'un fichier contient, octet par octet. La section 1,
-jouée en séance, porte sur les caractères : comment ASCII et UTF-8 les
-écrivent en octets. Les sections 2 à 6, facultatives, comparent un fichier
-texte et un fichier binaire qui contiennent la même image.
+Ce notebook est facultatif. Il compare un fichier texte et un fichier binaire
+qui contiennent la même image, puis montre ce que contiennent les formats
+d'image courants. Il suppose connues les sections 3 à 6 de `fichiers.ipynb` :
+un fichier est une suite d'octets, UTF-8 écrit les caractères en octets, le
+mode binaire lit les octets sans les décoder.
 
-Une ligne qui se termine par `# à compléter` est à écrire ; la cellule
-« Réponse » repliée qui la suit donne la solution. Les fichiers créés par le
-notebook sont écrits dans `travail/`.
+Les fichiers créés par le notebook sont écrits dans `travail/`.
 
-## 1 · ASCII et UTF-8
-
-Un caractère est un nombre. Le code ASCII en définit 128, écrits sur un octet
-chacun : les lettres sans accent, les chiffres, la ponctuation, l'espace et le
-retour à la ligne. UTF-8 reprend ces 128 codes sur les mêmes octets, et écrit
-tous les autres caractères sur deux, trois ou quatre octets : `é` et `œ` en
-prennent deux, `😀` quatre.
-
-`len` compte les caractères d'une chaîne ; `encode("utf-8")` renvoie ses
-octets, et `hex(" ")` les écrit en hexadécimal, séparés par des espaces.
-
-```{code-cell} ipython3
-for texte in ("a", "é", "œ", "😀"):
-    octets = texte.encode("utf-8")  # à compléter
-    print(texte, len(texte), "caractère,", len(octets), "octet(s) :", octets.hex(" "))
-```
-
-```{code-cell} ipython3
-:tags: [raises-exception]
-
-"œ".encode("ascii")   # œ n'a pas de code ASCII : UnicodeEncodeError
-```
-
-En UTF-8, le premier octet d'un caractère indique sur combien d'octets le
-caractère est écrit. Le nombre d'octets se lit sur les premiers bits de cet
-octet, écrit en binaire :
-
-| Premier octet, en binaire | En hexadécimal | Nombre d'octets du caractère |
-|---|---|---|
-| `0xxxxxxx` | `00` à `7f` | 1 : les 128 caractères ASCII |
-| `110xxxxx` | `c2` à `df` | 2 |
-| `1110xxxx` | `e0` à `ef` | 3 |
-| `11110xxx` | `f0` à `f4` | 4 |
-
-Les octets suivants du caractère commencent tous par `10` en binaire (`80` à
-`bf` en hexadécimal). Un premier octet ne commence jamais par `10` : un
-programme ne peut donc pas les confondre. Les bits notés `x`, mis bout à
-bout, forment le numéro du caractère.
-
-```{code-cell} ipython3
-# Chaque octet en hexadécimal, puis en binaire sur 8 bits
-for texte in ("a", "é", "œ", "😀"):
-    print(texte, " ".join(f"{octet:02x}={octet:08b}" for octet in texte.encode("utf-8")))
-```
-
-Pour `é`, le premier octet `c3` s'écrit `11000011` : il commence par `110`,
-le caractère occupe donc deux octets, `c3 a9`. Pour `😀`, le premier octet
-`f0` commence par `11110` : le caractère occupe quatre octets.
-
-Un programme qui lit un fichier en UTF-8 applique cette règle octet après
-octet. En pseudo-code :
-
-```text
-position ← 0
-texte ← chaîne vide
-tant que position < nombre d'octets du fichier :
-    premier ← octets[position]
-    si premier commence par 0 en binaire      : n ← 1
-    sinon si premier commence par 110         : n ← 2
-    sinon si premier commence par 1110        : n ← 3
-    sinon si premier commence par 11110       : n ← 4
-    sinon : erreur, le fichier n'est pas en UTF-8
-    vérifier que les n - 1 octets suivants commencent par 10,
-        sinon : erreur, le fichier n'est pas en UTF-8
-    caractère ← le caractère dont le numéro est formé par les bits x
-                des octets[position] à octets[position + n - 1]
-    ajouter caractère à la fin de texte
-    position ← position + n
-```
-
-Python applique cette règle quand un fichier est ouvert avec
-`encoding="utf-8"`, ou quand on appelle `octets.decode("utf-8")`. Si la
-règle n'est pas respectée, Python lève une erreur `UnicodeDecodeError`.
-
-Lus avec un autre encodage, les mêmes octets donnent d'autres caractères. En
-`cp1252`, l'encodage par défaut de Windows, chaque octet est un caractère :
-`c3 a9` se lit `Ã©` au lieu de `é`, l'erreur montrée dans le notebook
-`fichiers`, section 3.
-
-```{code-cell} ipython3
-octets = "é".encode("utf-8")
-print(octets.decode("utf-8"), octets.decode("cp1252"))
-```
-
-Le mot « œuf » a trois caractères et, en UTF-8, quatre octets ; « oeuf »,
-écrit sans la ligature, en a quatre et quatre. `œ` n'existe ni en ASCII, ni
-en ISO 8859-1, l'encodage courant des textes français avant UTF-8 ; les
-fichiers anciens écrivent donc « oeuf ».
-
-Des noms de communes de France portent ces caractères : Œuilly (Aisne, et
-Marne), Plœuc-L'Hermitage (Côtes-d'Armor), L'Haÿ-les-Roses (Val-de-Marne),
-Aÿ-Champagne (Marne). Un fichier en ASCII ne peut pas les écrire. Pour qu'ils
-apparaissent tels quels sur une carte, le fichier qui les porte est en
-UTF-8, et le programme qui le lit écrit `encoding="utf-8"` ; lu sans cet
-argument sous Windows, « Plœuc » devient « PlÅ“uc ».
-
-```{code-cell} ipython3
-for nom in ("œuf", "oeuf", "Œuilly", "Plœuc-L'Hermitage", "L'Haÿ-les-Roses", "Aÿ-Champagne"):
-    octets = nom.encode("utf-8")
-    print(f"{nom:18} {len(nom):3} caractères, {len(octets):3} octets")
-```
-
-## 2 · Une image au format texte : PGM `P2`
-
-*Les sections 2 à 6 sont facultatives. Elles se lisent et s'exécutent après
-la séance.*
+## 1 · Une image au format texte : PGM `P2`
 
 Le format d'image PGM représente une image en niveaux de gris. Il existe en
 deux variantes, texte et binaire, qui ne diffèrent que par l'écriture des
@@ -164,17 +58,17 @@ print(image.size, image.mode)
 image.resize((160, 160), Image.NEAREST)
 ```
 
-## 3 · La même image en binaire
+## 2 · La même image en binaire
 
 Pillow enregistre un `.pgm` dans la variante binaire : le même en-tête, en
 clair, puis un octet par pixel au lieu d'un nombre écrit en chiffres.
 
 ```{code-cell} ipython3
-TRAVAIL = Path("travail")
-TRAVAIL.mkdir(exist_ok=True)
+SORTIE = Path("travail")
+SORTIE.mkdir(exist_ok=True)
 
-image.save(TRAVAIL / "motif.pgm")
-octets = (TRAVAIL / "motif.pgm").read_bytes()
+image.save(SORTIE / "motif.pgm")
+octets = (SORTIE / "motif.pgm").read_bytes()
 print(len(motif.read_bytes()), "octets en texte,", len(octets), "en binaire")
 print(octets.hex(" "))
 ```
@@ -207,14 +101,14 @@ def hexdump(chemin, n=32, largeur=16):
 
 hexdump(motif)
 print()
-hexdump(TRAVAIL / "motif.pgm")
+hexdump(SORTIE / "motif.pgm")
 ```
 
 Dans le fichier texte, les seuls points sont les retours à la ligne (`0a`).
 Dans le fichier binaire, les seize pixels, `00` et `ff`, ne sont pas des
 caractères affichables : ils apparaissent tous comme des points.
 
-## 4 · La signature d'un format
+## 3 · La signature d'un format
 
 Chaque fichier d'image commence par quelques octets fixes, appelés
 signature, qui identifient son format : `P5` pour PGM binaire, `BM` pour BMP,
@@ -227,15 +121,15 @@ motif, `*` remplaçant n'importe quelle suite de caractères ;
 `stat().st_size` renvoie la taille du fichier en octets.
 
 ```{code-cell} ipython3
-image.save(TRAVAIL / "motif.bmp")
-image.save(TRAVAIL / "motif.png")
+image.save(SORTIE / "motif.bmp")
+image.save(SORTIE / "motif.png")
 
-for fichier in sorted(TRAVAIL.glob("motif.*")):
+for fichier in sorted(SORTIE.glob("motif.*")):
     print(f"{fichier.name:12} {fichier.stat().st_size:5} octets")
     hexdump(fichier, n=16)
 ```
 
-## 5 · Une vraie image, en cinq fichiers
+## 4 · Une vraie image, en cinq fichiers
 
 Le fichier `depart/vague.jpg` contient *La Grande Vague* de Hokusai, une
 image en couleur de 2 000 pixels de large. `convert("L")` en renvoie une
@@ -248,8 +142,8 @@ perd de détails.
 vague = Image.open("depart/vague.jpg")
 gris = vague.convert("L")
 for nom in ("vague.pgm", "vague.png", "vague.bmp"):
-    gris.save(TRAVAIL / nom)
-gris.save(TRAVAIL / "vague.jpg", quality=85)
+    gris.save(SORTIE / nom)
+gris.save(SORTIE / "vague.jpg", quality=85)
 gris.resize((600, 403))
 ```
 
@@ -266,11 +160,11 @@ lignes = [f"P2\n{largeur} {hauteur}\n255"]
 for i in range(hauteur):
     ligne = donnees[i * largeur:(i + 1) * largeur]
     lignes.append(" ".join(str(octet) for octet in ligne))
-(TRAVAIL / "vague_texte.pgm").write_text("\n".join(lignes) + "\n")
+(SORTIE / "vague_texte.pgm").write_text("\n".join(lignes) + "\n")
 
 pixels = largeur * hauteur
 print(f"{pixels:,} pixels\n")
-for fichier in sorted(TRAVAIL.glob("vague*")):
+for fichier in sorted(SORTIE.glob("vague*")):
     taille = fichier.stat().st_size
     print(f"{fichier.name:18} {taille:>10,} octets   {taille / pixels:5.2f} octet(s) par pixel")
 ```
@@ -292,23 +186,23 @@ exactement celle de départ.
 import zlib
 
 comprime = zlib.compress(donnees)
-print(len(donnees), "octets bruts,", len(comprime), "compressés,", (TRAVAIL / "vague.png").stat().st_size, "en PNG")
+print(len(donnees), "octets bruts,", len(comprime), "compressés,", (SORTIE / "vague.png").stat().st_size, "en PNG")
 ```
 
 PNG obtient moins que `zlib` seul parce qu'il transforme d'abord chaque ligne,
 en écrivant la différence avec le pixel voisin, plus souvent répétée que la
 valeur elle-même.
 
-## 6 · Le temps de lecture
+## 5 · Le temps de lecture
 
 `%timeit` lance une ligne plusieurs fois et donne le temps moyen. `load()`
 force Pillow à lire les pixels, ce qu'`open` seul ne fait pas.
 
 ```{code-cell} ipython3
-%timeit -r 3 -n 1 Image.open(TRAVAIL / "vague_texte.pgm").load()
-%timeit -r 3 -n 1 Image.open(TRAVAIL / "vague.pgm").load()
-%timeit -r 3 -n 1 Image.open(TRAVAIL / "vague.png").load()
-%timeit -r 3 -n 1 Image.open(TRAVAIL / "vague.jpg").load()
+%timeit -r 3 -n 1 Image.open(SORTIE / "vague_texte.pgm").load()
+%timeit -r 3 -n 1 Image.open(SORTIE / "vague.pgm").load()
+%timeit -r 3 -n 1 Image.open(SORTIE / "vague.png").load()
+%timeit -r 3 -n 1 Image.open(SORTIE / "vague.jpg").load()
 ```
 
 Les quatre temps s'affichent dans l'ordre : PGM texte, PGM binaire, PNG,

@@ -20,7 +20,7 @@ from pathlib import Path
 
 # Les chemins partent du dossier du terminal (section 3.3 du notebook)
 RACINE = Path.cwd()
-RECETTES = RACINE / "recettes"
+DONNEES = RACINE / "recettes"
 STYLE = RACINE / "style.css"
 SORTIE = RACINE / "sortie"
 
@@ -76,7 +76,7 @@ def main():
     analyseur = argparse.ArgumentParser(description="Met une recette à l'échelle et en fait une page HTML.")
     # Les recettes disponibles : les dossiers de recettes/ (section 3.4 du notebook)
     recettes_disponibles = []
-    for dossier in sorted(RECETTES.iterdir()):
+    for dossier in sorted(DONNEES.iterdir()):
         if dossier.is_dir():
             recettes_disponibles.append(dossier.name)
     analyseur.add_argument("nom", choices=recettes_disponibles, help="la recette")
@@ -88,11 +88,12 @@ def main():
     UNITES = options.unites
 
     # La recette : le tableau des ingrédients inséré sous « ## Ingrédients »
-    ingredients = lire_ingredients(RECETTES / NOM / "ingredients.csv")
+    ingredients = lire_ingredients(DONNEES / NOM / "ingredients.csv")
     ingredients = adapter(ingredients, PERSONNES, UNITES)
-    source = (RECETTES / NOM / "recette.md").read_text(encoding="utf-8")
+    source = (DONNEES / NOM / "recette.md").read_text(encoding="utf-8")
     titre = source.splitlines()[0].lstrip("# ")
-    complete = source.replace("## Ingrédients", "## Ingrédients\n\n" + tableau(ingredients))
+    intitule = f"## Ingrédients pour {PERSONNES} personnes en {UNITES}"   # les valeurs entre accolades sont insérées dans le texte
+    complete = source.replace("## Ingrédients", intitule + "\n\n" + tableau(ingredients))
 
     # Le Markdown complet et la feuille de style, dans sortie/
     SORTIE.mkdir(exist_ok=True)

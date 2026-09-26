@@ -1,6 +1,13 @@
 ---
 title: "TD 1b — Un .odt est une archive ZIP (facultatif)"
 subtitle: Guide détaillé, étape par étape
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  name: python3
+  display_name: Python 3
 ---
 
 Le TD ouvre un document LibreOffice, `raven.odt`, comme une archive ZIP,
