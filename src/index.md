@@ -31,7 +31,7 @@ avant/python
 
 ```{toctree}
 :maxdepth: 1
-:caption: Séances
+:caption: Séances V1
 
 cours1/index
 cours2/index
@@ -40,6 +40,14 @@ cours4/index
 cours5/index
 cours6/index
 cours7/index
+```
+
+```{toctree}
+:maxdepth: 1
+:caption: Séances V2 (proposition 2027-2028)
+
+cours1_v2/index
+cours2_v2/index
 ```
 
 ```{toctree}

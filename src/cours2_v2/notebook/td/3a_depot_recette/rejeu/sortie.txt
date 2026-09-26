@@ -1,0 +1,425 @@
+=== étape 0
+
+$ cp depart/recette.md depart/crepes.jpg travail/
+
+$ cd travail
+
+$ git config --global user.name "Alice Martin"
+
+$ git config --global user.email alice.martin@ensg.eu
+
+$ git config --global --list
+user.name=Alice Martin
+user.email=alice.martin@ensg.eu
+=== étape 1
+
+$ git init
+astuce: Utilisation de 'master' comme nom de la branche initiale. Le nom de la branche
+astuce: par défaut peut changer. Pour configurer le nom de la branche initiale
+astuce: pour tous les nouveaux dépôts, et supprimer cet avertissement, lancez :
+astuce: 
+astuce: 	git config --global init.defaultBranch <nom>
+astuce: 
+astuce: Les noms les plus utilisés à la place de 'master' sont 'main', 'trunk' et
+astuce: 'development'. La branche nouvellement créée peut être rénommée avec :
+astuce: 
+astuce: 	git branch -m <nom>
+Dépôt Git vide initialisé dans …/3a_depot_recette/travail/.git/
+
+$ ls -a
+.
+..
+crepes.jpg
+.git
+recette.md
+
+$ git status
+Sur la branche master
+
+Aucun commit
+
+Fichiers non suivis:
+  (utilisez "git add <fichier>..." pour inclure dans ce qui sera validé)
+	crepes.jpg
+	recette.md
+
+aucune modification ajoutée à la validation mais des fichiers non suivis sont présents (utilisez "git add" pour les suivre)
+
+$ git add recette.md crepes.jpg
+
+$ git status
+Sur la branche master
+
+Aucun commit
+
+Modifications qui seront validées :
+  (utilisez "git rm --cached <fichier>..." pour désindexer)
+	nouveau fichier : crepes.jpg
+	nouveau fichier : recette.md
+
+
+$ git commit -m "Ajoute la recette des crêpes"
+[master (commit racine) a16d497] Ajoute la recette des crêpes
+ 2 files changed, 24 insertions(+)
+ create mode 100644 crepes.jpg
+ create mode 100644 recette.md
+
+$ git log --oneline
+a16d497 Ajoute la recette des crêpes
+=== étape 2
+
+$ git status
+Sur la branche master
+Modifications qui ne seront pas validées :
+  (utilisez "git add <fichier>..." pour mettre à jour ce qui sera validé)
+  (utilisez "git restore <fichier>..." pour annuler les modifications dans le répertoire de travail)
+	modifié :         recette.md
+
+aucune modification n'a été ajoutée à la validation (utilisez "git add" ou "git commit -a")
+
+$ git diff
+diff --git a/recette.md b/recette.md
+index aae4747..45bc5f0 100644
+--- a/recette.md
++++ b/recette.md
+@@ -9,7 +9,7 @@
+ | Ingrédient | Quantité |
+ |---|---|
+ | Farine | 250 g |
+-| Œufs | 4 |
++| Œufs | 3 |
+ | Lait | 500 ml |
+ | Sel | 1 pincée |
+ | Beurre fondu | 50 g |
+
+$ git add recette.md
+
+$ git commit -m "Réduit les œufs à trois"
+[master fe4fe8b] Réduit les œufs à trois
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+$ git log --oneline
+fe4fe8b Réduit les œufs à trois
+a16d497 Ajoute la recette des crêpes
+
+$ git log
+commit fe4fe8b8194a1e259bf68a1d8144411b3968be67
+Author: Alice Martin <alice.martin@ensg.eu>
+Date:   Mon Sep 21 16:15:20 2026 +0200
+
+    Réduit les œufs à trois
+
+commit a16d497f388f634cc7fdc355a2b6b3f06701f6d3
+Author: Alice Martin <alice.martin@ensg.eu>
+Date:   Mon Sep 21 16:14:20 2026 +0200
+
+    Ajoute la recette des crêpes
+=== étape 3
+
+$ git status
+Sur la branche master
+Modifications qui ne seront pas validées :
+  (utilisez "git add <fichier>..." pour mettre à jour ce qui sera validé)
+  (utilisez "git restore <fichier>..." pour annuler les modifications dans le répertoire de travail)
+	modifié :         recette.md
+
+aucune modification n'a été ajoutée à la validation (utilisez "git add" ou "git commit -a")
+
+$ git diff
+diff --git a/recette.md b/recette.md
+index 45bc5f0..ba43e4b 100644
+--- a/recette.md
++++ b/recette.md
+@@ -21,4 +21,4 @@
+ 3. Verser le lait **peu à peu**, sans cesser de remuer.
+ 4. Ajouter le beurre fondu.
+ 5. Laisser reposer une heure.
+-6. Cuire dans une poêle chaude, une minute par face.
++6. Cuire.
+
+$ git restore recette.md
+
+$ git status
+Sur la branche master
+rien à valider, la copie de travail est propre
+=== étape 4
+
+$ pandoc recette.md -o recette.html
+
+$ pandoc recette.md -o recette.odt
+
+$ ls
+crepes.jpg
+recette.html
+recette.md
+recette.odt
+
+$ git status
+Sur la branche master
+Fichiers non suivis:
+  (utilisez "git add <fichier>..." pour inclure dans ce qui sera validé)
+	recette.html
+	recette.odt
+
+aucune modification ajoutée à la validation mais des fichiers non suivis sont présents (utilisez "git add" pour les suivre)
+
+$ git add recette.odt
+
+$ git commit -m "Ajoute la recette au format .odt"
+[master 393d861] Ajoute la recette au format .odt
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 recette.odt
+
+$ pandoc recette.md -o recette.odt
+
+$ git status
+Sur la branche master
+Modifications qui ne seront pas validées :
+  (utilisez "git add <fichier>..." pour mettre à jour ce qui sera validé)
+  (utilisez "git restore <fichier>..." pour annuler les modifications dans le répertoire de travail)
+	modifié :         recette.md
+	modifié :         recette.odt
+
+Fichiers non suivis:
+  (utilisez "git add <fichier>..." pour inclure dans ce qui sera validé)
+	recette.html
+
+aucune modification n'a été ajoutée à la validation (utilisez "git add" ou "git commit -a")
+
+$ git diff
+diff --git a/recette.md b/recette.md
+index 45bc5f0..53f6fcb 100644
+--- a/recette.md
++++ b/recette.md
+@@ -10,7 +10,7 @@
+ |---|---|
+ | Farine | 250 g |
+ | Œufs | 3 |
+-| Lait | 500 ml |
++| Lait | 600 ml |
+ | Sel | 1 pincée |
+ | Beurre fondu | 50 g |
+ 
+diff --git a/recette.odt b/recette.odt
+index 094bec8..572146e 100644
+Binary files a/recette.odt and b/recette.odt differ
+
+$ git rm --cached recette.odt
+rm 'recette.odt'
+
+$ cat .gitignore
+*.html
+*.odt
+
+$ git status
+Sur la branche master
+Modifications qui seront validées :
+  (utilisez "git restore --staged <fichier>..." pour désindexer)
+	supprimé :        recette.odt
+
+Modifications qui ne seront pas validées :
+  (utilisez "git add <fichier>..." pour mettre à jour ce qui sera validé)
+  (utilisez "git restore <fichier>..." pour annuler les modifications dans le répertoire de travail)
+	modifié :         recette.md
+
+Fichiers non suivis:
+  (utilisez "git add <fichier>..." pour inclure dans ce qui sera validé)
+	.gitignore
+
+
+$ git add .gitignore recette.md
+
+$ git commit -m "Ignore les fichiers produits par pandoc"
+[master 4d1a6ac] Ignore les fichiers produits par pandoc
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+ create mode 100644 .gitignore
+ delete mode 100644 recette.odt
+
+$ git status
+Sur la branche master
+rien à valider, la copie de travail est propre
+
+$ ls
+crepes.jpg
+recette.html
+recette.md
+recette.odt
+=== étape 5
+
+$ git branch
+* master
+
+$ git checkout -b sans-gluten
+Basculement sur la nouvelle branche 'sans-gluten'
+
+$ git add recette.md
+
+$ git commit -m "Remplace la farine de blé par du sarrasin"
+[sans-gluten 34808ea] Remplace la farine de blé par du sarrasin
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+$ git log --oneline --graph --all
+* 34808ea Remplace la farine de blé par du sarrasin
+* 4d1a6ac Ignore les fichiers produits par pandoc
+* 393d861 Ajoute la recette au format .odt
+* fe4fe8b Réduit les œufs à trois
+* a16d497 Ajoute la recette des crêpes
+
+$ git checkout master
+Basculement sur la branche 'master'
+
+$ grep Farine recette.md
+| Farine | 250 g |
+
+$ git add recette.md
+
+$ git commit -m "Ajoute un conseil de conservation"
+[master 492c373] Ajoute un conseil de conservation
+ 1 file changed, 4 insertions(+)
+
+$ git log --oneline --graph --all
+* 492c373 Ajoute un conseil de conservation
+| * 34808ea Remplace la farine de blé par du sarrasin
+|/  
+* 4d1a6ac Ignore les fichiers produits par pandoc
+* 393d861 Ajoute la recette au format .odt
+* fe4fe8b Réduit les œufs à trois
+* a16d497 Ajoute la recette des crêpes
+
+$ git log --oneline --graph --all --decorate
+* 492c373 (HEAD -> master) Ajoute un conseil de conservation
+| * 34808ea (sans-gluten) Remplace la farine de blé par du sarrasin
+|/  
+* 4d1a6ac Ignore les fichiers produits par pandoc
+* 393d861 Ajoute la recette au format .odt
+* fe4fe8b Réduit les œufs à trois
+* a16d497 Ajoute la recette des crêpes
+
+$ git checkout sans-gluten
+Basculement sur la branche 'sans-gluten'
+
+$ grep Farine recette.md
+| Farine de sarrasin | 250 g |
+
+$ git checkout master
+Basculement sur la branche 'master'
+
+$ grep Farine recette.md
+| Farine | 250 g |
+
+$ git merge sans-gluten -m "Fusionne la variante sans gluten"
+Fusion automatique de recette.md
+Merge made by the 'ort' strategy.
+ recette.md | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+$ git log --oneline --graph
+*   978eeb6 Fusionne la variante sans gluten
+|\  
+| * 34808ea Remplace la farine de blé par du sarrasin
+* | 492c373 Ajoute un conseil de conservation
+|/  
+* 4d1a6ac Ignore les fichiers produits par pandoc
+* 393d861 Ajoute la recette au format .odt
+* fe4fe8b Réduit les œufs à trois
+* a16d497 Ajoute la recette des crêpes
+
+$ git log --oneline --graph --decorate -3
+*   978eeb6 (HEAD -> master) Fusionne la variante sans gluten
+|\  
+| * 34808ea (sans-gluten) Remplace la farine de blé par du sarrasin
+* | 492c373 Ajoute un conseil de conservation
+|/  
+
+$ grep -n -e Farine -e Conseil recette.md
+11:| Farine de sarrasin | 250 g |
+26:## Conseil
+=== étape 6
+
+$ git checkout -b pour-18
+Basculement sur la nouvelle branche 'pour-18'
+
+$ git add recette.md
+
+$ git commit -m "Passe la recette à 18 crêpes"
+[pour-18 885911d] Passe la recette à 18 crêpes
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+$ git checkout master
+Basculement sur la branche 'master'
+
+$ git add recette.md
+
+$ git commit -m "Allonge le repos à deux heures"
+[master b88efc3] Allonge le repos à deux heures
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+$ git merge pour-18
+Fusion automatique de recette.md
+CONFLIT (contenu) : Conflit de fusion dans recette.md
+La fusion automatique a échoué ; réglez les conflits et validez le résultat.
+
+$ git status
+Sur la branche master
+Vous avez des chemins non fusionnés.
+  (réglez les conflits puis lancez "git commit")
+  (utilisez "git merge --abort" pour annuler la fusion)
+
+Chemins non fusionnés :
+  (utilisez "git add <fichier>..." pour marquer comme résolu)
+	modifié des deux côtés :  recette.md
+
+aucune modification n'a été ajoutée à la validation (utilisez "git add" ou "git commit -a")
+
+$ sed -n 1,10p recette.md
+# Crêpes
+
+<<<<<<< HEAD
+*Pour 12 crêpes — 10 minutes de préparation, 2 heures de repos.*
+=======
+*Pour 18 crêpes — 10 minutes de préparation, 1 heure de repos.*
+>>>>>>> pour-18
+
+![Une crêpe qui cuit, une minute par face.](crepes.jpg)
+
+
+$ sed -n 1,4p recette.md
+# Crêpes
+
+*Pour 18 crêpes — 10 minutes de préparation, 2 heures de repos.*
+
+
+$ git add recette.md
+
+$ git status
+Sur la branche master
+Tous les conflits sont réglés mais la fusion n'est pas terminée.
+  (utilisez "git commit" pour terminer la fusion)
+
+Modifications qui seront validées :
+	modifié :         recette.md
+
+
+$ git commit -m "Fusionne la version pour 18 crêpes"
+[master 0b0495c] Fusionne la version pour 18 crêpes
+
+$ git log --oneline --graph
+*   0b0495c Fusionne la version pour 18 crêpes
+|\  
+| * 885911d Passe la recette à 18 crêpes
+* | b88efc3 Allonge le repos à deux heures
+|/  
+*   978eeb6 Fusionne la variante sans gluten
+|\  
+| * 34808ea Remplace la farine de blé par du sarrasin
+* | 492c373 Ajoute un conseil de conservation
+|/  
+* 4d1a6ac Ignore les fichiers produits par pandoc
+* 393d861 Ajoute la recette au format .odt
+* fe4fe8b Réduit les œufs à trois
+* a16d497 Ajoute la recette des crêpes
+
+$ git branch
+* master
+  pour-18
+  sans-gluten

@@ -68,6 +68,8 @@ exclude_patterns = [
     "**/notebook/*.ipynb",
     "**/notebook/td/**/*.ipynb",
     "**/propositions/**",
+    "**/rejeu/**",           # script de rejeu d'un TD et ses sorties, lus dans le dépôt
+    "**/images/**/*.md",     # crédits des images, lus dans le dépôt
     "commun/typst-101.md",     # mode d'emploi des sources typst, lu dans le dépôt
     "Thumbs.db",
     ".DS_Store",
@@ -79,7 +81,8 @@ exclude_patterns = [
 # `GUIDES_DANS_LE_BOOK`, il est aussi une page du book, sous le titre « TD … ».
 # Les guides des autres cours ne sont pas encore relus pour le book (leurs
 # images sont cherchées dans `data/`, depuis `produit/`).
-GUIDES_DANS_LE_BOOK = {"cours1", "cours2"}
+# Les versions 2 des cours 1 et 2 (propositions 2027-2028) aussi.
+GUIDES_DANS_LE_BOOK = {"cours1", "cours2", "cours1_v2", "cours2_v2"}
 _SRC = Path(__file__).resolve().parent
 exclude_patterns += sorted(
     source.relative_to(_SRC).as_posix()
