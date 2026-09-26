@@ -14,6 +14,7 @@ et passe les options qui conviennent.
     python outils/compiler_diapos.py --sans-tds       # le fil du cours, un sommaire par bloc de TD
     python outils/compiler_diapos.py --tous           # les sept jeux
     python outils/compiler_diapos.py --cours 3        # un autre cours
+    python outils/compiler_diapos.py --cours 1_v2     # la version 2 du cours 1, en proposition
 
 `--sans-captures` force le repli dessiné, pour vérifier que le document tient
 aussi sans les images.
@@ -64,7 +65,7 @@ def captures_presentes(source: Path) -> tuple[bool, list[str]]:
     return (bool(attendues) and not manquantes), manquantes
 
 
-def compiler(cours: int, options: argparse.Namespace) -> int:
+def compiler(cours: str, options: argparse.Namespace) -> int:
     source = RACINE / f"src/cours{cours}/diapo/cours{cours}.typ"
     if not source.exists():
         print(f"{source} : introuvable", file=sys.stderr)
@@ -110,7 +111,7 @@ def compiler(cours: int, options: argparse.Namespace) -> int:
 
 def main() -> int:
     analyseur = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    analyseur.add_argument("--cours", type=int, default=1, help="numéro du cours (défaut : 1)")
+    analyseur.add_argument("--cours", default="1", help="numéro du cours, 1 à 7, ou 1_v2 (défaut : 1)")
     analyseur.add_argument("--tous", action="store_true", help="les sept jeux")
     analyseur.add_argument("--notes", action="store_true", help="version annotée")
     analyseur.add_argument("--corrige", action="store_true", help="corrigé des TD")

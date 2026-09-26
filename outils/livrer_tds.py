@@ -65,7 +65,7 @@ LIVRAISON = RACINE / "livraison"
 MOTIF_TD = re.compile(r"^\d+[a-z]?_")
 
 
-def dossiers_td(cours: int) -> list[Path]:
+def dossiers_td(cours: str) -> list[Path]:
     donnees = RACINE / "data" / f"cours{cours}"
     return sorted(d for d in donnees.iterdir() if d.is_dir() and MOTIF_TD.match(d.name))
 
@@ -123,7 +123,7 @@ def a_livrer(td: Path) -> list[tuple[Path, Path]]:
     return couples
 
 
-def description(cours: int, td: Path) -> dict[str, str]:
+def description(cours: str, td: Path) -> dict[str, str]:
     """Le dictionnaire `td` du fichier typst de même nom, lu à la regex.
 
     Sans fichier typst, le titre vient de l'en-tête du guide, s'il existe.
@@ -143,7 +143,7 @@ def description(cours: int, td: Path) -> dict[str, str]:
     return champs
 
 
-def readme(cours: int, tds: list[Path]) -> str:
+def readme(cours: str, tds: list[Path]) -> str:
     lignes = [
         f"# Cours {cours} — travaux dirigés",
         "",
@@ -162,7 +162,7 @@ def readme(cours: int, tds: list[Path]) -> str:
     return "\n".join(lignes)
 
 
-def fabriquer(cours: int) -> int:
+def fabriquer(cours: str) -> int:
     """Refait données, feuilles de TD et notebooks depuis leurs sources."""
     etapes = []
     donnees = RACINE / "data" / f"cours{cours}" / "make_data.py"
@@ -183,7 +183,7 @@ def fabriquer(cours: int) -> int:
     return 0
 
 
-def livrer(cours: int, lister: bool) -> int:
+def livrer(cours: str, lister: bool) -> int:
     tds = dossiers_td(cours)
     if not tds:
         print(f"data/cours{cours} : aucun dossier de TD", file=sys.stderr)
@@ -239,7 +239,7 @@ def livrer(cours: int, lister: bool) -> int:
 
 def main() -> int:
     analyseur = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    analyseur.add_argument("--cours", type=int, default=1, help="numéro du cours (défaut : 1)")
+    analyseur.add_argument("--cours", default="1", help="numéro du cours, 1 à 7, ou 1_v2 (défaut : 1)")
     analyseur.add_argument("--lister", action="store_true", help="dire ce qui serait copié")
     analyseur.add_argument(
         "--sans-fabriquer", action="store_true",

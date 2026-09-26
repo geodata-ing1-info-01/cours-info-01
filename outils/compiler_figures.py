@@ -24,7 +24,7 @@ from pathlib import Path
 RACINE = Path(__file__).resolve().parent.parent
 
 
-def sources(cours: int | None) -> list[Path]:
+def sources(cours: str | None) -> list[Path]:
     motif = f"cours{cours}" if cours else "cours*"
     return sorted(
         source for source in (RACINE / "src").glob(f"{motif}/notebook/figures/*.typ")
@@ -34,7 +34,7 @@ def sources(cours: int | None) -> list[Path]:
 
 def main() -> int:
     analyseur = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    analyseur.add_argument("--cours", type=int)
+    analyseur.add_argument("--cours", help="numéro du cours, 1 à 7, ou 1_v2")
     options = analyseur.parse_args()
     erreurs = 0
     for source in sources(options.cours):

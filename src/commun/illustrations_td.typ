@@ -86,10 +86,11 @@
 })
 
 // Une ligne de l'éditeur de comparaison : `genre` vaut "ajout" (vert),
-// "vide" (hachuré : la ligne n'existe que de l'autre côté) ou "neutre".
+// "retrait" (rouge : l'ancienne version d'une ligne modifiée), "vide"
+// (hachuré : la ligne n'existe que de l'autre côté) ou "neutre".
 #let _ligne-diff(texte, genre: "neutre") = block(
   width: 100%, height: 12pt, inset: (x: 4pt), above: 0pt, below: 0pt,
-  fill: if genre == "ajout" { rgb("#d7efd7") } else if genre == "vide" { gris.lighten(20%) } else { white },
+  fill: if genre == "ajout" { rgb("#d7efd7") } else if genre == "retrait" { rgb("#f5d5d5") } else if genre == "vide" { gris.lighten(20%) } else { white },
   align(left + horizon, text(font: police-code, size: 7.5pt, raw(texte))),
 )
 
@@ -97,7 +98,8 @@
 // l'éditeur de comparaison de `fichier` : à gauche la version du dernier
 // commit, à droite le fichier modifié. `lignes` : des triplets
 // (texte à gauche, texte à droite, genre), le genre s'appliquant au côté
-// droit ; "ajout" met un fond hachuré à gauche.
+// droit ; "ajout" met un fond hachuré à gauche ; "modifie" met l'ancienne
+// ligne en rouge à gauche et la nouvelle en vert à droite.
 #let vscode-diff(dossier, fichier, lignes) = {
   set text(font: police-texte, size: 10pt, fill: accent, lang: "fr")
   let bord = 0.8pt + accent.lighten(55%)
@@ -142,8 +144,8 @@
           block(width: 100%, inset: (x: 4pt, y: 3pt), stroke: (right: bord, bottom: bord))[#text(size: 8pt, fill: estompe)[dernier commit]],
           block(width: 100%, inset: (x: 4pt, y: 3pt), stroke: (bottom: bord))[#text(size: 8pt, fill: estompe)[fichier modifié]],
           ..lignes.map(((gauche, droite, genre)) => (
-            block(width: 100%, stroke: (right: bord), _ligne-diff(gauche, genre: if genre == "ajout" { "vide" } else { "neutre" })),
-            _ligne-diff(droite, genre: genre),
+            block(width: 100%, stroke: (right: bord), _ligne-diff(gauche, genre: if genre == "ajout" { "vide" } else if genre == "modifie" { "retrait" } else { "neutre" })),
+            _ligne-diff(droite, genre: if genre == "modifie" { "ajout" } else { genre }),
           )).flatten(),
         )
       ],

@@ -45,9 +45,15 @@ def dossier_annonce(source: Path) -> str | None:
     return trouve.group(1) if trouve else None
 
 
-def destination(dossier: str) -> Path:
-    """Le même dossier, dans le dépôt : sous `data/`."""
-    return RACINE / "data" / dossier
+def destination(dossier: str, cours: str) -> Path:
+    """Le même dossier, dans le dépôt : sous `data/cours<n>/`.
+
+    Le premier segment du chemin annoncé est remplacé par le dossier du cours
+    compilé : un TD de la version 2 du cours 1 annonce `cours1/1a_formats/`,
+    le chemin que l'étudiant verra, et sa feuille va dans
+    `data/cours1_v2/1a_formats/`, sans remplacer celle de la version 1.
+    """
+    return RACINE / "data" / f"cours{cours}" / Path(*Path(dossier).parts[1:])
 
 
 def nom_pdf(dossier: str, corrige: bool) -> str:
@@ -62,12 +68,12 @@ def reglages(assemblage: Path) -> str:
     return trouve.group(1).strip() if trouve else ""
 
 
-def compiler(td: Path, assemblage: Path, corrige: bool, captures: bool) -> int:
+def compiler(td: Path, assemblage: Path, cours: str, corrige: bool, captures: bool) -> int:
     dossier = dossier_annonce(td)
     if dossier is None:
         print(f"{td.name} : aucun `dossier:` annoncé, ignoré", file=sys.stderr)
         return 0
-    cible = destination(dossier)
+    cible = destination(dossier, cours)
     if not cible.is_dir():
         print(f"{td.name} : {cible} n'existe pas, ignoré", file=sys.stderr)
         return 0
@@ -100,7 +106,7 @@ def compiler(td: Path, assemblage: Path, corrige: bool, captures: bool) -> int:
 
 def main() -> int:
     analyseur = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    analyseur.add_argument("--cours", type=int, default=1, help="numéro du cours (défaut : 1)")
+    analyseur.add_argument("--cours", default="1", help="numéro du cours, 1 à 7, ou 1_v2 (défaut : 1)")
     analyseur.add_argument("--corrige", action="store_true", help="+ la version avec les réponses")
     analyseur.add_argument(
         "--sans-captures", action="store_true",
@@ -124,7 +130,7 @@ def main() -> int:
             if dossier is None:
                 print(f"{td.name} → aucun dossier annoncé")
             else:
-                print(f"{td.name} → {destination(dossier).relative_to(RACINE)}/{nom_pdf(dossier, False)}")
+                print(f"{td.name} → {destination(dossier, options.cours).relative_to(RACINE)}/{nom_pdf(dossier, False)}")
         return 0
 
     if shutil.which("typst") is None:
@@ -134,9 +140,9 @@ def main() -> int:
     code = 0
     for td in tds:
         print(f"{td.name} :")
-        code |= compiler(td, assemblage, False, not options.sans_captures)
+        code |= compiler(td, assemblage, options.cours, False, not options.sans_captures)
         if options.corrige:
-            code |= compiler(td, assemblage, True, not options.sans_captures)
+            code |= compiler(td, assemblage, options.cours, True, not options.sans_captures)
     return code
 
 

@@ -15,7 +15,9 @@ compilées en PNG dans `produit/illustrations/`. Les images du guide sont
 cherchées à partir de `produit/` du TD, où
 `make_data.py` les dépose : un chemin comme
 `depart/illustrations/programme_montre.png` vaut pour le guide livré à la
-racine du dossier du TD comme pour la conversion. Les deux fichiers sont
+racine du dossier du TD comme pour la conversion. Elles sont cherchées
+ensuite à côté de `guide.md` : les guides du book (versions 2 des cours 1
+et 2) y gardent leurs images versionnées, que la page du book affiche. Les deux fichiers sont
 déposés dans `produit/` du TD, que `outils/livrer_tds.py` met à
 plat dans le dossier livré : l'étudiant trouve le guide à côté de `depart/`.
 
@@ -29,6 +31,8 @@ Demande pandoc 3.1.2 ou plus récent et typst, tous deux dans l'environnement
 from __future__ import annotations
 
 import argparse
+import os
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -82,7 +86,7 @@ th, td { border: 1px solid #ccc; padding: .3rem .5rem; vertical-align: top; }
 """
 
 
-def guides(cours: int) -> list[tuple[Path, Path]]:
+def guides(cours: str) -> list[tuple[Path, Path]]:
     """Les guides du cours, et le `produit/` du TD qui reçoit chacun."""
     couples = []
     for source in sorted((RACINE / "src" / f"cours{cours}" / "notebook" / "td").glob("*/guide.md")):
@@ -92,16 +96,30 @@ def guides(cours: int) -> list[tuple[Path, Path]]:
 
 
 def sans_premier_titre(texte: str) -> str:
-    """Le guide sans son titre de niveau 1, que l'en-tête YAML donne déjà."""
+    """Le guide sans son titre de niveau 1, que l'en-tête YAML donne déjà.
+
+    Les lignes des blocs de code sont ignorées : un `# Crêpes` d'exemple
+    Markdown, ou un commentaire de bash, n'est pas un titre.
+    """
     lignes = texte.splitlines(keepends=True)
+    dans_code = False
     for i, ligne in enumerate(lignes):
-        if ligne.startswith("# "):
+        if ligne.lstrip().startswith(("```", "~~~")):
+            dans_code = not dans_code
+        elif not dans_code and ligne.startswith("# "):
             return "".join(lignes[:i] + lignes[i + 1:])
     return texte
 
 
+# Cours dont les guides sont des pages du book avec leurs images : le PNG de
+# chaque illustration est aussi écrit à côté de sa source, et versionné, pour
+# que le book se construise sans typst (comme les SVG de `notebook/figures/`).
+ILLUSTRATIONS_VERSIONNEES = {"cours1_v2", "cours2_v2"}
+
+
 def illustrer(source: Path, produit: Path) -> int:
     """Les images du guide écrites en typst, `illustrations/<nom>.typ`, en PNG dans `produit/illustrations/`."""
+    cours = source.relative_to(RACINE / "src").parts[0]
     for figure in sorted((source.parent / "illustrations").glob("*.typ")):
         cible = produit / "illustrations" / (figure.stem + ".png")
         cible.parent.mkdir(parents=True, exist_ok=True)
@@ -112,6 +130,8 @@ def illustrer(source: Path, produit: Path) -> int:
         ).returncode
         if code != 0:
             return code
+        if cours in ILLUSTRATIONS_VERSIONNEES:
+            shutil.copy2(cible, figure.with_suffix(".png"))
     return 0
 
 
@@ -131,10 +151,10 @@ def convertir(source: Path, produit: Path) -> int:
         style.write_text(STYLE_HTML, encoding="utf-8")
         commandes = [
             ["pandoc", str(copie), "--from", "markdown", "--pdf-engine=typst",
-             "--resource-path", str(produit),
+             "--resource-path", os.pathsep.join((str(produit), str(source.parent))),
              "--include-in-header", str(entete), "--metadata-file", str(variables), "-o", str(produit / f"guide_{td}.pdf")],
             ["pandoc", str(copie), "--from", "markdown", "--standalone", "--embed-resources",
-             "--resource-path", str(produit),
+             "--resource-path", os.pathsep.join((str(produit), str(source.parent))),
              "--include-in-header", str(style), "-o", str(produit / f"guide_{td}.html")],
         ]
         for commande in commandes:
@@ -147,7 +167,7 @@ def convertir(source: Path, produit: Path) -> int:
 
 def main() -> int:
     analyseur = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    analyseur.add_argument("--cours", type=int, required=True)
+    analyseur.add_argument("--cours", required=True, help="numéro du cours, 1 à 7, ou 1_v2")
     options = analyseur.parse_args()
     erreurs = 0
     for source, produit in guides(options.cours):
