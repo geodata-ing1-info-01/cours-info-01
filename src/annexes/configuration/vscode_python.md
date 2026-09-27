@@ -213,6 +213,9 @@ on le décrit à VS Code comme un profil de terminal, qui s'ouvre activé
 quoi qu'il arrive, y compris sans interpréteur choisi ou avec l'activation
 automatique coupée.
 
+Le module emploie deux terminaux dans VS Code : l'invite de commandes
+d'Anaconda, ouverte par défaut, et Git Bash, décrit après.
+
 Palette, « Preferences: Open User Settings (JSON) ». Ajouter entre les deux
 accolades du fichier (après une virgule, s'il y a déjà quelque chose) :
 
@@ -232,6 +235,54 @@ L'extension y tape tout de même sa commande d'activation, dans un
 terminal déjà activé, pour l'environnement choisi comme interpréteur. Si
 rien ne change : palette, « Developer: Reload Window ». Si le terminal
 affiche une erreur : {ref}`V5 <dep-v5>`.
+
+### Git Bash
+
+Git Bash est le terminal des commandes git et unix ([Git et Git
+Bash](git.md)). VS Code l'ajoute à ses profils quand Git for Windows est
+installé dans `C:\Program Files\Git`, comme sur les postes de la salle, et
+il s'ouvre par la flèche à côté du `+`, « Git Bash ». conda y est
+disponible une fois `conda init bash` fait
+({ref}`Anaconda, section Git Bash <conda-git-bash>`), parce que le terminal
+de VS Code lit le même `~/.bash_profile` que la fenêtre Git Bash. L'invite
+commence alors par `(base)`.
+
+Pour que New Terminal ouvre Git Bash au lieu de l'invite de commandes
+d'Anaconda, remplacer la valeur de la dernière ligne :
+
+```json
+"terminal.integrated.defaultProfile.windows": "Git Bash"
+```
+
+Le fichier complet, avec les deux profils écrits en entier, est dans
+[Fichiers de réglages](vscode_reglages.md).
+
+#### Variante : conda chargé par VS Code
+
+Quand `conda init bash` n'est pas possible, VS Code peut charger conda
+par ses réglages seuls, sans rien écrire dans le compte. Un profil de terminal lance bash avec un fichier de démarrage donné en
+argument, comme le profil « Anaconda Prompt » lance `cmd` avec
+`activate.bat`. À ajouter dans `terminal.integrated.profiles.windows`,
+à côté du profil « Anaconda Prompt » :
+
+```json
+"Git Bash (Anaconda)": {
+  "path": "C:\\Program Files\\Git\\bin\\bash.exe",
+  "args": ["-c", "exec bash --rcfile <(echo 'source /etc/profile; cygpath() { /usr/bin/cygpath \"$@\"; }; source /c/ProgramData/anaconda3/etc/profile.d/conda.sh; conda activate base') -i"]
+}
+```
+
+Le fichier de démarrage lit `/etc/profile`, comme un Git Bash ordinaire
+(invite, `PATH`), puis charge `conda.sh` et active `base`. Le terminal se
+choisit par la flèche à côté du `+` ; l'invite commence par `(base)`, et
+`which python` affiche `/c/ProgramData/anaconda3/python`. Ce profil ne lit
+ni `~/.bashrc` ni `~/.bash_profile`, et ne vaut que dans VS Code. Avec ces
+arguments, VS Code n'y ajoute pas son intégration du terminal (les
+marques à gauche des commandes).
+
+La fonction `cygpath() { … }` de ce profil corrige un défaut de
+l'installation de la salle, décrit dans {ref}`Anaconda, section Git Bash
+<conda-git-bash>`.
 
 ### Variante : le profil « Command Prompt »
 

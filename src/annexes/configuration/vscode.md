@@ -134,9 +134,9 @@ Le terminal est une fenêtre de commandes à l'intérieur de VS Code
 ([Les terminaux](../notions/terminaux.md)). Menu
 Terminal, New Terminal l'ouvre en bas de la fenêtre (le raccourci clavier
 dépend du clavier, {ref}`V9 <dep-v9>`). Par défaut, c'est un PowerShell.
-Sur les postes de la salle, il faut lui substituer un `cmd`, que
-l'extension Python sait activer : c'est le réglage décrit dans [Python et
-environnement conda](vscode_python.md).
+Sur les postes de la salle, deux terminaux le remplacent : l'invite de
+commandes d'Anaconda, ouverte par défaut, et Git Bash. Leur réglage est
+décrit dans [Python et environnement conda](vscode_python.md).
 
 (vscode-terminal-choisir)=
 ### Choisir le terminal à ouvrir
@@ -181,6 +181,66 @@ relie dans la liste indique (documentation VS Code, CC BY 3.0 US).
 L'invite dit aussi dans quel terminal on se trouve : celle de PowerShell
 commence par `PS`, celle du `cmd` se termine par `>`, et celle de Git Bash
 par `$`.
+
+(vscode-git)=
+## Git dans VS Code
+
+VS Code fait deux choses distinctes avec git, réglées séparément : le
+panneau Source Control, et le terminal Git Bash. Git Bash hors de VS Code
+est décrit dans [Git et Git Bash](git.md).
+
+### Le panneau Source Control
+
+Le panneau Source Control (`Ctrl` + `Maj` + `G`) lance `git.exe` lui-même,
+sans terminal. Il le cherche dans cet ordre : le réglage `git.path` ;
+`C:\Program Files\Git\cmd\git.exe` ;
+`C:\Users\<nom>\AppData\Local\Programs\Git\cmd\git.exe` ; enfin le PATH
+tel qu'il était quand VS Code a été lancé. Sur les postes de la salle, Git
+for Windows est dans `C:\Program Files\Git`, et VS Code le trouve sans
+réglage. Avec une des solutions de secours de [Git et Git
+Bash](git.md), git n'est à aucun des deux premiers endroits : donner son
+chemin dans les réglages User ({ref}`Les réglages <vscode-reglages>`),
+puis « Developer: Reload Window » :
+
+```json
+"git.path": "C:\\Users\\eleve\\.conda\\envs\\outils\\Library\\cmd\\git.exe"
+```
+
+Pour Cmder, le chemin est `<Cmder>\vendor\git-for-windows\cmd\git.exe` ;
+pour l'archive portable, `<dossier>\PortableGit\cmd\git.exe`. Autre
+solution, sans réglage : lancer VS Code depuis l'invite de commandes d'Anaconda où
+`outils` est activé (`code <dossier>`), git est alors dans son PATH.
+
+### Le terminal Git Bash
+
+Quand Git for Windows est installé dans un dossier nommé `Git`, VS Code
+ajoute de lui-même « Git Bash » à la liste de ses profils de terminal
+({ref}`Choisir le terminal à ouvrir <vscode-terminal-choisir>`). Le
+terminal Git Bash de VS Code lit le même fichier `~/.bash_profile` que la
+fenêtre Git Bash : conda y est disponible une fois `conda init bash` fait
+({ref}`Anaconda, section Git Bash <conda-git-bash>`). Son réglage avec
+l'invite de commandes d'Anaconda est décrit dans [Python et environnement
+conda](vscode_python.md).
+
+Avec les solutions de secours, VS Code ne propose pas « Git Bash ». Le
+profil s'écrit à la main, et pointe sur le `bash.exe` du même dossier que
+`git.exe` :
+
+```json
+"terminal.integrated.profiles.windows": {
+  "Git Bash": {
+    "path": "C:\\Users\\eleve\\.conda\\envs\\outils\\Library\\bin\\bash.exe",
+    "args": ["--login", "-i"]
+  }
+}
+```
+
+Menu Terminal, New Terminal, puis la flèche à côté du `+` pour choisir
+« Git Bash », et vérifier dans la liste des terminaux que c'est lui qui
+est affiché ({ref}`Choisir le terminal à ouvrir
+<vscode-terminal-choisir>`). VS Code ne connaît aucune commande de bash : il lance
+`bash.exe`, et bash trouve `git`, `ls` et les autres tout seul
+([Git Bash : une fenêtre, bash et des programmes](../notions/git_bash.md)).
 
 ## Fichiers utiles
 

@@ -69,12 +69,14 @@ et `python3.exe`.
 
 ## git (séance 2)
 
-Windows : <https://git-scm.com>, options par défaut. macOS : taper `git`
+Windows : <https://git-scm.com>, options par défaut. L'installateur de
+Git for Windows met alors git, Git Bash et le profil « Git Bash » de VS Code
+en place sans rien régler. macOS : taper `git`
 dans le Terminal ; s'il manque, macOS propose de l'installer. Linux : le
 paquet `git` de la distribution. Dans tous les cas, `conda install -c
-conda-forge git` dans un environnement fonctionne aussi. Ce que VS Code
-fait de git, et le terminal à ouvrir pour le cours 2, sont dans [Git et
-Git Bash](configuration/git.md).
+conda-forge git` dans un environnement fonctionne aussi. Git Bash est
+décrit dans [Git et Git Bash](configuration/git.md), et ce que VS Code
+fait de git dans {ref}`VS Code, section Git dans VS Code <vscode-git>`.
 
 ## Éditeurs et bureautique
 

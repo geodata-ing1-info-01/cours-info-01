@@ -83,15 +83,23 @@ accolades, après une virgule.
     "Anaconda Prompt": {
       "path": "C:\\Windows\\System32\\cmd.exe",
       "args": ["/K", "C:\\ProgramData\\anaconda3\\Scripts\\activate.bat", "C:\\ProgramData\\anaconda3"]
+    },
+    "Git Bash": {
+      "path": "C:\\Program Files\\Git\\bin\\bash.exe",
+      "args": ["--login", "-i"]
     }
   },
-  "terminal.integrated.defaultProfile.windows": "Anaconda Prompt"
+  "terminal.integrated.defaultProfile.windows": "Anaconda Prompt",
+  "editor.renderWhitespace": "all",
+  "files.autoSave": "afterDelay"
 }
 ```
 
 Enregistrer (`Ctrl` + `S`), puis palette, « Developer: Reload Window ».
-Les dernières lignes décrivent à VS Code le terminal de l'invite de commandes d'Anaconda,
-qui s'ouvre déjà activé, sans dépendre de l'extension Python.
+Les lignes `terminal` décrivent à VS Code deux terminaux : l'invite de
+commandes d'Anaconda, ouverte par défaut, déjà activée, sans dépendre de
+l'extension Python, et Git Bash. conda est disponible dans Git Bash après
+`conda init bash` ({ref}`Anaconda, section Git Bash <conda-git-bash>`).
 Ce que fait chaque ligne est expliqué dans [Fichiers de
 réglages](../annexes/configuration/vscode_reglages.md).
 
@@ -101,6 +109,7 @@ réglages](../annexes/configuration/vscode_reglages.md).
 |---|---|---|
 | Palette, « Python: Select Interpreter » | une ligne `base`, type Conda, chemin `C:\ProgramData\anaconda3\python.exe`, cochée | {ref}`V6 <dep-v6>` |
 | Menu Terminal, New Terminal | un onglet « Anaconda Prompt », une invite `(base) C:\…>` | {ref}`V5 <dep-v5>` |
+| Flèche à côté du `+`, « Git Bash » | un onglet « Git Bash », une invite qui commence par `(base)` et se termine par `$` | {ref}`Anaconda, section Git Bash <conda-git-bash>` |
 | Dans ce terminal, `python -c "import sys; print(sys.executable)"` | `C:\ProgramData\anaconda3\python.exe` | {ref}`V7 <dep-v7>` |
 | Ouvrir un `.ipynb`, bouton « Select Kernel », « Python Environments… » | `base` en tête de liste | {ref}`J1 <dep-j1>` |
 
