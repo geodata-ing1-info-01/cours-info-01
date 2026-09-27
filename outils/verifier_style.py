@@ -81,7 +81,7 @@ def lignes_ajoutees(depuis: str) -> dict[Path, set[int]]:
             numero += 1
     for nom in nouveaux:
         chemin = RACINE / nom
-        if chemin.is_file():
+        if chemin.is_file() and chemin.suffix in (".typ", ".md"):
             lignes[chemin] = {
                 n for n, texte in enumerate(chemin.read_text(encoding="utf-8").splitlines(), 1)
                 if texte.strip() not in retirees
