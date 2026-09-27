@@ -16,6 +16,7 @@ applications. Le module emploie surtout la ligne de commande, et se sert de
 Navigator en secours. Le test des deux est dans [Anaconda et
 JupyterLab](../../avant/python.md).
 
+(conda-terminal)=
 ## conda dans un terminal
 
 Un terminal ordinaire ne connaît ni la commande `conda` ni le Python
@@ -106,7 +107,9 @@ Quand la configuration échoue :
 
 `source` affiche `No such file or directory`
 : Anaconda est installé dans un autre dossier. Sur un ordinateur
-  personnel, essayer `source /c/Users/$USERNAME/anaconda3/etc/profile.d/conda.sh`.
+  personnel, essayer `source /c/Users/$USERNAME/anaconda3/etc/profile.d/conda.sh`,
+  ou `source ~/miniforge3/etc/profile.d/conda.sh` avec Miniforge
+  ([Python et conda](../poste_personnel/conda.md)).
 
 `conda init bash` écrit `needs sudo`, ou Windows demande des droits d'administrateur
 : Refuser, puis écrire la ligne à la main dans `~/.bash_profile`, et
@@ -159,6 +162,7 @@ l'environnement choisi en haut de sa page. Le lancement de chaque
 application est décrit dans sa page : [JupyterLab](jupyterlab.md),
 [Spyder](spyder.md), [VS Code](vscode.md).
 
+(config-depots)=
 ## Configuration des dépôts
 
 Un paquet installé par conda vient d'un dépôt, un serveur qui en tient

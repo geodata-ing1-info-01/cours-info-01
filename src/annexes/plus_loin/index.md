@@ -5,8 +5,8 @@ title: Pour aller plus loin
 Ces pages sortent du programme du module. Elles décrivent des outils
 qui ne sont pas employés en séance :
 
-- [venv et uv](venv_uv.md) : deux autres façons de créer un environnement
-  Python ;
+- [venv, uv et pixi](gestionnaires.md) : trois autres façons de créer un
+  environnement Python, et lequel choisir pour ses propres projets ;
 - [C++](cpp.md) : l'extension C/C++ de VS Code, un compilateur installé par
   conda, puis un programme compilé et lancé ; ce que la compilation produit,
   comparé à un programme Python.
@@ -23,7 +23,7 @@ personnel.
 ```{toctree}
 :maxdepth: 1
 
-venv_uv
+gestionnaires
 cpp
 programme_interpreteur
 ```

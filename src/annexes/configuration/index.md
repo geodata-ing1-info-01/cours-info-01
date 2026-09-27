@@ -20,7 +20,7 @@ notions.
 
 Les vérifications à faire avant les séances sont dans
 [Premiers tests du poste](../../avant/poste.md) ; l'installation chez
-soi, dans [Installation sur un ordinateur personnel](../poste_personnel.md) ;
+soi, dans [Configuration d'un ordinateur personnel](../poste_personnel/index.md) ;
 les problèmes rencontrés en séance, dans la [FAQ](../faq.md) ; ce que sont
 un terminal et une variable d'environnement, dans [Notions](../notions/index.md).
 

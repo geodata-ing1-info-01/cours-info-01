@@ -1,11 +1,13 @@
 ---
-title: venv et uv
-subtitle: Deux autres façons de créer un environnement Python
+title: venv, uv et pixi
+subtitle: D'autres façons de créer un environnement Python, pour ses propres projets
 ---
 
-Le module emploie conda pour tous ses environnements. Cette page décrit
-deux autres outils qu'on rencontre dans les projets Python, pour qui veut
-les essayer sur un ordinateur personnel.
+Le module emploie conda pour tous ses environnements, parce qu'il est
+installé sur les postes de la salle, et qu'il installe aussi des
+programmes qui ne sont pas du Python. Cette page décrit trois autres outils
+qu'on rencontre dans les projets Python, pour qui veut les essayer sur un
+ordinateur personnel.
 
 ## venv
 
@@ -74,10 +76,56 @@ Avec l'extension Python Environments, `python-envs.alwaysUseUv` (vrai par
 défaut) fait que « Create Environment » passe par `uv venv` dès qu'uv est
 dans le `PATH`.
 
-## Ce qui diffère de conda
+## pixi
+
+pixi (prefix.dev) installe les mêmes paquets que conda, depuis conda-forge
+par défaut, donc aussi des programmes qui ne sont pas du Python, comme
+pandoc ou ffmpeg. Il décrit l'environnement dans un fichier du projet, à la
+façon d'uv. pixi est un programme à part, qui s'installe sans droits
+d'administrateur. Sous Windows, dans un PowerShell :
+
+```
+powershell -ExecutionPolicy ByPass -c "irm -useb https://pixi.sh/install.ps1 | iex"
+```
+
+Sous macOS et Linux, dans le Terminal :
+
+```
+curl -fsSL https://pixi.sh/install.sh | sh
+```
+
+Fermer puis rouvrir le terminal. Usage minimal, dans le dossier d'un
+projet :
+
+```
+pixi init
+pixi add python pandoc
+pixi run python script.py
+```
+
+`pixi init` crée `pixi.toml`, qui décrit le projet ; `pixi add` y inscrit
+les paquets, met à jour `pixi.lock` (les versions exactes) et les installe
+dans le dossier `.pixi` du projet ; `pixi run` exécute une commande dans
+cet environnement. `pixi shell` ouvre un terminal où l'environnement est
+activé. Quelqu'un qui reçoit le projet tape `pixi install` et obtient le
+même environnement.
+
+## Lequel choisir
+
+| | conda | venv | uv | pixi |
+|---|---|---|---|---|
+| Paquets | conda-forge : Python et autres programmes | PyPI : Python seulement | PyPI : Python seulement | conda-forge, et PyPI en plus |
+| Où est l'environnement | un dossier par environnement, dans `envs` | `.venv`, dans le projet | `.venv`, dans le projet | `.pixi`, dans le projet |
+| Fichier qui le décrit | `environment.yml`, facultatif | `requirements.txt`, facultatif | `pyproject.toml` et `uv.lock` | `pixi.toml` et `pixi.lock` |
+| Installe un Python | oui | non, il réutilise celui qui le lance | oui | oui |
 
 conda installe des paquets qui ne sont pas du Python (pandoc, ffmpeg,
 ImageMagick, typst), et c'est la raison du choix du module. venv et uv ne
 connaissent que PyPI, donc que des paquets Python et les bibliothèques
 qu'ils embarquent. En échange, ils sont plus rapides, et `pyproject.toml`
 est le format que la plupart des projets Python publient.
+
+Pour un projet personnel, hors des contraintes des postes de la salle, uv
+convient quand tous les paquets sont sur PyPI, et pixi quand il faut aussi
+des programmes de conda-forge. Tous deux recréent l'environnement à
+l'identique depuis les fichiers du projet.

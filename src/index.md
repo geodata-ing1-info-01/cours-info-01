@@ -60,7 +60,7 @@ cours7/index
 :caption: Annexes
 
 annexes/configuration/index
-annexes/poste_personnel
+annexes/poste_personnel/index
 annexes/notions/index
 annexes/faq
 annexes/plus_loin/index
