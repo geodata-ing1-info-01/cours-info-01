@@ -10,7 +10,8 @@ sous chaque ligne à compléter. Ils sont livrés dans `depart/notebook/`, et se
 copient dans `travail/` avant d'être ouverts dans JupyterLab. Pour la dernière
 partie, chaque élève choisit un parcours : le TD 3a, parcours avancé, ou le
 TD 3b, parcours standard. Les deux se font dans VS Code, avec un terminal Git
-Bash, et leur guide détaillé est livré dans leur dossier.
+Bash ; leur guide détaillé est livré dans leur dossier, en PDF, en page HTML
+et en notebook, et il est aussi une page de ce site.
 
 ## Préparation du poste de travail
 
@@ -35,12 +36,19 @@ Bash, et leur guide détaillé est livré dans leur dossier.
 
 ## Dernière partie, au choix
 
-- TD 3a, parcours avancé, `3a_cli/`, `recette.py`, 45 minutes : le code du
-  notebook dans un fichier, une fonction `main`, les arguments avec
-  `argparse`, un README ; un commit par étape ([page de la
-  partie](03_du_notebook_au_programme.md)).
-- TD 3b, parcours standard, `3b_markdown/`, 45 minutes : la recette des
-  gaufres écrite en Markdown, sa page produite par le programme du TD 1a, un
+- [TD 3a — Une ligne de commande pour la recette](td/3a_cli/guide.md),
+  parcours avancé, `3a_cli/`, 45 minutes : le code du notebook dans un
+  fichier, une fonction `main`, les arguments avec `argparse`, un README ; un
+  commit par étape ([page de la partie](03_du_notebook_au_programme.md)).
+- [TD 3b — Une recette en Markdown](td/3b_markdown/guide.md), parcours
+  standard, `3b_markdown/`, 45 minutes : la recette des gaufres écrite en Markdown, sa page produite par le programme du TD 1a, un
   dépôt git qui ne contient que la recette, et un diagramme Mermaid. Le TD
   reprend le TD 3a Markdown du cours 1. Le parcours standard fait le TD 3a
   au projet 4.
+
+```{toctree}
+:hidden:
+
+td/3a_cli/guide
+td/3b_markdown/guide
+```

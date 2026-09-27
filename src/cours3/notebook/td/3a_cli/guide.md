@@ -10,8 +10,6 @@ kernelspec:
   display_name: Python 3
 ---
 
-# TD 3a — Une ligne de commande pour la recette
-
 Ce guide détaille les étapes de la feuille du TD 3a. Pour chaque étape, il
 indique :
 

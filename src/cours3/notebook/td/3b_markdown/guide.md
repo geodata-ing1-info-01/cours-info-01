@@ -10,8 +10,6 @@ kernelspec:
   display_name: Python 3
 ---
 
-# TD 3b — Une recette en Markdown
-
 Ce guide détaille les étapes de la feuille du TD 3b, le TD du parcours
 standard. Pour chaque étape, il indique le dossier dans lequel se placer, ce
 qu'il faut écrire ou taper, et comment vérifier le résultat.

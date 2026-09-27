@@ -207,7 +207,7 @@ des données de ce dossier.
 
 ## TD de la partie
 
-- TD 3a, dans le dossier `cours3/3a_cli/` de l'archive, 45 minutes : écrire
+- [TD 3a](td/3a_cli/guide.md), dans le dossier `cours3/3a_cli/` de l'archive, 45 minutes : écrire
   `recette.py` à partir du notebook, puis une fonction `main`, les trois
   arguments sur une branche, et un README ; un commit par étape. Les étapes 5
   et 6, facultatives, rangent le projet en `src/` et `data/`, puis
@@ -246,7 +246,8 @@ des données de ce dossier.
 ```
 
 Le TD 3a est celui du parcours avancé. Le parcours standard fait à la place
-le TD 3b, une recette en Markdown, et le TD 3a au projet 4.
+le [TD 3b](td/3b_markdown/guide.md), une recette en Markdown, et le TD 3a au
+projet 4.
 
 Les TD des autres parties sont dans [Travaux dirigés de la séance
 3](travaux_diriges.md).
