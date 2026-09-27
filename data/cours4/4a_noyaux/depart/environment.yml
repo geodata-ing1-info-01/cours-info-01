@@ -1,0 +1,15 @@
+# L'environnement du programme de la recette, pour le TD 4a du projet 4.
+#
+#   conda env create -f environment.yml
+#
+# Python, pandoc, que le programme lance, et ipykernel, le noyau qui exécute
+# les cellules d'un notebook. Pas de client : jupyterlab n'y est pas.
+name: info01-recette
+
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.12
+  - pandoc
+  - ipykernel

@@ -10,8 +10,6 @@ kernelspec:
   display_name: Python 3
 ---
 
-# TD 4c — La fenêtre du train
-
 Le TD fabrique une courte vidéo : la mer vue de la fenêtre d'un train, les voiles et la plage qui défilent derrière la vitre, d'après la scène de la mer du clip « Moon » de Kid Francescoli. Le rendu est un projet
 Python, versionné avec git, qui contient un script `train.py` appelable en
 ligne de commande.

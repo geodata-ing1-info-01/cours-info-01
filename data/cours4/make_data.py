@@ -1,12 +1,18 @@
-"""Fabrique les fichiers des TD du cours 4 : la montre (4a), le tourbillon (4b) et le train (4c).
+"""Fabrique les fichiers des TD du projet 4.
 
-Le dépôt versionne ce que chaque TD livre tel quel (`depart/environment.yml`,
-`depart/modeles/`) et les corrigés (`corriges/`). `build` remplit le
-`produit/` de chaque TD : le dossier `travail/` vide et, pour le tourbillon,
-l'image de départ, reprise du cours 3 ; pour le train, les images du décor,
-dessinées ici.
+Deux parcours : le parcours standard fait le TD 4a, le client et le noyau
+d'un notebook, puis le TD 4b, reprise du TD 3a du cours 3 ; le parcours
+avancé fait le TD 4c, la fenêtre du train. Le dépôt versionne ce que chaque
+TD livre tel quel (`depart/environment.yml`, `depart/modeles/`) et les
+corrigés du TD 4c (`corriges/`). `build` remplit le `produit/` de chaque TD :
+pour 4a, les recettes du cours 3 ; pour 4b, les fichiers du TD 3a du cours 3 ;
+pour 4c, les images du décor, dessinées ici.
 
-    python make_data.py build           # produit/ des trois TD
+La montre et le tourbillon, TD 4a et 4b jusqu'au 26/09/2026, sont gardés
+comme propositions dans `_propositions/` : `build` ne les fabrique plus, mais
+leurs corrigés restent dans `corriges/`, que `illustrations` emploie encore.
+
+    python make_data.py build           # produit/ des TD 4a, 4b et 4c
     python make_data.py illustrations   # les images des schémas, dans illustrations/cours4/
 
 À lancer après `python make_data.py build` du cours 3, qui fabrique
@@ -24,9 +30,12 @@ import tempfile
 from pathlib import Path
 
 ICI = Path(__file__).parent
-TD_MONTRE = ICI / "4a_montre"
-TD_TOURBILLON = ICI / "4b_tourbillon"
+TD_MONTRE = ICI / "_propositions" / "4a_montre"
+TD_TOURBILLON = ICI / "_propositions" / "4b_tourbillon"
+TD_NOYAUX = ICI / "4a_noyaux"
+TD_CLI = ICI / "4b_cli"
 TD_TRAIN = ICI / "4c_train"
+COURS3 = ICI.parent / "cours3"
 VAGUE = ICI.parent / "cours3" / "2b_images" / "produit" / "depart" / "vague.jpg"
 DEPOT = ICI.parent.parent
 ILLUSTRATIONS = DEPOT / "illustrations" / "cours4"
@@ -40,13 +49,6 @@ VIGNETTES = {
     "train": (["--images", "120"], [1, 31, 61, 91, 120]),
 }
 DOSSIERS_TD = {"montre": TD_MONTRE, "tourbillon": TD_TOURBILLON, "train": TD_TRAIN}
-
-CREDITS = (
-    "# Image\n\n"
-    "- `vague.jpg` : Katsushika Hokusai, *Under the Wave off Kanagawa*, "
-    "The Metropolitan Museum of Art, open access (CC0), "
-    "<https://www.metmuseum.org/art/collection/search/45434>\n"
-)
 
 CREDITS_TRAIN = (
     "# Décor\n\n"
@@ -68,26 +70,34 @@ def vider(produit: Path) -> None:
 
 
 def build() -> None:
-    # TD 4a : aucune donnée, le dessin est calculé.
-    produit = TD_MONTRE / "produit"
-    vider(produit)
-    (produit / "travail").mkdir()
-    schemas(produit / "depart" / "notebook", "montre")
-    print(f"✓ {TD_MONTRE.name}/produit/")
-
-    # TD 4b : l'image de départ, celle du cours 3.
-    produit = TD_TOURBILLON / "produit"
+    # TD 4a : les recettes du cours 3, que le notebook met en page (posé dans
+    # `depart/notebook/` par construire_notebooks.py).
+    produit = TD_NOYAUX / "produit"
     vider(produit)
     (produit / "travail").mkdir()
     depart = produit / "depart"
-    depart.mkdir()
-    if VAGUE.exists():
-        shutil.copy(VAGUE, depart / "vague.jpg")
+    for dossier in sorted((COURS3 / "recettes").iterdir()):
+        if dossier.is_dir():
+            shutil.copytree(dossier, depart / "recettes" / dossier.name)
+    shutil.copy2(COURS3 / "recettes" / "style.css", depart / "style.css")
+    print(f"✓ {TD_NOYAUX.name}/produit/depart/")
+
+    # TD 4b : les fichiers du TD 3a du cours 3, sans l'outil portable. Les
+    # recettes et leurs photos viennent de son produit/ : lancer d'abord
+    # `make_data.py build` du cours 3.
+    produit = TD_CLI / "produit"
+    vider(produit)
+    (produit / "travail").mkdir()
+    depart = produit / "depart"
+    source = COURS3 / "3a_cli" / "produit" / "depart"
+    if source.is_dir():
+        shutil.copytree(source, depart, ignore=shutil.ignore_patterns("outils"))
     else:
-        print(f"! {VAGUE} absent — lancer `make_data.py build` du cours 3")
-    (depart / "CREDITS.md").write_text(CREDITS, encoding="utf-8")
-    schemas(depart / "notebook", "tourbillon")
-    print(f"✓ {TD_TOURBILLON.name}/produit/depart/")
+        print(f"! {source} absent — lancer `make_data.py build` du cours 3")
+    for dossier in ("modeles", "secours"):
+        shutil.copytree(COURS3 / "3a_cli" / "depart" / dossier, depart / dossier,
+                        dirs_exist_ok=True, ignore=shutil.ignore_patterns("__pycache__"))
+    print(f"✓ {TD_CLI.name}/produit/depart/")
 
     # TD 4c : le décor, dessiné ici.
     produit = TD_TRAIN / "produit"

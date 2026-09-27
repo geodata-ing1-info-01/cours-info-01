@@ -3,8 +3,9 @@
 // Compilable seul par `outils/compiler_tds.py`, qui en tire la feuille
 // `td_4c_train.pdf`. Les étapes en résumé : le détail, avec le code à coller,
 // est dans le guide `guide_4c_train.pdf`. Les étapes A sont celles des TD 4a
-// et 4b ; la partie B suit la composition d'une image (fond, fenêtre, plan),
-// sur deux branches. Pas encore inclus dans `cours4.typ`.
+// et 4b, gardés comme propositions ; la partie B suit la composition d'une
+// image (fond, fenêtre, plan), sur deux branches.
+// Inclus par `cours4.typ` : le TD du parcours avancé.
 #import "../../../commun/prelude.typ": *
 #import "../schemas.typ": tableau-etapes
 

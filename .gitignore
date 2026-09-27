@@ -54,3 +54,7 @@ _build/
 # Archives remises aux étudiants, assemblées par `outils/livrer_tds.py`
 livraison/
 
+# Images des guides de TD, recopiées de data/<cours>/<td>/produit/ par
+# src/conf.py à chaque construction du book.
+src/cours*/notebook/td/*/illustrations/*.png
+src/cours*/notebook/td/*/depart/illustrations/*.png

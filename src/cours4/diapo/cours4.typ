@@ -1,14 +1,16 @@
-// Cours 4 — une animation, du notebook au programme.
+// Projet 4 — du notebook au programme, en deux parcours.
 //
-// La séance est un TD, au choix la montre (4a) ou le tourbillon (4b), sur
-// les mêmes étapes. Deux niveaux de consignes :
+// Depuis le 26/09/2026, la séance a deux parcours, choisis au cours 3 :
 //
-//   - `tds/4a_montre.typ` et `tds/4b_tourbillon.typ` : les étapes en résumé,
-//     projetées ici et compilées en feuilles de TD par
-//     `outils/compiler_tds.py --cours 4` ;
-//   - le guide A4 de chaque TD, `src/cours4/notebook/td/<td>/guide.md`, avec
-//     le code à coller et la vérification de chaque commande, compilé par
-//     `outils/compiler_guides.py --cours 4`.
+//   - parcours standard : TD 4a, le client et le noyau d'un notebook
+//     (`tds/4a_noyaux.typ`), puis TD 4b, le TD 3a du cours 3 repris
+//     (`tds/4b_cli.typ`, écrit par `data/cours4/reprendre_td3a.py`) ;
+//   - parcours avancé : TD 4c, la fenêtre du train (`tds/4c_train.typ`).
+//
+// Les TD 4a montre et 4b tourbillon d'avant le 26/09/2026 sont gardés comme
+// propositions (`propositions/`, `../notebook/propositions/`). Le guide A4
+// de chaque TD, `src/cours4/notebook/td/<td>/guide.md`, est compilé par
+// `outils/compiler_guides.py --cours 4`.
 //
 //   python outils/compiler_diapos.py --cours 4
 //   python outils/compiler_diapos.py --cours 4 --notes
@@ -16,7 +18,8 @@
 
 #import "../../commun/prelude.typ": *
 #import "../../cours3/diapo/schemas.typ": code-commente, sortie
-#import "schemas.typ": programme-montre, programme-tourbillon
+#import "../../cours1/diapo/schemas_notebooks.typ": schema-client-serveur, schema-trois-serveurs, schema-deux-clients
+#import "schemas.typ": programme-train
 
 #show: diapos.with(
   titre-court: "Introduction à l'informatique",
@@ -25,12 +28,13 @@
 
 #let tds = sys.inputs.at("tds", default: "") != "false"
 
-#import "tds/4a_montre.typ": td as td-4a
-#import "tds/4b_tourbillon.typ": td as td-4b
+#import "tds/4a_noyaux.typ": td as td-4a
+#import "tds/4b_cli.typ": td as td-4b
+#import "tds/4c_train.typ": td as td-4c
 
 #page-titre(
-  titre: "Cours 4",
-  sous-titre: "Une animation, du notebook à un programme en ligne de commande",
+  titre: "Projet 4",
+  sous-titre: "Du notebook au programme en ligne de commande, en deux parcours",
   auteur: "1re année géomatique",
   date: "",
 )
@@ -38,54 +42,134 @@
 // --------------------------------------------
 #d("Objectifs de la séance")[
   #annonce[
-    Écrire un projet Python qui fabrique une courte vidéo animée.\
-    Le rendu est un dossier versionné avec git, qui contient un script
-    appelable en ligne de commande : `python montre.py` ou
-    `python tourbillon.py`.
+    Écrire un programme Python lancé en ligne de commande, versionné avec
+    git. Le parcours standard reprend le programme de la recette ; le
+    parcours avancé fabrique une courte vidéo animée.
   ]
 
   #tableau(
     columns: (auto, 1fr, auto),
     align: (left + horizon, left + horizon, center + horizon),
-    [Partie], [Ce qu'on fait], [Durée],
-    [Présentation], [les deux TD, les outils, les étapes], [10 min],
-    [A · Exécuter le notebook], [dans VS Code, terminal Git Bash : créer l'environnement `animation`, y lancer JupyterLab, exécuter le notebook], [35 min],
-    [B · Du notebook au programme], [dans VS Code : le script construit par fonctionnalités (une image, une série, la vidéo), une branche git par fonctionnalité], [70 min],
-    [Fin], [montrer sa vidéo et son `git log`], [5 min],
+    [Parcours], [Ce qu'on fait], [Durée],
+    [Tous], [présentation des deux parcours], [10 min],
+    [Standard], [TD 4a : le client et le noyau ; un environnement], [30 min],
+    [], [TD 4b : `recette.py` en ligne de commande], [70 min],
+    [Avancé], [TD 4c, A : l'environnement `animation`, le notebook], [35 min],
+    [], [TD 4c, B : `train.py`, une branche par fonctionnalité], [70 min],
+    [Tous], [une étiquette git, `git log`], [5 min],
   )
 
   #notes[
-    Chaque élève choisit un des deux TD. Les étapes sont les mêmes ; seules
-    les fonctions de dessin et les options changent. Le guide A4 du TD,
-    dans son dossier, détaille chaque étape : le distribuer ou le faire
-    ouvrir dès le début.
+    Le guide A4 de chaque TD, dans son dossier, détaille chaque étape : le
+    faire ouvrir dès le début.
   ]
 ]
 
 // --------------------------------------------
-#d("Deux TD au choix")[
+#d("Deux parcours")[
   #annonce[
-    Les deux TD fabriquent une vidéo de quelques secondes. Chaque image de
-    la vidéo correspond à une valeur d'un paramètre : l'heure pour la
-    montre, l'angle de torsion pour le tourbillon.
+    Chaque élève garde le parcours choisi au cours 3.
   ]
 
   #tableau(
     columns: (auto, 1fr, 1fr),
     align: left + horizon,
-    [], [4a · La montre du Lapin blanc], [4b · La Vague en tourbillon],
-    [Dossier], [`cours4/4a_montre/`], [`cours4/4b_tourbillon/`],
-    [Une image], [un cadran, deux aiguilles, le Lapin, l'heure], [*La Grande Vague*, tordue par `-swirl`, l'angle],
-    [Ce qui varie], [l'heure, d'une minute par image], [l'angle, de 15° par image, aller et retour],
-    [Ce que Python calcule], [la position des aiguilles, par `sin` et `cos`], [la liste des angles],
-    [Les fonctionnalités (partie B)], [une image : `--heure 10:05` ; une série : `--minutes` ; la vidéo : `--video`], [une image : `vague.jpg --angle 90` ; une série : `--maximum` ; la vidéo : `--video`],
+    [], [Parcours standard], [Parcours avancé],
+    [Au cours 3], [TD 3b : une recette en Markdown], [TD 3a : le programme `recette.py`],
+    [Au projet 4], [TD 4a : le client et le noyau ; puis TD 4b, le TD 3a du cours 3], [TD 4c : la fenêtre du train],
+    [Dossier], [`cours4/4a_noyaux/`, puis `cours4/4b_cli/`], [`cours4/4c_train/`],
   )
 
   #legende[
-    Dans le TD 4a, chaque image est dessinée à partir de formes simples ;
-    dans le TD 4b, chaque image est une transformation d'une image existante.
+    Le TD 4b est le TD 3a du cours 3, avec le même guide : le parcours
+    standard écrit ici le programme de la recette en ligne de commande.
   ]
 ]
+
+// --------------------------------------------
+#separateur(
+  "Parcours standard · Le client et le noyau",
+  annonce: "Un notebook est ouvert par un client et exécuté par un noyau ; un environnement peut avoir le noyau sans le client",
+)
+
+// --------------------------------------------
+#d("Le client et le serveur d'un notebook")[
+  #annonce[
+    Un notebook est une application web : un client qui affiche, un serveur
+    qui exécute.
+  ]
+
+  #align(center, schema-client-serveur())
+
+  #legende[
+    Changer de client ne change pas le noyau : JupyterLab et l'éditeur de code
+    ouvrent le même fichier et exécutent ses cellules dans le même noyau.
+  ]
+
+  #notes[
+    Le noyau est le processus Python qui exécute les cellules et retient les
+    variables : section 2 de `noyau.ipynb`.
+
+    Le jeton de l'adresse `localhost:8888/lab?token=…` est un mot de passe à
+    usage unique. Repris au cours 5.
+  ]
+]
+
+// --------------------------------------------
+#d("Les trois emplacements du serveur")[
+  #annonce[
+    Le serveur d'un notebook peut être sur un autre ordinateur, sur votre
+    poste, ou dans le navigateur lui-même.
+  ]
+
+  #align(center, scale(80%, reflow: true, schema-trois-serveurs()))
+
+  #legende[
+    Dans le premier cas seulement, le code et les données sortent du poste.
+  ]
+
+  #notes[
+    Premier cas : Colab, ou un serveur de calcul ; Colab demande un compte.
+    Deuxième cas : `jupyter lab` sur le poste, celui des séances. Troisième
+    cas : JupyterLite (jupyter.org/try-jupyter) ; tous les paquets n'y sont
+    pas.
+  ]
+]
+
+// --------------------------------------------
+#d("Les clients d'un notebook")[
+  #annonce[
+    Le même fichier s'ouvre dans plusieurs clients. Tous ont besoin d'un
+    noyau.
+  ]
+
+  #align(center, schema-deux-clients())
+
+  #legende[
+    L'éditeur de code n'a pas besoin de `jupyterlab` : il démarre `ipykernel`
+    lui-même. Un environnement ouvert dans l'éditeur n'a besoin que
+    d'`ipykernel`.
+  ]
+
+  #notes[
+    TD 4a, étapes 8 et 10 : `info01-recette` a `ipykernel` sans `jupyterlab`
+    ; VS Code l'emploie, `jupyter lab` y échoue.
+  ]
+]
+
+// --------------------------------------------
+#if tds {
+  include "tds/4a_noyaux.typ"
+  include "tds/4b_cli.typ"
+} else {
+  sommaire-td(td-4a, td-4b)
+}
+
+// --------------------------------------------
+#separateur(
+  "Parcours avancé · La fenêtre du train",
+  annonce: "Une vidéo fabriquée par ImageMagick et ffmpeg, lancés par Python ; un environnement décrit par environment.yml",
+)
 
 // --------------------------------------------
 #d("Des outils en ligne de commande")[
@@ -93,15 +177,14 @@
     ImageMagick (`magick`) et ffmpeg sont des programmes en ligne de
     commande, comme git (cours 2) et pandoc (cours 3). Le script Python les
     lance avec `subprocess.run` : une fois par image pour `magick`, une fois
-    à la fin pour `ffmpeg`. Python automatise ainsi toutes les étapes de la
-    fabrication de la vidéo.
+    à la fin pour `ffmpeg`.
   ]
 
   #code-commente(
-    taille-code: 12pt, taille-texte: 12pt,
-    ("magick -size 640x480 xc:#fbf7ee -draw \"…\" img_0001.png", "4a : une image unie, puis des formes"),
-    ("magick petite.png -swirl 90 -extent 640x480 img_0001.png", "4b : l'image, tordue de 90 degrés"),
-    ("ffmpeg -framerate 12 -i img_%04d.png montre.mp4", "12 images par seconde ; `%04d` : un numéro à quatre chiffres"),
+    taille-code: 11.5pt, taille-texte: 11.5pt,
+    ("magick fond.png ( plan.png -roll -8+0 -crop 640x480+0+0 +repage )", "la bande du plan, tournée de 8 colonnes, puis découpée"),
+    ("       -composite fenetre.png -composite img_0002.png", "posé sur le fond, puis la fenêtre par-dessus"),
+    ("ffmpeg -framerate 12 -i img_%04d.png train.mp4", "12 images par seconde ; `%04d` : un numéro à quatre chiffres"),
   )
 
   #legende[
@@ -116,42 +199,19 @@
 ]
 
 // --------------------------------------------
-#d("Le programme montre.py, étape par étape")[
+#d("Le programme train.py, étape par étape")[
   #annonce[
-    Pour chaque minute, Python calcule l'angle et l'extrémité des deux
-    aiguilles, puis lance `magick`, qui dessine l'image. ffmpeg assemble les
-    120 images.
+    Python calcule la liste des décalages, puis, pour chaque décalage, lance
+    `magick`, qui compose l'image. ffmpeg assemble les 120 images.
   ]
 
-  #programme-montre(hauteur-vignette: 64pt)
+  #programme-train(hauteur-vignette: 64pt)
 
   #notes[
-    Les étapes du programme, pas celles du TD. Les fonctions `point`,
-    `graduations` et `aiguilles` font les étapes 2 et 3 ; `image` construit
-    et lance la commande de l'étape 4 ; `assembler` lance ffmpeg.
+    Les étapes du programme ; celles du TD sont sur sa feuille. `decalages` fait l'étape 2,
+    `image` les étapes 3 et 4, `assembler` l'étape 5.
   ]
 ]
-
-// --------------------------------------------
-#d("Le programme tourbillon.py, étape par étape")[
-  #annonce[
-    Python calcule la liste des angles de torsion, puis, pour chaque angle,
-    lance `magick`, qui tord l'image réduite. ffmpeg assemble les 49 images.
-  ]
-
-  #programme-tourbillon(hauteur-vignette: 64pt)
-
-  #notes[
-    Les étapes du programme, pas celles du TD. `reduire` fait l'étape 2,
-    `angles` l'étape 3, `image` l'étape 4, `assembler` l'étape 5.
-  ]
-]
-
-// --------------------------------------------
-#separateur(
-  "A · Exécuter le notebook",
-  annonce: "Un environnement conda décrit par environment.yml, JupyterLab lancé depuis cet environnement",
-)
 
 // --------------------------------------------
 #d("L'environnement animation")[
@@ -219,33 +279,51 @@
 ]
 
 // --------------------------------------------
-// Les deux TD, étape par étape, en résumé ; le guide A4 de chacun les détaille.
 #if tds {
-  include "tds/4a_montre.typ"
-  include "tds/4b_tourbillon.typ"
+  include "tds/4c_train.typ"
 } else {
-  sommaire-td(td-4a, td-4b)
+  sommaire-td(td-4c)
 }
+
+// --------------------------------------------
+#d("Une version, une étiquette")[
+  #annonce[
+    Une étiquette git, un _tag_, nomme un commit. Posée sur la version
+    finale du programme, elle la retrouve sans chercher son identifiant.
+  ]
+
+  #code-commente(
+    taille-code: 13pt, taille-texte: 12.5pt,
+    ("git tag -a v1.0 -m \"Première version\"", "pose l'étiquette `v1.0` sur le commit courant"),
+    ("git tag", "liste les étiquettes du dépôt"),
+    ("git log --oneline --graph --all", "l'étiquette apparaît à côté du commit"),
+  )
+
+  #notes[
+    Vu au cours 2 (TD 6a). Le cours 6 publie le dépôt, étiquette comprise.
+  ]
+]
 
 // --------------------------------------------
 #d("Ce qu'on rend")[
   #annonce[
-    Le dossier du projet, avec son historique git : le code, `environment.yml`
-    et le README, qui permettent de refaire la vidéo sur un autre poste.
+    Le dossier du projet, avec son historique git : le code, le README, et
+    pour le train `environment.yml`, qui permettent de refaire le résultat
+    sur un autre poste.
   ]
 
   #tableau(
-    columns: (auto, 1fr),
+    columns: (auto, 1fr, 1fr),
     align: left + horizon,
-    [Commande], [Ce qu'elle doit montrer],
-    [`git log --oneline --graph --all`], [dix commits (onze avec B5), dont un commit de fusion],
-    [`git status`], [« rien à valider » ; `sortie/` n'est pas listé],
-    [`python <nom>.py --help`], [les options des trois fonctionnalités, et leur aide],
-    [`sortie/<nom>.mp4`], [la vidéo, qui s'ouvre par un double-clic],
+    [Commande], [Parcours standard, `recette.py`], [Parcours avancé, `train.py`],
+    [`git log --oneline --graph --all`], [six commits, et l'étiquette `v1.0`], [dix commits, dont un de fusion, et l'étiquette `v1.0`],
+    [`git status`], [« rien à valider » ; `sortie/` n'est pas listé], [« rien à valider » ; `sortie/` n'est pas listé],
+    [`python <nom>.py --help`], [les trois arguments et leur aide], [les options des trois fonctionnalités],
+    [le résultat], [`sortie/<recette>.html`], [`sortie/train.mp4`],
   )
 
   #notes[
     Le cours 6 publie le dépôt sur GitHub : le README en est la page
-    d'accueil.
+    d'accueil. Le parcours standard publie le dépôt de la recette.
   ]
 ]

@@ -1,8 +1,11 @@
 """Écrit les guides détaillés des TD 4a, 4b et 4c, sur un même plan, avec le code des corrigés.
 
-Les trois guides, `src/cours4/notebook/td/<td>/guide.md`, sont produits par ce
-script à partir d'un même texte : leurs étapes restent identiques, seuls le
-nom du programme, les données, les fonctions et les options changent. Le
+Les trois guides sont produits par ce script à partir d'un même texte : celui
+du TD 4c, `src/cours4/notebook/td/4c_train/guide.md`, et ceux de la montre et
+du tourbillon, gardés comme propositions depuis le 26/09/2026 dans
+`src/cours4/notebook/propositions/<td>/guide.md`. Leurs étapes restent
+identiques ; seuls le nom du programme, les données, les fonctions et les
+options changent. Le
 code à coller vient de `generer_corriges.py`, importé ici : les guides et les
 corrigés ont toujours le même code.
 
@@ -319,8 +322,6 @@ kernelspec:
   name: python3
   display_name: Python 3
 ---
-
-# TD {t['numero']} — {t['titre']}
 
 Le TD fabrique une courte vidéo : {t['objet']}. Le rendu est un projet
 Python, versionné avec git, qui contient un script `{p}.py` appelable en
@@ -1887,6 +1888,7 @@ verifier_annexe_plans()
 
 
 for t in TDS:
-    cible = DEPOT / "src" / "cours4" / "notebook" / "td" / t["td"] / "guide.md"
+    rangement = "td" if t["td"] == "4c_train" else "propositions"
+    cible = DEPOT / "src" / "cours4" / "notebook" / rangement / t["td"] / "guide.md"
     cible.write_text(guide(t), encoding="utf-8")
     print("ok", cible)

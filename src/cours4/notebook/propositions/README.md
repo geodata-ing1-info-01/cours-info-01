@@ -43,3 +43,21 @@ d'une recette du cours 3, `lerp` entre 0 et la valeur) ; un zoom sur la
 Vague (`-crop` décroissant puis `-resize`) ; un fondu entre deux images par
 `-morph` ; un texte qui s'écrit lettre par lettre (`-annotate` sur des
 sous-chaînes).
+
+## Les TD 4a montre et 4b tourbillon
+
+Jusqu'au 26/09/2026, le projet 4 proposait trois TD d'animation au choix. Il
+n'en garde qu'un, le TD 4c train, pour le parcours avancé ; les deux autres
+sont gardés ici, complets :
+
+| Dossier | Contenu |
+|---|---|
+| `4a_montre/`, `4b_tourbillon/` | le notebook de départ (`depart/notebook/`), le guide et ses illustrations |
+| `src/cours4/diapo/propositions/` | les deux feuilles de TD |
+| `data/cours4/_propositions/` | `environment.yml`, les modèles et le README de chaque TD |
+| `data/cours4/corriges/` | les corrigés, toujours écrits par `generer_corriges.py` avec ceux du train |
+
+`generer_guides.py` écrit toujours leurs guides ici. Pour les rejouer comme
+TD, remettre les trois dossiers à leur place (`notebook/td/`, `diapo/tds/`,
+`data/cours4/`) et les deux blocs de `build` dans `make_data.py` (historique
+git, avant le 26/09/2026).

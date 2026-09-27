@@ -31,6 +31,13 @@ myst_enable_extensions = [
 myst_title_to_header = True
 myst_heading_anchors = 3
 
+
+# L'identifiant d'un titre, calculé comme pandoc le calcule pour les guides
+# de TD : voir `_identifiants.py`, à côté de ce fichier.
+import sys as _sys
+_sys.path.insert(0, str(Path(__file__).resolve().parent))
+myst_heading_slug_func = "_identifiants.identifiant_titre"
+
 # --- Exécution des notebooks ------------------------------------------------
 # "cache" : n'exécute que ce qui a changé (première construction ~30 s,
 # les suivantes quasi instantanées).
@@ -82,8 +89,33 @@ exclude_patterns = [
 # Les guides des autres cours ne sont pas encore relus pour le book (leurs
 # images sont cherchées dans `data/`, depuis `produit/`).
 # Les versions 2 des cours 1 et 2 (propositions 2027-2028) aussi.
-GUIDES_DANS_LE_BOOK = {"cours1", "cours2", "cours1_v2", "cours2_v2"}
+GUIDES_DANS_LE_BOOK = {"cours1", "cours2", "cours3", "cours4", "cours1_v2", "cours2_v2"}
 _SRC = Path(__file__).resolve().parent
+
+
+# Les images d'un guide (`illustrations/…`, `depart/illustrations/…`) sont
+# fabriquées dans `data/<cours>/<td>/produit/`, sous le même chemin relatif,
+# par `outils/construire_notebooks.py`, `compiler_guides.py` et `make_data.py`.
+# Le book les cherche à côté du guide : elles y sont recopiées à chaque
+# construction (copies ignorées par git). Une image absente de `produit/`
+# laisse un avertissement de Sphinx.
+def _images_des_guides() -> None:
+    import re
+    import shutil
+    for guide in _SRC.glob("cours*/notebook/td/*/guide.md"):
+        cours, td = guide.parts[-5], guide.parts[-2]
+        if cours not in GUIDES_DANS_LE_BOOK:
+            continue
+        produit = _SRC.parent / "data" / cours / td / "produit"
+        texte = re.sub(r"```.*?```", "", guide.read_text(encoding="utf-8"), flags=re.S)
+        for chemin in re.findall(r"!\[[^\]]*\]\(([^)\s]+)\)", texte):
+            source, cible = produit / chemin, guide.parent / chemin
+            if source.is_file() and not chemin.startswith(("/", "http")):
+                cible.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(source, cible)
+
+
+_images_des_guides()
 exclude_patterns += sorted(
     source.relative_to(_SRC).as_posix()
     for source in _SRC.glob("cours*/notebook/td/**/*.md")

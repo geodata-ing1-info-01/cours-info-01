@@ -10,8 +10,6 @@ kernelspec:
   display_name: Python 3
 ---
 
-# TD 4b — La Vague en tourbillon
-
 Le TD fabrique une courte vidéo : *La Grande Vague* de Hokusai, l'image du cours 3, qui se tord en tourbillon puis se détord. Le rendu est un projet
 Python, versionné avec git, qui contient un script `tourbillon.py` appelable en
 ligne de commande.
@@ -998,11 +996,11 @@ git log --oneline
 
 Le TD se fait dans **Git Bash**, le terminal bash installé avec git et
 utilisé au cours 2. La colonne de gauche donne les mêmes commandes dans le
-terminal Windows (`cmd`, Anaconda Prompt), pour qui l'utilise ailleurs. Le
+terminal Windows (`cmd`, invite de commandes d'Anaconda), pour qui l'utilise ailleurs. Le
 terminal de VS Code ouvre l'un ou l'autre (flèche à côté du `+` du panneau
 du terminal).
 
-| Pour… | Anaconda Prompt (`cmd`) | Git Bash (`bash`) |
+| Pour… | Invite de commandes d'Anaconda (`cmd`) | Git Bash (`bash`) |
 |---|---|---|
 | afficher le dossier courant | `cd` | `pwd` |
 | lister le dossier courant | `dir` | `ls` |
@@ -1028,6 +1026,6 @@ conda init bash
 ```
 
 Sur un autre ordinateur, le chemin est celui du dossier d'installation
-d'Anaconda : taper `echo %CONDA_PREFIX%` dans Anaconda Prompt pour le
+d'Anaconda : taper `echo %CONDA_PREFIX%` dans l'invite de commandes d'Anaconda pour le
 trouver. Dans Git Bash, `C:\` s'écrit `/c/` et les `\` deviennent des
 `/`.
