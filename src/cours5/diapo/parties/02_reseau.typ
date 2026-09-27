@@ -1,10 +1,10 @@
 // Cours 5, partie 2 — le réseau. Incluse par `cours5.typ`.
 #import "../../../commun/prelude.typ": *
 #import "../schemas.typ": schema-local-distant, schema-client-serveur, schema-tuyau, schema-commit-push
-// Les schémas du notebook, dessinés pour la partie 4 du cours 1, non jouée en
-// 2026 : le client et le serveur sur le même poste, et les trois emplacements
-// du serveur.
-#import "../../../cours1/diapo/schemas_notebooks.typ": schema-client-serveur as schema-notebook-local, schema-trois-serveurs
+// Le schéma du notebook, dessiné pour la partie 4 du cours 1 : le client et
+// le serveur sur le même poste, redit ici après le projet 4, qui le présente
+// au parcours standard avec les trois emplacements du serveur.
+#import "../../../cours1/diapo/schemas_notebooks.typ": schema-client-serveur as schema-notebook-local
 
 #separateur(
   "Le réseau",
@@ -87,32 +87,6 @@
     la partie 3.
 
     Schéma de la partie 4 du cours 1, non jouée en 2026.
-  ]
-]
-
-// --------------------------------------------
-#d("Trois emplacements pour le serveur")[
-  #annonce[
-    Le serveur d'un notebook peut être sur un autre ordinateur, sur votre
-    poste, ou dans le navigateur lui-même.
-  ]
-
-  #align(center, scale(80%, reflow: true, schema-trois-serveurs()))
-
-  #legende[
-    Dans le premier cas seulement, le code et les données sortent du poste.
-  ]
-
-  #notes[
-    Premier cas : Colab, un serveur de calcul du laboratoire. Le code et les
-    données partent sur une machine qu'on ne gère pas ; Colab demande un
-    compte.
-
-    Deuxième cas : celui des séances, `jupyter lab` sur le poste.
-
-    Troisième cas : JupyterLite (jupyter.org/try-jupyter, vu au cours 1).
-    Le noyau Python est exécuté par le navigateur ; tous les paquets n'y
-    sont pas.
   ]
 ]
 
