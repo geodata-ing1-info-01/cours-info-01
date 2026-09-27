@@ -11,7 +11,7 @@ utilise, et ce qu'il fait d'un notebook. Son test est en fin de page ; le choix 
 [Choisir entre JupyterLab, Spyder et VS Code](outils.md).
 
 Spyder se lance depuis le menu Démarrer (taper `spyder`), depuis la fiche
-Spyder de Navigator, ou en tapant `spyder` dans l'Anaconda Prompt. Le
+Spyder de Navigator, ou en tapant `spyder` dans l'invite de commandes d'Anaconda. Le
 premier lancement est long ({ref}`A12 <dep-a12>`). Sur un poste en
 français, les menus sont en français ; le nom anglais est donné entre
 parenthèses quand il diffère.
@@ -68,7 +68,7 @@ afficher le chemin d'Anaconda ({ref}`A12 <dep-a12>`).
 ### Une console dans un autre environnement
 
 Spyder ne crée pas d'environnement : c'est le travail de conda, dans
-l'Anaconda Prompt ([Les environnements](anaconda.md#les-environnements),
+l'invite de commandes d'Anaconda ([Les environnements](anaconda.md#les-environnements),
 TD 4a). Une fois l'environnement créé, Spyder peut y ouvrir une console, à
 une condition : le paquet `spyder-kernels` doit y être installé, à la
 version qui correspond à celle de Spyder (menu Aide, À propos de Spyder) :
@@ -100,13 +100,13 @@ Puis, dans Spyder, au choix :
 Quand `spyder-kernels` manque dans l'environnement, la console n'a pas
 d'invite : elle affiche à la place un message qui donne le chemin du Python
 choisi et la commande `conda install spyder-kernels=3.1` à taper. La taper
-dans l'Anaconda Prompt, l'environnement activé, puis « Redémarrer le
+dans l'invite de commandes d'Anaconda, l'environnement activé, puis « Redémarrer le
 noyau ».
 
 :::{note}
 Les commandes d'installation ne se tapent pas dans la console de Spyder :
 depuis Spyder 6.1, `!conda install` et `%pip install` y sont désactivés.
-Elles se tapent dans l'Anaconda Prompt.
+Elles se tapent dans l'invite de commandes d'Anaconda.
 :::
 
 ## Les notebooks dans Spyder
@@ -154,7 +154,7 @@ et le module n'en a pas besoin.
 | Ce qu'on fait | Ce qu'on doit voir | Sinon |
 |---|---|---|
 | Menu Démarrer, taper `spyder`, Entrée, puis attendre | la fenêtre de Spyder : l'éditeur à gauche, la console en bas à droite | {ref}`A12 <dep-a12>` |
-| Dans la console, `import sys; print(sys.executable)` puis Entrée | le chemin d'Anaconda, le même que dans l'Anaconda Prompt | {ref}`A12 <dep-a12>` |
+| Dans la console, `import sys; print(sys.executable)` puis Entrée | le chemin d'Anaconda, le même que dans l'invite de commandes d'Anaconda | {ref}`A12 <dep-a12>` |
 | Menu Consoles, « Nouvelle console dans l'environnement » | `base`, et les environnements créés par le compte | {ref}`A11 <dep-a11>` |
 
 ## Documentation officielle

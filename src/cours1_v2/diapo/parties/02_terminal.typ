@@ -58,7 +58,7 @@
     [Terminal], [Où le trouver], [Interpréteur], [Dans le module],
     [Invite de commandes], [menu Démarrer], [cmd], [non employé],
     [Terminal Windows], [menu Démarrer], [PowerShell], [non employé],
-    [Anaconda Prompt], [menu Démarrer], [cmd et conda], [en dépannage],
+    [Invite de commandes d'Anaconda], [menu Démarrer], [cmd et conda], [en dépannage],
     surligne[Git Bash], surligne[clic droit dans un dossier],
       surligne[bash], surligne[à toutes les séances],
     [Terminal de VS Code], [dans l'éditeur], [au choix], [Git Bash, dès le cours 2],
@@ -71,8 +71,8 @@
 
   #notes[
     Raison du choix (syllabus v2) : en 2026, chaque séance employait un
-    terminal différent (PowerShell remplacé par un profil Anaconda Prompt au
-    cours 1, bash au cours 2, Anaconda Prompt et Git Bash au cours 3), sans
+    terminal différent (PowerShell remplacé par un profil « Anaconda Prompt » au
+    cours 1, bash au cours 2, invite de commandes d'Anaconda et Git Bash au cours 3), sans
     que la différence soit expliquée.
 
     Windows 11 : « Open Git Bash here » est sous « Afficher d'autres
@@ -107,14 +107,14 @@
     _capture("git_bash_2011.png")[Git Bash : `utilisateur@machine`, puis `$`],
     _capture("cmd_windows11.png")[Invite de commandes : `C:\Users\…>`],
     _capture("powershell_terminal_windows.png")[PowerShell : `PS C:\Users\…>`],
-    _capture("miniforge_prompt.png")[Anaconda Prompt : `(base) C:\Users\…>`],
+    _capture("miniforge_prompt.png")[Invite de commandes d'Anaconda : `(base) C:\Users\…>`],
   )
 
   #notes[
     Captures en ligne (Wikimedia Commons, The Carpentries), sources dans
     `CREDITS.md`. La capture de Git Bash date de 2011 (`MINGW32`) : à
     remplacer par une capture d'un poste de la salle, comme celle de
-    l'Anaconda Prompt (ici le Miniforge Prompt, même fenêtre `cmd`).
+    l'invite de commandes d'Anaconda (ici le Miniforge Prompt, même fenêtre `cmd`).
 
     Faire repérer l'invite sur chacune : elle indique le langage à employer.
   ]

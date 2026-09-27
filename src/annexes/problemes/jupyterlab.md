@@ -3,7 +3,7 @@ title: Problèmes avec JupyterLab et les notebooks
 ---
 
 Le noyau et le client d'un notebook, le test de JupyterLab et son
-lancement depuis l'Anaconda Prompt sont dans
+lancement depuis l'invite de commandes d'Anaconda sont dans
 [JupyterLab](../configuration/jupyterlab.md) ; la configuration des
 notebooks dans VS Code, dans
 [VS Code : notebooks](../configuration/vscode_notebooks.md).
@@ -35,7 +35,7 @@ Remède
   Jupyter reprend la liste de l'extension Python
   ({ref}`Ce que l'extension Jupyter en fait <vscode-jupyter-envs>`).
   Dans JupyterLab : lancer `jupyter lab` depuis l'environnement voulu
-  (`conda activate <env>` d'abord, dans l'Anaconda Prompt).
+  (`conda activate <env>` d'abord, dans l'invite de commandes d'Anaconda).
 
 (dep-j2)=
 ### J2. « Running cells with … requires the ipykernel package »
@@ -50,7 +50,7 @@ Cause
 
 Remède
 : Si l'environnement est celui du TD, cliquer Install, ou taper dans
-  l'Anaconda Prompt `conda install -n <env> -c conda-forge ipykernel`. Si
+  l'invite de commandes d'Anaconda `conda install -n <env> -c conda-forge ipykernel`. Si
   le message concerne `base`, l'installation échouera ({ref}`A8 <dep-a8>`)
   : le noyau choisi n'est pas celui qu'on croit, rouvrir la liste
   ({ref}`J1 <dep-j1>`).
@@ -82,7 +82,7 @@ Remède
 
 Ce qu'on voit
 : `import sys; print(sys.executable)` dans une cellule affiche un autre
-  chemin que l'Anaconda Prompt. Un `import` échoue dans le notebook et
+  chemin que l'invite de commandes d'Anaconda. Un `import` échoue dans le notebook et
   réussit dans le terminal.
 
 Cause

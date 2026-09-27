@@ -131,7 +131,7 @@ Disparues par rapport au deuxième jet : « Prouver qui l'on est » (tableau mot
 
 Dossier `cours5/2a_cle_ssh/`. Prérequis : un compte GitHub créé avant la séance (page « Avant les séances »).
 
-1. Dans Anaconda Prompt : `ssh-keygen -t ed25519 -C "prenom.nom@etu.ecole.fr"`, Entrée à chaque question (emplacement par défaut, sans phrase de passe pour aujourd'hui).
+1. Dans l'invite de commandes d'Anaconda : `ssh-keygen -t ed25519 -C "prenom.nom@etu.ecole.fr"`, Entrée à chaque question (emplacement par défaut, sans phrase de passe pour aujourd'hui).
 2. `type %USERPROFILE%\.ssh\id_ed25519.pub`, copier la ligne.
 3. GitHub → Settings → SSH and GPG keys → New SSH key, coller, enregistrer.
 4. `ssh -T git@github.com` : accepter l'empreinte du serveur à la première connexion, lire `Hi <compte>! You've successfully authenticated`.

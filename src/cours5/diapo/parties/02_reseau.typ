@@ -70,7 +70,7 @@
   ]
 
   #notes[
-    Démonstration, deux minutes, dans Git Bash ou l'Anaconda Prompt :
+    Démonstration, deux minutes, dans Git Bash ou l'invite de commandes d'Anaconda :
     - `jupyter lab` : le terminal affiche l'adresse `http://localhost:8888/lab?token=…`
       et reste occupé, c'est le serveur ;
     - le navigateur s'ouvre sur cette adresse ; exécuter une cellule : le

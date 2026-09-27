@@ -17,7 +17,7 @@ salle de trois façons, sans droits d'administrateur.
 | | Cmder, édition complète | git par conda | Git for Windows portable |
 |---|---|---|---|
 | Ce que c'est | une console portable (ConEmu + `cmd` + clink) qui embarque Git for Windows | le paquet `git` de conda-forge : Git for Windows décompressé dans `Library\` de l'environnement | l'archive `PortableGit-….7z.exe` de Git for Windows, sans installateur |
-| Comment on l'a | déjà sur les postes [à vérifier : édition complète ou mini] | `conda create -n outils -c conda-forge git` dans l'Anaconda Prompt, session réseau ouverte (124 Mo) | copiée depuis `formationTemp` dans `Desktop\info01\outils\`, comme les fichiers d'une séance |
+| Comment on l'a | déjà sur les postes [à vérifier : édition complète ou mini] | `conda create -n outils -c conda-forge git` dans l'invite de commandes d'Anaconda, session réseau ouverte (124 Mo) | copiée depuis `formationTemp` dans `Desktop\info01\outils\`, comme les fichiers d'une séance |
 | Version de git | 2.45.1 (mai 2024) | 2.55 | 2.55 |
 | Où sont les fichiers | `<Cmder>\vendor\git-for-windows\` | `C:\Users\<nom>\.conda\envs\outils\Library\` | `<dossier>\PortableGit\` |
 | Il faut le réseau | non | oui, à la création | non |
@@ -42,13 +42,13 @@ la fenêtre (ou `Ctrl` + `T`), puis la tâche `{bash::bash}`.
 
 ### Avec git par conda
 
-Une fois par compte, dans l'Anaconda Prompt, session réseau ouverte :
+Une fois par compte, dans l'invite de commandes d'Anaconda, session réseau ouverte :
 
 ```
 conda create -n outils -c conda-forge git
 ```
 
-Puis, à chaque séance, dans l'Anaconda Prompt :
+Puis, à chaque séance, dans l'invite de commandes d'Anaconda :
 
 ```
 conda activate outils
@@ -131,7 +131,7 @@ Reload Window » :
 
 Pour Cmder, le chemin est `<Cmder>\vendor\git-for-windows\cmd\git.exe` ;
 pour l'archive portable, `<dossier>\PortableGit\cmd\git.exe`. Autre
-solution, sans réglage : lancer VS Code depuis l'Anaconda Prompt où
+solution, sans réglage : lancer VS Code depuis l'invite de commandes d'Anaconda où
 `outils` est activé (`code <dossier>`), git est alors dans son PATH.
 
 Le terminal de VS Code, lui, lance un interpréteur de commandes dans son

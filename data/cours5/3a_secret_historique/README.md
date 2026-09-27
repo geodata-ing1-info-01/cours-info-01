@@ -6,7 +6,7 @@ dépôt, puis l'en tenir à l'écart. Aucun fichier fourni : le dépôt se crée
 
 ## Committer, supprimer, relire
 
-Depuis `cours5/3a_secret_historique/`, dans Anaconda Prompt :
+Depuis `cours5/3a_secret_historique/`, dans l'invite de commandes d'Anaconda :
 
 ```bash
 git init travail

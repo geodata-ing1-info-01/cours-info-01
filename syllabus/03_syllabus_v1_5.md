@@ -26,7 +26,7 @@
 | La forge sur le dépôt du projet 4, sans l'outil « trajectoire » | oui | cours 6 |
 | Un effet au choix, en boucle puis avec numpy, livré par une pull request | oui | projet 7 |
 | Partie A du projet 4 ramenée à 20′ | non : les groupes qui n'ont pas fait le TD 0a découvrent les environnements au projet 4 | — |
-| Git Bash comme seul terminal (cours 5 compris) | non : les TD du cours 5 restent dans l'Anaconda Prompt | à décider avant le 13/10 |
+| Git Bash comme seul terminal (cours 5 compris) | non : les TD du cours 5 restent dans l'invite de commandes d'Anaconda | à décider avant le 13/10 |
 | Terminal et commandes au cours 1 ; VS Code et Markdown au cours 2 ; `rebase` et `tag` en annexe | sans objet : cours 1 et 2 joués | — |
 | Début de séance identique, fait sans guide ; aide-mémoire d'une page | non | à décider |
 
@@ -37,7 +37,7 @@
 Objectif inchangé. La séance est allégée pour laisser la place, selon les groupes, à un TD d'environnement : la partie 4 du cours 1 (bibliothèques et environnements) n'a pas été jouée.
 
 - **⌨️ 10′ · Préparation du poste** : copier l'archive, lancer JupyterLab. Inchangé.
-- **⌨️ 10′ + 20′ · TD 0a · Préparation du poste de travail** *(révisé le 25/09/2026 : les diapositives de récupération de l'archive et de test des outils, jusque-là dans l'ouverture, y passent ; seule la dernière diapositive, l'environnement, dépend des groupes)* : récupérer l'archive, vérifier que les outils se lancent ; puis, selon les groupes, dans l'Anaconda Prompt, une seule commande crée l'environnement avec ses paquets, `conda create -n info01-cours3 -c conda-forge python=3.12 jupyterlab jupyterlab-myst pandoc pillow` ; `conda activate info01-cours3`, `conda env list` ; vérifier `pandoc --version` et `import PIL` ; `jupyter lab` depuis le dossier `cours3/`. Une seule diapositive, les étapes ; l'annonce définit un environnement (révisé le 25/09/2026 : nom préfixé par le module, plus de diapositive de rappel des commandes, plus d'installation en deux temps).
+- **⌨️ 10′ + 20′ · TD 0a · Préparation du poste de travail** *(révisé le 25/09/2026 : les diapositives de récupération de l'archive et de test des outils, jusque-là dans l'ouverture, y passent ; seule la dernière diapositive, l'environnement, dépend des groupes)* : récupérer l'archive, vérifier que les outils se lancent ; puis, selon les groupes, dans l'invite de commandes d'Anaconda, une seule commande crée l'environnement avec ses paquets, `conda create -n info01-cours3 -c conda-forge python=3.12 jupyterlab jupyterlab-myst pandoc pillow` ; `conda activate info01-cours3`, `conda env list` ; vérifier `pandoc --version` et `import PIL` ; `jupyter lab` depuis le dossier `cours3/`. Une seule diapositive, les étapes ; l'annonce définit un environnement (révisé le 25/09/2026 : nom préfixé par le module, plus de diapositive de rappel des commandes, plus d'installation en deux temps).
 - **Chemins (20′)** : `recette.ipynb`, inchangé.
 - **Texte et binaire (30′)**
   - ⌨️ **TD 2a · 15′ · `fichiers.ipynb`**, § 0 à 4 (`open`, `with`, modes, `encoding`, ligne par ligne). Les § 5 (CSV) et 6 (`read_text`, `write_text`, `read_bytes`) se lisent après la séance ; une diapositive en donne le contenu et montre les deux lignes `read_text` et `read_bytes`, qu'`images.ipynb` emploie.

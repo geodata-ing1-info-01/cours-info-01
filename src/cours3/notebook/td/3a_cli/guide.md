@@ -926,7 +926,7 @@ git log --oneline
 
 Le TD se fait dans **Git Bash**, le terminal bash installé avec git et
 utilisé au cours 2. La colonne de gauche donne les mêmes commandes dans le
-terminal Windows (`cmd`, Anaconda Prompt), pour qui l'utilise ailleurs. Le
+terminal Windows (`cmd`, invite de commandes d'Anaconda), pour qui l'utilise ailleurs. Le
 terminal de VS Code ouvre l'un ou l'autre (flèche à côté du `+` du panneau
 du terminal).
 
@@ -944,7 +944,7 @@ du terminal).
 | supprimer un fichier | `del essai.txt` | `rm essai.txt` |
 | effacer l'écran | `cls` | `clear` |
 | écrire un chemin | `C:\Users\moi\Desktop` | `/c/Users/moi/Desktop` |
-| activer l'environnement d'Anaconda | déjà actif dans Anaconda Prompt : l'invite commence par `(base)` | `conda activate base`, une fois l'étape 0.3 faite |
+| activer l'environnement d'Anaconda | déjà actif dans l'invite de commandes d'Anaconda : la ligne commence par `(base)` | `conda activate base`, une fois l'étape 0.3 faite |
 | lancer git | `git status`, si git est installé pour tout le poste | `git status` |
 
 **conda dans Git Bash** (étape 0.3). Sur les postes de la salle, Anaconda
@@ -956,5 +956,5 @@ conda init bash
 ```
 
 Sur un autre ordinateur, le chemin est celui du dossier d'installation
-d'Anaconda : taper `echo %CONDA_PREFIX%` dans Anaconda Prompt pour le
+d'Anaconda : taper `echo %CONDA_PREFIX%` dans l'invite de commandes d'Anaconda pour le
 trouver. Dans Git Bash, `C:\` s'écrit `/c/` et les `\` deviennent des `/`.

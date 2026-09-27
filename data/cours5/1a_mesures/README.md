@@ -9,12 +9,12 @@ tâches, puis mesurer quatre temps avec un script fourni.
 la vitesse de base du processeur, la taille de la mémoire, le type (SSD ou
 HDD) et la capacité du disque, la vitesse du lien réseau.
 
-Si le gestionnaire ne s'ouvre pas, `systeminfo` dans Anaconda Prompt donne le
+Si le gestionnaire ne s'ouvre pas, `systeminfo` dans l'invite de commandes d'Anaconda donne le
 processeur et la mémoire.
 
 ## Quatre mesures
 
-Depuis `cours5/1a_mesures/`, dans Anaconda Prompt :
+Depuis `cours5/1a_mesures/`, dans l'invite de commandes d'Anaconda :
 
 ```bash
 python mesures.py

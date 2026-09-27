@@ -21,10 +21,10 @@ montre le contenu.
 VS Code reste en « Restricted Mode » et l'extension Python ne se charge pas
 ({ref}`V4 <dep-v4>`).
 
-## Lancer VS Code depuis l'Anaconda Prompt
+## Lancer VS Code depuis l'invite de commandes d'Anaconda
 
 Quand Navigator est lent ou ne s'ouvre pas, VS Code se lance aussi depuis
-l'Anaconda Prompt. Taper `code` suivi d'une espace, puis glisser le dossier
+l'invite de commandes d'Anaconda. Taper `code` suivi d'une espace, puis glisser le dossier
 du TD depuis l'explorateur dans la fenêtre, ce qui écrit son chemin, puis
 Entrée :
 

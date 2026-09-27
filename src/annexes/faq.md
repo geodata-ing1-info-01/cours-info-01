@@ -32,7 +32,7 @@ même message a parfois deux causes selon la fenêtre.
 | Je ne vois pas les dossiers `.git`, `.vscode`, `AppData` | {ref}`B2 <dep-b2>` |
 | Au double-clic, Windows demande avec quoi ouvrir le fichier | {ref}`B3 <dep-b3>` |
 
-## Anaconda Prompt, conda, Navigator
+## Invite de commandes d'Anaconda, conda, Navigator
 
 | Ce qu'on voit | Entrée |
 |---|---|

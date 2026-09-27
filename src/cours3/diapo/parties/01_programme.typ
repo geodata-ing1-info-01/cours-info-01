@@ -274,7 +274,7 @@
     align: top,
     schema-notebook-valeurs(),
     [
-      #panneau("Anaconda Prompt : recette.py, TD 3a")[
+      #panneau("Invite de commandes d'Anaconda : recette.py, TD 3a")[
         #sortie("> python recette.py pate_pizza -p 6 -u US\n…\\sortie\\pate_pizza.html :\n6 personne(s), unités US", taille: 11pt)
       ]
       #v(0.3em)
@@ -377,7 +377,7 @@
     panneau("recette.py")[
       #sortie("import argparse\n\n\ndef main():\n    analyseur = argparse.ArgumentParser()\n    analyseur.add_argument(\"nom\")\n    options = analyseur.parse_args()\n    print(\"Recette demandée :\", options.nom)\n\n\nif __name__ == \"__main__\":\n    main()", taille: 11.5pt)
     ],
-    panneau("Anaconda Prompt")[
+    panneau("Invite de commandes d'Anaconda")[
       #sortie("> python recette.py crepes\nRecette demandée : crepes\n\n> python recette.py\nusage: recette.py [-h] nom\nrecette.py: error: the following\narguments are required: nom\n\n> python recette.py --help\nusage: recette.py [-h] nom\n…", taille: 11.5pt)
     ],
   )

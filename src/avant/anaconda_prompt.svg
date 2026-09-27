@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="720" height="356" viewBox="0 0 720 356" font-family="Consolas, 'DejaVu Sans Mono', 'Liberation Mono', monospace" font-size="13">
-  <title>La fenêtre de l'Anaconda Prompt</title>
+  <title>La fenêtre de l'invite de commandes d'Anaconda</title>
   <rect x="20" y="16" width="680" height="184" rx="6" fill="#1f1f1f" stroke="#555" stroke-width="1"/>
   <rect x="20" y="16" width="680" height="28" rx="6" fill="#e9e9e9"/>
   <rect x="20" y="32" width="680" height="12" fill="#e9e9e9"/>

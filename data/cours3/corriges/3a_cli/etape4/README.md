@@ -12,7 +12,7 @@ Le programme demande Python et pandoc, tous deux fournis par Anaconda.
 
 ## Exécution
 
-Dans Anaconda Prompt, se placer dans le dossier du projet, puis :
+Dans l'invite de commandes d'Anaconda, se placer dans le dossier du projet, puis :
 
 ```
 python recette.py crepes

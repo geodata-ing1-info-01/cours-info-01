@@ -12,7 +12,7 @@ Le programme demande Python et pandoc, tous deux fournis par Anaconda.
 
 ## Installation de la commande
 
-Dans Anaconda Prompt, dans le dossier du projet :
+Dans l'invite de commandes d'Anaconda, dans le dossier du projet :
 
 ```
 pip install -e .

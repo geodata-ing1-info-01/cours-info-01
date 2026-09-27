@@ -361,8 +361,8 @@
     pouvant ouvrir un autre Python. Il ne coûte rien aujourd'hui, aucune
     bibliothèque n'étant importée.
 
-    Les postes de la salle ont Anaconda, d'où l'« Anaconda Prompt » du menu
-    Démarrer. `cmd` et PowerShell ne connaissent pas `conda` tant qu'ils n'ont
+    Les postes de la salle ont Anaconda, d'où l'invite de commandes d'Anaconda (« Anaconda Prompt » du menu
+    Démarrer). `cmd` et PowerShell ne connaissent pas `conda` tant qu'ils n'ont
     pas été initialisés : première cause de « la commande n'existe pas ».
 
     `base` est le nom du Python livré avec Anaconda, et le seul aujourd'hui.
@@ -374,7 +374,7 @@
   #annonce[
     Lancé depuis le bureau, VS Code ouvre un terminal PowerShell, qui refuse le
     script d'activation. Sans droits d'administrateur, on lui donne le terminal
-    de l'Anaconda Prompt.
+    de l'invite de commandes d'Anaconda.
   ]
 
   #block(width: 100%, inset: (x: 10pt, y: 6pt), fill: gris)[
@@ -408,7 +408,7 @@
     l'extension (#11039, par défaut depuis fin 2023) n'exécute aucun script,
     mais la version installée sur les postes a montré l'erreur. D'où `cmd` :
     `activate.bat` n'est pas soumis à la stratégie, c'est ce que fait le
-    raccourci Anaconda Prompt, et c'est la solution que les promotions
+    raccourci « Anaconda Prompt », et c'est la solution que les promotions
     précédentes avaient trouvée.
 
     Le chemin `C:\ProgramData\anaconda3` vaut pour une installation
@@ -555,10 +555,10 @@
     texte conservé autour.
   ]
 ]
-#d("En option : sans VS Code, depuis l'Anaconda Prompt")[
+#d("En option : sans VS Code, depuis l'invite de commandes d'Anaconda")[
   #annonce[
     L'éditeur n'est qu'une fenêtre autour du terminal. Tout ce qui précède se
-    refait dans l'Anaconda Prompt seul, pour le voir.
+    refait dans l'invite de commandes d'Anaconda seule, pour le voir.
   ]
 
   #tableau(
@@ -579,7 +579,7 @@
   #notes[
     Facultatif, pour ceux qui ont fini, ou pour un poste où VS Code résiste.
     L'intérêt est de faire voir que l'éditeur n'ajoute rien à l'exécution :
-    le terminal intégré et l'Anaconda Prompt lancent le même `python`.
+    le terminal intégré et l'invite de commandes d'Anaconda lancent le même `python`.
 
     Étape 2 : glisser un dossier depuis l'explorateur dans la fenêtre du
     terminal colle son chemin complet, entre guillemets s'il contient un
@@ -587,10 +587,10 @@
     `cd` pour lui-même est au cours 2. Sous Windows, `cd /d` si le dossier
     est sur un autre disque que `C:`.
 
-    L'Anaconda Prompt ouvre déjà `(base)`, donc aucune activation à taper
+    L'invite de commandes d'Anaconda ouvre déjà `(base)`, donc aucune activation à taper
     aujourd'hui. C'est au TD 4a, une fois un second Python fabriqué, que
     `conda activate` prendra un sens. Sous macOS et Linux, un terminal
-    ordinaire remplace l'Anaconda Prompt.
+    ordinaire remplace l'invite de commandes d'Anaconda.
   ]
 ]
 #d("Exécuter pas à pas : poser un arrêt, puis lancer")[

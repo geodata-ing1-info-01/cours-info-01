@@ -27,7 +27,7 @@ lance de deux façons, et ce n'est pas indifférent :
   stratégie d'exécution refuse le script d'activation de l'environnement
   (`activate.ps1 cannot be loaded because running scripts is disabled on this
   system`). Sans droits d'administrateur, la solution est de donner à VS Code
-  le terminal de l'Anaconda Prompt, un `cmd` qui lance `activate.bat` :
+  le terminal de l'invite de commandes d'Anaconda, un `cmd` qui lance `activate.bat` :
 
   ```json
   "terminal.integrated.profiles.windows": {
@@ -66,7 +66,7 @@ lance de deux façons, et ce n'est pas indifférent :
    Debugger » puis « Python File » : le programme s'arrête ligne 4. `F10`
    trois fois en lisant `total` dans le panneau Variables, puis `F5`.
 
-En option, sans VS Code : Anaconda Prompt, `cd` sur le dossier (le glisser
+En option, sans VS Code : invite de commandes d'Anaconda, `cd` sur le dossier (le glisser
 dans la fenêtre colle son chemin), puis les mêmes commandes, ce que l'éditeur
 faisait à votre place.
 

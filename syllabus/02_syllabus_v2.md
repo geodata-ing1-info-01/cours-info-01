@@ -16,11 +16,11 @@
 
 | Cours | Terminal employé |
 |---|---|
-| 1, TD 2a | terminal de VS Code (PowerShell, qui refuse `activate.ps1`), remplacé par un profil Anaconda Prompt |
+| 1, TD 2a | terminal de VS Code (PowerShell, qui refuse `activate.ps1`), remplacé par un profil « Anaconda Prompt » |
 | 2 | bash (captures sous Linux) |
-| 3 | Anaconda Prompt (préparation), Git Bash avec `conda init bash` (TD 3a) |
+| 3 | invite de commandes d'Anaconda (préparation), Git Bash avec `conda init bash` (TD 3a) |
 | 4 | Git Bash dans VS Code |
-| 5 | Anaconda Prompt ; « Git Bash a la sienne » pour la clé SSH |
+| 5 | invite de commandes d'Anaconda ; « Git Bash a la sienne » pour la clé SSH |
 
 **Configuration de VS Code plus longue que prévu.** Au TD 2a du cours 1, chaque élève a configuré seul l'éditeur (extension, interpréteur, profil de terminal). Les problèmes de configuration, propres à chaque poste, et la prise en main d'un outil nouveau ont pris plus que les 25′ prévues, et c'est ce qui a repoussé la partie 4 hors de la séance.
 
@@ -105,7 +105,7 @@ Objectif : savoir où sont ses fichiers et où les ranger, se déplacer et agir 
 
 Objectif : travailler dans un éditeur de code configuré, écrire de la documentation en Markdown, et versionner ce travail avec git en local.
 
-- **⌨️ 20′ · Configuration de VS Code, en classe entière** : l'enseignant projette, chaque élève fait la même étape en même temps, on ne passe à la suivante que lorsque la salle a fini. Lancer VS Code ; installer l'extension Python ; choisir l'interpréteur ; faire de Git Bash le terminal par défaut (`terminal.integrated.defaultProfile.windows`) ; ouvrir le dossier `cours2/` ; vérifier `(base)` et `python --version` dans le terminal intégré. Reprend les diapositives 50 à 56 du cours 1 de 2026, remplace le profil Anaconda Prompt par Git Bash, et s'appuie sur [`src/annexes/configuration/vscode.md`](../src/annexes/configuration/vscode.md).
+- **⌨️ 20′ · Configuration de VS Code, en classe entière** : l'enseignant projette, chaque élève fait la même étape en même temps, on ne passe à la suivante que lorsque la salle a fini. Lancer VS Code ; installer l'extension Python ; choisir l'interpréteur ; faire de Git Bash le terminal par défaut (`terminal.integrated.defaultProfile.windows`) ; ouvrir le dossier `cours2/` ; vérifier `(base)` et `python --version` dans le terminal intégré. Reprend les diapositives 50 à 56 du cours 1 de 2026, remplace le profil « Anaconda Prompt » par Git Bash, et s'appuie sur [`src/annexes/configuration/vscode.md`](../src/annexes/configuration/vscode.md).
   - Le guide du TD, plus détaillé qu'en 2026 : une capture par étape, la vérification attendue, et la réponse aux blocages connus (PowerShell et `activate.ps1`, interpréteur absent de la liste, webview de l'aperçu). Distribué avant la séance pour les élèves qui veulent prendre de l'avance.
 - **Les réglages (5′)**, en classe entière, à la suite de la configuration : 🎓 la palette de commandes (`Ctrl` + `Maj` + `P`) et les réglages (`Ctrl` + `,`), diapositive 54 du cours 1 de 2026 ; deux niveaux, User (le compte, tous les dossiers) et Workspace (`.vscode/settings.json` du dossier ouvert, qui l'emporte), d'après [`src/annexes/configuration/vscode.md`](../src/annexes/configuration/vscode.md), section « Les réglages »). ⌨️ Chaque élève règle au niveau User `editor.renderWhitespace` sur `all` (les espaces et tabulations du TD 2b du cours 1) et `files.autoSave` ; il ouvre le `settings.json` correspondant pour voir le même réglage en texte. Le profil de terminal Git Bash, réglé à l'étape précédente, en est un troisième exemple.
 - **🎓 10′ · L'IDE** : les fonctions d'un IDE ; édition (coloration syntaxique, chasse fixe, indentation) ; dossier ouvert = projet (diapositives 43 à 47 du cours 1 de 2026).
@@ -138,7 +138,7 @@ Inchangé sur le fond. La partie A (créer l'environnement `animation`, lancer J
 
 ## Cours 5 — Matériel, réseau ; mots de passe, clés, secrets (CM)
 
-Inchangé sur le fond. La diapositive « Client et serveur » reçoit l'exemple du serveur de notebook sur son propre poste (`localhost:8888`, diapositives 104 à 106 du cours 1 de 2026), et « Local et distant » renvoie à la partie stockage du cours 1. Les TD passent de l'Anaconda Prompt à Git Bash (`cat ~/.ssh/id_ed25519.pub` au lieu de `type %USERPROFILE%\…`).
+Inchangé sur le fond. La diapositive « Client et serveur » reçoit l'exemple du serveur de notebook sur son propre poste (`localhost:8888`, diapositives 104 à 106 du cours 1 de 2026), et « Local et distant » renvoie à la partie stockage du cours 1. Les TD passent de l'invite de commandes d'Anaconda à Git Bash (`cat ~/.ssh/id_ed25519.pub` au lieu de `type %USERPROFILE%\…`).
 
 ## Cours 6 — La forge, sur le dépôt du projet 4 (CM)
 
@@ -231,7 +231,7 @@ Statuts : **gardé** (même séance), **réduit** (même séance, moins de temps
 | p4 | Partie A, créer l'environnement et exécuter le notebook (35′) | p4, ≈ 20′ | réduit |
 | p4 | Partie B, du notebook au programme | p4, avec 15′ de plus ; B4 (README) en séance | gardé |
 | c5 | Matériel et réseau, ordres de grandeur, TD 1a | c5 | gardé |
-| c5 | Mots de passe, clé SSH, secrets, TD 2a et 3a | c5, dans Git Bash au lieu de l'Anaconda Prompt | gardé |
+| c5 | Mots de passe, clé SSH, secrets, TD 2a et 3a | c5, dans Git Bash au lieu de l'invite de commandes d'Anaconda | gardé |
 | c6 | Forge : compte, `remote`, `clone`, `push`, `pull` | c6, sur le dépôt du projet 4 | gardé |
 | c6 | Outil « trajectoire », jalons J1 à J5 | — | retiré |
 | c6 | Boucle contre numpy | projet 7, sur l'effet choisi | déplacé |
@@ -263,7 +263,7 @@ Statuts : **gardé** (même séance), **réduit** (même séance, moins de temps
 | c1 · 41, 67 à 73 | Du code source aux instructions ; TD 2c | annexe |
 | c1 · 43 à 47 | Fonctions et édition d'un IDE | c2 |
 | c1 · 48 à 56 | TD 2a, configuration de VS Code | c2, classe entière |
-| c1 · 57 à 60 | Programme du TD, lancer, Python interactif, Anaconda Prompt | c1, TD 2a sans VS Code, dans Git Bash |
+| c1 · 57 à 60 | Programme du TD, lancer, Python interactif, invite de commandes d'Anaconda | c1, TD 2a sans VS Code, dans Git Bash |
 | c1 · 61, 62 | Débogueur | annexe, ou c2 si le temps le permet |
 | c1 · 74 à 78, 83 à 87 | Markdown, TD 3a | syntaxe minimale au c1 (partie 3) ; le reste au c2 |
 | c1 · 54 | La palette de commandes et les réglages | c2, les réglages |

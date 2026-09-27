@@ -49,14 +49,14 @@ d'environnement de la fenêtre
 Ces modifications ne valent que pour cette fenêtre. Un autre `cmd` ouvert
 depuis le menu Démarrer ne les a pas : `python` y désigne un autre Python,
 ou aucun, et `conda` n'y est pas reconnu ({ref}`A2 <dep-a2>`,
-{ref}`V7 <dep-v7>`). L'Anaconda Prompt est un `cmd` dans lequel cette
+{ref}`V7 <dep-v7>`). L'invite de commandes d'Anaconda est un `cmd` dans lequel cette
 activation a été faite à l'ouverture ([Les terminaux](terminaux.md)).
 
 ## Les scripts d'activation
 
 L'activation est faite par des fichiers de commandes, un par
 interpréteur. Pour `cmd`, c'est `C:\ProgramData\anaconda3\Scripts\activate.bat`,
-celui que le raccourci Anaconda Prompt exécute. Son contenu, débarrassé
+celui que le raccourci « Anaconda Prompt » exécute. Son contenu, débarrassé
 de ses commentaires :
 
 ```bat

@@ -39,14 +39,14 @@ d'un `import` qui marche dans l'un et pas dans l'autre ({ref}`J4 <dep-j4>`).
 
 | Ce qu'on fait | Ce qu'on doit voir | Sinon |
 |---|---|---|
-| Exécuter une cellule contenant `import sys; print(sys.executable)` (`Maj` + `Entrée`) | le chemin d'Anaconda, le même que dans l'Anaconda Prompt | {ref}`J2 <dep-j2>`, {ref}`J4 <dep-j4>` |
+| Exécuter une cellule contenant `import sys; print(sys.executable)` (`Maj` + `Entrée`) | le chemin d'Anaconda, le même que dans l'invite de commandes d'Anaconda | {ref}`J2 <dep-j2>`, {ref}`J4 <dep-j4>` |
 | Bouton Restart, puis Run All | toutes les cellules s'exécutent, dans l'ordre, sans erreur | {ref}`J3 <dep-j3>` |
 
 ## Un noyau dans son propre environnement
 
 Un environnement créé au TD 4a n'a de noyau que si le paquet `ipykernel` y
 est installé. VS Code le propose au premier lancement ({ref}`J2 <dep-j2>`)
-; sinon, dans l'Anaconda Prompt :
+; sinon, dans l'invite de commandes d'Anaconda :
 
 ```
 conda install -n recette -c conda-forge ipykernel

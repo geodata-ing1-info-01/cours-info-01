@@ -35,7 +35,7 @@ l'identique dans le terminal de macOS et de Linux.
 ## Rappels avant de commencer
 
 **Un terminal, plusieurs fenêtres.** Le poste a plusieurs terminaux :
-l'invite de commandes (`cmd`), PowerShell, l'Anaconda Prompt, Git Bash.
+l'invite de commandes (`cmd`), PowerShell, l'invite de commandes d'Anaconda, Git Bash.
 Chacun a son langage. Les commandes du guide ne fonctionnent que dans Git
 Bash. L'invite, au début de chaque ligne, indique le terminal employé :
 
@@ -43,8 +43,8 @@ Bash. L'invite, au début de chaque ligne, indique le terminal employé :
 |---|---|
 | ![Git Bash](../../../images/terminaux/git_bash_2011.png) | ![Invite de commandes](../../../images/terminaux/cmd_windows11.png) |
 | `utilisateur@machine MINGW64 ~/…`, puis `$` | `C:\Users\…>` |
-| **PowerShell** | **Anaconda Prompt** |
-| ![PowerShell](../../../images/terminaux/powershell_terminal_windows.png) | ![Anaconda Prompt](../../../images/terminaux/miniforge_prompt.png) |
+| **PowerShell** | **Invite de commandes d'Anaconda** |
+| ![PowerShell](../../../images/terminaux/powershell_terminal_windows.png) | ![Invite de commandes d'Anaconda](../../../images/terminaux/miniforge_prompt.png) |
 | `PS C:\Users\…>` | `(base) C:\Users\…>` |
 
 La capture de Git Bash date de 2011 (`MINGW32`) ; celle de l'Anaconda

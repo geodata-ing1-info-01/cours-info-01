@@ -71,7 +71,7 @@ PET cherche `conda` dans les dossiers du `PATH`, dans les variables
 laissées par une activation (`CONDA_PREFIX`, `CONDA_EXE`), dans le
 registre Windows, et aux emplacements habituels d'installation. Sur les
 postes de la salle, lancé depuis le menu Démarrer, VS Code n'a ni le
-`PATH` ni les variables de l'Anaconda Prompt
+`PATH` ni les variables de l'invite de commandes d'Anaconda
 ([Variables d'environnement](variables_environnement.md)) ; c'est le
 dernier indice qui répond, `C:\ProgramData\anaconda3` étant un des
 emplacements habituels. Le journal « Python Environments » le montre :
@@ -198,5 +198,5 @@ conda ([Anaconda, section Configuration](../configuration/anaconda.md)) :
 Une fois l'environnement créé, son activation dans un nouveau terminal
 suit la règle habituelle : `conda activate` tapé par l'extension, qui
 fonctionne dans le profil `cmd` et échoue dans PowerShell. Le module crée
-ses environnements dans l'Anaconda Prompt, avec `-c conda-forge`, puis les
+ses environnements dans l'invite de commandes d'Anaconda, avec `-c conda-forge`, puis les
 choisit dans VS Code : c'est le chemin où rien de tout cela ne se pose.

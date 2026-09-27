@@ -16,8 +16,8 @@
 
 #d("Fabriquer la paire de clés")[
   #annonce[
-    Taper la commande dans Anaconda Prompt, puis Entrée à chacune des trois
-    questions.
+    Taper la commande dans l'invite de commandes d'Anaconda, puis trois fois
+    Entrée.
   ]
 
   #terminal("Anaconda Prompt", "> ssh-keygen -t ed25519 -C \"prenom.nom@etu.ecole.fr\"

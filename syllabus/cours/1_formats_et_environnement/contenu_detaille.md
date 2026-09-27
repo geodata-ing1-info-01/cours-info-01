@@ -253,7 +253,7 @@ L'installation demande du réseau et quelques minutes : la lancer avant la séan
 | Linux, macOS | un terminal ordinaire suffit | l'invite commence par `(base)` |
 | Dans l'éditeur | `Ctrl`+`Maj`+`P`, « Python: Select Interpreter », choisir `base` | le terminal ouvert ensuite commence par `(base)` |
 
-Les postes de la salle ont Anaconda installé : c'est lui qui fournit l'« Anaconda Prompt » du menu Démarrer. Le terminal Windows ordinaire, `cmd` ou PowerShell, ne connaît pas `conda` tant qu'il n'a pas été initialisé.
+Les postes de la salle ont Anaconda installé : c'est lui qui fournit l'invite de commandes d'Anaconda (« Anaconda Prompt » du menu Démarrer). Le terminal Windows ordinaire, `cmd` ou PowerShell, ne connaît pas `conda` tant qu'il n'a pas été initialisé.
 
 > **La troisième ligne est celle qui sert toute l'année** : choisir l'interpréteur dans l'éditeur suffit, l'extension Python plaçant ensuite tous les terminaux intégrés dans cet environnement — on n'a plus à taper `conda activate`. Faire lire l'invite à voix haute une fois : `(base)` et `(base)` ne sont pas la même chose, et les confondre fait installer les paquets là où ils ne serviront pas.
 
@@ -267,7 +267,7 @@ Le TD a été renommé et étoffé en septembre 2026, après des essais sur les 
 4. **Choisir l'interpréteur.**
 5. **VS Code hors Anaconda** (lancé depuis le bureau) : PowerShell refuse `activate.ps1` — « running scripts is disabled on this system » — et les élèves n'ont pas les droits pour changer la stratégie d'exécution. La solution retenue, sans droits : un profil de terminal `cmd.exe /K …\Scripts\activate.bat …`, la cible exacte du raccourci « Anaconda Prompt », posé en profil par défaut dans `settings.json` (User). Les autres pistes de l'issue vscode-python #2559 et leurs limites sont dans les notes de la diapositive : `Set-ExecutionPolicy -Scope CurrentUser` et le profil PowerShell `-ExecutionPolicy ByPass` cèdent devant une stratégie de groupe ; l'activation par variables d'environnement de l'extension (#11039) n'exécute aucun script mais la version des postes a montré l'erreur.
 6. **Lancer le programme**, puis les trois façons d'exécuter `altitudes.py`, dont le pas à pas détaillé sur deux diapositives (poser l'arrêt et lancer, avec le choix « Python Debugger › Python File » au premier `F5` ; puis avancer avec `F10` en prédisant `total`, la barre de boutons et ses touches).
-7. **En option, sans VS Code** : refaire lancement et session interactive depuis l'Anaconda Prompt (`conda activate base`, `cd` en glissant le dossier dans la fenêtre), pour voir ce que l'éditeur faisait à leur place.
+7. **En option, sans VS Code** : refaire lancement et session interactive depuis l'invite de commandes d'Anaconda (`conda activate base`, `cd` en glissant le dossier dans la fenêtre), pour voir ce que l'éditeur faisait à leur place.
 
 **Les étapes sont écrites une par une et projetées telles quelles** — l'objectif seul ne suffit pas à cette séance, une étape sous-entendue est une étape où la moitié de la salle s'arrête sans le dire.
 

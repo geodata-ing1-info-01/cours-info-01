@@ -1,6 +1,6 @@
 ---
 title: JupyterLab
-subtitle: Le noyau et le client d'un notebook ; tester JupyterLab, le lancer depuis l'Anaconda Prompt
+subtitle: Le noyau et le client d'un notebook ; tester JupyterLab, le lancer depuis l'invite de commandes d'Anaconda
 ---
 
 Un notebook est un fichier qui mélange du texte et des cellules de code.
@@ -34,11 +34,11 @@ Le test, qui vérifie que Python exécute du code sur le poste sans rien
 configurer, est dans [Anaconda, JupyterLab et VS
 Code](../../avant/python.md), après celui d'Anaconda.
 
-## Lancer JupyterLab depuis l'Anaconda Prompt
+## Lancer JupyterLab depuis l'invite de commandes d'Anaconda
 
 Navigator fait deux choses quand on clique Launch : il active
 l'environnement affiché en haut de sa page, puis il lance `jupyter lab`.
-Les deux mêmes commandes se tapent dans l'Anaconda Prompt, ou dans le terminal
+Les deux mêmes commandes se tapent dans l'invite de commandes d'Anaconda, ou dans le terminal
 « Anaconda Prompt » de VS Code ([Python et environnement conda](vscode_python.md)),
 et elles montrent ce que la fiche cache.
 

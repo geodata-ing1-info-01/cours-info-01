@@ -57,14 +57,14 @@ Les fichiers des TD sont dans l'archive `cours3/` : un dossier par TD, avec
 ses propres données et la feuille du TD en PDF. Python, JupyterLab, Pillow et
 pandoc sont dans l'environnement `base` d'Anaconda. Selon les groupes, le TD
 0a crée un environnement de la séance, `info01-cours3`, en une commande dans
-Anaconda Prompt.
+l'invite de commandes d'Anaconda.
 
 L'archive vient du dossier partagé `formationTemp` ; elle se copie et se
 décompresse dans le dossier `info01` du Bureau ([Récupérer les fichiers
 d'une séance](../avant/donnees.md)), et rien ne se fait dans le dossier
 partagé ni depuis l'archive. Les notebooks, livrés dans `depart/notebook/`,
 se copient dans `travail/` avant d'être ouverts dans JupyterLab, depuis
-Anaconda Navigator ou par `jupyter lab` dans Anaconda Prompt. Une ligne de
+Anaconda Navigator ou par `jupyter lab` dans l'invite de commandes d'Anaconda. Une ligne de
 code terminée par `# à compléter` est à écrire en séance ; sa réponse est
 repliée dans la cellule « Réponse » qui la suit, et la version complète est
 distribuée après.

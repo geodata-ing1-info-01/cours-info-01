@@ -10,7 +10,7 @@ JupyterLab). Sur les postes de la salle, il est installé pour tous les
 utilisateurs, dans `C:\ProgramData\anaconda3`.
 
 Anaconda se lance de deux façons : par une interface graphique, Anaconda
-Navigator, ou en ligne de commande, l'Anaconda Prompt. Les deux donnent
+Navigator, ou en ligne de commande, l'invite de commandes d'Anaconda. Les deux donnent
 accès aux mêmes applications et au même Python. Le test des deux est dans
 [Anaconda, JupyterLab et VS Code](../../avant/python.md).
 
@@ -41,18 +41,19 @@ affiché en haut. Quand Navigator est lent ou ne s'ouvre pas
 ({ref}`A4 <dep-a4>`, {ref}`A5 <dep-a5>`), la section suivante donne
 l'autre façon de lancer les mêmes applications.
 
-## Lancer l'Anaconda Prompt
+## Lancer l'invite de commandes d'Anaconda
 
-Menu Démarrer, taper `anaconda`, choisir « Anaconda Prompt ». Une fenêtre
-noire s'ouvre tout de suite. La ligne qui attend une commande s'appelle
+Menu Démarrer, taper `anaconda`, choisir « Anaconda Prompt », le nom
+anglais de l'invite de commandes d'Anaconda. Une fenêtre noire s'ouvre tout
+de suite. La ligne qui attend une commande s'appelle
 l'invite ; elle commence par `(base)`, le nom de l'environnement actif, puis
 le dossier courant.
 
 ```{figure} ../../avant/anaconda_prompt.svg
-:alt: La fenêtre de l'Anaconda Prompt, avec une commande tapée et sa réponse
+:alt: La fenêtre de l'invite de commandes d'Anaconda, avec une commande tapée et sa réponse
 :width: 100%
 
-Une commande tapée dans l'Anaconda Prompt, et sa réponse.
+Une commande tapée dans l'invite de commandes d'Anaconda, et sa réponse.
 ```
 
 Chaque application se lance en tapant son nom, puis Entrée :
@@ -65,7 +66,7 @@ Chaque application se lance en tapant son nom, puis Entrée :
 | Anaconda Navigator | `anaconda-navigator` | |
 
 L'application démarre avec l'environnement actif dans la fenêtre, celui
-qu'indique l'invite. La fenêtre de l'Anaconda Prompt reste ouverte pendant
+qu'indique l'invite. La fenêtre de l'invite de commandes d'Anaconda reste ouverte pendant
 que l'application est ouverte ; elle affiche ce que l'application écrit,
 et une erreur de démarrage s'y lit.
 
@@ -76,7 +77,7 @@ installés avec lui. `base` est celui d'Anaconda. Sur les postes de la
 salle, son dossier n'est pas modifiable par un compte élève : on n'y
 installe rien. Chaque TD qui a besoin d'un paquet crée son propre
 environnement, qui va dans `C:\Users\<nom>\.conda\envs`. Le TD 4a fait
-créer le premier ; les commandes, dans l'Anaconda Prompt :
+créer le premier ; les commandes, dans l'invite de commandes d'Anaconda :
 
 ```
 conda create -n recette -c conda-forge python pandoc
@@ -95,7 +96,7 @@ change l'activation est expliqué dans
 
 - Anaconda Navigator : [Getting started with Navigator](https://www.anaconda.com/docs/tools/anaconda-navigator/getting-started)
   (en anglais).
-- Anaconda Prompt et conda : [Getting started with conda](https://docs.conda.io/projects/conda/en/stable/user-guide/getting-started.html)
+- Invite de commandes d'Anaconda et conda : [Getting started with conda](https://docs.conda.io/projects/conda/en/stable/user-guide/getting-started.html)
   (en anglais).
 
 ## Configuration des dépôts
@@ -146,7 +147,7 @@ Depuis Anaconda 2025.06, conda demande une fois par compte d'accepter
 les conditions d'utilisation des canaux d'Anaconda avant de s'en servir
 ({ref}`A10 <dep-a10>`). La question n'est posée que dans un terminal ;
 lancé par VS Code, conda ne peut pas la poser et échoue. Faire le test une
-fois, dans l'Anaconda Prompt :
+fois, dans l'invite de commandes d'Anaconda :
 
 ```
 conda tos
@@ -168,11 +169,11 @@ consultés et la question ne se pose plus.
 |---|---|
 | Installation | `C:\ProgramData\anaconda3` |
 | Python de `base` | `C:\ProgramData\anaconda3\python.exe` |
-| Script qu'exécute l'Anaconda Prompt | `C:\ProgramData\anaconda3\Scripts\activate.bat` |
+| Script qu'exécute l'invite de commandes d'Anaconda | `C:\ProgramData\anaconda3\Scripts\activate.bat` |
 | Environnements créés par le compte | `C:\Users\<nom>\.conda\envs` |
 | Liste des environnements connus | `C:\Users\<nom>\.conda\environments.txt` |
 | Réglages de conda pour le compte (canaux) | `C:\Users\<nom>\.condarc` |
 | Réglages et journaux de Navigator | `C:\Users\<nom>\.anaconda\navigator` et `C:\Users\<nom>\AppData\Roaming\.anaconda\navigator` |
 
-`conda info`, dans l'Anaconda Prompt, affiche ces chemins tels que conda
+`conda info`, dans l'invite de commandes d'Anaconda, affiche ces chemins tels que conda
 les voit.

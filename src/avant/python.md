@@ -24,19 +24,20 @@ environnements. Pour l'instant, taper les commandes telles qu'elles sont
 séance 4, une fois la ligne de commande et les interpréteurs pratiqués.
 :::
 
-## L'Anaconda Prompt
+## L'invite de commandes d'Anaconda
 
-L'Anaconda Prompt est une fenêtre noire. On y tape une commande, on
-appuie sur Entrée, et la réponse s'affiche en dessous. La ligne qui attend
+L'invite de commandes d'Anaconda, « Anaconda Prompt » dans le menu
+Démarrer, est une fenêtre noire. On y tape une commande, on appuie sur
+Entrée, et la réponse s'affiche en dessous. La ligne qui attend
 une commande s'appelle l'invite. Sur les postes de la salle, elle commence
 par `(base)` : c'est le nom de l'environnement Python actif, celui
 d'Anaconda.
 
 ```{figure} anaconda_prompt.svg
-:alt: La fenêtre de l'Anaconda Prompt, avec une commande tapée et sa réponse
+:alt: La fenêtre de l'invite de commandes d'Anaconda, avec une commande tapée et sa réponse
 :width: 100%
 
-Une commande tapée dans l'Anaconda Prompt, et sa réponse.
+Une commande tapée dans l'invite de commandes d'Anaconda, et sa réponse.
 ```
 
 | Ce qu'on fait | Ce qu'on doit voir | Sinon |
@@ -87,7 +88,7 @@ Si Navigator propose une mise à jour, répondre No ({ref}`A6 <dep-a6>`).
 |---|---|---|
 | Dans Anaconda Navigator, fiche JupyterLab, bouton Launch | une fenêtre noire, puis un onglet de Firefox à une adresse qui commence par `localhost:8888/lab` | {ref}`J5 <dep-j5>` |
 | Dans l'onglet, sous « Notebook », cliquer « Python 3 » | un notebook vide, avec une cellule | {ref}`J1 <dep-j1>` |
-| Taper `import sys; print(sys.executable)` dans la cellule, puis `Maj` + `Entrée` | le chemin d'Anaconda, le même que dans l'Anaconda Prompt | {ref}`J4 <dep-j4>` |
+| Taper `import sys; print(sys.executable)` dans la cellule, puis `Maj` + `Entrée` | le chemin d'Anaconda, le même que dans l'invite de commandes d'Anaconda | {ref}`J4 <dep-j4>` |
 | Menu File, Shut Down, puis fermer l'onglet | la fenêtre noire se ferme | |
 
 ## VS Code
@@ -160,7 +161,7 @@ accolades, après une virgule.
 ```
 
 Enregistrer (`Ctrl` + `S`), puis palette, « Developer: Reload Window ».
-Les dernières lignes décrivent à VS Code le terminal de l'Anaconda Prompt,
+Les dernières lignes décrivent à VS Code le terminal de l'invite de commandes d'Anaconda,
 qui s'ouvre déjà activé, sans dépendre de l'extension Python.
 Ce que fait chaque ligne est expliqué dans [Fichiers de
 réglages](../annexes/configuration/vscode_reglages.md).

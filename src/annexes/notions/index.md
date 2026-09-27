@@ -6,7 +6,7 @@ Ces pages expliquent ce que les pages de configuration et de problèmes
 tiennent pour acquis :
 
 - [Les terminaux en ligne de commande](terminaux.md) : `cmd`, PowerShell,
-  l'Anaconda Prompt, et Python comme troisième interpréteur.
+  l'invite de commandes d'Anaconda, et Python comme troisième interpréteur.
 - [Variables d'environnement et recherche des programmes](variables_environnement.md) :
   ce que contient `PATH`, comment le terminal trouve un programme quand
   on tape son nom, et comment afficher son chemin.

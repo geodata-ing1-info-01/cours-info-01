@@ -9,7 +9,7 @@ connexion. Il faut un compte GitHub, créé avant la séance.
 
 ## Déroulé
 
-Dans Anaconda Prompt :
+Dans l'invite de commandes d'Anaconda :
 
 ```bash
 ssh-keygen -t ed25519 -C "prenom.nom@etu.ecole.fr"
@@ -66,4 +66,4 @@ La commande, et tout ce qui suit au cours 6, restent les mêmes.
 
 Vérifier depuis une VM de la salle que `ssh -T git@github.com` aboutit sur le
 port 22, ou sinon avec le fichier `config`. Vérifier que `ssh-keygen` est
-trouvé depuis Anaconda Prompt.
+trouvé depuis l'invite de commandes d'Anaconda.

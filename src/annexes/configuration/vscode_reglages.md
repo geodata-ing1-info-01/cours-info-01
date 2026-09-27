@@ -51,7 +51,7 @@ Enregistrer (`Ctrl` + `S`), puis palette, « Developer: Reload Window ».
 | `python.defaultInterpreterPath` | `base` est l'interpréteur d'un dossier tant qu'on n'en a pas choisi un autre, et le noyau proposé en premier |
 | `python-envs.defaultEnvManager` | « Create Environment » crée un environnement conda, pas un `venv` |
 | `python-envs.defaultPackageManager` | « Install Package » passe par conda, pas par pip |
-| `terminal.integrated.profiles.windows` | décrit le terminal de l'Anaconda Prompt : un `cmd` qui lance `activate.bat` à l'ouverture |
+| `terminal.integrated.profiles.windows` | décrit le terminal de l'invite de commandes d'Anaconda : un `cmd` qui lance `activate.bat` à l'ouverture |
 | `terminal.integrated.defaultProfile.windows` | ce terminal est celui qu'ouvre New Terminal, déjà activé, sans dépendre de l'extension Python |
 
 ## Réglages du dossier d'un TD

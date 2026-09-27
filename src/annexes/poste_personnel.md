@@ -57,7 +57,7 @@ Le réglage du terminal change :
   remplaçant `C:\ProgramData\anaconda3` par `C:\Users\<nom>\anaconda3`.
 
 Pour que `conda` réponde dans tous les terminaux de Windows, et pas
-seulement dans l'Anaconda Prompt, taper une fois dans l'Anaconda Prompt
+seulement dans l'invite de commandes d'Anaconda, y taper une fois
 `conda init cmd.exe` (pour `cmd`) ou `conda init powershell` (pour
 PowerShell, après la commande ci-dessus), puis rouvrir le terminal.
 

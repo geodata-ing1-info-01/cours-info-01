@@ -106,7 +106,7 @@ Remède
   environnement conda](../configuration/vscode_python.md)). S'il est fait
   et que l'erreur reste : vérifier que le fichier a été enregistré, que
   l'onglet du terminal s'appelle « Anaconda Prompt », que les chemins sont
-  ceux du raccourci Anaconda Prompt, et faire palette, « Developer: Reload
+  ceux du raccourci « Anaconda Prompt », et faire palette, « Developer: Reload
   Window ». Si le fichier de réglages est souligné en rouge :
   {ref}`V10 <dep-v10>`.
 
@@ -130,7 +130,7 @@ Remède
   complète (avec les environnements du TD 4a) : le réglage
   `python.condaPath`, décrit dans [Python et environnement
   conda](../configuration/vscode_python.md), puis « Developer: Reload
-  Window ». Le chemin exact est celui du raccourci Anaconda Prompt
+  Window ». Le chemin exact est celui du raccourci « Anaconda Prompt »
   ({ref}`A1 <dep-a1>`).
 
 (dep-v7)=

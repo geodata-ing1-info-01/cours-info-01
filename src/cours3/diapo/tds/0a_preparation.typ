@@ -69,7 +69,7 @@
     columns: (auto, 1.3fr, 1fr),
     align: left + horizon,
     [Outil], [Comment le lancer], [Ce qui doit apparaître],
-    [JupyterLab], [Anaconda Navigator #sym.arrow.r fiche JupyterLab #sym.arrow.r *Launch* ; si rien ne vient après trente secondes : Anaconda Prompt, puis `jupyter lab`],
+    [JupyterLab], [Anaconda Navigator #sym.arrow.r fiche JupyterLab #sym.arrow.r *Launch* ; si rien ne vient après trente secondes : invite de commandes d'Anaconda, puis `jupyter lab`],
       [un onglet du navigateur, adresse `localhost`],
     [Un éditeur], [VS Code, configuré au TD 2a du cours 1 ; sinon Spyder, depuis Navigator],
       [l'éditeur, avec un terminal qui répond à `python --version`],
@@ -84,7 +84,7 @@
 
   #notes[
     Groupes qui créent l'environnement (diapositive suivante) : ne vérifier
-    ici que l'Anaconda Prompt ; JupyterLab se lance à la dernière étape,
+    ici que l'invite de commandes d'Anaconda ; JupyterLab se lance à la dernière étape,
     depuis `info01-cours3`.
 
     Dix minutes, pas plus. 
@@ -108,7 +108,7 @@
   #tableau(
     columns: (auto, 1fr),
     align: left + horizon,
-    [], [Ce qu'il faut faire, dans l'Anaconda Prompt],
+    [], [Ce qu'il faut faire, dans l'invite de commandes d'Anaconda],
     [1], [`conda create -n info01-cours3 -c conda-forge python=3.12 jupyterlab jupyterlab-myst pandoc pillow`, puis `y`],
     [2], [`conda activate info01-cours3`],
     [3], [`pandoc --version`, puis `python -c "import PIL"`],

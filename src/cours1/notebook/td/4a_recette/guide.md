@@ -21,7 +21,7 @@ en refaisant l'environnement à partir d'eux. Le TD dure une vingtaine de
 minutes.
 
 Le TD nécessite VS Code, avec le terminal réglé au TD 2a pour fonctionner
-comme un Anaconda Prompt, et un navigateur. Les étapes 2, 3 et 5 téléchargent des paquets : la
+comme une invite de commandes d'Anaconda, et un navigateur. Les étapes 2, 3 et 5 téléchargent des paquets : la
 session réseau doit être ouverte.
 
 | Étape | Ce qu'on fait |
@@ -94,8 +94,8 @@ C:\Users\eleve\Desktop\info01\cours1\4a_recette\travail\recette
 `cmd`.
 Si l'invite commence par `PS` et qu'un message `activate.ps1 cannot be
 loaded` s'affiche, le terminal est un PowerShell : faire le réglage du
-terminal du TD 2a, puis ouvrir un nouveau terminal. À défaut, ouvrir un
-Anaconda Prompt depuis le menu Démarrer, taper `cd` suivi d'une espace,
+terminal du TD 2a, puis ouvrir un nouveau terminal. À défaut, ouvrir
+l'invite de commandes d'Anaconda (« Anaconda Prompt » dans le menu Démarrer), taper `cd` suivi d'une espace,
 glisser le dossier `travail\recette` dans la fenêtre, ce qui écrit son
 chemin, puis Entrée. Toutes les commandes du TD se tapent dans ce terminal.
 
@@ -228,8 +228,8 @@ les deux `recette`.
    python recette_a_la_main.py
    ```
 
-   Si le terminal n'est pas dans le dossier du projet (Anaconda Prompt
-   ouvert depuis le menu Démarrer), s'y placer d'abord avec
+   Si le terminal n'est pas dans le dossier du projet (invite de commandes
+   d'Anaconda ouverte depuis le menu Démarrer), s'y placer d'abord avec
    `cd C:\Users\eleve\Desktop\info01\cours1\4a_recette\travail\recette`.
 
 **À noter** : la dernière ligne du message d'erreur, et le nom qu'elle cite.
@@ -237,8 +237,8 @@ les deux `recette`.
 ### Erreurs fréquentes
 
 - `'conda' n'est pas reconnu en tant que commande interne ou externe` : le
-  terminal n'est pas un Anaconda Prompt. Refaire le réglage du TD 2a, ou
-  ouvrir un Anaconda Prompt depuis le menu Démarrer.
+  terminal n'est pas une invite de commandes d'Anaconda. Refaire le réglage du TD 2a, ou
+  ouvrir une invite de commandes d'Anaconda depuis le menu Démarrer.
 - `CondaToSNonInteractiveError: Terms of Service have not been accepted`,
   ou la question `Do you accept the Terms of Service (ToS) …
   [(a)ccept/(r)eject/(v)iew]` : conda demande, une fois par compte,
@@ -407,7 +407,7 @@ python -m pip install -e .
 Les commandes se retrouvent dans l'historique du terminal : flèche vers le
 haut, dans le terminal, pour remonter les commandes tapées. Une phrase
 avant le bloc peut indiquer où les taper : dans un terminal où la commande
-`conda` est reconnue (un Anaconda Prompt sous Windows), depuis le dossier
+`conda` est reconnue (une invite de commandes d'Anaconda sous Windows), depuis le dossier
 du projet.
 
 Enregistrer, puis vérifier le rendu avec `Ctrl` + `K` puis `V`.

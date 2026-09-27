@@ -403,7 +403,7 @@ commandes).
 
 ### 4.1 · Dans le terminal
 
-Dans Anaconda Prompt, se placer dans `travail/` (le chemin affiché par
+Dans l'invite de commandes d'Anaconda, se placer dans `travail/` (le chemin affiché par
 `Path.cwd()` à la section 3.3), puis lancer pandoc :
 
 ```

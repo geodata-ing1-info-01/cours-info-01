@@ -286,7 +286,7 @@ par l'invite de commandes `cmd`, sans demander de droits d'administrateur.
 Les guillemets, les virgules et les doubles barres obliques inverses sont
 ceux du format JSON, et se recopient tels quels. VS Code souligne en rouge
 la ligne qui contient une erreur de recopie. Les dernières lignes décrivent
-à VS Code le terminal de l'Anaconda Prompt, un `cmd` déjà activé à
+à VS Code le terminal de l'invite de commandes d'Anaconda, un `cmd` déjà activé à
 l'ouverture, et en font le terminal par défaut ; les quatre premières
 indiquent à l'extension Python où est conda, et quel interpréteur employer
 tant qu'on n'en a pas choisi.
@@ -296,7 +296,7 @@ l'invite commence par `(base)`.
 
 Les chemins `C:\ProgramData\anaconda3` sont ceux de l'installation de la
 salle. Sur un autre ordinateur, ils se lisent dans le raccourci de
-l'Anaconda Prompt : menu Démarrer, clic droit sur « Anaconda Prompt »,
+l'invite de commandes d'Anaconda : menu Démarrer, clic droit sur « Anaconda Prompt »,
 Ouvrir l'emplacement du fichier, puis clic droit sur le raccourci,
 Propriétés, champ Cible. Sous macOS et Linux, aucun de ces réglages n'est
 nécessaire : le terminal de VS Code y est un terminal ordinaire, que
@@ -397,10 +397,10 @@ Pour aller plus loin, refaire la boucle en affichant `total` à chaque tour :
 **À noter** : comment `total` s'affiche, alors qu'aucun `print` ne le
 demande ; la différence entre l'invite `>>>` et celle du terminal.
 
-### En option : sans VS Code, depuis l'Anaconda Prompt
+### En option : sans VS Code, depuis l'invite de commandes d'Anaconda
 
 Cette partie est facultative, pour qui a fini en avance. Elle lance le même
-programme depuis l'Anaconda Prompt, sans passer par l'éditeur.
+programme depuis l'invite de commandes d'Anaconda, sans passer par l'éditeur.
 
 1. Menu Démarrer, taper `anaconda prompt`, puis Entrée. Une fenêtre noire
    s'ouvre, et l'invite commence par `(base)`.
@@ -550,7 +550,7 @@ Le terminal PowerShell, celui que VS Code ouvre par défaut sous Windows,
 refuse d'exécuter le script d'activation d'Anaconda : sa stratégie
 d'exécution est `Restricted` par défaut, et les postes de la salle ne
 permettent pas de la changer. Le `cmd` n'est pas soumis à cette stratégie ;
-c'est lui que lance le raccourci Anaconda Prompt du menu Démarrer, et c'est
+c'est lui que lance le raccourci « Anaconda Prompt » du menu Démarrer, et c'est
 lui que le réglage du terminal donne à VS Code.
 
 ### Étape 4 : en entier, et ligne à ligne
@@ -588,7 +588,7 @@ notebook, vu dans la dernière partie
 du cours, est une session de ce type, dont les cellules et le texte qui les
 entoure sont conservés dans un fichier.
 
-Dans l'Anaconda Prompt, glisser le dossier dans la fenêtre colle son chemin
+Dans l'invite de commandes d'Anaconda, glisser le dossier dans la fenêtre colle son chemin
 complet, et `cd` fait de ce dossier le dossier courant : l'invite se termine
 ensuite par `2a_vscode_python>`. Les sorties sont les mêmes que dans VS
 Code, `moyenne : 129.0 m` et `129.0`. Le terminal de VS Code et l'Anaconda

@@ -20,7 +20,7 @@ notebook `recette.ipynb`, qui reprend le programme du TD 4a. Il dure une
 vingtaine de minutes, et il est facultatif : il se fait en séance si le temps le permet, ou
 seul ensuite.
 
-Le TD nécessite l'Anaconda Prompt, où se tapent toutes les commandes, un
+Le TD nécessite l'invite de commandes d'Anaconda, où se tapent toutes les commandes, un
 navigateur pour JupyterLab, et VSCode avec l'extension Jupyter du TD 3b. Il
 suppose que le TD 4a a été fait : l'environnement `recette` doit exister. Les
 commandes `conda install` et `conda create` téléchargent des paquets, et
@@ -45,7 +45,7 @@ l'explication.
 > `jupyter lab` dans `recette` ; choisir `recette` comme noyau dans VSCode.
 >
 > **À obtenir :** la réponse de `conda list` pour `base`, le message de
-> l'Anaconda Prompt pour `jupyter lab`, et la proposition de VSCode.
+> l'invite de commandes d'Anaconda pour `jupyter lab`, et la proposition de VSCode.
 
 ### Les fichiers du TD
 
@@ -67,7 +67,7 @@ cours1\
 Le TD n'a pas de dossier `depart\` ni `travail\` : il installe des paquets
 dans des environnements conda, et ne modifie que `recette.ipynb`.
 
-### L'Anaconda Prompt et l'environnement `recette`
+### L'invite de commandes d'Anaconda et l'environnement `recette`
 
 Menu Démarrer, taper `anaconda`, choisir « Anaconda Prompt ». L'invite
 commence par `(base)`. Taper :
@@ -91,7 +91,7 @@ conda list -n base "jupyterlab|ipykernel"
 `-n base` désigne l'environnement à lister. Ce qui suit est un motif :
 `conda list` n'affiche que les paquets dont le nom contient `jupyterlab` ou
 `ipykernel`, la barre verticale signifiant « ou ». Les guillemets sont
-nécessaires : sans eux, l'Anaconda Prompt lirait la barre verticale comme une
+nécessaires : sans eux, l'invite de commandes d'Anaconda lirait la barre verticale comme une
 commande à part. La feuille du TD écrit `conda list -n base jupyterlab
 ipykernel`, que conda refuse (`unrecognized arguments: ipykernel`) : il
 n'accepte qu'un motif.
@@ -138,11 +138,11 @@ même installation à la main.
 > `altitudes.ipynb` ; l'arrêter.
 >
 > **À obtenir :** JupyterLab ouvert dans le navigateur, puis arrêté par
-> `Ctrl` + `C` dans l'Anaconda Prompt.
+> `Ctrl` + `C` dans l'invite de commandes d'Anaconda.
 
 ### (4) Installer JupyterLab dans `recette`
 
-Dans l'Anaconda Prompt :
+Dans l'invite de commandes d'Anaconda :
 
 ```text
 conda install -n recette -c conda-forge jupyterlab
@@ -166,10 +166,10 @@ cd C:\Users\eleve\Desktop\info01\cours1
 jupyter lab
 ```
 
-L'Anaconda Prompt affiche plusieurs lignes, dont une adresse, puis le
+L'invite de commandes d'Anaconda affiche plusieurs lignes, dont une adresse, puis le
 navigateur s'ouvre sur JupyterLab. Si le navigateur ne s'ouvre pas, copier
 l'adresse qui commence par `http://localhost` et la coller dans sa barre
-d'adresse. L'Anaconda Prompt reste occupé tant que JupyterLab s'exécute : ne
+d'adresse. L'invite de commandes d'Anaconda reste occupée tant que JupyterLab s'exécute : ne
 pas le fermer.
 
 **À noter** : l'adresse affichée, et ce que désigne `localhost`.
@@ -184,12 +184,12 @@ puis sur `altitudes.ipynb`. Exécuter les cellules (`Maj` + `Entrée`).
 ### (7) Arrêter JupyterLab
 
 1. Fermer l'onglet de JupyterLab dans le navigateur.
-2. Revenir à l'Anaconda Prompt, et taper `Ctrl` + `C`. JupyterLab demande
+2. Revenir à l'invite de commandes d'Anaconda, et taper `Ctrl` + `C`. JupyterLab demande
    s'il doit s'arrêter ; taper `Ctrl` + `C` une seconde fois, ou `y` puis
    Entrée.
 3. Revenir au navigateur, rouvrir l'adresse de l'étape 5.
 
-**Vérification** : l'invite `(recette)` est revenue dans l'Anaconda Prompt.
+**Vérification** : `(recette)` est de nouveau affiché en début de ligne, dans l'invite de commandes d'Anaconda.
 
 **À noter** : ce qu'affiche le navigateur quand on rouvre l'adresse, et ce
 qui continuerait de s'exécuter si on s'était contenté de fermer l'onglet.
@@ -204,7 +204,7 @@ qui continuerait de s'exécuter si on s'était contenté de fermer l'onglet.
 
 ### (8) Créer l'environnement `altitudes`
 
-Dans l'Anaconda Prompt :
+Dans l'invite de commandes d'Anaconda :
 
 ```text
 conda create -n altitudes -c conda-forge python=3.12 ipykernel numpy
@@ -342,7 +342,7 @@ pas.
 
 ### Rendre la main
 
-Arrêter JupyterLab (`Ctrl` + `C` deux fois dans l'Anaconda Prompt), puis
+Arrêter JupyterLab (`Ctrl` + `C` deux fois dans l'invite de commandes d'Anaconda), puis
 retirer la déclaration du noyau et l'environnement `altitudes` :
 
 ```text
@@ -359,7 +359,7 @@ suppression.
 
 - `'conda' n'est pas reconnu en tant que commande interne ou externe` : la
   commande a été tapée dans un `cmd` ou un PowerShell ordinaire. La taper
-  dans l'Anaconda Prompt.
+  dans l'invite de commandes d'Anaconda.
 - `EnvironmentNotWritableError` à `conda install` : la commande s'appliquait
   à `base`, que le compte élève ne peut pas modifier. Vérifier que la
   commande contient `-n recette`.
@@ -397,7 +397,7 @@ d'abord ces paquets. Le contenu d'un environnement se vérifie par
 avec un autre outil.
 
 `jupyter lab` n'est pas une commande du système : c'est un programme installé
-dans un environnement, que l'Anaconda Prompt ne trouve que si cet
+dans un environnement, que l'invite de commandes d'Anaconda ne trouve que si cet
 environnement est actif. `recette` ne contient que ce que le TD 4a y a mis,
 Python, `markdown` et `tabulate`, et le projet lui-même.
 
@@ -424,7 +424,7 @@ désigne, et le navigateur s'y connecte. Anaconda Navigator effectuait ces deux
 étapes, activer l'environnement et lancer JupyterLab, pour l'environnement
 choisi en haut de sa page d'accueil.
 
-Le serveur s'exécute tant que l'Anaconda Prompt qui l'a lancé est ouvert.
+Le serveur s'exécute tant que l'invite de commandes d'Anaconda qui l'a lancé est ouverte.
 Fermer l'onglet du navigateur ne l'arrête pas : un serveur resté actif
 conserve son port, et le JupyterLab lancé ensuite en prend un autre, ou
 échoue.

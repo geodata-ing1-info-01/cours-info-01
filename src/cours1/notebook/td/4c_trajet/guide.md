@@ -18,7 +18,7 @@ l'autre les fichiers que la commande produit. Le TD dure un quart d'heure,
 et il est facultatif : il se fait en séance si le temps le permet, ou seul
 ensuite.
 
-Le TD nécessite l'Anaconda Prompt, où se tapent les commandes, un éditeur de
+Le TD nécessite l'invite de commandes d'Anaconda, où se tapent les commandes, un éditeur de
 texte (VSCode ou Notepad++) et un lecteur vidéo. L'installation télécharge
 Python, ffmpeg et ImageMagick, et nécessite une session réseau ouverte. Le
 guide suit la section « Installation » du `README` du projet ; le TD demande
@@ -162,7 +162,7 @@ fichier du projet ils sont déclarés.
 
 - `'conda' n'est pas reconnu en tant que commande interne ou externe` : la
   commande a été tapée dans un `cmd` ou un PowerShell ordinaire. La taper
-  dans l'Anaconda Prompt.
+  dans l'invite de commandes d'Anaconda.
 - `EnvironmentFileNotFound` ou un fichier introuvable à la première
   commande : le dossier courant n'est pas `travail\trajet`. Refaire le `cd`.
 - `CondaToSNonInteractiveError: Terms of Service have not been accepted`, ou
@@ -191,7 +191,7 @@ fichier du projet ils sont déclarés.
 
 ### Lancer `trajet`
 
-Dans l'Anaconda Prompt, toujours dans `travail\trajet` et avec `trajet_ensg`
+Dans l'invite de commandes d'Anaconda, toujours dans `travail\trajet` et avec `trajet_ensg`
 actif :
 
 ```text
@@ -238,7 +238,7 @@ colonne `duree` d'`etapes.csv`.
 
 1. Dans `travail\trajet\data\etapes.csv`, changer le texte d'une étape, en
    fin de ligne, sans toucher aux virgules ni aux nombres. Enregistrer.
-2. Relancer `trajet` dans l'Anaconda Prompt.
+2. Relancer `trajet` dans l'invite de commandes d'Anaconda.
 3. Rouvrir `trajet.mp4`, puis `trajet.srt`.
 
 Le fichier est un CSV : les virgules séparent les colonnes. Un texte qui
@@ -314,7 +314,7 @@ première cellule crée à côté du notebook.
 | `ffprobe`, puis `ffmpeg -f concat` | la liste de montage écrite à la main, et la vidéo qu'elle produit |
 
 La dernière cellule lance la commande `trajet` elle-même, avec les options
-`--carte` et `--sortie`. Taper `trajet --help` dans l'Anaconda Prompt pour
+`--carte` et `--sortie`. Taper `trajet --help` dans l'invite de commandes d'Anaconda pour
 lire les trois chemins que la commande accepte.
 
 **À noter** : pour la commande de la cellule `-draw`, ce que représente

@@ -47,7 +47,7 @@ regarde » qui résume la colonne de droite ci-dessous :
 | 3 | `conda initialize` dans un profil | un `conda init powershell` a été fait ; sous `Restricted` c'est le profil lui-même qui est refusé |
 | 4 | `where conda` | vide = conda hors PATH : la découverte par PATH échoue, tout repose sur les emplacements connus et le registre |
 | 4 | `where python` | qui répond en premier (Anaconda, `C:\Python27`, alias Store) |
-| 5 | cible du raccourci Anaconda Prompt | chemin réel d'Anaconda, à recopier dans le profil cmd et dans `python.condaPath` |
+| 5 | cible du raccourci « Anaconda Prompt » | chemin réel d'Anaconda, à recopier dans le profil cmd et dans `python.condaPath` |
 | 5 | `environments.txt` | absent pour ce compte = l'image a été faite sous un autre compte ; une source de découverte en moins |
 | 6 | `PythonCore\2.7`, `ContinuumAnalytics` | d'où vient le 2.7 ; Anaconda est-il inscrit au registre |
 | 7 | `conda info` → `envs directories`, `conda env list` | ce que conda lui-même connaît ; référence pour comparer avec ce que VS Code affiche |
@@ -141,7 +141,7 @@ reg query HKCU\SOFTWARE\Python /s
 dir C:\Python27
 ```
 
-**A7. conda.** Dans un Anaconda Prompt (menu Démarrer), ou dans le cmd après
+**A7. conda.** Dans une invite de commandes d'Anaconda (menu Démarrer), ou dans le cmd après
 `call "C:\ProgramData\anaconda3\Scripts\activate.bat" "C:\ProgramData\anaconda3"` :
 ```
 conda --version

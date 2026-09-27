@@ -72,7 +72,7 @@ Deux conséquences :
 | Raccourci « Git Bash », `git-bash.exe` | mintty | le lanceur, puis `etc\profile` | bash |
 | Cmder, onglet par défaut | ConEmu | `vendor\init.bat`, au démarrage de l'onglet | `cmd` |
 | Cmder, tâche `{bash::bash}` | ConEmu | le lanceur, puis `etc\profile` | bash |
-| Anaconda Prompt, `conda activate outils` | `cmd` | l'activation : `Library\bin` et `Library\usr\bin` de l'environnement | `cmd` |
+| Invite de commandes d'Anaconda, `conda activate outils` | `cmd` | l'activation : `Library\bin` et `Library\usr\bin` de l'environnement | `cmd` |
 | … puis `bash --login -i` | la même | le lanceur, puis `etc\profile` | bash |
 | VS Code, profil « Git Bash » | le panneau de VS Code | le lanceur, puis `etc\profile` | bash |
 | VS Code, panneau Source Control | aucune | le réglage `git.path` | aucun : VS Code lance `git.exe` directement |

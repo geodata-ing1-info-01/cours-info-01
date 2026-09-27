@@ -12,7 +12,7 @@ diapositive montre.
 | `travail/` | vide : la copie du notebook, et ce qu'il écrit |
 
 Copier `depart/notebook/recette.ipynb` dans `travail/`. Ouvrir JupyterLab
-depuis Anaconda Navigator, ou, dans Anaconda Prompt, taper `jupyter lab` ;
+depuis Anaconda Navigator, ou, dans l'invite de commandes d'Anaconda, taper `jupyter lab` ;
 puis naviguer jusqu'à `travail/` dans le panneau de gauche et double-cliquer
 sur la copie. `depart/` ne se modifie pas ; le notebook y lit les
 recettes par le chemin `../depart/`, qui suppose qu'il est dans `travail/`.

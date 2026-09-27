@@ -44,7 +44,7 @@ Objectif : comprendre ce qu'est un logiciel et un fichier, écrire et lancer un 
   - ⌨️ **TD 1b · 12′ · facultatif · Un `.odt` est une archive ZIP** : ouvrir l'archive, modifier `content.xml`, recompresser, rouvrir dans LibreOffice.
 - **Partie 2 · Programmation et éditeur de code (35′)**
   - 🎓 programme et application ; compilé et interprété ; du code source aux instructions machine ; la place de l'interpréteur ; les fonctions d'un IDE ; l'édition de texte dans un IDE (syntaxe et coloration, chasse fixe, indentation en espaces ou tabulation).
-  - ⌨️ **TD 2a · 25′ · Configurer VS Code et lancer un programme** : lancer VS Code depuis Anaconda Navigator ; installer l'extension Python ; palette de commandes et réglages ; choisir l'interpréteur ; hors Anaconda, remplacer le terminal PowerShell par un profil Anaconda Prompt ; lancer `altitudes.py` ; Python en interactif ; en option, la même chose dans l'Anaconda Prompt seul ; débogueur pas à pas.
+  - ⌨️ **TD 2a · 25′ · Configurer VS Code et lancer un programme** : lancer VS Code depuis Anaconda Navigator ; installer l'extension Python ; palette de commandes et réglages ; choisir l'interpréteur ; hors Anaconda, remplacer le terminal PowerShell par un profil « Anaconda Prompt » ; lancer `altitudes.py` ; Python en interactif ; en option, la même chose dans l'invite de commandes d'Anaconda seul ; débogueur pas à pas.
   - ⌨️ **TD 2b · 10′ · Trois programmes fautifs** : afficher les caractères invisibles, corriger trois erreurs de nature différente.
   - ⌨️ **TD 2c · 10′ · facultatif · Le même programme en C++** : extension C/C++, compilateur par conda-forge (`gxx`, erreur `crt2.o` de la dernière version), compiler puis lancer.
 - **Partie 3 · Markdown et notebook (30′)**
@@ -87,7 +87,7 @@ Objectif : manipuler des chemins et lire des fichiers en Python, construire un p
 
 > Trois notebooks, dont les deux premiers se font pendant l'exposé, puis un TD de construction. 57 diapositives.
 
-- **⌨️ 10′ · Préparation du poste** : copier l'archive depuis `formationTemp`, lancer JupyterLab (Navigator, ou `jupyter lab` dans l'Anaconda Prompt) ou VS Code ; Spyder en repli.
+- **⌨️ 10′ · Préparation du poste** : copier l'archive depuis `formationTemp`, lancer JupyterLab (Navigator, ou `jupyter lab` dans l'invite de commandes d'Anaconda) ou VS Code ; Spyder en repli.
 - **Chemins (20′)**, ⌨️ **TD 1a · `recette.ipynb`** suivi pendant l'exposé : le programme « recette » avec ses chemins en dur (lire le CSV, adapter les quantités, insérer le tableau) ; `pathlib.Path` et `/` ; la racine lue automatiquement ; lister un dossier pour traiter plusieurs recettes ; les parties d'un chemin ; `pandoc` dans le terminal, puis depuis le notebook ; où le terminal trouve `pandoc` (`PATH`, `shutil.which`) ; `subprocess.run([...])`.
 - **Texte et binaire (45′)**
   - ⌨️ **TD 2a · 20′ · `fichiers.ipynb`** : `open`, `read`, `close` ; `with` ; les modes ; lire ligne par ligne ; lire un CSV ; `read_text`, `write_text`, `read_bytes`.
@@ -120,12 +120,12 @@ Deux moitiés ; la seconde prépare directement la forge (cours 6). Déroulé di
 
 - **🎓 30′ · Le matériel** : composants (schéma, photo d'un boîtier ouvert, photo d'une carte mère), processeur, température du processeur (question à la salle), mémoire vive et disque, le chemin d'une donnée, tailles, temps d'accès sur échelle log et « si la mémoire vive valait une seconde », processeur et carte graphique, trente ans de processeurs, puissance de calcul et consommation, électricité et coût des services en ligne.
 - **🎓 15′ · Le réseau** : local et distant, client et serveur, adresse, nom et port (rappel de SNT), débit et latence, la distance, le lien le plus lent, le sans-fil, commit et push.
-- **⌨️ 15′ · TD 1a** : les caractéristiques du poste dans le gestionnaire des tâches, puis `mesures.py` dans l'Anaconda Prompt : additions, copie en mémoire, écriture et relecture sur le disque, aller-retour et téléchargement.
+- **⌨️ 15′ · TD 1a** : les caractéristiques du poste dans le gestionnaire des tâches, puis `mesures.py` dans l'invite de commandes d'Anaconda : additions, copie en mémoire, écriture et relecture sur le disque, aller-retour et téléchargement.
 
 **B. Prouver qui l'on est, et les secrets des programmes (~1 h).**
 
 - **🎓 20′ · Prouver qui l'on est** : identifiant et mot de passe (le serveur garde une empreinte) ; les quatre façons de perdre un mot de passe (deviné, volé sur le serveur, volé chez vous, intercepté) ; combien de temps pour le deviner ; hameçonnage ; une parade par menace ; le deuxième facteur ; la clé à la place du mot de passe, la connexion SSH, les deux fichiers.
-- **⌨️ 20′ · TD 2a** : dans l'Anaconda Prompt, `ssh-keygen`, la clé publique sur le compte GitHub, `ssh -T git@github.com`.
+- **⌨️ 20′ · TD 2a** : dans l'invite de commandes d'Anaconda, `ssh-keygen`, la clé publique sur le compte GitHub, `ssh -T git@github.com`.
 - **🎓 15′ · Les secrets de vos programmes** : ce qui est un secret, un secret dans un dépôt y reste (`git log -p`), séparer le code et les secrets (`.gitignore`, fichier modèle), si un secret a fui, mises à jour et sauvegardes.
 - **⌨️ TD 3a, facultatif** : un secret dans l'historique, rejoué sur un dépôt neuf.
 - **Clôture** : « Vers le cours 6 » (compte, clé SSH, deuxième facteur, secret ignoré ; le cours 6 commence par `git clone`).

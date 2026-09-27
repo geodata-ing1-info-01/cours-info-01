@@ -1,6 +1,6 @@
 ---
 title: Problèmes avec Anaconda
-subtitle: Anaconda Prompt, conda, Navigator, outils installés dans un environnement
+subtitle: Invite de commandes d'Anaconda, conda, Navigator, outils installés dans un environnement
 ---
 
 Les deux façons de lancer Anaconda, et ses fichiers, sont dans
@@ -33,7 +33,7 @@ Remède
 call C:\ProgramData\anaconda3\Scripts\activate.bat C:\ProgramData\anaconda3
 ```
 
-L'invite passe à `(base)`. La fenêtre est alors un Anaconda Prompt. Si
+L'invite passe à `(base)`. La fenêtre est alors une invite de commandes d'Anaconda. Si
 aucun chemin n'existe, Anaconda n'est pas sur le poste : le signaler.
 
 (dep-a2)=
@@ -45,12 +45,12 @@ Ce qu'on voit
   properly configured to use 'conda activate' ».
 
 Cause
-: La commande `conda` n'est connue que de l'Anaconda Prompt. Un `cmd` ou
+: La commande `conda` n'est connue que de l'invite de commandes d'Anaconda. Un `cmd` ou
   un PowerShell ordinaire ne la connaît pas
   ([Variables d'environnement](../notions/variables_environnement.md)).
 
 Remède
-: Taper la commande dans l'Anaconda Prompt ({ref}`A1 <dep-a1>`). Dans VS
+: Taper la commande dans l'invite de commandes d'Anaconda ({ref}`A1 <dep-a1>`). Dans VS
   Code, faire le réglage du terminal, qui ouvre un `cmd` activé
   ({ref}`V5 <dep-v5>`).
 
@@ -71,7 +71,7 @@ Vérifier
 
 Remède
 : Si `conda` répond dans cette fenêtre, taper `conda activate base`. Sinon,
-  ouvrir un Anaconda Prompt ({ref}`A1 <dep-a1>`). Dans VS Code, voir
+  ouvrir une invite de commandes d'Anaconda ({ref}`A1 <dep-a1>`). Dans VS Code, voir
   {ref}`V5 <dep-v5>`.
 
 (dep-a4)=
@@ -124,7 +124,7 @@ Remède
   le Gestionnaire des tâches, clic droit sur le processus, Fin de tâche,
   puis relancer Navigator une seule fois. Si le message revient alors
   qu'aucun processus n'est présent, taper `anaconda-navigator --reset`
-  dans l'Anaconda Prompt, puis relancer.
+  dans l'invite de commandes d'Anaconda, puis relancer.
 
 (dep-a6)=
 ### A6. Navigator propose une mise à jour, ou affiche « updating packages » sans avancer
@@ -271,7 +271,7 @@ Cause
   cette liste à leur démarrage et ne la relisent pas d'eux-mêmes.
 
 Vérifier
-: `conda env list` dans l'Anaconda Prompt.
+: `conda env list` dans l'invite de commandes d'Anaconda.
 
 Remède
 : Si conda connaît l'environnement : dans VS Code, palette
@@ -287,7 +287,7 @@ Remède
 Ce qu'on voit
 : Après le clic, rien pendant une minute ou plus. Ou une fenêtre qui
   s'ouvre puis se ferme. Ou la console de Spyder affiche un autre chemin
-  que l'Anaconda Prompt.
+  que l'invite de commandes d'Anaconda.
 
 Cause
 : Comme Navigator, Spyder charge beaucoup de fichiers au premier
@@ -295,14 +295,14 @@ Cause
   est une erreur de démarrage, que le lancement par bouton ne montre pas.
 
 Vérifier
-: Dans l'Anaconda Prompt, taper `spyder` puis Entrée : la fenêtre
+: Dans l'invite de commandes d'Anaconda, taper `spyder` puis Entrée : la fenêtre
   affiche ce que Spyder écrit, et une erreur y reste lisible.
 
 Remède
 : Attendre une minute au premier lancement. Si Spyder ne s'ouvre pas
-  depuis l'Anaconda Prompt non plus, taper `spyder --reset`, qui remet ses
+  depuis l'invite de commandes d'Anaconda non plus, taper `spyder --reset`, qui remet ses
   réglages à zéro, puis relancer. Si la console affiche un autre chemin
-  que l'Anaconda Prompt : Préférences (menu Outils, ou Tools), rubrique
+  que l'invite de commandes d'Anaconda : Préférences (menu Outils, ou Tools), rubrique
   « Interpréteur Python », choisir l'option par défaut, celle de Spyder.
 
 ## Outils installés dans un environnement

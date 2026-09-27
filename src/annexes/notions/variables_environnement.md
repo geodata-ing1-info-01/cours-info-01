@@ -79,7 +79,7 @@ l'ordre. Le premier trouvé est lancé ; les suivants sont ignorés.
 :alt: La commande python, et la liste ordonnée des dossiers où le terminal la cherche
 :width: 100%
 
-Recherche de `python` dans un Anaconda Prompt, où les dossiers d'Anaconda
+Recherche de `python` dans une invite de commandes d'Anaconda, où les dossiers d'Anaconda
 sont en tête de `PATH`.
 ```
 
@@ -101,7 +101,7 @@ environnement ([Les environnements conda](environnements.md)).
 
 La commande `where` répond à la question « quel fichier sera lancé si je
 tape ce nom ? ». Elle affiche tous les fichiers que le terminal trouverait,
-dans l'ordre ; le premier est celui qui répond. Dans un Anaconda Prompt
+dans l'ordre ; le premier est celui qui répond. Dans une invite de commandes d'Anaconda
 des postes de la salle :
 
 ```

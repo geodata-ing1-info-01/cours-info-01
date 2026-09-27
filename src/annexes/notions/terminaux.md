@@ -1,12 +1,12 @@
 ---
 title: Les terminaux en ligne de commande
-subtitle: cmd, PowerShell, l'Anaconda Prompt, et Python comme troisième interpréteur
+subtitle: cmd, PowerShell, l'invite de commandes d'Anaconda, et Python comme troisième interpréteur
 ---
 
 Un terminal est une fenêtre dans laquelle on tape une commande, puis
 Entrée ; la réponse s'affiche en dessous, et l'invite revient pour la
 commande suivante. Le programme qui lit la commande et l'exécute s'appelle
-un interpréteur de commandes. Windows en a deux ; l'Anaconda Prompt est
+un interpréteur de commandes. Windows en a deux ; l'invite de commandes d'Anaconda est
 l'un des deux, ouvert avec un réglage particulier.
 
 ## Les deux interpréteurs de Windows
@@ -29,10 +29,11 @@ défaut.
 Sous macOS et Linux, l'application Terminal joue le même rôle, avec un
 interpréteur nommé `zsh` ou `bash`.
 
-## L'Anaconda Prompt
+## L'invite de commandes d'Anaconda
 
-L'Anaconda Prompt est un `cmd` dans lequel l'environnement `base`
-d'Anaconda a été activé. Le raccourci du menu Démarrer le montre : clic
+L'invite de commandes d'Anaconda, « Anaconda Prompt » dans le menu Démarrer
+et dans la documentation d'Anaconda, est un `cmd` dans lequel
+l'environnement `base` d'Anaconda a été activé. Le raccourci du menu Démarrer le montre : clic
 droit, Propriétés, champ Cible :
 
 ```
@@ -89,7 +90,7 @@ donner le fichier à son interpréteur :
 | PowerShell | `collecte.ps1` | `powershell -File collecte.ps1` (bloqué sur les postes) |
 | Python | `altitudes.py` | `python altitudes.py`, ou le bouton Run de VS Code |
 
-`activate.bat`, que le raccourci Anaconda Prompt exécute, est un script
+`activate.bat`, que le raccourci « Anaconda Prompt » exécute, est un script
 `cmd` ; ce qu'il fait est décrit dans
 [Les environnements conda](environnements.md).
 
@@ -99,4 +100,4 @@ Le terminal intégré de VS Code est l'un de ces interpréteurs, ouvert dans
 un panneau de l'éditeur. Par défaut c'est PowerShell ; le réglage décrit
 dans [Python et environnement conda](../configuration/vscode_python.md)
 lui substitue un `cmd` lancé avec `activate.bat`, exactement comme le
-raccourci Anaconda Prompt.
+raccourci « Anaconda Prompt ».

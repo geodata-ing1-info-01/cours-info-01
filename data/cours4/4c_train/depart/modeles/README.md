@@ -10,7 +10,7 @@ Le programme demande Python, ImageMagick et ffmpeg, décrits dans
 1. Installer Anaconda ou Miniforge.
 2. Récupérer ce dossier (à compléter : par une archive, ou par `git clone`
    et l'adresse du dépôt).
-3. Dans un terminal (Git Bash ou Anaconda Prompt), dans le dossier du
+3. Dans un terminal (Git Bash ou l'invite de commandes d'Anaconda), dans le dossier du
    projet :
 
 ```

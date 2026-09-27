@@ -106,20 +106,20 @@ Code, CC BY 3.0 US).
 Quand un TD a créé son propre environnement ([Anaconda](anaconda.md)),
 c'est lui qu'on choisit ici, par son nom. VS Code sait aussi créer un
 environnement conda lui-même (« Python: Create Environment ») ; ce qu'il
-lance alors, et pourquoi le module passe par l'Anaconda Prompt, est dans
+lance alors, et pourquoi le module passe par l'invite de commandes d'Anaconda, est dans
 [Comment VS Code gère les environnements](../notions/vscode_environnements.md).
 
 ## Quand la liste ne montre ni `base` ni les environnements
 
 Lancé depuis le menu Démarrer, VS Code ne reçoit pas les variables de
-l'Anaconda Prompt ([Variables d'environnement](../notions/variables_environnement.md)).
+l'invite de commandes d'Anaconda ([Variables d'environnement](../notions/variables_environnement.md)).
 Il cherche alors `conda` dans une liste de dossiers d'installation
 habituels, dont `C:\ProgramData\anaconda3` : sur les postes de la salle,
 cette recherche aboutit. Quand Anaconda est installé ailleurs, la liste ne
 contient que « Enter interpreter path… » et des Python qui ne sont pas
 ceux d'Anaconda ({ref}`V6 <dep-v6>`). Deux réglages y remédient ; les
 valeurs sont celles des postes de la salle, à lire dans la cible du
-raccourci Anaconda Prompt si elles diffèrent.
+raccourci « Anaconda Prompt » si elles diffèrent.
 
 `python.condaPath`
 : Le chemin du programme `conda`. Avec ce réglage, VS Code interroge
@@ -208,7 +208,7 @@ compte.
 Par défaut, le terminal de VS Code est un PowerShell, et sur les postes de
 la salle PowerShell ne peut pas activer l'environnement d'Anaconda
 ({ref}`A7 <dep-a7>`). On lui substitue un `cmd`
-([Les terminaux](../notions/terminaux.md)), celui de l'Anaconda Prompt :
+([Les terminaux](../notions/terminaux.md)), celui de l'invite de commandes d'Anaconda :
 on le décrit à VS Code comme un profil de terminal, qui s'ouvre activé
 quoi qu'il arrive, y compris sans interpréteur choisi ou avec l'activation
 automatique coupée.
@@ -263,7 +263,7 @@ les deux chemins du réglage sont les deux derniers, dans le même ordre.
 
 | Ce qu'on fait | Ce qu'on doit voir | Sinon |
 |---|---|---|
-| Dans le terminal, taper `python -c "import sys; print(sys.executable)"` | le chemin d'Anaconda, le même que dans l'Anaconda Prompt | {ref}`V7 <dep-v7>` |
+| Dans le terminal, taper `python -c "import sys; print(sys.executable)"` | le chemin d'Anaconda, le même que dans l'invite de commandes d'Anaconda | {ref}`V7 <dep-v7>` |
 | Ouvrir un fichier `.py`, bouton Run (le triangle en haut à droite) | ce que le programme affiche, dans le terminal | {ref}`V8 <dep-v8>` |
 
 Le chemin affiché par la première commande est celui de l'environnement

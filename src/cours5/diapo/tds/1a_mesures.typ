@@ -29,7 +29,7 @@
   )
 
   #legende[
-    Si le gestionnaire ne s'ouvre pas : `systeminfo` dans Anaconda Prompt
+    Si le gestionnaire ne s'ouvre pas : `systeminfo` dans l'invite de commandes d'Anaconda
     donne le processeur et la mémoire.
   ]
 
@@ -44,7 +44,7 @@
 
 #d("Quatre mesures en Python")[
   #annonce[
-    Dans Anaconda Prompt, depuis `cours5/1a_mesures/` : `python mesures.py`.
+    Dans l'invite de commandes d'Anaconda, depuis `cours5/1a_mesures/` : `python mesures.py`.
     Reporter les six lignes de résultat.
   ]
 
