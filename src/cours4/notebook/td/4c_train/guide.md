@@ -1372,7 +1372,7 @@ reçoit le numéro de l'image, et ajoute les morceaux dans une boucle :
 
 ```python
 # Les plans, du plus lointain au plus proche : le fichier, et la vitesse en pixels par image
-PLANS = [("voiles.png", 2), ("plage_jaune.png", 8), ("plage.png", 16)]
+PLANS = [("voiles.png", 4), ("plage_jaune.png", 8), ("plage.png", 16)]
 
 
 def arguments_plan(decor, nom, decalage):

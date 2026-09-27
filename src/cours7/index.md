@@ -1,54 +1,88 @@
 ---
-title: "Séance 7 — Un effet pour l'animation"
+title: "Séance 7 — Une fonctionnalité de plus, par une pull request"
 ---
 
 :::{note} Page à rédiger
-Le plan ci-dessous est celui du syllabus v1.5 (`syllabus/03_syllabus_v1_5.md`),
-qui remplace depuis le 24/09/2026 le benchmark de conversion en gris du plan
-initial. Le document de conception est
-`syllabus/cours/7_projet_effets/contenu_detaille.md`. Les supports de la
-séance sont à écrire.
+Le plan ci-dessous est celui du document de conception
+(`syllabus/cours/7_projet_effets/contenu_detaille.md`, 27/09/2026), qui
+remplace le benchmark d'image du plan initial. Les guides et les
+diapositives de la séance sont à écrire.
 :::
 
 ## Objectif
 
-Ajouter une fonctionnalité au programme du projet 4 par une pull request, et
-comparer une boucle Python et numpy sur les images de l'animation.
+Ajouter des fonctionnalités à son programme du projet 4, dans son dépôt
+GitHub du cours 6, et les livrer par des pull requests. Une des
+fonctionnalités se calcule avec numpy, sur un tableau de nombres. Chaque
+élève garde le parcours choisi aux cours 3 et 4.
 
-## Contenu prévu
+## Parcours standard : TD 7a, le livre de recettes
 
-- **Ajouter les paquets** : `numpy` et `pillow` dans l'environnement
-  `animation`, et dans son `environment.yml`.
-- **Un effet au choix**, sur une branche : une option `--effet` ajoutée au
-  programme, qui applique l'effet à chaque image avant la vidéo. Quatre
-  effets, du plus simple au plus long à écrire :
+Le programme `recette.py` traite une recette par appel. Le TD le complète
+pour en faire un livre de recettes.
 
-  ```{list-table}
-  :header-rows: 1
+```{list-table}
+:header-rows: 1
 
-  * - Effet
-    - Calcul par pixel
-  * - caméra thermique
-    - le niveau de gris, puis une table de 256 couleurs, du bleu au rouge
-  * - glitch
-    - le canal rouge décalé de quelques pixels à droite, le bleu à gauche
-  * - pixel art
-    - l'image découpée en blocs, chaque bloc d'une seule couleur, puis peu
-      de couleurs
-  * - vieux film
-    - sépia, bruit aléatoire, assombrissement vers les bords
-  ```
+* - Étape
+  - Ce qu'on fait
+  - Durée
+* - C0
+  - le dépôt, une branche, l'environnement du programme
+  - 10 min
+* - C1
+  - `--toutes` : vingt recettes de plus, et toutes les pages en une
+    commande (`glob`)
+  - 20 min
+* - C2
+  - le sommaire, une page de liens vers toutes les recettes
+  - 15 min
+* - C3
+  - la photo de chaque recette, réduite avec Pillow
+  - 15 min
+* - C4
+  - `--frigo` : les recettes faisables avec les ingrédients qu'on a,
+    calculées avec numpy
+  - 30 min
+* - PR
+  - une pull request pour le livre, une pour le frigo, fusionnées sur le site
+  - 10 min
+```
 
-  L'effet s'écrit d'abord en boucle sur les pixels, puis avec numpy. Les deux
-  versions sont chronométrées sur toute la série d'images.
-- **Vérifier** : un test qui compare les deux versions sur une petite image.
-- **Pull request et revue** : la branche poussée, la pull request relue par un
-  camarade qui a choisi un autre effet, puis fusionnée.
-- **`RAPPORT.md`** : une image avant et après l'effet, le tableau des temps,
-  une phrase d'interprétation.
+## Parcours avancé : TD 7b, la scène complète du train
 
-:::{warning}
-Point à décider : le parcours standard du projet 4 écrit `recette.py`, qui
-ne produit pas d'images. L'effet ne s'applique donc qu'au parcours avancé
-(`train.py`).
-:::
+Le programme `train.py` n'a qu'un plan mobile. Le TD complète la scène du
+clip.
+
+```{list-table}
+:header-rows: 1
+
+* - Étape
+  - Ce qu'on fait
+  - Durée
+* - C0
+  - le dépôt, une branche, numpy et Pillow dans l'environnement `animation`
+  - 10 min
+* - C1
+  - plusieurs plans, chacun à sa vitesse
+  - 20 min
+* - C2
+  - les plans et leurs vitesses décrits dans `decor/plans.csv`
+  - 15 min
+* - C3
+  - l'effet des poteaux, avec une boucle sur les pixels puis avec numpy ;
+    le test d'égalité et le chronométrage
+  - 35 min
+* - C4
+  - `--boucle` : une vidéo qui boucle sans saut
+  - 15 min
+* - PR
+  - une pull request pour les plans, une pour les poteaux
+  - 10 min
+```
+
+## Avant la séance
+
+Garder son dépôt GitHub du cours 6. Qui n'en a pas, ou dont le programme ne
+fonctionne pas, part d'un dépôt de référence (`recette` ou `train`) : le
+cloner, puis le pousser vers un dépôt vide de son compte.

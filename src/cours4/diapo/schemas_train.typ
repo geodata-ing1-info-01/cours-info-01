@@ -220,7 +220,7 @@
     columns: (largeur, 0.5cm) * 5 + (largeur * 1.5,),
     align: top,
     couche(image(_dossier + "train_fond.png", width: largeur), [le fond], [fixe]), signe("+"),
-    plan("voiles", [les voiles], 2), signe("+"),
+    plan("voiles", [les voiles], 4), signe("+"),
     plan("plage_jaune", [la plage jaune], 8), signe("+"),
     plan("plage", [la plage orange], 16), signe("+"),
     couche(image(_dossier + "train_fenetre.png", width: largeur), [la fenêtre], [fixe]), signe("="),

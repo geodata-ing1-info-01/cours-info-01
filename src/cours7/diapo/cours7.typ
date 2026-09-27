@@ -10,11 +10,11 @@
 
 #page-titre(
   titre: "Cours 7",
-  sous-titre: "Benchmark image et rapport",
+  sous-titre: "Une fonctionnalité de plus, par une pull request",
   auteur: "1re année géomatique",
   date: "",
 )
 
 #d("Plan de la séance")[
-  À rédiger — voir `syllabus/cours/7_projet_benchmark_image/contenu_detaille.md`.
+  À rédiger — voir `syllabus/cours/7_projet_effets/contenu_detaille.md`.
 ]

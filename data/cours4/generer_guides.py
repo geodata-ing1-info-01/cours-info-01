@@ -395,7 +395,7 @@ contenu, `cd nom_du_dossier` descend dans un sous-dossier, `cd ..` remonte
 d'un niveau. L'[annexe](#@ANNEXE) rappelle ces commandes et leur équivalent
 dans le terminal Windows.
 
-**Environnement conda** (cours 1). Un environnement est un dossier qui
+**Environnement conda**. Un environnement est un dossier qui
 contient un Python et des programmes installés pour un projet. `conda env
 create -f environment.yml` le crée à partir d'un fichier qui en donne la
 liste ; `conda activate nom` l'active dans le terminal : les commandes
@@ -1800,7 +1800,7 @@ git log --oneline
 
 # L'annexe du TD 4c : `verifier_annexe_plans` exécute le code montré.
 CODE_PLANS = '''# Les plans, du plus lointain au plus proche : le fichier, et la vitesse en pixels par image
-PLANS = [("voiles.png", 2), ("plage_jaune.png", 8), ("plage.png", 16)]
+PLANS = [("voiles.png", 4), ("plage_jaune.png", 8), ("plage.png", 16)]
 
 
 def arguments_plan(decor, nom, decalage):

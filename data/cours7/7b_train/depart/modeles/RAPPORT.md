@@ -1,4 +1,4 @@
-# Effet : (à compléter : poteaux, ou parallaxe)
+# Effet : poteaux
 
 ![Une image avant l'effet](avant.png) ![La même image après l'effet](apres.png)
 

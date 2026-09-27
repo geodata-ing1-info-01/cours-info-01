@@ -201,7 +201,7 @@ DECALAGE_SCHEMA = 400    # le décalage de l'image montrée par les schémas
 DEBORDEMENT_SCHEMA = 1500  # un décalage où l'emprise dépasse la bande
 # L'annexe du guide : chaque plan et sa vitesse, en pixels par image ; l'image
 # montrée est la numéro NUMERO_PLANS.
-PLANS_ANNEXE = [("voiles", 2), ("plage_jaune", 8), ("plage", 16)]
+PLANS_ANNEXE = [("voiles", 4), ("plage_jaune", 8), ("plage", 16)]
 NUMERO_PLANS = 40
 
 

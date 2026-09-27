@@ -12,7 +12,7 @@
 | 4 | 6/10 | projet | Du notebook au programme, en deux parcours | **refait** : parcours standard (la recette) et parcours avancé (la fenêtre du train) |
 | 5 | 13/10 | CM | Matériel, réseau ; mots de passe, clés, secrets | **deux diapositives ajoutées** : client et serveur sur le même poste |
 | 6 | 20/10 | CM | La forge, sur le dépôt du projet 4 | **refait** : l'outil « trajectoire » est retiré |
-| 7 | 03/11 | projet | Un effet pour l'animation | **refait** : remplace le benchmark de conversion en gris |
+| 7 | 03/11 | projet | Une fonctionnalité de plus, par une pull request | **refait** : remplace le benchmark de conversion en gris ; deux TD, un par parcours (27/09) |
 
 ## Ce qui est repris du v2
 
@@ -24,7 +24,7 @@
 | TD 3a : étapes 5 et 6 hors séance | oui, dans le guide seulement | cours 3 |
 | Le serveur de notebook comme exemple de client et serveur | oui | cours 5 |
 | La forge sur le dépôt du projet 4, sans l'outil « trajectoire » | oui | cours 6 |
-| Un effet au choix, en boucle puis avec numpy, livré par une pull request | oui | projet 7 |
+| Des fonctionnalités livrées par pull request, dont une calculée avec numpy (TD 7a recette, TD 7b train) | oui, révisé le 27/09 | projet 7 |
 | Partie A du projet 4 ramenée à 20′ | non : les groupes qui n'ont pas fait le TD 0a découvrent les environnements au projet 4 | — |
 | Git Bash comme seul terminal (cours 5 compris) | non : les TD du cours 5 restent dans l'invite de commandes d'Anaconda | à décider avant le 13/10 |
 | Terminal et commandes au cours 1 ; VS Code et Markdown au cours 2 ; `rebase` et `tag` en annexe | sans objet : cours 1 et 2 joués | — |
@@ -104,13 +104,15 @@ Repris du v2. L'outil « trajectoire » est retiré ; le cours 6 ne demande pas 
 
 **Budget** : **95′**, avec 25′ de marge pour les problèmes de clé SSH et d'authentification. Supports à écrire (`src/cours6/`).
 
-## Projet 7 — Un effet pour l'animation (03/11)
+## Projet 7 — Une fonctionnalité de plus, par une pull request (03/11)
 
-Repris du v2. Chaque élève ajoute au programme du projet 4 une option `--effet`, qui applique un effet à chaque image avant la vidéo : caméra thermique, glitch, pixel art ou vieux film. Il écrit l'effet en boucle sur les pixels, puis avec numpy, vérifie que les deux versions donnent le même résultat, les chronomètre, et livre le tout par une pull request relue par un camarade.
+*(révisé le 27/09/2026 : le projet suit les deux parcours des cours 3 et 4 ; les quatre effets d'image, conçus pour la montre et le tourbillon, sont abandonnés.)* Chaque élève ajoute des fonctionnalités à son programme du projet 4, dans son dépôt GitHub du cours 6, et les livre par des pull requests dans son propre dépôt. Une des fonctionnalités se calcule avec numpy.
 
-**À décider** : l'effet s'applique aux images de l'animation, que seul le parcours avancé du projet 4 produit (`train.py`). Le parcours standard (`recette.py`) n'a pas d'images ; il lui faut un autre sujet, ou l'animation du TD 4c reprise en entier.
+- **TD 7a, parcours standard, le livre de recettes** : `--toutes` (toutes les pages, `glob`), un sommaire, la photo de chaque recette (Pillow), puis `--frigo` : les recettes faisables avec les ingrédients donnés, par une table recettes × ingrédients de 0 et de 1 (numpy : produit, somme, tri). Vingt recettes de plus sont fournies.
+- **TD 7b, parcours avancé, la scène complète du train** : plusieurs plans, chacun à sa vitesse, décrits dans `decor/plans.csv` ; l'effet `poteaux` en boucle puis avec numpy, avec test d'égalité et chronométrage ; `--boucle`, une vidéo qui boucle sans saut.
+- La revue par un camarade devient facultative (pull request en binôme). Les élèves sans dépôt utilisable partent d'un dépôt de référence (`recette`, `train`), cloné puis poussé vers un dépôt vide de leur compte.
 
-Document de conception : [`cours/7_projet_effets/contenu_detaille.md`](cours/7_projet_effets/contenu_detaille.md), avec une implémentation de référence des quatre effets et les temps mesurés ([`effets_reference.py`](cours/7_projet_effets/effets_reference.py)).
+Documents de conception : [`cours/7_projet_effets/contenu_detaille.md`](cours/7_projet_effets/contenu_detaille.md) (cadre commun et TD 7a) et [`variante_train.md`](cours/7_projet_effets/variante_train.md) (TD 7b). Programmes de référence testés : `data/cours7/corriges/`.
 
 ## À vérifier avant les séances
 

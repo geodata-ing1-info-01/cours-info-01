@@ -1,11 +1,16 @@
-"""Fabrique les fichiers du TD 7b du cours 7 : deux effets pour la fenêtre du train.
+"""Fabrique les fichiers des TD du projet 7.
 
-Le TD 7b part du projet du TD 4c (`train.py`, le dossier `decor/`), que
-l'élève a déjà. `build` remplit `7b_train/produit/depart/` de ce que le
-notebook `tableaux.ipynb` lit : une image de la série du TD 4c
-(`exemple.png`) et les deux images du décor qu'emploie la parallaxe
+TD 7a, le livre de recettes : tout ce que le TD livre est versionné
+(`7a_recette/depart/recettes/`, les vingt recettes de plus ;
+`depart/modeles/environment.yml`) ; `build` ne fait que le dossier
+`produit/travail/`.
+
+TD 7b, la scène complète du train : le TD part du projet du TD 4c
+(`train.py`, le dossier `decor/`), que l'élève a déjà. `build` remplit
+`7b_train/produit/depart/` de ce que le notebook `tableaux.ipynb` lit : une
+image de la série du TD 4c (`exemple.png`) et deux images du décor
 (`decor/plage.png`, `decor/fenetre.png`). Les modèles (`depart/modeles/`) et
-le corrigé (`corriges/7b_train/`) sont versionnés.
+les corrigés (`corriges/`) sont versionnés.
 
     python make_data.py build
 
@@ -23,6 +28,7 @@ import tempfile
 from pathlib import Path
 
 ICI = Path(__file__).parent
+TD_RECETTE = ICI / "7a_recette"
 TD_TRAIN = ICI / "7b_train"
 COURS4 = ICI.parent / "cours4"
 
@@ -31,6 +37,11 @@ from make_data import decor_train, vider  # noqa: E402
 
 
 def build() -> None:
+    produit = TD_RECETTE / "produit"
+    vider(produit)
+    (produit / "travail").mkdir()
+    print(f"✓ {TD_RECETTE.name}/produit/")
+
     produit = TD_TRAIN / "produit"
     vider(produit)
     (produit / "travail").mkdir()

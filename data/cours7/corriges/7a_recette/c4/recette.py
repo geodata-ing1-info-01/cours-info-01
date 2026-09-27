@@ -1,0 +1,231 @@
+"""Une recette mise à l'échelle, en page HTML, par pandoc.
+
+Le code du notebook du TD 1a, dans un seul fichier : les fonctions utiles,
+puis le programme dans `main`. La recette, le nombre de personnes et les
+unités se donnent sur la ligne de commande.
+
+    python recette.py crepes
+    python recette.py pate_pizza -p 6 -u US
+    python recette.py --toutes
+    python recette.py --frigo farine lait oeufs
+    python recette.py --help
+
+À lancer depuis le dossier qui contient `recettes/` et `style.css` ; la page
+est écrite dans `sortie/`.
+"""
+
+import argparse
+import csv
+import shutil
+import subprocess
+import unicodedata
+from pathlib import Path
+
+import numpy as np
+from PIL import Image
+
+# Les chemins partent du dossier du terminal (section 3.3 du notebook)
+RACINE = Path.cwd()
+DONNEES = RACINE / "recettes"
+STYLE = RACINE / "style.css"
+SORTIE = RACINE / "sortie"
+
+# ---- Les fonctions utiles (section 1 du notebook) ---------------------------
+
+FACTEURS = {"g": (28.3495, "oz"), "ml": (236.588, "cup")}
+
+
+def lire_ingredients(chemin):
+    """Les ingrédients du fichier CSV, quantités converties en nombres."""
+    ingredients = []
+    with open(chemin, encoding="utf-8", newline="") as fichier:
+        lecteur = csv.reader(fichier)
+        # La première ligne du fichier nomme les colonnes : next() la lit et la
+        # laisse de côté, la boucle commence à la ligne suivante.
+        next(lecteur)
+        for nom, quantite, unite in lecteur:
+            ingredients.append((nom, float(quantite), unite))
+    return ingredients
+
+
+def convertir(quantite, unite):
+    """Une quantité et son unité, exprimées en unités américaines."""
+    if unite in FACTEURS:
+        diviseur, nouvelle_unite = FACTEURS[unite]
+        return quantite / diviseur, nouvelle_unite
+    return quantite, unite
+
+
+def adapter(ingredients, personnes, unites):
+    """La recette pour ce nombre de convives, dans ce système d'unités."""
+    resultat = []
+    for nom, quantite, unite in ingredients:
+        quantite = quantite * personnes
+        if unites == "US":
+            quantite, unite = convertir(quantite, unite)
+        resultat.append((nom, quantite, unite))
+    return resultat
+
+
+def tableau(ingredients):
+    """Le tableau Markdown des ingrédients, quantités écrites à trois chiffres."""
+    lignes = ["| Ingrédient | Quantité |", "|---|---|"]
+    for nom, quantite, unite in ingredients:
+        lignes.append(f"| {nom} | {quantite:.3g} {unite}".rstrip() + " |")
+    return "\n".join(lignes)
+
+
+# ---- Une page ---------------------------------------------------------------
+
+def photo(nom):
+    """La photo de la recette, réduite, copiée dans SORTIE ; renvoie son nom de fichier, ou None sans photo."""
+    source = DONNEES / nom / "photo.jpg"
+    if not source.exists():
+        return None
+    image = Image.open(source)
+    image.thumbnail((600, 600))          # au plus 600 pixels de large et de haut, proportions gardées
+    image.save(SORTIE / (nom + ".jpg"))
+    return nom + ".jpg"
+
+
+def generer(nom, personnes, unites):
+    """La page HTML d'une recette, pour ce nombre de personnes et ces unités ; renvoie son chemin."""
+    # La recette : le tableau des ingrédients inséré sous « ## Ingrédients »
+    ingredients = lire_ingredients(DONNEES / nom / "ingredients.csv")
+    ingredients = adapter(ingredients, personnes, unites)
+    source = (DONNEES / nom / "recette.md").read_text(encoding="utf-8")
+    titre = source.splitlines()[0].lstrip("# ")
+    intitule = f"## Ingrédients pour {personnes} personnes en {unites}"
+    complete = source.replace("## Ingrédients", intitule + "\n\n" + tableau(ingredients))
+    SORTIE.mkdir(exist_ok=True)
+
+    # La photo, sous le titre
+    fichier_photo = photo(nom)
+    if fichier_photo is not None:
+        complete = complete.replace("\n", "\n\n![" + titre + "](" + fichier_photo + ")\n", 1)
+
+    # Le Markdown complet et la feuille de style, dans sortie/
+    markdown = SORTIE / (nom + ".md")
+    markdown.write_text(complete, encoding="utf-8")
+    shutil.copy(STYLE, SORTIE / "style.css")
+
+    # La page HTML, par pandoc
+    page = SORTIE / (nom + ".html")
+    subprocess.run(
+        ["pandoc", str(markdown), "-o", str(page),
+         "--standalone", "--css", "style.css", "--metadata", "title=" + titre],
+        check=True,
+    )
+    return page
+
+
+# ---- Toutes les recettes et le sommaire -------------------------------------
+
+def noms_des_recettes():
+    """Le nom de chaque recette : le dossier de chaque fichier recettes/*/recette.md."""
+    noms = []
+    for chemin in sorted(DONNEES.glob("*/recette.md")):
+        noms.append(chemin.parent.name)
+    return noms
+
+
+def sommaire(noms):
+    """La page sortie/index.html : un lien vers la page de chaque recette ; renvoie son chemin."""
+    lignes = ["# Le livre de recettes", ""]
+    for nom in noms:
+        titre = (DONNEES / nom / "recette.md").read_text(encoding="utf-8").splitlines()[0].lstrip("# ")
+        lignes.append(f"- [{titre}]({nom}.html)")
+    markdown = SORTIE / "index.md"
+    markdown.write_text("\n".join(lignes) + "\n", encoding="utf-8")
+    page = SORTIE / "index.html"
+    subprocess.run(
+        ["pandoc", str(markdown), "-o", str(page),
+         "--standalone", "--css", "style.css", "--metadata", "title=Le livre de recettes"],
+        check=True,
+    )
+    return page
+
+
+# ---- Les recettes faisables avec ce qu'on a ----------------------------------
+
+def simplifier(nom):
+    """Le nom d'un ingrédient en minuscules, sans accents, « œ » écrit « oe » : « Œufs » donne « oeufs »."""
+    nom = nom.lower().replace("œ", "oe")
+    lettres = []
+    # NFD sépare chaque lettre accentuée en une lettre et un accent ; les
+    # accents sont de la catégorie « Mn », laissée de côté.
+    for caractere in unicodedata.normalize("NFD", nom):
+        if unicodedata.category(caractere) != "Mn":
+            lettres.append(caractere)
+    return "".join(lettres)
+
+
+def matrice(noms):
+    """La table recettes × ingrédients, 1 si la recette contient l'ingrédient ; et la liste des ingrédients."""
+    contenus = []
+    ingredients = []
+    for nom in noms:
+        contenu = []
+        for ingredient, quantite, unite in lire_ingredients(DONNEES / nom / "ingredients.csv"):
+            contenu.append(simplifier(ingredient))
+        contenus.append(contenu)
+        for ingredient in contenu:
+            if ingredient not in ingredients:
+                ingredients.append(ingredient)
+    ingredients.sort()
+    recettes = np.zeros((len(noms), len(ingredients)), dtype=int)
+    for ligne, contenu in enumerate(contenus):
+        for ingredient in contenu:
+            recettes[ligne, ingredients.index(ingredient)] = 1
+    return recettes, ingredients
+
+
+def frigo(noms, disponibles, nombre=5):
+    """Affiche les `nombre` recettes auxquelles il manque le moins d'ingrédients, et ceux qui manquent."""
+    recettes, ingredients = matrice(noms)
+    vecteur = np.zeros(len(ingredients), dtype=int)
+    for nom in disponibles:
+        if simplifier(nom) in ingredients:
+            vecteur[ingredients.index(simplifier(nom))] = 1
+        else:
+            print("ingrédient inconnu :", nom)
+    presents = recettes @ vecteur                  # pour chaque recette, ses ingrédients disponibles
+    manquants = recettes.sum(axis=1) - presents    # pour chaque recette, ses ingrédients qui manquent
+    ordre = np.argsort(manquants, kind="stable")   # les recettes, de celle à qui il manque le moins
+    for ligne in ordre[:nombre]:
+        absents = (recettes[ligne] == 1) & (vecteur == 0)
+        liste = []
+        for colonne in np.nonzero(absents)[0]:
+            liste.append(ingredients[colonne])
+        print(noms[ligne], ":", manquants[ligne], "ingrédient(s) manquant(s)", ", ".join(liste))
+
+
+# ---- Le programme ------------------------------------------------------------
+
+def main():
+    noms = noms_des_recettes()
+    analyseur = argparse.ArgumentParser(description="Met une recette à l'échelle et en fait une page HTML.")
+    analyseur.add_argument("nom", nargs="?", choices=noms, help="la recette")
+    analyseur.add_argument("-p", "--personnes", type=int, default=4, help="nombre de personnes (défaut : 4)")
+    analyseur.add_argument("-u", "--unites", choices=("SI", "US"), default="SI", help="unités du tableau (défaut : SI)")
+    analyseur.add_argument("--toutes", action="store_true", help="toutes les recettes, et le sommaire sortie/index.html")
+    analyseur.add_argument("--frigo", nargs="+", metavar="INGREDIENT", help="les recettes faisables avec ces ingrédients")
+    options = analyseur.parse_args()
+    if options.nom is None and not options.toutes and options.frigo is None:
+        analyseur.error("donner une recette, --toutes ou --frigo")
+
+    if options.frigo is not None:
+        frigo(noms, options.frigo)
+    if options.toutes:
+        for nom in noms:
+            generer(nom, options.personnes, options.unites)
+        print(sommaire(noms), ":", len(noms), "recettes")
+    elif options.nom is not None:
+        page = generer(options.nom, options.personnes, options.unites)
+        print(page, ":", options.personnes, "personne(s), unités", options.unites)
+
+
+# Vrai quand le fichier est lancé par `python`, faux quand il est importé par
+# un autre fichier : dans ce cas, main() n'est pas appelé.
+if __name__ == "__main__":
+    main()

@@ -87,7 +87,7 @@ contenu, `cd nom_du_dossier` descend dans un sous-dossier, `cd ..` remonte
 d'un niveau. L'[annexe](#annexe-les-commandes-des-deux-terminaux) rappelle ces commandes et leur équivalent
 dans le terminal Windows.
 
-**Environnement conda** (cours 1). Un environnement est un dossier qui
+**Environnement conda**. Un environnement est un dossier qui
 contient un Python et des programmes installés pour un projet. `conda env
 create -f environment.yml` le crée à partir d'un fichier qui en donne la
 liste ; `conda activate nom` l'active dans le terminal : les commandes

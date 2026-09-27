@@ -37,7 +37,7 @@ Un seul plan mobile au TD 4 ; le second plan (la plage orange) et les ombres des
 
 ## Étapes
 
-> 27/09/2026 : la partie B du TD 4c ne suit plus le plan commun. B1 le fond sur `master` ; B2 branche `fenetre` (1 commit) ; B3 branche `plan` (plan sur le fond, `--decalage`, `-roll` : 3 commits) ; B4 fusion de `fenetre` (avance rapide) puis de `plan`, conflit dans `image`, résolu à la main ; B5 série ; B6 vidéo ; B7 README ; B8 facultatif ; 13 commits. Annexe du guide : plusieurs plans (voiles 2, plage jaune 8, plage orange 16 pixels par image), base du TD 7. Code dans `generer_corriges.py` (`version_train`, `rejouer_train`). Le tableau ci-dessous décrit l'ancien plan.
+> 27/09/2026 : la partie B du TD 4c ne suit plus le plan commun. B1 le fond sur `master` ; B2 branche `fenetre` (1 commit) ; B3 branche `plan` (plan sur le fond, `--decalage`, `-roll` : 3 commits) ; B4 fusion de `fenetre` (avance rapide) puis de `plan`, conflit dans `image`, résolu à la main ; B5 série ; B6 vidéo ; B7 README ; B8 facultatif ; 13 commits. Annexe du guide : plusieurs plans (voiles 4, plage jaune 8, plage orange 16 pixels par image), base du TD 7. Code dans `generer_corriges.py` (`version_train`, `rejouer_train`). Le tableau ci-dessous décrit l'ancien plan.
 
 
 Identiques à 4a et 4b ; seuls le programme, les données et les options changent.
