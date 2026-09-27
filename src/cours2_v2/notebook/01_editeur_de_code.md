@@ -146,7 +146,7 @@ fichier**, et Python en tient compte.
 Une ligne s'indente par des espaces ou par une tabulation, deux caractères
 différents :
 
-- l'**espace** occupe toujours une colonne ;
+- l’**espace** occupe toujours une colonne ;
 - la **tabulation** occupe le nombre de colonnes que l'éditeur lui
   attribue, et ce réglage change d'un éditeur à l'autre.
 
@@ -191,7 +191,7 @@ La fenêtre de VS Code après la configuration du TD 1a, dessinée.
 
 * - Zone
   - Ce qu'elle contient
-* - l'**arborescence**, à gauche
+* - l’**arborescence**, à gauche
   - les fichiers et les dossiers du dossier ouvert
 * - le **code**, au centre
   - le fichier ouvert, et le bouton d'exécution ▷ en haut à droite

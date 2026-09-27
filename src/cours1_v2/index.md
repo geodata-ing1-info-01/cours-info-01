@@ -19,18 +19,22 @@ Trois parties, qui alternent une explication courte et des TD sur machine.
 * - Partie
   - Ce qu'on y voit
   - TD
-* - Logiciels, fichiers et stockage
-  - ce qu'est un logiciel, le rôle d'un fichier, l'extension, le disque du
-    poste et le dossier partagé
+* - [Logiciels, fichiers et stockage](notebook/01_logiciels_stockage.md)
+  - ce qu'est un logiciel, le rôle d'un fichier, l'extension, le
+    vocabulaire d'un chemin, le disque du poste et le dossier partagé
   - 1a
-* - Terminal et premier programme
-  - le terminal Git Bash, les commandes de base, les chemins ; Python, un
-    programme en ligne de commande ; compilé et interprété ; un programme
-    écrit dans un éditeur de texte, puis un script de commandes
-  - 2a, 2b
-* - Un notebook et la syntaxe de Markdown
+* - [Le terminal](notebook/02_terminal.md)
+  - la ligne de commande, le terminal Git Bash, la forme d'une commande, les
+    commandes de base, les chemins
+  - 2a
+* - [Premier programme](notebook/03_premier_programme.md)
+  - Python, un programme en ligne de commande ; une commande désigne un
+    fichier, cherché dans `PATH` ; compilé et interprété ; un script de
+    commandes
+  - 2b
+* - [Un notebook et la syntaxe de Markdown](notebook/04_notebook.md)
   - texte, code et résultats dans un document ; ce que le noyau retient ;
-    une cellule de texte en Markdown
+    une cellule de texte en Markdown ; lancer JupyterLab
   - 3a
 ```
 
@@ -62,5 +66,9 @@ Les diapositives sont dans le dépôt, `src/cours1_v2/diapo/cours1_v2.pdf`.
 ```{toctree}
 :maxdepth: 1
 
+notebook/01_logiciels_stockage
+notebook/02_terminal
+notebook/03_premier_programme
+notebook/04_notebook
 notebook/travaux_diriges
 ```

@@ -247,5 +247,9 @@ la version rendue.
   `git clone` et fait passer un commit d'une copie à l'autre par
   `git pull`.
 
+Pour s'entraîner à git après la séance, des jeux et des exercices sont
+réunis dans [S'entraîner : jeux et exercices](../../apres/s_entrainer.md),
+dont Learn Git Branching, en français.
+
 Les TD des autres parties sont dans [Travaux dirigés de la séance 2,
 version 2](travaux_diriges.md).

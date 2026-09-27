@@ -230,7 +230,7 @@ Les trois zones, et les deux commandes qui font passer un fichier de l'une
 ```
 
 - Le **dossier de travail** contient les fichiers tels qu'on les modifie.
-- L'**index**, ou **zone de préparation** (en anglais *staging area*),
+- L’**index**, ou **zone de préparation** (en anglais *staging area*),
   contient ce qui entrera dans le prochain commit. Les trois noms désignent
   la même chose.
 - Le **dépôt**, dans `.git`, contient l'historique des commits.
@@ -272,7 +272,7 @@ $ git commit -m "Ajoute la recette des crêpes"
  create mode 100644 recette.md
 ```
 
-`a16d497` est le début de l'**identifiant** du commit, une empreinte de 40
+`a16d497` est le début de l’**identifiant** du commit, une empreinte de 40
 caractères calculée à partir de son contenu (l'empreinte est présentée au
 cours 5). Les sept premiers suffisent à désigner un commit dans un dépôt.
 L'identifiant diffère sur chaque poste.
@@ -457,6 +457,10 @@ Un fichier déjà suivi le reste, même s'il correspond à un motif :
   40 minutes. Les étapes 0 à 4 appliquent cette page : le dépôt et le
   premier commit, modifier, comparer et restaurer, ignorer les fichiers
   produits par pandoc. Les étapes 5 à 7 appliquent la page suivante.
+
+Pour s'entraîner à git après la séance, des jeux et des exercices sont
+réunis dans [S'entraîner : jeux et exercices](../../apres/s_entrainer.md),
+dont Learn Git Branching, en français.
 
 Les TD des autres parties sont dans [Travaux dirigés de la séance 2,
 version 2](travaux_diriges.md).

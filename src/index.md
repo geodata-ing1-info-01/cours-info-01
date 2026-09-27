@@ -39,6 +39,7 @@ avant/vscode
 :caption: Après les séances
 
 apres/sauvegarder
+apres/s_entrainer
 ```
 
 ```{toctree}

@@ -54,7 +54,7 @@ programme. Quelques signes y portent la mise en forme : `#` pour un titre,
 La recette écrite en Markdown au TD 2a devient le premier projet versionné
 par git, au TD 3a. Ce format convient pour trois raisons :
 
-- il s'écrit dans l'**éditeur de code**, comme un programme ;
+- il s'écrit dans l’**éditeur de code**, comme un programme ;
 - **git compare ses lignes**, et `git diff` montre la ligne modifiée ;
 - ses modifications se comprennent **sans programmer** : une quantité, une
   étape, un conseil. Un fichier modifié reste utilisable, et aucun
