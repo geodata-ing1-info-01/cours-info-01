@@ -31,23 +31,15 @@ avant/python
 
 ```{toctree}
 :maxdepth: 1
-:caption: Séances V1
+:caption: Séances
 
-cours1/index
-cours2/index
+cours1_v2/index
+cours2_v2/index
 cours3/index
 cours4/index
 cours5/index
 cours6/index
 cours7/index
-```
-
-```{toctree}
-:maxdepth: 1
-:caption: Séances V2 (proposition 2027-2028)
-
-cours1_v2/index
-cours2_v2/index
 ```
 
 ```{toctree}
@@ -60,4 +52,12 @@ annexes/poste_personnel
 annexes/notions/index
 annexes/faq
 annexes/plus_loin/index
+```
+
+```{toctree}
+:maxdepth: 1
+:caption: Archive 2026
+
+cours1/index
+cours2/index
 ```

@@ -3,11 +3,10 @@ title: "Séance 1, version 2 — Logiciels, fichiers, terminal et premier progra
 ---
 
 :::{note}
-Proposition de travail pour l'année 2027-2028, écrite en septembre 2026 à
-partir des retours sur la séance 1. Elle sert de base de discussion entre
-enseignants et n'est pas jouée cette année. La séance jouée en 2026 est
-dans la partie « Séances V1 ». Les TD de cette version peuvent servir à
-réviser la séance 1 et le terminal.
+Version 2 de la séance 1, en cours de construction pour l'année 2027-2028,
+écrite en septembre 2026 à partir des retours sur la séance 1. La séance
+jouée en 2026 est dans la partie « Archive 2026 ». Les TD de cette version
+peuvent servir à réviser la séance 1 et le terminal.
 :::
 
 ## Contenu de la séance

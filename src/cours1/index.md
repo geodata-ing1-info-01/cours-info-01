@@ -1,6 +1,11 @@
 ---
-title: "Séance 1 — Logiciel, programmation et formats de fichier"
+title: "Séance 1, 2026 — Logiciel, programmation et formats de fichier"
 ---
+
+:::{note}
+Séance jouée le 15 septembre 2026, gardée en archive. La version en cours de
+la séance 1 est dans la partie « Séances ».
+:::
 
 ## Contenu de la séance
 

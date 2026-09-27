@@ -11,7 +11,7 @@ kernelspec:
 ---
 
 *Version 2 du cours 2 : proposition de travail pour 2027-2028. Les TD joués
-en 2026 sont ceux de la séance 2, dans la partie « Séances V1 ».*
+en 2026 sont ceux de la séance 2, dans la partie « Archive 2026 ».*
 
 Ce guide détaille les étapes du TD 3a. Le TD versionne avec git la recette
 écrite en Markdown au TD 2a : un premier commit, des modifications

@@ -1,6 +1,11 @@
 ---
-title: "Séance 2 — Ligne de commande et git local"
+title: "Séance 2, 2026 — Ligne de commande et git local"
 ---
+
+:::{note}
+Séance jouée le 22 septembre 2026, gardée en archive. La version en cours de
+la séance 2 est dans la partie « Séances ».
+:::
 
 ## Contenu de la séance
 

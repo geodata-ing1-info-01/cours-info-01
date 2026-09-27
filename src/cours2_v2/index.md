@@ -3,11 +3,10 @@ title: "Séance 2, version 2 — Éditeur de code, Markdown et git local"
 ---
 
 :::{note}
-Proposition de travail pour l'année 2027-2028, écrite en septembre 2026 à
-partir des retours sur la séance 2. Elle sert de base de discussion entre
-enseignants et n'est pas jouée cette année. La séance jouée en 2026 est
-dans la partie « Séances V1 ». Le TD git de cette version peut servir à
-réviser git.
+Version 2 de la séance 2, en cours de construction pour l'année 2027-2028,
+écrite en septembre 2026 à partir des retours sur la séance 2. La séance
+jouée en 2026 est dans la partie « Archive 2026 ». Le TD git de cette
+version peut servir à réviser git.
 :::
 
 ## Contenu de la séance
