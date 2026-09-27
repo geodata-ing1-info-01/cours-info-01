@@ -8,7 +8,7 @@
     columns: (auto, 1fr),
     align: left + horizon,
     [Un chemin relatif], [part du dossier courant : celui du notebook, ou celui du terminal],
-    [`Path(__file__).parent`], [le dossier du script, d'où qu'on le lance],
+    [`Path.cwd()`], [le dossier courant ; `/` construit les chemins à partir de lui],
     [`encoding="utf-8"`], [dans chaque lecture et chaque écriture de texte],
     [`subprocess.run([...])`], [un programme externe, appelé depuis Python, en liste],
     [`if __name__ == "__main__":`], [`main()` s'exécute quand le fichier est lancé par `python` ; un `import` ne l'exécute pas],

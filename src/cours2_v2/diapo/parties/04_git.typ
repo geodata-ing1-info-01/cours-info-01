@@ -306,8 +306,8 @@
     L'invite de Git Bash affiche aussi le dossier courant.
 
     `git init` affiche d'abord une dizaine de lignes `astuce:` sur le nom de
-    la branche initiale, `master`. Les laisser défiler ; le cours 6 renomme
-    la branche en `main` pour GitHub.
+    la branche initiale, `master`. Les laisser défiler. GitHub nomme sa
+    branche initiale `main`.
 
     Avant le premier commit, dans le dépôt : `git config user.name` et
     `user.email`, sans `--global`, les postes étant partagés (étape 1 du TD).
@@ -488,7 +488,8 @@
     git ne peut restaurer que ce qu'il a enregistré : une raison de faire
     des commits souvent.
 
-    Revenir sur un commit (`git revert`) est en annexe.
+    Revenir sur un commit (`git revert`) : page « Git et le dépôt local »
+    de la séance 2 de 2026, dans l'archive du book.
   ]
 ]
 

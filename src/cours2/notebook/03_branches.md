@@ -164,7 +164,7 @@ identifiant aussi. Les anciens commits ne font plus partie d'aucune branche.
 :::{warning}
 Le rebase réécrit l'historique de la branche. Une branche que quelqu'un
 d'autre a déjà récupérée ne se rebase pas : son historique ne correspondrait
-plus à celui de sa copie. Le cours 6 y revient, avec les dépôts partagés.
+plus à celui de sa copie.
 :::
 
 ## Les conflits

@@ -127,7 +127,7 @@ mkdir <nom_dossier>")
 )[
   Le dossier parent d'un autre dossier se note ”..”\
   exemple :\
-  #code-ligne("../etc/ssh/ssh_config.json")
+  #code-ligne("../ssh/ssh_config.json")
 
   #notes[
     Faire taper `cd ..`, puis `pwd` pour afficher le dossier courant.

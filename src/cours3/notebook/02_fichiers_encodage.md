@@ -99,6 +99,46 @@ Une fin de ligne tapée avec la touche Entrée entre les guillemets termine la
 ligne de code : Python lève `SyntaxError: unterminated string literal`. La
 barre oblique inverse permet d'écrire ce caractère dans une chaîne.
 
+## Fichiers binaires et fichiers texte
+
+Tout fichier est une suite de **bits**, qui valent 0 ou 1, regroupés par
+**octets** de huit. Un octet peut prendre 2⁸ = 256 valeurs, que les outils
+écrivent avec deux chiffres **hexadécimaux**, de `00` à `FF` : la base seize
+compte de `0` à `9` puis de `A` à `F`, et un chiffre hexadécimal représente
+quatre bits.
+
+```{figure} ../../cours1/notebook/figures/octet.svg
+:alt: Quatre étapes : huit bits, 01010010 ; une valeur, 82 sur 256 possibles ; représentée par deux chiffres hexadécimaux, 52, de 00 à FF ; un caractère, si c'est du texte, R, par la table ASCII.
+
+Un octet, sa valeur, son écriture hexadécimale, et le caractère qu'il code
+dans un fichier texte.
+```
+
+Un fichier est dit **texte** quand chacun de ses octets représente un
+caractère, et **binaire** sinon : ses octets ont alors le sens que leur donne
+son format. Tous les fichiers sont des suites de bits ; « binaire » signifie
+ici que le fichier n'est pas fait pour être lu caractère par caractère.
+
+```{list-table}
+:header-rows: 1
+
+* -
+  - Fichier texte
+  - Fichier binaire
+* - Ses octets
+  - des caractères, tous
+  - ce que le format décide
+* - Qui le lit
+  - n'importe quel éditeur de texte
+  - le logiciel qui connaît le format
+* - Ce qu'on en fait
+  - le lire, le comparer, le versionner
+  - l'ouvrir dans son logiciel
+```
+
+Cette différence revient dans tout le module : un fichier texte se compare ligne
+à ligne et se versionne avec git, un fichier binaire non.
+
 ## Le fichier, une suite d'octets
 
 Sur le disque, un fichier est une suite d'octets. L'encodage, donné par

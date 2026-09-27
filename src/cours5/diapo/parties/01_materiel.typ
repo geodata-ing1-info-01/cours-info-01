@@ -224,7 +224,7 @@ d("La carte mère")[
   #notes[
     Le cache est une petite mémoire dans le processeur ; il garde les dernières
     données lues en mémoire vive. Une boucle sur des valeurs voisines est donc
-    plus rapide qu'une boucle qui saute dans un tableau (projet 7).
+    plus rapide qu'une boucle qui saute dans un tableau.
 
     Le réseau est un étage de plus, au-delà du disque.
   ]
@@ -322,7 +322,7 @@ d("La carte mère")[
     Conséquences pour un programme, à dire :
     - lire un fichier une fois et garder son contenu en mémoire ;
     - écrire des nombres en binaire (images P5, cours 3) ;
-    - numpy plutôt qu'une boucle Python (cours 6) ;
+    - numpy à la place d'une boucle Python (projet 7) ;
     - `commit` en local, `push` sur le réseau (partie 2).
 
     Mesurer avant de modifier : c'est l'objet du projet 7.
@@ -375,7 +375,7 @@ d("La carte mère")[
 
     La carte graphique n'accélère que la même opération sur beaucoup de données.
 
-    Dans le module : numpy (cours 6) applique une opération à tout un tableau,
+    Dans le module : numpy (projet 7) applique une opération à tout un tableau,
     sur le processeur. Le calcul sur carte graphique relève des cours de
     traitement d'image et d'apprentissage.
 

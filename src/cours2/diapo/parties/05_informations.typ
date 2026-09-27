@@ -18,7 +18,7 @@
     columns: (1fr, 1.5fr), column-gutter: 18pt, align: horizon,
     [
       Le graphe git peut être affiché avec la commande :
-      #code("git log --graph --pretty=oneline --abbrev-commit")
+      #code("git log --graph --pretty=oneline --abbrev-commit --decorate")
     ],
     sortie-terminal((
       ("*   468a7db Merge branch 'main' of https://github.com/…/2D-Viewer", _jaune),

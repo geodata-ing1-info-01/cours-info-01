@@ -176,8 +176,8 @@ git merge <b_1>")
       Une seconde façon de fusionner est le *rebase*.\
       Le rebase rajoute les commits de la branche source au sommet de la
       branche cible.
-      #code("#Rebase la branche b_1
-#dans la branche b_2
+      #code("#Refait les commits de b_2
+#au bout de b_1
 git rebase <b_1> <b_2>")
     ],
     align(center)[
@@ -286,8 +286,10 @@ git rebase <b_1> <b_2>")
     columns: (1fr, 1.45fr), column-gutter: 14pt, align: horizon,
     [
       Les conflits se résolvent directement dans les fichiers. Une fois les
-      conflits résolus, on peut reprendre le merge avec la commande
-      #code("git merge --continue
+      conflits résolus, `git add` marque chaque fichier, puis on reprend le
+      merge avec la commande
+      #code("git add <fichier>
+git merge --continue
 
 #Idem pour le rebase
 git rebase --continue")

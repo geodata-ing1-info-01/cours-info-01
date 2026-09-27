@@ -19,7 +19,7 @@
   titre: "Une ligne de commande pour la recette",
   annonce: "Parcours standard : construire recette.py depuis les cellules du notebook, un fichier, une fonction main, argparse, un README ; un commit par étape",
   dossier: "cours4/4b_cli/",
-  duree: "45′",
+  duree: "70′",
 )
 #separateur-td(..td)
 
@@ -222,8 +222,8 @@
   ]
 
   #notes[
-    L'étape 1 de la question fait constater ce que dit la diapositive « Ce
-    que l'interpréteur exécute » : `def` ne lance rien. Les trois valeurs
+    L'étape 1 de la question fait constater ce que dit la diapositive
+    « Lecture d'un script par Python » : `def` ne lance rien. Les trois valeurs
     restent en tête du fichier pour l'instant ; `main` les lit comme
     variables globales.
 

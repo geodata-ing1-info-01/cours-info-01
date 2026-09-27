@@ -245,9 +245,10 @@
   ]
 
   #notes[
-    Rappel du cours 1 (TD 4a et 4b) : un environnement est un dossier avec
-    son Python et ses programmes ; `activate` met ses dossiers en tête de
-    `PATH`.
+    Un environnement est un dossier avec son Python et ses programmes ;
+    `activate` met ses dossiers en tête de `PATH`. La partie 4 du cours 1
+    de 2026, qui l'expliquait, n'a pas été jouée : le dire ici, sans
+    parler de rappel.
 
     Si deux élèves partagent un poste, le second obtient `prefix already
     exists` : l'environnement est déjà là, passer à l'activation.
@@ -268,13 +269,13 @@
     [], [Ce qu'il faut faire], [Ce que vous devez obtenir],
     [1], [copier `depart/notebook/<nom>.ipynb` dans `travail/`], [`travail/<nom>.ipynb`],
     [2], [`cd travail`, puis `jupyter lab`], [le navigateur s'ouvre sur `travail/`],
-    [3], [ouvrir le notebook, exécuter la section 1], [trois chemins qui contiennent `envs\animation`],
+    [3], [ouvrir le notebook, exécuter les sections 1 et 2], [section 2 : trois chemins qui contiennent `envs\animation`],
     [4], [exécuter les sections suivantes, une à une], [une image d'essai par section, puis la vidéo],
   )
 
   #avertissement[
     Lancé depuis Anaconda Navigator, JupyterLab tourne dans `base` : la
-    section 1 affiche `magick : None`.
+    section 2 affiche `magick : None`.
   ]
 ]
 
@@ -316,7 +317,7 @@
     columns: (auto, 1fr, 1fr),
     align: left + horizon,
     [Commande], [Parcours standard, `recette.py`], [Parcours avancé, `train.py`],
-    [`git log --oneline --graph --all`], [six commits, et l'étiquette `v1.0`], [dix commits, dont un de fusion, et l'étiquette `v1.0`],
+    [`git log --oneline --graph --all`], [six commits, et l'étiquette `v1.0`], [douze commits, dont un de fusion, et l'étiquette `v1.0`],
     [`git status`], [« rien à valider » ; `sortie/` n'est pas listé], [« rien à valider » ; `sortie/` n'est pas listé],
     [`python <nom>.py --help`], [les trois arguments et leur aide], [les options des trois fonctionnalités],
     [le résultat], [`sortie/<recette>.html`], [`sortie/train.mp4`],

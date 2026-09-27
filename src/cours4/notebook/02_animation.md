@@ -77,7 +77,7 @@ fois par poste, `conda` doit d'abord être rendu disponible (guide du TD 4c,
 Le notebook appelle `magick` et `ffmpeg` : il les cherche dans le `PATH` du
 terminal qui a lancé JupyterLab. JupyterLab se lance donc depuis le terminal
 Git Bash de VS Code, l'environnement `animation` actif. Lancé depuis Anaconda
-Navigator, JupyterLab tourne dans `base`, et la section 1 du notebook
+Navigator, JupyterLab tourne dans `base`, et la section 2 du notebook
 affiche `magick : None`.
 
 ## Deux branches, puis une fusion

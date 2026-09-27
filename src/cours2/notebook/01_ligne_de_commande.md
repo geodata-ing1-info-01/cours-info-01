@@ -105,7 +105,7 @@ Dans le dossier de la séance, `ls` affiche le nom des dossiers de TD :
 
 ```text
 $ ls
-3a_premier_depot  4a_branches  4c_conflits
+3a_premier_depot  4a_branches  4b_annuler  4c_conflits  6a_livrer  README.md
 $ ls 4c_conflits/depart
 main_operations.py  main_regex.py
 ```

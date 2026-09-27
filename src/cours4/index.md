@@ -75,7 +75,7 @@ autre poste.
   - Parcours avancé, `train.py`
 * - `git log --oneline --graph --all`
   - six commits, et l'étiquette `v1.0`
-  - dix commits, dont un de fusion, et l'étiquette `v1.0`
+  - douze commits, dont un de fusion, et l'étiquette `v1.0`
 * - `git status`
   - « rien à valider » ; `sortie/` n'est pas listé
   - « rien à valider » ; `sortie/` n'est pas listé

@@ -172,7 +172,7 @@ Les étages de mémoire, avec leur taille et leur temps d'accès.
 Le **cache** est une petite mémoire placée dans le processeur. Il garde les
 dernières données lues en mémoire vive. Une boucle qui lit des valeurs
 voisines est donc plus rapide qu'une boucle qui saute d'un endroit à l'autre
-d'un tableau ; le projet 7 le mesure. Le réseau forme un étage de plus,
+d'un tableau. Le réseau forme un étage de plus,
 au-delà du disque.
 
 ## Ordres de grandeur : tailles
@@ -276,7 +276,7 @@ vers New York, une semaine. Un programme tient compte de ces écarts :
 
 - il lit un fichier une fois et garde son contenu en mémoire ;
 - il écrit les nombres en binaire, comme les images P5 du cours 3 ;
-- il emploie numpy à la place d'une boucle Python (cours 6) ;
+- il emploie numpy à la place d'une boucle Python (projet 7) ;
 - il fait ses `commit` en local, et un `push` sur le réseau quand le travail
   est prêt (partie suivante).
 
@@ -322,7 +322,7 @@ plusieurs valeurs par instruction, et l'image doit être copiée dans la mémoir
 de la carte graphique. La carte graphique accélère seulement une même
 opération appliquée à beaucoup de données.
 
-Dans ce module, numpy (cours 6) applique une opération à tout un tableau, sur
+Dans ce module, numpy (projet 7) applique une opération à tout un tableau, sur
 le processeur. Le calcul sur carte graphique relève des cours de traitement
 d'image et d'apprentissage. Une vidéo de 1 min 30, tournée par les MythBusters
 pour NVIDIA en 2008, illustre la différence :

@@ -62,7 +62,8 @@
     environment_). Exemples si la question vient : RStudio ou l'IDE Arduino ne
     servent qu'un langage, Eclipse et VSCode s'étendent.
 
-    Débogage : en annexe. Panneau git : au TD 3a.
+    Débogage : TD 2a du cours 1 de 2026, dans l'archive du book. Panneau
+    git : au TD 3a.
 
     Microsoft présente VSCode comme un éditeur plutôt que comme un IDE,
     ses fonctions avancées venant d'extensions. Ne pas s'y attarder si la
@@ -126,7 +127,7 @@
     Deux services tirés de la même chose, les règles écrites du langage : la
     couleur, puis le soulignement.
 
-    À gauche, le `content.xml` d'un `.odt` (TD 1b du cours 1, en annexe), le
+    À gauche, le `content.xml` d'un `.odt` (TD 1b du cours 1 de 2026, dans l'archive du book), le
     texte entre les balises. On n'écrit pas de code dans Word ni dans
     LibreOffice.
 
@@ -241,7 +242,7 @@
     machine, et une comparaison peut signaler toutes les lignes comme
     modifiées. Repris plus loin avec git.
 
-    Le saut de ligne est un caractère comme les autres : « Ce que contient un
-    fichier texte », en annexe, le compte sur un poème tenant sur une ligne.
+    Le saut de ligne est un caractère comme les autres ; le cours 3 en
+    compte les octets (`fichiers.ipynb`, § 5).
   ]
 ]

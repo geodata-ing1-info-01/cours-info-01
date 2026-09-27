@@ -49,7 +49,7 @@
   #schema-etapes()
 
   #notes[
-    Fonctions utiles : reprises du cours 1, résumées dans un tableau du
+    Fonctions utiles : données dans le notebook, résumées dans un tableau du
     notebook. Sujet de la séance : la désignation des fichiers et l'appel
     de pandoc.
   ]
@@ -253,7 +253,7 @@
   #notes[
     Liste : chaque élément est transmis au programme sans découpage,
     espaces et accents compris. `os.system` et la syntaxe `!` du
-    notebook sont montrés dans le notebook, § 4.2 et 4.4.
+    notebook sont montrés dans le notebook, § 4.2 et 4.3.
 
     Le terminal trouve pandoc dans les dossiers de `PATH` : § 4.4, à lire
     après la séance.
@@ -397,11 +397,11 @@
   ]
 
   #code-commente(
-    taille-code: 12pt, taille-texte: 12.5pt,
+    taille-code: 11pt, taille-texte: 12.5pt,
     ("analyseur = argparse.ArgumentParser()", "l'analyseur des arguments"),
     ("analyseur.add_argument(\"nom\", choices=recettes_disponibles)", "obligatoire ; une valeur de la liste"),
     ("analyseur.add_argument(\"-p\", \"--personnes\", type=int, default=4)", "option ; convertie en entier ; 4 si absente"),
-    ("analyseur.add_argument(\"-u\", \"--unites\", choices=(\"SI\", \"US\"))", "option ; deux valeurs possibles"),
+    ("analyseur.add_argument(\"-u\", \"--unites\", choices=(\"SI\", \"US\"), default=\"SI\")", "option ; SI ou US ; SI si absente"),
     ("options = analyseur.parse_args()", "lit la ligne de commande ; message et arrêt si elle est invalide"),
     ("options.nom, options.personnes, options.unites", "les valeurs lues"),
   )

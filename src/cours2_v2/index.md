@@ -57,7 +57,8 @@ dans le dépôt :
   convertie ensuite par pandoc ;
 - git se joue sur un seul dépôt, celui de la recette écrite en Markdown,
   à la place des cinq TD sur le projet `projet_2` ;
-- `revert` et `rebase` passent en annexe ; `tag` passe au projet 7 ;
+- `revert` et `rebase` restent dans la séance 2 de 2026, dans l'archive du
+  book ; `tag` passe au projet 7 ;
   l'organisation main, develop, feature est gardée, en théorie ;
 - l'aspect distribué de git est présenté en théorie ; il se pratique au
   cours 6, et à l'étape 7 du TD git pour ceux qui ont fini.

@@ -21,7 +21,7 @@
     columns: (1fr, 1fr),
     align: left + horizon,
     [Vu aux cours 1 et 2], [Aujourd'hui, en Python],
-    [chemin relatif, chemin absolu ], [`Path`, `/`, `resolve()`, `Path(__file__)`],
+    [chemin relatif, chemin absolu ], [`Path`, `/`, `resolve()`, `Path.cwd()`],
     [fichier texte, encodage (cours 1)], [`open(file_path, encoding="utf-8")`, `fichier.write(..)`],
     [caractères et octets (cours 1)], [`encode("utf-8")`, ASCII et UTF-8],
     [lancer un programme au terminal (cours 2)], [`subprocess.run([...])`,  avec pandoc  md -> html],

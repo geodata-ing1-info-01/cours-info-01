@@ -220,8 +220,8 @@
   ]
 
   #notes[
-    L'étape 1 de la question fait constater ce que dit la diapositive « Ce
-    que l'interpréteur exécute » : `def` ne lance rien. Les trois valeurs
+    L'étape 1 de la question fait constater ce que dit la diapositive
+    « Lecture d'un script par Python » : `def` ne lance rien. Les trois valeurs
     restent en tête du fichier pour l'instant ; `main` les lit comme
     variables globales.
 

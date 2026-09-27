@@ -47,8 +47,8 @@
   #grid(
     columns: (1.4fr, 1fr), column-gutter: 20pt, align: horizon,
     align(center)[
-      Une fois le repository créé, il est dans son état initial,
-      appelé *Initial commit*
+      Juste après `git init`, le dépôt ne contient aucun commit. Le
+      premier commit s'appelle souvent *Initial commit*
     ],
     align(center, _chaine(("Initial commit",), echelle: 1.3)),
   )

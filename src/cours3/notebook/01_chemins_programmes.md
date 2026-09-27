@@ -56,7 +56,7 @@ HTML.
 Des fichiers de la recette à la page HTML : `generer`, puis pandoc.
 ```
 
-Les fonctions utiles du programme sont reprises du cours 1 :
+Les fonctions utiles du programme sont données dans le notebook :
 
 ```{list-table}
 :header-rows: 1

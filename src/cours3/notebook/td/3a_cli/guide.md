@@ -350,7 +350,10 @@ définissent les fonctions sans les exécuter.
 Sous les fonctions, écrire le programme, qui reprend le corps de la fonction
 `generer` du notebook (section 3.1) avec les chemins de la section 3.3. Les
 deux blocs `with` du notebook sont écrits ici avec `read_text` et
-`write_text` (notebook `fichiers.ipynb`, section 11).
+`write_text`, deux méthodes d'un `Path` : `read_text` renvoie tout le
+contenu du fichier en une chaîne, `write_text` écrit une chaîne dans le
+fichier, chacune en une ligne, sans `open` ni `with`. La section 11 de
+`fichiers.ipynb`, à lire après la séance, les détaille.
 
 ```python
 # La recette : le tableau des ingrédients inséré sous « ## Ingrédients »
