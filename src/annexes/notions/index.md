@@ -5,6 +5,8 @@ title: Notions
 Ces pages expliquent ce que les pages de configuration et de problèmes
 tiennent pour acquis :
 
+- [Choisir entre JupyterLab, Spyder et VS Code](outils.md) : ce que fait
+  chacun de ces outils, et lequel employer pour chaque tâche.
 - [Les terminaux en ligne de commande](terminaux.md) : `cmd`, PowerShell,
   l'invite de commandes d'Anaconda, et Python comme troisième interpréteur.
 - [Variables d'environnement et recherche des programmes](variables_environnement.md) :
@@ -23,6 +25,7 @@ tiennent pour acquis :
 ```{toctree}
 :maxdepth: 1
 
+outils
 terminaux
 variables_environnement
 environnements

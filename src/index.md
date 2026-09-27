@@ -31,6 +31,14 @@ introduction
 avant/poste
 avant/donnees
 avant/python
+avant/vscode
+```
+
+```{toctree}
+:maxdepth: 1
+:caption: Après les séances
+
+apres/sauvegarder
 ```
 
 ```{toctree}
@@ -54,7 +62,6 @@ cours7/index
 annexes/configuration/index
 annexes/poste_personnel
 annexes/notions/index
-annexes/langages/index
 annexes/faq
 annexes/plus_loin/index
 ```

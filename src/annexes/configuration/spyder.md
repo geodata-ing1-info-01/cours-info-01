@@ -8,7 +8,7 @@ sur les postes de la salle, dans l'environnement `base`. Le module ne
 l'emploie pas en séance (VS Code et JupyterLab), mais d'autres cours
 l'emploient. Cette page dit comment Spyder exécute du code, quel Python il
 utilise, et ce qu'il fait d'un notebook. Son test est en fin de page ; le choix entre les trois outils, dans
-[Choisir entre JupyterLab, Spyder et VS Code](outils.md).
+[Choisir entre JupyterLab, Spyder et VS Code](../notions/outils.md).
 
 Spyder se lance depuis le menu Démarrer (taper `spyder`), depuis la fiche
 Spyder de Navigator, ou en tapant `spyder` dans l'invite de commandes d'Anaconda. Le

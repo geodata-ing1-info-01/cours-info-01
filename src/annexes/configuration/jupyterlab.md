@@ -31,8 +31,8 @@ c'est le sujet du TD 3b.
 ## Tester JupyterLab
 
 Le test, qui vérifie que Python exécute du code sur le poste sans rien
-configurer, est dans [Anaconda, JupyterLab et VS
-Code](../../avant/python.md), après celui d'Anaconda.
+configurer, est dans [Anaconda et
+JupyterLab](../../avant/python.md), après celui d'Anaconda.
 
 ## Lancer JupyterLab depuis l'invite de commandes d'Anaconda
 
