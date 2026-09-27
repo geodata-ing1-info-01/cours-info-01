@@ -99,6 +99,14 @@ _SRC = Path(__file__).resolve().parent
 # Le book les cherche à côté du guide : elles y sont recopiées à chaque
 # construction (copies ignorées par git). Une image absente de `produit/`
 # laisse un avertissement de Sphinx.
+#
+# Pour les cours de `ILLUSTRATIONS_VERSIONNEES` (même liste que dans
+# `outils/compiler_guides.py`), le PNG à côté du guide est versionné, à
+# 144 ppi ; celui de `produit/` est à 110 ppi. Il n'est donc recopié que s'il
+# manque : sinon chaque construction du book réécrirait le fichier versionné.
+ILLUSTRATIONS_VERSIONNEES = {"cours1_v2", "cours2_v2"}
+
+
 def _images_des_guides() -> None:
     import re
     import shutil
@@ -110,6 +118,8 @@ def _images_des_guides() -> None:
         texte = re.sub(r"```.*?```", "", guide.read_text(encoding="utf-8"), flags=re.S)
         for chemin in re.findall(r"!\[[^\]]*\]\(([^)\s]+)\)", texte):
             source, cible = produit / chemin, guide.parent / chemin
+            if cours in ILLUSTRATIONS_VERSIONNEES and cible.is_file():
+                continue
             if source.is_file() and not chemin.startswith(("/", "http")):
                 cible.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copy2(source, cible)
