@@ -32,24 +32,19 @@
 
 #include "parties/00_ouverture.typ"
 
-#include "parties/01_vscode.typ"
+// L'éditeur est présenté, avec Markdown en fin de partie, puis configuré en
+// classe entière (TD 1a) et employé (TD 1b, TD 2a). Ordre du 28/09/2026 ;
+// `parties/01_vscode.typ` retiré.
+#include "parties/02_editeur.typ"
+#include "parties/03_markdown.typ"
+#include "parties/03b_vscode.typ"
 #if tds {
   include "tds/1a_vscode.typ"
-} else {
-  sommaire-td(td-1a)
-}
-
-#include "parties/02_editeur.typ"
-#if tds {
   include "tds/1b_erreurs.typ"
-} else {
-  sommaire-td(td-1b)
-}
-
-#include "parties/03_markdown.typ"
-#if tds {
   include "tds/2a_markdown.typ"
 } else {
+  sommaire-td(td-1a)
+  sommaire-td(td-1b)
   sommaire-td(td-2a)
 }
 

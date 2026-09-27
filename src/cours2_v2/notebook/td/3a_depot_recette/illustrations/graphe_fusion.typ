@@ -5,11 +5,11 @@
 #set page(width: auto, height: auto, margin: 12pt, fill: white)
 #set text(font: police-texte, lang: "fr")
 #let base = (
-  (nom: "c4", col: 0, voie: 0, id: "4d1"),
-  (nom: "c5", col: 1, voie: 1, id: "348", parents: ("c4",)),
-  (nom: "c6", col: 1, voie: 0, id: "492", parents: ("c4",), place: "dessous"),
+  (nom: "c4", col: 0, voie: 0, id: "28c"),
+  (nom: "c5", col: 1, voie: 1, id: "939", parents: ("c4",)),
+  (nom: "c6", col: 1, voie: 0, id: "220", parents: ("c4",), place: "dessous"),
 )
-#let fusion = (nom: "c7", col: 2, voie: 0, id: "978", parents: ("c6", "c5"))
+#let fusion = (nom: "c7", col: 2, voie: 0, id: "eda", parents: ("c6", "c5"))
 #let titre(t) = text(size: 12pt, weight: demi-gras, fill: accent)[#t]
 #grid(
   columns: 2, column-gutter: 1.4cm, row-gutter: 0.35cm,
@@ -26,9 +26,9 @@
 )
 #v(0.2cm)
 #block(width: 16cm, text(size: 10pt, fill: estompe)[
-  Dans chaque pastille, le début de l'identifiant du commit. `4d1` : « Ignore
-  les fichiers produits par pandoc » ; `348` : la farine de sarrasin, sur
-  `sans-gluten` ; `492` : le conseil, sur `master` ; `978` : le commit de
+  Dans chaque pastille, le début de l'identifiant du commit. `28c` : « Ignore
+  les fichiers produits par pandoc » ; `939` : la farine de sarrasin, sur
+  `sans-gluten` ; `220` : le conseil, sur `master` ; `eda` : le commit de
   fusion, qui a deux parents (double trait). Les identifiants diffèrent sur
   chaque poste.
 ])

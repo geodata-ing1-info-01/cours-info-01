@@ -1,13 +1,19 @@
-// Partie 2 du cours 2 v2 — l'éditeur de code. Incluse par `cours2_v2.typ`.
+// Partie 1 du cours 2 v2 — l'éditeur de code. Incluse par `cours2_v2.typ`.
 // Un fichier inclus n'hérite pas des imports de son appelant.
 //
 // Reprend les diapositives 43 à 46 du cours 1 de 2026 (fonctions d'un IDE,
 // édition, règles du langage, chasse fixe), sans les reformuler. Celle de
 // l'indentation vient du cours 1 v2 (27/09/2026), avec le TD 1b qui s'en sert.
+//
+// Depuis le 28/09/2026, la partie ouvre la séance : l'éditeur est expliqué
+// avant d'être configuré (TD 1a, en classe entière). La partie « Configurer
+// l'éditeur de code » et son séparateur sont retirés. La partie se termine
+// par la diapositive Markdown (`03_markdown.typ`) puis par « Visual Studio
+// Code » (`03b_vscode.typ`), juste avant le TD 1a.
 #import "../../../commun/prelude.typ": *
 #import "../../../cours1/diapo/schemas.typ": souligne-ondule, blancs
 
-#separateur-reprise(
+#separateur(
   "L'éditeur de code",
   annonce: "Ce qu'un éditeur de code ajoute à un éditeur de texte.",
 )
@@ -15,7 +21,7 @@
 #d("Les fonctions d'un IDE")[
   #annonce[
     IDE, pour _integrated development environment_ : un logiciel qui réunit
-    des fonctions pour aider à l'écriture, test et partage de code.
+    des fonctions pour aider à écrire, tester et partager du code.
   ]
 
   #tableau(
@@ -42,10 +48,9 @@
 
   #notes[
     Un éditeur de texte ordinaire ne fait que la première ligne du tableau.
-    C'est l'intégration des autres qui fait l'environnement.
 
-    L'avertissement est celui qui coûte le plus cher en séance : le bouton
-    d'exécution est dans l'éditeur, pas l'outil qu'il appelle. La documentation
+    Avertissement : le bouton d'exécution est dans l'éditeur ; l'outil qu'il
+    appelle est installé à part. La documentation
     de VSCode le dit pour le C++ : « The C/C++ extension doesn't include a C++
     compiler or debugger, since VS Code as an editor relies on command-line
     tools for the development workflow. » Les environnements sont au
@@ -65,41 +70,8 @@
   ]
 ]
 
-// --------------------------------------------
-#d("Les fonctions d'édition de texte d'un IDE")[
-  #annonce[
-    Programmer nécessite d'éditer des fichiers texte sans 'faute'.
-    L'éditeur sert à rendre cela plus simple et rapide.
-  ]
-
-  #tableau(
-    columns: (1fr, 1fr),
-    align: left + horizon,
-    [Dans un éditeur de texte ordinaire], [Dans un éditeur de code],
-    [une faute de frappe se découvre à l'exécution],
-      [elle est soulignée pendant la frappe],
-    [on cherche un fichier dans l'explorateur],
-      [l'arborescence et la recherche sont dans la fenêtre],
-    [une indentation fausse ne se voit pas],
-      [les espaces s'affichent],
-  )
-
-  #legende[
-    La colonne de droite est ce que cette partie détaille, ligne après ligne.
-  ]
-
-  #notes[
-    Tout ce qui sera produit cette année passe par l'édition d'un fichier
-    texte : le programme, ses réglages, sa documentation, et jusqu'à ce
-    que git doit ignorer.
-
-    La colonne de gauche n'est pas une caricature : c'est ce que fait
-    quelqu'un qui écrit son code dans le Bloc-notes, et plusieurs l'auront
-    fait au lycée. Montrer ce que cela coûte, sans se moquer.
-  ]
-]
-
-// --------------------------------------------
+// « Les fonctions d'édition de texte d'un IDE » retirée le 28/09/2026 : son
+// tableau annonçait les trois diapositives suivantes.
 #d("Texte brut et règles du langage")[
   #annonce[
     Un langage a une syntaxe définie. L'éditeur la connaît, par une extension,
@@ -155,8 +127,8 @@
     couleur, puis le soulignement.
 
     À gauche, le `content.xml` d'un `.odt` (TD 1b du cours 1, en annexe), le
-    texte noyé dans les balises. La règle, sans nuance : on n'écrit jamais de code dans Word ni
-    dans LibreOffice. 
+    texte entre les balises. On n'écrit pas de code dans Word ni dans
+    LibreOffice.
 
     Au milieu et à droite, le même fichier, octet pour octet. Ouvrir le même
     fichier dans le Bloc-notes le montre en une seconde.
@@ -168,19 +140,10 @@
     Sur le soulignement : un correcteur orthographique souligne le mot pendant
     qu'on tape, il n'attend pas l'impression. L'éditeur fait de même. Message
     relevé sous Python 3.12 ; il désigne ici la bonne ligne, ce qui n'est pas
-    toujours le cas 
+    toujours le cas.
 
-    Sur la chasse fixe : toutes les lettres y ont la même largeur, alors qu'une
-    police proportionnelle fait le `i` plus étroit que le `m`. L'intérêt n'est
-    pas esthétique — elle rend les espaces comptables, trois se distinguent de
-    quatre et une tabulation se repère, ce dont Python a besoin. Ne pas
-    confondre l'indentation, qui est dans le fichier et compte, avec la
-    coloration et la police, qui n'y sont pas.
-
-    Un langage a beaucoup moins d'exceptions que l'orthographe du français. 
-    C'est ce qui rend la vérification automatique possible : 
-    on ne peut pas écrire un logiciel qui corrige un
-    texte français de façon sûre, on peut en écrire un qui vérifie un programme.
+    Un langage a beaucoup moins d'exceptions que l'orthographe du français,
+    et un logiciel peut donc en vérifier les règles de façon sûre.
   ]
 ]
 
@@ -215,8 +178,8 @@
     l'entrée du `if`, celle du `else`, et le fait que `categorie` est au même
     niveau des deux côtés.
 
-    L'intérêt de la chasse fixe n'est pas esthétique. Python compte les
-    espaces qui commencent une ligne ; il faut donc les voir. Une police
+    Python compte les espaces qui commencent une ligne ; il faut donc les
+    voir. Une police
     proportionnelle fait le `i` plus étroit que le `m`, et deux lignes
     décalées pareil ne le paraissent plus.
 
@@ -224,7 +187,7 @@
     la police et la coloration, qui n'y sont pas.
 
     Lien avec LibreOffice, manipulé au cours 1 : on y choisit une police
-    pour la mise en page ; ici on la subit pour une raison technique.
+    pour la mise en page ; ici, elle est imposée par une raison technique.
   ]
 ]
 
@@ -264,14 +227,13 @@
     moment, ne pas le projeter ici.
 
     Python refuse ce mélange dans une même indentation, et le dit par
-    `TabError`. Le message ne parle pas d'espace manquant : il dit que
-    l'indentation mélange deux caractères. À l'œil nu, sur un éditeur réglé
-    sur 4, rien ne se voit — c'est ce que montre la colonne de gauche.
+    `TabError` : l'indentation mélange deux caractères. Sur un éditeur réglé
+    sur 4, le mélange ne se voit pas (colonne de gauche).
 
     VS Code insère quatre espaces pour une tabulation dans un fichier
     Python.
 
-    Les blancs s'affichent depuis le réglage du TD 1a (« render
+    Les blancs s'afficheront après le réglage du TD 1a (« render
     whitespace ») ; le TD 1b s'en sert.
 
     Fins de ligne, à dire en passant : Windows en met deux (`CRLF`), Linux et

@@ -100,7 +100,7 @@
 
   #legende[
     Le texte tapé reste lisible sans être affiché mis en forme. Le cours 2
-    complète cette syntaxe : tableaux, blocs de code, images.
+    y ajoute les tableaux et les images.
   ]
 
   #notes[
@@ -108,9 +108,11 @@
     sans quoi deux lignes consécutives n'en font qu'un. Le dièse veut un
     espace : `#Titre` ne produit pas un titre.
 
-    Syntaxe complète, publiée par Gruber :
-    daringfireball.net/projects/markdown/syntax ; l'intention de Markdown est
-    au cours 2.
+    Intention de Markdown (John Gruber, 15 mars 2004, Daring Fireball) :
+    un format facile à lire et à écrire, convertible en HTML, et lisible
+    tel quel sans avoir l'air balisé. Syntaxe complète :
+    daringfireball.net/projects/markdown/syntax. Depuis 2014, CommonMark en
+    fixe une spécification.
 
     Dans JupyterLab, `Maj` + `Entrée` affiche la cellule mise en forme, un
     double-clic revient au texte tapé. Une cellule de texte n'a pas de

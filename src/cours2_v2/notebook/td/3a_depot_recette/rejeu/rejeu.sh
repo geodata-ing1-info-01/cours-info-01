@@ -2,8 +2,9 @@
 # Rejeu du TD 3a_depot_recette (cours 2 v2) : les commandes du guide, dans
 # l'ordre, avec leurs sorties. git 2.43 et pandoc 3, en français. Les sorties
 # citées par le guide et les diapositives sont dans `sortie.txt`, relevée le
-# 26/09/2026. Les identifiants de commit changent à chaque rejeu à partir de
-# l'étape 4 : le .odt produit par pandoc porte une date.
+# 26/09/2026, puis le 28/09/2026 (étape 4 sans commit du .odt, étape 7).
+# Les dates des commits sont fixées : les identifiants se retrouvent à
+# chaque rejeu.
 #
 #   conda activate info01          # pandoc et magick
 #   bash rejeu.sh > sortie.txt
@@ -31,12 +32,12 @@ PY
 echo "=== étape 0"
 p cp depart/recette.md depart/crepes.jpg travail/
 p cd travail
-p git config --global user.name '"Alice Martin"'
-p git config --global user.email alice.martin@ensg.eu
-p git config --global --list
 echo "=== étape 1"
 p git init
 p ls -a
+p git config user.name '"Alice Martin"'
+p git config user.email alice.martin@ensg.eu
+p git config user.name
 p git status
 p git add recette.md crepes.jpg
 p git status
@@ -61,17 +62,10 @@ p pandoc recette.md -o recette.html
 p pandoc recette.md -o recette.odt
 p ls
 p git status
-p git add recette.odt
-horloge; p git commit -m '"Ajoute la recette au format .odt"'
-remplace recette.md "| Lait | 500 ml |" "| Lait | 600 ml |"
-p pandoc recette.md -o recette.odt
-p git status
-p git diff
-p git rm --cached recette.odt
 printf '*.html\n*.odt\n' > .gitignore
 p cat .gitignore
 p git status
-p git add .gitignore recette.md
+p git add .gitignore
 horloge; p git commit -m '"Ignore les fichiers produits par pandoc"'
 p git status
 p ls
@@ -121,4 +115,23 @@ p git add recette.md
 p git status
 horloge; p git commit -m '"Fusionne la version pour 18 crêpes"'
 p git log --oneline --graph
+p git log --oneline --graph --all --decorate
 p git branch
+echo "=== étape 7"
+p cd ..
+p git clone travail copie
+p cd copie
+p ls -a
+p git log --oneline -3
+p git remote -v
+p git config user.name
+p git config user.name '"Alice Martin"'
+p git config user.email alice.martin@ensg.eu
+printf '> Elle se congèle aussi, un mois au plus.\n' >> recette.md
+p tail -3 recette.md
+p git add recette.md
+horloge; p git commit -m '"Ajoute la congélation au conseil"'
+p cd ../travail
+p git pull ../copie master
+p git log --oneline -3
+p tail -3 recette.md

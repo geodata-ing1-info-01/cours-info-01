@@ -11,9 +11,9 @@ version peut servir à réviser git.
 
 ## Contenu de la séance
 
-La séance commence par la configuration de l'éditeur de code, faite par
-toute la salle en même temps ; tout le reste se fait dans l'éditeur, avec
-son terminal Git Bash.
+L'éditeur de code est présenté, puis configuré par toute la salle en même
+temps. Le reste de la séance se fait dans l'éditeur, avec son terminal Git
+Bash.
 
 ```{list-table}
 :header-rows: 1
@@ -21,21 +21,21 @@ son terminal Git Bash.
 * - Partie
   - Ce qu'on y voit
   - TD
-* - Configurer l'éditeur de code
-  - VS Code, l'extension Python, l'interpréteur, Git Bash comme terminal,
-    les réglages User et Workspace
-  - 1a, en classe entière
 * - L'éditeur de code
   - les fonctions d'un IDE, la coloration, la chasse fixe, l'indentation en
-    espaces ou en tabulations ; trois programmes fautifs à corriger
-  - 1b
-* - Markdown
-  - l'intention de Markdown, tableau, bloc de code et image, la conversion
-    par pandoc, le README
+    espaces ou en tabulations ; configurer VS Code (l'extension Python,
+    l'interpréteur, Git Bash comme terminal, les réglages User et
+    Workspace) ; trois programmes fautifs à corriger
+  - 1a, en classe entière ; 1b
+* - Une recette en Markdown
+  - un format texte pour les documents d'un projet ; le tableau et l'image ;
+    la conversion par pandoc
   - 2a
 * - Git local
-  - le dépôt, l'index et le commit, `status`, `diff`, `log`, `restore`,
-    `.gitignore`, les branches, la fusion et les conflits
+  - les systèmes de version et les copies d'un dépôt, le dépôt, l'index et
+    le commit, `status`, `diff`, `log`, `restore`, `.gitignore`, les
+    branches, la fusion et les conflits, l'organisation des branches à
+    plusieurs
   - 3a
 ```
 
@@ -50,11 +50,14 @@ dans le dépôt :
 - la ligne de commande passe au cours 1, avec un TD ;
 - la configuration de VS Code arrive du cours 1, faite en classe entière,
   avec Git Bash comme terminal ;
-- Markdown arrive du cours 1, complété par pandoc et le README ;
+- Markdown arrive du cours 1, pour écrire la recette que git versionne,
+  convertie ensuite par pandoc ;
 - git se joue sur un seul dépôt, celui de la recette écrite en Markdown,
   à la place des cinq TD sur le projet `projet_2` ;
-- `revert`, `tag`, `rebase` et l'organisation main, develop, feature
-  passent en annexe.
+- `revert` et `rebase` passent en annexe ; `tag` passe au projet 7 ;
+  l'organisation main, develop, feature est gardée, en théorie ;
+- l'aspect distribué de git est présenté en théorie ; il se pratique au
+  cours 6, et à l'étape 7 du TD git pour ceux qui ont fini.
 
 Les diapositives sont dans le dépôt, `src/cours2_v2/diapo/cours2_v2.pdf`.
 

@@ -47,18 +47,19 @@
 // --------------------------------------------
 #d("Contenu de la séance")[
   #annonce[
-    La séance commence par la configuration de l'éditeur de code, faite par
-    toute la salle en même temps. Le reste s'y déroule.
+    L'éditeur de code est présenté, puis configuré par toute la salle en
+    même temps. Le reste de la séance s'y déroule.
   ]
 
   #tableau(
     columns: (1fr, auto, auto),
     align: (left + horizon, left + horizon, right + horizon),
     [Partie], [Nature], [Durée],
+    [L'éditeur de code et Markdown], [cours], [10′],
     [Configurer l'éditeur de code], [TD 1a, en classe entière], [25′],
-    [L'éditeur de code], [cours et TD 1b], [20′],
-    [Markdown], [cours et TD 2a], [20′],
-    [Git local], [cours et TD 3a], [60′],
+    [Corriger trois programmes], [TD 1b], [10′],
+    [Une recette en Markdown], [TD 2a], [12′],
+    [Git local], [cours et TD 3a], [62′],
   )
 
   #legende[
@@ -66,12 +67,16 @@
   ]
 
   #notes[
-    Budget du syllabus v2 : 115′, avant l'arrivée du TD 1b (10′), venu du
-    cours 1 v2 le 27/09/2026. Le premier poste à surveiller est la
-    configuration : si elle dépasse 25′, le guide du TD 1a, distribué avant
-    la séance, doit la faire commencer avant.
+    Budget : 10 + 25 + 10 + 12 + 62 = 119′, 1′ de marge (syllabus v2,
+    28/09/2026). Premier
+    poste à surveiller : la configuration. Si elle dépasse 25′, le guide du
+    TD 1a, distribué avant la séance, doit la faire commencer avant.
 
-    `revert`, `tag`, `rebase` et l'organisation main, develop, feature sont
-    en annexe (syllabus v2).
+    Si la séance déborde, retirer dans l'ordre : la diapositive
+    « L'organisation des branches à plusieurs », l'étape `.odt` du TD 2a.
+
+    `revert` et `rebase` sont en annexe ; `tag` au projet 7 ; l'organisation
+    des branches à plusieurs, en théorie en fin de partie git, puis au
+    cours 6.
   ]
 ]

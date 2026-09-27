@@ -11,44 +11,14 @@
 #let td = (
   numero: "1b",
   titre: "Trois programmes fautifs",
-  annonce: "Lire les caractères invisibles et la barre d'état de VS Code, puis corriger trois programmes Python qui refusent de s'exécuter",
+  annonce: "Lire les caractères invisibles et la barre d'état de VS Code, puis corriger trois programmes Python qui s'arrêtent sur une erreur",
   dossier: "cours2/1b_erreurs/",
   duree: "10′",
 )
 #separateur-td(..td)
 
-#d("Les caractères invisibles dans VS Code")[
-  #annonce[
-    Un espace et une tabulation ne se distinguent pas à l'œil. Depuis le
-    réglage du TD 1a, VS Code les dessine.
-  ]
-
-  #tableau(
-    columns: (auto, 1fr),
-    align: left + horizon,
-    [Où regarder], [Ce qu'on y lit],
-    [le début des lignes indentées],
-      [un point par espace, une flèche par tabulation],
-    [la barre d'état, en bas à droite],
-      [`LF` ou `CRLF` : comment les lignes se terminent ; l'indentation, en espaces ou en tabulations],
-  )
-
-  #legende[
-    Sans le réglage du TD 1a : `Ctrl` + `,`, chercher « render whitespace »,
-    choisir `all`.
-  ]
-
-  #notes[
-    Le faire regarder, machine ouverte, avant de projeter la diapositive
-    suivante.
-
-    Les fins de ligne : un caractère sous Linux et macOS, deux sous Windows.
-    Les nommer ; git y revient dans la partie suivante.
-
-    Intitulés de la barre d'état à vérifier sur la version de VS Code des
-    postes.
-  ]
-]
+// « Les caractères invisibles dans VS Code » fondue dans la légende de la
+// diapositive suivante le 28/09/2026 (le réglage est fait au TD 1a).
 #d("Corriger trois programmes")[
   #annonce[
     Chacun des trois fichiers de `depart/` porte une faute d'un genre
@@ -72,8 +42,10 @@
   )
 
   #legende[
-    Messages réels, obtenus avec Python 3.12. Une fois corrigés, les trois
-    programmes affichent `294.0`, `130.05` et `1341 caractères`.
+    VS Code dessine un point par espace et une flèche par tabulation (réglage
+    du TD 1a) ; la barre d'état, en bas à droite, indique l'indentation et
+    la fin de ligne, `LF` ou `CRLF`. Une fois corrigés, les trois programmes
+    affichent `294.0`, `130.05` et `1341 caractères`.
   ]
 
   #notes[
@@ -91,8 +63,8 @@
     place un accent circonflexe sous l'endroit exact. Faire lire le
     message en entier.
 
-    La troisième est d'une autre nature, et c'est le point : le programme est
-    correct, l'éditeur ne souligne rien, et il tourne chez Alice. Il échoue
+    La troisième est d'une autre nature : le programme est correct,
+    l'éditeur ne souligne rien, et il fonctionne chez Alice. Il échoue
     ici parce que le chemin absolu qu'il contient n'existe que sur son poste.
     Le chemin relatif part du dossier où le terminal se trouve, `1b_erreurs/`,
     remonte de deux dossiers et va chercher le fichier du TD 1a du cours 1 :
@@ -100,7 +72,13 @@
     `info01/`. La diapositive « Le chemin d'un fichier » du cours 1 s'y
     vérifie, sur l'erreur la plus fréquente des rendus des autres cours.
 
-    La vérification demandée n'est pas que le programme affiche le bon
-    résultat, mais qu'il n'affiche plus de message.
+    Messages réels, obtenus avec Python 3.12.
+
+    La vérification demandée : le programme n'affiche plus de message
+    d'erreur.
+
+    Fins de ligne : un caractère sous Linux et macOS, deux sous Windows. Les
+    nommer en montrant la barre d'état. Intitulés de la barre d'état à
+    vérifier sur la version de VS Code des postes.
   ]
 ]

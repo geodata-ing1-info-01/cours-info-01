@@ -41,7 +41,7 @@ chaque étape donne la marche à suivre dans les cas rencontrés en 2026.
 
 > **À faire :** copier l'archive de la séance dans `Desktop\info01` ; la décompresser dans Git Bash.
 >
-> **À obtenir :** `ls cours2` affiche les trois dossiers des TD.
+> **À obtenir :** `ls cours2` affiche les quatre dossiers des TD.
 
 ### Copier l'archive
 
@@ -75,7 +75,7 @@ ls cours2
 ```
 
 ```text
-1a_vscode/  2a_markdown/  3a_depot_recette/
+1a_vscode/  1b_erreurs/  2a_markdown/  3a_depot_recette/
 ```
 
 Si `unzip` affiche `command not found`, décompresser à la souris : clic
@@ -97,7 +97,7 @@ puis fermer Git Bash et le rouvrir.
 
 > **À faire :** lancer VS Code depuis le menu Démarrer ; ouvrir le dossier `Desktop\info01\cours2`.
 >
-> **À obtenir :** l'explorateur de VS Code affiche les trois dossiers des TD.
+> **À obtenir :** l'explorateur de VS Code affiche les quatre dossiers des TD.
 
 1. Menu Démarrer, taper « Visual Studio Code », Entrée. La page d'accueil
    de VS Code s'ouvre.

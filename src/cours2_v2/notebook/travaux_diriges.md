@@ -11,7 +11,7 @@ TD fait constater.
 
 - [TD 1a — Configurer VS Code](td/1a_vscode/guide.md), en classe entière, 25 minutes
 - [TD 1b — Trois programmes fautifs](td/1b_erreurs/guide.md), 10 minutes
-- [TD 2a — Une recette en Markdown, convertie par pandoc](td/2a_markdown/guide.md), 15 minutes
+- [TD 2a — Une recette en Markdown, convertie par pandoc](td/2a_markdown/guide.md), 12 minutes
 - [TD 3a — Un dépôt git pour la recette](td/3a_depot_recette/guide.md), 40 minutes
 
 ```{toctree}

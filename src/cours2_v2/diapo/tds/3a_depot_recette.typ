@@ -9,11 +9,12 @@
 // Inclus par `cours2_v2.typ` ; compilable seul par
 // `outils/compiler_tds.py --cours 2_v2`.
 #import "../../../commun/prelude.typ": *
+#import "../../../commun/schemas_git.typ": graphe-git, marque-tete
 
 #let td = (
   numero: "3a",
   titre: "Un dépôt git pour la recette",
-  annonce: "Versionner la recette du TD 2a : commits, différences, fichiers ignorés, une branche fusionnée, un conflit résolu",
+  annonce: "Versionner la recette du TD 2a : commits, différences, fichiers ignorés, une branche fusionnée, un conflit résolu, le graphe du dépôt",
   dossier: "cours2/3a_depot_recette/",
   duree: "40′",
 )
@@ -70,31 +71,30 @@
   ]
 ]
 
-#d("Étape 4 : un fichier produit par pandoc")[
+// Refaite le 28/09/2026 : le `.odt` n'est plus versionné puis retiré
+// (`git rm --cached`), et la comparaison d'un fichier binaire est retirée
+// du cours 2.
+#d("Étape 4 : des fichiers produits par pandoc")[
   #tableau(
     columns: (auto, 1.25fr, 1fr),
     align: left + horizon,
     [], [Ce qu'il faut faire], [Ce que vous constatez],
-    [4], [`pandoc recette.md -o recette.odt`, `git add recette.odt`, `git commit -m "Ajoute la recette au format .odt"`],
-      reponse[un commit de plus],
-    [4], [passer le lait à 600 ml, refaire le `.odt` ; `git diff`],
-      reponse[la ligne du lait ; pour le `.odt`, « Binary files … differ »],
-    [4], [`git rm --cached recette.odt` ; un fichier `.gitignore` avec `*.html` et `*.odt`],
-      reponse[`git status` : `.odt` supprimé du dépôt, `.gitignore` non suivi],
-    [4], [`git add .gitignore recette.md`, `git commit -m "Ignore les fichiers produits par pandoc"`],
-      reponse[« rien à valider », alors que `recette.odt` est toujours là],
+    [4], [`pandoc recette.md -o recette.html`, puis `-o recette.odt` ; `git status`],
+      reponse[deux fichiers non suivis],
+    [4], [un fichier `.gitignore` avec deux lignes, `*.html` et `*.odt` ; `git status`],
+      reponse[seul `.gitignore` est non suivi],
+    [4], [`git add .gitignore`, `git commit -m "Ignore les fichiers produits par pandoc"`],
+      reponse[« rien à valider », alors que `recette.html` et `recette.odt` sont dans le dossier],
   )
 
   #notes[
     `.gitignore` se crée dans VS Code : File, New File, nom `.gitignore`,
     une ligne par motif.
-
-    `git rm --cached` retire le fichier de l'index et laisse le fichier sur
-    le disque. Sans `--cached`, il l'efface aussi.
   ]
 ]
 
-#d("Étapes 5 et 6 : une branche, une fusion, un conflit")[
+// Coupée en deux le 28/09/2026, avec l'ajout du graphe dessiné.
+#d("Étape 5 : une branche, une fusion")[
   #tableau(
     columns: (auto, 1.25fr, 1fr),
     align: left + horizon,
@@ -105,18 +105,76 @@
       reponse[la farine est redevenue du blé],
     [5], [`git merge sans-gluten -m "Fusionne la variante sans gluten"`],
       reponse[sarrasin et conseil dans le même fichier],
+  )
+
+  #notes[
+    La branche courante s'affiche entre parenthèses à la fin de l'invite de
+    Git Bash.
+  ]
+]
+
+#d("Étape 6 : un conflit, puis le graphe du dépôt")[
+  #tableau(
+    columns: (auto, 1.25fr, 1fr),
+    align: left + horizon,
+    [], [Ce qu'il faut faire], [Ce que vous constatez],
     [6], [branche `pour-18` : 18 crêpes ; sur `master` : 2 heures de repos, sur la même ligne],
       reponse[deux commits, un sur chaque branche],
     [6], [`git merge pour-18`], reponse[`CONFLIT (contenu)` ; les marqueurs dans `recette.md`],
     [6], [écrire la bonne ligne, retirer les marqueurs ; `git add`, `git commit`],
-      reponse[`git log --oneline --graph` : deux fusions],
+      reponse[un commit de fusion],
+    [6], [dessiner sur papier le graphe du dépôt, puis `git log --oneline --graph --all --decorate`],
+      reponse[le même graphe : neuf commits, deux fusions],
   )
+
+  #legende[
+    Pour aller plus loin : l'étape 7 du guide, une seconde copie du dépôt
+    par `git clone`, puis `git pull`.
+  ]
 
   #notes[
     Les étapes 5 et 6 sont celles qui débordent. Si le temps manque,
     s'arrêter après l'étape 5 ; l'étape 6 se fait seule, avec le guide.
 
-    La branche courante s'affiche entre parenthèses à la fin de l'invite de
-    Git Bash.
+    Le dessin se fait avant la commande : le comparer ensuite au graphe de
+    git, et au graphe du corrigé.
   ]
 ]
+
+// Nouveau (28/09/2026) : le graphe attendu à la fin de l'étape 6, au corrigé
+// seulement (les élèves le dessinent avant `git log --graph`). Identifiants
+// du rejeu, `rejeu/sortie.txt`.
+#if corrige-visible {
+  d("Le graphe du dépôt à la fin du TD")[
+    #annonce[
+      Neuf commits, dont deux fusions. Chaque fusion a deux parents.
+    ]
+
+    #align(center, graphe-git(
+      commits: (
+        (nom: "c1", col: 0, voie: 0, id: "a16"),
+        (nom: "c2", col: 1, voie: 0, id: "fe4", parents: ("c1",)),
+        (nom: "c3", col: 2, voie: 0, id: "28c", parents: ("c2",)),
+        (nom: "c4", col: 3, voie: 1, id: "939", parents: ("c3",)),
+        (nom: "c5", col: 3, voie: 0, id: "220", parents: ("c3",)),
+        (nom: "c6", col: 4, voie: 0, id: "eda", parents: ("c5", "c4")),
+        (nom: "c7", col: 5, voie: 1, id: "c50", parents: ("c6",)),
+        (nom: "c8", col: 5, voie: 0, id: "b6b", parents: ("c6",)),
+        (nom: "c9", col: 6, voie: 0, id: "e87", parents: ("c8", "c7")),
+      ),
+      branches: (
+        (nom: "master", voie: 0, commit: "c9"),
+        (nom: "sans-gluten", voie: 1, commit: "c4"),
+        (nom: "pour-18", voie: 1, commit: "c7"),
+      ),
+      echelle: 1.25,
+      taille-etiquette: 10pt,
+      extra: (pos, d) => marque-tete(d, pos("c9"), dx: 0.7, dy: 0.8),
+    ))
+
+    #legende[
+      Dans chaque pastille, le début de l'identifiant, comme dans
+      `git log --oneline`. La flèche va d'un commit vers son parent.
+    ]
+  ]
+}

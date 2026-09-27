@@ -15,8 +15,9 @@ en 2026 sont ceux de la séance 2, dans la partie « Archive 2026 ».*
 
 Ce guide détaille les étapes du TD 3a. Le TD versionne avec git la recette
 écrite en Markdown au TD 2a : un premier commit, des modifications
-comparées, un fichier produit par pandoc, puis une branche, une fusion et
-un conflit. Il dure une quarantaine de minutes.
+comparées, des fichiers produits par pandoc tenus hors du dépôt, puis une
+branche, une fusion et un conflit. Il dure une quarantaine de minutes.
+L'étape 7 est pour ceux qui ont fini.
 
 Pour chaque étape, le guide donne :
 
@@ -35,9 +36,10 @@ identifiants de commit (`a16d497`…) sont différents sur chaque poste.
 | 1 | créer le dépôt, faire le premier commit | 1 |
 | 2 | modifier la recette, lire la différence, faire un commit | 2 |
 | 3 | abîmer une ligne, puis la restaurer | 2 |
-| 4 | versionner un `.odt`, constater le problème, l'ignorer | 4 |
-| 5 | une variante sans gluten sur une branche, fusionnée | 7 |
-| 6 | la même ligne modifiée sur deux branches, et le conflit résolu | 10 |
+| 4 | produire la page et le document, les ignorer | 3 |
+| 5 | une variante sans gluten sur une branche, fusionnée | 6 |
+| 6 | la même ligne modifiée sur deux branches, et le conflit résolu | 9 |
+| 7 | pour aller plus loin : une seconde copie du dépôt | 10 |
 
 Si le temps manque en séance, s'arrêter après l'étape 5 ; l'étape 6 se
 fait ensuite avec ce guide.
@@ -64,6 +66,11 @@ modification : git lit le fichier enregistré sur le disque.
 **La commande à taper en cas de doute.** `git status` affiche la
 branche courante, les fichiers qui ont changé, et les commandes qui
 s'appliquent. La taper avant de demander de l'aide.
+
+**L'aide de git.** Chaque commande du TD est `git` suivi d'une
+sous-commande : `init`, `add`, `commit`… `git add -h` affiche dans le
+terminal les options de `add` ; `git add --help` ouvre la page complète du
+manuel dans le navigateur.
 
 **Les trois zones de git.** Le schéma ci-dessous sert à toutes les étapes.
 `git add` place un fichier dans l'index ; `git commit` enregistre l'index
@@ -396,9 +403,9 @@ complète.
 modification est perdue, et aucune commande ne la retrouve. git ne peut
 restaurer que ce qui a été enregistré par un commit.
 
-## Étape 4 · Un fichier produit par pandoc
+## Étape 4 · Des fichiers produits par pandoc
 
-> **À faire :** produire `recette.html` et `recette.odt` ; faire un commit du `.odt` ; modifier la recette, refaire le `.odt`, lire `git diff` ; retirer le `.odt` du dépôt et ignorer les fichiers produits.
+> **À faire :** produire `recette.html` et `recette.odt` ; lire `git status` ; écrire un fichier `.gitignore` et en faire un commit.
 >
 > **À obtenir :** `git status` affiche « rien à valider », alors que `recette.html` et `recette.odt` sont dans le dossier.
 
@@ -422,74 +429,11 @@ Fichiers non suivis:
 aucune modification ajoutée à la validation mais des fichiers non suivis sont présents (utilisez "git add" pour les suivre)
 ```
 
-### 4.2 Un commit du `.odt`
+Les deux fichiers se refont depuis `recette.md` par la même commande. Les
+versionner ajouterait à l'historique une copie de chacune de leurs
+versions, alors que `recette.md` en contient déjà le texte.
 
-```text
-git add recette.odt
-git commit -m "Ajoute la recette au format .odt"
-```
-
-```text
-[master 393d861] Ajoute la recette au format .odt
- 1 file changed, 0 insertions(+), 0 deletions(-)
- create mode 100644 recette.odt
-```
-
-`0 insertions(+), 0 deletions(-)` : git ne compte pas de lignes dans un
-fichier binaire.
-
-### 4.3 Modifier la source, refaire le document
-
-Dans `recette.md`, passer le lait de `500 ml` à `600 ml` et enregistrer.
-Puis refaire le document, et lire la différence :
-
-```text
-pandoc recette.md -o recette.odt
-git diff
-```
-
-```text
-diff --git a/recette.md b/recette.md
-index 45bc5f0..53f6fcb 100644
---- a/recette.md
-+++ b/recette.md
-@@ -10,7 +10,7 @@
- |---|---|
- | Farine | 250 g |
- | Œufs | 3 |
--| Lait | 500 ml |
-+| Lait | 600 ml |
- | Sel | 1 pincée |
- | Beurre fondu | 50 g |
- 
-diff --git a/recette.odt b/recette.odt
-index 094bec8..572146e 100644
-Binary files a/recette.odt and b/recette.odt differ
-```
-
-Pour `recette.md`, git montre la ligne changée. Pour `recette.odt`, il
-indique seulement que le fichier a changé : un `.odt` est une archive ZIP, dont les
-octets ne se comparent pas ligne à ligne. La dernière ligne reste en
-anglais, même quand git parle français.
-
-Ce `.odt` n'apporte rien au dépôt : il se refait depuis `recette.md` par la
-même commande, et chacune de ses versions alourdit l'historique pour
-toujours.
-
-### 4.4 Retirer le `.odt` du dépôt
-
-```text
-git rm --cached recette.odt
-```
-
-```text
-rm 'recette.odt'
-```
-
-`--cached` retire le fichier de l'index, et le laisse sur le disque. Sans
-`--cached`, `git rm` l'efface aussi du dossier.
-
-### 4.5 Le fichier `.gitignore`
+### 4.2 Le fichier `.gitignore`
 
 `.gitignore` est un fichier texte, à la racine du dépôt. Chaque ligne est
 un motif de noms de fichiers que `git status` n'affiche plus et que
@@ -513,36 +457,27 @@ git status
 
 ```text
 Sur la branche master
-Modifications qui seront validées :
-  (utilisez "git restore --staged <fichier>..." pour désindexer)
-	supprimé :        recette.odt
-
-Modifications qui ne seront pas validées :
-  (utilisez "git add <fichier>..." pour mettre à jour ce qui sera validé)
-  (utilisez "git restore <fichier>..." pour annuler les modifications dans le répertoire de travail)
-	modifié :         recette.md
-
 Fichiers non suivis:
   (utilisez "git add <fichier>..." pour inclure dans ce qui sera validé)
 	.gitignore
+
+aucune modification ajoutée à la validation mais des fichiers non suivis sont présents (utilisez "git add" pour les suivre)
 ```
 
-Les trois zones à la fois : la suppression de `recette.odt` est dans
-l'index, la modification du lait dans le dossier de travail, `.gitignore`
-n'est pas suivi. `recette.html` n'apparaît plus.
+`recette.html` et `recette.odt` n'apparaissent plus. `.gitignore` est un
+fichier du projet comme un autre : il se versionne.
 
-### 4.6 Le commit
+### 4.3 Le commit
 
 ```text
-git add .gitignore recette.md
+git add .gitignore
 git commit -m "Ignore les fichiers produits par pandoc"
 ```
 
 ```text
-[master 4d1a6ac] Ignore les fichiers produits par pandoc
- 3 files changed, 3 insertions(+), 1 deletion(-)
+[master 28cbb91] Ignore les fichiers produits par pandoc
+ 1 file changed, 2 insertions(+)
  create mode 100644 .gitignore
- delete mode 100644 recette.odt
 ```
 
 **Vérification** :
@@ -611,7 +546,7 @@ git commit -m "Remplace la farine de blé par du sarrasin"
 ```
 
 ```text
-[sans-gluten 34808ea] Remplace la farine de blé par du sarrasin
+[sans-gluten 9399bb0] Remplace la farine de blé par du sarrasin
  1 file changed, 1 insertion(+), 1 deletion(-)
 ```
 
@@ -625,21 +560,11 @@ git checkout master
 Basculement sur la branche 'master'
 ```
 
-Dans VS Code, `recette.md` montre de nouveau `| Farine | 250 g |` : changer
-de branche remplace les fichiers du dossier par ceux du dernier commit de
-la branche. La variante reste enregistrée sur `sans-gluten`.
+Changer de branche remplace les fichiers du dossier par ceux du dernier
+commit de la branche. La variante reste enregistrée sur `sans-gluten`.
 
-**Vérification** :
-
-```text
-grep Farine recette.md
-```
-
-```text
-| Farine | 250 g |
-```
-
-`grep` affiche les lignes d'un fichier qui contiennent un mot.
+**Vérification** : dans VS Code, `recette.md` montre de nouveau
+`| Farine | 250 g |`.
 
 ### 5.4 Un commit sur `master`
 
@@ -658,17 +583,16 @@ git log --oneline --graph --all --decorate
 ```
 
 ```text
-* 492c373 (HEAD -> master) Ajoute un conseil de conservation
-| * 34808ea (sans-gluten) Remplace la farine de blé par du sarrasin
+* 22060f2 (HEAD -> master) Ajoute un conseil de conservation
+| * 9399bb0 (sans-gluten) Remplace la farine de blé par du sarrasin
 |/  
-* 4d1a6ac Ignore les fichiers produits par pandoc
-* 393d861 Ajoute la recette au format .odt
+* 28cbb91 Ignore les fichiers produits par pandoc
 * fe4fe8b Réduit les œufs à trois
 * a16d497 Ajoute la recette des crêpes
 ```
 
 Chaque `*` est un commit ; les traits dessinent les deux branches, parties
-du même commit `4d1a6ac`. `HEAD -> master` : la branche courante est
+du même commit `28cbb91`. `HEAD -> master` : la branche courante est
 `master`.
 
 ### 5.5 Fusionner
@@ -689,26 +613,20 @@ Merge made by the 'ort' strategy.
 Les deux branches ont modifié `recette.md`, sur des lignes différentes :
 git a réuni les deux modifications, et créé un commit de fusion.
 
-**Vérification** :
+**Vérification** : dans VS Code, `recette.md` contient la ligne
+`| Farine de sarrasin | 250 g |` et la section `## Conseil`. Puis :
 
 ```text
-grep -n -e Farine -e Conseil recette.md
 git log --oneline --graph
 ```
 
 ```text
-11:| Farine de sarrasin | 250 g |
-26:## Conseil
-```
-
-```text
-*   978eeb6 Fusionne la variante sans gluten
+*   edae9b6 Fusionne la variante sans gluten
 |\  
-| * 34808ea Remplace la farine de blé par du sarrasin
-* | 492c373 Ajoute un conseil de conservation
+| * 9399bb0 Remplace la farine de blé par du sarrasin
+* | 22060f2 Ajoute un conseil de conservation
 |/  
-* 4d1a6ac Ignore les fichiers produits par pandoc
-* 393d861 Ajoute la recette au format .odt
+* 28cbb91 Ignore les fichiers produits par pandoc
 * fe4fe8b Réduit les œufs à trois
 * a16d497 Ajoute la recette des crêpes
 ```
@@ -746,7 +664,7 @@ git commit -m "Passe la recette à 18 crêpes"
 ```
 
 ```text
-[pour-18 885911d] Passe la recette à 18 crêpes
+[pour-18 c505059] Passe la recette à 18 crêpes
  1 file changed, 1 insertion(+), 1 deletion(-)
 ```
 
@@ -765,7 +683,7 @@ git commit -m "Allonge le repos à deux heures"
 ```
 
 ```text
-[master b88efc3] Allonge le repos à deux heures
+[master b6b9a34] Allonge le repos à deux heures
  1 file changed, 1 insertion(+), 1 deletion(-)
 ```
 
@@ -835,13 +753,9 @@ cinq lignes du bloc (marqueurs compris) par la seule ligne :
 *Pour 18 crêpes — 10 minutes de préparation, 2 heures de repos.*
 ```
 
-Enregistrer. Vérifier qu'il ne reste aucun marqueur :
-
-```text
-grep -n "<<<<<<<\|>>>>>>>\|=======" recette.md
-```
-
-La commande ne doit rien afficher.
+Enregistrer. Vérifier qu'il ne reste aucun marqueur : `Ctrl` + `F` dans
+VS Code, chercher `<<<<`, puis `>>>>` et `====` ; la recherche affiche
+« No results ».
 
 ### 6.5 Terminer la fusion
 
@@ -864,33 +778,38 @@ git commit -m "Fusionne la version pour 18 crêpes"
 ```
 
 ```text
-[master 0b0495c] Fusionne la version pour 18 crêpes
+[master e87b68f] Fusionne la version pour 18 crêpes
 ```
 
-**Vérification** :
+### 6.6 Le graphe du dépôt
+
+Avant de taper la commande suivante, dessiner sur papier le graphe du
+dépôt : une pastille par commit, une flèche de chaque commit vers son ou
+ses parents, et le nom de chaque branche à côté du commit qu'elle désigne,
+comme sur les diapositives du cours. Puis comparer avec le dessin de git :
 
 ```text
-git log --oneline --graph
+git log --oneline --graph --all --decorate
 ```
 
 ```text
-*   0b0495c Fusionne la version pour 18 crêpes
+*   e87b68f (HEAD -> master) Fusionne la version pour 18 crêpes
 |\  
-| * 885911d Passe la recette à 18 crêpes
-* | b88efc3 Allonge le repos à deux heures
+| * c505059 (pour-18) Passe la recette à 18 crêpes
+* | b6b9a34 Allonge le repos à deux heures
 |/  
-*   978eeb6 Fusionne la variante sans gluten
+*   edae9b6 Fusionne la variante sans gluten
 |\  
-| * 34808ea Remplace la farine de blé par du sarrasin
-* | 492c373 Ajoute un conseil de conservation
+| * 9399bb0 (sans-gluten) Remplace la farine de blé par du sarrasin
+* | 22060f2 Ajoute un conseil de conservation
 |/  
-* 4d1a6ac Ignore les fichiers produits par pandoc
-* 393d861 Ajoute la recette au format .odt
+* 28cbb91 Ignore les fichiers produits par pandoc
 * fe4fe8b Réduit les œufs à trois
 * a16d497 Ajoute la recette des crêpes
 ```
 
-Dix commits, dont deux fusions. `git branch` liste les trois branches :
+git dessine le graphe de haut en bas, le commit le plus récent en haut.
+Neuf commits, dont deux fusions. `git branch` liste les trois branches :
 
 ```text
 * master
@@ -901,21 +820,150 @@ Dix commits, dont deux fusions. `git branch` liste les trois branches :
 Pour abandonner une fusion en conflit au lieu de la résoudre :
 `git merge --abort` rend l'état d'avant le `git merge`.
 
+## Étape 7 · Pour aller plus loin : une seconde copie du dépôt
+
+> **À faire :** copier le dépôt par `git clone` ; faire un commit dans la copie ; le récupérer dans `travail/` par `git pull`.
+>
+> **À obtenir :** `git log --oneline -3` affiche le même dernier commit dans `copie/` et dans `travail/`.
+
+Le dossier `.git` contient tout l'historique du projet. `git clone` crée
+une copie complète du dépôt, dans un autre dossier ou sur un autre
+support, comme une clé USB. Les deux dépôts échangent ensuite leurs commits. La forge du
+cours 6 est un dépôt de plus, sur un serveur.
+
+### 7.1 Copier le dépôt
+
+```text
+cd ..
+git clone travail copie
+```
+
+```text
+Clonage dans 'copie'...
+fait.
+```
+
+(« Cloning into 'copie'... done. ») `cd ..` remonte dans
+`3a_depot_recette/` ; `git clone` y crée `copie/`, à côté de `travail/`.
+Pour copier le dépôt sur une clé USB, donner en second argument un dossier
+de la clé, par exemple `/e/recette` pour le lecteur `E:`.
+
+```text
+cd copie
+ls -a
+git log --oneline -3
+```
+
+```text
+.
+..
+crepes.jpg
+.git
+.gitignore
+recette.md
+```
+
+```text
+e87b68f Fusionne la version pour 18 crêpes
+b6b9a34 Allonge le repos à deux heures
+c505059 Passe la recette à 18 crêpes
+```
+
+La copie a son propre dossier `.git`, avec les mêmes commits et les mêmes
+identifiants. `recette.html` et `recette.odt`, ignorés, n'ont pas été
+copiés.
+
+### 7.2 Le dépôt d'origine
+
+```text
+git remote -v
+```
+
+```text
+origin	…/3a_depot_recette/travail (fetch)
+origin	…/3a_depot_recette/travail (push)
+```
+
+La copie garde le chemin du dépôt dont elle vient, sous le nom `origin`.
+Au cours 6, `origin` désigne le dépôt de la forge.
+
+### 7.3 Un commit dans la copie
+
+Le réglage de l'étape 1.2 est écrit dans `travail/.git`, et `git clone` ne
+le copie pas : dans la copie, `git config user.name` n'affiche rien. Le
+refaire :
+
+```text
+git config user.name "Prénom Nom"
+git config user.email "prenom.nom@ensg.eu"
+```
+
+Ouvrir `copie/recette.md` dans VS Code (File → Open File…), ajouter à la
+fin la ligne suivante, puis enregistrer :
+
+```text
+> Elle se congèle aussi, un mois au plus.
+```
+
+```text
+git add recette.md
+git commit -m "Ajoute la congélation au conseil"
+```
+
+```text
+[master bc1bae1] Ajoute la congélation au conseil
+ 1 file changed, 1 insertion(+)
+```
+
+Ce commit n'existe que dans `copie/`.
+
+### 7.4 Récupérer le commit dans `travail/`
+
+```text
+cd ../travail
+git pull ../copie master
+```
+
+```text
+Depuis ../copie
+ * branch            master     -> FETCH_HEAD
+Mise à jour e87b68f..bc1bae1
+Fast-forward
+ recette.md | 1 +
+ 1 file changed, 1 insertion(+)
+```
+
+`git pull ../copie master` récupère les commits de la branche `master` du
+dépôt `../copie` et les fusionne dans la branche courante. `travail/`
+n'avait pas de commit nouveau : git avance `master` jusqu'au commit de la
+copie (« Fast-forward »), sans commit de fusion.
+
+**Vérification** :
+
+```text
+git log --oneline -3
+```
+
+```text
+bc1bae1 Ajoute la congélation au conseil
+e87b68f Fusionne la version pour 18 crêpes
+b6b9a34 Allonge le repos à deux heures
+```
+
+Le même identifiant, `bc1bae1`, dans les deux dépôts. Dans VS Code,
+`travail/recette.md` se termine par la ligne ajoutée dans la copie.
+
 ## Ce que le TD fait constater
 
 À lire après avoir fait les étapes.
 
 **Un commit enregistre l'index.** `git add` choisit ce qui entre dans le
 prochain commit ; `git commit` l'enregistre. Entre les deux, `git status`
-affiche la zone de chaque fichier (étapes 1, 2 et 4.5).
-
-**git compare le texte ligne à ligne.** `git diff` montre la ligne du lait
-dans `recette.md`, et seulement que `recette.odt` a changé (étape 4.3). Un
-format texte, comme Markdown, se versionne ; un format binaire se stocke.
+affiche la zone de chaque fichier (étapes 1, 2 et 4).
 
 **Ce qui se refait ne se versionne pas.** `recette.html` et `recette.odt` se
 refont depuis `recette.md` par pandoc. `.gitignore` les tient hors du dépôt
-(étape 4.5).
+(étape 4.2).
 
 **git ne restaure que ce qu'il a enregistré.** `git restore` remet la
 version du dernier commit ; une modification jamais enregistrée par un
@@ -925,6 +973,10 @@ commit ne se retrouve pas (étape 3).
 du dossier (étape 5.3). La fusion réunit des modifications de lignes
 différentes sans rien demander (étape 5.5) ; sur la même ligne, elle
 s'arrête, et la personne qui fusionne décide (étape 6).
+
+**Chaque copie d'un dépôt contient tout l'historique.** `git clone` copie
+tous les commits, et `git pull` fait passer les nouveaux commits d'un dépôt
+à l'autre. Le réglage de l'auteur est propre à chaque dépôt (étape 7).
 
 ## Annexe · Les commandes du TD
 
@@ -938,12 +990,14 @@ s'arrête, et la personne qui fusionne décide (étape 6).
 | `git log --oneline --graph` | l'historique, une ligne par commit, avec les branches |
 | `git diff` | les lignes modifiées depuis le dernier commit |
 | `git restore fichier` | remet le fichier dans l'état du dernier commit |
-| `git rm --cached fichier` | retire le fichier du dépôt, le laisse sur le disque |
 | `git branch` | liste les branches |
 | `git checkout -b nom` | crée une branche et s'y place |
 | `git checkout nom` | change de branche |
 | `git merge nom` | fusionne la branche `nom` dans la branche courante |
 | `git merge --abort` | abandonne une fusion en conflit |
+| `git clone source copie` | copie le dépôt `source` dans le dossier `copie` |
+| `git remote -v` | affiche le dépôt d'origine d'une copie |
+| `git pull dépôt branche` | récupère les commits d'une branche d'un autre dépôt, et les fusionne |
 
 Les sorties de ce guide ont été relevées en rejouant le TD par le script
 `rejeu/rejeu.sh`, à côté de ce guide dans le dépôt du cours.

@@ -13,48 +13,11 @@
   titre: "Une recette en Markdown, convertie par pandoc",
   annonce: "Mettre en forme un texte brut en Markdown, avec l'aperçu de VS Code, puis le convertir en page web et en document LibreOffice",
   dossier: "cours2/2a_markdown/",
-  duree: "15′",
+  duree: "12′",
 )
 #separateur-td(..td)
-#d("Voir le rendu sans quitter l'éditeur")[
-  #annonce[
-    VS Code connaît le Markdown d'origine : rien à installer, et l'aperçu
-    s'ouvre à côté du fichier, dans la même fenêtre.
-  ]
-
-  #tableau(
-    columns: (auto, 1fr, 1fr),
-    align: left + horizon,
-    [L'action], [Ce qu'elle ouvre], [Quand s'en servir],
-    [`Ctrl` + `K` puis `V`],
-      [l'aperçu à droite, l'éditeur reste à gauche],
-      [pendant qu'on écrit : le rendu suit la frappe],
-    [`Ctrl` + `Maj` + `V`],
-      [l'aperçu seul, dans un onglet],
-      [pour relire, une fois le texte écrit],
-  )
-
-  #legende[
-    Les deux aperçus défilent avec le fichier. Ils ne changent rien au `.md` :
-    ce qui est enregistré reste le texte que vous avez tapé.
-  ]
-
-  #notes[
-    Le raccourci le plus employé de l'année : en prendre l'habitude maintenant, et écrire
-    le fichier de notes du jour avec l'aperçu ouvert.
-
-    Le montrer en direct plutôt que le décrire. Faire remarquer que
-    l'éditeur et l'aperçu se suivent quand on fait défiler l'un des deux.
-
-    Rien n'est installé pour cela : `markdown-language-features` est livré
-    avec l'éditeur, contrairement à Python et C++, qui ont demandé une
-    extension. C'est le contraste à nommer.
-
-    En français, l'entrée du menu est Affichage #sym.arrow.r Ouvrir
-    l'aperçu sur le côté. Libellés dépendants de la version, à vérifier sur
-    le poste de démonstration.
-  ]
-]
+// « Voir le rendu sans quitter l'éditeur » fondue dans la diapositive
+// suivante le 28/09/2026.
 #d("Mettre en forme une recette")[
   #annonce[
     Un texte brut sans aucune structure, à reprendre en Markdown. Le rendu se
@@ -67,45 +30,50 @@
     [], [Ce qu'il faut faire],
     [1], [dans l'explorateur de VS Code, `2a_markdown/depart/recette_a_formater.txt`],
     [2], [l'enregistrer sous `travail/recette.md`, et ouvrir l'aperçu par `Ctrl` + `K` puis `V`],
-    [3], [un titre en `#`, deux sous-titres en `##`],
-    [4], [les étapes de préparation en liste numérotée],
-    [5], [les ingrédients en tableau, depuis `depart/ingredients.csv`],
+    [3], [un titre `# Crêpes`, deux sous-titres `## Ingrédients` et `## Préparation`],
+    [4], [les étapes de préparation en liste numérotée : `1. Mélanger…`],
+    [5], [les ingrédients en tableau, depuis `depart/ingredients.csv` : `| Ingrédient | Quantité |`, puis `|---|---|`, puis une ligne `| Farine | 250 g |` par ingrédient],
     [6], [copier `depart/crepes.jpg` dans `travail/`, puis la photo par `![légende](crepes.jpg)`],
   )
 
   #legende[
-    `depart/recette.md` donne le résultat attendu : ne
-    l'ouvrir qu'après avoir essayé.
+    `Ctrl` + `Maj` + `V` ouvre l'aperçu seul, dans un onglet. L'aperçu ne
+    change rien au `.md`. `depart/recette.md` donne le résultat attendu :
+    ne l'ouvrir qu'après avoir essayé.
   ]
 
   #notes[
-    Le texte de départ n'a aucune structure, et c'est voulu : ils doivent
-    la décider, pas la recopier. La discussion utile est de savoir ce qui
-    est un titre et ce qui est une étape — la mise en forme est une
-    lecture du contenu.
+    Aperçu : VS Code le fournit sans extension
+    (`markdown-language-features`), alors que Python a demandé une
+    extension au TD 1a. Le montrer en direct ; l'éditeur et l'aperçu
+    défilent ensemble. Menu en français : Affichage #sym.arrow.r Ouvrir
+    l'aperçu sur le côté (libellés à vérifier sur le poste de démonstration).
 
-    Habitude à prendre, l'aperçu côte à côte : `Ctrl` + `K` puis `V`. On
-    écrit à gauche, on voit à droite, sans rien lancer.
+    Le texte de départ n'a aucune structure : les élèves décident de ce qui
+    est un titre et de ce qui est une étape.
 
-    Étape 5 : le tableau se tape à la main, ou se produit depuis le CSV
-    par une extension du catalogue. À la main la première fois,
-    l'extension ensuite — un tableau Markdown n'est que des barres
-    verticales, dont l'alignement n'est même pas obligatoire.
+    Étape 5 : le tableau se tape à la main. L'alignement des barres n'est
+    pas obligatoire ; la ligne `|---|---|` sépare l'en-tête. Une extension
+    du catalogue produit le tableau depuis le CSV ; à montrer ensuite, si
+    la question vient.
 
     Étape 6 : `crepes.jpg` est copiée dans `travail/`, à côté du fichier
-    qu'ils écrivent : le chemin relatif tient en un nom. Une image ne
-    s'insère pas dans un `.md`, elle s'y désigne : le fichier reste à côté.
+    écrit : le chemin relatif tient en un nom. Le `.md` désigne l'image,
+    qui reste un fichier à part.
 
     Pour ceux qui vont vite : une citation par `>`, et une seconde photo
     prise par eux.
   ]
 ]
 
-// Nouveau (v2).
+// Nouveau (v2). Reçoit le 28/09/2026 l'essentiel de la diapositive d'exposé
+// « Convertir un fichier Markdown : pandoc », retirée ; l'étape « modifier
+// une quantité, refaire la page » est retirée.
 #d("Convertir la recette")[
   #annonce[
-    Les commandes se tapent dans le terminal de VS Code, dans le dossier de
-    la recette.
+    pandoc écrit le contenu d'un fichier Markdown dans un autre format, qu'il
+    déduit de l'extension du fichier demandé par `-o`. Les commandes se
+    tapent dans le terminal de VS Code.
   ]
 
   #tableau(
@@ -117,8 +85,6 @@
     [3], [`start recette.html`], reponse[la page dans le navigateur, photo comprise],
     [4], [`pandoc recette.md -o recette.odt`, puis `start recette.odt`],
       reponse[le même contenu dans LibreOffice : titres, tableau, liste],
-    [5], [modifier une quantité dans `recette.md`, puis refaire l'étape 2 et `F5` dans le navigateur],
-      reponse[la page suit la source],
   )
 
   #legende[
@@ -132,6 +98,13 @@
     Le `.odt` produit reprend les styles par défaut de LibreOffice (Titre 1,
     Titre 2, tableau). `--reference-doc` choisit un autre modèle : ne pas le
     montrer.
+
+    pandoc est dans l'environnement `base` d'Anaconda sur les postes
+    (confirmé par l'équipe, 26/09/2026). Le PDF passe par LaTeX ou typst,
+    non installés : ne pas le faire en séance.
+
+    Suite : le TD 3a ignore ces fichiers produits ; le cours 3 appelle
+    pandoc depuis Python.
 
     Vérifié avec pandoc 3 sous Linux le 26/09/2026 (rejeu du TD 3a).
   ]

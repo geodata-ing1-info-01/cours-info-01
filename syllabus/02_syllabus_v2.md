@@ -33,12 +33,12 @@
 | Séance | Retire | Reçoit |
 |---|---|---|
 | **1** | VS Code et l'IDE (TD 2a, fonctions et édition d'un IDE), l'indentation et les programmes fautifs, environnements et bibliothèques (partie 4), Markdown, binaire et texte ; programme et application, place de l'interpréteur (en annexe) | stockage local et distant et copie des fichiers du cours, à la suite des logiciels et fichiers ; interface graphique et ligne de commande ; terminal Git Bash (choix justifié) et commandes de base, TD 2a sur les fichiers du TD 1a ; Python, programme en ligne de commande, une commande désigne un fichier cherché dans `PATH`, compilé et interprété, script de commandes ; premier programme édité dans Notepad++, lancé au terminal ; ouverture d'un notebook (invite de commandes d'Anaconda, puis Git Bash), avec la syntaxe minimale de Markdown dans ses cellules de texte |
-| **2** | la ligne de commande ; `revert`, `tag`, `rebase` et organisation main / develop / feature (en annexe) ; TD 4b et 6a | configuration de VS Code en classe entière en début de séance ; les réglages de VS Code ; l'IDE, l'indentation et le TD des trois programmes fautifs (venus du cours 1) ; Markdown complété (origine, conversion par pandoc, README), qui fournit les fichiers des premiers commits |
+| **2** | la ligne de commande ; `revert` et `rebase` (en annexe) ; `tag` (au projet 7) ; TD 4b et 6a | configuration de VS Code en classe entière, après la présentation de l'éditeur ; les réglages de VS Code ; l'IDE, l'indentation et le TD des trois programmes fautifs (venus du cours 1) ; Markdown complété (origine, conversion par pandoc, README), qui fournit les fichiers des premiers commits ; en théorie, les systèmes de version, les copies d'un dépôt et l'organisation des branches à plusieurs (`master`, `develop`, une branche par tâche) |
 | **3** | la préparation du poste en autonomie ; dans `images.ipynb`, `hexdump`, les signatures BMP et PNG, le poids, la compression, le temps de lecture | les environnements, traités par la pratique : créer un environnement et y installer les paquets que demandent les notebooks ; le binaire et le texte du cours 1 ; `fichiers.ipynb` en TD |
 | **4** | — | l'explication des bibliothèques et des environnements (partie 4 du cours 1 de 2026), à la création de l'environnement `animation` ; du temps pour la partie B |
 | **5** | — | le serveur de notebook comme exemple de client et serveur |
-| **6** | l'outil « trajectoire », numpy | la forge sur le dépôt du projet 4 |
-| **7** | le benchmark de conversion en gris sur une image fournie | une option `--effet` ajoutée au programme du projet 4 (un effet au choix parmi quatre, appliqué à chaque image), écrite en boucle puis avec numpy ; en facultatif, le poids, la compression et le temps de lecture de `images.ipynb` |
+| **6** | l'outil « trajectoire », numpy | la forge sur le dépôt du projet 4, précédée d'une copie du dépôt sans forge ; les organisations du travail à plusieurs |
+| **7** | le benchmark de conversion en gris sur une image fournie | une option `--effet` ajoutée au programme du projet 4 (un effet au choix parmi quatre, appliqué à chaque image), écrite en boucle puis avec numpy ; le `tag` de la version rendue ; en facultatif, le poids, la compression et le temps de lecture de `images.ipynb` |
 
 Le module a deux projets suivis : la recette (cours 1 à 3) et l'animation (cours 4, 6 et 7).
 
@@ -54,7 +54,7 @@ Le module a deux projets suivis : la recette (cours 1 à 3) et l'animation (cour
 | Git Bash dans VS Code | c2 | c3, c4, c6, c7 |
 | Git local : `status`, `add`, `commit`, `log`, `diff`, `.gitignore`, branche, `merge`, conflit | c2 | c3, c4, c6, c7 |
 | Créer un environnement conda et y installer un paquet demandé | c3 | c4 (depuis `environment.yml`), c7 (ajout de numpy et Pillow) |
-| Écrire un README en Markdown | c1 (syntaxe minimale, dans un notebook), c2 | c3 (étape 4), c4 (B4), c7 (`RAPPORT.md`) |
+| Écrire un README en Markdown | c1 (syntaxe minimale, dans un notebook), c2 (tableau, image), c3 (plan du README) | c3 (étape 4), c4 (B4), c7 (`RAPPORT.md`) |
 | Lire et écrire des fichiers en Python | c3 | c4, c7 |
 | Appeler une commande depuis Python (`subprocess`) | c3 (pandoc) | c4 (magick, ffmpeg) |
 | Programme en ligne de commande simple (`main`, `argparse`) | c3 | c4 |
@@ -93,7 +93,7 @@ Objectif : savoir où sont ses fichiers et où les ranger, se déplacer et agir 
   - ⌨️ 20′ · **TD 2b · Écrire et lancer un programme** : quel `python` la commande lance (`type -a python`, `python.exe` d'Anaconda lancé par son chemin) ; `conda init bash`, une fois par poste, avec repli sur l'invite de commandes d'Anaconda s'il échoue ; `altitudes.py` dans Notepad++, lancé, modifié, relancé avant et après l'enregistrement ; `commandes.sh`, si le temps le permet (le `.bat` équivalent en annexe du guide) ; Python en interactif.
 - **Partie 3 · Un notebook et la syntaxe minimale de Markdown (≈ 20′)**
   - 🎓 un notebook : texte, code et résultat dans un seul document, employé par les cours et TD de Python du module ; le noyau exécute les cellules et garde les variables (79, 81, sur une capture réelle).
-  - 🎓 une cellule de texte est écrite en Markdown : une diapositive-tableau, ce qu'on tape, ce qui s'affiche. L'origine de Markdown, la conversion et le README sont au cours 2.
+  - 🎓 une cellule de texte est écrite en Markdown : une diapositive-tableau, ce qu'on tape, ce qui s'affiche ; l'intention de Markdown (Gruber, 2004) dans ses notes. Le tableau, l'image et la conversion par pandoc sont au cours 2, le plan du README au cours 3.
   - 🎓 lancer JupyterLab : depuis l'invite de commandes d'Anaconda, sans réglage, puis depuis Git Bash ; Navigator en dernier secours.
   - ⌨️ 12′ · **TD 3a** : `altitudes.ipynb` ouvert dans JupyterLab ; exécuter les cellules dans le désordre, voir ce que le noyau retient ; ajouter une cellule de texte en tête ; relancer JupyterLab depuis Git Bash si le temps le permet.
 - **Clôture** : « À retenir » : logiciel, extension, disque local et réseau, terminal, chemin relatif, une commande désigne un fichier, interpréteur, automatiser (un logiciel pour ce qu'il prévoit, un script pour répéter, un programme pour le reste), notebook.
@@ -106,20 +106,23 @@ Objectif : savoir où sont ses fichiers et où les ranger, se déplacer et agir 
 
 Objectif : travailler dans un éditeur de code configuré, écrire de la documentation en Markdown, et versionner ce travail avec git en local.
 
+*Section mise à jour le 28/09/2026 d'après la refonte des supports (`src/cours2_v2/`) : diapositives fusionnées pour tenir en 120′, graphes git, systèmes de version et copies d'un dépôt en théorie.*
+
+- **🎓 8′ · L'IDE**, en ouverture de séance *(placée avant la configuration le 28/09/2026 : l'éditeur est expliqué avant d'être configuré)* : les fonctions d'un IDE ; édition (coloration syntaxique, chasse fixe, indentation en espaces ou en tabulations) ; dossier ouvert = projet (diapositives 43 à 47 du cours 1 de 2026) ; en fin de partie, la fenêtre de VS Code et ses trois zones, dessinée (`src/cours2_v2/diapo/schemas.typ`), qui introduit le TD 1a. Le débogueur pas à pas (61, 62) s'y ajoute si le temps le permet.
 - **⌨️ 20′ · Configuration de VS Code, en classe entière** : l'enseignant projette, chaque élève fait la même étape en même temps, on ne passe à la suivante que lorsque la salle a fini. Lancer VS Code ; installer l'extension Python ; choisir l'interpréteur ; faire de Git Bash le terminal par défaut (`terminal.integrated.defaultProfile.windows`) ; ouvrir le dossier `cours2/` ; vérifier `(base)` et `python --version` dans le terminal intégré. Reprend les diapositives 50 à 56 du cours 1 de 2026, remplace le profil « Anaconda Prompt » par Git Bash, et s'appuie sur [`src/annexes/configuration/vscode.md`](../src/annexes/configuration/vscode.md).
   - Le guide du TD, plus détaillé qu'en 2026 : une capture par étape, la vérification attendue, et la réponse aux blocages connus (PowerShell et `activate.ps1`, interpréteur absent de la liste, webview de l'aperçu). Distribué avant la séance pour les élèves qui veulent prendre de l'avance.
 - **Les réglages (5′)**, en classe entière, à la suite de la configuration : 🎓 la palette de commandes (`Ctrl` + `Maj` + `P`) et les réglages (`Ctrl` + `,`), diapositive 54 du cours 1 de 2026 ; deux niveaux, User (le compte, tous les dossiers) et Workspace (`.vscode/settings.json` du dossier ouvert, qui l'emporte), d'après [`src/annexes/configuration/vscode.md`](../src/annexes/configuration/vscode.md), section « Les réglages »). ⌨️ Chaque élève règle au niveau User `editor.renderWhitespace` sur `all` (les espaces et tabulations du TD 1b, qui suit) et `files.autoSave` ; il ouvre le `settings.json` correspondant pour voir le même réglage en texte. Le profil de terminal Git Bash, réglé à l'étape précédente, en est un troisième exemple.
-- **🎓 10′ · L'IDE** : les fonctions d'un IDE ; édition (coloration syntaxique, chasse fixe, indentation en espaces ou en tabulations) ; dossier ouvert = projet (diapositives 43 à 47 du cours 1 de 2026). Le débogueur pas à pas (61, 62) s'y ajoute si le temps le permet.
 - **⌨️ 10′ · TD 1b · Trois programmes fautifs** *(venu du cours 1 le 27/09/2026)*, dans VS Code : lire les espaces dessinés et la barre d'état, puis corriger `surface.py` (`TabError`), `moyenne.py` (`SyntaxError`) et `chemin.py` (chemin absolu remplacé par `../../cours1/…`), et relancer dans le terminal.
-- **Markdown (20′)**, suite de la syntaxe minimale vue dans le notebook du cours 1
-  - 🎓 l'intention de Markdown (Gruber, 2004 : un texte lisible tel quel, sans aperçu) ; ce qui s'ajoute à la syntaxe du cours 1 : tableau, bloc de code, image ; un fichier `.md` se convertit en HTML, en `.odt` ou en PDF par pandoc ; le README d'un projet, affiché par la forge en page d'accueil du dépôt (diapositives 75 à 78 du cours 1 de 2026).
-  - ⌨️ la recette en Markdown avec l'aperçu de VS Code (TD 3a du cours 1 de 2026, sans le diagramme `mermaid`, qui passe en annexe) ; `pandoc recette.md -o recette.html`, ouvrir la page dans le navigateur ; `pandoc recette.md -o recette.odt`, l'ouvrir dans LibreOffice (d'après [`data/cours1/3a_markdown/README.md`](../data/cours1/3a_markdown/README.md)). `recette.md` est le fichier du premier commit ; les `.html` et `.odt` produits servent ensuite au TD git.
-- **Git local (≈ 60′)**
-  - 🎓 20′ · à quoi sert git (diapositives 15 à 27 de 2026, treize pages, ramenées à trois : versions successives, travail en parallèle, quand l'employer) ; `init`, fichiers suivis et non suivis, zone de préparation, commit (28 à 35) ; `status`, `log --graph`, `diff` (62 à 64), placés avant le TD pour être employés à chaque étape ; `.gitignore` (65) ; annuler une modification non validée (`restore`) ; branche, `HEAD`, `merge` (41 à 45) ; conflit et sa résolution (47 à 49, sans `rebase --continue`) ; un message de commit, une diapositive tirée de 66 à 71.
-  - ⌨️ 40′ · un dépôt pour la recette : premier commit, modifier le Markdown, lire le `diff`, committer à nouveau ; committer aussi le `.odt` produit par pandoc, le régénérer après la modification, et lire le `diff` (git indique seulement que les fichiers binaires diffèrent, comme `comparer.py` en 2026) ; ignorer les fichiers produits (`*.html`, `*.odt`) par `.gitignore` ; une branche pour une variante de la recette, fusionnée ; la même ligne modifiée sur deux branches, puis le conflit résolu. Tout depuis le terminal intégré de VS Code. Remplace les TD 3a, 4a et 4c de 2026, qui travaillaient sur `projet_2` et quatre branches.
-- **En annexe** : `revert`, `tag`, `rebase`, organisation main / develop / feature (diapositives 36, 37, 46, 72 ; TD 4b et 6a de 2026). Le cours 6 n'en reprend que la branche de fonctionnalité, pour la pull request.
+- **Une recette en Markdown (≈ 14′)**, sans séparateur de partie *(ramenée le 28/09/2026 de quatre diapositives à une : Markdown sert ici à fabriquer le projet que git versionne ; la diapositive est placée en fin de la partie « L'éditeur de code », avant la fenêtre de VS Code, et le TD 2a suit le TD 1b)*
+  - 🎓 une diapositive, « Markdown, un format texte pour les documents » : du texte brut comme un programme, écrit dans l'éditeur de code, dont git compare les lignes, et dont les modifications se comprennent sans programmer ; un extrait de la recette et son aperçu ; le `README.md` s'écrit de la même façon. L'intention de Markdown (Gruber, 2004) passe dans les notes de la diapositive Markdown du cours 1 ; le plan du README et le bloc de code passent au cours 3.
+  - ⌨️ 12′ · TD 2a : la recette en Markdown avec l'aperçu de VS Code (TD 3a du cours 1 de 2026, sans le diagramme `mermaid`, qui passe en annexe), la forme du tableau et de l'image donnée dans la consigne ; en dernière étape, `pandoc recette.md -o recette.html`, ouvrir la page dans le navigateur, puis `pandoc recette.md -o recette.odt`, l'ouvrir dans LibreOffice (d'après [`data/cours1/3a_markdown/README.md`](../data/cours1/3a_markdown/README.md)). pandoc n'a pas de diapositive d'exposé : le TD 3a reprend ces commandes pour les fichiers à ignorer, et le cours 3 appelle pandoc depuis Python. `recette.md` est le fichier du premier commit du TD git.
+- **Git local (≈ 62′)**
+  - 🎓 22′ · dix-huit diapositives. À quoi sert git (diapositives 15 à 27 de 2026, treize pages, ramenées à trois) : les versions successives ; les systèmes de version, centralisé et distribué (d'après Pro Git, chapitre 1) ; les copies d'un dépôt (poste, clé USB, dépôt d'un camarade, forge), qui échangent leurs commits par `clone`, `pull` et `push`, en théorie. Puis git en ligne de commande : une sous-commande après `git` (`git <sous-commande> [options] <arguments>`, suite de « La forme d'une commande » du cours 1), l'aide par `git --help`, `git add -h` et `git add --help` (deux diapositives ajoutées le 28/09/2026). Puis `init`, zone de préparation et `status`, commit et `log` (28 à 35, 62 à 64) ; le message de commit (une diapositive tirée de 66 à 71) ; `diff` ; annuler une modification non validée (`restore`) ; `.gitignore` (65), avec ce qu'on ne versionne pas (fichiers produits, données, secrets) ; branche et `HEAD`, changer de branche, `merge` avec avance rapide ou commit de fusion (41 à 45) ; conflit et sa résolution (47 à 49, sans `rebase --continue`) ; en théorie, l'organisation des branches à plusieurs : `master` pour les versions terminées, `develop`, une branche par tâche (reprend 72, gardée le 28/09/2026 ; le module ne pratique que la branche de tâche). Chaque notion a son graphe, dessiné sur l'historique du TD (`commun/schemas_git.typ`).
+  - ⌨️ 40′ · un dépôt pour la recette : premier commit, modifier le Markdown, lire le `diff`, committer à nouveau ; produire la page et le `.odt` par pandoc, et les ignorer par `.gitignore` ; une branche pour une variante de la recette, fusionnée ; la même ligne modifiée sur deux branches, puis le conflit résolu ; dessiner sur papier le graphe du dépôt, puis le comparer à `git log --oneline --graph --all --decorate` (le graphe attendu est au corrigé). Tout depuis le terminal intégré de VS Code. Remplace les TD 3a, 4a et 4c de 2026, qui travaillaient sur `projet_2` et quatre branches. Le `diff` d'un fichier binaire est retiré (28/09/2026).
+  - Pour aller plus loin, dans le guide seulement (étape 7) : `git clone` du dépôt dans un autre dossier ou sur une clé USB, un commit dans la copie, `git pull` depuis la copie.
+- **En annexe** : `revert`, `rebase` (diapositives 36, 46 ; TD 4b de 2026). L'organisation main / develop / feature (72) reste au cours 2, en théorie. `tag` (37, TD 6a) passe au projet 7, sur la version rendue.
 
-**Budget** : 20 + 5 + 10 + 10 + 20 + 60 = **125′**, depuis l'arrivée du TD 1b : à ramener à 120′, en réduisant le git local (le TD de 40′) ou les réglages. Le rappel de Git Bash n'est plus une partie à part : la dernière étape de la configuration (`(base)` et `python --version` dans le terminal intégré) le vérifie. Le premier poste à surveiller est la configuration : si elle dépasse 20′ en classe entière, le guide distribué avant la séance doit la faire commencer avant.
+**Budget** : 10 (IDE et Markdown) + 25 (configuration et réglages) + 10 (TD 1b) + 12 (TD 2a) + 62 (git) = **119′**, 1′ de marge, pour 27 diapositives d'exposé et quatre TD. Pour y tenir, le 28/09/2026 : la partie « Configurer l'éditeur de code » et son séparateur retirés, sa diapositive « Visual Studio Code » placée en fin de partie IDE ; « Copier les fichiers » et « Lancer VS Code » fondues, avec le réglage de conda pour les postes passés par l'invite d'Anaconda au cours 1 ; la palette et les deux niveaux de réglages fondus ; « Les fonctions d'édition de texte d'un IDE » retirée ; la diapositive des caractères invisibles du TD 1b fondue dans sa voisine ; les quatre diapositives Markdown et leur séparateur ramenés à une diapositive ; au TD 3a, le `.odt` n'est plus versionné puis retiré. Si la séance déborde, retirer dans l'ordre : la diapositive « L'organisation des branches à plusieurs », puis l'étape `.odt` du TD 2a. Le rappel de Git Bash n'est plus une partie à part : la dernière étape de la configuration (`(base)` et `python --version` dans le terminal intégré) le vérifie. Le premier poste à surveiller est la configuration : si elle dépasse 25′ en classe entière, le guide distribué avant la séance doit la faire commencer avant.
 
 ## Cours 3 — Environnements, chemins et fichiers en Python, ligne de commande (CM)
 
@@ -130,7 +133,7 @@ Objectif : installer un projet dans son propre environnement, manipuler chemins 
 - **Chemins (20′)** : `recette.ipynb`, comme en 2026 ; le renvoi au « programme recette du cours 1 » disparaît, la recette est présentée ici.
 - **Fichiers (20′)** : ⌨️ `fichiers.ipynb` en TD, comme en 2026 (`open`, `with`, modes, `encoding`, ligne par ligne, CSV, `read_text`).
 - **Texte et binaire (15′)** : 🎓 le schéma bit → octet → hexadécimal → caractère (diapositive 19 du cours 1 de 2026, « Fichiers binaires et fichiers texte », reprise dans la partie encodage du cours 3 le 28/09/2026) et la table ASCII (31), puis quelques cellules d'`images.ipynb` exécutées avec la salle : § 1 (cellules 1 à 5, PGM `P2` lu comme texte puis ouvert comme image), § 2 (7 à 10, le même en `P5`, octets et en-tête), § 7 (42, 47, 49 : octets de « é » en UTF-8, « é » décodé en cp1252, « œuf »). Le reste du notebook passe en lecture autonome : § 3 et 4 (`hexdump`, signatures) en annexe, § 5 et 6 (poids, compression, temps de lecture) repris au projet 7.
-- **Ligne de commande (45′)** : TD 3a comme en 2026, l'étape 6 (`pyproject.toml`, `pip install -e .`) reçoit la diapositive 102 du cours 1 de 2026.
+- **Ligne de commande (45′)** : TD 3a comme en 2026, l'étape 6 (`pyproject.toml`, `pip install -e .`) reçoit la diapositive 102 du cours 1 de 2026. L'étape 4 (le README) reçoit la diapositive « Le README d'un projet » du cours 2 v2, avec le bloc de code Markdown (`src/cours2_v2/diapo/a_reprendre/readme_cours3.typ`, décision du 28/09/2026).
 
 **Budget** : 20 + 20 + 20 + 15 + 45 = **120′**, sans marge. Ce qui se retire d'abord : les étapes facultatives du TD 3a, puis les § 5 et 6 de `fichiers.ipynb` (CSV, `pathlib`) en lecture autonome.
 
@@ -146,9 +149,9 @@ Inchangé sur le fond. La diapositive « Client et serveur » reçoit l'exemple 
 
 Objectif : avoir employé une fois GitHub de bout en bout (dépôt distant, `push`, `pull`, `clone`, conflit, pull request). L'outil « trajectoire » de 2026 est retiré : le cours 6 ne demande pas d'écrire de code nouveau.
 
-- **🎓 15′ · La forge** : compte, dépôt distant, `remote`, `clone`, `push`, `pull` ; branche de fonctionnalité et pull request (seule reprise de l'organisation des branches de 2026).
+- **🎓 15′ · La forge** : compte, dépôt distant, `remote`, `clone`, `push`, `pull`, en partant des copies d'un dépôt vues au cours 2 (la forge est une copie de plus) ; les organisations du travail à plusieurs, d'après Pro Git, chapitre 5.1 (centralisée, gestionnaire d'intégration, qui est celle de la pull request) ; branche de fonctionnalité et pull request.
 - **⌨️ 20′ · Publier son dépôt** : créer un dépôt vide sur GitHub ; `git remote add origin`, `git push -u origin master` avec la clé SSH du cours 5 ; voir l'historique sur le site.
-- **⌨️ 20′ · Deux copies du même dépôt** : `git clone` dans un autre dossier ; un commit dans ce clone, `push` ; `pull` dans le premier dossier.
+- **⌨️ 20′ · Deux copies du même dépôt** : d'abord sans forge, `git clone` du dépôt dans un autre dossier ou sur une clé USB, un commit dans la copie, `git pull` depuis la copie (ce que proposait l'étape 7, facultative, du TD 3a du cours 2) ; puis par la forge : `git clone` depuis GitHub dans un autre dossier, un commit dans ce clone, `push`, `pull` dans le premier dossier.
 - **⌨️ 20′ · Un conflit** : modifier une ligne du README sur le site, la même ligne en local ; `pull`, résoudre le conflit, `push`.
 - **⌨️ 20′ · Une pull request** : une branche qui améliore le README, poussée ; ouvrir la pull request sur le site, la fusionner ; `pull` dans le dossier local.
 - **Élèves sans projet 4 terminé** : un dépôt de référence par TD (montre, tourbillon) à copier et publier à la place du leur.
@@ -173,6 +176,7 @@ Objectif : ajouter une fonctionnalité au projet 4 par une pull request, et comp
 - **⌨️ Vérifier** : un test qui compare les deux versions sur une petite image (`np.array_equal`), à la place de l'autograder de 2026.
 - **⌨️ Pull request et revue** : pousser la branche, ouvrir la pull request, faire relire par un camarade ajouté comme collaborateur, qui a choisi un autre effet ; fusionner.
 - **⌨️ `RAPPORT.md`** : une image avant et après l'effet, le tableau des temps, une phrase d'interprétation.
+- **⌨️ Une version publiée** : `git tag v1` sur le commit rendu, `git push --tags` ; la version apparaît sur la page du dépôt. Reprend le TD 6a du cours 2 de 2026.
 - **Facultatif** : appliquer deux effets à la suite (`--effet` répété) ; pour le TD de la montre, un cinquième effet, l'incrustation sur une photo choisie par l'élève à la place du fond blanc.
 - **Facultatif, repris des § 5 et 6 d'`images.ipynb` du cours 3** : poids d'une image non compressée (largeur × hauteur × canaux) comparé au `shape` et au `dtype` du tableau numpy ; taille du dossier des images PNG comparée à la taille de la vidéo ; temps de lecture de la série en PNG et en `.npy`.
 - **Guide** : l'objectif et la commande de vérification seulement, sans code à coller (troisième emploi de l'environnement, de la branche et du `merge`).
@@ -201,7 +205,7 @@ Statuts : **gardé** (même séance), **réduit** (même séance, moins de temps
 | c1 | Indentation ; TD 2b, trois programmes fautifs | c2, TD 1b, dans VS Code | déplacé |
 | c1 | TD 2c, le même programme en C++ | — | annexe |
 | c1 | Markdown : syntaxe minimale | c1, dans les cellules de texte du notebook | réduit |
-| c1 | Markdown : intention, syntaxe complète, TD 3a recette | c2, avec la conversion par pandoc et le README ; diagramme `mermaid` en annexe | déplacé |
+| c1 | Markdown : intention, syntaxe complète, TD 3a recette | intention dans les notes du c1 ; tableau, image, TD recette et conversion par pandoc au c2 (une diapositive et le TD 2a) ; plan du README et bloc de code au c3 ; diagramme `mermaid` en annexe | déplacé |
 | c1 | Notebook, TD 3b ouvert de trois façons | c1, TD 3a, JupyterLab lancé depuis l'invite de commandes d'Anaconda puis Git Bash | réduit |
 | c1 | Bibliothèques, dépendances, environnements (partie 4) | p4, partie A ; c3 pour la pratique | déplacé |
 | c1 | `pyproject.toml` | c3, TD 3a étape 6 | déplacé |
@@ -210,18 +214,20 @@ Statuts : **gardé** (même séance), **réduit** (même séance, moins de temps
 | c1 | TD 4a, installer le projet recette | c3, `conda create` et installation des paquets demandés | déplacé |
 | c1 | TD 4b, le client et le noyau ; TD 4c, installer le projet trajet | — | annexe |
 | c2 | Terminal, bash, commandes, arborescence, fichiers cachés, `*` | c1, partie terminal, avec TD | déplacé |
-| c2 | Git : à quoi il sert, quand l'employer (13 pages) | c2, trois diapositives | réduit |
+| c2 | Git : à quoi il sert, quand l'employer (13 pages) | c2, trois diapositives : les versions successives, les systèmes de version, les copies d'un dépôt | réduit |
 | c2 | `init`, suivi, zone de préparation, commit | c2 | gardé |
-| c2 | `revert`, `tag` | — | annexe |
+| c2 | `revert` | — | annexe |
+| c2 | `tag` | projet 7, sur la version rendue | déplacé |
 | c2 | Branches, `HEAD`, `merge` | c2 | gardé |
 | c2 | `rebase` | — | annexe |
 | c2 | Conflits | c2 | gardé |
 | c2 | `status`, `log`, `diff` | c2, avant le TD | gardé |
 | c2 | `.gitignore` | c2 | gardé |
 | c2 | Bonnes pratiques : messages de commit | c2, une diapositive | réduit |
-| c2 | Bonnes pratiques : organisation main / develop / feature | — ; le c6 garde la branche de fonctionnalité pour la pull request | annexe |
+| c2 | Bonnes pratiques : organisation main / develop / feature | c2, une diapositive théorique (`master`, `develop`, une branche par tâche) ; c6, les organisations du travail et la pull request | réduit |
 | c2 | TD 3a, 4a, 4c (dépôt `projet_2`, quatre branches, conflit) | c2, un seul TD sur le dépôt de la recette | réduit |
-| c2 | TD 4b (annuler et `rebase`), TD 6a (publier une version) | — | annexe |
+| c2 | TD 4b (annuler et `rebase`) | — | annexe |
+| c2 | TD 6a (publier une version) | projet 7, `tag` de la version rendue | déplacé |
 | c3 | Préparation du poste en autonomie | c3, remplacée par le TD d'environnement | retiré |
 | c3 | Chemins, `recette.ipynb`, pandoc, `PATH`, `subprocess` | c3 | gardé |
 | c3 | `fichiers.ipynb` | c3, en TD | gardé |
@@ -247,7 +253,9 @@ Statuts : **gardé** (même séance), **réduit** (même séance, moins de temps
 | p7 | Plafond : lecture PNG contre `.npy` | projet 7, facultatif | gardé |
 | p7 | Squelette fourni, GitHub Classroom, autograder | projet 7, dépôt de l'élève publié au c6 ; test d'égalité boucle et numpy écrit par l'élève | retiré |
 | — | Stockage local et distant, copie des fichiers du cours | c1 | ajouté |
-| — | Conversion d'un `.md` par pandoc (HTML, `.odt`) ; `diff` d'un fichier binaire dans git | c2 | ajouté |
+| — | Conversion d'un `.md` par pandoc (HTML, `.odt`) | c2, dernière étape du TD 2a | ajouté |
+| — | Systèmes de version, centralisé et distribué ; copies d'un dépôt | c2, en théorie ; pratique au c6, et à l'étape 7 du TD 3a pour ceux qui ont fini | ajouté |
+| — | Graphe du dépôt dessiné par l'élève, comparé à `git log --graph` | c2, fin du TD 3a | ajouté |
 | — | `conda init bash`, Git Bash comme terminal du module | c1 (TD 2b), rappel au c2 | ajouté |
 | — | Interface graphique et ligne de commande ; choix de Git Bash | c1 | ajouté |
 | — | Une commande désigne un fichier cherché dans `PATH` ; script de commandes | c1 | ajouté |
@@ -274,7 +282,7 @@ Statuts : **gardé** (même séance), **réduit** (même séance, moins de temps
 | c1 · 48 à 56 | TD 2a, configuration de VS Code | c2, classe entière |
 | c1 · 57 à 60 | Programme du TD, lancer, Python interactif, invite de commandes d'Anaconda | c1, TD 2b sans VS Code, dans Git Bash ; l'invite d'Anaconda sur « Python, un programme en ligne de commande » |
 | c1 · 61, 62 | Débogueur | archive 2026, ou c2 si le temps le permet |
-| c1 · 74 à 78, 83 à 87 | Markdown, TD 3a | syntaxe minimale au c1 (partie 3) ; le reste au c2 |
+| c1 · 74 à 78, 83 à 87 | Markdown, TD 3a | syntaxe minimale et intention (notes) au c1 (partie 3) ; TD recette au c2 ; README (78) au c3 |
 | c1 · 54 | La palette de commandes et les réglages | c2, les réglages |
 | c1 · 79 à 82, 88 à 89 | Notebook, TD 3b | c1 allégé (partie 3, TD 3a) |
 | c1 · 90 à 101 | Bibliothèques, dépendances, environnements | p4, partie A ; `PATH` (101) au c1 |
@@ -284,12 +292,15 @@ Statuts : **gardé** (même séance), **réduit** (même séance, moins de temps
 | c1 · 107 à 113 | TD 4a, installer le projet recette | c3, ouverture pratique (même démarche sur l'environnement de la séance) |
 | c1 · 114 à 122 | TD 4b, TD 4c | annexes |
 | c2 · 2 à 14 | Terminal, bash, commandes, arborescence, fichiers cachés, `*` | c1, partie 2 (terminal) |
-| c2 · 15 à 27 | Git : c'est quoi ? ; Fonctionnalités ; Quand l'utiliser ? | c2, ramenées à trois diapositives |
-| c2 · 36, 37, 46, 72 | `revert`, `tag`, `rebase`, organisation main / develop / feature | annexe |
+| c2 · 15 à 27 | Git : c'est quoi ? ; Fonctionnalités ; Quand l'utiliser ? | c2, ramenées à trois diapositives (à quoi sert git, les systèmes de version, les copies d'un dépôt) |
+| c2 · 36, 46 | `revert`, `rebase` | annexe |
+| c2 · 37 | `tag` | projet 7 |
+| c2 · 72 | Organisation main / develop / feature | c2, « L'organisation des branches à plusieurs », en théorie ; c6 |
 | c2 · 62 à 64 | Afficher les informations | c2, avant le TD |
 | c2 · 66 à 71 | Bonnes pratiques | c2, une diapositive (messages de commit) |
 | c2 · TD 3a, 4a, 4c | Premier dépôt, branches et fusions, conflit | c2, un seul TD sur le dépôt de la recette |
-| c2 · TD 4b, 6a | Annuler et `rebase`, publier une version | annexe |
+| c2 · TD 4b | Annuler et `rebase` | annexe |
+| c2 · TD 6a | Publier une version | projet 7 (`tag`) |
 | c3 · `images.ipynb` § 1, 2, 7 | PGM `P2` et `P5`, UTF-8 | c3, cellules exécutées avec la salle |
 | c3 · `images.ipynb` § 3, 4 | `hexdump`, signatures | annexe |
 | c3 · `images.ipynb` § 5, 6 | Poids, compression, temps de lecture | projet 7, facultatif |

@@ -19,13 +19,15 @@ structure : ni titre, ni liste, ni tableau. On le réécrit en Markdown dans
 l'éditeur de code, VS Code, avec l'aperçu ouvert à côté, en décidant ce qui
 est un titre, ce qui est une étape et ce qui est une donnée. On y ajoute un
 tableau et une photo, puis on convertit le fichier en page web et en
-document LibreOffice avec pandoc. Le TD dure une quinzaine de minutes.
+document LibreOffice avec pandoc. Le TD dure une douzaine de minutes.
 
 Tout se fait dans VS Code, configuré au TD 1a. L'aperçu Markdown est livré
 avec l'éditeur, et pandoc avec Anaconda : il n'y a rien à installer.
 
 Le fichier écrit, `travail/recette.md`, est celui du premier commit du
-TD 3a, dans un dépôt git.
+TD 3a, dans un dépôt git. Une recette convient à un premier dépôt : ses
+modifications (une quantité, une étape) se lisent sans connaître un
+programme.
 
 | Étape | Ce qu'on fait |
 |---|---|
@@ -293,22 +295,6 @@ start recette.odt
 **Vérification** : LibreOffice Writer ouvre la recette, avec des titres, un
 tableau et une liste numérotée.
 
-### La source et les fichiers produits
-
-Dans `recette.md`, passer le lait de `500 ml` à `600 ml`, enregistrer, puis
-refaire la page :
-
-```text
-pandoc recette.md -o recette.html
-```
-
-`F5` dans le navigateur : la page affiche `600 ml`. La page et le document
-se refont depuis `recette.md` par la même commande ; `recette.md` est la
-source.
-
-**À noter** : ce que devient le `.odt` ouvert dans LibreOffice après la
-modification, tant que la commande n'a pas été refaite.
-
 ### Comparer au résultat attendu
 
 Ouvrir `depart\recette.md`, et son aperçu (`Ctrl` + `K` puis `V`). Comparer
@@ -387,9 +373,9 @@ que lit un logiciel de lecture d'écran : elle décrit l'image.
 ### Étape 5 : une source, des fichiers produits
 
 pandoc lit `recette.md` et écrit le même contenu dans un autre format. La
-page web et le document LibreOffice ne sont pas modifiés à la main : ils se
+page web et le document LibreOffice ne se modifient pas à la main : ils se
 refont depuis la source, par la même commande, chaque fois qu'elle change.
-Tant que la commande n'est pas refaite, ils gardent l'ancienne version.
+Le cours 3 lance la même commande depuis un programme Python.
 
 Le TD 3a en tire la règle de git : la source se versionne, les fichiers
 produits se refont et ne se versionnent pas.
