@@ -5,30 +5,33 @@ subtitle: Objectif, contenu et organisation du module
 
 ## Objectif du module
 
-Plusieurs cours de la formation demandent d'installer un environnement
-Python, d'ouvrir un projet dans un éditeur, de lancer un script et de
-récupérer un fichier de résultats. Ces cours supposent ces opérations
-acquises, et aucun ne les enseigne.
+Plusieurs cours de votre formation de 1re année demandent d'installer des logiciels pour lancer un code. Cela demande de savoir faire les tâches suivantes, et d'être à l'aise avec elles :
 
-Ce module les enseigne, pour que vous arriviez dans les cours de
-programmation et dans les TD qui emploient Python sans perdre de temps sur
-l'outillage. Les mêmes opérations reviennent dans tous les cours où
-l'informatique sert d'outil de travail.
+  * lancer un script ou un programme en ligne de commande dans un terminal ;
+  * manipuler les fichiers (au format texte ou binaire) en entrée et en sortie de ces programmes ;
+  * ouvrir un projet de code dans un éditeur de code, ou dans un notebook (JupyterLab) pour un projet Python, et savoir utiliser et configurer ces outils :
+
+     * dépanner leurs problèmes de configuration sur les PC de l'école ;
+     * créer un environnement de développement et y installer des paquets.
+
+Il vous sera aussi demandé, en cours ou pour des projets, de programmer vous-mêmes des scripts et de les livrer à un commanditaire ou à un enseignant. Certains projets se font en équipe. Cela requiert de connaître quelques bonnes pratiques :
+
+   * être capable d'écrire un code qui n'est pas spécifique à votre machine (pas de chemins de fichier spécifiques) ;
+   * savoir documenter et structurer votre projet, et créer les fichiers utiles pour que votre code s'installe et s'exécute facilement sur une autre machine ;
+   * être capable de versionner et de partager votre code pour y travailler à plusieurs.
+
+Les mêmes opérations reviennent dans tous les cours où l'informatique sert d'outil de travail. Ces cours supposent ces opérations acquises, mais aucun ne les enseigne en soi.
+
+Ce module INFO-01 a pour objectif principal de vous les apprendre, pour que vous arriviez dans les cours de programmation et dans les TD qui emploient Python sans perdre de temps sur l'outillage.
 
 ## Contenu du module
 
 Le module couvre quatre domaines.
 
 Les outils de la programmation
-: D'abord l'édition de texte. Écrire du code demande un éditeur de code ;
+: D'abord l'édition de texte et une connaissance basique des terminaux (ligne de commande). Écrire du code demande un éditeur de code ;
   le module montre ce qui le distingue d'un traitement de texte, et ce que
   cela change pour les fichiers qu'on écrit.
-
-Le versionnement avec git
-: Une initiation : enregistrer l'état de son travail, revenir à une
-  version antérieure, et travailler à plusieurs sur les mêmes fichiers. Git
-  est introduit à la séance 2, puis repris dans les séances suivantes sur
-  des exercices courts.
 
 L'organisation d'un projet
 : Structurer un projet pour qu'une autre personne puisse le reprendre : un
@@ -37,12 +40,17 @@ L'organisation d'un projet
   bibliothèques Python prévues pour cela, et un outil en ligne de commande
   dont les paramètres se passent en argument, sans modifier le code.
 
+Le versionnement avec git
+: Une initiation : enregistrer l'état de son travail, revenir à une
+  version antérieure, et travailler à plusieurs sur les mêmes fichiers. Git
+  est introduit à la séance 2, puis repris dans les séances suivantes sur
+  des exercices courts.
+
 Des notions générales d'informatique
-: Les ordres de grandeur (mémoire, temps de calcul, débit réseau), la
-  sécurité (clés, secrets, ce qu'on ne publie pas) et les outils en ligne
-  de commande. Ces notions sont réparties au fil des séances ; elles
-  expliquent pourquoi une façon de faire est plus rapide ou plus sûre
-  qu'une autre.
+: Les ordres de grandeur (mémoire, temps de calcul, débit réseau) et la
+  sécurité (clés, secrets, ce qu'on ne publie pas). Ces notions sont
+  réparties au fil des séances, et expliquent pourquoi une façon de faire
+  est plus rapide ou plus sûre qu'une autre.
 
 ## Hors du module
 
@@ -97,35 +105,36 @@ des projets, qui se terminent par un livrable.
   - Ligne de commande et git local
   - cours
 * - 3
-  - Chemins, fichiers, images et ligne de commande
+  - Chemins, fichiers et ligne de commande, en Python
   - cours
 * - 4
-  - Studio d'automatisation (animation vidéo)
+  - Une animation, du notebook au programme
   - projet
 * - 5
   - Matériel, réseau, mots de passe, clés SSH et secrets
   - cours
 * - 6
-  - Forge, git en équipe, outil « trajectoire »
+  - La forge, sur le dépôt du projet 4
   - cours
 * - 7
-  - Benchmark image et rapport
+  - Un effet pour l'animation
   - projet
 ```
 
-Certains exemples viennent de la géomatique (des coordonnées, une distance,
-une trajectoire). Aucun ne suppose une notion qui n'a pas encore été vue.
+Certains exemples viennent de la géomatique (des coordonnées, une
+distance). Aucun ne suppose une notion qui n'a pas encore été vue.
 
 ## Compétences visées
 
 À la fin du module, vous savez :
 
-- ouvrir un projet dans un éditeur de code et vous y retrouver ;
+- lancer un programme et agir sur des fichiers dans un terminal ;
 - reconnaître ce que contient un fichier, indépendamment de son extension ;
+- ouvrir un projet dans un éditeur de code et vous y retrouver ;
 - installer un environnement Python, et le décrire pour qu'une autre personne
   l'installe ;
 - enregistrer votre travail avec git, revenir à une version antérieure, et
   contribuer à un dépôt partagé ;
-- écrire un script Python qui lit des fichiers, en produit d'autres, et reçoit
-  ses paramètres en ligne de commande ;
-- estimer l'ordre de grandeur de la durée d'une opération, et l'expliquer.
+- écrire un script Python qui lit des fichiers et en produit d'autres, et
+  qui fonctionne sur un autre poste que le vôtre ;
+- écrire un script qui reçoit ses paramètres en ligne de commande.
