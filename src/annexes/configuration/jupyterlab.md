@@ -1,32 +1,11 @@
 ---
 title: JupyterLab
-subtitle: Le noyau et le client d'un notebook ; tester JupyterLab, le lancer depuis l'invite de commandes d'Anaconda
+subtitle: Tester JupyterLab, le lancer depuis un terminal, les fiches Notebook et JupyterLab
 ---
 
-Un notebook est un fichier qui mélange du texte et des cellules de code.
-Pour travailler avec un notebook, il faut deux choses : un noyau
-(*kernel*), côté serveur, qui exécute le code des cellules, et un client,
-qui affiche le document et lui envoie les cellules.
-
-- Le noyau. Pour un notebook Python, c'est un interpréteur Python : celui
-  de `base` (Anaconda), ou celui d'un autre environnement. Le paquet qui
-  fait d'un Python un noyau s'appelle `ipykernel` ; `base` l'a.
-- Le client. Soit JupyterLab, livré avec Anaconda, qui s'affiche dans le
-  navigateur ; soit un autre client, comme VS Code avec l'extension
-  Jupyter, et c'est celui que le module emploie en séance.
-
-```{figure} ../schemas/client_serveur.svg
-:alt: Sur la machine, un client (JupyterLab dans le navigateur, ou VS Code) envoie la cellule à exécuter à un serveur (jupyter-server et ipykernel) qui renvoie le résultat
-:width: 100%
-
-Le client et le serveur d'un notebook, tous deux sur le poste (schéma du
-cours 1).
-```
-
-Le noyau est un processus Python qui garde les variables en mémoire entre
-deux cellules. Le redémarrer les efface toutes, et l'ordre d'exécution des
-cellules est celui des compteurs `[1]`, `[2]`, pas celui de la page ;
-c'est le sujet du TD 3b.
+JupyterLab est un client de notebooks, livré avec Anaconda, qui s'affiche
+dans le navigateur. Ce qu'est un notebook, son noyau et ses clients sont
+expliqués dans [Les notebooks](../notions/notebooks.md).
 
 ## Tester JupyterLab
 
@@ -34,13 +13,14 @@ Le test, qui vérifie que Python exécute du code sur le poste sans rien
 configurer, est dans [Anaconda et
 JupyterLab](../../avant/python.md), après celui d'Anaconda.
 
-## Lancer JupyterLab depuis l'invite de commandes d'Anaconda
+## Lancer JupyterLab depuis un terminal
 
 Navigator fait deux choses quand on clique Launch : il active
 l'environnement affiché en haut de sa page, puis il lance `jupyter lab`.
-Les deux mêmes commandes se tapent dans l'invite de commandes d'Anaconda, ou dans le terminal
-« Anaconda Prompt » de VS Code ([Python et environnement conda](vscode_python.md)),
-et elles montrent ce que la fiche cache.
+Les deux mêmes commandes se tapent dans un terminal où conda est
+disponible, l'invite de commandes d'Anaconda ou Git Bash configuré
+([conda dans un terminal](anaconda.md)), et elles montrent ce que la fiche
+cache.
 
 `jupyter lab` n'est pas une commande de Windows : c'est un programme de
 l'environnement actif, celui que l'invite affiche entre parenthèses.
@@ -78,7 +58,7 @@ navigateur n'arrête pas le serveur : c'est `Ctrl` + `C` dans la fenêtre,
 deux fois, qui l'arrête, ou le menu File, Shut Down dans JupyterLab. Un
 serveur oublié occupe le port 8888, et le suivant s'ouvre sur 8889.
 
-## JupyterLab, Notebook, VS Code : trois clients pour le même fichier
+## Les fiches Notebook et JupyterLab
 
 Navigator propose deux fiches, « Notebook » et « JupyterLab ». Ce sont
 deux clients web du même projet Jupyter : Notebook est le plus ancien, une
@@ -88,20 +68,8 @@ construit sur les mêmes composants que JupyterLab. Les deux ouvrent les
 mêmes fichiers `.ipynb` et lancent le même serveur ; aucun ne remplace
 l'autre, et le choix ne change rien au fichier.
 
-VS Code est un troisième client. Il ouvre le même fichier, mais sans
-serveur : il démarre `ipykernel` lui-même, dans l'environnement choisi
-comme noyau. C'est pourquoi un environnement ouvert dans VS Code n'a
-besoin que d'`ipykernel`, pas de `jupyterlab`.
-
-```{figure} ../schemas/deux_clients.svg
-:alt: À gauche, JupyterLab dans le navigateur passe par jupyter-server pour parler à ipykernel ; à droite, VS Code démarre ipykernel directement, sans serveur
-:width: 100%
-
-Deux clients, le même noyau (schéma du cours 1).
-```
-
-La configuration des notebooks dans VS Code est dans
-[VS Code : notebooks](vscode_notebooks.md).
+VS Code est un troisième client, qui ouvre les notebooks sans serveur
+([Les notebooks](../notions/notebooks.md)).
 
 ## Documentation officielle
 

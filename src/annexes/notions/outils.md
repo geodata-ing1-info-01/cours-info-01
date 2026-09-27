@@ -48,16 +48,8 @@ VS Code
   décrit dans la page [VS Code](../configuration/vscode.md).
 
 Un même notebook s'ouvre dans JupyterLab et dans VS Code, parce que les
-deux outils démarrent le même noyau, `ipykernel`, le programme qui exécute
-les cellules. JupyterLab passe par un serveur, `jupyter-server`, et VS Code
-démarre le noyau directement.
-
-```{figure} ../schemas/deux_clients.svg
-:alt: À gauche, JupyterLab dans le navigateur passe par jupyter-server pour parler à ipykernel ; à droite, VS Code démarre ipykernel directement, sans serveur
-:width: 100%
-
-JupyterLab et VS Code, deux clients du même noyau (schéma du cours 1).
-```
+deux outils démarrent le même noyau. La page [Les notebooks](notebooks.md)
+l'explique.
 
 ## Quel outil pour quelle tâche
 
@@ -89,25 +81,5 @@ conda](../configuration/vscode_python.md).
 
 ## Notebook ou fichier Python
 
-Un notebook garde les résultats avec le code, et se lit de haut en bas. Ses
-cellules s'exécutent pourtant dans l'ordre où on les lance, et le noyau
-garde en mémoire ce que des cellules effacées ont défini. Quand une valeur
-change dans une cellule, il faut relancer dans l'ordre les cellules qui en
-dépendent.
-
-```{figure} ../../cours3/notebook/figures/3_notebook_valeurs.svg
-:alt: Un notebook dont la cellule des valeurs est modifiée : les cellules qui en dépendent sont à relancer.
-
-Dans un notebook, une valeur modifiée demande de relancer les cellules qui
-en dépendent (schéma du cours 3).
-```
-
-Un fichier `.py` s'exécute du début à la fin, et donne le même résultat à
-chaque exécution. Il convient donc à un programme qu'on donne à quelqu'un
-d'autre, ou qu'on relance un mois plus tard.
-
-Dans le module, on explore dans un notebook ou dans la console de Spyder,
-puis on place le code dans un fichier `.py` une fois qu'il est au point. La
-partie [Du notebook au
-programme](../../cours3/notebook/03_du_notebook_au_programme.md) du cours 3
-montre ce passage.
+Le choix entre un notebook et un fichier `.py` est traité dans la page
+[Les notebooks](notebooks.md).

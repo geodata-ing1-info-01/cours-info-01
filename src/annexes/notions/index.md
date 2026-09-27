@@ -7,6 +7,9 @@ tiennent pour acquis :
 
 - [Choisir entre JupyterLab, Spyder et VS Code](outils.md) : ce que fait
   chacun de ces outils, et lequel employer pour chaque tâche.
+- [Les notebooks](notebooks.md) : le fichier `.ipynb`, le noyau et le
+  client, ce que le noyau garde en mémoire, et les outils qui ouvrent un
+  notebook.
 - [Les terminaux en ligne de commande](terminaux.md) : `cmd`, PowerShell,
   l'invite de commandes d'Anaconda, et Python comme troisième interpréteur.
 - [Variables d'environnement et recherche des programmes](variables_environnement.md) :
@@ -26,6 +29,7 @@ tiennent pour acquis :
 :maxdepth: 1
 
 outils
+notebooks
 terminaux
 variables_environnement
 environnements

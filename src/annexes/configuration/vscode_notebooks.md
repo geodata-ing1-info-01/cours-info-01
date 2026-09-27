@@ -3,9 +3,8 @@ title: Notebooks
 subtitle: Extension Jupyter, choix du noyau
 ---
 
-Un notebook est un fichier `.ipynb` qui mélange du texte et des cellules
-de code. Le programme qui exécute ce code s'appelle le noyau : c'est le
-Python d'un environnement. Cette page suppose l'extension Python installée
+Ce qu'est un notebook et son noyau est expliqué dans [Les
+notebooks](../notions/notebooks.md). Cette page suppose l'extension Python installée
 et l'interpréteur choisi ([Python et environnement conda](vscode_python.md)).
 
 ## Installer l'extension Jupyter
