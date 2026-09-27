@@ -21,22 +21,25 @@ Bash.
 * - Partie
   - Ce qu'on y voit
   - TD
-* - L'éditeur de code
+* - [L'éditeur de code](notebook/01_editeur_de_code.md)
   - les fonctions d'un IDE, la coloration, la chasse fixe, l'indentation en
-    espaces ou en tabulations ; configurer VS Code (l'extension Python,
-    l'interpréteur, Git Bash comme terminal, les réglages User et
-    Workspace) ; trois programmes fautifs à corriger
+    espaces ou en tabulations ; la fenêtre de VS Code et sa configuration
+    (l'extension Python, l'interpréteur, Git Bash comme terminal, les
+    réglages User et Workspace) ; trois programmes fautifs à corriger
   - 1a, en classe entière ; 1b
-* - Une recette en Markdown
+* - [Une recette en Markdown](notebook/02_markdown.md)
   - un format texte pour les documents d'un projet ; le tableau et l'image ;
     la conversion par pandoc
   - 2a
-* - Git local
-  - les systèmes de version et les copies d'un dépôt, le dépôt, l'index et
-    le commit, `status`, `diff`, `log`, `restore`, `.gitignore`, les
-    branches, la fusion et les conflits, l'organisation des branches à
-    plusieurs
-  - 3a
+* - [Git et le dépôt local](notebook/03_git_local.md)
+  - les systèmes de version et les copies d'un dépôt ; la commande git et
+    son aide ; le dépôt, l'index et le commit, `status`, `log`, `diff`,
+    `restore`, `.gitignore`
+  - 3a, étapes 0 à 4
+* - [Branches, fusion et conflits](notebook/04_branches.md)
+  - les branches, la fusion et les conflits ; l'organisation des branches
+    à plusieurs
+  - 3a, étapes 5 à 7
 ```
 
 Les guides détaillés des TD sont réunis dans [Travaux dirigés de la
@@ -64,5 +67,9 @@ Les diapositives sont dans le dépôt, `src/cours2_v2/diapo/cours2_v2.pdf`.
 ```{toctree}
 :maxdepth: 1
 
+notebook/01_editeur_de_code
+notebook/02_markdown
+notebook/03_git_local
+notebook/04_branches
 notebook/travaux_diriges
 ```
