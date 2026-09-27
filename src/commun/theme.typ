@@ -564,8 +564,46 @@
 //
 // `entete: false` pour un tableau dont la première ligne est déjà une donnée,
 // comme les tableaux d'appariement « terme / définition ».
+//
+// Hors du corrigé, une colonne dont toutes les cases (en-tête exclu) sont des
+// `reponse[…]` est retirée, avec son en-tête, sa largeur et son alignement :
+// la feuille PDF ne se remplit pas, et les diapositives de TD ne sont pas
+// toujours projetées. Un tableau dont une case fusionne des colonnes
+// (`colspan`) est laissé tel quel.
+#let _marque-reponse = metadata("reponse")
+#let _est-reponse(cellule) = cellule == _marque-reponse
+
+#let _sans-colonnes-reponse(entete, cellules, nommes) = {
+  let colonnes = nommes.at("columns", default: none)
+  if colonnes == none { return (cellules, nommes) }
+  let n = if type(colonnes) == int { colonnes } else { colonnes.len() }
+  let fusion = cellules.any(c => type(c) == content and c.func() == table.cell
+    and c.has("colspan") and c.colspan > 1)
+  if n < 2 or fusion or calc.rem(cellules.len(), n) != 0 { return (cellules, nommes) }
+  let lignes = int(cellules.len() / n)
+  let premiere = if entete { 1 } else { 0 }
+  if lignes <= premiere { return (cellules, nommes) }
+  let retirees = range(n).filter(j =>
+    range(premiere, lignes).all(i => _est-reponse(cellules.at(i * n + j))))
+  if retirees.len() == 0 or retirees.len() == n { return (cellules, nommes) }
+  let garder(liste) = liste.enumerate()
+    .filter(((j, _)) => not retirees.contains(calc.rem(j, n)))
+    .map(((_, x)) => x)
+  nommes.columns = if type(colonnes) == int { n - retirees.len() } else { garder(colonnes) }
+  let alignement = nommes.at("align", default: none)
+  if type(alignement) == array and alignement.len() == n {
+    nommes.align = garder(alignement)
+  }
+  (garder(cellules), nommes)
+}
+
 #let tableau(entete: true, ..args) = {
   let filet-leger = 0.4pt + gris.darken(10%)
+  let (cellules, nommes) = if corrige-visible {
+    (args.pos(), args.named())
+  } else {
+    _sans-colonnes-reponse(entete, args.pos(), args.named())
+  }
   let contenu = table(
     inset: (x: 9pt, y: 7pt),
     fill: (x, y) => if entete and y == 0 { gris.lighten(45%) },
@@ -575,7 +613,8 @@
         0.9pt + accent
       } else { filet-leger },
     ),
-    ..args,
+    ..nommes,
+    ..cellules,
   )
   set text(size: pt-footnotesize)
   if entete {
@@ -681,15 +720,10 @@
   #text(fill: alerte, weight: demi-gras)[Attention. ] #corps
 ]
 
-// Ce que le TD fait constater : masqué à la projection, remplacé par
-// un filet à compléter, et affiché dans la compilation « corrigé ».
-#let reponse(corps) = if corrige-visible {
-  corps
-} else {
-  box(width: 100%, baseline: 0.15em)[
-    #line(length: 100%, stroke: 0.6pt + gris.darken(18%))
-  ]
-}
+// Ce que le TD fait constater : affiché dans la compilation « corrigé »
+// seulement. Ailleurs, la case est vide, et `tableau` retire la colonne
+// quand toutes ses cases sont des réponses.
+#let reponse(corps) = if corrige-visible { corps } else { _marque-reponse }
 
 // Étiquette d'extension, en chasse fixe, pour les grilles de reconnaissance.
 //

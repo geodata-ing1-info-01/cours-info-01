@@ -199,7 +199,7 @@
     répondait parfois « already running » sans fenêtre. Git Bash d'abord,
     Navigator en secours.
 
-    `jupyter lab` suppose conda disponible dans Git Bash (fin du TD 2a).
+    `jupyter lab` suppose conda disponible dans Git Bash (début du TD 2b).
 
     Le client et le serveur d'un notebook sont au cours 5 (syllabus v2).
   ]

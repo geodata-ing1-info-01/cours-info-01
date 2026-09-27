@@ -185,3 +185,60 @@
     #text(size: 17pt, fill: couleur, raw(ligne)) \
   ]
 ]
+
+// ---------------------------------------------------------------------------
+// Exporter un document : du dossier `depart/` au dossier `travail/`
+//
+// TD 1a. Trois fenêtres de gauche à droite : l'explorateur sur `depart/`,
+// Writer avec le document de départ ouvert et le menu Fichier, l'explorateur
+// sur `travail/` avec les deux exports. Le titre de la fenêtre de Writer
+// montre que le document ouvert reste `raven.odt`.
+
+#let explorateur(chemin, noms, choisi: none, titre: "Explorateur de fichiers") = fenetre(titre)[
+  #set align(left)
+  #block(width: 100%, stroke: 0.6pt + estompe, inset: (x: 6pt, y: 4pt), radius: 2pt,
+         text(font: police-code, size: 12pt, chemin))
+  #for (i, nom) in noms.enumerate() { _entree(nom, choisie: i == choisi) }
+]
+
+#let _article-menu(corps, choisi: false) = block(
+  width: 100%, above: 1pt, below: 1pt, inset: (x: 7pt, y: 3.5pt),
+  fill: if choisi { attention.lighten(85%) },
+  text(size: 13pt, corps),
+)
+
+#let writer-exports() = fenetre("raven.odt - LibreOffice Writer")[
+  #set align(left)
+  #text(size: 13pt)[#box(fill: attention.lighten(85%), inset: (x: 4pt, y: 2pt))[Fichier] #h(8pt) Édition #h(8pt) Affichage]
+  #v(2pt)
+  #block(width: 100%, stroke: 0.8pt + accent.lighten(55%), radius: 3pt, inset: 4pt)[
+    #_article-menu[Enregistrer]
+    #_article-menu(choisi: true)[Exporter… #h(1fr) PNG]
+    #_article-menu(choisi: true)[Exporter sous #sym.arrow.r Exporter au format PDF…]
+    #_article-menu[Fermer]
+  ]
+]
+
+#let schema-exports() = {
+  let fleche-texte(corps) = align(center + horizon)[
+    #text(size: 12pt, fill: estompe)[#corps]
+    #v(-6pt)
+    #text(size: 26pt, fill: accent)[→]
+  ]
+  let legende-panneau(corps) = align(center, text(size: 14pt, fill: estompe, corps))
+  std.grid(
+    columns: (1fr, auto, 1.5fr, auto, 1fr),
+    column-gutter: 8pt, row-gutter: 6pt,
+    align: (center + horizon),
+    explorateur([…\\depart], ("raven.odt", "raven_brut.html", "style.css"), choisi: 0, titre: "depart"),
+    fleche-texte[double-clic],
+    writer-exports(),
+    fleche-texte[exports],
+    explorateur([…\\travail], ("raven.pdf", "raven.png"), titre: "travail"),
+    legende-panneau[le document de départ],
+    [],
+    legende-panneau[le document ouvert reste `raven.odt`],
+    [],
+    legende-panneau[les deux exports],
+  )
+}

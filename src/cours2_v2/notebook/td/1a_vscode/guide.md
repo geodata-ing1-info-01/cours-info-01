@@ -83,7 +83,7 @@ droit sur l'archive, « Extraire tout… », en effaçant la fin du dossier
 proposé pour garder `Desktop\info01`.
 
 Si l'invite de Git Bash ne commence pas par `(base)`, la configuration de
-conda dans Git Bash, faite au TD 2a du cours 1, manque sur ce poste. La
+conda dans Git Bash, faite au TD 2b du cours 1, manque sur ce poste. La
 faire maintenant, avant l'étape 4 :
 
 ```text

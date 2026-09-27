@@ -9,6 +9,7 @@
 // `outils/compiler_tds.py --cours 1_v2`, qui dépose la feuille dans
 // `data/cours1_v2/1a_formats/`.
 #import "../../../commun/prelude.typ": *
+#import "../schemas.typ": schema-exports
 
 #let td = (
   numero: "1a",
@@ -96,19 +97,52 @@
 ]
 
 // --------------------------------------------
+// Refait le 27/09 : en 2026, des élèves n'ont pas vu que le fichier de départ
+// était le `.odt` ouvert dans Writer, dans `depart/`, et que les exports
+// allaient dans `travail/`. Une diapositive pour la manipulation, une pour
+// la comparaison.
+#d("Exporter le document de départ")[
+  #annonce[
+    `depart/raven.odt` reste ouvert dans LibreOffice Writer. Chaque export en
+    écrit une copie, dans un autre format, à enregistrer dans `travail/`.
+  ]
+
+  #schema-exports()
+
+  #legende[
+    La fenêtre d'enregistrement s'ouvre dans `depart/`, le dossier du
+    document. Remonter d'un dossier, puis ouvrir `travail/`, avant
+    d'enregistrer.
+  ]
+
+  #notes[
+    Menu vérifié dans l'aide de LibreOffice : Fichier > Exporter sous >
+    Exporter au format PDF. Version de LibreOffice des postes à vérifier.
+
+    Aide de LibreOffice sur Exporter : la commande écrit une copie du
+    document dans un nouveau fichier, et garde le document courant ouvert.
+
+    L'export en image est sous Fichier > Exporter. « Enregistrer sous » ne
+    propose pas le PNG.
+
+    À la fin, fermer Writer sans enregistrer le `.odt`.
+  ]
+]
+
+// --------------------------------------------
 #d("Un même document, trois formats")[
   #annonce[
-    Ouvrir `depart/raven.odt` dans LibreOffice Writer, l'exporter sous deux
-    autres formes dans `travail/`, et comparer ce qu'il reste du texte.
+    Rouvrir les trois fichiers, et essayer dans chacun de sélectionner une
+    ligne du poème, puis de chercher un mot avec `Ctrl` + `F`.
   ]
 
   #tableau(
-    columns: (auto, 1fr, 1fr),
+    columns: (auto, auto, 1fr),
     align: left + horizon,
-    [Fichier, dans `travail/`], [Comment], [Le texte est-il encore du texte ?],
-    [`raven.pdf`], [Fichier #sym.arrow.r Exporter au format PDF], reponse[oui : il se sélectionne et se cherche],
-    [`raven.png`], [Fichier #sym.arrow.r Exporter…, type PNG], reponse[non : des pixels, et la première page seulement],
-    [`raven.odt`], [le fichier de départ, dans `depart/`], reponse[oui, et il reste modifiable],
+    [Fichier], [Origine], [Le texte est-il encore du texte ?],
+    [`depart/raven.odt`], [le document de départ], reponse[oui, et il reste modifiable],
+    [`travail/raven.pdf`], [l'export en PDF], reponse[oui : il se sélectionne et se cherche],
+    [`travail/raven.png`], [l'export en image], reponse[non : des pixels, et la première page seulement],
   )
 
   #legende[
@@ -117,9 +151,8 @@
   ]
 
   #notes[
-    L'export en image existe bien depuis Writer, sous Fichier > Exporter, et non
-    dans « Enregistrer sous ». C'est le moment de nommer la différence entre une
-    page décrite (PDF, texte vectoriel) et une page photographiée (PNG, JPEG).
+    Nommer ici la différence entre une page décrite (PDF, texte
+    vectoriel) et une page photographiée (PNG, JPEG).
 
     Faire remarquer la perte : le PDF garde le texte mais fige la mise en page ;
     l'image perd tout sauf l'apparence.

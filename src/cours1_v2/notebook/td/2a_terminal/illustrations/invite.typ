@@ -19,7 +19,7 @@
   #table(
     columns: (auto, auto, 1fr), stroke: 0.5pt + estompe.lighten(40%), inset: 5pt,
     [], [Dans l'invite], [Ce qu'il désigne],
-    repere(1), [`(base)`], [l'environnement conda actif ; absent tant que conda n'est pas configuré dans Git Bash (étape 6)],
+    repere(1), [`(base)`], [l'environnement conda actif ; absent tant que conda n'est pas configuré dans Git Bash (TD 2b)],
     repere(2), [`eleve@POSTE-12`], [l'utilisateur, puis le nom de la machine],
     repere(3), [`MINGW64`], [Git Bash sous Windows],
     repere(4), [`~/Desktop/…/2a_terminal`], [le dossier courant ; `~` est le dossier personnel, `C:\Users\eleve`],

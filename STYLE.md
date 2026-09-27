@@ -107,19 +107,20 @@ répétée. Ailleurs, ils sont décoratifs — donc supprimés.
 
 ## TD et corrigé
 
-Ce qu'un TD fait constater ne se projette pas pendant qu'il se fait. La
-colonne d'observation d'un tableau de TD s'écrit dans `reponse[…]` : elle devient un filet à compléter à la projection, et n'apparaît
-que dans la compilation `--input corrige=true`, distribuée après la séance.
+Ce qu'un TD fait constater n'apparaît que dans le corrigé. La colonne
+d'observation d'un tableau de TD s'écrit dans `reponse[…]`. Hors de la
+compilation `--input corrige=true`, distribuée après la séance, `tableau`
+retire cette colonne, avec son en-tête : une feuille PDF ne se remplit pas,
+et les diapositives de TD ne sont pas toujours projetées (décision du
+27/09/2026). Une case `reponse[…]` dans une colonne qui contient autre chose
+reste vide.
 
-Deux résultats motivent ce choix, et fixent aussi sa limite.
-
-- **Effet de pré-test.** Tenter de répondre avant de connaître la réponse
-  améliore la rétention de celle-ci, y compris quand la tentative échoue,
-  pourvu que la réponse soit donnée ensuite. La correction n'est donc pas
-  facultative : c'est elle qui rend la tentative profitable.
-- **Notes guidées.** Un support à trous produit de meilleurs résultats qu'un
-  support complet, à condition qu'il reste un squelette : l'erreur documentée
-  est de laisser si peu à compléter que le support redevient complet.
+L'**effet de pré-test** motive ce choix. Tenter de répondre avant de
+connaître la réponse améliore la rétention de celle-ci, y compris quand la
+tentative échoue, pourvu que la réponse soit donnée ensuite. La tentative se
+fait sur machine, pendant le TD. La correction n'est pas facultative, car
+elle rend la tentative profitable. Le guide détaillé la donne à sa fin, dans
+« Ce que le TD fait constater », et le corrigé la donne après la séance.
 
 En pratique : ce que l'étudiant produit ou observe est masqué ; la consigne, le
 vocabulaire et les définitions ne le sont jamais. Une diapositive de réponses
@@ -131,9 +132,7 @@ learning?* (JEP:Applied, 2009) —
 [texte](https://learninglab.uchicago.edu/Pre-Testing_files/RichlandKornellKao.pdf) ;
 Kornell, Hays & Bjork, *Unsuccessful retrieval attempts enhance subsequent
 learning* (JEP:LMC, 2009) —
-[texte](https://bjorklab.psych.ucla.edu/wp-content/uploads/sites/13/2016/07/Hays_Kornell_RBjork_inpress.pdf) ;
-synthèse sur les notes guidées, Ohio State University —
-[ada.osu.edu/guided-notes](https://ada.osu.edu/guided-notes).
+[texte](https://bjorklab.psych.ucla.edu/wp-content/uploads/sites/13/2016/07/Hays_Kornell_RBjork_inpress.pdf).
 
 ## Illustrations et captures d'écran
 

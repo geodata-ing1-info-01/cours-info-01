@@ -43,6 +43,25 @@ constater est expliqué à la fin du guide, dans « Ce que le TD fait
 constater » : faire l'étape d'abord, et noter ce qu'on observe, avant de lire
 l'explication.
 
+## Rappels avant de commencer
+
+**La barre d'adresse.** En haut de chaque fenêtre de l'explorateur de
+fichiers, la barre d'adresse indique le dossier ouvert. Un clic dans la
+barre affiche son chemin complet, comme `C:\Users\eleve\Desktop\info01`.
+La flèche vers le haut, à sa gauche, ouvre le dossier parent, celui qui
+contient le dossier ouvert.
+
+**Ouvrir un fichier avec un autre logiciel.** Un double-clic ouvre un
+fichier avec le logiciel que Windows associe à son extension. Pour en
+choisir un autre : clic droit sur le fichier, « Ouvrir avec », puis le
+logiciel. S'il n'est pas dans la liste, « Choisir une autre application ».
+
+**La fenêtre d'enregistrement.** Enregistrer ou exporter ouvre une fenêtre
+qui demande un dossier et un nom de fichier. Le dossier est celui de sa
+barre d'adresse : la lire avant de cliquer sur « Enregistrer ». Elle
+s'ouvre dans un dossier choisi par le logiciel, souvent celui du document
+ouvert.
+
 ## 1 · Copier les fichiers de la séance sur le poste
 
 > **À faire :** ouvrir le dossier partagé `formationTemp` ; copier l'archive
@@ -189,26 +208,111 @@ La suite du guide écrit les chemins à partir de `1a_formats\`.
 ## 3 · Exporter un même document en trois formats
 
 > **À faire :** ouvrir `depart\raven.odt` dans LibreOffice Writer ;
-> l'exporter en PDF puis en PNG dans `travail\` ; rouvrir les trois fichiers.
+> l'exporter en PDF, puis en PNG, dans `travail\` ; fermer Writer sans
+> enregistrer ; rouvrir les trois fichiers.
 >
-> **À obtenir :** `travail\` contient `raven.pdf` et `raven.png`.
+> **À obtenir :** `travail\` contient `raven.pdf` et `raven.png` ;
+> `depart\raven.odt` n'a pas changé.
 
-Double-cliquer sur `depart\raven.odt` : LibreOffice Writer l'ouvre.
+Le document de départ est `depart\raven.odt`. Il reste dans `depart\`, et il
+reste ouvert dans Writer pendant toute l'étape. Exporter écrit une copie du
+document dans un nouveau fichier, dans un autre format, et garde ouvert le
+document de départ. Les deux copies vont dans `travail\`.
 
-1. Menu Fichier, Exporter au format PDF, puis Exporter. Enregistrer dans
-   `travail\` sous le nom `raven.pdf`.
-2. Menu Fichier, Exporter…, choisir le type PNG. Enregistrer dans `travail\`
-   sous le nom `raven.png`. L'export en image est dans « Exporter », pas dans
-   « Enregistrer sous ».
-3. Fermer LibreOffice sans enregistrer le `.odt`.
+![Le document de départ, ouvert dans Writer, et ses deux exports](illustrations/exports.png)
 
-Rouvrir ensuite les trois fichiers, et essayer dans chacun de sélectionner
-une ligne du poème, puis de chercher un mot avec `Ctrl` + `F`. Le `.png`
-s'ouvre dans une visionneuse d'images ; ouvert depuis LibreOffice, il
-s'affiche dans Draw, comme une image posée sur une page.
+**Dossier au début de l'étape** :
+
+```text
+1a_formats\
+├── depart\
+│   ├── raven.odt              le document de départ
+│   └── …
+└── travail\                   vide
+```
+
+### 3.1 Ouvrir le document de départ
+
+1. Dans l'explorateur, ouvrir `depart\`.
+2. Double-cliquer sur `raven.odt`. LibreOffice Writer s'ouvre et affiche le
+   poème.
+
+**Vérification** : la barre de titre de Writer indique
+`raven.odt - LibreOffice Writer`.
+
+### 3.2 Exporter en PDF
+
+1. Menu Fichier, Exporter sous, Exporter au format PDF…
+2. Une fenêtre « Options PDF » s'affiche. Garder les réglages, et cliquer
+   sur « Exporter ».
+3. La fenêtre d'enregistrement s'ouvre dans `depart\`, le dossier du
+   document. Cliquer sur la flèche vers le haut, à gauche de la barre
+   d'adresse : la fenêtre affiche `1a_formats\`. Double-cliquer sur
+   `travail`.
+4. Le nom proposé est `raven.pdf`. Cliquer sur « Enregistrer ».
+
+![La fenêtre d'enregistrement, de depart à travail](illustrations/enregistrer.png)
+
+**Vérification** : dans l'explorateur, `travail\` contient `raven.pdf`. La
+barre de titre de Writer indique toujours `raven.odt` : l'export n'a pas
+changé le document ouvert.
+
+### 3.3 Exporter en PNG
+
+1. Menu Fichier, Exporter… L'export en image se trouve là : « Enregistrer
+   sous » ne propose pas le format PNG.
+2. Dans la fenêtre d'enregistrement, lire la barre d'adresse. Si elle
+   n'indique pas `travail\`, y aller comme à l'étape 3.2.
+3. Dans la liste « Type », choisir PNG. Le nom devient `raven.png`.
+4. Cliquer sur « Enregistrer ». Si une fenêtre d'options s'affiche, la
+   valider par « OK ».
+
+**Vérification** : `travail\` contient `raven.pdf` et `raven.png`.
+
+### 3.4 Fermer Writer sans enregistrer
+
+Fermer Writer. Si une fenêtre demande d'enregistrer les modifications de
+`raven.odt`, répondre « Ne pas enregistrer ». Le document de départ reste
+tel qu'il a été livré.
+
+**Dossier à la fin de l'étape** :
+
+```text
+1a_formats\
+├── depart\
+│   ├── raven.odt              inchangé
+│   └── …
+└── travail\
+    ├── raven.pdf              l'export en PDF
+    └── raven.png              l'export en image
+```
+
+### 3.5 Comparer les trois fichiers
+
+Rouvrir les trois fichiers par un double-clic : `depart\raven.odt`,
+`travail\raven.pdf`, `travail\raven.png`. Windows ouvre chacun avec le
+logiciel associé à son extension : Writer pour le `.odt`, le lecteur PDF du
+poste pour le `.pdf`, la visionneuse d'images pour le `.png`. Dans chacun,
+essayer de sélectionner une ligne du poème, puis de chercher un mot avec
+`Ctrl` + `F`.
+
+Ouvert depuis LibreOffice (Fichier, Ouvrir), le `.png` s'affiche dans Draw,
+comme une image posée sur une page.
 
 **À noter** : pour chacun des trois fichiers, si le texte est encore du texte
 (il se sélectionne, se cherche, se modifie).
+
+### Si ça bloque
+
+- **`raven.pdf` ou `raven.png` est dans `depart\`.** La fenêtre
+  d'enregistrement était restée dans `depart\`. Dans l'explorateur, clic
+  droit sur le fichier, Couper, puis clic droit dans `travail\`, Coller.
+- **Le format PNG n'apparaît pas.** Il n'est proposé que par Fichier,
+  Exporter…
+- **`raven.png` ne montre que le début du poème.** L'export en image ne
+  prend que la première page.
+- **Writer a été fermé avant les exports.** Le rouvrir par un double-clic sur
+  `depart\raven.odt`, et reprendre à l'étape 3.2.
 
 ## 4 · Ouvrir une page web depuis son disque
 
@@ -236,6 +340,9 @@ s'affiche dans Draw, comme une image posée sur une page.
 `style.css` est le seul fichier de `depart\` que le TD modifie : remettre
 sa couleur d'origine à la fin de l'étape.
 
+**Vérification** : après `F5`, le texte de `raven_style.html` a la nouvelle
+couleur. `raven_brut.html` n'a pas changé.
+
 ### L'adresse de la page
 
 Lire l'adresse que le navigateur affiche pour `raven_style.html`. Elle a la
@@ -249,6 +356,16 @@ file:///C:/Users/eleve/Desktop/info01/cours1/1a_formats/depart/raven_style.html
 ce qui en diffère. Noter aussi ce qui distingue les deux fichiers HTML dans
 le Bloc-notes.
 
+### Si ça bloque
+
+- **Le fichier `.html` s'ouvre dans un éditeur de texte.** Clic droit sur le
+  fichier, « Ouvrir avec », puis le navigateur (Firefox, Edge, Chrome).
+- **Rien ne change après `F5`.** Vérifier que `style.css` est enregistré :
+  dans le Bloc-notes, `Ctrl` + `S`. Vérifier aussi que la page rechargée est
+  `raven_style.html`, la seule des deux qui appelle `style.css`.
+- **Le Bloc-notes n'est pas proposé dans « Ouvrir avec ».** Choisir
+  « Choisir une autre application », puis Bloc-notes.
+
 ## 5 · Lire les fichiers avec deux éditeurs de texte
 
 > **À faire :** ouvrir quatre fichiers de `depart\` dans le Bloc-notes, puis
@@ -261,18 +378,28 @@ Ouvrir chacun des quatre fichiers suivants dans le Bloc-notes (clic droit,
 Ouvrir avec, Bloc-notes), puis dans Notepad++ (clic droit, Ouvrir avec,
 Notepad++, ou par le menu Fichier de Notepad++) :
 
-| Fichier, dans `depart\` | Dans le Bloc-notes | Dans Notepad++ |
-|---|---|---|
-| `raven_une_ligne.txt` | | |
-| `style.css` | | |
-| `raven_brut.html` | | |
-| `raven.odt` | | |
+- `depart\raven_une_ligne.txt`
+- `depart\style.css`
+- `depart\raven_brut.html`
+- `depart\raven.odt`
 
 **Attention** : ne rien enregistrer, et fermer sans sauver. Un `.odt`
 réenregistré par un éditeur de texte est détruit.
 
 **À noter** : pour chaque fichier et chaque éditeur, si le contenu est
 lisible, et ce que Notepad++ ajoute à l'affichage.
+
+### Si ça bloque
+
+- **Une fenêtre demande d'enregistrer à la fermeture.** Répondre « Ne pas
+  enregistrer », pour chacun des quatre fichiers.
+- **Notepad++ n'est pas dans « Ouvrir avec ».** Lancer Notepad++ depuis le
+  menu Démarrer, puis ouvrir les fichiers par son menu Fichier, Ouvrir. S'il
+  n'est pas installé sur le poste, faire l'étape avec le seul Bloc-notes, et
+  prévenir l'enseignant.
+- **Un `.odt` a été enregistré par un éditeur de texte.** Il ne s'ouvre plus
+  dans Writer. Le recopier depuis l'archive `info01-cours1.zip`, qui garde les
+  fichiers de départ.
 
 ## Ce que le TD fait constater
 

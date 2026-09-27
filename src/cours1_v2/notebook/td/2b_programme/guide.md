@@ -14,25 +14,107 @@ kernelspec:
 reprend le programme et la session interactive du TD 2a de 2026, sans VS
 Code : le programme s'ouvre dans Notepad++ et se lance dans Git Bash.*
 
-Un programme Python est un fichier texte. Le TD l'ouvre dans un éditeur de
-texte, Notepad++, et le fait exécuter par l'interpréteur Python depuis le
-terminal du TD 2a, Git Bash. Il le modifie, le relance, puis refait son
+Un programme Python est un fichier texte. Le TD commence par un réglage fait
+une fois par poste, qui rend Python disponible dans Git Bash. Il ouvre
+ensuite le programme dans un éditeur de texte, Notepad++, et le fait
+exécuter par l'interpréteur Python depuis le terminal du TD 2a, Git Bash. Il le modifie, le relance, puis refait son
 calcul ligne à ligne dans une session interactive. Il dure une dizaine de
 minutes.
 
 | Étape | Ce qu'on fait |
 |---|---|
-| 1 | ouvrir `altitudes.py` dans Notepad++ |
-| 2 | le lancer dans Git Bash |
-| 3 | le modifier, et le relancer avant et après l'enregistrement |
-| 4 | refaire le calcul dans une session interactive de Python |
+| 1 | rendre Python disponible dans Git Bash, une fois par poste |
+| 2 | ouvrir `altitudes.py` dans Notepad++ |
+| 3 | le lancer dans Git Bash |
+| 4 | le modifier, et le relancer avant et après l'enregistrement |
+| 5 | refaire le calcul dans une session interactive de Python |
 
-Le TD suppose la fin du TD 2a faite : l'invite de Git Bash commence par
-`(base)`, et `python --version` affiche une version.
+Sur un poste où l'étape 1 est déjà faite, l'invite de Git Bash commence
+par `(base)`, et `python --version` affiche une version : passer à
+l'étape 2.
 
 ![Notepad++ et Git Bash, côte à côte](illustrations/deux_fenetres.png)
 
-## 1 · Ouvrir le programme dans Notepad++
+## 1 · Python dans Git Bash, une fois par poste
+
+> **À faire :** constater que `python` est introuvable ; configurer conda dans Git Bash ; fermer et rouvrir Git Bash.
+>
+> **À obtenir :** l'invite commence par `(base)` ; `python --version` affiche la version d'Anaconda.
+
+*Étape à vérifier sur un poste de la salle avant la version finale du
+guide.*
+
+### Avant
+
+Dans Git Bash, ouvert au TD 2a dans `2a_terminal/` :
+
+```text
+cd ../2b_programme
+python --version
+```
+
+Git Bash affiche `bash: python: command not found`, ou un message qui
+renvoie au Microsoft Store. Anaconda est installé sur le poste, dans
+`C:\ProgramData\anaconda3`, mais Git Bash ne le connaît pas encore.
+
+### Configurer conda dans Git Bash
+
+```text
+source /c/ProgramData/anaconda3/etc/profile.d/conda.sh
+conda init bash
+```
+
+`source` rend la commande `conda` disponible dans ce terminal. `conda init
+bash` écrit l'instruction équivalente dans le fichier `~/.bash_profile`, que
+Git Bash lit à chaque ouverture. Il affiche une ligne par fichier examiné,
+`no change` ou `modified`, puis :
+
+```text
+==> For changes to take effect, close and re-open your current shell. <==
+```
+
+Fermer Git Bash (`exit`, ou la croix de la fenêtre), et le rouvrir dans
+`2b_programme`, par le clic droit du TD 2a.
+
+**Vérification** : la première ligne de l'invite est `(base)`. Puis :
+
+```text
+python --version
+ls -a ~
+```
+
+`python --version` affiche `Python 3.` suivi de la version installée par
+Anaconda. `ls -a ~` liste le dossier personnel, et parmi les noms,
+`.bash_profile` : un fichier caché, écrit par `conda init bash`.
+
+Le réglage reste d'une séance à l'autre : les postes de la salle gardent le
+dossier personnel. Il se refait sur un autre poste.
+
+### Si ça bloque
+
+- **`source` affiche `No such file or directory`.** Anaconda est installé
+  dans un autre dossier sur ce poste. Essayer
+  `source /c/Users/$USERNAME/anaconda3/etc/profile.d/conda.sh`, ou prévenir
+  l'enseignant.
+- **`conda init bash` écrit `needs sudo`, ou une fenêtre de Windows
+  demande des droits d'administrateur.** Fermer la fenêtre par « Non ». Écrire la ligne à la main, dans
+  le seul fichier du dossier personnel, puis fermer et rouvrir Git Bash :
+
+  ```text
+  echo 'eval "$(/c/ProgramData/anaconda3/Scripts/conda.exe shell.bash hook)"' >> ~/.bash_profile
+  ```
+
+- **Chaque nouveau Git Bash affiche l'aide de `cygpath`** (`Usage: cygpath
+  …`), puis `bash: : No such file or directory`. L'environnement `base` est
+  activé quand même : le message vient d'un `cygpath` fourni par Anaconda,
+  qui échoue sous Git Bash. Pour le faire disparaître, taper une fois, puis
+  rouvrir Git Bash :
+
+  ```text
+  sed -i '1i cygpath() { /usr/bin/cygpath "$@"; }' ~/.bash_profile
+  ```
+
+## 2 · Ouvrir le programme dans Notepad++
 
 > **À faire :** ouvrir `cours1\2b_programme\altitudes.py` dans Notepad++.
 >
@@ -59,16 +141,15 @@ print(f"moyenne : {moyenne:.1f} m")
 **À noter** : les couleurs, et le nom du langage affiché en bas à gauche
 de la fenêtre de Notepad++.
 
-## 2 · Lancer le programme dans Git Bash
+## 3 · Lancer le programme dans Git Bash
 
 > **À faire :** placer Git Bash dans `2b_programme/` ; `python altitudes.py`.
 >
 > **À obtenir :** `moyenne : 129.0 m`.
 
-Dans Git Bash, ouvert au TD 2a dans `2a_terminal/` :
+Dans Git Bash, rouvert dans `2b_programme/` à l'étape 1 :
 
 ```text
-cd ../2b_programme
 ls
 python altitudes.py
 ```
@@ -86,12 +167,12 @@ Le programme n'écrit qu'une ligne, celle du `print` final. La moyenne de
 **Vérification** : `ls` après l'exécution affiche toujours le seul
 `altitudes.py`. Lancer un programme Python ne crée aucun fichier.
 
-Si Git Bash affiche `python: command not found`, la fin du TD 2a (étape 6)
-n'est pas faite sur ce poste. Si Python affiche `can't open file … No such
+Si Git Bash affiche `python: command not found`, l'étape 1 n'est pas faite
+sur ce poste. Si Python affiche `can't open file … No such
 file or directory`, le dossier courant n'est pas `2b_programme` : lire
 l'invite, et refaire le `cd`.
 
-## 3 · Modifier, relancer
+## 4 · Modifier, relancer
 
 > **À faire :** ajouter une altitude à la liste, relancer sans enregistrer, puis enregistrer et relancer.
 >
@@ -125,7 +206,7 @@ moyenne : 130.1 m
 La moyenne des quatre altitudes vaut 130,05, arrondie à une décimale par
 `:.1f`.
 
-## 4 · Python en interactif
+## 5 · Python en interactif
 
 > **À faire :** ouvrir une session interactive de Python ; y refaire le calcul ligne à ligne ; la quitter.
 >
@@ -172,13 +253,18 @@ de taper : `$` pour Git Bash, `>>>` pour Python.
 
 À lire après avoir fait les étapes.
 
+**Un réglage écrit dans un fichier caché.** `conda init bash` a écrit dans
+`~/.bash_profile`, que Git Bash lit à chaque ouverture : d'où le `(base)`,
+et le `python` d'Anaconda. Le cours 2 ouvre le même Git Bash dans l'éditeur
+de code, qui lit le même fichier.
+
 **Un programme est un fichier texte.** Notepad++ affiche `altitudes.py`
 comme les fichiers `.css` et `.html` du TD 1a : il reconnaît l'extension
 `.py`, et colore le code Python. Les couleurs ne sont pas dans le
 fichier. N'importe quel éditeur de texte sert à écrire un programme ; le
 cours 2 installe un éditeur de code, qui ajoute d'autres services.
 
-**L'interpréteur lit le fichier enregistré.** À l'étape 3, la moyenne ne
+**L'interpréteur lit le fichier enregistré.** À l'étape 4, la moyenne ne
 change pas tant que le fichier n'est pas enregistré : `python` lit le
 fichier sur le disque. Le texte affiché par Notepad++ n'y est qu'une fois
 enregistré.

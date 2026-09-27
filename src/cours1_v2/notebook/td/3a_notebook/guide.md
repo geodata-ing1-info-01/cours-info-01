@@ -22,7 +22,7 @@ notebook une cellule de texte, écrite en Markdown. Le TD dure une douzaine
 de minutes.
 
 Le TD nécessite Git Bash, où les commandes d'Anaconda sont disponibles
-depuis la fin du TD 2a, et un navigateur. Anaconda Navigator sert de
+depuis le début du TD 2b, et un navigateur. Anaconda Navigator sert de
 secours pour lancer JupyterLab.
 
 | Étape | Ce qu'on fait |
@@ -84,8 +84,8 @@ Si le navigateur ne s'ouvre pas, Git Bash affiche une adresse qui commence
 par `http://localhost:8888/lab?token=` : la recopier dans la barre
 d'adresse du navigateur.
 
-Si Git Bash répond `jupyter: command not found`, la fin du TD 2a, qui rend
-les commandes d'Anaconda disponibles dans Git Bash, n'a pas été faite sur ce
+Si Git Bash répond `jupyter: command not found`, le début du TD 2b, qui rend
+les commandes d'Anaconda disponibles dans Git Bash, n'a pas été fait sur ce
 poste.
 
 ### En secours : Anaconda Navigator

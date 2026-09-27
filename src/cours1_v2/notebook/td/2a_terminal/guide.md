@@ -16,8 +16,7 @@ nouveau : il reprend en ligne de commande une partie du TD 1a de 2026
 
 Le TD refait au clavier, dans un terminal, ce que le TD 1a a fait à la
 souris : se déplacer dans les dossiers, copier, renommer et ouvrir des
-fichiers. Il se termine par un réglage fait une fois par poste, qui rend
-Python disponible dans le terminal. Il dure une quinzaine de minutes.
+fichiers. Il dure une quinzaine de minutes.
 
 Le terminal du module est **Git Bash**, installé avec git sur les postes de
 la salle. Les commandes de ce guide sont celles de bash : elles se tapent à
@@ -30,7 +29,6 @@ l'identique dans le terminal de macOS et de Linux.
 | 3 | copier, renommer et ouvrir des fichiers |
 | 4 | écrire un nom de fichier qui contient un espace |
 | 5 | copier plusieurs fichiers d'un coup, supprimer un fichier |
-| 6 | rendre Python disponible dans Git Bash, une fois par poste |
 
 ## Rappels avant de commencer
 
@@ -101,8 +99,8 @@ cd ~/Desktop/info01/cours1/2a_terminal
 
 ![L'invite de Git Bash, annotée](illustrations/invite.png)
 
-Sur la capture, la ligne `(base)` n'est pas encore là : elle apparaît à
-l'étape 6.
+Sur la capture, la ligne `(base)` n'est pas encore là : elle apparaît au
+début du TD 2b.
 
 **Vérification** :
 
@@ -353,82 +351,6 @@ pas. Relire la commande avant de valider.
 
 **Vérification** : `ls travail/pages` affiche trois pages.
 
-## 6 · Python dans Git Bash, une fois par poste
-
-> **À faire :** constater que `python` est introuvable ; configurer conda dans Git Bash ; fermer et rouvrir Git Bash.
->
-> **À obtenir :** l'invite commence par `(base)` ; `python --version` affiche la version d'Anaconda.
-
-*Étape à vérifier sur un poste de la salle avant la version finale du
-guide.*
-
-### Avant
-
-```text
-python --version
-```
-
-Git Bash affiche `bash: python: command not found`, ou un message qui
-renvoie au Microsoft Store. Anaconda est installé sur le poste, dans
-`C:\ProgramData\anaconda3`, mais Git Bash ne le connaît pas encore.
-
-### Configurer conda dans Git Bash
-
-```text
-source /c/ProgramData/anaconda3/etc/profile.d/conda.sh
-conda init bash
-```
-
-`source` rend la commande `conda` disponible dans ce terminal. `conda init
-bash` écrit l'instruction équivalente dans le fichier `~/.bash_profile`, que
-Git Bash lit à chaque ouverture. Il affiche une ligne par fichier examiné,
-`no change` ou `modified`, puis :
-
-```text
-==> For changes to take effect, close and re-open your current shell. <==
-```
-
-Fermer Git Bash (`exit`, ou la croix de la fenêtre), et le rouvrir dans
-`2a_terminal`.
-
-**Vérification** : la première ligne de l'invite est `(base)`. Puis :
-
-```text
-python --version
-ls -a ~
-```
-
-`python --version` affiche `Python 3.` suivi de la version installée par
-Anaconda. `ls -a ~` liste le dossier personnel, et parmi les noms,
-`.bash_profile` : un fichier caché, écrit par `conda init bash`.
-
-Le réglage reste d'une séance à l'autre : les postes de la salle gardent le
-dossier personnel. Il se refait sur un autre poste.
-
-### Si ça bloque
-
-- **`source` affiche `No such file or directory`.** Anaconda est installé
-  dans un autre dossier sur ce poste. Essayer
-  `source /c/Users/$USERNAME/anaconda3/etc/profile.d/conda.sh`, ou prévenir
-  l'enseignant.
-- **`conda init bash` écrit `needs sudo`, ou une fenêtre de Windows
-  demande des droits d'administrateur.** Fermer la fenêtre par « Non ». Écrire la ligne à la main, dans
-  le seul fichier du dossier personnel, puis fermer et rouvrir Git Bash :
-
-  ```text
-  echo 'eval "$(/c/ProgramData/anaconda3/Scripts/conda.exe shell.bash hook)"' >> ~/.bash_profile
-  ```
-
-- **Chaque nouveau Git Bash affiche l'aide de `cygpath`** (`Usage: cygpath
-  …`), puis `bash: : No such file or directory`. L'environnement `base` est
-  activé quand même : le message vient d'un `cygpath` fourni par Anaconda,
-  qui échoue sous Git Bash. Pour le faire disparaître, taper une fois, puis
-  rouvrir Git Bash :
-
-  ```text
-  sed -i '1i cygpath() { /usr/bin/cygpath "$@"; }' ~/.bash_profile
-  ```
-
 ## Ce que le TD fait constater
 
 À lire après avoir fait les étapes.
@@ -457,11 +379,6 @@ avant de lancer la commande : le premier est le programme, les suivants ses
 options et ses arguments. Un nom qui contient un espace s'écrit donc entre
 guillemets. Le motif `*` est remplacé par Git Bash, lui aussi, avant que la
 commande ne démarre.
-
-**Un réglage écrit dans un fichier caché.** `conda init bash` a écrit dans
-`~/.bash_profile`, que Git Bash lit à chaque ouverture : d'où le `(base)`,
-et le `python` d'Anaconda. Le cours 2 ouvre le même Git Bash dans l'éditeur
-de code, qui lit le même fichier.
 
 ## Annexe · Les commandes du TD
 
@@ -522,4 +439,4 @@ disque et le total des tailles. Les noms sont les mêmes.
 **Python.** Dans l'invite de commandes, `python` est disponible dans
 l'invite de commandes d'Anaconda, au menu Démarrer. Dans PowerShell, il faut
 ouvrir l'invite PowerShell d'Anaconda, si elle est installée sur le poste
-[à vérifier]. Le réglage de l'étape 6 ne vaut que pour Git Bash.
+[à vérifier]. Le réglage fait au début du TD 2b ne vaut que pour Git Bash.

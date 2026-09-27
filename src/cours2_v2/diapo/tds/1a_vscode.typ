@@ -145,7 +145,7 @@
 
   #legende[
     Si « Git Bash » n'est pas proposé à l'étape 1 : fermer et relancer VS
-    Code. Sans `(base)` à l'étape 2 : la fin du TD 2a du cours 1 n'a pas été
+    Code. Sans `(base)` à l'étape 2 : le début du TD 2b du cours 1 n'a pas été
     faite sur ce poste.
   ]
 

@@ -1,8 +1,8 @@
 // TD 2a du cours 1 v2 — « Les fichiers du TD 1a en ligne de commande ».
 //
 // Nouveau (v2) : la seconde moitié du TD 1a de 2026 (renommer une extension,
-// un espace dans un nom), faite dans Git Bash, puis la configuration de conda
-// dans Git Bash, une fois par poste. Les sorties ont été relevées en rejouant
+// un espace dans un nom), faite dans Git Bash. La configuration de conda dans
+// Git Bash est passée au début du TD 2b le 27/09. Les sorties ont été relevées en rejouant
 // le TD sous Linux (bash 5.2, coreutils 9.4, LC_ALL=C) sur une copie du
 // dossier livré ; les messages de Git Bash peuvent différer d'un mot.
 //
@@ -13,7 +13,7 @@
 #let td = (
   numero: "2a",
   titre: "Les fichiers du TD 1a en ligne de commande",
-  annonce: "Se déplacer, copier, renommer et ouvrir des fichiers dans Git Bash, puis y rendre Python disponible",
+  annonce: "Se déplacer, copier, renommer et ouvrir des fichiers dans Git Bash",
   dossier: "cours1/2a_terminal/",
   duree: "15′",
 )
@@ -169,59 +169,6 @@
     les quatre noms. Diapositive « Le motif `*` ».
 
     Sortie de `ls depart/*.txt` relevée sur le dossier livré.
-  ]
-]
-
-#d("Python dans Git Bash, une fois par poste")[
-  #annonce[
-    Anaconda n'est pas encore visible depuis Git Bash. Une commande de conda
-    l'y rend disponible, dans toutes les fenêtres Git Bash ouvertes ensuite.
-  ]
-
-  #tableau(
-    columns: (auto, 1.25fr, 1fr),
-    align: left + horizon,
-    [], [Ce qu'il faut faire], [Ce que vous constatez],
-    [1], [`python --version`],
-      reponse[`python` introuvable, ou un message qui renvoie au Microsoft Store],
-    [2], [`source /c/ProgramData/anaconda3/etc/profile.d/conda.sh`, puis `conda init bash`],
-      reponse[une liste de fichiers ; `modified` devant `.bash_profile`],
-    [3], [fermer Git Bash, le rouvrir dans `2a_terminal`],
-      reponse[`(base)` au-dessus de l'invite],
-    [4], [`python --version`], reponse[`Python 3.` suivi de la version d'Anaconda],
-    [5], [`ls -a ~`], reponse[`.bash_profile` parmi les noms : un fichier caché, créé à l'étape 2],
-  )
-
-  #legende[
-    Le chemin de l'étape 2 est celui d'Anaconda sur les postes de la salle.
-    Sur un ordinateur personnel : page « Git et Git Bash » des annexes.
-  ]
-
-  #notes[
-    À VÉRIFIER sur un poste de la salle, avant d'écrire la version finale.
-    `conda init` réécrit aussi des fichiers de `C:\ProgramData\anaconda3`
-    quand leur contenu diffère ; sans droits d'administrateur, il affiche
-    alors `needs sudo` et lance une demande d'élévation (issue conda #10774).
-    Test : `…/conda.exe init bash --dry-run` ; seul `~/.bash_profile` doit
-    être en `modified`.
-
-    Repli sans droits, qui n'écrit que dans le dossier personnel :
-    `echo 'eval "$(/c/ProgramData/anaconda3/Scripts/conda.exe shell.bash hook)"' >> ~/.bash_profile`.
-
-    Message connu (guide du TD 3a du cours 3) : si chaque nouveau terminal
-    affiche l'aide de `cygpath`, puis `bash: : No such file or directory`,
-    l'environnement est activé quand même ; le `cygpath` d'Anaconda échoue
-    sous Git Bash. Correctif, une fois :
-    `sed -i '1i cygpath() { /usr/bin/cygpath "$@"; }' ~/.bash_profile`.
-
-    Même démarche que l'étape 0.3 du TD 3a du cours 3 de 2026 (`source`,
-    puis `conda init bash`).
-
-    Vérifier aussi où est `~` : `pwd -W` dans `~`. Si le profil est sur un
-    partage réseau (`HOMEDRIVE`), `.bash_profile` y est aussi.
-
-    Git Bash lit `~/.bash_profile` au démarrage (shell de connexion) ; conda
-    y écrit pour cette raison sous Windows.
   ]
 ]
 

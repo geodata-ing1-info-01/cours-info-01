@@ -322,7 +322,7 @@
   )
 
   #legende[
-    Le `/` à la fin d'un nom signale un dossier. Après le TD 2a, une ligne
+    Le `/` à la fin d'un nom signale un dossier. Après le TD 2b, une ligne
     `(base)` s'ajoute au-dessus : l'environnement conda actif.
   ]
 
@@ -533,7 +533,7 @@
 
   #legende[
     `.` et `..`, le dossier courant et son parent, sont les deux entrées
-    cachées de tout dossier. Le TD 2a crée un fichier caché, `.bash_profile`,
+    cachées de tout dossier. Le TD 2b crée un fichier caché, `.bash_profile`,
     dans le dossier personnel ; le cours 2 un dossier caché, `.git`.
   ]
 

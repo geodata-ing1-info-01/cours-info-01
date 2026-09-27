@@ -24,7 +24,7 @@ dure une dizaine de minutes.
 
 Comme au TD 2b, les programmes s'ouvrent et se corrigent dans Notepad++, et
 se lancent dans Git Bash. La commande `python` est disponible dans Git Bash
-depuis la fin du TD 2a.
+depuis le début du TD 2b.
 
 | Étape | Ce qu'on fait |
 |---|---|
@@ -94,8 +94,8 @@ eleve@POSTE MINGW64 ~/Desktop/info01/cours1/2c_erreurs
 $
 ```
 
-Si la ligne `(base)` manque, et que `python --version` ne répond pas, la fin
-du TD 2a, qui rend Python disponible dans Git Bash, n'a pas été faite sur ce
+Si la ligne `(base)` manque, et que `python --version` ne répond pas, le début
+du TD 2b, qui rend Python disponible dans Git Bash, n'a pas été fait sur ce
 poste. Si le dossier ne se termine pas par `2c_erreurs`, taper la commande
 `cd` ci-dessus.
 
