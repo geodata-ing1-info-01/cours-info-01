@@ -3,11 +3,14 @@
 //
 // Reprend les diapositives 10 à 14, 18, 21 et 22 du cours 1 de 2026, sans les
 // reformuler. Les chemins passent à la partie 2 (terminal), le binaire et le
-// texte au cours 3. Trois diapositives nouvelles sur le stockage, à la fin.
+// texte au cours 3, sauf le quiz sur le vocabulaire des chemins (diapositives
+// 15 et 16 de 2026), placé après les formats. Quatre diapositives nouvelles
+// sur le stockage, à la fin.
 #import "../../../commun/prelude.typ": *
 // Import nominatif, et non `: *` : `schemas.typ` ouvre `cetz.draw`, dont les
 // noms (`grid`, `line`, `circle`, `content`…) masqueraient ceux de typst.
 #import "../../../cours1/diapo/schemas.typ": schema-ou-sexecute
+#import "../schemas.typ": schema-stockage-reseau
 
 // Nouveau (v2) : titre et annonce de la partie.
 #separateur(
@@ -344,8 +347,108 @@
   ]
 ]
 
+// ------------------------------- Chemins -----------------------------------
+// Diapositives 15 et 16 du cours 1 de 2026, sans reformulation.
+
+// --------------------------------------------
+#d("Quizz : vocabulaire associé aux chemins de fichier")[
+  #annonce[
+    Un chemin dit où trouver un fichier dans l'arborescence des dossiers.
+    Plusieurs mots en désignent les parties : dites à quoi chacun correspond
+    dans cet exemple.
+  ]
+
+  #align(center)[
+    #text(font: police-code, size: 25pt, fill: encre)[C:\\Users\\alice\\Documents\\raven.odt]
+  ]
+
+  #v(0.5em)
+  #tableau(
+    columns: (auto, 1fr),
+    align: left + horizon,
+    [Le mot], [Ce qu'il désigne dans l'exemple],
+    [la racine, ou le disque], [],
+    [un nom de dossier], [],
+    [le nom du fichier], [],
+    [le chemin du fichier], [],
+    [le dossier parent], [],
+  )
+
+  #notes[
+    Trois minutes, à l'oral, sans commenter chaque réponse : la diapositive
+    suivante donne les réponses.
+
+    Racine : le point de départ que la machine connaît. `C:` désigne le
+    disque sous Windows ; sous macOS et Linux, la racine est `/`
+  ]
+]
+
+// --------------------------------------------
+#d("Quizz : vocabulaire associé aux chemins de fichier - Réponse")[
+  // Le chemin s'écrit d'un seul tenant, sans blanc entre les segments : c'est
+  // ainsi qu'il apparaît dans l'explorateur. Les colonnes sont donc mesurées
+  // sur les segments eux-mêmes, et les étiquettes, plus larges, sont posées
+  // par `place` : elles débordent de leur colonne sans l'élargir.
+  #align(center)[
+    #context {
+      let taille = 25pt
+      let segments = (
+        (estompe, "C:\\", "la racine, ou le disque"),
+        (brun, "Users\\alice\\Documents\\", "trois noms de dossier"),
+        (accent, "raven.odt", "le nom du fichier, extension comprise"),
+      )
+      let morceau(couleur, chaine) = text(
+        font: police-code, size: taille, fill: couleur,
+        weight: if couleur == brun { demi-gras } else { "regular" },
+        chaine,
+      )
+      grid(
+        columns: segments.map(((c, t, _)) => measure(morceau(c, t)).width),
+        column-gutter: 0pt,
+        row-gutter: 13pt,
+        ..segments.map(((c, t, _)) => morceau(c, t)),
+        ..segments.map(((c, _, e)) => {
+          // L'étiquette est mesurée puis posée à sa largeur naturelle : sans
+          // cela, elle se replierait sur la largeur de son segment.
+          let etiq = text(size: 14pt, fill: c)[#e]
+          box(width: 100%, height: 1.2em)[
+            #place(center + top, box(width: measure(etiq).width, etiq))
+          ]
+        }),
+      )
+    }
+  ]
+
+  #v(0.6em)
+  #tableau(
+    columns: (auto, 1fr),
+    align: left + horizon,
+    [Le mot], [Ce qu'il désigne dans l'exemple],
+    [la racine, ou le disque],
+      [#text(fill: estompe)[`C:\`], le point de départ ; `/` sous macOS et Linux],
+    [un nom de dossier],
+      [#text(fill: brun)[`Users`, `alice`, `Documents`] : trois, du plus large au plus précis],
+    [le nom du fichier],
+      [`raven.odt`, extension comprise],
+    [le chemin du fichier], [tout, de la racine au fichier],
+    [le dossier parent],
+      [#text(fill: estompe)[`C:\`]#text(fill: brun)[`Users\alice\Documents`], le dossier qui le contient],
+  )
+
+  #legende[
+    Un chemin se lit de gauche à droite, de la racine au fichier ; chaque
+    séparateur descend d'un dossier.
+  ]
+
+  #notes[
+    Insister sur la dernière ligne : « dossier parent » est le mot des
+    messages d'erreur et des fonctions de Python (`Path.parent`). Le cours 3
+    s'en sert sans le redéfinir.
+  ]
+]
+
 // ------------------------------- Stockage ----------------------------------
-// Nouveau (v2) : trois diapositives, d'après le syllabus v2 (partie 1) et les
+// Nouveau (v2) : quatre diapositives, d'après le syllabus v2 (partie 1) et les
 // faits donnés par l'équipe le 26/09/2026 : le Bureau du poste est conservé
 // d'une séance à l'autre ; l'espace personnel réseau existe, mais les élèves
 // ne savent pas encore s'en servir en septembre.
@@ -382,6 +485,34 @@
     Stockage en ligne synchronisé : OneDrive, Google Drive, Dropbox. Le
     fichier est sur le poste et sur le serveur ; un logiciel recopie chaque
     modification dans les deux sens.
+  ]
+]
+
+// --------------------------------------------
+// Nouveau (v2), 27/09 : le schéma des emplacements, entre le tableau et le
+// cas du dossier partagé.
+#d("Les emplacements de stockage sur le réseau")[
+  #annonce[
+    Le serveur de l'école est relié aux postes par le réseau local. Le
+    stockage en ligne est sur des serveurs hors de l'école, atteints par
+    Internet.
+  ]
+
+  #align(center, schema-stockage-reseau())
+
+  #notes[
+    Faire situer sur le schéma chaque ligne du tableau précédent. La clé USB
+    n'y figure pas.
+
+    Depuis chez soi, `formationTemp` et l'espace personnel ne sont pas
+    accessibles. Depuis l'école, Internet l'est.
+
+    L'école ne fournit pas de stockage en ligne, a priori. Nextcloud est un
+    logiciel libre, installé par des universités et des associations. Les
+    trois autres sont des services de Google, Microsoft et Dropbox.
+
+    Même dessin au cours 5 (« Local et distant »), avec les temps
+    d'aller-retour.
   ]
 ]
 

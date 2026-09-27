@@ -35,20 +35,17 @@ l'identique dans le terminal de macOS et de Linux.
 ## Rappels avant de commencer
 
 **Un terminal, plusieurs fenêtres.** Le poste a plusieurs terminaux :
-l'invite de commandes (`cmd`), PowerShell, l'invite de commandes d'Anaconda, Git Bash.
-Chacun a son langage. Les commandes du guide ne fonctionnent que dans Git
-Bash. L'invite, au début de chaque ligne, indique le terminal employé :
+l'invite de commandes (`cmd`), PowerShell, Git Bash. Chacun a son langage.
+Les commandes du guide sont celles de Git Bash, et la dernière annexe donne
+leurs équivalents dans les deux autres. L'invite, au début de chaque ligne,
+indique le terminal employé :
 
-| Git Bash | Invite de commandes |
-|---|---|
-| ![Git Bash](../../../images/terminaux/git_bash_2011.png) | ![Invite de commandes](../../../images/terminaux/cmd_windows11.png) |
-| `utilisateur@machine MINGW64 ~/…`, puis `$` | `C:\Users\…>` |
-| **PowerShell** | **Invite de commandes d'Anaconda** |
-| ![PowerShell](../../../images/terminaux/powershell_terminal_windows.png) | ![Invite de commandes d'Anaconda](../../../images/terminaux/miniforge_prompt.png) |
-| `PS C:\Users\…>` | `(base) C:\Users\…>` |
+| Git Bash | Invite de commandes | PowerShell |
+|---|---|---|
+| ![Git Bash](../../../images/terminaux/git_bash_2011.png) | ![Invite de commandes](../../../images/terminaux/cmd_windows11.png) | ![PowerShell](../../../images/terminaux/powershell_terminal_windows.png) |
+| `utilisateur@machine MINGW64 ~/…`, puis `$` | `C:\Users\…>` | `PS C:\Users\…>` |
 
-La capture de Git Bash date de 2011 (`MINGW32`) ; celle de l'Anaconda
-Prompt montre le Miniforge Prompt, la même fenêtre. Sources et licences :
+La capture de Git Bash date de 2011 (`MINGW32`). Sources et licences :
 `images/terminaux/CREDITS.md` dans le dépôt du cours.
 
 **Taper une commande.** Une commande se tape après le `$`, puis se valide
@@ -480,3 +477,49 @@ de code, qui lit le même fichier.
 | `rm fichier` | supprime, sans corbeille | `Suppr` |
 | `start fichier` | ouvre avec le logiciel associé | double-clic |
 | `commande --help` | l'aide de la commande | |
+
+## Annexe · Les mêmes commandes dans PowerShell et l'invite de commandes
+
+Le TD se fait dans Git Bash. Les mêmes opérations se font dans PowerShell et
+dans l'invite de commandes (`cmd`), avec d'autres commandes ou d'autres
+options. Le tableau les donne pour les commandes du TD, tapées depuis le
+dossier `2a_terminal`. [À vérifier sur un poste de la salle : les colonnes
+PowerShell et invite de commandes sont tirées de la documentation de
+Microsoft, et n'ont pas été exécutées.]
+
+| Opération | Git Bash | PowerShell | Invite de commandes |
+|------|--------|--------|--------|
+| afficher le dossier courant | `pwd` | `pwd` | `cd` |
+| lister un dossier | `ls depart` | `ls depart` | `dir depart` |
+| lister aussi les entrées cachées | `ls -a travail` | `ls -Force travail` | `dir /a travail` |
+| descendre dans un dossier | `cd depart` | `cd depart` | `cd depart` |
+| remonter au dossier parent | `cd ..` | `cd ..` | `cd ..` |
+| copier un fichier | `cp depart/raven.odt travail/` | `cp depart/raven.odt travail/` | `copy depart\raven.odt travail\` |
+| renommer un fichier | `mv travail/raven.odt travail/raven_odt.pdf` | `mv travail/raven.odt travail/raven_odt.pdf` | `ren travail\raven.odt raven_odt.pdf` |
+| ouvrir avec le logiciel associé | `start travail/raven_odt.pdf` | `start travail/raven_odt.pdf` | `start travail\raven_odt.pdf` |
+| ouvrir un fichier dont le nom a un espace | `start "" "travail/raven brut.html"` | `start "travail/raven brut.html"` | `start "" "travail\raven brut.html"` |
+| créer un dossier | `mkdir travail/pages` | `mkdir travail/pages` | `mkdir travail\pages` |
+| copier plusieurs fichiers | `cp depart/*.html travail/pages/` | `cp depart/*.html travail/pages/` | `copy depart\*.html travail\pages\` |
+| supprimer un fichier, sans corbeille | `rm travail/raven.loulou` | `rm travail/raven.loulou` | `del travail\raven.loulou` |
+| afficher l'aide d'une commande | `ls --help` | `help ls` | `dir /?` |
+
+**Dans PowerShell**, `ls`, `cp`, `mv`, `rm` et `mkdir` sont d'autres noms
+des commandes de PowerShell : `Get-ChildItem`, `Copy-Item`, `Move-Item`,
+`Remove-Item` et `New-Item`. Ils prennent les options des commandes de
+PowerShell. Ainsi `ls -a` échoue, et `ls -Force` affiche les entrées cachées.
+PowerShell accepte `/` et `\` dans les chemins. Son `start` n'attend pas de
+titre de fenêtre, et s'écrit donc sans `""`.
+
+**Dans l'invite de commandes**, les chemins s'écrivent avec `\`, car `/`
+introduit une option (`dir /a`). `ren` prend le nouveau nom seul, sans
+dossier. `start` lit le premier argument entre guillemets comme le titre de
+la fenêtre, d'où le `""` devant un nom entre guillemets.
+
+**Les listes n'ont pas la même présentation.** PowerShell affiche pour chaque
+entrée sa date et sa taille, et l'invite de commandes ajoute le nom du
+disque et le total des tailles. Les noms sont les mêmes.
+
+**Python.** Dans l'invite de commandes, `python` est disponible dans
+l'invite de commandes d'Anaconda, au menu Démarrer. Dans PowerShell, il faut
+ouvrir l'invite PowerShell d'Anaconda, si elle est installée sur le poste
+[à vérifier]. Le réglage de l'étape 6 ne vaut que pour Git Bash.

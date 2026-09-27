@@ -3,14 +3,134 @@
 //
 // Nouveau (v2) : le terminal passe du cours 2 au cours 1, avec un TD. Les
 // diapositives du cours 2 de 2026 (Beamer, listes à puces) sont réécrites ;
-// les trois diapositives sur les chemins du cours 1 de 2026 sont reprises
-// sans être reformulées.
+// les diapositives sur les chemins du cours 1 de 2026 sont reprises sans être
+// reformulées, le quiz sur leur vocabulaire dans la partie 1.
 #import "../../../commun/prelude.typ": *
+#import "../schemas.typ": explorateur-copie, git-bash-copie, chaine-terminal, git-bash-ls
 
 #separateur(
   "Terminal et premier programme",
   annonce: "Se déplacer dans les dossiers et agir sur les fichiers en tapant des commandes, puis lancer un programme Python écrit dans un éditeur de texte.",
 )
+
+// --------------------------------------------
+// Nouveau (v2), 27/09 : interface graphique et ligne de commande, avant le
+// vocabulaire du terminal.
+#d("Interface graphique et ligne de commande")[
+  #annonce[
+    Dans une interface graphique, on choisit l'opération parmi celles que la
+    fenêtre affiche. En ligne de commande, on tape le nom de l'opération, qu'il
+    faut connaître.
+  ]
+
+  #face-a-face(
+    panneau[Interface graphique : l'explorateur de fichiers][
+      #explorateur-copie()
+      #legende[La copie demande ensuite d'ouvrir `travail`, puis de choisir Coller au clic droit.]
+    ],
+    panneau[Ligne de commande : Git Bash][
+      #git-bash-copie()
+      #legende[On tape la ligne, puis on appuie sur Entrée. `cp` abrège _copy_.]
+    ],
+  )
+
+  #notes[
+    Les deux copies donnent le même fichier, `travail/raven.odt`, sur le
+    disque du poste.
+
+    Sigles anglais : GUI (_graphical user interface_) et CLI (_command-line
+    interface_).
+
+    Les menus reposent sur la reconnaissance d'une opération affichée, et la
+    ligne de commande sur le rappel de son nom. Source : R. Budiu, « Memory
+    Recognition and Recall in User Interfaces », Nielsen Norman Group, 2024.
+
+    `cp` n'affiche rien quand la copie réussit.
+  ]
+]
+
+// --------------------------------------------
+// Nouveau (v2), 27/09.
+#d("Une opération sur 120 fichiers")[
+  #annonce[
+    Dans Paint, il faut refaire les mêmes opérations pour chacune des 120
+    images.
+  ]
+
+  #panneau[Interface graphique : Paint, pour chaque image][
+    #grid(
+      columns: (1fr, auto), column-gutter: 20pt, align: horizon,
+      chaine(
+        ("Ouvrir", [`depart/img_001.png`]),
+        ("Redimensionner", "640 pixels de large"),
+        ("Enregistrer sous", [dans `travail/`]),
+      ),
+      text(size: 34pt, weight: demi-gras)[× 120],
+    )
+  ]
+  #panneau[Ligne de commande : Git Bash, pour toutes les images][
+    #fenetre("Git Bash", code: true)[
+      #text(size: 19pt, raw("$ magick mogrify -path travail -resize 640 depart/*.png"))
+    ]
+  ]
+
+  #legende[
+    Le motif `*` désigne les 120 fichiers de `depart/`. Des logiciels
+    graphiques ont aussi un traitement par lots, limité aux opérations qu'ils
+    prévoient.
+  ]
+
+  #notes[
+    Commande exécutée avec ImageMagick 7.1 sur trois PNG de 1920 × 1080,
+    qui donne trois PNG de 640 × 360 dans `travail/`.
+
+    Ne pas faire taper la commande : `magick`, le programme d'ImageMagick,
+    n'est disponible qu'au cours 4, dans l'environnement `animation`.
+
+    Exemple de Software Carpentry (« Introducing the Shell ») : 1 520
+    fichiers à ouvrir un par un, plus de 12 heures d'attention.
+  ]
+]
+
+// --------------------------------------------
+// Nouveau (v2), 27/09. Sources dans les notes ; la vitesse n'est pas une
+// ligne du tableau, les mesures publiées étant partagées.
+#d("Comparaison des deux interfaces")[
+  #annonce[
+    L'interface graphique se prend en main plus vite. La ligne de commande
+    répète une opération sur beaucoup de fichiers, et la commande se
+    conserve pour être relancée.
+  ]
+
+  #tableau(
+    columns: (auto, 1fr, 1.25fr),
+    align: left + horizon,
+    [], [Interface graphique], [Ligne de commande],
+    [Trouver une opération], [dans les menus affichés], [connaître son nom, ou lire `--help`],
+    [Voir le résultat], [après chaque action], [en le demandant, avec `ls`],
+    [Premières utilisations], [peu d'erreurs], [des fautes de frappe, des options oubliées],
+    [Traiter 120 fichiers], [120 fois la même opération], [une commande, avec un motif],
+    [Refaire le travail plus tard], [refaire chaque action], [relancer la commande, gardée dans un fichier],
+    [Travailler sur un serveur], [s'il a un bureau à distance], [par `ssh`, vu au cours 5],
+  )
+
+  #notes[
+    Novices, MS-DOS contre Macintosh : plus d'erreurs et plus de temps en
+    ligne de commande (Margono et Shneiderman, 1987).
+
+    Ne pas dire que la ligne de commande est plus rapide en général : les
+    mesures publiées sont partagées (Cockburn et al., _ACM Computing
+    Surveys_, 2014). L'écart porte sur le nombre d'actions quand les
+    fichiers sont nombreux.
+
+    Garder une commande dans un fichier pour la relancer : Software
+    Carpentry, « Shell Scripts » ; Wilson et al., « Good enough practices in
+    scientific computing », 2017.
+
+    Si la question vient : Power Automate pour le bureau, de Microsoft,
+    enchaîne des clics et des opérations sur les fichiers sans commande.
+  ]
+]
 
 // --------------------------------------------
 #d("Le terminal et l'interpréteur de commandes")[
@@ -20,15 +140,20 @@
     qu'elle nomme.
   ]
 
-  #chaine(
-    ("Ce qu'on tape", "ls depart, puis Entrée"),
-    ("Le terminal", "la fenêtre, qui transmet la ligne"),
-    ("L'interpréteur de commandes", "bash : découpe la ligne, lance ls"),
-    ("Le programme ls", "écrit la liste des fichiers"),
-    pleins: (2,),
+  // 27/09 : la chaîne passe en colonne, à côté d'une fenêtre qui montre la
+  // commande et sa sortie.
+  #grid(
+    columns: (0.9fr, 1.45fr), column-gutter: 18pt, align: horizon,
+    chaine-terminal(
+      ("Ce qu'on tape", "ls depart, puis Entrée"),
+      ("Le terminal", "la fenêtre, qui transmet la ligne"),
+      ("L'interpréteur de commandes", "bash : découpe la ligne, lance ls"),
+      ("Le programme ls", "écrit la liste des fichiers"),
+      plein: 2,
+    ),
+    git-bash-ls(),
   )
 
-  #v(0.4em)
   #legende[
     Le mot « terminal » désigne souvent les deux à la fois. Le langage des
     commandes est celui de l'interpréteur : cmd, PowerShell ou bash.
@@ -58,10 +183,8 @@
     [Terminal], [Où le trouver], [Interpréteur], [Dans le module],
     [Invite de commandes], [menu Démarrer], [cmd], [non employé],
     [Terminal Windows], [menu Démarrer], [PowerShell], [non employé],
-    [Invite de commandes d'Anaconda], [menu Démarrer], [cmd et conda], [en dépannage],
     surligne[Git Bash], surligne[clic droit dans un dossier],
       surligne[bash], surligne[à toutes les séances],
-    [Terminal de VS Code], [dans l'éditeur], [au choix], [Git Bash, dès le cours 2],
   )
 
   #legende[
@@ -70,6 +193,9 @@
   ]
 
   #notes[
+    Non montrés ici (27/09) : l'invite de commandes d'Anaconda, en
+    dépannage, et le terminal de VS Code, au cours 2.
+
     Raison du choix (syllabus v2) : en 2026, chaque séance employait un
     terminal différent (PowerShell remplacé par un profil « Anaconda Prompt » au
     cours 1, bash au cours 2, invite de commandes d'Anaconda et Git Bash au cours 3), sans
@@ -85,36 +211,86 @@
 ]
 
 // --------------------------------------------
+// Nouveau (v2), 27/09 : les raisons du choix de bash. Sources dans les notes.
+#d("Le choix de Git Bash")[
+  #annonce[
+    bash n'est pas fourni avec Windows. Le module l'emploie parce qu'il est
+    l'interpréteur de Linux, installé sur la plupart des serveurs, et que Git
+    Bash est installé avec git.
+  ]
+
+  #tableau(
+    columns: (auto, 1fr, 1.2fr, 1.1fr),
+    align: left + horizon,
+    [], [cmd], [PowerShell], surligne[bash, dans Git Bash],
+    [Sur les postes], [avec Windows], [avec Windows], surligne[avec git],
+    [Sous Linux et macOS], [absent], [à installer], surligne[bash ; zsh sous macOS],
+    [Statut], [conservé pour la compatibilité], [recommandé par Microsoft], surligne[logiciel libre, GNU],
+    [Lister, copier], [`dir`, `copy`], [`Get-ChildItem`, `Copy-Item`], surligne[`ls`, `cp`],
+    [Développeurs], [non compté], [23 %], surligne[49 %],
+  )
+
+  #legende[
+    Serveurs web : 92 % sous Unix, dont Linux (W3Techs, septembre 2026).
+    Développeurs : enquête Stack Overflow 2025. Les commandes du TD 2a dans
+    les trois interpréteurs sont en annexe de son guide.
+  ]
+
+  #notes[
+    Microsoft recommande PowerShell pour automatiser Windows (Microsoft
+    Learn, « Windows commands », 2025). cmd
+    reste pour la compatibilité avec les scripts de MS-DOS et évolue peu
+    (R. Turner, blog Windows Command Line de Microsoft, 2018).
+
+    PowerShell connaît `ls`, `cp`, `mv`, `rm` comme autres noms de ses
+    commandes, sans leurs options : `ls -a` échoue, `ls -Force` liste les
+    fichiers cachés.
+
+    Linux : 500 des 500 machines du TOP500 depuis novembre 2017 ; plus de
+    60 % des cœurs des clients d'Azure, le nuage de Microsoft (page Azure,
+    lue le 27/09/2026).
+
+    Git Bash fournit aussi `ssh`, employé au cours 5.
+
+    Software Carpentry recommande Git for Windows sous Windows, sans droits
+    d'administrateur. Le MIT (_Missing Semester_) écarte cmd et PowerShell,
+    propres à Windows.
+
+    Aucune étude trouvée qui compare la facilité d'apprentissage de bash et
+    de PowerShell.
+  ]
+]
+
+// --------------------------------------------
 // Nouveau (v2) : captures trouvées en ligne, en attendant celles d'un poste de
 // la salle ; sources dans `src/cours1_v2/images/terminaux/CREDITS.md`.
-#let _capture(fichier, legende-capture) = block(width: 100%)[
+#let _capture(fichier, legende-capture, hauteur: 98pt) = block(width: 100%)[
   #align(center, box(
     stroke: 1pt + accent.lighten(55%),
-    image("/src/cours1_v2/images/terminaux/" + fichier, height: 98pt),
+    image("/src/cours1_v2/images/terminaux/" + fichier, height: hauteur),
   ))
   #v(-0.3em)
   #align(center, text(size: 14pt, fill: estompe)[#legende-capture])
 ]
 
-#d("Quatre terminaux à l'écran")[
+#d("Trois terminaux à l'écran")[
   #annonce[
     L'invite, au début de chaque ligne, indique quel interpréteur lit la
     commande.
   ]
 
   #grid(
-    columns: (1fr, 1fr), column-gutter: 16pt, row-gutter: 10pt,
-    _capture("git_bash_2011.png")[Git Bash : `utilisateur@machine`, puis `$`],
-    _capture("cmd_windows11.png")[Invite de commandes : `C:\Users\…>`],
-    _capture("powershell_terminal_windows.png")[PowerShell : `PS C:\Users\…>`],
-    _capture("miniforge_prompt.png")[Invite de commandes d'Anaconda : `(base) C:\Users\…>`],
+    columns: (1fr, 1fr, 1fr), column-gutter: 12pt,
+    _capture("git_bash_2011.png", hauteur: 125pt)[Git Bash : \ `utilisateur@machine`, puis `$`],
+    _capture("cmd_windows11.png", hauteur: 125pt)[Invite de commandes : \ `C:\Users\…>`],
+    _capture("powershell_terminal_windows.png", hauteur: 125pt)[PowerShell : \ `PS C:\Users\…>`],
   )
 
   #notes[
     Captures en ligne (Wikimedia Commons, The Carpentries), sources dans
     `CREDITS.md`. La capture de Git Bash date de 2011 (`MINGW32`) : à
-    remplacer par une capture d'un poste de la salle, comme celle de
-    l'invite de commandes d'Anaconda (ici le Miniforge Prompt, même fenêtre `cmd`).
+    remplacer par une capture d'un poste de la salle. L'invite de commandes
+    d'Anaconda, qui n'a pas encore été vue, est retirée (27/09).
 
     Faire repérer l'invite sur chacune : elle indique le langage à employer.
   ]
@@ -231,104 +407,8 @@
 ]
 
 // ------------------------------- Chemins -----------------------------------
-// Reprise des diapositives 15 à 17 du cours 1 de 2026, sans reformulation.
-
-// --------------------------------------------
-#d("Quizz : vocabulaire associé aux chemins de fichier")[
-  #annonce[
-    Un chemin dit où trouver un fichier dans l'arborescence des dossiers.
-    Plusieurs mots en désignent les parties : dites à quoi chacun correspond
-    dans cet exemple.
-  ]
-
-  #align(center)[
-    #text(font: police-code, size: 25pt, fill: encre)[C:\\Users\\alice\\Documents\\raven.odt]
-  ]
-
-  #v(0.5em)
-  #tableau(
-    columns: (auto, 1fr),
-    align: left + horizon,
-    [Le mot], [Ce qu'il désigne dans l'exemple],
-    [la racine, ou le disque], [],
-    [un nom de dossier], [],
-    [le nom du fichier], [],
-    [le chemin du fichier], [],
-    [le dossier parent], [],
-  )
-
-  #notes[
-    Trois minutes, à l'oral, sans commenter chaque réponse : la diapositive
-    suivante donne les réponses.
-
-    Racine : le point de départ que la machine connaît. `C:` désigne le
-    disque sous Windows ; sous macOS et Linux, la racine est `/`
-  ]
-]
-
-// --------------------------------------------
-#d("Quizz : vocabulaire associé aux chemins de fichier - Réponse")[
-  // Le chemin s'écrit d'un seul tenant, sans blanc entre les segments : c'est
-  // ainsi qu'il apparaît dans l'explorateur. Les colonnes sont donc mesurées
-  // sur les segments eux-mêmes, et les étiquettes, plus larges, sont posées
-  // par `place` : elles débordent de leur colonne sans l'élargir.
-  #align(center)[
-    #context {
-      let taille = 25pt
-      let segments = (
-        (estompe, "C:\\", "la racine, ou le disque"),
-        (brun, "Users\\alice\\Documents\\", "trois noms de dossier"),
-        (accent, "raven.odt", "le nom du fichier, extension comprise"),
-      )
-      let morceau(couleur, chaine) = text(
-        font: police-code, size: taille, fill: couleur,
-        weight: if couleur == brun { demi-gras } else { "regular" },
-        chaine,
-      )
-      grid(
-        columns: segments.map(((c, t, _)) => measure(morceau(c, t)).width),
-        column-gutter: 0pt,
-        row-gutter: 13pt,
-        ..segments.map(((c, t, _)) => morceau(c, t)),
-        ..segments.map(((c, _, e)) => {
-          // L'étiquette est mesurée puis posée à sa largeur naturelle : sans
-          // cela, elle se replierait sur la largeur de son segment.
-          let etiq = text(size: 14pt, fill: c)[#e]
-          box(width: 100%, height: 1.2em)[
-            #place(center + top, box(width: measure(etiq).width, etiq))
-          ]
-        }),
-      )
-    }
-  ]
-
-  #v(0.6em)
-  #tableau(
-    columns: (auto, 1fr),
-    align: left + horizon,
-    [Le mot], [Ce qu'il désigne dans l'exemple],
-    [la racine, ou le disque],
-      [#text(fill: estompe)[`C:\`], le point de départ ; `/` sous macOS et Linux],
-    [un nom de dossier],
-      [#text(fill: brun)[`Users`, `alice`, `Documents`] : trois, du plus large au plus précis],
-    [le nom du fichier],
-      [`raven.odt`, extension comprise],
-    [le chemin du fichier], [tout, de la racine au fichier],
-    [le dossier parent],
-      [#text(fill: estompe)[`C:\`]#text(fill: brun)[`Users\alice\Documents`], le dossier qui le contient],
-  )
-
-  #legende[
-    Un chemin se lit de gauche à droite, de la racine au fichier ; chaque
-    séparateur descend d'un dossier.
-  ]
-
-  #notes[
-    Insister sur la dernière ligne : « dossier parent » est le mot des
-    messages d'erreur et des fonctions de Python (`Path.parent`). Le cours 3
-    s'en sert sans le redéfinir.
-  ]
-]
+// Reprise de la diapositive 17 du cours 1 de 2026, sans reformulation. Le quiz
+// des diapositives 15 et 16 est dans la partie 1, après les formats.
 
 // --------------------------------------------
 #d("Le chemin d'un fichier")[
