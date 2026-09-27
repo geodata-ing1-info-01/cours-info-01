@@ -1,7 +1,8 @@
 """La fenêtre du train : une image, une série d'images ou une vidéo.
 
-Le décalage du paysage est calculé par Python, chaque image composée par
-ImageMagick, la vidéo assemblée par ffmpeg.
+Chaque image superpose trois images du décor : le fond, le plan découpé dans
+une bande, puis la fenêtre. Python calcule le décalage du plan sur chaque
+image et construit la commande d'ImageMagick ; ffmpeg assemble la vidéo.
 
     python train.py --decalage 200
     python train.py --images 120
@@ -25,40 +26,42 @@ SORTIE = Path.cwd() / "sortie"
 IMAGES = SORTIE / "images"
 
 
-# ---- Une image (sections 2 à 4 du notebook) ---------------------------------
+# ---- Une image (sections 3 à 7 du notebook) ---------------------------------
+
+def arguments_fond(decor):
+    """Les arguments de magick qui lisent le fond, une image de 640 × 480 pixels."""
+    return [str(decor / "fond.png")]
 
 
-def lancer(commande):
-    """Lance une commande (le programme, puis chaque argument) ; s'arrête si elle échoue."""
+def image(fichier, decor):
+    """Une image de la vidéo, 640 × 480 pixels, écrite dans `fichier`."""
+    commande = [MAGICK] + arguments_fond(decor)
+    commande = commande + [str(fichier)]
     subprocess.run(commande, check=True)
 
 
-def image(fichier, decor, decalage):
-    """Une image 640 × 480 : le fond, le plan décalé de `decalage` pixels vers la droite, puis la fenêtre."""
-    commande = [MAGICK, str(decor / "fond.png"),
-                "(", str(decor / "plan.png"), "-roll", "+" + str(decalage) + "+0",
-                "-crop", "640x480+0+0", "+repage", ")", "-composite",
-                str(decor / "fenetre.png"), "-composite"]
-    commande.append(str(fichier))
-    lancer(commande)
+def taille(fichier):
+    """La largeur et la hauteur de l'image, en pixels, écrites par magick identify : « 640x480 »."""
+    resultat = subprocess.run([MAGICK, "identify", "-format", "%wx%h", str(fichier)],
+                              capture_output=True, text=True, check=True)
+    return resultat.stdout
 
 
 # ---- Le programme ------------------------------------------------------------
 
 def main():
     analyseur = argparse.ArgumentParser(description="La fenêtre du train : une image, une série d'images ou une vidéo.")
-    analyseur.add_argument("-d", "--decalage", type=int, default=0, help="le décalage du paysage d'une image seule, en pixels (défaut : 0)")
     analyseur.add_argument("--decor", default="decor", help="le dossier des images du décor (défaut : decor)")
     options = analyseur.parse_args()
     decor = Path(options.decor)
-    if not (decor / "plan.png").exists():
+    if not (decor / "fond.png").exists():
         analyseur.error("décor introuvable : " + options.decor)
     SORTIE.mkdir(exist_ok=True)
 
     # Une image
-    fichier = SORTIE / ("train_" + str(options.decalage).zfill(4) + ".png")
-    image(fichier, decor, options.decalage)
-    print(fichier)
+    fichier = SORTIE / "train.png"
+    image(fichier, decor)
+    print(fichier, taille(fichier))
 
 
 # Vrai quand le fichier est lancé par `python`, faux quand il est importé par

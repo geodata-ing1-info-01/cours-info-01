@@ -22,26 +22,29 @@ Sources : [Manifesto XXI](https://www.manifesto-21.com/kid-francescoli-fait-tour
 Chaque image de la vidéo superpose trois images, par une seule commande `magick` :
 
 ```text
-magick fond.png ( plan.png -roll +D+0 -crop 640x480+0+0 +repage ) -composite fenetre.png -composite img_0001.png
+magick fond.png ( plan.png -roll -D+0 -crop 640x480+0+0 +repage ) -composite fenetre.png -composite img_0001.png
 ```
 
 - `fond.png`, 640 × 480 : le ciel, les nuages, la mer ; fixe.
-- `plan.png`, bande de 1 920 × 480, transparente hors des voiles et de la plage jaune ; décalée de `D` pixels vers la droite, puis coupée à 640 pixels.
+- `plan.png`, bande de 1 920 × 480, transparente hors des voiles et de la plage jaune ; tournée de `D` colonnes vers la gauche, puis coupée à 640 pixels : le paysage défile vers la gauche (vers la droite dans le clip ; changé le 27/09/2026, pour que le décalage soit la colonne où commence l'emprise).
 - `fenetre.png`, 640 × 480 : noire, vitre transparente (coins arrondis) ; fixe, par-dessus.
 
 Python calcule `D` pour chaque image : `decalages(nombre, vitesse)` renvoie `[0, 8, 16, …]`. C'est le pendant de `angles` (4b) et de l'heure (4a).
 
-`-roll` revient lui-même au début de la bande (`+2000` donne la même image que `+80` sur 1 920 pixels) : pas de modulo à écrire en Python. Le modulo vient au TD 7 (effet `poteaux`).
+`-roll` revient lui-même au début de la bande (`-2000` donne la même image que `-80` sur 1 920 pixels) : pas de modulo à écrire en Python. Le modulo vient au TD 7 (effet `poteaux`).
 
 Un seul plan mobile au TD 4 ; le second plan (la plage orange) et les ombres des poteaux sont les deux effets du TD 7.
 
 ## Étapes
 
+> 27/09/2026 : la partie B du TD 4c ne suit plus le plan commun. B1 le fond sur `master` ; B2 branche `fenetre` (1 commit) ; B3 branche `plan` (plan sur le fond, `--decalage`, `-roll` : 3 commits) ; B4 fusion de `fenetre` (avance rapide) puis de `plan`, conflit dans `image`, résolu à la main ; B5 série ; B6 vidéo ; B7 README ; B8 facultatif ; 13 commits. Annexe du guide : plusieurs plans (voiles 2, plage jaune 8, plage orange 16 pixels par image), base du TD 7. Code dans `generer_corriges.py` (`version_train`, `rejouer_train`). Le tableau ci-dessous décrit l'ancien plan.
+
+
 Identiques à 4a et 4b ; seuls le programme, les données et les options changent.
 
 | Étape | 4b tourbillon | 4c train |
 |---|---|---|
-| A | `tourbillon.ipynb` | `train.ipynb` : outils, décor, superposer (`-composite`, `-crop`, parenthèses), décaler (`-roll`), décalages, vidéo |
+| A | `tourbillon.ipynb` | `train.ipynb` : la composition sans code (schémas : emprise, débordement, cylindre), outils, fond, plan découpé (`-crop`), plan tourné (`-roll`), plan sur le fond (`-composite`), fenêtre, décalages, vidéo ; la commande `magick` construite par morceaux (`arguments_fond`, `arguments_plan`, `arguments_fenetre`), sans fonction `lancer` |
 | B0 | copier `vague.jpg` | copier le dossier `decor/` (`cp -r`) |
 | B1 | `--angle 90` | `--decalage 200`, et `--decor` (défaut `decor`) |
 | B2 | `--maximum 360` | `--images 120` ; `VITESSE = 8` en constante, comme `PAS` |

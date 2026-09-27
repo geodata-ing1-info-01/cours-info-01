@@ -16,6 +16,11 @@ Le TD fabrique une courte vidéo : la mer vue de la fenêtre d'un train, les voi
 Python, versionné avec git, qui contient un script `train.py` appelable en
 ligne de commande.
 
+Chaque image de la vidéo superpose trois images du décor : le fond, le plan,
+découpé dans une bande plus large que l'image, et la fenêtre. La section « La
+méthode », après le tableau des étapes, décrit comment le programme compose
+une image, puis la vidéo, avec des schémas.
+
 Le script enchaîne toutes les étapes de la fabrication de la vidéo :
 
 - la fonction `decalages` calcule de combien de pixels le paysage est décalé sur chaque image ; pour chaque décalage, la fonction `image` construit la commande qui compose l'image ;
@@ -29,7 +34,7 @@ automatise ainsi l'ensemble des étapes. Pendant le développement, chaque
 étape du TD se termine par un commit git.
 
 Le schéma suivant montre les étapes du script final, avec des images de la
-vidéo produite. Il est aussi en tête du notebook.
+vidéo produite. Il est aussi dans la section 2 du notebook.
 
 ![Les étapes du script train.py](depart/illustrations/programme_train.png)
 
@@ -39,9 +44,9 @@ Le TD a deux parties.
   contient ces outils, puis exécuter le notebook `train.ipynb` qui fabrique la
   vidéo.
 - **Partie B** (environ 70 minutes) : construire le programme `train.py`,
-  lancé depuis un terminal, fonctionnalité par fonctionnalité : une image,
-  une série d'images, la vidéo. Chaque fonctionnalité est développée sur une
-  branche git, puis fusionnée.
+  lancé depuis un terminal, en suivant les étapes de la composition : le
+  fond, puis la fenêtre et le plan sur deux branches git réunies par une
+  fusion, puis la série d'images et la vidéo.
 
 Pour chaque étape, le guide indique le dossier où se placer, les fichiers
 au début et à la fin, le code à écrire et l'endroit où l'écrire, les
@@ -57,11 +62,112 @@ détaille. Chaque page commence par un encadré qui résume l'étape.
 | [A3](#a3-activer-lenvironnement-et-vérifier-les-outils) | activer l'environnement et vérifier les outils | |
 | [A4](#a4-exécuter-le-notebook-dans-jupyterlab) | exécuter le notebook dans JupyterLab | |
 | [B0](#b0-le-dossier-du-projet-et-le-dépôt-git) | créer le dossier du projet et le dépôt git | 1 |
-| [B1](#b1-première-fonctionnalité-une-image) | une image, sur la branche `une-image` | 3 |
-| [B2](#b2-deuxième-fonctionnalité-une-série-dimages) | une série d'images, sur la branche `serie` | 5 |
-| [B3](#b3-troisième-fonctionnalité-la-vidéo) | la vidéo, sur la branche `video`, et un commit sur `master` | 9 |
-| [B4](#b4-le-readme-complet) | le README complet | 10 |
-| [B5](#b5-facultative-src-pyproject.toml-et-une-commande-installée) (facultatif) | `src/`, `pyproject.toml`, une commande installée | 11 |
+| [B1](#b1-le-fond-sur-master) | le fond, sur `master` | 2 |
+| [B2](#b2-la-fenêtre-sur-la-branche-fenetre) | la fenêtre, sur la branche `fenetre` | 3 |
+| [B3](#b3-le-plan-sur-la-branche-plan) | le plan, sur la branche `plan` | 6 |
+| [B4](#b4-réunir-les-deux-branches-un-conflit) | réunir les deux branches : un conflit à résoudre | 7 |
+| [B5](#b5-une-série-dimages-sur-la-branche-serie) | une série d'images, sur la branche `serie` | 9 |
+| [B6](#b6-la-vidéo-sur-la-branche-video) | la vidéo, sur la branche `video` | 11 |
+| [B7](#b7-le-readme-complet) | le README complet | 12 |
+| [B8](#b8-facultative-src-pyproject.toml-et-une-commande-installée) (facultatif) | `src/`, `pyproject.toml`, une commande installée | 13 |
+| [Annexe](#annexe-plusieurs-plans-plusieurs-vitesses) | plusieurs plans, plusieurs vitesses | |
+
+## La méthode
+
+Cette section décrit comment le programme fabrique une image de la vidéo,
+puis la vidéo, et dans quel ordre la partie B le construit. La section 1 du
+notebook reprend les mêmes schémas.
+
+### Composer une image
+
+Chaque image de la vidéo mesure 640 × 480 pixels. Elle est composée de trois
+images du décor, posées l'une sur l'autre : le fond, puis le plan, puis la
+fenêtre. Le fond contient le ciel, les nuages et la mer ; la fenêtre, un
+cadre noir et une vitre transparente. Les deux sont les mêmes sur toutes les
+images : seul le plan change d'une image à la suivante. Le damier des
+schémas marque les pixels transparents, qui laissent voir l'image placée
+dessous.
+
+![Le plan posé sur le fond, puis la fenêtre posée par-dessus](illustrations/composition.png)
+
+### Découper le plan dans une bande
+
+Le plan contient les voiles et la plage. Il est dessiné sur une bande de
+1 920 × 480 pixels, trois fois plus large qu'une image de la vidéo. Le plan
+d'une image est un rectangle de 640 × 480 pixels découpé dans la bande. On
+appelle ce rectangle l'emprise. Le décalage est le numéro de la colonne de la
+bande où commence l'emprise.
+
+![La bande du plan et l'emprise à la colonne 400](illustrations/emprise.png)
+
+D'une image de la vidéo à la suivante, le décalage augmente de 8 pixels :
+l'emprise avance de 8 colonnes vers la droite dans la bande, et les voiles et
+la plage se déplacent de 8 pixels vers la gauche dans l'image.
+
+### Faire tourner la bande
+
+L'emprise dépasse le bord droit de la bande dès que le décalage dépasse
+1 920 − 640 = 1 280. Avec un décalage de 1 500, le découpage ne garde que les
+420 colonnes qui restent dans la bande.
+
+La bande est dessinée pour que son bord droit se raccorde à son bord gauche :
+placée après la colonne 1 919, la colonne 0 continue le dessin. Enroulée sur
+un cylindre, comme les décors du clip posés sur une table tournante, la
+bande n'a plus de bord.
+
+![La bande enroulée sur un cylindre](illustrations/cylindre.png)
+
+Le programme fait tourner la bande comme le cylindre. Pour un décalage de
+1 500, il déplace la bande de 1 500 colonnes vers la gauche ; les colonnes
+qui sortent à gauche reviennent à droite. L'emprise est ensuite découpée à
+partir de la colonne 0, et ne dépasse plus.
+
+![Découper l'emprise à la colonne 1 500, puis faire tourner la bande avant de découper](illustrations/debordement.png)
+
+Pour un décalage inférieur à 1 280, faire tourner la bande puis découper à la
+colonne 0 donne le même plan que découper à la colonne du décalage. Un
+décalage plus grand que la bande fait plus d'un tour : 2 120 donne le même
+plan que 200, car 2 120 = 1 920 + 200.
+
+### L'algorithme
+
+Le programme final, `train.py`, fait les opérations suivantes :
+
+1. lire les options : le nombre d'images, la cadence de la vidéo, le dossier
+   du décor ;
+2. calculer le décalage de chaque image : 0, 8, 16… ;
+3. pour chaque décalage, construire la commande `magick` morceau par
+   morceau, puis la lancer :
+   - le fond ;
+   - le plan : faire tourner la bande, découper l'emprise, puis poser le
+     plan sur le fond (`-composite`) ;
+   - la fenêtre, posée en dernier (`-composite`) ;
+   - le nom du fichier à écrire ;
+4. assembler les images en une vidéo avec ffmpeg.
+
+Chaque morceau de la commande est une liste d'arguments, renvoyée par une
+fonction : `arguments_fond`, `arguments_plan`, `arguments_fenetre`. La
+fonction `image` ajoute ces listes l'une après l'autre avec `+`. L'ordre des
+morceaux est l'ordre dans lequel `magick` pose les images.
+
+### Construire le programme étape par étape
+
+La partie B construit `train.py` dans l'ordre de la composition : une étape
+ajoute une seule fonctionnalité, et se vérifie avant le commit, en ouvrant
+l'image écrite et en lisant sa taille.
+
+- B1, le fond : le programme écrit une image qui ne contient que le fond, et
+  affiche sa taille, `640x480`.
+- B2, la fenêtre : la fenêtre posée sur le fond, sur une branche `fenetre`.
+- B3, le plan : le plan posé sur le fond, puis l'option `--decalage`, puis la
+  bande qu'on fait tourner, sur une branche `plan`.
+- B4, la fusion des deux branches : l'image complète.
+- B5 et B6 : la série d'images, puis la vidéo.
+
+La fenêtre et le plan ne dépendent pas l'un de l'autre : ils se développent
+sur deux branches parties du même commit, celui du fond, puis se réunissent
+par une fusion. Les deux branches modifient la fonction `image` au même
+endroit : la fusion s'arrête sur un conflit, que l'étape B4 fait résoudre.
 
 ## Rappels
 
@@ -129,6 +235,8 @@ dans le terminal, `pwd` affiche un chemin qui se termine par
 │   │   ├── fond.png
 │   │   ├── plan.png
 │   │   ├── fenetre.png
+│   │   ├── voiles.png
+│   │   ├── plage_jaune.png
 │   │   └── plage.png
 │   ├── CREDITS.md
 │   ├── illustrations/
@@ -269,7 +377,7 @@ refaire `conda activate animation`.
 
 > **À faire :** copier le notebook dans `travail/`, puis `cd travail` et `jupyter lab` ; exécuter le notebook section par section.
 >
-> **À obtenir :** section 1 : trois chemins dans `envs\animation` ; section 6 : la vidéo.
+> **À obtenir :** section 2 : trois chemins dans `envs\animation` ; section 9 : la vidéo.
 
 **Copier le notebook dans `travail/`, puis lancer JupyterLab.** Dans le
 terminal, où l'environnement `animation` est actif :
@@ -300,7 +408,7 @@ une par une avec `Maj` + `Entrée`, en lisant le texte entre les cellules.
   `envs\animation` (ou `envs/animation`). Si `magick` ou `ffmpeg` vaut
   `None`, JupyterLab n'a pas été lancé depuis l'environnement `animation` :
   fermer JupyterLab, refaire A3 et A4 ;
-- chaque section affiche une image d'essai ;
+- la section 1 décrit la composition d'une image, sans code ; les sections 3 à 7 affichent chacune une étape de la composition et la taille de l'image obtenue ;
 - la dernière section affiche la vidéo (`train.mp4`, 120 images, 10 secondes) ;
 - `travail/produit/` contient les images d'essai, le dossier `images/` et
   la vidéo.
@@ -314,19 +422,28 @@ ouvert.
 
 # Partie B · Du notebook au programme
 
-La partie B construit le programme `train.py` fonctionnalité par
-fonctionnalité, comme on développe un projet :
+La partie B construit le programme `train.py` en suivant les étapes de la
+composition d'une image (section 1 du notebook), puis la série d'images et
+la vidéo :
 
-1. **une image** (B1) : `python train.py --decalage 200` ;
-2. **une série d'images** (B2) : une image par décalage, dans `sortie/images/` ;
-3. **la vidéo** (B3) : ffmpeg assemble la série ; `--nettoyer` supprime
-   ensuite les images de la série.
+1. **le fond** (B1), sur `master` : `python train.py` écrit
+   `sortie/train.png`, qui ne contient que le fond ;
+2. **la fenêtre** (B2), sur la branche `fenetre` : la fenêtre posée sur le
+   fond ;
+3. **le plan** (B3), sur la branche `plan`, partie du même commit que
+   `fenetre` : le plan posé sur le fond, l'option `--decalage`, puis la bande
+   qu'on fait tourner ;
+4. **la fusion** (B4) : les deux branches sont réunies dans `master`. Elles
+   ont modifié toutes les deux la fonction `image` au même endroit : la
+   fusion s'arrête sur un conflit, à résoudre comme au TD 4c du cours 2 ;
+5. **une série d'images** (B5), sur la branche `serie` ;
+6. **la vidéo** (B6), sur la branche `video`.
 
-Chaque fonctionnalité se développe sur sa propre branche git, en deux
-commits, puis la branche est fusionnée dans `master`. Le programme a une
-fonction `main` et lit ses options avec `argparse` dès la première
-fonctionnalité (cours 3). À chaque étape, seules les cellules utiles du
-notebook sont reprises.
+Les branches `fenetre` et `plan` développent deux fonctionnalités
+indépendantes à partir du même commit, comme deux personnes qui travaillent
+en même temps sur le même programme. Le programme a une fonction `main` et
+lit ses options avec `argparse` dès la première étape (cours 3). Chaque étape
+reprend une section du notebook.
 
 ## B0 · Le dossier du projet et le dépôt git
 
@@ -375,8 +492,8 @@ revenir dans `travail/train/` et recommencer.
 
 **Le fichier `.gitignore` et un premier README.** Le programme écrira ses
 images et sa vidéo dans un dossier `sortie/` : ces fichiers ne sont pas
-versionnés. Le README, d'une ligne pour l'instant, sera complété au fil
-des étapes.
+versionnés. Le README, d'une ligne pour l'instant, sera complété à l'étape
+B7.
 
 ```text
 echo "sortie/" > .gitignore
@@ -396,40 +513,34 @@ travail/train/
 ├── .git/                (caché : le dépôt)
 ├── .gitignore
 ├── README.md
-├── decor/               (les quatre images du décor)
+├── decor/               (les images du décor)
 └── environment.yml
 ```
 
-## B1 · Première fonctionnalité : une image
+## B1 · Le fond, sur `master`
 
-> **À faire :** sur une branche `une-image` : les fonctions de dessin, puis `main` et les options, un commit chacun ; fusion dans `master`.
+> **À faire :** créer `train.py` : les fonctions `arguments_fond`, `image` et `taille`, puis `main` ; un commit sur `master`.
 >
-> **À obtenir :** `python train.py --decalage 200` écrit `sortie/train_0200.png` ; trois commits.
+> **À obtenir :** `python train.py` écrit `sortie/train.png`, le fond seul, et affiche `640x480` ; deux commits.
 
-**Entrée** : les sections 2 à 4 du notebook. **Sortie** :
-`python train.py --decalage 200` écrit `sortie/train_0200.png`.
+**Entrée** : la section 3 du notebook. **Sortie** : `python train.py` écrit
+`sortie/train.png`, qui ne contient que le fond, et affiche sa taille.
 
-### B1.1 Une branche pour la fonctionnalité
+Le fond est la base commune des deux branches des étapes B2 et B3 : il est
+écrit directement sur `master`, en un commit.
 
-```text
-git checkout -b une-image
-git branch
-```
+### B1.1 L'en-tête du fichier
 
-**Vérification** : `git branch` affiche `master` et `* une-image` ; l'étoile
-marque la branche courante.
-
-### B1.2 Les fonctions de dessin
-
-Créer le fichier `train.py` dans `travail/train/` (explorateur de VS Code : clic
-droit sur le dossier `train` → Nouveau fichier). Y coller, dans l'ordre, la
-description, les imports, les outils et les chemins :
+Créer le fichier `train.py` dans `travail/train/` (explorateur de VS Code :
+clic droit sur le dossier `train` → Nouveau fichier). Y coller la
+description, les imports, les programmes et les chemins :
 
 ```python
 """La fenêtre du train : une image, une série d'images ou une vidéo.
 
-Le décalage du paysage est calculé par Python, chaque image composée par
-ImageMagick, la vidéo assemblée par ffmpeg.
+Chaque image superpose trois images du décor : le fond, le plan découpé dans
+une bande, puis la fenêtre. Python calcule le décalage du plan sur chaque
+image et construit la commande d'ImageMagick ; ffmpeg assemble la vidéo.
 
     python train.py --decalage 200
     python train.py --images 120
@@ -453,39 +564,39 @@ SORTIE = Path.cwd() / "sortie"
 IMAGES = SORTIE / "images"
 ```
 
-puis, dessous, les fonctions de dessin, reprises des sections 2 à 4 du
-notebook :
+### B1.2 Les fonctions de l'image
+
+Dessous, coller les trois fonctions de la section 3 du notebook :
 
 ```python
-# ---- Une image (sections 2 à 4 du notebook) ---------------------------------
+# ---- Une image (sections 3 à 7 du notebook) ---------------------------------
+
+def arguments_fond(decor):
+    """Les arguments de magick qui lisent le fond, une image de 640 × 480 pixels."""
+    return [str(decor / "fond.png")]
 
 
-def lancer(commande):
-    """Lance une commande (le programme, puis chaque argument) ; s'arrête si elle échoue."""
+def image(fichier, decor):
+    """Une image de la vidéo, 640 × 480 pixels, écrite dans `fichier`."""
+    commande = [MAGICK] + arguments_fond(decor)
+    commande = commande + [str(fichier)]
     subprocess.run(commande, check=True)
 
 
-def image(fichier, decor, decalage):
-    """Une image 640 × 480 : le fond, le plan décalé de `decalage` pixels vers la droite, puis la fenêtre."""
-    commande = [MAGICK, str(decor / "fond.png"),
-                "(", str(decor / "plan.png"), "-roll", "+" + str(decalage) + "+0",
-                "-crop", "640x480+0+0", "+repage", ")", "-composite",
-                str(decor / "fenetre.png"), "-composite"]
-    commande.append(str(fichier))
-    lancer(commande)
+def taille(fichier):
+    """La largeur et la hauteur de l'image, en pixels, écrites par magick identify : « 640x480 »."""
+    resultat = subprocess.run([MAGICK, "identify", "-format", "%wx%h", str(fichier)],
+                              capture_output=True, text=True, check=True)
+    return resultat.stdout
 ```
 
-Enregistrer (`Ctrl+S`), puis dans le terminal : `python train.py`.
+`arguments_fond` renvoie le premier morceau de la commande `magick` : le
+chemin du fond. `image` construit la commande morceau par morceau et la
+lance ; pour l'instant, elle ne contient que le fond et le fichier à écrire.
+`taille` renvoie la largeur et la hauteur d'une image, écrites par `magick
+identify`.
 
-**Vérification** : rien ne s'affiche, pas d'erreur. Les `def` définissent
-les fonctions sans les exécuter : le programme n'a pas encore de `main`.
-
-```text
-git add train.py
-git commit -m "Une image : les fonctions de dessin"
-```
-
-### B1.3 La fonction `main` et les options
+### B1.3 La fonction `main`
 
 À la fin du fichier, coller :
 
@@ -494,18 +605,17 @@ git commit -m "Une image : les fonctions de dessin"
 
 def main():
     analyseur = argparse.ArgumentParser(description="La fenêtre du train : une image, une série d'images ou une vidéo.")
-    analyseur.add_argument("-d", "--decalage", type=int, default=0, help="le décalage du paysage d'une image seule, en pixels (défaut : 0)")
     analyseur.add_argument("--decor", default="decor", help="le dossier des images du décor (défaut : decor)")
     options = analyseur.parse_args()
     decor = Path(options.decor)
-    if not (decor / "plan.png").exists():
+    if not (decor / "fond.png").exists():
         analyseur.error("décor introuvable : " + options.decor)
     SORTIE.mkdir(exist_ok=True)
 
     # Une image
-    fichier = SORTIE / ("train_" + str(options.decalage).zfill(4) + ".png")
-    image(fichier, decor, options.decalage)
-    print(fichier)
+    fichier = SORTIE / "train.png"
+    image(fichier, decor)
+    print(fichier, taille(fichier))
 
 
 # Vrai quand le fichier est lancé par `python`, faux quand il est importé par
@@ -514,57 +624,387 @@ if __name__ == "__main__":
     main()
 ```
 
-L'option `--decor` donne le dossier des images du décor ; sa valeur par défaut, `decor`, est le dossier copié à l'étape B0. Si ce dossier ne contient pas `plan.png`, `analyseur.error` affiche un message et arrête le programme.
+L'option `--decor` donne le dossier des images du décor ; sa valeur par
+défaut, `decor`, est le dossier copié à l'étape B0. Si ce dossier ne contient
+pas `fond.png`, `analyseur.error` affiche un message et arrête le programme.
+
+Enregistrer (`Ctrl+S`). **Vérifications** :
+
+| Commande | Ce qui doit s'afficher |
+|---|---|
+| `python train.py` | `…/sortie/train.png 640x480` ; ouvrir l'image par un double-clic : le ciel, les nuages et la mer |
+| `python train.py --decor absent` | `error: décor introuvable : absent` |
+| `python train.py --help` | l'aide du programme et l'option `--decor` |
+
+```text
+git add train.py
+git commit -m "Le fond : une image de 640 × 480 pixels"
+git log --oneline
+```
+
+**Vérification** : deux lignes.
+
+## B2 · La fenêtre, sur la branche `fenetre`
+
+> **À faire :** sur une branche `fenetre` : la fonction `arguments_fenetre` et une ligne dans `image` ; un commit.
+>
+> **À obtenir :** `sortie/train.png` montre la fenêtre posée sur le fond ; trois commits.
+
+**Entrée** : la section 7 du notebook, sans le plan. **Sortie** :
+`python train.py` écrit la fenêtre posée sur le fond.
+
+```text
+git checkout -b fenetre
+git branch
+```
+
+**Vérification** : `git branch` affiche `* fenetre` et `master` ; l'étoile
+marque la branche courante.
+
+Dans `train.py`, entre la fonction `arguments_fond` et la fonction `image`,
+coller :
+
+```python
+def arguments_fenetre(decor):
+    """Les arguments de magick qui lisent la fenêtre, une image de 640 × 480 pixels."""
+    return [str(decor / "fenetre.png")]
+```
+
+Puis, dans la fonction `image`, ajouter la ligne de la fenêtre sous la ligne
+qui lit le fond. La fonction devient :
+
+```python
+def image(fichier, decor):
+    """Une image de la vidéo, 640 × 480 pixels, écrite dans `fichier`."""
+    commande = [MAGICK] + arguments_fond(decor)
+    commande = commande + arguments_fenetre(decor) + ["-composite"]
+    commande = commande + [str(fichier)]
+    subprocess.run(commande, check=True)
+```
+
+`-composite` pose la dernière image lue, la fenêtre, sur l'image lue avant
+elle, le fond : les pixels transparents de la vitre laissent voir le fond.
+
+Enregistrer. **Vérification** : `python train.py` affiche
+`…/sortie/train.png 640x480` ; l'image montre le fond derrière la vitre, et
+le cadre noir autour.
+
+```text
+git commit -am "Fenêtre : la fenêtre posée sur le fond"
+```
+
+## B3 · Le plan, sur la branche `plan`
+
+> **À faire :** depuis `master`, une branche `plan` : le plan posé sur le fond, l'option `--decalage`, puis la bande qu'on fait tourner ; un commit chacun.
+>
+> **À obtenir :** `python train.py --decalage 1500` écrit une image où la plage traverse toute l'image ; six commits.
+
+**Entrée** : les sections 4 à 6 du notebook. **Sortie** :
+`python train.py --decalage 200` écrit le plan décalé de 200 pixels, posé
+sur le fond, dans `sortie/train_0200.png`.
+
+### B3.1 Une branche partie de `master`
+
+La branche `plan` part du même commit que `fenetre` : revenir d'abord sur
+`master`.
+
+```text
+git checkout master
+git checkout -b plan
+```
+
+**Vérification** : dans VS Code, `train.py` n'a plus la fonction
+`arguments_fenetre` : le fichier est revenu à l'état du commit de l'étape B1.
+Le travail de l'étape B2 est enregistré sur la branche `fenetre`.
+
+### B3.2 Le plan posé sur le fond
+
+Entre la fonction `arguments_fond` et la fonction `image`, coller la
+fonction qui découpe l'emprise à la colonne 0 (sections 4 et 6 du notebook) :
+
+```python
+def arguments_plan(decor):
+    """Les arguments de magick qui lisent la bande du plan et en découpent 640 × 480 pixels à partir de la colonne 0."""
+    return ["(", str(decor / "plan.png"),
+            "-crop", "640x480+0+0", "+repage", ")"]
+```
+
+Puis ajouter la ligne du plan dans `image` :
+
+```python
+def image(fichier, decor):
+    """Une image de la vidéo, 640 × 480 pixels, écrite dans `fichier`."""
+    commande = [MAGICK] + arguments_fond(decor)
+    commande = commande + arguments_plan(decor) + ["-composite"]
+    commande = commande + [str(fichier)]
+    subprocess.run(commande, check=True)
+```
+
+Enregistrer. **Vérification** : `python train.py` écrit une image où les
+voiles et la plage sont posées sur le fond.
+
+```text
+git commit -am "Plan : le plan posé sur le fond"
+```
+
+### B3.3 L'option `--decalage`
+
+Le décalage est la colonne de la bande où commence l'emprise (section « La
+méthode », schéma de l'emprise). `-crop 640x480+400+0` découpe l'emprise à la
+colonne 400. Remplacer la fonction `arguments_plan` par :
+
+```python
+def arguments_plan(decor, decalage):
+    """Les arguments de magick qui lisent la bande du plan et en découpent 640 × 480 pixels à partir de la colonne `decalage`."""
+    return ["(", str(decor / "plan.png"),
+            "-crop", "640x480+" + str(decalage) + "+0", "+repage", ")"]
+```
+
+puis la fonction `image`, qui reçoit maintenant le décalage, par :
+
+```python
+def image(fichier, decor, decalage):
+    """Une image de la vidéo, 640 × 480 pixels, écrite dans `fichier`."""
+    commande = [MAGICK] + arguments_fond(decor)
+    commande = commande + arguments_plan(decor, decalage) + ["-composite"]
+    commande = commande + [str(fichier)]
+    subprocess.run(commande, check=True)
+```
+
+puis toute la fonction `main`, de `def main():` jusqu'à la ligne vide qui
+précède `if __name__`, par :
+
+```python
+def main():
+    analyseur = argparse.ArgumentParser(description="La fenêtre du train : une image, une série d'images ou une vidéo.")
+    analyseur.add_argument("-d", "--decalage", type=int, default=0, help="le décalage du plan d'une image seule, en pixels (défaut : 0)")
+    analyseur.add_argument("--decor", default="decor", help="le dossier des images du décor (défaut : decor)")
+    options = analyseur.parse_args()
+    decor = Path(options.decor)
+    if not (decor / "fond.png").exists():
+        analyseur.error("décor introuvable : " + options.decor)
+    SORTIE.mkdir(exist_ok=True)
+
+    # Une image
+    fichier = SORTIE / ("train_" + str(options.decalage).zfill(4) + ".png")
+    image(fichier, decor, options.decalage)
+    print(fichier, taille(fichier))
+```
+
+Le nom du fichier écrit contient le décalage, sur quatre chiffres : deux
+décalages donnent deux fichiers, que l'on peut comparer.
 
 Enregistrer. **Vérifications** :
 
 | Commande | Ce qui doit s'afficher |
 |---|---|
-| `python train.py --decalage 200` | le chemin de `sortie/train_0200.png` ; l'ouvrir par un double-clic |
-| `python train.py` | `sortie/train_0000.png` : le décalage par défaut |
-| `python train.py --decalage 2120` | `sortie/train_2120.png`, identique à `train_0200.png` : la bande fait 1 920 pixels |
-| `python train.py --decor absent` | `error: décor introuvable : absent` |
+| `python train.py --decalage 400` | `…/sortie/train_0400.png 640x480` : les voiles et la plage se sont déplacées vers la gauche |
+| `python train.py --decalage 1500` | `…/sortie/train_1500.png 640x480` : la plage s'arrête à 420 pixels du bord gauche, le reste de l'image ne montre que le fond |
+
+À 1 500, l'emprise dépasse la bande (notebook, section 1.3) : le découpage
+ne garde que 420 × 480 pixels, que `-composite` pose en haut à gauche du
+fond.
+
+![Le plan à 1 500 : découpé seul, puis la bande tournée avant le découpage](illustrations/decoupe_1500.png)
 
 ```text
-git commit -am "Une image : main et les options"
+git commit -am "Plan : l'option --decalage"
 ```
 
-### B1.4 Fusionner la branche dans `master`
+### B3.4 Faire tourner la bande
+
+La bande se raccorde d'un bord à l'autre : le programme la fait tourner
+avant de découper l'emprise (section « La méthode », schémas du cylindre et
+de la rotation). Remplacer la fonction `arguments_plan` par la version de la
+section 5 du notebook :
+
+```python
+def arguments_plan(decor, decalage):
+    """Les arguments de magick qui lisent la bande du plan, la font tourner de `decalage` colonnes
+    vers la gauche, puis en découpent 640 × 480 pixels à partir de la colonne 0."""
+    return ["(", str(decor / "plan.png"),
+            "-roll", "-" + str(decalage) + "+0",
+            "-crop", "640x480+0+0", "+repage", ")"]
+```
+
+`-roll -1500+0` fait tourner la bande de 1 500 colonnes vers la gauche ;
+`-crop 640x480+0+0` découpe ensuite l'emprise à partir de la colonne 0, qui
+ne dépasse plus.
+
+Enregistrer. **Vérifications** :
+
+| Commande | Ce qui doit s'afficher |
+|---|---|
+| `python train.py --decalage 1500` | la plage traverse toute l'image (image de droite du schéma ci-dessus) |
+| `python train.py --decalage 200` | `sortie/train_0200.png` |
+| `python train.py --decalage 2120` | `sortie/train_2120.png`, identique à `train_0200.png` : 2 120 = 1 920 + 200 |
 
 ```text
-git checkout master
-git merge une-image
+git commit -am "Plan : faire tourner la bande"
 git log --oneline --graph --all
 ```
 
-**Vérification** : git affiche `Fast-forward` ; `git log` affiche trois
-commits sur une seule ligne verticale, `master` et `une-image` sur le
-dernier.
+**Vérification** : le graphe dessine deux branches parties du commit de
+l'étape B1 : `fenetre`, un commit, et `plan`, trois commits.
 
-![La branche une-image, avant et après la fusion](illustrations/branche_une_image.png)
+## B4 · Réunir les deux branches : un conflit
 
-## B2 · Deuxième fonctionnalité : une série d'images
-
-> **À faire :** sur une branche `serie` : les fonctions decalages et serie, puis l'option `--images`, un commit chacun ; fusion dans `master`.
+> **À faire :** `git merge fenetre`, puis `git merge plan` ; résoudre le conflit dans `train.py` ; `git add`, puis `git commit --no-edit`.
 >
-> **À obtenir :** une image par décalage dans `sortie/images/` ; cinq commits.
+> **À obtenir :** `python train.py --decalage 200` écrit l'image complète ; un commit de fusion ; sept commits.
 
-**Entrée** : la fonction `decalages` de la section 5 et la première cellule de la section 6 du notebook. **Sortie** : `python train.py --images 120`
+**Sortie** : sur `master`, `python train.py --decalage 200` écrit l'image
+complète : le fond, le plan, puis la fenêtre.
+
+![Les branches fenetre et plan, avant et après leur fusion](illustrations/branches.png)
+
+### B4.1 Fusionner `fenetre`
+
+```text
+git checkout master
+git merge fenetre
+```
+
+**Vérification** : git affiche `Fast-forward` : `master` n'a pas avancé
+depuis la création de `fenetre`, git déplace `master` sur le commit de la
+fenêtre.
+
+### B4.2 Fusionner `plan` : le conflit
+
+```text
+git merge plan
+```
+
+**Vérification** : git affiche
+`CONFLICT (content): Merge conflict in train.py`, puis
+`Automatic merge failed; fix conflicts and then commit the result.` La
+fusion est en cours : `git status` liste `train.py` sous « Unmerged paths »
+(« Chemins non fusionnés »).
+
+Depuis le commit de l'étape B1, les deux branches ont modifié `train.py` au
+même endroit : chacune a ajouté une fonction sous `arguments_fond`, et une
+ligne sous la ligne qui lit le fond ; la branche `plan` a aussi ajouté le
+paramètre `decalage` à `image`. Git réunit seul les modifications qui portent
+sur des lignes différentes, comme celles de `main` ; ici, il ne peut pas
+choisir, et il écrit les deux versions dans le fichier.
+
+Ouvrir `train.py` dans VS Code. Sous la fonction `arguments_fond`, le fichier
+contient :
+
+```python
+<<<<<<< HEAD
+def arguments_fenetre(decor):
+    """Les arguments de magick qui lisent la fenêtre, une image de 640 × 480 pixels."""
+    return [str(decor / "fenetre.png")]
+
+
+def image(fichier, decor):
+    """Une image de la vidéo, 640 × 480 pixels, écrite dans `fichier`."""
+    commande = [MAGICK] + arguments_fond(decor)
+    commande = commande + arguments_fenetre(decor) + ["-composite"]
+=======
+def arguments_plan(decor, decalage):
+    """Les arguments de magick qui lisent la bande du plan, la font tourner de `decalage` colonnes
+    vers la gauche, puis en découpent 640 × 480 pixels à partir de la colonne 0."""
+    return ["(", str(decor / "plan.png"),
+            "-roll", "-" + str(decalage) + "+0",
+            "-crop", "640x480+0+0", "+repage", ")"]
+
+
+def image(fichier, decor, decalage):
+    """Une image de la vidéo, 640 × 480 pixels, écrite dans `fichier`."""
+    commande = [MAGICK] + arguments_fond(decor)
+    commande = commande + arguments_plan(decor, decalage) + ["-composite"]
+>>>>>>> plan
+```
+
+Entre `<<<<<<< HEAD` et `=======` : la version de `master`, qui vient de
+`fenetre` ; entre `=======` et `>>>>>>> plan` : la version de `plan`.
+
+### B4.3 Résoudre : écrire une version qui réunit les deux
+
+L'image complète demande les deux fonctions, le paramètre `decalage` et
+les deux lignes : la version qui réunit les deux s'écrit à la main. Remplacer
+toutes les lignes, de `<<<<<<< HEAD` jusqu'à `>>>>>>> plan` compris, par :
+
+```python
+def arguments_plan(decor, decalage):
+    """Les arguments de magick qui lisent la bande du plan, la font tourner de `decalage` colonnes
+    vers la gauche, puis en découpent 640 × 480 pixels à partir de la colonne 0."""
+    return ["(", str(decor / "plan.png"),
+            "-roll", "-" + str(decalage) + "+0",
+            "-crop", "640x480+0+0", "+repage", ")"]
+
+
+def arguments_fenetre(decor):
+    """Les arguments de magick qui lisent la fenêtre, une image de 640 × 480 pixels."""
+    return [str(decor / "fenetre.png")]
+
+
+def image(fichier, decor, decalage):
+    """Une image de la vidéo, 640 × 480 pixels, écrite dans `fichier`."""
+    commande = [MAGICK] + arguments_fond(decor)
+    commande = commande + arguments_plan(decor, decalage) + ["-composite"]
+    commande = commande + arguments_fenetre(decor) + ["-composite"]
+```
+
+La ligne du plan vient avant celle de la fenêtre : `magick` pose les images
+dans l'ordre de la commande, et la fenêtre doit être posée en dernier. Les
+liens Accept Both Changes (« Accepter les deux modifications ») de VS Code
+garderaient les deux versions l'une après l'autre : deux fonctions `image`,
+et la fenêtre avant le plan.
+
+Enregistrer, puis vérifier qu'il ne reste aucun marqueur et que le programme
+écrit l'image complète :
+
+```text
+grep -n "<<<<<<<\|=======\|>>>>>>>" train.py
+python train.py --decalage 200
+```
+
+**Vérification** : `grep` n'affiche rien ; `sortie/train_0200.png` montre le
+fond, le plan, puis la fenêtre : le cadre noir cache les bords du plan. Si
+la plage passe sur le cadre, les deux lignes sont dans le mauvais ordre.
+
+![L'ordre des lignes dans image : le plan, puis la fenêtre](illustrations/ordre_composition.png)
+
+### B4.4 Terminer la fusion
+
+```text
+git add train.py
+git commit --no-edit
+git log --oneline --graph --all
+```
+
+`git add` marque le conflit comme résolu. `git commit --no-edit` crée le
+commit de fusion avec le message proposé par git, `Merge branch 'plan'`.
+Tant que la fusion n'est pas terminée, `git merge --abort` remet `master`
+dans l'état d'avant `git merge plan`.
+
+**Vérification** : le graphe dessine le commit de fusion, qui a deux
+parents ; `git log --oneline` affiche sept lignes.
+
+## B5 · Une série d'images, sur la branche `serie`
+
+> **À faire :** sur une branche `serie` : les fonctions `decalages` et `serie`, puis l'option `--images`, un commit chacun ; fusion dans `master`.
+>
+> **À obtenir :** une image par décalage dans `sortie/images/` ; neuf commits.
+
+**Entrée** : la fonction `decalages` de la section 8 et la première cellule
+de la section 9 du notebook. **Sortie** : `python train.py --images 120`
 écrit une image par décalage dans `sortie/images/`.
-
-### B2.1 Une branche pour la fonctionnalité
 
 ```text
 git checkout -b serie
 ```
 
-### B2.2 Les fonctions `decalages` et `serie`
+### B5.1 Les fonctions `decalages` et `serie`
 
-Dans `train.py`, entre les fonctions de dessin et la ligne
+Dans `train.py`, entre la fonction `taille` et la ligne
 `# ---- Le programme`, coller :
 
 ```python
-# ---- Une série d'images (sections 5 et 6 du notebook) -----------------------
+# ---- Une série d'images (sections 8 et 9 du notebook) -----------------------
 
 VITESSE = 8           # le décalage de plus à chaque image, en pixels
 
@@ -598,20 +1038,19 @@ avant : les nouvelles fonctions ne sont pas encore appelées.
 git commit -am "Série : les fonctions decalages et serie"
 ```
 
-### B2.3 L'option `--images` dans `main`
+### B5.2 L'option `--images` dans `main`
 
-Remplacer toute la fonction `main`, de `def main():` jusqu'à la ligne vide
-qui précède `if __name__`, par :
+Remplacer toute la fonction `main` par :
 
 ```python
 def main():
     analyseur = argparse.ArgumentParser(description="La fenêtre du train : une image, une série d'images ou une vidéo.")
-    analyseur.add_argument("-d", "--decalage", type=int, default=0, help="le décalage du paysage d'une image seule, en pixels (défaut : 0)")
+    analyseur.add_argument("-d", "--decalage", type=int, default=0, help="le décalage du plan d'une image seule, en pixels (défaut : 0)")
     analyseur.add_argument("--decor", default="decor", help="le dossier des images du décor (défaut : decor)")
-    analyseur.add_argument("-n", "--images", type=int, help="une série : ce nombre d'images, le paysage décalé de 8 pixels de plus à chaque image")
+    analyseur.add_argument("-n", "--images", type=int, help="une série : ce nombre d'images, le plan décalé de 8 pixels de plus à chaque image")
     options = analyseur.parse_args()
     decor = Path(options.decor)
-    if not (decor / "plan.png").exists():
+    if not (decor / "fond.png").exists():
         analyseur.error("décor introuvable : " + options.decor)
     SORTIE.mkdir(exist_ok=True)
 
@@ -619,7 +1058,7 @@ def main():
         # Une image
         fichier = SORTIE / ("train_" + str(options.decalage).zfill(4) + ".png")
         image(fichier, decor, options.decalage)
-        print(fichier)
+        print(fichier, taille(fichier))
     else:
         # Une série d'images
         nombre = serie(decor, options.images)
@@ -627,41 +1066,36 @@ def main():
 ```
 
 La nouvelle option n'a pas de valeur par défaut : sans elle,
-`options.images` vaut `None`, et le programme écrit une image seule,
-comme en B1. Avec elle, il écrit la série.
+`options.images` vaut `None`, et le programme écrit une image seule, comme
+en B4. Avec elle, il écrit la série.
 
 Enregistrer. **Vérifications** :
 
 | Commande | Ce qui doit s'afficher |
 |---|---|
 | `python train.py --images 24` | `24 images dans …/sortie/images` |
-| `python train.py --decalage 100` | une image seule, comme en B1 |
+| `python train.py --decalage 100` | une image seule, comme en B4 |
 | `python train.py --help` | l'option `--images` en plus |
 
 ```text
 git commit -am "Série : l'option --images"
 git checkout master
 git merge serie
-git log --oneline --graph --all
 ```
 
-**Vérification** : `Fast-forward` ; cinq commits sur une ligne.
+**Vérification** : `Fast-forward` ; `git log --oneline` affiche neuf lignes.
 
-## B3 · Troisième fonctionnalité : la vidéo
+## B6 · La vidéo, sur la branche `video`
 
-> **À faire :** sur une branche `video` : `assembler` et les options `--video` et `--cadence` ; un commit sur `master` (le README) ; l'option `--nettoyer` ; fusion avec `git merge --no-edit video`.
+> **À faire :** sur une branche `video` : `assembler` et les options `--video` et `--cadence`, puis l'option `--nettoyer`, un commit chacun ; fusion dans `master`.
 >
-> **À obtenir :** `sortie/train.mp4` ; `git log --graph` dessine les deux branches et le commit de fusion ; neuf commits.
+> **À obtenir :** `sortie/train.mp4` ; onze commits.
 
-**Entrée** : la dernière cellule du notebook (ffmpeg). **Sortie** :
-`python train.py --images 120 --video` écrit `sortie/train.mp4` ; avec `--nettoyer`, le dossier
-`sortie/images/` est ensuite supprimé.
+**Entrée** : la seconde cellule de la section 9 du notebook (ffmpeg).
+**Sortie** : `python train.py --images 120 --video` écrit `sortie/train.mp4` ;
+avec `--nettoyer`, le dossier `sortie/images/` est ensuite supprimé.
 
-Cette étape comprend aussi un commit sur `master` pendant le travail sur la
-branche, comme lorsqu'une autre personne modifie le projet en même temps :
-la fusion crée alors un commit de fusion.
-
-### B3.1 Une branche, et la fonction `assembler`
+### B6.1 La fonction `assembler`, les options `--video` et `--cadence`
 
 ```text
 git checkout -b video
@@ -670,15 +1104,15 @@ git checkout -b video
 Dans `train.py`, après la fonction `serie`, coller :
 
 ```python
-# ---- La vidéo (section 6 du notebook, seconde cellule) ----------------------
+# ---- La vidéo (section 9 du notebook, seconde cellule) ----------------------
 
 def assembler(video, cadence):
     """La vidéo à partir des images img_0001.png, img_0002.png… du dossier IMAGES."""
-    lancer([FFMPEG, "-y", "-loglevel", "error",
-            "-framerate", str(cadence),
-            "-i", str(IMAGES / "img_%04d.png"),
-            "-c:v", "mpeg4", "-q:v", "3", "-pix_fmt", "yuv420p",
-            str(video)])
+    subprocess.run([FFMPEG, "-y", "-loglevel", "error",
+                    "-framerate", str(cadence),
+                    "-i", str(IMAGES / "img_%04d.png"),
+                    "-c:v", "mpeg4", "-q:v", "3", "-pix_fmt", "yuv420p",
+                    str(video)], check=True)
 ```
 
 Puis remplacer la fonction `main` par :
@@ -686,16 +1120,16 @@ Puis remplacer la fonction `main` par :
 ```python
 def main():
     analyseur = argparse.ArgumentParser(description="La fenêtre du train : une image, une série d'images ou une vidéo.")
-    analyseur.add_argument("-d", "--decalage", type=int, default=0, help="le décalage du paysage d'une image seule, en pixels (défaut : 0)")
+    analyseur.add_argument("-d", "--decalage", type=int, default=0, help="le décalage du plan d'une image seule, en pixels (défaut : 0)")
     analyseur.add_argument("--decor", default="decor", help="le dossier des images du décor (défaut : decor)")
-    analyseur.add_argument("-n", "--images", type=int, help="une série : ce nombre d'images, le paysage décalé de 8 pixels de plus à chaque image")
+    analyseur.add_argument("-n", "--images", type=int, help="une série : ce nombre d'images, le plan décalé de 8 pixels de plus à chaque image")
     analyseur.add_argument("--video", action="store_true", help="assemble la série en vidéo (avec --images)")
     analyseur.add_argument("-c", "--cadence", type=int, default=12, help="images par seconde de la vidéo (défaut : 12)")
     options = analyseur.parse_args()
     if options.video and options.images is None:
         analyseur.error("--video demande une série : ajouter --images")
     decor = Path(options.decor)
-    if not (decor / "plan.png").exists():
+    if not (decor / "fond.png").exists():
         analyseur.error("décor introuvable : " + options.decor)
     SORTIE.mkdir(exist_ok=True)
 
@@ -703,7 +1137,7 @@ def main():
         # Une image
         fichier = SORTIE / ("train_" + str(options.decalage).zfill(4) + ".png")
         image(fichier, decor, options.decalage)
-        print(fichier)
+        print(fichier, taille(fichier))
     else:
         # Une série d'images
         nombre = serie(decor, options.images)
@@ -716,7 +1150,7 @@ def main():
 ```
 
 `action="store_true"` fait de `--video` une option sans valeur : présente,
-elle vaut `True`. `analyseur.error` affiche un message et arrête le programme.
+elle vaut `True`.
 
 Enregistrer. **Vérifications** :
 
@@ -729,37 +1163,7 @@ Enregistrer. **Vérifications** :
 git commit -am "Vidéo : la fonction assembler, les options --video et --cadence"
 ```
 
-### B3.2 Pendant ce temps, sur `master` : le README
-
-Revenir sur `master` et y décrire les deux premières fonctionnalités dans le
-README :
-
-```text
-git checkout master
-```
-
-**Vérification** : dans VS Code, `train.py` n'a plus la fonction `assembler` :
-le fichier est dans l'état de `master`.
-
-Ouvrir `README.md` et le remplacer par :
-
-```markdown
-# Train
-
-Une image : `python train.py --decalage 200`.
-
-Une série d'images, le paysage décalé de 8 pixels de plus à chaque image : `python train.py --images 120`.
-```
-
-```text
-git commit -am "README : une image et une série d'images"
-git checkout video
-```
-
-**Vérification** : `train.py` a de nouveau la fonction `assembler` ; le
-README est revenu à une ligne, celui de la branche `video`.
-
-### B3.3 L'option `--nettoyer`
+### B6.2 L'option `--nettoyer`
 
 En tête du fichier, ajouter `import shutil` aux imports :
 
@@ -783,9 +1187,9 @@ fonction `main` par :
 ```python
 def main():
     analyseur = argparse.ArgumentParser(description="La fenêtre du train : une image, une série d'images ou une vidéo.")
-    analyseur.add_argument("-d", "--decalage", type=int, default=0, help="le décalage du paysage d'une image seule, en pixels (défaut : 0)")
+    analyseur.add_argument("-d", "--decalage", type=int, default=0, help="le décalage du plan d'une image seule, en pixels (défaut : 0)")
     analyseur.add_argument("--decor", default="decor", help="le dossier des images du décor (défaut : decor)")
-    analyseur.add_argument("-n", "--images", type=int, help="une série : ce nombre d'images, le paysage décalé de 8 pixels de plus à chaque image")
+    analyseur.add_argument("-n", "--images", type=int, help="une série : ce nombre d'images, le plan décalé de 8 pixels de plus à chaque image")
     analyseur.add_argument("--video", action="store_true", help="assemble la série en vidéo (avec --images)")
     analyseur.add_argument("-c", "--cadence", type=int, default=12, help="images par seconde de la vidéo (défaut : 12)")
     analyseur.add_argument("--nettoyer", action="store_true", help="supprime les images de la série une fois la vidéo écrite")
@@ -793,7 +1197,7 @@ def main():
     if options.video and options.images is None:
         analyseur.error("--video demande une série : ajouter --images")
     decor = Path(options.decor)
-    if not (decor / "plan.png").exists():
+    if not (decor / "fond.png").exists():
         analyseur.error("décor introuvable : " + options.decor)
     SORTIE.mkdir(exist_ok=True)
 
@@ -801,7 +1205,7 @@ def main():
         # Une image
         fichier = SORTIE / ("train_" + str(options.decalage).zfill(4) + ".png")
         image(fichier, decor, options.decalage)
-        print(fichier)
+        print(fichier, taille(fichier))
     else:
         # Une série d'images
         nombre = serie(decor, options.images)
@@ -816,53 +1220,24 @@ def main():
                 print("images intermédiaires supprimées")
 ```
 
-Enregistrer. **Vérification** : `python train.py --images 24 --video --nettoyer` affiche
-`images intermédiaires supprimées` ; `sortie/` contient la vidéo, et
+Enregistrer. **Vérification** : `python train.py --images 24 --video --nettoyer`
+affiche `images intermédiaires supprimées` ; `sortie/` contient la vidéo, et
 `sortie/images/` n'existe plus.
 
 ```text
 git commit -am "Vidéo : l'option --nettoyer"
-```
-
-### B3.4 Fusionner : un commit de fusion
-
-```text
 git checkout master
-git merge --no-edit video
-git log --oneline --graph --all
+git merge video
+git log --oneline
 ```
 
-`--no-edit` garde le message proposé par git, `Merge branch 'video'`. Sans
-cette option, git ouvre un éditeur de texte pour le message (dans Git Bash,
-l'éditeur vim : taper `:wq` puis `Entrée` pour en sortir).
+**Vérification** : `Fast-forward` ; onze lignes.
 
-**Vérification** : git affiche `Merge made by the 'ort' strategy.` ; le
-README contient les deux fonctionnalités et `train.py` la vidéo : la fusion
-réunit le travail des deux branches. `git log` dessine les deux branches :
-
-```text
-*   50b1221 (HEAD -> master) Merge branch 'video'
-|| * 6ec207f (video) Vidéo : l'option --nettoyer
-| * 29d3c28 Vidéo : la fonction assembler, les options --video et --cadence
-* | f76d1a1 README : une image et une série d'images
-|/
-* 7c9a1f3 (serie) Série : l'option --images
-* 798b51c Série : les fonctions decalages et serie
-* 33299e8 (une-image) Une image : main et les options
-* c62158a Une image : les fonctions de dessin
-* ceebad6 Le projet : environnement, .gitignore et README
-```
-
-Les identifiants à sept caractères sont différents sur chaque poste. Le
-graphe des commits, avant et après la fusion :
-
-![La branche video et un commit sur master, avant et après la fusion](illustrations/fusion_video.png)
-
-## B4 · Le README complet
+## B7 · Le README complet
 
 > **À faire :** remplacer le README par le modèle et le compléter ; un commit.
 >
-> **À obtenir :** dix commits.
+> **À obtenir :** douze commits.
 
 Remplacer `README.md` par le modèle `depart/modeles/README.md` :
 
@@ -874,8 +1249,8 @@ L'ouvrir dans VS Code et remplacer chaque passage « (À compléter …) » :
 
 - une phrase qui dit ce que fait le programme ;
 - comment récupérer le dossier (archive ou `git clone`) ;
-- pour chacune des trois fonctionnalités, la commande et ce qu'elle écrit
-  dans `sortie/` ;
+- pour chacune des trois fonctionnalités, une image, une série d'images et
+  une vidéo, la commande et ce qu'elle écrit dans `sortie/` ;
 - votre nom.
 
 **Vérification** : `Ctrl+Maj+V` affiche l'aperçu. Chaque commande du README
@@ -887,9 +1262,9 @@ git commit -am "README complet"
 git log --oneline
 ```
 
-**Vérification** : dix lignes, le commit de fusion compris.
+**Vérification** : douze lignes, le commit de fusion compris.
 
-**Dossier à la fin de B4** (fin du TD obligatoire) :
+**Dossier à la fin de B7** (fin du TD obligatoire) :
 
 ```text
 travail/train/
@@ -898,15 +1273,15 @@ travail/train/
 ├── README.md
 ├── environment.yml
 ├── train.py
-├── decor/               (les quatre images du décor)
-└── sortie/               (non versionné)
+├── decor/               (les images du décor)
+└── sortie/              (non versionné)
 ```
 
-## B5 (facultative) · `src/`, `pyproject.toml` et une commande installée
+## B8 (facultative) · `src/`, `pyproject.toml` et une commande installée
 
 > **À faire :** `git mv train.py src/train.py` ; `pyproject.toml` ; `pip install -e .` ; un commit.
 >
-> **À obtenir :** la commande `train` fonctionne depuis n'importe quel dossier ; onze commits.
+> **À obtenir :** la commande `train` fonctionne depuis n'importe quel dossier ; treize commits.
 
 **Sortie** : une commande `train`, utilisable dans n'importe quel dossier,
 l'environnement `animation` actif, sans écrire `python` ni le chemin du
@@ -959,7 +1334,8 @@ train --decor train/decor --decalage 200
 train --help
 ```
 
-**Vérification** : l'image est écrite dans `travail/sortie/train_0200.png` ; l'aide s'affiche sans `python`.
+**Vérification** : l'image est écrite dans `travail/sortie/train_0200.png` ;
+l'aide s'affiche sans `python`.
 
 **Le commit.** Revenir dans `travail/train/` (`cd train`). Dans le README,
 remplacer `python train.py` par `train` et ajouter la ligne d'installation
@@ -971,7 +1347,64 @@ git commit -m "src/ et pyproject.toml : la commande train"
 git log --oneline
 ```
 
-**Vérification** : onze lignes. `pip uninstall train` retire la commande.
+**Vérification** : treize lignes. `pip uninstall train` retire la commande.
+
+## Annexe · Plusieurs plans, plusieurs vitesses
+
+Cette annexe ne fait pas partie du TD : elle décrit une suite possible du
+programme, sans guide pas à pas.
+
+Dans le clip, les voiles, la plage jaune et la plage orange du premier plan
+défilent à des vitesses différentes : plus un plan est proche de la fenêtre,
+plus il défile vite. Le ciel, les nuages et la mer ne bougent pas. Le
+programme du TD n'a qu'un plan, les voiles et la plage jaune sur la même
+bande, qui avancent de 8 pixels par image.
+
+Le dossier `decor/` contient les bandes qu'il faut pour séparer les plans :
+`voiles.png`, `plage_jaune.png`, et `plage.png`, la plage orange. Chaque plan
+a sa vitesse, en pixels par image. Sur l'image numéro `n`, un plan de vitesse
+`v` est décalé de `n × v` pixels. Les plans sont posés du plus lointain au
+plus proche, puis la fenêtre.
+
+![Trois plans, trois vitesses : l'image numéro 40](illustrations/plans.png)
+
+La commande `magick` se construit comme dans le TD, avec un morceau par
+plan. `arguments_plan` reçoit en plus le nom du fichier de la bande ; `image`
+reçoit le numéro de l'image, et ajoute les morceaux dans une boucle :
+
+```python
+# Les plans, du plus lointain au plus proche : le fichier, et la vitesse en pixels par image
+PLANS = [("voiles.png", 2), ("plage_jaune.png", 8), ("plage.png", 16)]
+
+
+def arguments_plan(decor, nom, decalage):
+    """Les arguments de magick qui lisent la bande `nom`, la font tourner de `decalage` colonnes
+    vers la gauche, puis en découpent 640 × 480 pixels à partir de la colonne 0."""
+    return ["(", str(decor / nom),
+            "-roll", "-" + str(decalage) + "+0",
+            "-crop", "640x480+0+0", "+repage", ")"]
+
+
+def image(fichier, decor, numero):
+    """L'image numéro `numero` : le fond, chaque plan décalé de numero × sa vitesse, puis la fenêtre."""
+    commande = [MAGICK] + arguments_fond(decor)
+    for nom, vitesse in PLANS:
+        commande = commande + arguments_plan(decor, nom, numero * vitesse) + ["-composite"]
+    commande = commande + arguments_fenetre(decor) + ["-composite"]
+    commande = commande + [str(fichier)]
+    subprocess.run(commande, check=True)
+```
+
+Le reste du programme change peu. `serie` passe à `image` le numéro de
+chaque image, de 0 à `nombre - 1`, à la place du décalage : la fonction
+`decalages` n'est plus utile. Pour une image seule, l'option `--decalage`
+devient un numéro d'image.
+
+La vitesse de chaque plan se règle en changeant la liste `PLANS`. Un
+quatrième plan demande une bande de 1 920 × 480 pixels de plus dans
+`decor/`, et une ligne de plus dans la liste. Le TD 7 reprendra ce programme et
+lui ajoutera un autre effet : les ombres des poteaux, qui passent devant la
+fenêtre.
 
 ## Annexe · Les commandes des deux terminaux
 

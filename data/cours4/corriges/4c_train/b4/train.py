@@ -33,14 +33,23 @@ def arguments_fond(decor):
     return [str(decor / "fond.png")]
 
 
+def arguments_plan(decor, decalage):
+    """Les arguments de magick qui lisent la bande du plan, la font tourner de `decalage` colonnes
+    vers la gauche, puis en découpent 640 × 480 pixels à partir de la colonne 0."""
+    return ["(", str(decor / "plan.png"),
+            "-roll", "-" + str(decalage) + "+0",
+            "-crop", "640x480+0+0", "+repage", ")"]
+
+
 def arguments_fenetre(decor):
     """Les arguments de magick qui lisent la fenêtre, une image de 640 × 480 pixels."""
     return [str(decor / "fenetre.png")]
 
 
-def image(fichier, decor):
+def image(fichier, decor, decalage):
     """Une image de la vidéo, 640 × 480 pixels, écrite dans `fichier`."""
     commande = [MAGICK] + arguments_fond(decor)
+    commande = commande + arguments_plan(decor, decalage) + ["-composite"]
     commande = commande + arguments_fenetre(decor) + ["-composite"]
     commande = commande + [str(fichier)]
     subprocess.run(commande, check=True)
@@ -57,6 +66,7 @@ def taille(fichier):
 
 def main():
     analyseur = argparse.ArgumentParser(description="La fenêtre du train : une image, une série d'images ou une vidéo.")
+    analyseur.add_argument("-d", "--decalage", type=int, default=0, help="le décalage du plan d'une image seule, en pixels (défaut : 0)")
     analyseur.add_argument("--decor", default="decor", help="le dossier des images du décor (défaut : decor)")
     options = analyseur.parse_args()
     decor = Path(options.decor)
@@ -65,8 +75,8 @@ def main():
     SORTIE.mkdir(exist_ok=True)
 
     # Une image
-    fichier = SORTIE / "train.png"
-    image(fichier, decor)
+    fichier = SORTIE / ("train_" + str(options.decalage).zfill(4) + ".png")
+    image(fichier, decor, options.decalage)
     print(fichier, taille(fichier))
 
 

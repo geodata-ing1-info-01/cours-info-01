@@ -39,7 +39,7 @@ def build() -> None:
         decor = Path(dossier) / "decor"
         decor_train(decor)
         # Une image de la série du TD 4c : le programme final, décalage 200.
-        programme = COURS4 / "corriges" / "4c_train" / "b3" / "train.py"
+        programme = COURS4 / "corriges" / "4c_train" / "b6" / "train.py"
         subprocess.run([sys.executable, str(programme), "--decalage", "200"], cwd=dossier, check=True,
                        stdout=subprocess.DEVNULL)
         depart.mkdir()

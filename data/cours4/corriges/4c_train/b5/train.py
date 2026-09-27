@@ -33,14 +33,23 @@ def arguments_fond(decor):
     return [str(decor / "fond.png")]
 
 
+def arguments_plan(decor, decalage):
+    """Les arguments de magick qui lisent la bande du plan, la font tourner de `decalage` colonnes
+    vers la gauche, puis en découpent 640 × 480 pixels à partir de la colonne 0."""
+    return ["(", str(decor / "plan.png"),
+            "-roll", "-" + str(decalage) + "+0",
+            "-crop", "640x480+0+0", "+repage", ")"]
+
+
 def arguments_fenetre(decor):
     """Les arguments de magick qui lisent la fenêtre, une image de 640 × 480 pixels."""
     return [str(decor / "fenetre.png")]
 
 
-def image(fichier, decor):
+def image(fichier, decor, decalage):
     """Une image de la vidéo, 640 × 480 pixels, écrite dans `fichier`."""
     commande = [MAGICK] + arguments_fond(decor)
+    commande = commande + arguments_plan(decor, decalage) + ["-composite"]
     commande = commande + arguments_fenetre(decor) + ["-composite"]
     commande = commande + [str(fichier)]
     subprocess.run(commande, check=True)
@@ -53,21 +62,55 @@ def taille(fichier):
     return resultat.stdout
 
 
+# ---- Une série d'images (sections 8 et 9 du notebook) -----------------------
+
+VITESSE = 8           # le décalage de plus à chaque image, en pixels
+
+
+def decalages(nombre, vitesse):
+    """Le décalage de chaque image : 0, puis `vitesse` pixels de plus à chaque image."""
+    liste = []
+    for numero in range(nombre):
+        liste.append(numero * vitesse)
+    return liste
+
+
+def serie(decor, nombre):
+    """`nombre` images, le plan un peu plus décalé à chaque image, dans IMAGES ; renvoie le nombre d'images."""
+    IMAGES.mkdir(parents=True, exist_ok=True)
+    for ancienne in IMAGES.glob("img_*.png"):
+        ancienne.unlink()
+    liste = decalages(nombre, VITESSE)
+    numero = 0
+    for decalage in liste:
+        numero = numero + 1
+        fichier = IMAGES / ("img_" + str(numero).zfill(4) + ".png")
+        image(fichier, decor, decalage)
+    return len(liste)
+
+
 # ---- Le programme ------------------------------------------------------------
 
 def main():
     analyseur = argparse.ArgumentParser(description="La fenêtre du train : une image, une série d'images ou une vidéo.")
+    analyseur.add_argument("-d", "--decalage", type=int, default=0, help="le décalage du plan d'une image seule, en pixels (défaut : 0)")
     analyseur.add_argument("--decor", default="decor", help="le dossier des images du décor (défaut : decor)")
+    analyseur.add_argument("-n", "--images", type=int, help="une série : ce nombre d'images, le plan décalé de 8 pixels de plus à chaque image")
     options = analyseur.parse_args()
     decor = Path(options.decor)
     if not (decor / "fond.png").exists():
         analyseur.error("décor introuvable : " + options.decor)
     SORTIE.mkdir(exist_ok=True)
 
-    # Une image
-    fichier = SORTIE / "train.png"
-    image(fichier, decor)
-    print(fichier, taille(fichier))
+    if options.images is None:
+        # Une image
+        fichier = SORTIE / ("train_" + str(options.decalage).zfill(4) + ".png")
+        image(fichier, decor, options.decalage)
+        print(fichier, taille(fichier))
+    else:
+        # Une série d'images
+        nombre = serie(decor, options.images)
+        print(nombre, "images dans", IMAGES)
 
 
 # Vrai quand le fichier est lancé par `python`, faux quand il est importé par

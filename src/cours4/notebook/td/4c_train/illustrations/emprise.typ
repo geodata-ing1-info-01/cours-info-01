@@ -1,0 +1,6 @@
+// Schéma du TD 4c, compilé en PNG par `outils/compiler_guides.py` et
+// `outils/construire_notebooks.py` ; les fonctions sont dans
+// `src/cours4/diapo/schemas_train.typ`.
+#import "../../../../diapo/schemas_train.typ": emprise
+#set page(width: auto, height: auto, margin: 12pt, fill: white)
+#emprise()
