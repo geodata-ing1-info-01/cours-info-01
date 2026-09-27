@@ -26,8 +26,9 @@ son terminal Git Bash.
     les réglages User et Workspace
   - 1a, en classe entière
 * - L'éditeur de code
-  - les fonctions d'un IDE, la coloration, la chasse fixe
-  -
+  - les fonctions d'un IDE, la coloration, la chasse fixe, l'indentation en
+    espaces ou en tabulations ; trois programmes fautifs à corriger
+  - 1b
 * - Markdown
   - l'intention de Markdown, tableau, bloc de code et image, la conversion
     par pandoc, le README

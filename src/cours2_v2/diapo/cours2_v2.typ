@@ -26,6 +26,7 @@
 #let tds = sys.inputs.at("tds", default: "") != "false"
 
 #import "tds/1a_vscode.typ": td as td-1a
+#import "tds/1b_erreurs.typ": td as td-1b
 #import "tds/2a_markdown.typ": td as td-2a
 #import "tds/3a_depot_recette.typ": td as td-3a
 
@@ -39,6 +40,11 @@
 }
 
 #include "parties/02_editeur.typ"
+#if tds {
+  include "tds/1b_erreurs.typ"
+} else {
+  sommaire-td(td-1b)
+}
 
 #include "parties/03_markdown.typ"
 #if tds {

@@ -66,7 +66,8 @@
   ]
 
   #avertissement[
-    Première étape : afficher les extensions, que Windows masque par défaut.
+    Avant d'ouvrir un fichier : afficher les extensions, que Windows masque
+    par défaut.
     Explorateur #sym.arrow.r Affichage #sym.arrow.r Afficher #sym.arrow.r
     Extensions de noms de fichiers.
   ]

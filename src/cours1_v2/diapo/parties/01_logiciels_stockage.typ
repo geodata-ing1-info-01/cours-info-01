@@ -217,7 +217,7 @@
     [Changer de machine],
       [de votre poste à celui de la salle, et retour],
     [Le remettre à quelqu'un],
-      [un rendu, ou le dépôt partagé du cours 2],
+      [un rendu, ou le dépôt partagé du cours 6],
   )
 
   // v2 : le chemin passe à la partie 2 ; la légende nomme la suite de cette partie.
@@ -229,11 +229,10 @@
   #notes[
      c'est le fichier qui reste. Les quatre lignes disent ce que ce
     « rester » permet, toutes vraies dès cette semaine — les trois
-    premières aujourd'hui, la quatrième au cours 2.
+    premières aujourd'hui, la quatrième au cours 6.
 
     Deuxième ligne: un format de fichier
     est ce sur quoi deux logiciels se mettent d'accord sans se connaître.
-    La partie 5 y revient.
   ]
 ]
 // -------------------------- Extensions et formats ---------------------------

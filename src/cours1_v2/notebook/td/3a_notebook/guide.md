@@ -12,18 +12,19 @@ kernelspec:
 
 *Version 2 du cours 1 : proposition de travail pour 2027-2028. Ce guide
 reprend celui du TD 3b du cours 1 de 2026, réduit à JupyterLab lancé depuis
-Git Bash, et ajoute l'écriture d'une cellule de texte en Markdown.*
+un terminal, et ajoute l'écriture d'une cellule de texte en Markdown.*
 
 Le TD ouvre un notebook, `altitudes.ipynb`, dans JupyterLab, lancé depuis
-Git Bash. Le notebook reprend le programme du TD 2b, qui calcule la moyenne
+un terminal. Le notebook reprend le programme du TD 2b, qui calcule la moyenne
 de trois altitudes, découpé en cellules. La troisième étape fait constater
 ce que le noyau retient d'une cellule à l'autre ; la dernière ajoute au
 notebook une cellule de texte, écrite en Markdown. Le TD dure une douzaine
 de minutes.
 
-Le TD nécessite Git Bash, où les commandes d'Anaconda sont disponibles
-depuis le début du TD 2b, et un navigateur. Anaconda Navigator sert de
-secours pour lancer JupyterLab.
+Le TD nécessite un terminal où conda est actif, et un navigateur. Il lance
+JupyterLab depuis l'invite de commandes d'Anaconda, puis depuis Git Bash, où
+les commandes d'Anaconda sont disponibles depuis le début du TD 2b.
+Anaconda Navigator sert de dernier secours.
 
 | Étape | Ce qu'on fait |
 |---|---|
@@ -31,6 +32,7 @@ secours pour lancer JupyterLab.
 | 2 | exécuter les cellules |
 | 3 | relancer une cellule, et lire ce que le noyau retient |
 | 4 | ajouter une cellule de texte |
+| 5 | relancer JupyterLab depuis Git Bash, si le temps le permet |
 
 Ce que chaque étape fait constater est expliqué à la fin du guide, dans « Ce
 que le TD fait constater » : faire l'étape d'abord, et noter ce qu'on
@@ -38,8 +40,9 @@ observe, avant de lire l'explication.
 
 ## 1 · Lancer JupyterLab et ouvrir le notebook
 
-> **À faire :** ouvrir Git Bash dans le dossier `cours1/3a_notebook/` ;
-> lancer JupyterLab par `jupyter lab` ; ouvrir `altitudes.ipynb`.
+> **À faire :** ouvrir l'invite de commandes d'Anaconda ; aller dans le
+> dossier `cours1\3a_notebook\` ; lancer JupyterLab par `jupyter lab` ;
+> ouvrir `altitudes.ipynb`.
 >
 > **À obtenir :** le notebook ouvert dans un onglet du navigateur, à une
 > adresse qui commence par `localhost:8888/lab`.
@@ -60,35 +63,40 @@ ouvert à son emplacement, sans copie préalable.
 `altitudes.ipynb` contient onze cellules : six blocs de texte et cinq
 cellules de code. Les cellules de code n'ont pas encore de sortie.
 
-### Lancer JupyterLab depuis Git Bash
+### Lancer JupyterLab depuis l'invite de commandes d'Anaconda
 
-1. Dans l'explorateur de fichiers, ouvrir `Bureau\info01\cours1\3a_notebook`,
-   puis clic droit sur un endroit vide du dossier, « Afficher d'autres
-   options », « Open Git Bash here ». À défaut, ouvrir Git Bash depuis le
-   menu Démarrer, puis taper `cd ~/Desktop/info01/cours1/3a_notebook`.
+1. Menu Démarrer, taper `anaconda prompt`, puis choisir « Anaconda Prompt ».
+   Une fenêtre noire s'ouvre. Son invite commence par `(base)`, suivi du
+   dossier personnel : `(base) C:\Users\eleve>`. conda y est toujours
+   actif, sans réglage.
 2. Taper la commande suivante, puis Entrée :
 
    ```text
-   jupyter lab
+   cd Desktop\info01\cours1\3a_notebook
    ```
 
-   Git Bash affiche des lignes de journal, puis le navigateur ouvre un
-   onglet, à une adresse qui commence par `localhost:8888/lab`.
-3. Git Bash reste occupé tant que JupyterLab tourne : sa fenêtre doit
-   rester ouverte.
-4. Le panneau de gauche de JupyterLab est une arborescence de fichiers. Elle
-   part du dossier où `jupyter lab` a été lancé, `3a_notebook`. Double-cliquer
-   sur `altitudes.ipynb`.
+   L'invite se termine alors par `3a_notebook>`. Dans l'invite de
+   commandes, les chemins s'écrivent avec des `\`.
+3. Taper `jupyter lab`, puis Entrée. L'invite affiche des lignes de
+   journal, puis le navigateur ouvre un onglet, à une adresse qui commence
+   par `localhost:8888/lab`.
+4. La fenêtre de l'invite reste occupée tant que JupyterLab tourne : elle
+   doit rester ouverte.
+5. Le panneau de gauche de JupyterLab est une arborescence de fichiers. Elle
+   part du dossier où `jupyter lab` a été lancé, `3a_notebook`.
+   Double-cliquer sur `altitudes.ipynb`.
 
-Si le navigateur ne s'ouvre pas, Git Bash affiche une adresse qui commence
+Si le navigateur ne s'ouvre pas, l'invite affiche une adresse qui commence
 par `http://localhost:8888/lab?token=` : la recopier dans la barre
 d'adresse du navigateur.
 
-Si Git Bash répond `jupyter: command not found`, le début du TD 2b, qui rend
-les commandes d'Anaconda disponibles dans Git Bash, n'a pas été fait sur ce
-poste.
+Le module donne deux façons de lancer JupyterLab : l'invite de commandes
+d'Anaconda, qui n'a besoin d'aucun réglage, et Git Bash, le terminal du
+module, qui demande le réglage du TD 2b. L'étape 5 relance JupyterLab depuis
+Git Bash. Si un jour le réglage de Git Bash manque sur un poste, l'invite de
+commandes d'Anaconda reste disponible.
 
-### En secours : Anaconda Navigator
+### En dernier secours : Anaconda Navigator
 
 1. Menu Démarrer, taper `anaconda navigator`, Entrée, puis attendre la page
    d'accueil, qui a une fiche par application. En haut, la liste des
@@ -196,10 +204,48 @@ La syntaxe est celle de la diapositive « La syntaxe minimale de Markdown ».
 de code ; l'aspect du texte pendant qu'on l'écrit, puis après
 `Maj` + `Entrée`.
 
-Pour finir : dans JupyterLab, menu File, Shut Down, puis fermer l'onglet.
-Git Bash affiche de nouveau l'invite. `Ctrl` + `C` dans Git Bash arrête
-aussi JupyterLab ; s'il demande une confirmation, taper `y` puis Entrée.
-Lancé depuis Navigator, JupyterLab se ferme avec sa fenêtre noire.
+Pour arrêter JupyterLab : dans JupyterLab, menu File, Shut Down, puis
+fermer l'onglet. L'invite de commandes d'Anaconda attend de nouveau une
+commande. `Ctrl` + `C` dans l'invite arrête aussi JupyterLab ; s'il demande
+une confirmation, taper `y` puis Entrée. Lancé depuis Navigator, JupyterLab
+se ferme avec sa fenêtre noire.
+
+## 5 · Relancer JupyterLab depuis Git Bash, si le temps le permet
+
+> **À faire :** ouvrir Git Bash dans le dossier `cours1/3a_notebook/` ;
+> lancer JupyterLab par `jupyter lab` ; rouvrir `altitudes.ipynb`.
+>
+> **À obtenir :** le notebook, avec la cellule de texte de l'étape 4.
+
+1. Dans l'explorateur de fichiers, ouvrir `Bureau\info01\cours1\3a_notebook`,
+   puis clic droit sur un endroit vide du dossier, « Afficher d'autres
+   options », « Open Git Bash here ». À défaut, ouvrir Git Bash depuis le
+   menu Démarrer, puis taper `cd ~/Desktop/info01/cours1/3a_notebook`.
+2. Taper la commande suivante, puis Entrée :
+
+   ```text
+   jupyter lab
+   ```
+
+   Git Bash affiche des lignes de journal, puis le navigateur ouvre un
+   onglet, à une adresse qui commence par `localhost:8888/lab`.
+3. Git Bash reste occupé tant que JupyterLab tourne : sa fenêtre doit
+   rester ouverte.
+4. Le panneau de gauche de JupyterLab est une arborescence de fichiers. Elle
+   part du dossier où `jupyter lab` a été lancé, `3a_notebook`. Double-cliquer
+   sur `altitudes.ipynb`.
+
+Si le navigateur ne s'ouvre pas, Git Bash affiche une adresse qui commence
+par `http://localhost:8888/lab?token=` : la recopier dans la barre
+d'adresse du navigateur.
+
+Si Git Bash répond `jupyter: command not found`, le début du TD 2b, qui rend
+les commandes d'Anaconda disponibles dans Git Bash, n'a pas été fait sur ce
+poste. L'invite de commandes d'Anaconda de l'étape 1 reste disponible.
+
+**Vérification** : le notebook s'ouvre avec la cellule de texte de
+l'étape 4, enregistrée dans le fichier. Arrêter ensuite JupyterLab, par
+File, Shut Down, ou `Ctrl` + `C` dans Git Bash.
 
 ## Ce que le TD fait constater
 
@@ -232,8 +278,7 @@ La dernière expression d'une cellule s'affiche sans `print`, comme dans la
 session interactive du TD 2b : la cellule des données affiche la liste,
 et la dernière cellule la valeur de `total`. La cellule `total = 0`
 n'affiche rien : une affectation ne produit pas de valeur à afficher. Les
-trois valeurs de la boucle sont celles que prend `total` à chaque tour ; le
-débogueur, présenté en annexe, les montre aussi dans son panneau Variables.
+trois valeurs de la boucle sont celles que prend `total` à chaque tour.
 
 ### Étape 3 : ce que le noyau retient
 

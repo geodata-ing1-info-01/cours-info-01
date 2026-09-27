@@ -14,6 +14,56 @@
 #import "../schemas_fichiers.typ": schema-decodage, schema-fin-de-ligne, schema-position-octets
 
 // --------------------------------------------
+// Reprise du cours 1 de 2026 (28/09/2026) : bit, octet, hexadécimal.
+#d("Fichiers binaires et fichiers texte")[
+  #annonce[
+    Tout fichier est une suite de *bits*, 0 ou 1, comptés par *octets* de huit :
+    256 valeurs, représentées par deux chiffres hexadécimaux. Fichier *texte* si
+    chaque octet est un caractère, *binaire* sinon.
+  ]
+
+  #chaine(
+    ecart: 22pt,
+    ("Huit bits", "01010010"),
+    ("Une valeur", "82 sur 256 possibles"),
+    ("Représentée par deux chiffres hexadécimaux", "52, de 00 à FF"),
+    ("Un caractère, si c'est du texte", "R, par la table ASCII"),
+  )
+
+  #v(0.3em)
+  #tableau(
+    columns: (auto, 1fr, 1fr),
+    align: left + horizon,
+    [], [Fichier texte], [Fichier binaire],
+    [Ses octets], [des caractères, tous], [ce que le format décide],
+    [Qui le lit], [n'importe quel éditeur de texte], [le logiciel qui connaît le format],
+    [Ce qu'on en fait], [lire, comparer, versionner], [l'ouvrir dans son logiciel],
+  )
+
+  #legende[
+    2#super[8] = 256 ; seize chiffres, de `0` à `F`.
+  ]
+
+  #notes[
+    Diapositive du cours 1 de 2026, reprise ici le 28/09/2026 : en 2026,
+    rappel pour des élèves qui l'ont vue au cours 1 ; à partir de la
+    version 2, le cours 1 ne définit plus l'octet ni l'hexadécimal, et
+    c'est ici qu'ils sont vus.
+
+    Ne pas faire calculer : donner 2 puissance 8, et passer. L'hexadécimal
+    est là parce que c'est l'écriture de tous les outils : un chiffre par
+    groupe de quatre bits, donc deux par octet.
+
+    Insister sur le sens de « binaire » : ce n'est pas que le fichier soit
+    écrit en binaire, ils le sont tous. C'est qu'il n'est pas fait pour être
+    lu caractère par caractère.
+
+    La dernière ligne du tableau est celle qui porte le module : ce qui est
+    du texte se compare et se versionne, ce qui est binaire non.
+  ]
+]
+
+// --------------------------------------------
 #d("Fichier texte : une suite d'octets", cellule: 3, fichier: "fichiers.ipynb")[
   #annonce[
     Sur le disque, un fichier est une suite d'octets. L'encodage, donné par

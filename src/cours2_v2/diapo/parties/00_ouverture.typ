@@ -27,6 +27,7 @@
       #raw(
 "cours2/                  un dossier par TD, dans l'ordre de la séance
 ├── 1a_vscode/
+├── 1b_erreurs/
 ├── 2a_markdown/
 └── 3a_depot_recette/")
     ]
@@ -55,7 +56,7 @@
     align: (left + horizon, left + horizon, right + horizon),
     [Partie], [Nature], [Durée],
     [Configurer l'éditeur de code], [TD 1a, en classe entière], [25′],
-    [L'éditeur de code], [cours], [10′],
+    [L'éditeur de code], [cours et TD 1b], [20′],
     [Markdown], [cours et TD 2a], [20′],
     [Git local], [cours et TD 3a], [60′],
   )
@@ -65,7 +66,8 @@
   ]
 
   #notes[
-    Budget du syllabus v2 : 115′. Le premier poste à surveiller est la
+    Budget du syllabus v2 : 115′, avant l'arrivée du TD 1b (10′), venu du
+    cours 1 v2 le 27/09/2026. Le premier poste à surveiller est la
     configuration : si elle dépasse 25′, le guide du TD 1a, distribué avant
     la séance, doit la faire commencer avant.
 

@@ -1,5 +1,5 @@
 ---
-title: "TD 2c — Trois programmes fautifs"
+title: "TD 1b — Trois programmes fautifs"
 subtitle: Guide détaillé, étape par étape (version 2, proposition)
 jupytext:
   text_representation:
@@ -10,26 +10,25 @@ kernelspec:
   display_name: Python 3
 ---
 
-*Version 2 du cours 1 : proposition de travail pour 2027-2028. Ce guide
-reprend celui du TD 2b du cours 1 de 2026 ; les programmes s'ouvrent dans
-Notepad++ et se lancent dans Git Bash, à la place de VS Code et de son
-terminal.*
+*Version 2 du cours 2 : proposition de travail pour 2027-2028. Ce guide
+reprend celui du TD 2b du cours 1 de 2026. Joué au cours 1 v2 dans
+Notepad++, il est passé au cours 2 v2 le 27/09/2026, après la partie sur
+l'éditeur de code : les programmes s'ouvrent dans VS Code et se lancent dans
+son terminal, Git Bash.*
 
-Le TD fait afficher par l'éditeur de texte, Notepad++, les caractères qu'on
-ne voit pas, les espaces et les tabulations, puis corriger trois programmes
-Python courts qui s'arrêtent sur un message d'erreur. Chacun contient une
-faute d'un genre différent. On lance le programme, on lit le message, on
-corrige la copie, et on relance jusqu'à ce que le message disparaisse. Le TD
-dure une dizaine de minutes.
+Le TD fait lire dans VS Code les caractères qu'on ne voit pas, les espaces et
+les tabulations, puis corriger trois programmes Python courts qui s'arrêtent
+sur un message d'erreur. Chacun contient une faute d'un genre différent. On
+lance le programme, on lit le message, on corrige la copie, et on relance
+jusqu'à ce que le message disparaisse. Le TD dure une dizaine de minutes.
 
-Comme au TD 2b, les programmes s'ouvrent et se corrigent dans Notepad++, et
-se lancent dans Git Bash. La commande `python` est disponible dans Git Bash
-depuis le début du TD 2b.
+Le TD suppose le TD 1a fait : VS Code a Git Bash pour terminal, affiche les
+espaces, et enregistre les fichiers après un court délai.
 
 | Étape | Ce qu'on fait |
 |---|---|
 | 1 | préparer le dossier du TD |
-| 2 | afficher les caractères invisibles |
+| 2 | lire les caractères invisibles et la barre d'état |
 | 3 | corriger `surface.py` |
 | 4 | corriger `moyenne.py` |
 | 5 | corriger `chemin.py` |
@@ -41,63 +40,51 @@ l'explication.
 
 ## 1 · Préparer le dossier du TD
 
-> **À faire :** ouvrir Git Bash dans le dossier `cours1/2c_erreurs/` ;
-> copier les trois fichiers de `depart/` dans `travail/` ; ouvrir les copies
-> dans Notepad++.
+> **À faire :** ouvrir le dossier `cours2/1b_erreurs/` dans VS Code, avec un
+> terminal Git Bash ; copier les trois fichiers de `depart/` dans `travail/`.
 >
-> **À obtenir :** l'invite de Git Bash se termine par `2c_erreurs`, et
+> **À obtenir :** l'invite du terminal se termine par `1b_erreurs`, et
 > `travail/` contient `chemin.py`, `moyenne.py` et `surface.py`.
 
 ### Les deux dossiers du TD
 
-Le dossier du TD est dans l'archive de la séance, extraite au TD 1a :
+Le dossier du TD est dans l'archive de la séance :
 
 ```text
-~/Desktop/info01/cours1/2c_erreurs/
+~/Desktop/info01/cours2/1b_erreurs/
 ├── depart/
-│   ├── chemin.py       compte les caractères du poème du TD 1a
+│   ├── chemin.py       compte les caractères du poème du TD 1a du cours 1
 │   ├── moyenne.py      calcule la moyenne de quatre altitudes
 │   └── surface.py      calcule la surface d'une parcelle rectangulaire
 ├── travail/            vide
-├── td_2c_erreurs.pdf   la feuille du TD
+├── td_1b_erreurs.pdf   la feuille du TD
 └── README.md
 ```
 
-Dans Git Bash, `~` désigne le dossier personnel, `C:\Users\eleve` sur les
-postes de la salle.
-
-Comme au TD 1a, `depart/` contient les fichiers fournis, et ne se modifie
+Comme au cours 1, `depart/` contient les fichiers fournis, et ne se modifie
 pas ; les corrections se font sur des copies, dans `travail/`. Si une copie
 est abîmée, on en refait une à partir de `depart/`.
 
-### Ouvrir Git Bash dans le dossier du TD
+### Ouvrir le dossier dans VS Code
 
-1. Dans l'explorateur de fichiers, ouvrir `Bureau\info01\cours1\2c_erreurs`.
-2. Clic droit sur un endroit vide du dossier, « Afficher d'autres
-   options », puis « Open Git Bash here ».
-
-À défaut, ouvrir Git Bash depuis le menu Démarrer, puis taper :
-
-```text
-cd ~/Desktop/info01/cours1/2c_erreurs
-```
-
-Si Git Bash est encore ouvert dans `2b_programme/`, le dossier du TD 2b,
-`cd ../2c_erreurs` y conduit.
+1. Dans VS Code : Fichier, Ouvrir le dossier…, puis choisir
+   `Bureau\info01\cours2\1b_erreurs`.
+2. Menu Terminal, Nouveau terminal. Le terminal s'ouvre en bas de la
+   fenêtre, dans le dossier ouvert.
 
 **Vérification** : l'invite a la forme suivante (le nom du poste change
 d'une machine à l'autre).
 
 ```text
 (base)
-eleve@POSTE MINGW64 ~/Desktop/info01/cours1/2c_erreurs
+eleve@POSTE MINGW64 ~/Desktop/info01/cours2/1b_erreurs
 $
 ```
 
-Si la ligne `(base)` manque, et que `python --version` ne répond pas, le début
-du TD 2b, qui rend Python disponible dans Git Bash, n'a pas été fait sur ce
-poste. Si le dossier ne se termine pas par `2c_erreurs`, taper la commande
-`cd` ci-dessus.
+Si le terminal n'est pas Git Bash, le choisir par la flèche à côté du `+`,
+comme au TD 1a. Si la ligne `(base)` manque, et que `python --version` ne
+répond pas, le réglage de conda dans Git Bash (TD 2b du cours 1) n'a pas été
+fait sur ce poste.
 
 ### Copier les fichiers
 
@@ -107,61 +94,49 @@ ls travail
 ```
 
 `cp depart/*.py travail/` copie dans `travail/` les fichiers de `depart/`
-dont le nom se termine par `.py`. Le motif `*` a été vu au TD 2a.
+dont le nom se termine par `.py`. Le motif `*` a été vu au TD 2a du cours 1.
 
 **Vérification** : `ls travail` affiche `chemin.py`, `moyenne.py` et
-`surface.py`.
+`surface.py`, et l'explorateur de VS Code les montre sous `travail`.
 
-### Ouvrir les copies dans Notepad++
+## 2 · Lire les caractères invisibles et la barre d'état
 
-1. Lancer Notepad++ depuis le menu Démarrer.
-2. Menu Fichier, Ouvrir. Aller dans `Bureau\info01\cours1\2c_erreurs\travail`,
-   sélectionner les trois fichiers (`Ctrl` + `A`), puis cliquer sur Ouvrir.
-   Chaque fichier s'ouvre dans un onglet.
-
-Le titre de la fenêtre de Notepad++ donne le chemin complet du fichier
-affiché : il doit contenir `2c_erreurs\travail`.
-
-## 2 · Afficher les caractères invisibles
-
-> **À faire :** régler Notepad++ pour qu'il affiche les espaces, les
-> tabulations et les fins de ligne ; lire deux indications de la barre
-> d'état.
+> **À faire :** ouvrir `travail/moyenne.py` ; repérer les espaces
+> dessinés ; lire deux indications de la barre d'état.
 >
-> **À obtenir :** dans un fichier ouvert, un point entre les mots, et des
-> points au début des lignes indentées.
+> **À obtenir :** des points au début des lignes indentées, et `LF` dans la
+> barre d'état.
 
-### Afficher tous les caractères
+### Les espaces dessinés
 
 Un espace et une tabulation ne se distinguent pas à l'œil : les deux
-laissent un blanc. Notepad++ peut les afficher, par un point pour chaque
-espace et une flèche pour chaque tabulation. Il affiche aussi, à la fin de
-chaque ligne, le ou les caractères qui la terminent : `CR`, `LF`, ou les
-deux.
+laissent un blanc. Le réglage du TD 1a, « render whitespace » à `all`, fait
+dessiner par VS Code un point pour chaque espace et une flèche pour chaque
+tabulation. S'il n'a pas été fait : `Ctrl` + `,`, chercher
+« render whitespace », choisir `all`.
 
-Menu Affichage, Symboles spéciaux, Afficher tous les caractères. Le même
-choix active et désactive l'affichage.
+Ouvrir `travail/moyenne.py`, par un clic dans l'explorateur de VS Code.
 
-Passer à l'onglet de `moyenne.py`.
-
-**Vérification** : un point apparaît entre chaque mot, quatre points au
-début de la ligne 7, `total = total + altitude`, et `LF` à la fin de chaque
-ligne.
+**Vérification** : un point apparaît entre chaque mot, et quatre points au
+début de la ligne 7, `total = total + altitude`.
 
 ### La barre d'état
 
-La barre d'état est la bande grise, en bas de la fenêtre. Avec un fichier
-Python ouvert, elle affiche entre autres :
+La barre d'état est la bande en bas de la fenêtre. Avec un fichier Python
+ouvert, elle affiche entre autres, à droite :
 
 | L'indication | Ce qu'elle dit |
 |---|---|
-| `Python file`, à gauche | le langage que l'éditeur a associé au fichier, d'après son extension |
-| `Ln : 7    Col : 5` | la ligne et la colonne du curseur |
-| `Unix (LF)` ou `Windows (CR LF)` | comment les lignes du fichier se terminent |
+| `Ln 7, Col 5` | la ligne et la colonne du curseur |
+| `Espaces : 4` | l'indentation que VS Code emploie pour ce fichier |
 | `UTF-8` | l'encodage du fichier |
+| `LF` ou `CRLF` | comment les lignes du fichier se terminent |
+| `Python` | le langage que l'éditeur a associé au fichier, d'après son extension |
 
-**À noter** : laquelle des deux fins de ligne, `Unix (LF)` ou
-`Windows (CR LF)`, la barre d'état affiche pour `moyenne.py`.
+Intitulés à vérifier sur la version de VS Code des postes.
+
+**À noter** : laquelle des deux fins de ligne, `LF` ou `CRLF`, la barre
+d'état affiche pour `moyenne.py`.
 
 ## 3 · Corriger `surface.py`
 
@@ -173,7 +148,7 @@ Python ouvert, elle affiche entre autres :
 
 ### Lancer et lire le message
 
-Dans Git Bash, taper la commande suivante, puis Entrée :
+Dans le terminal de VS Code, taper la commande suivante, puis Entrée :
 
 ```text
 python travail/surface.py
@@ -195,27 +170,25 @@ pas.
 
 ### Trouver la faute
 
-Dans Notepad++, passer à l'onglet de `surface.py`, et regarder les lignes 5
-et 6, qui forment le corps de la fonction `surface`. Elles paraissent
-alignées. Notepad++ ne souligne aucune faute.
+Ouvrir `travail/surface.py`, et regarder les lignes 5 et 6, qui forment le
+corps de la fonction `surface`. Elles paraissent alignées. VS Code souligne
+la ligne 6.
 
-**À noter** : ce que l'affichage des caractères invisibles montre au début
-de la ligne 5, et au début de la ligne 6.
+**À noter** : ce que VS Code dessine au début de la ligne 5, et au début de
+la ligne 6.
 
 ### Corriger et relancer
 
 1. Au début de la ligne 6, supprimer le blanc qui précède `return`.
-2. Taper quatre espaces, pour que la ligne soit indentée comme la ligne 5.
-   Selon son réglage, la touche de tabulation de Notepad++ insère une
-   tabulation ou des espaces : taper les quatre espaces à la barre
-   d'espace, et vérifier que quatre points s'affichent.
-3. Enregistrer, `Ctrl` + `S`. Une disquette rouge sur l'onglet du fichier
-   signale une modification non enregistrée : Git Bash exécute le fichier
-   tel qu'il est sur le disque.
+2. Taper quatre espaces à la barre d'espace, pour que la ligne soit
+   indentée comme la ligne 5, et vérifier que quatre points s'affichent.
+3. Enregistrer, `Ctrl` + `S`, ou attendre l'enregistrement automatique réglé
+   au TD 1a. Un point blanc sur l'onglet du fichier signale une modification
+   non enregistrée : `python` exécute le fichier tel qu'il est sur le disque.
 4. Relancer `python travail/surface.py`. La flèche vers le haut du clavier
-   rappelle la commande précédente dans Git Bash.
+   rappelle la commande précédente.
 
-**Vérification** : Git Bash affiche `294.0`, et rien d'autre.
+**Vérification** : le terminal affiche `294.0`, et rien d'autre.
 
 ## 4 · Corriger `moyenne.py`
 
@@ -247,12 +220,12 @@ désigne le `^`.
 
 1. Passer à l'onglet de `moyenne.py`, et aller à la ligne 6. Son numéro est
    dans la marge de gauche ; `Ctrl` + `G`, puis `6` et Entrée, y conduit
-   directement.
+   directement. VS Code souligne déjà cette ligne.
 2. Ajouter à cette ligne le caractère que le message demande, à l'endroit
    qu'il désigne.
 3. Enregistrer, puis relancer `python travail/moyenne.py`.
 
-**Vérification** : Git Bash affiche `130.05`, et rien d'autre.
+**Vérification** : le terminal affiche `130.05`, et rien d'autre.
 
 ## 5 · Corriger `chemin.py`
 
@@ -274,8 +247,8 @@ Le message se termine par :
 FileNotFoundError: [Errno 2] No such file or directory: 'C:/Users/alice/cours1/1a_formats/depart/raven_une_ligne.txt'
 ```
 
-Passer à l'onglet de `chemin.py`. Le programme ouvre un fichier texte, le
-lit en entier, et affiche son nombre de caractères.
+Ouvrir `travail/chemin.py`. Le programme ouvre un fichier texte, le lit en
+entier, et affiche son nombre de caractères. VS Code ne souligne rien.
 
 **À noter** : à quel poste, et à quel utilisateur, appartient le chemin écrit
 à la ligne 3 ; si ce chemin existe sur le vôtre.
@@ -283,16 +256,16 @@ lit en entier, et affiche son nombre de caractères.
 ### Retrouver le fichier sur son poste
 
 Le fichier que le programme veut lire est `raven_une_ligne.txt`, le poème du
-TD 1a. Sur les postes de la salle, il est ici :
+TD 1a du cours 1. Sur les postes de la salle, il est ici :
 
 ```text
 C:\Users\eleve\Desktop\info01\cours1\1a_formats\depart\raven_une_ligne.txt
 ```
 
-Le dossier courant de Git Bash est `~/Desktop/info01/cours1/2c_erreurs`,
+Le dossier courant du terminal est `~/Desktop/info01/cours2/1b_erreurs`,
 celui que l'invite affiche. Un chemin relatif se lit à partir de ce dossier
-courant : `..` désigne le dossier parent, ici `cours1/`, et la suite du
-chemin descend de là jusqu'au fichier.
+courant : `..` désigne le dossier parent, ici `cours2/`, `../..` le parent de
+celui-ci, `info01/`, et la suite du chemin descend de là jusqu'au fichier.
 
 ### Corriger et relancer
 
@@ -300,20 +273,20 @@ chemin descend de là jusqu'au fichier.
    par :
 
    ```text
-   ../1a_formats/depart/raven_une_ligne.txt
+   ../../cours1/1a_formats/depart/raven_une_ligne.txt
    ```
 
    Garder les guillemets, et écrire les séparateurs avec `/`, que Python
    accepte sous Windows comme ailleurs.
-2. Enregistrer, puis relancer `python travail/chemin.py`, depuis la même
-   fenêtre de Git Bash.
+2. Enregistrer, puis relancer `python travail/chemin.py`, depuis le même
+   terminal.
 
-**Vérification** : Git Bash affiche `1341 caractères`.
+**Vérification** : le terminal affiche `1341 caractères`.
 
 Si le message `FileNotFoundError` revient, avec le nouveau chemin, vérifier
-dans l'ordre : que l'invite se termine par `2c_erreurs` ; que
-`ls ../1a_formats/depart` affiche `raven_une_ligne.txt` ; que le chemin ne
-contient pas de faute de frappe.
+dans l'ordre : que l'invite se termine par `1b_erreurs` ; que
+`ls ../../cours1/1a_formats/depart` affiche `raven_une_ligne.txt` ; que le
+chemin ne contient pas de faute de frappe.
 
 **À noter** : à partir de quel dossier le chemin relatif est compté, celui
 du fichier `chemin.py` ou celui du terminal. Pour le vérifier, taper
@@ -329,16 +302,16 @@ Cette section se lit après avoir fait les étapes.
 L'affichage des caractères invisibles montre la différence entre un espace
 et une tabulation, qui est dans le fichier et ne se voit pas autrement. Cet
 affichage est le seul moyen de repérer une indentation qui mélange les deux,
-et il resservira au cours 2 : git y signalera des lignes modifiées qui
-semblent identiques, et qui ne diffèrent que par des espaces et des
-tabulations.
+et il resservira avec git, dans la suite de la séance : git signale des
+lignes modifiées qui semblent identiques, et qui ne diffèrent que par des
+espaces et des tabulations.
 
 `Unix (LF)` et `Windows (CR LF)` nomment la façon dont les lignes se
 terminent. Linux et macOS terminent une ligne par un caractère, `LF` (saut
 de ligne, de valeur `0A`) ; Windows par deux, `CR` puis `LF`. Les fichiers du
-TD sont écrits avec `LF` : Notepad++ affiche `LF` à la fin de chaque ligne,
-et `Unix (LF)` dans la barre d'état. Un même texte n'a donc pas la même
-taille selon le système qui l'a enregistré ; le cours 2 y revient avec git.
+TD sont écrits avec `LF` : la barre d'état de VS Code affiche `LF`. Un même
+texte n'a donc pas la même taille selon le système qui l'a enregistré ; la
+partie sur git y revient.
 
 ### Les trois fautes
 
@@ -346,7 +319,7 @@ taille selon le système qui l'a enregistré ; le cours 2 y revient avec git.
 |---|---|---|
 | `surface.py` | `TabError: inconsistent use of tabs and spaces in indentation`, ligne 6 | la ligne 5 est indentée par quatre espaces, la ligne 6 par une tabulation |
 | `moyenne.py` | `SyntaxError: expected ':'`, ligne 6 | il manque les deux-points à la fin de la ligne du `for` |
-| `chemin.py` | `FileNotFoundError: [Errno 2] No such file or directory: 'C:/Users/alice/…'` | le chemin est celui du poste d'Alice ; il faut écrire `../1a_formats/depart/raven_une_ligne.txt` |
+| `chemin.py` | `FileNotFoundError: [Errno 2] No such file or directory: 'C:/Users/alice/…'` | le chemin est celui du poste d'Alice ; il faut écrire `../../cours1/1a_formats/depart/raven_une_ligne.txt` |
 
 Messages relevés avec Python 3.12. Une fois corrigés, les trois programmes
 affichent `294.0`, `130.05` et `1341 caractères`.
@@ -360,9 +333,10 @@ message suffit à trouver la faute : il nomme le caractère attendu, `:`,
 et le `^` désigne la fin de la ligne 6, où il manque. En Python, une ligne
 qui ouvre un bloc (`for`, `if`, `def`) se termine par deux-points.
 
-Notepad++ ne souligne aucune des trois fautes : il colore le code d'après
-l'extension, sans vérifier les règles d'écriture de Python. L'éditeur de
-code du cours 2, VS Code, souligne les deux premières avant tout lancement.
+VS Code souligne les deux premières fautes avant tout lancement : il
+vérifie les règles d'écriture de Python, comme le montre la diapositive
+« Texte brut et règles du langage ». Au cours 1, Notepad++ colorait le même
+code sans rien souligner.
 
 ### Un programme correct sur un autre poste
 
@@ -373,15 +347,15 @@ qu'il contient un chemin **absolu**, `C:/Users/alice/…`, qui part de la
 racine du disque et n'existe que sur ce poste-là.
 
 Un chemin **relatif** part du dossier courant, celui où se trouve le
-terminal ; le dossier du fichier `.py` n'intervient pas. Depuis `2c_erreurs/`,
-`../1a_formats/depart/raven_une_ligne.txt` remonte d'un dossier, puis
-descend dans celui du TD 1a. Il désigne le bon fichier sur tout poste où
-l'archive du cours est extraite de la même façon, quel que soit le nom de
-l'utilisateur, et quel que soit le système. Lancé depuis `travail/`, le même
-programme échoue : le dossier parent y est `2c_erreurs/`, qui ne contient pas
-`1a_formats/`.
+terminal ; le dossier du fichier `.py` n'intervient pas. Depuis `1b_erreurs/`,
+`../../cours1/1a_formats/depart/raven_une_ligne.txt` remonte de deux
+dossiers, jusqu'à `info01/`, puis descend dans le TD 1a du cours 1. Il
+désigne le bon fichier sur tout poste où les archives des cours sont
+extraites de la même façon, quel que soit le nom de l'utilisateur, et quel
+que soit le système. Lancé depuis `travail/`, le même programme échoue : deux
+dossiers plus haut, on est dans `cours2/`, qui ne contient pas `cours1/`.
 
-Le dossier dans lequel Git Bash a été ouvert, ou celui où `cd` a conduit,
+Le dossier dans lequel le terminal a été ouvert, ou celui où `cd` a conduit,
 décide donc de ce que désigne un chemin relatif. Un chemin absolu
 dans un programme est l'erreur la plus fréquente des rendus de code des
 autres cours : le programme ne fonctionne que sur le poste de son auteur.

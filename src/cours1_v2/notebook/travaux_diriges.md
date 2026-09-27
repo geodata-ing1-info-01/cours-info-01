@@ -16,8 +16,7 @@ TD fait constater.
 ## Terminal et premier programme
 
 - [TD 2a — Les fichiers du TD 1a en ligne de commande](td/2a_terminal/guide.md), 15 minutes
-- [TD 2b — Écrire et lancer un programme](td/2b_programme/guide.md), 10 minutes
-- [TD 2c — Trois programmes fautifs](td/2c_erreurs/guide.md), 10 minutes
+- [TD 2b — Écrire et lancer un programme](td/2b_programme/guide.md), 20 minutes
 
 ## Un notebook et la syntaxe de Markdown
 
@@ -29,6 +28,5 @@ TD fait constater.
 td/1a_formats/guide
 td/2a_terminal/guide
 td/2b_programme/guide
-td/2c_erreurs/guide
 td/3a_notebook/guide
 ```

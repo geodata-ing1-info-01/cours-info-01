@@ -4,6 +4,10 @@
 // VS Code : le programme s'ouvre dans Notepad++ et se lance dans Git Bash.
 // La configuration de VS Code passe au cours 2, en classe entière.
 //
+// 27/09/2026 : une étape pour trouver quel python la commande lance, le
+// réglage de conda (venu du TD 2a) et un script de commandes. Le TD des
+// programmes fautifs (ancien TD 2c) est passé au cours 2 v2.
+//
 // Inclus par `cours1_v2.typ` ; compilable seul par
 // `outils/compiler_tds.py --cours 1_v2`.
 #import "../../../commun/prelude.typ": *
@@ -11,40 +15,81 @@
 #let td = (
   numero: "2b",
   titre: "Écrire et lancer un programme",
-  annonce: "Rendre Python disponible dans Git Bash ; ouvrir un programme dans Notepad++, le lancer, le modifier et le relancer ; puis Python en interactif",
+  annonce: "Trouver quel python la commande lance et rendre celui d'Anaconda disponible ; lancer, modifier et relancer un programme, puis un script de commandes ; Python en interactif",
   dossier: "cours1/2b_programme/",
-  duree: "10′",
+  duree: "20′",
 )
 #separateur-td(..td)
 
-// Déplacée de la fin du TD 2a le 27/09 : le réglage se fait au moment où
-// `python` sert pour la première fois.
-#d("Python dans Git Bash, une fois par poste")[
+// Nouveau (v2), 27/09 : la commande et le fichier qu'elle lance.
+#d("Quel python la commande lance")[
   #annonce[
-    Anaconda n'est pas encore visible depuis Git Bash. Une commande de conda
-    l'y rend disponible, dans toutes les fenêtres Git Bash ouvertes ensuite.
+    `python` lance le premier `python.exe` trouvé dans `PATH`. Un chemin
+    complet lance un fichier précis.
   ]
 
   #tableau(
     columns: (auto, 1.25fr, 1fr),
     align: left + horizon,
     [], [Ce qu'il faut faire], [Ce que vous constatez],
-    [1], [`python --version`],
-      reponse[`python` introuvable, ou un message qui renvoie au Microsoft Store],
-    [2], [`source /c/ProgramData/anaconda3/etc/profile.d/conda.sh`, puis `conda init bash`],
-      reponse[une liste de fichiers ; `modified` devant `.bash_profile`],
-    [3], [fermer Git Bash, le rouvrir dans `2b_programme`],
-      reponse[`(base)` au-dessus de l'invite],
-    [4], [`python --version`], reponse[`Python 3.` suivi de la version d'Anaconda],
-    [5], [`ls -a ~`], reponse[`.bash_profile` parmi les noms : un fichier caché, créé à l'étape 2],
+    [1], [dans Git Bash, `cd ../2b_programme`, puis `type -a python`],
+      reponse[le fichier que la commande lance, qui n'est pas celui d'Anaconda ; ou `not found`],
+    [2], [dans la barre d'adresse de l'explorateur, taper `C:\ProgramData\anaconda3`],
+      reponse[`python.exe` parmi les fichiers du dossier],
+    [3], [`/c/ProgramData/anaconda3/python.exe --version`],
+      reponse[`Python 3.` suivi de la version d'Anaconda],
   )
 
   #legende[
-    Le chemin de l'étape 2 est celui d'Anaconda sur les postes de la salle.
-    Sur un ordinateur personnel : page « Git et Git Bash » des annexes.
+    Tout programme se lance ainsi, par le chemin de son fichier.
   ]
 
   #notes[
+    À vérifier le 28/09 sur un poste : ce qu'affiche l'étape 1 sans conda
+    (Python 2.7 attendu, dans `/c/Python27`) et le dossier d'Anaconda.
+
+    `type` est une commande interne de bash ; `which` donne le même
+    chemin, sans les alias ni les commandes internes.
+
+    `C:\ProgramData` est un dossier masqué : l'explorateur ne l'affiche
+    pas, d'où le chemin tapé dans la barre d'adresse.
+
+    Variante, si le temps le permet : `cd /c/ProgramData/anaconda3`, puis
+    `./python.exe --version`, où `./` désigne le dossier courant.
+  ]
+]
+
+// Déplacée de la fin du TD 2a le 27/09 : le réglage se fait au moment où
+// `python` sert pour la première fois.
+#d("Python dans Git Bash, une fois par poste")[
+  #annonce[
+    `conda init bash` écrit dans `~/.bash_profile` l'activation de conda. À
+    chaque ouverture, Git Bash met alors les dossiers d'Anaconda en tête de
+    `PATH`.
+  ]
+
+  #tableau(
+    columns: (auto, 1.25fr, 1fr),
+    align: left + horizon,
+    [], [Ce qu'il faut faire], [Ce que vous constatez],
+    [1], [`source /c/ProgramData/anaconda3/etc/profile.d/conda.sh`, puis `conda init bash`],
+      reponse[une liste de fichiers ; `modified` devant `.bash_profile`],
+    [2], [fermer Git Bash, le rouvrir dans `2b_programme`],
+      reponse[`(base)` au-dessus de l'invite],
+    [3], [`python --version`, puis `type -a python`],
+      reponse[`Python 3.` ; le fichier d'Anaconda, en premier],
+    [4], [`ls -a ~`], reponse[`.bash_profile` parmi les noms : un fichier caché, créé à l'étape 1],
+  )
+
+  #legende[
+    Si le réglage échoue, faire le Python de la séance dans l'invite de
+    commandes d'Anaconda (menu Démarrer) : conda y est actif sans réglage.
+  ]
+
+  #notes[
+    Le chemin de l'étape 1 est celui d'Anaconda sur les postes de la salle.
+    Sur un ordinateur personnel : page « Git et Git Bash » des annexes.
+
     À VÉRIFIER sur un poste de la salle, avant d'écrire la version finale.
     `conda init` réécrit aussi des fichiers de `C:\ProgramData\anaconda3`
     quand leur contenu diffère ; sans droits d'administrateur, il affiche
@@ -111,8 +156,9 @@
     de tête : le `hello world` n'avait aucune de ces propriétés.
 
     Ce programme ne montre que sa dernière ligne ; la session interactive
-    sert à voir ce qu'il fait entre le début et la fin. v2 : le pas à pas
-    (débogueur) est en annexe.
+    sert à voir ce qu'il fait entre le début et la fin. Le pas à pas
+    (débogueur) est dans l'archive 2026 ; à reprendre au cours 2, avec
+    l'éditeur de code.
   ]
 ]
 
@@ -138,7 +184,7 @@
   ]
 
   #notes[
-    Étape 2 : Git Bash rouvert dans `2b_programme/` à la première
+    Étape 2 : Git Bash rouvert dans `2b_programme/` à la deuxième
     diapositive du TD. Si `python` n'est pas trouvé, le réglage de conda
     dans Git Bash n'a pas été fait sur ce poste.
 
@@ -149,6 +195,38 @@
     décimale par `:.1f`.
   ]
 ]
+// Nouveau (v2), 27/09 : le script de la diapositive « Un script de commandes ».
+// Facultatif depuis le 28/09.
+#d("Lancer le script, si le temps le permet")[
+  #annonce[
+    `commandes.sh` reprend des commandes du TD 2a, puis lance le programme
+    du TD.
+  ]
+
+  #tableau(
+    columns: (auto, 1.25fr, 1fr),
+    align: left + horizon,
+    [], [Ce qu'il faut faire], [Ce que vous constatez],
+    [1], [ouvrir `commandes.sh` dans Notepad++],
+      reponse[six lignes, dont deux commentaires ; Notepad++ reconnaît l'extension `.sh`],
+    [2], [`bash commandes.sh`],
+      reponse[les quatre pages copiées dans `copies/`, puis `moyenne : 130.1 m`],
+    [3], [relancer : flèche vers le haut, puis `Entrée`],
+      reponse[la même sortie, sans erreur : `mkdir -p` accepte un dossier qui existe],
+  )
+
+  #legende[
+    Le même script pour l'invite de commandes, `commandes.bat` : annexe du
+    guide.
+  ]
+
+  #notes[
+    La moyenne est celle de l'étape 4 de la diapositive précédente, avec
+    quatre altitudes. Sortie de `bash commandes.sh` relevée sous Linux, sur
+    une copie de l'archive.
+  ]
+]
+
 #d("Python en interactif")[
   #annonce[
     Dans Git Bash, taper `python` sans nom de fichier ouvre une session
@@ -177,6 +255,10 @@
   ]
 
   #notes[
+    À vérifier en salle : dans la fenêtre de Git Bash, `python` seul peut ne
+    pas afficher `>>>`. Dans ce cas, `winpty python`, ou l'invite de
+    commandes d'Anaconda.
+
     Faire remarquer les trois chevrons : c'est l'invite de Python, pas
     celle du terminal. Les confondre produit un `SyntaxError` quand on
     tape une commande du système. Les trois points sont la suite d'un bloc

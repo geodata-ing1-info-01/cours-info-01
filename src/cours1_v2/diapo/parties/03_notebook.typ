@@ -15,17 +15,33 @@
 
 #d("Programmation littérale")[
   #annonce[
-    Le texte, le code et son résultat tiennent dans un seul document.
+    Le texte, le code et son résultat tiennent dans un seul document. Les
+    cours et les TD de Python du module emploient des notebooks, qu'il faut
+    donc savoir lancer et exécuter.
   ]
 
-  #align(center, schema-notebook())
+  // 28/09 : la capture de « Un notebook dans JupyterLab », réunie ici.
+  #align(center)[
+    #if captures-disponibles {
+      box(stroke: 1pt + accent.lighten(55%),
+          image("/illustrations/cours1/notebook_jupyterlab.png", height: 165pt))
+    } else {
+      scale(70%, reflow: true, schema-notebook())
+    }
+  ]
 
   #legende[
-    Trois sortes de blocs, dans l'ordre où on les écrit. Le terme est de Donald
+    Du texte, une cellule de code et sa sortie, puis du texte. Le noyau, un
+    programme Python lancé par JupyterLab, exécute les cellules et garde
+    leurs variables. Le terme « programmation littérale » est de Donald
     Knuth, 1984.
   ]
 
   #notes[
+    Pourquoi en parler dès le cours 1 : le notebook montre l'explication, le
+    code et le résultat ensemble, ce qui sert à apprendre et à expliquer ;
+    les cours 3 et 4 font leurs TD de Python dans des notebooks.
+
     L'idée à faire passer, et la seule : ailleurs, le code est dans un
     fichier, l'explication dans un autre, et le résultat nulle part. Ici
     les trois sont au même endroit, et dans l'ordre du raisonnement.
@@ -44,28 +60,8 @@
     Ce qu'un notebook n'est pas : un moyen de livrer un outil. On y
     explore et on y explique ; ce qui doit tourner tout seul devient un
     script, au cours 3.
-  ]
-]
-#d("Un notebook dans JupyterLab")[
-  #annonce[
-    Les trois sortes de blocs dans une vraie fenêtre.
-  ]
 
-  #align(center)[
-    #if captures-disponibles {
-      box(stroke: 1pt + accent.lighten(55%),
-          image("/illustrations/cours1/notebook_jupyterlab.png", width: 88%))
-    } else {
-      scale(78%, reflow: true, schema-notebook())
-    }
-  ]
-
-  #legende[
-    Capture réelle. Le code y calcule la longueur d'un trajet de quatre points.
-  ]
-
-  #notes[
-    Montrer où sont les trois blocs de la diapositive précédente, dans
+    Sur la capture, montrer les trois blocs, dans
     l'ordre : le titre et la phrase en haut, la cellule de code au milieu
     avec son `[1]`, la sortie juste en dessous, puis le texte qui commente
     le résultat.
@@ -81,7 +77,6 @@
     comme le reste.
   ]
 ]
-
 // --------------------------------------------
 // Nouveau (v2) : la syntaxe réduite à ce qu'une cellule de texte demande.
 #d("La syntaxe minimale de Markdown")[
@@ -116,90 +111,63 @@
     Syntaxe complète, publiée par Gruber :
     daringfireball.net/projects/markdown/syntax ; l'intention de Markdown est
     au cours 2.
+
+    Dans JupyterLab, `Maj` + `Entrée` affiche la cellule mise en forme, un
+    double-clic revient au texte tapé. Une cellule de texte n'a pas de
+    numéro `[1]` : aucun noyau ne l'exécute. (28/09 : « Le bloc de texte :
+    du Markdown » retirée, réunie ici.)
   ]
 ]
-#d("Le bloc de texte : du Markdown")[
-  #annonce[
-    Le bloc de texte s'écrit en Markdown, et s'affiche mis en forme.
-  ]
-
-  #face-a-face(
-    panneau("Ce qu'on tape dans le bloc")[
-      ```markdown
-      # Longueur d'un trajet
-
-      Les points du trajet sont donnés en
-      **coordonnées projetées**, en mètres.
-      ```
-    ],
-    panneau("Ce que le notebook affiche")[
-      #v(0.4em)
-      #text(size: 24pt, weight: demi-gras)[Longueur d'un trajet]
-      #v(0.5em)
-      #text(size: 16pt)[
-        Les points du trajet sont donnés en #strong[coordonnées projetées],
-        en mètres.
-      ]
-    ],
-  )
-
-  #legende[
-    Le `#` fait un titre, les deux astérisques mettent en gras, comme sur la
-    diapositive précédente.
-  ]
-
-  #notes[
-    Le bloc bascule entre les deux états : `Maj` + `Entrée` affiche la mise
-    en forme, un double clic revient au texte source. C'est la même
-    alternance que l'aperçu de l'éditeur.
-
-    Un bloc de texte ne s'exécute pas au sens du code : il n'y a pas de
-    noyau derrière, seulement une mise en forme. Le numéro `[1]` n'apparaît
-    donc que sur les blocs de code.
-  ]
-]
-
 // --------------------------------------------
 // Nouveau (v2) : remplace « Lancer JupyterLab depuis Anaconda » ; Navigator
-// était lent à démarrer sur les postes en 2026.
+// était lent à démarrer sur les postes en 2026. 27/09 : l'invite de commandes
+// d'Anaconda d'abord, Git Bash ensuite.
 #d("Lancer JupyterLab")[
   #annonce[
-    JupyterLab est installé avec Anaconda. Lancé depuis Git Bash, il montre
-    les fichiers du dossier courant.
+    JupyterLab est installé avec Anaconda, et se lance dans un terminal où
+    conda est actif. Le module donne deux terminaux, pour ne pas être bloqué
+    si le réglage de Git Bash manque sur un poste.
   ]
 
   #face-a-face(
-    panneau("Depuis Git Bash")[
-      ```console
-      $ cd ~/Desktop/info01/cours1/3a_notebook
-      $ jupyter lab
-      ```
+    panneau("Depuis l'invite de commandes d'Anaconda")[
+      #text(size: 16pt)[```console
+      (base) …>cd Desktop\info01\cours1\3a_notebook
+      (base) …>jupyter lab
+      ```]
       #v(0.3em)
       #text(size: 15pt, fill: estompe)[
-        Le navigateur s'ouvre sur `localhost:8888`. Git Bash reste occupé
-        tant que JupyterLab tourne : `Ctrl` + `C` l'arrête.
+        Menu Démarrer, « Anaconda Prompt ». conda y est actif sans réglage :
+        à essayer d'abord.
       ]
     ],
-    panneau("Depuis Anaconda Navigator")[
-      #text(size: 16pt)[
-        Page d'accueil, fiche JupyterLab, bouton *Launch*. Il montre le
-        dossier personnel : descendre jusqu'à `Desktop/info01/cours1/3a_notebook`.
+    panneau("Depuis Git Bash")[
+      #text(size: 16pt)[```console
+      $ cd ~/Desktop/info01/cours1/3a_notebook
+      $ jupyter lab
+      ```]
+      #v(0.3em)
+      #text(size: 15pt, fill: estompe)[
+        Le terminal du module, après le réglage du TD 2b.
       ]
     ],
   )
 
   #legende[
-    `localhost` désigne le poste lui-même : la page est affichée par le
-    navigateur, et le serveur de JupyterLab tourne sur le même poste. Le
-    cours 5 y revient.
+    Le navigateur s'ouvre sur `localhost:8888`, le poste lui-même : le
+    serveur de JupyterLab tourne sur le poste, et le terminal reste occupé
+    tant qu'il tourne. `Ctrl` + `C` l'arrête. Le cours 5 y revient.
   ]
 
   #notes[
     En 2026, Navigator a mis plusieurs minutes à s'ouvrir sur les postes, et
-    répondait parfois « already running » sans fenêtre. Git Bash d'abord,
-    Navigator en secours.
+    répondait parfois « already running » sans fenêtre. Il reste le dernier
+    secours : page d'accueil, fiche JupyterLab, bouton Launch.
 
-    `jupyter lab` suppose conda disponible dans Git Bash (début du TD 2b).
+    L'invite de commandes d'Anaconda emploie `cmd` : chemins avec des `\`.
+    Elle s'ouvre dans le dossier personnel, `C:\Users\eleve`, que l'invite
+    affiche à la place de `…`. Nom du raccourci à vérifier sur les postes
+    (« Anaconda Prompt »).
 
     Le client et le serveur d'un notebook sont au cours 5 (syllabus v2).
   ]

@@ -12,7 +12,7 @@
 #let td = (
   numero: "3a",
   titre: "Un notebook dans JupyterLab",
-  annonce: "Exécuter les cellules d'un notebook dans le désordre, voir ce que le noyau retient, puis lui ajouter une cellule de texte en Markdown",
+  annonce: "Lancer JupyterLab, exécuter les cellules d'un notebook dans le désordre, voir ce que le noyau retient, lui ajouter une cellule de texte en Markdown, puis relancer JupyterLab depuis Git Bash",
   dossier: "cours1/3a_notebook/",
   duree: "12′",
 )
@@ -28,7 +28,7 @@
     columns: (auto, 1.2fr, 1fr),
     align: left + horizon,
     [], [Ce qu'il faut faire], [Ce que vous constatez],
-    [1], [lancer JupyterLab dans `cours1/3a_notebook/`, ouvrir `altitudes.ipynb`],
+    [1], [invite de commandes d'Anaconda, `cd Desktop\info01\cours1\3a_notebook`, `jupyter lab` ; ouvrir `altitudes.ipynb`],
       reponse[les cellules de code n'ont pas encore de numéro],
     [2], [exécuter les cellules une à une, de haut en bas],
       reponse[`[1]`, `[2]`… à gauche, dans l'ordre ; la moyenne vaut `129.0`],
@@ -72,7 +72,9 @@
       reponse[le texte reste brut tant qu'on l'édite],
     [4], [`Maj` + `Entrée` ; double-clic pour revenir au texte],
       reponse[titre, liste et lien mis en forme],
-    [5], [`Ctrl` + `S`], [],
+    [5], [`Ctrl` + `S`], reponse[le notebook est enregistré],
+    [6], [si le temps le permet : `Ctrl` + `C` dans l'invite, puis `jupyter lab` depuis Git Bash],
+      reponse[le notebook rouvert garde la cellule de texte],
   )
 
   #legende[

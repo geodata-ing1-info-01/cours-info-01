@@ -3,9 +3,9 @@
 //
 // Reprend les diapositives 43 à 46 du cours 1 de 2026 (fonctions d'un IDE,
 // édition, règles du langage, chasse fixe), sans les reformuler. Celle de
-// l'indentation reste au cours 1 v2, pour le TD des programmes fautifs.
+// l'indentation vient du cours 1 v2 (27/09/2026), avec le TD 1b qui s'en sert.
 #import "../../../commun/prelude.typ": *
-#import "../../../cours1/diapo/schemas.typ": souligne-ondule
+#import "../../../cours1/diapo/schemas.typ": souligne-ondule, blancs
 
 #separateur-reprise(
   "L'éditeur de code",
@@ -225,5 +225,61 @@
 
     Lien avec LibreOffice, manipulé au cours 1 : on y choisit une police
     pour la mise en page ; ici on la subit pour une raison technique.
+  ]
+]
+
+// --------------------------------------------
+// Reprise de la diapositive 47 du cours 1 de 2026. Passée du cours 1 v2 au
+// cours 2 v2 le 27/09/2026, avec le TD des programmes fautifs (TD 1b).
+#d("L'indentation, en espaces ou en tabulation")[
+  #annonce[
+    Un espace et une tabulation sont deux caractères différents. Une
+    tabulation vaut le nombre de colonnes que l'éditeur lui donne, et ce
+    réglage change d'un éditeur à l'autre.
+  ]
+
+  #face-a-face(
+    panneau("Tabulation réglée sur 4 colonnes")[
+      #blancs[#raw("def surface(longueur, largeur):\n····aire = longueur * largeur\n→   return aire", block: true)]
+      #v(0.3em)
+      #text(size: 14pt, fill: estompe)[les deux lignes semblent alignées]
+    ],
+    panneau("Le même fichier, tabulation sur 8")[
+      #blancs[#raw("def surface(longueur, largeur):\n····aire = longueur * largeur\n→       return aire", block: true)]
+      #v(0.3em)
+      #text(size: 14pt, fill: brun)[le décalage apparaît]
+    ],
+  )
+
+  #legende[
+    `·` marque un espace, `→` une tabulation, comme l'éditeur les dessine.
+    Les octets du fichier sont les mêmes des deux côtés : seul le réglage de
+    l'éditeur change.
+  ]
+
+  #notes[
+    Les deux lignes sont celles de `cours2/1b_erreurs/depart/surface.py` :
+    la cinquième indentée par quatre espaces, la sixième par une tabulation.
+    Le TD 1b fera corriger ce fichier ; le message d'erreur s'y lit à ce
+    moment, ne pas le projeter ici.
+
+    Python refuse ce mélange dans une même indentation, et le dit par
+    `TabError`. Le message ne parle pas d'espace manquant : il dit que
+    l'indentation mélange deux caractères. À l'œil nu, sur un éditeur réglé
+    sur 4, rien ne se voit — c'est ce que montre la colonne de gauche.
+
+    VS Code insère quatre espaces pour une tabulation dans un fichier
+    Python.
+
+    Les blancs s'affichent depuis le réglage du TD 1a (« render
+    whitespace ») ; le TD 1b s'en sert.
+
+    Fins de ligne, à dire en passant : Windows en met deux (`CRLF`), Linux et
+    macOS un seul (`LF`). Un même fichier n'a donc pas la même taille selon la
+    machine, et une comparaison peut signaler toutes les lignes comme
+    modifiées. Repris plus loin avec git.
+
+    Le saut de ligne est un caractère comme les autres : « Ce que contient un
+    fichier texte », en annexe, le compte sur un poème tenant sur une ligne.
   ]
 ]

@@ -106,8 +106,8 @@
     columns: (auto, 1fr, 1.25fr),
     align: left + horizon,
     [], [Interface graphique], [Ligne de commande],
-    [Trouver une opération], [dans les menus affichés], [connaître son nom, ou lire `--help`],
-    [Voir le résultat], [après chaque action], [en le demandant, avec `ls`],
+    [Trouver une opération], [dans les menus affichés], [connaître son nom, ou lire l'aide],
+    [Voir le résultat], [après chaque action], [en le demandant],
     [Premières utilisations], [peu d'erreurs], [des fautes de frappe, des options oubliées],
     [Traiter 120 fichiers], [120 fois la même opération], [une commande, avec un motif],
     [Refaire le travail plus tard], [refaire chaque action], [relancer la commande, gardée dans un fichier],
@@ -181,7 +181,7 @@
     columns: (auto, 1fr, auto, 1fr),
     align: left + horizon,
     [Terminal], [Où le trouver], [Interpréteur], [Dans le module],
-    [Invite de commandes], [menu Démarrer], [cmd], [non employé],
+    [Invite de commandes], [menu Démarrer], [cmd], [celle d'Anaconda, pour Python et JupyterLab],
     [Terminal Windows], [menu Démarrer], [PowerShell], [non employé],
     surligne[Git Bash], surligne[clic droit dans un dossier],
       surligne[bash], surligne[à toutes les séances],
@@ -193,8 +193,8 @@
   ]
 
   #notes[
-    Non montrés ici (27/09) : l'invite de commandes d'Anaconda, en
-    dépannage, et le terminal de VS Code, au cours 2.
+    Non montrés ici (27/09) : l'invite de commandes d'Anaconda, qui lance
+    JupyterLab à la partie 3, et le terminal de VS Code, au cours 2.
 
     Raison du choix (syllabus v2) : en 2026, chaque séance employait un
     terminal différent (PowerShell remplacé par un profil « Anaconda Prompt » au
@@ -306,7 +306,7 @@
   #grid(
     columns: (1.25fr, 1fr), column-gutter: 18pt, align: horizon,
     fenetre("MINGW64:/c/Users/eleve/Desktop/info01/cours1", code: true)[
-      #raw("eleve@POSTE-12 MINGW64 ~/Desktop/info01/cours1\n$ ls\n1a_formats/  2a_terminal/  2b_programme/\n2c_erreurs/  3a_notebook/\n\neleve@POSTE-12 MINGW64 ~/Desktop/info01/cours1\n$ ")
+      #raw("eleve@POSTE-12 MINGW64 ~/Desktop/info01/cours1\n$ ls\n1a_formats/  2a_terminal/  2b_programme/  3a_notebook/\n\neleve@POSTE-12 MINGW64 ~/Desktop/info01/cours1\n$ ")
     ],
     tableau(
       columns: (auto, 1fr),
@@ -374,7 +374,8 @@
 ]
 
 // --------------------------------------------
-#d("Les commandes de base")[
+// 28/09 : une ligne par forme de commande, en deux diapositives.
+#d("Les commandes de base : se déplacer")[
   #annonce[
     Chaque commande de base a son équivalent à la souris dans l'explorateur
     de fichiers.
@@ -385,8 +386,18 @@
     align: left + horizon,
     [Commande], [Ce qu'elle fait], [Dans l'explorateur],
     [`pwd`], [affiche le dossier courant], [la barre d'adresse],
-    [`ls` #h(0.3em) `ls dossier`], [liste le contenu d'un dossier], [la fenêtre ouverte],
-    [`cd dossier` #h(0.3em) `cd ..`], [change de dossier courant], [double-clic ; flèche « dossier parent »],
+    [`ls`], [liste le dossier courant], [la fenêtre ouverte],
+    [`ls dossier`], [liste le dossier nommé], [ouvrir ce dossier],
+    [`cd dossier`], [descend dans le dossier nommé], [double-clic sur le dossier],
+    [`cd ..`], [remonte au dossier parent], [flèche « dossier parent »],
+  )
+]
+
+#d("Les commandes de base : agir sur les fichiers")[
+  #tableau(
+    columns: (auto, 1fr, 1fr),
+    align: left + horizon,
+    [Commande], [Ce qu'elle fait], [Dans l'explorateur],
     [`cp source destination`], [copie un fichier], [`Ctrl` + `C`, puis `Ctrl` + `V`],
     [`mv source destination`], [déplace ou renomme], [glisser ; `F2`],
     [`mkdir nom`], [crée un dossier], [Nouveau dossier],
@@ -435,22 +446,23 @@
       C:\\Users\\alice\\ \
       └─ cours1\\ \
       #h(0.75em)├─ 1a_formats\\ \
-      #h(0.75em)│#h(0.3em)└─ raven.odt \
-      #h(0.75em)└─ 2b_erreurs\\ \
-      #h(2.05em)└─ chemin.py
+      #h(0.75em)│#h(0.3em)└─ depart\\ \
+      #h(0.75em)│#h(1.6em)└─ raven.odt \
+      #h(0.75em)└─ 2b_programme\\ \
+      #h(2.05em)└─ altitudes.py
     ],
     tableau(
       columns: (auto, 1fr, auto),
       align: left + horizon,
       [], [Le chemin de `raven.odt`], [Depuis],
-      [Absolu], [`C:\Users\alice\cours1\1a_formats\raven.odt`], [la racine],
-      [Relatif], [`1a_formats\raven.odt`], [`cours1`],
-      [Relatif qui remonte], [`..\1a_formats\raven.odt`], [`2b_erreurs`],
+      [Absolu], [`C:\Users\alice\cours1\1a_formats\depart\raven.odt`], [la racine],
+      [Relatif], [`1a_formats\depart\raven.odt`], [`cours1`],
+      [Relatif qui remonte], [`..\1a_formats\depart\raven.odt`], [`2b_programme`],
     ),
   )
 
   #legende[
-    Sous macOS et Linux, l'autre séparateur : `/home/alice/cours1/1a_formats/raven.odt`.
+    Sous macOS et Linux, l'autre séparateur : `/home/alice/cours1/1a_formats/depart/raven.odt`.
     Un projet qui n'écrit que des chemins relatifs se copie, se déplace et
     s'envoie sans rien changer : `C:\Users\alice` n'existe que sur un poste.
   ]
@@ -458,10 +470,10 @@
   #notes[
     L'intérêt du relatif, à dire avec la légende : un programme ne connaît
     pas a priori le chemin absolu du dossier d'un utilisateur, mais il peut
-    imposer une arborescence relative : `chemin.py` lit `../1a_formats/`,
-    et il tourne chez tout le monde. C'est le chemin en dur, absolu, qui
-    casse au premier changement de poste, et le TD 2b en fait corriger un —
-    celui-là même, sur ce fichier.
+    imposer une arborescence relative, comme `../1a_formats/`, et il tourne
+    chez tout le monde. Le chemin en dur, absolu, casse au premier
+    changement de poste ; le TD 1b du cours 2 en fait corriger un.
+    (28/09 : exemple refait sur les dossiers de la v2.)
 
     Lire l'arborescence avant le tableau : les trois chemins désignent le
     même fichier, `raven.odt`, et ne diffèrent que par l'endroit d'où on le
@@ -509,73 +521,52 @@
 ]
 
 // --------------------------------------------
-#d("Les fichiers cachés")[
-  #annonce[
-    Un nom qui commence par un point désigne un fichier caché : `ls` ne
-    l'affiche pas, `ls -a` l'affiche.
-  ]
-
+// 28/09 : « Les fichiers cachés » et « Le motif * » réunies, textes gardés.
+#d([Fichiers cachés et motif `*`])[
   #face-a-face(
-    panneau[`ls`, sur le dossier `travail/` vide][
+    panneau[Un nom qui commence par un point désigne un fichier caché : `ls` ne l'affiche pas, `ls -a` l'affiche.][
       ```console
       $ ls travail
-      $
-      ```
-    ],
-    panneau[`ls -a`, sur le même dossier][
-      ```console
       $ ls -a travail
       ./  ../
-      $
       ```
+      #v(0.2em)
+      #text(size: 14pt, fill: estompe)[
+        `.` et `..`, le dossier courant et son parent, sont les deux
+        entrées cachées de tout dossier.
+      ]
+    ],
+    panneau[Dans un nom de fichier, `*` remplace n'importe quelle suite de caractères.][
+      #tableau(
+        columns: (auto, 1fr),
+        align: left + horizon,
+        [Commande], [Noms désignés dans `depart/`],
+        [`ls depart/*.txt`], [les deux fichiers `.txt`],
+        [`ls depart/raven*`], [les cinq fichiers de *The Raven*],
+        [`cp depart/*.html travail/`], [les quatre pages web],
+      )
     ],
   )
 
   #legende[
-    `.` et `..`, le dossier courant et son parent, sont les deux entrées
-    cachées de tout dossier. Le TD 2b crée un fichier caché, `.bash_profile`,
+    Git Bash remplace le motif par la liste des noms qui correspondent, puis
+    lance la commande. Le TD 2b crée un fichier caché, `.bash_profile`,
     dans le dossier personnel ; le cours 2 un dossier caché, `.git`.
   ]
 
   #notes[
     Sorties relevées sur le dossier livré du TD 1a, `travail/` encore vide
-    (bash 5.2 sous Linux, `ls -F`).
+    (bash 5.2 sous Linux, `ls -F`). `ls depart/*.txt` donne
+    `auld_lang_syne_une_ligne.txt` et `raven_une_ligne.txt`.
 
     Dans l'explorateur de Windows : Affichage, Afficher, Éléments masqués.
     Windows marque un fichier caché par un attribut ; Git Bash suit la
     convention du point, celle de Linux et de macOS.
-  ]
-]
 
-// --------------------------------------------
-#d([Le motif `*`])[
-  #annonce[
-    Dans un nom de fichier, `*` remplace n'importe quelle suite de
-    caractères. Git Bash remplace le motif par la liste des noms qui
-    correspondent, puis lance la commande.
-  ]
-
-  #tableau(
-    columns: (auto, 1fr),
-    align: left + horizon,
-    [Commande], [Noms que le motif désigne dans `depart/`],
-    [`ls depart/*.txt`], [`auld_lang_syne_une_ligne.txt`, `raven_une_ligne.txt`],
-    [`ls depart/raven*`], [les cinq fichiers de *The Raven*],
-    [`cp depart/*.html travail/`], [les quatre pages web, copiées dans `travail/`],
-  )
-
-  #legende[
-    Le motif s'emploie avec toutes les commandes : l'interpréteur le
-    remplace avant que le programme ne démarre.
-  ]
-
-  #notes[
     Le cours 2 de 2026 appelait ces motifs « expressions régulières », à
     tort : les expressions régulières (`grep`, module `re` de Python) ont
     une autre syntaxe, où `*` répète le caractère précédent.
 
     `?` remplace un seul caractère ; ne le donner que si la question vient.
-
-    Sorties relevées sur le dossier livré du TD 1a.
   ]
 ]

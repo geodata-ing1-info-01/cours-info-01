@@ -242,3 +242,47 @@
     legende-panneau[les deux exports],
   )
 }
+
+// ---------------------------------------------------------------------------
+// Une fenêtre de terminal, une ligne par `raw`
+//
+// Les lignes d'invite (`eleve@…`) sont estompées, les commandes et les
+// sorties à la taille du texte. `raw` est à 0,78 em du texte qui l'entoure :
+// `taille` est donc celle du texte, pas celle du code affiché.
+#let terminal(titre: "Git Bash", taille: 19pt, ..lignes) = fenetre(titre, code: true)[
+  #set par(leading: 0.45em)
+  #for ligne in lignes.pos() [
+    #text(size: taille, fill: if ligne.starts-with("eleve@") { estompe } else { accent }, raw(ligne)) \
+  ]
+]
+
+// ---------------------------------------------------------------------------
+// La recherche d'une commande dans PATH, avant et après `conda activate`
+//
+// Deux colonnes de dossiers, dans l'ordre de PATH. Le premier dossier qui
+// contient `python.exe` est surligné : c'est lui que la commande lance. Le
+// Python 2.7 des postes est un exemple, à vérifier en salle.
+
+#let _dossier-path(chemin, contenu, lance: false) = block(
+  width: 100%, inset: (x: 8pt, y: 5pt), above: 3pt, below: 3pt,
+  fill: if lance { attention.lighten(85%) } else { white },
+  stroke: 0.8pt + accent.lighten(if lance { 20% } else { 55% }),
+)[
+  #text(font: police-code, size: 12.5pt)[#chemin]
+  #h(1fr)
+  #text(size: 13pt, fill: estompe)[#contenu]
+]
+
+#let schema-path() = face-a-face(
+  panneau[Sans conda : le premier `python.exe` trouvé, surligné, est lancé][
+    #_dossier-path("/usr/bin", [`ls`, `cp`, `bash`…])
+    #_dossier-path("/c/Windows/system32", [`cmd.exe`…])
+    #_dossier-path("/c/Python27", [`python.exe`, Python 2.7], lance: true)
+  ],
+  panneau[Après `conda activate` : les dossiers d'Anaconda passent en tête][
+    #_dossier-path("/c/ProgramData/anaconda3", [`python.exe`, Python 3], lance: true)
+    #_dossier-path("/usr/bin", [`ls`, `cp`, `bash`…])
+    #_dossier-path("/c/Windows/system32", [`cmd.exe`…])
+    #_dossier-path("/c/Python27", [`python.exe`, Python 2.7])
+  ],
+)

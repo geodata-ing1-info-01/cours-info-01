@@ -183,7 +183,6 @@
 ├── 1a_formats/
 ├── 2a_terminal/
 ├── 2b_programme/
-├── 2c_erreurs/
 └── 3a_notebook/")
     ]
   ]
@@ -199,7 +198,8 @@
     Rappeler le nom du dossier à chaque TD.
 
     Version 2 : aucun TD facultatif dans la séance. Les TD 1b (archive
-    `.odt`), 2c de 2026 (C++), 4b et 4c passent en annexe.
+    `.odt`), 4b et 4c de 2026 restent dans l'archive 2026 du book ; le TD 2c
+    (C++) est l'annexe « C++ ».
   ]
 ]
 
@@ -215,7 +215,7 @@
     align: (left + horizon, left + horizon, right + horizon),
     [Partie], [Nature], [Durée],
     [Logiciels, fichiers et stockage], [cours et TD 1a], [30′],
-    [Terminal et premier programme], [cours et TD 2a, 2b, 2c], [50′],
+    [Terminal et premier programme], [cours et TD 2a, 2b], [50′],
     [Un notebook et la syntaxe de Markdown], [cours et TD 3a], [15′],
   )
 
@@ -229,9 +229,10 @@
   ]
 
   #notes[
-    Les diapositives brunes sont les TD : cinq, dans les trois parties.
+    Les diapositives brunes sont les TD : quatre, dans les trois parties.
 
     Si la séance déborde, la partie 3 passe en début de cours 3, qui ouvre
-    des notebooks ; le TD 2c ensuite (syllabus v2).
+    des notebooks. Le TD des programmes fautifs est au cours 2 v2 depuis le
+    27/09/2026.
   ]
 ]

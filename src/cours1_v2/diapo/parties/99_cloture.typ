@@ -13,7 +13,9 @@
     [Le disque du poste], [garde vos fichiers ; le dossier partagé est à toute la salle],
     [Le terminal], [transmet des commandes à un interpréteur ; au module, Git Bash],
     [Un chemin relatif], [part du dossier courant ; `..` remonte d'un dossier],
+    [Une commande], [désigne un fichier exécutable, cherché dans `PATH`],
     [L'interpréteur python], [exécute le fichier enregistré sur le disque],
+    [Automatiser], [un logiciel pour ce qu'il prévoit, un script de commandes pour répéter, un programme pour le reste],
     [Un notebook], [texte, code et résultats ; le noyau retient les variables],
   )
 

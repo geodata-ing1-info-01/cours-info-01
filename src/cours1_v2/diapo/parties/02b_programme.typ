@@ -1,205 +1,248 @@
 // Partie 2 du cours 1 v2, seconde moitié : le premier programme. Incluse par
 // `cours1_v2.typ`. Un fichier inclus n'hérite pas des imports de son appelant.
 //
-// Reprend les diapositives 39, 40 et 42 du cours 1 de 2026 (programme et
-// application, compilé et interprété, place de l'interpréteur), et celle de
-// l'indentation, dont le TD 2c a besoin. Les fonctions d'un IDE et l'édition
-// passent au cours 2 ; « Du code source aux instructions machine » en annexe.
+// Refaite le 27/09/2026. Python y est présenté comme un programme en ligne de
+// commande, lancé par le nom d'un fichier exécutable que bash cherche dans
+// PATH ; puis compilé et interprété, avec ce que chacun apporte et le choix de
+// Python ; enfin un script de commandes. « D'un programme à une application »
+// et « La place de l'interpréteur » sont passées en annexe du book
+// (`src/annexes/plus_loin/programme_interpreteur.md`), l'indentation et le TD
+// des programmes fautifs au cours 2 v2.
 #import "../../../commun/prelude.typ": *
-#import "../../../cours1/diapo/schemas.typ": blancs
+#import "../schemas.typ": terminal, schema-path, chaine-terminal
 
 #separateur-reprise(
   "Premier programme",
   annonce: "Un programme Python est un fichier texte, que l'interpréteur python exécute.",
 )
 
-#d("D'un programme à une application")[
+// --------------------------------------------
+#d("Python, un programme en ligne de commande")[
   #annonce[
-    Une distinction entre un programme et un logiciel, au sens classique, est
-    la façon dont ils sont distribués et ce que doit faire un utilisateur pour
-    arriver à s'en servir.
+    `python` se lance dans un terminal, suivi du nom du fichier à exécuter. Il
+    n'ouvre pas de fenêtre et écrit ses résultats dans le terminal. Tout
+    terminal où Python est disponible convient.
   ]
 
-  #block(width: 100%, fill: gris, inset: (x: 12pt, y: 5pt), below: 0.4em)[
-    #text(size: 15pt, fill: estompe, weight: demi-gras)[Distribution]
-    #v(0.25em)
-    #chaine(
-      ("le code source", "ce qu'on écrit"),
-      ("empaquetage", "packaging"),
-      ("une application", "qui s'installe"),
-    )
-  ]
-
-  #block(width: 100%, fill: accent.lighten(92%), inset: (x: 12pt, y: 5pt))[
-    #text(size: 15pt, fill: accent, weight: demi-gras)[Déploiement]
-    #v(0.25em)
-    #chaine(
-      ("le code source", "ce qu'on écrit"),
-      ("mise en ligne", "déploiement"),
-      ("une application web", "rien à installer"),
-    )
-  ]
+  #face-a-face(
+    panneau[Dans Git Bash][
+      #terminal(
+        "$ cd ~/Desktop/info01/cours1/2b_programme",
+        "$ python altitudes.py",
+        "moyenne : 129.0 m",
+      )
+    ],
+    panneau[Dans l'invite de commandes d'Anaconda][
+      #terminal(
+        titre: "Anaconda Prompt",
+        taille: 17pt,
+        "(base) …>cd Desktop\\info01\\cours1\\2b_programme",
+        "(base) …\\2b_programme>python altitudes.py",
+        "moyenne : 129.0 m",
+      )
+    ],
+  )
 
   #legende[
-    C'est l'empaquetage qui change, pas le programme : le même code se distribue
-    en application à installer, ou se déploie en application web.
+    L'invite de commandes d'Anaconda est `cmd`, avec conda déjà activé :
+    `python` y lance le Python d'Anaconda sans réglage. Comme `ls` ou `cp`,
+    `python` est une commande, qu'un script peut lancer.
   ]
 
   #notes[
-    Motiver avant de définir : renommer 300 photos par leur date prend une
-    soirée à la main, quelques secondes par programme ; la deuxième
-    exécution ne coûte rien, et une erreur de recopie devient
-    systématique, donc repérable.
+    Sortie relevée avec Python 3.12 sous Linux. `…` remplace le dossier
+    personnel, `C:\Users\eleve`, où l'invite d'Anaconda s'ouvre.
 
-    Trois mots à séparer : « programmation » nomme l'activité, « programme »
-    son résultat, « application » ce que reçoit celui qui s'en sert. Aucun ne
-    désigne une nature différente : c'est l'usage qui les spécialise.
+    Git Bash demande le réglage du début du TD 2b ; l'invite de commandes
+    d'Anaconda reste le recours si ce réglage manque sur un poste, comme
+    pour JupyterLab à la partie 3.
 
-    Ne pas développer l'empaquetage ni le déploiement, les mots suffisent
-    aujourd'hui. Ils servent à dire qu'une application n'est pas d'une autre
-    nature qu'un programme, et ils reviendront au cours 6.
+    Un programme Python n'ouvre de fenêtre que s'il le demande, par une
+    bibliothèque graphique. Ceux du module écrivent dans le terminal ou
+    dans des fichiers.
 
-    Les deux chaînes annoncent celle de « Deux chemins du texte à
-    l'exécution », qui suit : même gabarit, autre question.
+    Au cours 4, un programme Python lance `magick` et `ffmpeg`, deux autres
+    programmes en ligne de commande.
   ]
 ]
 
 // --------------------------------------------
-#d("Deux chemins du texte à l'exécution")[
+#d("Une commande désigne un fichier exécutable")[
+  #annonce[
+    `python` est le nom d'un fichier, `python.exe`. bash le cherche dans une
+    liste de dossiers, la variable `PATH`, et lance le premier qu'il trouve.
+  ]
+
+  #schema-path()
+
+  #legende[
+    Un nom qui contient un `/` désigne un fichier précis, sans recherche :
+    `/c/ProgramData/anaconda3/python.exe` lance le Python d'Anaconda.
+    `type -a python` affiche les fichiers trouvés, dans l'ordre.
+  ]
+
+  #notes[
+    À vérifier sur un poste, le 28/09 : `python --version` et
+    `type -a python` dans Git Bash, sans conda. Python 2.7 attendu (fin de
+    maintenance le 1er janvier 2020, python.org), dans `C:\Python27`, son
+    dossier par défaut (FAQ Windows de Python 2.7). Sinon, la commande est
+    introuvable, ou renvoie au Microsoft Store.
+
+    Manuel de bash, « Command Search and Execution » : une commande sans `/`
+    est cherchée dans chaque dossier de `$PATH` ; un nom qui contient un `/`
+    est exécuté directement.
+
+    Documentation de conda : « Activation prepends to PATH ». Le réglage du
+    début du TD 2b le fait à chaque ouverture de Git Bash.
+
+    `ls` est aussi un fichier, `/usr/bin/ls`, fourni par Git for Windows.
+    Dans l'invite de commandes, `where python` joue le rôle de
+    `type -a python`.
+  ]
+]
+
+// --------------------------------------------
+// Refaite le 27/09 à partir de « Deux chemins du texte à l'exécution ».
+#d("Compiler ou interpréter")[
+  #annonce[
+    Le processeur n'exécute que des instructions machine. Un compilateur
+    traduit le programme une fois, un interpréteur lit son texte à chaque
+    lancement.
+  ]
+
   #block(width: 100%, fill: gris, inset: (x: 12pt, y: 7pt), below: 0.5em)[
-    #text(size: 17pt, fill: estompe)[
-      #text(weight: demi-gras)[Compilé] : le texte est traduit une fois pour
-      toutes. À chaque lancement il n'y a plus rien à comprendre, donc c'est
-      plus rapide.
-    ]
+    #text(size: 16pt, fill: estompe, weight: demi-gras)[Compilé : C, C++]
     #v(0.3em)
     #chaine(
       ("bonjour.cpp", "le texte écrit"),
-      ("compilateur", "une fois"),
-      ("bonjour.exe", "des instructions"),
-      ("résultat", "à chaque lancement"),
+      ("le compilateur", "une fois, après chaque modification"),
+      ("bonjour.exe", "des instructions machine"),
+      ("le résultat", "à chaque lancement"),
     )
   ]
 
   #block(width: 100%, fill: accent.lighten(92%), inset: (x: 12pt, y: 7pt))[
-    #text(size: 17pt, fill: accent)[
-      #text(weight: demi-gras)[Interprété] : le texte est lu et exécuté à chaque
-      lancement. Comprendre le code est donc refait à chaque fois.
-    ]
+    #text(size: 16pt, fill: accent, weight: demi-gras)[Interprété : Python]
     #v(0.3em)
     #chaine(
       ("bonjour.py", "le texte écrit"),
-      ("interpréteur", "à chaque lancement"),
-      ("résultat", "rien sur le disque"),
+      ("python.exe", "lit le texte, à chaque lancement"),
+      ("le résultat", "rien d'autre sur le disque"),
     )
   ]
 
   #legende[
-    Lancer un programme Python ne crée rien sur le disque : il n'y a pas
-    d'exécutable à produire.
+    L'interpréteur est lui-même un programme compilé : `python.exe` est écrit
+    en C.
   ]
 
   #notes[
-    La chaîne compilée a une étape de plus, faite une fois ; l'interprétée
-    en a une de moins, refaite à chaque exécution.
+    Glossaire de Python : Python est interprété, « though the distinction
+    can be blurry because of the presence of the bytecode compiler ».
+    `python` traduit d'abord le texte en bytecode, qu'il exécute lui-même ;
+    ce n'est pas du code machine.
 
-    Semer le facteur ×100 à ×1000 du projet 7 : `numpy` délègue
-    à du C compilé. Ne pas développer.
+    La distinction tient à l'outil. Il existe un interpréteur de C++
+    (Cling, au CERN), et Python 3.13 a un compilateur à la volée
+    expérimental. Java et JavaScript font les deux. Ne le dire que
+    si la question vient.
 
-    v2 : `bonjour.cpp` est le fichier du TD C++, en annexe.
-
-    Si question « Et Java ? » répondre en une phrase, les deux à la
-    fois comme js et JIT
+    Le programme C++ du TD de 2026 est en annexe du book (« C++ »), avec
+    « La place de l'interpréteur ».
   ]
 ]
+
 // --------------------------------------------
-#d("La place de l'interpréteur")[
+#d("Compilé ou interprété : ce que chacun apporte")[
   #annonce[
-    L'interpréteur lit le texte du programme, et c'est lui qui s'adresse au
-    système. Un programme compilé s'en passe : il est déjà en instructions
-    machine.
+    Le module emploie Python. Il se relance sans étape de compilation,
+    s'essaie ligne à ligne, et ses bibliothèques de calcul font leurs
+    calculs en code compilé.
   ]
 
-  #couche(
-    icone-fenetre(taille: 30pt), "Programme interprété",
-    "bonjour.py, une page web", plein: true,
-  )
-  #liaison("son texte", "le résultat")
-  #couche(
-    icone-fenetre(taille: 30pt), "Interpréteur : traduit en bytecode, puis l'exécute",
-    "python, le navigateur",
-  )
-  // `raw` tomberait à 0,78 em, soit 10,5 pt : trop petit à la projection.
-  #liaison(
-    [un appel système : #text(font: police-code)[open], #text(font: police-code)[read]],
-    [des octets],
-  )
-  #couche(
-    icone-engrenage(taille: 30pt), "Système d'exploitation",
-    "Windows, macOS, Linux",
+  #tableau(
+    columns: (auto, 1fr, 1fr),
+    align: left + horizon,
+    [], [Compilé : C, C++], [Interprété : Python],
+    [Après une modification], [recompiler, puis lancer], [relancer],
+    [Essayer une ligne], [l'écrire dans un programme complet], [la taper dans une session interactive],
+    [Ce qu'on donne à un autre], [l'exécutable, qui se lance seul], [le fichier `.py`, et Python installé],
+    [Sur un autre système], [recompiler pour ce système], [le même fichier],
+    [Un calcul en boucle], [la référence], [environ 50 fois plus lent],
+    [Une faute de frappe], [signalée à la compilation], [signalée au lancement],
   )
 
   #legende[
-    Le bytecode n'est pas des instructions machine : l'interpréteur l'exécute
-    lui-même.
+    Vitesse : deux mesures publiées, dans les notes. numpy calcule en code
+    compilé, « at near-C speeds » selon sa documentation.
   ]
 
   #notes[
-    Insister sur la différence entre les deux flèches descendantes, c'est le
-    point de la diapositive. En haut circule du texte. En bas circulent des
-    appels système, les mêmes que ceux de la partie 1 : l'interpréteur les fait
-    à la place du programme, et un exécutable compilé les fait lui-même,
-    `bonjour.exe` compris. Le bytecode, lui, ne circule sur aucune des deux
-    flèches : il reste à l'intérieur de l'interpréteur.
+    Tutoriel de Python, « Whetting Your Appetite » : « no compilation and
+    linking is necessary », et l'interpréteur « can be used interactively ».
 
-    Ce que « traduit en bytecode » recouvre, si la question vient : `python`
-    traduit le texte entier avant d'exécuter quoi que ce soit, en instructions
-    d'une machine virtuelle qui n'existe que dans `python`. Le processeur, lui,
-    ne connaît que les instructions machine de la diapositive précédente.
-    `python -m dis bonjour.py` affiche ce bytecode ; les fichiers `.pyc` du
-    dossier `__pycache__` en sont la version gardée sur le disque, pour ne pas
-    refaire la traduction au lancement suivant.
+    Vitesse : 72 fois le temps du C sur des calculs intensifs (Pereira et
+    al., SLE 2017) ; 47 fois pour un produit de matrices en Python 2.7
+    (Leiserson et al., _Science_, 2020). Deux mesures antérieures à
+    Python 3.11, plus rapide de 25 % en moyenne.
 
-    `open` et `read` sont les noms POSIX, ceux de macOS et de Linux ; Windows
-    appelle les siens `CreateFile` et `ReadFile`. Les noms diffèrent, la nature
-    de l'échange non. Ne le dire que si la question vient.
+    Pourquoi Python pour débuter : article de _Nature_ sur NumPy (Harris et
+    al., 2020), « famously easy to learn and teach » ; cours d'introduction
+    du MIT (6.100L) et de Software Carpentry.
 
-    Un interpréteur est un programme comme les autres. Celui de Python
-    s'appelle `python`, et c'est son exécutable dont l'assembleur vient d'être
-    montré. Ce qui exécute du texte est soi-même en instructions machine.
-
-    Conséquence pratique : lancer un programme Python suppose Python
-    installé, alors qu'un exécutable compilé se lance seul. v2 : le TD
-    C++, en annexe, le fait constater ; les environnements sont au cours 3.
-
-    Le navigateur interprète trois langages sans qu'on l'appelle «
-    interpréteur » : le mot désigne un rôle, pas une catégorie de
-    logiciel.
+    Un exécutable Python autonome existe (« freezing », guide de
+    l'empaquetage de Python), au prix de plusieurs outils.
   ]
 ]
 
 // --------------------------------------------
 // Nouveau (v2) : le programme écrit dans un éditeur de texte, lancé au terminal.
-#d("Écrire et lancer un programme Python")[
+// 28/09 : les deux façons d'employer l'interpréteur, côte à côte.
+#d("Un fichier ou une session interactive")[
   #annonce[
-    Un programme Python est un fichier texte : n'importe quel éditeur de texte
-    sert à l'écrire. Le terminal le fait exécuter par l'interpréteur.
+    L'interpréteur python exécute un fichier enregistré, ou les lignes tapées
+    une à une.
   ]
 
-  #chaine(
-    ("Notepad++", "écrire altitudes.py, l'enregistrer"),
-    ("Git Bash", "taper python altitudes.py"),
-    ("L'interpréteur python", "lit le fichier enregistré, l'exécute"),
-    ("Le terminal", "affiche ce que le programme écrit"),
+  #grid(
+    columns: (0.9fr, 1.1fr), column-gutter: 18pt,
+    panneau[Un programme, écrit dans un éditeur de texte][
+      #chaine-terminal(
+        ("Notepad++", "écrire altitudes.py, l'enregistrer"),
+        ("Le terminal", "taper python altitudes.py"),
+        ("L'interpréteur python", "lit le fichier enregistré, l'exécute"),
+        ("Le terminal", "affiche moyenne : 129.0 m"),
+        plein: 2,
+      )
+    ],
+    panneau[Une session interactive, dans le terminal][
+      #terminal(
+        taille: 16pt,
+        "$ python",
+        "Python 3.12.14 (main, Sep  2 2026, 23:27:36) [GCC 15.3.0] on linux",
+        ">>> 128.4 + 131.0",
+        "259.4",
+        ">>> exit()",
+      )
+    ],
   )
 
-  #v(0.4em)
   #legende[
-    L'interpréteur lit le fichier sur le disque : une modification non
-    enregistrée n'est pas exécutée.
+    Le programme se relance à l'identique, la session ne garde rien sur le
+    disque.
   ]
 
   #notes[
+    L'interpréteur lit le fichier sur le disque : une modification non
+    enregistrée n'est pas exécutée. Le TD 2b le fait constater.
+
+    Le notebook, à la partie 3, réunit les deux : du code enregistré,
+    exécuté morceau par morceau.
+
+    Session relevée avec Python 3.12 sous Linux ; la ligne de version diffère
+    sur les postes.
+
+
     Notepad++ à la place de l'éditeur de code (VS Code au cours 2) : un seul
     outil nouveau par séance, et l'éditeur de code se configure en classe
     entière au cours 2 (syllabus v2).
@@ -209,56 +252,58 @@
   ]
 ]
 
-// Reprise de la diapositive 47 du cours 1 de 2026, pour le TD 2c.
-#d("L'indentation, en espaces ou en tabulation")[
+// --------------------------------------------
+// Nouveau (v2), 27/09 : un script de commandes, et Python dedans.
+#d("Un script de commandes")[
   #annonce[
-    Un espace et une tabulation sont deux caractères différents. Une
-    tabulation vaut le nombre de colonnes que l'éditeur lui donne, et ce
-    réglage change d'un éditeur à l'autre.
+    Un script est un fichier texte qui contient des commandes. `bash` les
+    exécute dans l'ordre, comme si on les tapait. Le travail se refait en une
+    commande, aussi souvent qu'il le faut.
   ]
 
   #face-a-face(
-    panneau("Tabulation réglée sur 4 colonnes")[
-      #blancs[#raw("def surface(longueur, largeur):\n····aire = longueur * largeur\n→   return aire", block: true)]
-      #v(0.3em)
-      #text(size: 14pt, fill: estompe)[les deux lignes semblent alignées]
+    panneau[`commandes.sh`, dans Notepad++][
+      #text(size: 18pt)[```bash
+      # Commandes du TD 2a, puis le programme du TD 2b.
+      # Lancer depuis 2b_programme : bash commandes.sh
+      mkdir -p copies
+      cp ../2a_terminal/depart/*.html copies/
+      ls copies
+      python altitudes.py
+      ```]
     ],
-    panneau("Le même fichier, tabulation sur 8")[
-      #blancs[#raw("def surface(longueur, largeur):\n····aire = longueur * largeur\n→       return aire", block: true)]
-      #v(0.3em)
-      #text(size: 14pt, fill: brun)[le décalage apparaît]
+    panneau[Lancé dans Git Bash][
+      #terminal(
+        taille: 17pt,
+        "$ bash commandes.sh",
+        "auld_lang_syne_brut.html   raven_brut.html",
+        "auld_lang_syne_style.html  raven_style.html",
+        "moyenne : 129.0 m",
+      )
     ],
   )
 
   #legende[
-    `·` marque un espace, `→` une tabulation, comme l'éditeur les dessine.
-    Les octets du fichier sont les mêmes des deux côtés : seul le réglage de
-    l'éditeur change.
+    Une ligne qui commence par `#` est un commentaire. `python` y est une
+    commande comme les autres. L'équivalent pour l'invite de commandes est
+    un fichier `.bat`, en annexe du guide du TD 2b.
   ]
 
   #notes[
-    Les deux lignes sont celles de `cours1/2c_erreurs/depart/surface.py` :
-    la cinquième indentée par quatre espaces, la sixième par une tabulation.
-    C'est le fichier que le TD 2c fera corriger ; le message d'erreur
-    s'y lit à ce moment, ne pas le projeter ici.
+    Sortie relevée sous Linux (bash 5.2), dans une copie de l'archive, avec
+    une fenêtre de 80 colonnes.
 
-    Python refuse ce mélange dans une même indentation, et le dit par
-    `TabError`. Le message ne parle pas d'espace manquant : il dit que
-    l'indentation mélange deux caractères. À l'œil nu, sur un éditeur réglé
-    sur 4, rien ne se voit — c'est ce que montre la colonne de gauche.
+    `mkdir -p` : pas d'erreur si le dossier existe déjà, au second
+    lancement. `.sh` est l'extension d'usage, que Notepad++ reconnaît.
 
-    v2 : dans Notepad++, Paramètres, Préférences, Langage, « Remplacer par
-    des espaces » ; VS Code, au cours 2, l'impose à 4 pour Python.
+    Manuel de bash, « Shell Scripts » : « a text file containing shell
+    commands ». bash est donc un interpréteur, comme `python` : l'un lit
+    des commandes, l'autre du Python.
 
-    Ne pas montrer ici comment afficher les blancs : le TD 2c s'en
-    charge, et cela s'apprend en le faisant, pas en le regardant.
-
-    Fins de ligne, à dire en passant : Windows en met deux (`CRLF`), Linux et
-    macOS un seul (`LF`). Un même fichier n'a donc pas la même taille selon la
-    machine, et une comparaison peut signaler toutes les lignes comme
-    modifiées. Repris au cours 2 avec git.
-
-    Le saut de ligne est un caractère comme les autres : « Ce que contient un
-    fichier texte », en annexe, le compte sur un poème tenant sur une ligne.
+    Fil de la partie : un logiciel graphique automatise les tâches qu'il
+    prévoit (l'export du TD 1a) ; un script enchaîne et répète des
+    programmes existants ; un programme Python fait ce qu'aucun outil ne
+    fait. On choisit selon la tâche, et le plus simple des outils qui la
+    font.
   ]
 ]

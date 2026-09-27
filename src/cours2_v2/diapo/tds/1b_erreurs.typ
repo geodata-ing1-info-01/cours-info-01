@@ -1,0 +1,106 @@
+// TD 1b du cours 2 v2 — « Trois programmes fautifs ».
+//
+// Le TD 2b de 2026, dans VS Code et son terminal Git Bash. Joué au cours 1 v2
+// (TD 2c, dans Notepad++) jusqu'au 27/09/2026, puis passé au cours 2 v2 avec
+// la diapositive sur l'indentation, après la partie sur l'éditeur de code.
+//
+// Inclus par `cours2_v2.typ` ; compilable seul par
+// `outils/compiler_tds.py --cours 2_v2`.
+#import "../../../commun/prelude.typ": *
+
+#let td = (
+  numero: "1b",
+  titre: "Trois programmes fautifs",
+  annonce: "Lire les caractères invisibles et la barre d'état de VS Code, puis corriger trois programmes Python qui refusent de s'exécuter",
+  dossier: "cours2/1b_erreurs/",
+  duree: "10′",
+)
+#separateur-td(..td)
+
+#d("Les caractères invisibles dans VS Code")[
+  #annonce[
+    Un espace et une tabulation ne se distinguent pas à l'œil. Depuis le
+    réglage du TD 1a, VS Code les dessine.
+  ]
+
+  #tableau(
+    columns: (auto, 1fr),
+    align: left + horizon,
+    [Où regarder], [Ce qu'on y lit],
+    [le début des lignes indentées],
+      [un point par espace, une flèche par tabulation],
+    [la barre d'état, en bas à droite],
+      [`LF` ou `CRLF` : comment les lignes se terminent ; l'indentation, en espaces ou en tabulations],
+  )
+
+  #legende[
+    Sans le réglage du TD 1a : `Ctrl` + `,`, chercher « render whitespace »,
+    choisir `all`.
+  ]
+
+  #notes[
+    Le faire regarder, machine ouverte, avant de projeter la diapositive
+    suivante.
+
+    Les fins de ligne : un caractère sous Linux et macOS, deux sous Windows.
+    Les nommer ; git y revient dans la partie suivante.
+
+    Intitulés de la barre d'état à vérifier sur la version de VS Code des
+    postes.
+  ]
+]
+#d("Corriger trois programmes")[
+  #annonce[
+    Chacun des trois fichiers de `depart/` porte une faute d'un genre
+    différent. Les copier dans `travail/`, lancer, lire le message, corriger,
+    relancer, dans le terminal de VS Code.
+  ]
+
+  #tableau(
+    columns: (auto, 1.2fr, 1fr),
+    align: left + horizon,
+    [Fichier], [Ce que dit le message], [La faute],
+    [`surface.py`],
+      [`TabError: inconsistent use of tabs and spaces`, ligne 6],
+      reponse[la ligne 6 est indentée par une tabulation, la ligne 5 par des espaces],
+    [`moyenne.py`],
+      [`SyntaxError: expected ':'`, ligne 6],
+      reponse[il manque les deux-points à la fin du `for`],
+    [`chemin.py`],
+      [`FileNotFoundError: No such file or directory: 'C:/Users/alice/…'`],
+      reponse[le chemin est celui d'un autre poste ; écrire `../../cours1/1a_formats/depart/raven_une_ligne.txt`],
+  )
+
+  #legende[
+    Messages réels, obtenus avec Python 3.12. Une fois corrigés, les trois
+    programmes affichent `294.0`, `130.05` et `1341 caractères`.
+  ]
+
+  #notes[
+    L'ordre des trois fautes est celui de leur difficulté de lecture ; le
+    suivre. Copier les fichiers au terminal, `cp depart/*.py travail/`, et les
+    lancer depuis `1b_erreurs/` : `python travail/chemin.py`.
+
+    VS Code souligne les deux premières avant tout lancement ; pas la
+    troisième.
+
+    La première ne se voit pas à l'œil sans l'affichage des espaces, les deux
+    lignes étant alignées à l'écran.
+
+    La deuxième se voit dans le message, qui nomme le caractère attendu et
+    place un accent circonflexe sous l'endroit exact. Faire lire le
+    message en entier.
+
+    La troisième est d'une autre nature, et c'est le point : le programme est
+    correct, l'éditeur ne souligne rien, et il tourne chez Alice. Il échoue
+    ici parce que le chemin absolu qu'il contient n'existe que sur son poste.
+    Le chemin relatif part du dossier où le terminal se trouve, `1b_erreurs/`,
+    remonte de deux dossiers et va chercher le fichier du TD 1a du cours 1 :
+    il vaut sur tous les postes où les deux archives sont extraites dans
+    `info01/`. La diapositive « Le chemin d'un fichier » du cours 1 s'y
+    vérifie, sur l'erreur la plus fréquente des rendus des autres cours.
+
+    La vérification demandée n'est pas que le programme affiche le bon
+    résultat, mais qu'il n'affiche plus de message.
+  ]
+]

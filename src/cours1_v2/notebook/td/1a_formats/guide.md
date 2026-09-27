@@ -86,7 +86,8 @@ suivante.
 
 Avant d'ouvrir un fichier, regarder la barre d'adresse de l'explorateur :
 elle doit commencer par `C:\Users\eleve\Desktop\info01`. Si elle commence
-par `\\` ou par une autre lettre que `C:`, on est dans le dossier partagé.
+par `\\`, ou par la lettre d'un lecteur réseau (icône propre dans « Ce PC »),
+on est dans le dossier partagé.
 
 ### Copier l'archive dans un dossier du Bureau
 

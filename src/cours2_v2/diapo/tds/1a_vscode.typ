@@ -278,7 +278,7 @@
     align: left + horizon,
     [], [Ce qu'il faut faire], [Ce que vous constatez],
     [1], [`Ctrl` + `,`, onglet User, chercher « render whitespace », choisir `all`],
-      reponse[un point par espace dans le code, comme Notepad++ au cours 1],
+      reponse[un point par espace dans le code],
     [2], [chercher « auto save », choisir `afterDelay`],
       reponse[plus de point blanc sur l'onglet d'un fichier modifié],
     [3], [palette, « Preferences: Open User Settings (JSON) »],

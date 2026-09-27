@@ -24,9 +24,10 @@ Trois parties, qui alternent une explication courte et des TD sur machine.
     poste et le dossier partagé
   - 1a
 * - Terminal et premier programme
-  - le terminal Git Bash, les commandes de base, les chemins ; un
-    programme Python écrit dans un éditeur de texte et lancé au terminal
-  - 2a, 2b, 2c
+  - le terminal Git Bash, les commandes de base, les chemins ; Python, un
+    programme en ligne de commande ; compilé et interprété ; un programme
+    écrit dans un éditeur de texte, puis un script de commandes
+  - 2a, 2b
 * - Un notebook et la syntaxe de Markdown
   - texte, code et résultats dans un document ; ce que le noyau retient ;
     une cellule de texte en Markdown
@@ -52,7 +53,9 @@ le dépôt :
   partie 1 ;
 - le binaire et le texte passent au cours 3 ; Markdown au cours 2, sauf la
   syntaxe minimale d'une cellule de notebook ;
-- les environnements passent au cours 3, par la pratique.
+- les environnements passent au cours 3, par la pratique ;
+- l'indentation et le TD des programmes fautifs passent au cours 2 v2, où
+  l'éditeur de code les souligne.
 
 Les diapositives sont dans le dépôt, `src/cours1_v2/diapo/cours1_v2.pdf`.
 

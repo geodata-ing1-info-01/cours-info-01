@@ -32,7 +32,6 @@
 #import "tds/1a_formats.typ": td as td-1a
 #import "tds/2a_terminal.typ": td as td-2a
 #import "tds/2b_programme.typ": td as td-2b
-#import "tds/2c_erreurs.typ": td as td-2c
 #import "tds/3a_notebook.typ": td as td-3a
 
 #include "parties/00_ouverture.typ"
@@ -54,9 +53,8 @@
 #include "parties/02b_programme.typ"
 #if tds {
   include "tds/2b_programme.typ"
-  include "tds/2c_erreurs.typ"
 } else {
-  sommaire-td(td-2b, td-2c)
+  sommaire-td(td-2b)
 }
 
 #include "parties/03_notebook.typ"
