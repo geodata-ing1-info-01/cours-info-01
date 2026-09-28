@@ -32,7 +32,6 @@ from __future__ import annotations
 
 import argparse
 import os
-import shutil
 import subprocess
 import sys
 import tempfile
@@ -130,8 +129,17 @@ def illustrer(source: Path, produit: Path) -> int:
         ).returncode
         if code != 0:
             return code
+        # La copie versionnée est compilée à 144 ppi, la résolution de
+        # `construire_notebooks.py` : les deux outils écrivent alors le même
+        # fichier, et git ne voit pas de changement d'un outil à l'autre.
         if cours in ILLUSTRATIONS_VERSIONNEES:
-            shutil.copy2(cible, figure.with_suffix(".png"))
+            code = subprocess.run(
+                ["typst", "compile", "--root", str(RACINE), "--format", "png", "--ppi", "144",
+                 str(figure), str(figure.with_suffix(".png"))],
+                check=False,
+            ).returncode
+            if code != 0:
+                return code
     return 0
 
 
