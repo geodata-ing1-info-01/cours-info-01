@@ -13,7 +13,7 @@ Trois étapes, depuis la racine du dépôt :
        vidé au préalable, avec un `index.html` qui les liste — GitHub Pages
        n'affiche pas le contenu d'un dossier ;
     3. `ghp-import -n -p -f -o _build/html` pousse le tout sur la branche
-       `gh-pages`, que GitHub Pages sert.
+       `gh-pages` du remote GitHub, que GitHub Pages sert.
 
 `-n` ajoute le `.nojekyll` sans lequel GitHub ignore `_static/` ; `-o` refait
 la branche à partir d'un seul commit, sans quoi chaque publication ajoute à
@@ -104,9 +104,21 @@ ouvrir le dossier obtenu dans JupyterLab ou VS Code.</p>
     return deposes
 
 
+def remote_github() -> str:
+    """Le remote qui pointe vers GitHub : `origin` sur un clone, mais un poste
+    qui a aussi la clé USB et GitLab le nomme souvent autrement."""
+    sortie = subprocess.run(["git", "remote", "-v"], cwd=RACINE,
+                            capture_output=True, text=True, check=True).stdout
+    for ligne in sortie.splitlines():
+        nom, url, *_ = ligne.split()
+        if "github.com" in url:
+            return nom
+    return "origin"
+
+
 def publier() -> None:
     subprocess.run(
-        ["ghp-import", "-n", "-p", "-f", "-o",
+        ["ghp-import", "-n", "-p", "-f", "-o", "-r", remote_github(),
          "-m", f"Publie le book ({datetime.now():%Y-%m-%d %H:%M})",
          str(SORTIE.relative_to(RACINE))],
         cwd=RACINE, check=True,
