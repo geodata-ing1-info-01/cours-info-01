@@ -32,7 +32,10 @@ feuilles de TD (`outils/compiler_tds.py`) et les notebooks
 (`outils/construire_notebooks.py`), et les guides détaillés
 (`outils/compiler_guides.py`). L'archive ne part donc ni avec une version
 en retard sur le dépôt, ni avec ce qu'un essai — un TD joué depuis `data/`, la
-construction du book — a laissé dans `produit/`.
+construction du book — a laissé dans `produit/`. Si `make_data.py` signale
+une source absente (une ligne `! …`, le plus souvent un `fourni/` pas encore
+téléchargé), le script s'arrête sans assembler : l'archive partirait sans le
+fichier.
 
 `fourni/` reste au dépôt : c'est la matière première de `make_data.py`, les
 étudiants n'en ont pas besoin. Les diapositives nomment les chemins tels que
@@ -174,12 +177,22 @@ def fabriquer(cours: str) -> int:
         (RACINE / "outils" / "compiler_guides.py", ["--cours", str(cours)], RACINE),
     ]
     for script, arguments, dossier in etapes:
-        code = subprocess.run(
+        execution = subprocess.run(
             [sys.executable, str(script), *arguments], cwd=dossier, check=False,
-        ).returncode
-        if code:
+            capture_output=True, text=True,
+        )
+        print(execution.stdout, end="")
+        print(execution.stderr, end="", file=sys.stderr)
+        if execution.returncode:
             print(f"{script.name} a échoué", file=sys.stderr)
-            return code
+            return execution.returncode
+        # `make_data.py` signale une source absente par une ligne `! …` et
+        # continue : l'archive partirait sans le fichier. On s'arrête là.
+        manques = [ligne for ligne in execution.stdout.splitlines() if ligne.startswith("! ")]
+        if manques:
+            print(f"{script.relative_to(RACINE)} : {len(manques)} fichier(s) non produit(s), "
+                  "archive non assemblée (voir les lignes `!` ci-dessus)", file=sys.stderr)
+            return 1
     return 0
 
 

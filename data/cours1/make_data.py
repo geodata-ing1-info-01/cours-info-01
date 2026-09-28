@@ -126,7 +126,12 @@ def build() -> None:
     for cle, meta in TEXTES.items():
         source = SOURCES / f"{cle}.txt"
         if not source.exists():
-            print(f"! {source.name} absent — lancer `fetch` ou le déposer à la main")
+            # Un texte sans URL est facultatif : son absence n'est pas un
+            # manque, et `outils/livrer_tds.py` ne s'arrête que sur les `!`.
+            if meta["url"]:
+                print(f"! {source.name} absent — lancer `fetch` ou le déposer à la main")
+            else:
+                print(f"- {source.name} absent, facultatif (pas d'URL : à déposer à la main)")
             continue
         trouve = True
         construire_un(cle, meta, source)

@@ -33,7 +33,7 @@ from pathlib import Path
 PROJET = Path("depart/trajet")
 
 CARTE = PROJET / "data" / "carte.png"
-SORTIE = Path("essai")
+SORTIE = Path("travail/essai")
 SORTIE.mkdir(exist_ok=True)
 
 assert CARTE.is_file(), f"fond de carte introuvable : {CARTE.resolve()}"
@@ -161,7 +161,7 @@ projet installé. On le lui désigne ici parce que le notebook n'est pas lancé
 depuis ce dossier : `trajet --help` liste les trois chemins qu'elle accepte.
 
 :::{admonition} À faire
-Ouvrez `essai/trajet.srt` et `essai/montage.txt` dans l'éditeur : deux fichiers
-texte, écrits par un programme et lus par un autre. Puis changez un texte dans
+Ouvrez `travail/essai/trajet.srt` et `travail/essai/montage.txt` dans
+l'éditeur : deux fichiers texte, écrits par un programme et lus par un autre. Puis changez un texte dans
 `depart/trajet/data/etapes.csv` et relancez la cellule ci-dessus.
 :::

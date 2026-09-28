@@ -304,8 +304,8 @@ pas.
 
 Exécuter les cellules une à une (`Maj` + `Entrée`). La fonction `lancer`
 affiche chaque commande, précédée de `$`, avant de la lancer ; les images et
-la vidéo produites sont enregistrées dans un dossier `essai\`, que la
-première cellule crée à côté du notebook.
+la vidéo produites sont enregistrées dans `travail\essai\`, que la
+première cellule crée.
 
 | Ce que le notebook montre | Ce qu'on y voit |
 |---|---|
