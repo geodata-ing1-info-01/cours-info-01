@@ -165,7 +165,7 @@ dans une version antérieure de ce dépôt.
 conda activate info01
 
 python outils/verifier_polices.py             # état des lieux
-python outils/verifier_polices.py --installer # télécharge et installe Fira Sans
+python outils/verifier_polices.py --installer # télécharge et installe Fira Sans et Lato
 ```
 
 L'installation se fait dans le dossier de polices de l'utilisateur, sans droits
@@ -173,6 +173,10 @@ d'administration : `~/.local/share/fonts` sous Linux, `~/Library/Fonts` sous
 macOS, `%LOCALAPPDATA%\Microsoft\Windows\Fonts` sous Windows. Fira Sans est
 publiée par Mozilla sous licence SIL Open Font License 1.1 ; le dépôt ne
 l'embarque pas, pour rester sans fichier binaire.
+
+Le script installe aussi Lato, la police de repli de la pile. Elle ne sert pas
+quand Fira Sans est présente, mais sans elle typst signale
+`unknown font family: lato` à chaque compilation.
 
 > **Terminal intégré de VSCode installé en snap** : il redéfinit
 > `XDG_DATA_HOME` pour s'isoler, et fontconfig cherche alors les polices dans
@@ -566,8 +570,8 @@ mauvais environnement actif. Contrôler `python -c "import sys; print(sys.execut
 le chemin doit contenir le nom de l'environnement actif. C'est le message à
 marteler en séance 1.
 
-**`unknown font family: lato` et une diapositive signalée trop pleine, alors
-que `verifier_polices.py` dit Fira Sans installée.** typst ne lit pas le
+**`unknown font family: fira sans` et une diapositive signalée trop pleine,
+alors que `verifier_polices.py` dit Fira Sans installée.** typst ne lit pas le
 dossier où la police est ; vu depuis le terminal intégré de VSCode en snap. Lui
 donner le dossier une fois pour la session, puis recompiler :
 
