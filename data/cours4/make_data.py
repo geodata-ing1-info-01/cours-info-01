@@ -1,23 +1,21 @@
-"""Fabrique les fichiers des TD du projet 4.
+"""Fabrique les fichiers des TD du projet 4, et le décor du train du projet 7.
 
-Deux parcours : le parcours standard fait le TD 4a, le client et le noyau
-d'un notebook, puis le TD 4b, reprise du TD 3a du cours 3 ; le parcours
-avancé fait le TD 4c, la fenêtre du train. Le dépôt versionne ce que chaque
-TD livre tel quel (`depart/environment.yml`, `depart/modeles/`) et les
-corrigés du TD 4c (`corriges/`). `build` remplit le `produit/` de chaque TD :
-pour 4a, les recettes du cours 3 ; pour 4b, les fichiers du TD 3a du cours 3 ;
-pour 4c, les images du décor, dessinées ici.
+Depuis le 30/09/2026, le projet 4 a deux TD sur le programme de la recette :
+TD 4a, tous les élèves (`4a_recette/`), puis TD 4b, parcours avancé
+(`4b_paquet/`). Leurs fichiers de départ sont versionnés dans `depart/`, et
+écrits avec les corrigés et les guides par `generer_recette.py` : `build`
+n'a rien à dessiner pour eux, il remet leur `produit/` à vide.
 
-La montre et le tourbillon, TD 4a et 4b jusqu'au 26/09/2026, sont gardés
-comme propositions dans `_propositions/` : `build` ne les fabrique plus, mais
-leurs corrigés restent dans `corriges/`, que `illustrations` emploie encore.
+Le train, TD 4c jusqu'au 30/09/2026, est passé au projet 7, en proposition
+(`../cours7/_propositions/4c_train/`). Son décor reste dessiné ici, où
+`../cours7/make_data.py` l'importe : `train` remplit son `produit/`. La
+montre et le tourbillon, TD 4a et 4b jusqu'au 26/09/2026, sont gardés comme
+propositions dans `_propositions/` ; leurs corrigés restent dans
+`corriges/`, que `illustrations` emploie encore.
 
-    python make_data.py build           # produit/ des TD 4a, 4b et 4c
+    python make_data.py build           # produit/ des TD 4a et 4b
+    python make_data.py train           # produit/ de la proposition du train (décor, schéma)
     python make_data.py illustrations   # les images des schémas, dans illustrations/cours4/
-
-À lancer après `python make_data.py build` du cours 3, qui fabrique
-`vague.jpg`. Le notebook de chaque TD est posé dans `produit/depart/notebook/`
-par `outils/construire_notebooks.py`.
 """
 
 from __future__ import annotations
@@ -32,9 +30,9 @@ from pathlib import Path
 ICI = Path(__file__).parent
 TD_MONTRE = ICI / "_propositions" / "4a_montre"
 TD_TOURBILLON = ICI / "_propositions" / "4b_tourbillon"
-TD_NOYAUX = ICI / "4a_noyaux"
-TD_CLI = ICI / "4b_cli"
-TD_TRAIN = ICI / "4c_train"
+TD_RECETTE = ICI / "4a_recette"
+TD_PAQUET = ICI / "4b_paquet"
+TD_TRAIN = ICI.parent / "cours7" / "_propositions" / "4c_train"
 COURS3 = ICI.parent / "cours3"
 VAGUE = ICI.parent / "cours3" / "2b_images" / "produit" / "depart" / "vague.jpg"
 DEPOT = ICI.parent.parent
@@ -70,36 +68,15 @@ def vider(produit: Path) -> None:
 
 
 def build() -> None:
-    # TD 4a : les recettes du cours 3, que le notebook met en page (posé dans
-    # `depart/notebook/` par construire_notebooks.py).
-    produit = TD_NOYAUX / "produit"
-    vider(produit)
-    (produit / "travail").mkdir()
-    depart = produit / "depart"
-    for dossier in sorted((COURS3 / "recettes").iterdir()):
-        if dossier.is_dir():
-            shutil.copytree(dossier, depart / "recettes" / dossier.name)
-    shutil.copy2(COURS3 / "recettes" / "style.css", depart / "style.css")
-    print(f"✓ {TD_NOYAUX.name}/produit/depart/")
+    # TD 4a et 4b : tout est versionné dans depart/ ; produit/ reçoit
+    # ensuite le guide et la feuille, par les outils de livraison.
+    for td in (TD_RECETTE, TD_PAQUET):
+        vider(td / "produit")
+        print(f"✓ {td.name}/produit/")
 
-    # TD 4b : les fichiers du TD 3a du cours 3, sans l'outil portable. Les
-    # recettes et leurs photos viennent de son produit/ : lancer d'abord
-    # `make_data.py build` du cours 3.
-    produit = TD_CLI / "produit"
-    vider(produit)
-    (produit / "travail").mkdir()
-    depart = produit / "depart"
-    source = COURS3 / "3a_cli" / "produit" / "depart"
-    if source.is_dir():
-        shutil.copytree(source, depart, ignore=shutil.ignore_patterns("outils"))
-    else:
-        print(f"! {source} absent — lancer `make_data.py build` du cours 3")
-    for dossier in ("modeles", "secours"):
-        shutil.copytree(COURS3 / "3a_cli" / "depart" / dossier, depart / dossier,
-                        dirs_exist_ok=True, ignore=shutil.ignore_patterns("__pycache__"))
-    print(f"✓ {TD_CLI.name}/produit/depart/")
 
-    # TD 4c : le décor, dessiné ici.
+def train() -> None:
+    """Le décor et le schéma de la proposition du train (projet 7)."""
     produit = TD_TRAIN / "produit"
     vider(produit)
     (produit / "travail").mkdir()
@@ -345,9 +322,9 @@ def schemas(depart_notebook: Path, nom: str) -> None:
 
 def main() -> None:
     analyseur = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    analyseur.add_argument("commande", choices=("build", "illustrations"))
+    analyseur.add_argument("commande", choices=("build", "train", "illustrations"))
     options = analyseur.parse_args()
-    illustrations() if options.commande == "illustrations" else build()
+    {"build": build, "train": train, "illustrations": illustrations}[options.commande]()
 
 
 if __name__ == "__main__":

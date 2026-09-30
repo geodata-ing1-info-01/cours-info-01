@@ -1,40 +1,33 @@
-# Données — Projet 4 : du notebook au programme, en deux parcours
+# Données — Projet 4 : une recette à l'échelle, en deux parcours
 
-Le parcours standard fait les TD 4a et 4b, le parcours avancé le TD 4c.
+Depuis le 30/09/2026, les deux parcours écrivent le même programme :
+`recette.py` calcule les ingrédients d'une recette pour un nombre de
+personnes, en unités SI ou US. Tous les élèves font le TD 4a ; le parcours
+avancé le fait plus vite, puis fait le TD 4b dans le même dossier.
 
 | Dossier | Ce que c'est |
 |---|---|
-| `4a_noyaux/` | parcours standard : le client et le noyau d'un notebook ; `noyau.ipynb` ouvert dans JupyterLab puis dans VS Code, exécuté dans le noyau de l'environnement `info01-recette` (`depart/environment.yml`) ; reprend les TD 3b et 4b du cours 1 sur le code du cours 3 |
-| `4b_cli/` | parcours standard : le TD 3a du cours 3 ; les données sont recopiées de celui-ci par `make_data.py`, la feuille et le guide écrits par `reprendre_td3a.py` |
-| `4c_train/` | parcours avancé : la fenêtre du train, d'après le clip « Moon » de Kid Francescoli : un plan décalé par ImageMagick (`-roll`), posé entre un fond fixe et la fenêtre (`-composite`), un décalage par image, une vidéo par ffmpeg ; le décor est dessiné par `make_data.py`. Conception : `syllabus/cours/4_projet_animation/td_4c_train.md` |
-| `_propositions/` | les TD 4a montre et 4b tourbillon d'avant le 26/09/2026, gardés comme propositions ; non livrés |
-| `corriges/` | le programme de chaque TD d'animation à la fin de chaque étape (`<td>/b1/` … `b5/`), versionné ici pour ne pas partir dans l'archive |
-| `generer_corriges.py` | écrit les programmes des corrigés (B1, B2, B3 et B5), avec les mêmes morceaux pour les trois animations |
-| `generer_guides.py` | écrit les guides des trois animations, celui du train dans `src/cours4/notebook/td/`, les deux autres dans `src/cours4/notebook/propositions/` |
-| `reprendre_td3a.py` | écrit la feuille et le guide du TD 4b à partir du TD 3a du cours 3 |
-| `propositions/` | les notebooks d'essai du 20/09/2026, exécutés (non versionnés) |
+| `4a_recette/` | TD 4a : `depart/recette.py` (le programme de départ, avec deux erreurs), `depart/recettes/` (quatre recettes en CSV, pour 4 personnes, dont `cookies.csv` en unités US), `depart/modeles/README.md` ; conception dans son `README.md` |
+| `4b_paquet/` | TD 4b : `depart/modeles/environment.yml` et `pyproject.toml` ; conception dans son `README.md` |
+| `corriges/4a_recette/`, `corriges/4b_paquet/` | le programme à la fin de chaque étape (`b1/` … `b6/`, `c1/` … `c5/`) |
+| `generer_recette.py` | écrit `depart/recette.py`, les corrigés, puis les guides (par `guides_recette.py`), après avoir exécuté chaque étape |
+| `guides_recette.py` | le texte des guides des TD 4a et 4b, avec les blocs de modifications et les sorties réelles des corrigés |
+| `_propositions/`, `propositions/`, `corriges/4a_montre/`, `corriges/4b_tourbillon/` | les TD montre et tourbillon d'avant le 26/09/2026, gardés comme propositions ; non livrés |
+| `generer_corriges.py`, `generer_guides.py` | les corrigés et les guides de la montre, du tourbillon et du train |
+| `make_data.py` | `build` : `produit/` des TD 4a et 4b ; `train` : le décor de la proposition du train ; `illustrations` : les images des schémas |
 
-Le TD 4c a ce déroulé :
-
-- partie A : créer l'environnement `animation` depuis `environment.yml`,
-  lancer JupyterLab depuis cet environnement, exécuter le notebook ;
-- partie B : construire le programme `train.py`
-  fonctionnalité par fonctionnalité, une branche git par fonctionnalité :
-  B1 une image, B2 une série d'images, B3 la vidéo (avec un commit sur
-  `master` pendant la branche, donc un commit de fusion), B4 le README ; en
-  facultatif, B5 : `src/`, `pyproject.toml` et une commande installée.
+Le train, TD 4c jusqu'au 30/09/2026, est passé au projet 7 comme
+proposition : `../cours7/_propositions/4c_train/`, ses corrigés dans
+`../cours7/corriges/4c_train/`, son guide et ses illustrations dans
+`src/cours7/notebook/propositions/4c_train/`. Son code est encore écrit par
+`generer_corriges.py` et `generer_guides.py`, et son décor par
+`make_data.py`, que le cours 7 importe.
 
 ```bash
 conda activate info01
-python ../cours3/make_data.py build   # les recettes et le TD 3a, repris par 4a et 4b
-python reprendre_td3a.py              # si le TD 3a du cours 3 a changé
-python generer_corriges.py            # si le code des programmes a changé
-python generer_guides.py              # si le texte des guides a changé
-python make_data.py build             # produit/ des trois TD
-python ../../outils/construire_notebooks.py
+python generer_recette.py             # départ, corrigés et guides des TD 4a et 4b
+python generer_recette.py --diffs     # et les blocs de modifications, pour relecture
+python make_data.py build
 python ../../outils/compiler_guides.py --cours 4
+python ../../outils/livrer_tds.py --cours 4
 ```
-
-Le guide détaillé de chaque TD est écrit dans
-`src/cours4/notebook/td/<td>/guide.md` ; `outils/compiler_guides.py` en fait
-un PDF A4 et une page HTML déposés dans le dossier du TD.

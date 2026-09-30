@@ -1,16 +1,16 @@
-// Projet 4 — du notebook au programme, en deux parcours.
+// Séance 4, projet d'application 1 : un script Python construit pas à pas, en deux parcours.
 //
-// Depuis le 26/09/2026, la séance a deux parcours, choisis au cours 3 :
+// Depuis le 30/09/2026, la séance revoit les opérations des cours 1 à 3 à un
+// rythme lent, sur un petit programme : le TD 4a (tous les élèves) crée le
+// projet dans le terminal, l'ouvre dans VS Code, le versionne, puis écrit
+// `recette.py` étape par étape. Le parcours avancé fait le TD 4a plus vite,
+// puis le TD 4b, précédé de quatre diapositives d'exposé : `main`, deux
+// modules, un environnement décrit par un fichier, une commande installée.
 //
-//   - parcours standard : TD 4a, le client et le noyau d'un notebook
-//     (`tds/4a_noyaux.typ`), puis TD 4b, le TD 3a du cours 3 repris
-//     (`tds/4b_cli.typ`, écrit par `data/cours4/reprendre_td3a.py`) ;
-//   - parcours avancé : TD 4c, la fenêtre du train (`tds/4c_train.typ`).
-//
-// Les TD 4a montre et 4b tourbillon d'avant le 26/09/2026 sont gardés comme
-// propositions (`propositions/`, `../notebook/propositions/`). Le guide A4
-// de chaque TD, `src/cours4/notebook/td/<td>/guide.md`, est compilé par
-// `outils/compiler_guides.py --cours 4`.
+// Les TD d'avant le 30/09/2026 (4a noyaux, 4b ligne de commande, 4c train)
+// sont dans l'historique git ; le train est repris au projet 7. Les TD 4a
+// montre et 4b tourbillon d'avant le 26/09/2026 restent des propositions
+// (`propositions/`).
 //
 //   python outils/compiler_diapos.py --cours 4
 //   python outils/compiler_diapos.py --cours 4 --notes
@@ -18,8 +18,6 @@
 
 #import "../../commun/prelude.typ": *
 #import "../../cours3/diapo/schemas.typ": code-commente, sortie
-#import "../../cours1/diapo/schemas_notebooks.typ": schema-client-serveur, schema-trois-serveurs, schema-deux-clients
-#import "schemas.typ": programme-train
 
 #show: diapos.with(
   titre-court: "Introduction à l'informatique",
@@ -28,303 +26,232 @@
 
 #let tds = sys.inputs.at("tds", default: "") != "false"
 
-#import "tds/4a_noyaux.typ": td as td-4a
-#import "tds/4b_cli.typ": td as td-4b
-#import "tds/4c_train.typ": td as td-4c
+#import "tds/4a_recette.typ": td as td-4a
+#import "tds/4b_paquet.typ": td as td-4b
 
 #page-titre(
-  titre: "Projet 4",
-  sous-titre: "Du notebook au programme en ligne de commande, en deux parcours",
+  titre: "Séance 4 : projet d'application 1",
+  sous-titre: "TD d'application des cours 1 à 3 : un script Python construit pas à pas, versionné avec git",
   auteur: "1re année géomatique",
   date: "",
 )
 
 // --------------------------------------------
-#d("Objectifs de la séance")[
+#d("Contenu de la séance")[
   #annonce[
-    Écrire un programme Python lancé en ligne de commande, versionné avec
-    git. Le parcours standard reprend le programme de la recette ; le
-    parcours avancé fabrique une courte vidéo animée.
+    Un TD d'application des cours 1 à 3, sur un seul projet : un script
+    Python qui calcule les quantités d'une recette.
   ]
 
   #tableau(
     columns: (auto, 1fr, auto),
     align: (left + horizon, left + horizon, center + horizon),
     [Parcours], [Ce qu'on fait], [Durée],
-    [Tous], [présentation des deux parcours], [10 min],
-    [Standard], [TD 4a : le client et le noyau ; un environnement], [30 min],
-    [], [TD 4b : `recette.py` en ligne de commande], [70 min],
-    [Avancé], [TD 4c, A : l'environnement `animation`, le notebook], [35 min],
-    [], [TD 4c, B : `train.py`, une branche par fonctionnalité], [70 min],
-    [Tous], [une étiquette git, `git log`], [5 min],
+    [Tous], [présentation de la séance], [5 min],
+    [Standard], [TD 4a, partie A : créer le dossier du projet dans le terminal, l'ouvrir dans VS Code, créer le dépôt git], [30 min],
+    [], [TD 4a, partie B : construire un script Python, avec un commit git à la fin de chaque étape], [75 min],
+    [Avancé], [TD 4a, parties A et B, en 50 minutes], [50 min],
+    [], [exposé : découper un script en modules, décrire son environnement, l'installer comme une commande], [10 min],
+    [], [TD 4b : transformer le script en programme installable avec pip], [55 min],
   )
 
   #notes[
-    Le guide A4 de chaque TD, dans son dossier, détaille chaque étape : le
-    faire ouvrir dès le début.
+    Le guide de chaque TD, dans son dossier, détaille chaque étape : le
+    faire ouvrir dès le début. Il reste 10 minutes de marge au parcours
+    standard.
   ]
 ]
 
 // --------------------------------------------
 #d("Deux parcours")[
   #annonce[
-    Chaque élève garde le parcours choisi au cours 3.
+    Chaque élève garde le parcours choisi au cours 3. Les deux parcours
+    écrivent le même programme.
   ]
 
   #tableau(
     columns: (auto, 1fr, 1fr),
     align: left + horizon,
     [], [Parcours standard], [Parcours avancé],
-    [Au cours 3], [TD 3b : une recette en Markdown], [TD 3a : le programme `recette.py`],
-    [Au projet 4], [TD 4a : le client et le noyau ; puis TD 4b, le TD 3a du cours 3], [TD 4c : la fenêtre du train],
-    [Dossier], [`cours4/4a_noyaux/`, puis `cours4/4b_cli/`], [`cours4/4c_train/`],
+    [Au cours 3], [TD 3a : une recette en Markdown], [TD 3b : le programme `recette.py`],
+    [Au projet 4], [TD 4a, en suivant le guide détaillé], [TD 4a en 50 minutes, puis TD 4b],
+    [Dossier], [`cours4/4a_recette/`], [`cours4/4a_recette/`, puis les fichiers à compléter de `cours4/4b_paquet/`],
   )
 
   #legende[
-    Le TD 4b est le TD 3a du cours 3, avec le même guide : le parcours
-    standard écrit ici le programme de la recette en ligne de commande.
-  ]
-]
-
-// --------------------------------------------
-#separateur(
-  "Parcours standard · Le client et le noyau",
-  annonce: "Un notebook est ouvert par un client et exécuté par un noyau ; un environnement peut avoir le noyau sans le client",
-)
-
-// --------------------------------------------
-#d("Le client et le serveur d'un notebook")[
-  #annonce[
-    Un notebook est une application web : un client qui affiche, un serveur
-    qui exécute.
-  ]
-
-  #align(center, schema-client-serveur())
-
-  #legende[
-    Changer de client ne change pas le noyau : JupyterLab et l'éditeur de code
-    ouvrent le même fichier et exécutent ses cellules dans le même noyau.
-  ]
-
-  #notes[
-    Le noyau est le processus Python qui exécute les cellules et retient les
-    variables : section 2 de `noyau.ipynb`.
-
-    Le jeton de l'adresse `localhost:8888/lab?token=…` est un mot de passe à
-    usage unique. Repris au cours 5.
-  ]
-]
-
-// --------------------------------------------
-#d("Les trois emplacements du serveur")[
-  #annonce[
-    Le serveur d'un notebook peut être sur un autre ordinateur, sur votre
-    poste, ou dans le navigateur lui-même.
-  ]
-
-  #align(center, scale(80%, reflow: true, schema-trois-serveurs()))
-
-  #legende[
-    Dans le premier cas seulement, le code et les données sortent du poste.
-  ]
-
-  #notes[
-    Premier cas : Colab, ou un serveur de calcul ; Colab demande un compte.
-    Deuxième cas : `jupyter lab` sur le poste, celui des séances. Troisième
-    cas : JupyterLite (jupyter.org/try-jupyter) ; tous les paquets n'y sont
-    pas.
-  ]
-]
-
-// --------------------------------------------
-#d("Les clients d'un notebook")[
-  #annonce[
-    Le même fichier s'ouvre dans plusieurs clients. Tous ont besoin d'un
-    noyau.
-  ]
-
-  #align(center, schema-deux-clients())
-
-  #legende[
-    L'éditeur de code n'a pas besoin de `jupyterlab` : il démarre `ipykernel`
-    lui-même. Un environnement ouvert dans l'éditeur n'a besoin que
-    d'`ipykernel`.
-  ]
-
-  #notes[
-    TD 4a, étapes 8 et 10 : `info01-recette` a `ipykernel` sans `jupyterlab`
-    ; VS Code l'emploie, `jupyter lab` y échoue.
+    Garder le dossier `travail/recette/` après la séance : les séances
+    suivantes le reprennent.
   ]
 ]
 
 // --------------------------------------------
 #if tds {
-  include "tds/4a_noyaux.typ"
-  include "tds/4b_cli.typ"
+  include "tds/4a_recette.typ"
 } else {
-  sommaire-td(td-4a, td-4b)
+  sommaire-td(td-4a)
 }
 
 // --------------------------------------------
 #separateur(
-  "Parcours avancé · La fenêtre du train",
-  annonce: "Une vidéo fabriquée par ImageMagick et ffmpeg, lancés par Python ; un environnement décrit par environment.yml",
+  "Parcours avancé · Un projet Python",
+  annonce: "Un programme réparti en modules, un environnement décrit par un fichier, une commande installée par pip",
 )
 
 // --------------------------------------------
-#d("Des outils en ligne de commande")[
+#d("Un module, un import")[
   #annonce[
-    ImageMagick (`magick`) et ffmpeg sont des programmes en ligne de
-    commande, comme git (cours 2) et pandoc (cours 3). Le script Python les
-    lance avec `subprocess.run` : une fois par image pour `magick`, une fois
-    à la fin pour `ffmpeg`.
-  ]
-
-  #code-commente(
-    taille-code: 11.5pt, taille-texte: 11.5pt,
-    ("magick fond.png ( plan.png -roll -8+0 -crop 640x480+0+0 +repage )", "la bande du plan, tournée de 8 colonnes, puis découpée"),
-    ("       -composite fenetre.png -composite img_0002.png", "posé sur le fond, puis la fenêtre par-dessus"),
-    ("ffmpeg -framerate 12 -i img_%04d.png train.mp4", "12 images par seconde ; `%04d` : un numéro à quatre chiffres"),
-  )
-
-  #legende[
-    Pendant le développement, chaque étape se termine par un commit git : le
-    dépôt garde une version qui fonctionne à chaque étape.
-  ]
-
-  #notes[
-    `magick` et `ffmpeg` ne sont pas dans l'environnement `base`
-    d'Anaconda : c'est la raison de la partie A.
-  ]
-]
-
-// --------------------------------------------
-#d("Le programme train.py, étape par étape")[
-  #annonce[
-    Python calcule la liste des décalages, puis, pour chaque décalage, lance
-    `magick`, qui compose l'image. ffmpeg assemble les 120 images.
-  ]
-
-  #programme-train(hauteur-vignette: 64pt)
-
-  #notes[
-    Les étapes du programme ; celles du TD sont sur sa feuille. `decalages` fait l'étape 2,
-    `image` les étapes 3 et 4, `assembler` l'étape 5.
-  ]
-]
-
-// --------------------------------------------
-#d("L'environnement animation")[
-  #annonce[
-    `environment.yml` liste ce que le projet demande. `conda env create` crée
-    l'environnement à partir de ce fichier ; `conda activate` le rend actif
-    dans le terminal.
+    Un fichier Python est un module. `import` exécute le module une fois, et
+    ses noms sont ensuite utilisables dans le fichier qui l'importe.
   ]
 
   #face-a-face(
-    panneau("depart/environment.yml")[
-      #sortie("name: animation\nchannels:\n  - conda-forge\ndependencies:\n  - python=3.12\n  - jupyterlab\n  - imagemagick\n  - ffmpeg", taille: 12pt)
+    panneau("quantites.py")[
+      #sortie("import csv\n\nVERS_US = {\"g\": (\"oz\", 1 / 28.3495), …}\n\ndef adapter(ingredients, personnes_recette, personnes):\n    …\n\ndef convertir(ingredients, table):\n    …", taille: 11pt)
     ],
-    panneau("Dans le terminal Git Bash, dans depart/")[
+    panneau("recette.py")[
+      #sortie("from quantites import VERS_US, adapter, convertir\n\ndef main():\n    …\n    ingredients = adapter(ingredients, 4, 6)\n    ingredients = convertir(ingredients, VERS_US)", taille: 11pt)
+    ],
+  )
+
+  #legende[
+    Python cherche un module dans le dossier du fichier lancé, puis dans la
+    bibliothèque standard (`csv`, `pathlib`) et dans les paquets de
+    l'environnement actif.
+  ]
+
+  #notes[
+    `import quantites` exécute tout le fichier : d'où `main` et
+    `if __name__ == "__main__":` (étape C1), pour qu'un import de
+    `recette.py` ne lance pas le programme.
+
+    La liste des dossiers parcourus : `python -c "import sys; print(sys.path)"`.
+  ]
+]
+
+// --------------------------------------------
+#d("Un environnement conda")[
+  #annonce[
+    Un environnement est un dossier qui contient un Python et des paquets.
+    `conda activate` place ses dossiers en tête de `PATH`, et `python`
+    désigne alors le Python de l'environnement.
+  ]
+
+  #tableau(
+    columns: (auto, 1fr, 1fr),
+    align: left + horizon,
+    [Commande], [Invite `(base)`], [Invite `(recette)`],
+    [`which python`], [le Python d'Anaconda, dans `anaconda3/`], [le Python de l'environnement, dans `envs/recette/`],
+    [`which pandoc`], [le pandoc d'Anaconda], [le pandoc de l'environnement],
+    [`pip install …`], [installe dans `base`], [installe dans `recette` seulement],
+  )
+
+  #legende[
+    Une commande désigne un exécutable cherché dans les dossiers de `PATH`,
+    dans l'ordre (cours 1). Deux projets, deux environnements : les
+    versions installées pour l'un ne changent pas l'autre.
+  ]
+
+  #notes[
+    La partie 4 du cours 1 de 2026, qui expliquait les environnements, n'a
+    pas été jouée : le dire ici, sans parler de rappel.
+
+    Emplacement réel de `envs/` sur les postes de la salle : à vérifier
+    (`conda env list`).
+  ]
+]
+
+// --------------------------------------------
+#d("environment.yml, conda et pip")[
+  #annonce[
+    `environment.yml` décrit l'environnement du projet. Versionné avec le
+    code, il permet de recréer l'environnement sur un autre poste.
+  ]
+
+  #face-a-face(
+    panneau("environment.yml")[
+      #sortie("name: recette\nchannels:\n  - conda-forge\ndependencies:\n  - python=3.12\n  - pandoc\n  - pip\n  - setuptools", taille: 12pt)
+    ],
+    panneau("Dans le terminal, dans le projet")[
       #tableau(
         entete: false,
         columns: (1fr,),
         align: left + horizon,
-        [`conda env create -f environment.yml`],
-        [`conda env list` #h(0.5em) → une ligne `animation`],
-        [`conda activate animation` #h(0.5em) → `(animation)`],
-        [`magick -version`, `ffmpeg -version`],
+        [`conda env create -f environment.yml` #h(0.5em) → crée `recette`],
+        [`conda activate recette` #h(0.5em) → `(recette)`],
+        [`pip install -e . --no-build-isolation` #h(0.5em) → installe le projet],
       )
     ],
   )
 
   #legende[
-    Guide, étapes A2 et A3. Avant la première commande, une fois par poste :
-    `conda` rendu disponible dans Git Bash. La création télécharge les
-    paquets : plusieurs minutes.
+    conda installe Python et des programmes qui ne sont pas écrits en
+    Python, comme pandoc. pip installe des paquets Python : ici, le projet
+    lui-même.
   ]
 
   #notes[
-    Un environnement est un dossier avec son Python et ses programmes ;
-    `activate` met ses dossiers en tête de `PATH`. La partie 4 du cours 1
-    de 2026, qui l'expliquait, n'a pas été jouée : le dire ici, sans
-    parler de rappel.
-
-    Si deux élèves partagent un poste, le second obtient `prefix already
-    exists` : l'environnement est déjà là, passer à l'activation.
+    `conda-forge` : le dépôt des paquets. `setuptools` construit le paquet
+    au moment de `pip install` ; présent dans l'environnement, il évite un
+    téléchargement depuis PyPI (`--no-build-isolation`).
   ]
 ]
 
 // --------------------------------------------
-#d("JupyterLab lancé depuis l'environnement")[
+#d("pyproject.toml : du fichier à la commande")[
   #annonce[
-    Le notebook appelle `magick` et `ffmpeg` : il les cherche dans le `PATH`
-    du terminal qui a lancé JupyterLab. JupyterLab se lance donc depuis le
-    terminal Git Bash de VS Code, l'environnement `animation` actif.
+    `pyproject.toml` est la fiche du projet, lue par pip. `[project.scripts]`
+    y déclare les commandes à installer.
   ]
 
-  #tableau(
-    columns: (auto, 1fr, 1fr),
-    align: left + horizon,
-    [], [Ce qu'il faut faire], [Ce que vous devez obtenir],
-    [1], [copier `depart/notebook/<nom>.ipynb` dans `travail/`], [`travail/<nom>.ipynb`],
-    [2], [`cd travail`, puis `jupyter lab`], [le navigateur s'ouvre sur `travail/`],
-    [3], [ouvrir le notebook, exécuter les sections 1 et 2], [section 2 : trois chemins qui contiennent `envs\animation`],
-    [4], [exécuter les sections suivantes, une à une], [une image d'essai par section, puis la vidéo],
+  #code-commente(
+    taille-code: 12pt, taille-texte: 12pt,
+    ("[project]", "la fiche du projet"),
+    ("name = \"recette\"", "le nom du paquet, pour pip"),
+    ("[project.scripts]", "les commandes à installer"),
+    ("recette = \"recette:main\"", "la commande `recette` appelle `main` du module `recette`"),
+    ("[tool.setuptools]", "où sont les modules"),
+    ("package-dir = {\"\" = \"src\"}", "dans le dossier `src/`"),
+    ("py-modules = [\"recette\", \"quantites\"]", "deux modules, un fichier chacun"),
   )
 
-  #avertissement[
-    Lancé depuis Anaconda Navigator, JupyterLab tourne dans `base` : la
-    section 2 affiche `magick : None`.
+  #legende[
+    `pip install -e .` installe le projet du dossier courant en mode
+    modifiable : la commande appelle le code de `src/`, et une modification
+    de ce code vaut sans réinstaller.
+  ]
+
+  #notes[
+    `src/` sépare le code des données et des fichiers du projet. La commande
+    est un petit exécutable écrit par pip dans l'environnement :
+    `which recette`.
   ]
 ]
 
 // --------------------------------------------
 #if tds {
-  include "tds/4c_train.typ"
+  include "tds/4b_paquet.typ"
 } else {
-  sommaire-td(td-4c)
+  sommaire-td(td-4b)
 }
-
-// --------------------------------------------
-#d("Une version, une étiquette")[
-  #annonce[
-    Une étiquette git, un _tag_, nomme un commit. Posée sur la version
-    finale du programme, elle la retrouve sans chercher son identifiant.
-  ]
-
-  #code-commente(
-    taille-code: 13pt, taille-texte: 12.5pt,
-    ("git tag -a v1.0 -m \"Première version\"", "pose l'étiquette `v1.0` sur le commit courant"),
-    ("git tag", "liste les étiquettes du dépôt"),
-    ("git log --oneline --graph --all", "l'étiquette apparaît à côté du commit"),
-  )
-
-  #notes[
-    Vu au cours 2 (TD 6a). Le cours 6 publie le dépôt, étiquette comprise.
-  ]
-]
 
 // --------------------------------------------
 #d("Ce qu'on rend")[
   #annonce[
-    Le dossier du projet, avec son historique git : le code, le README, et
-    pour le train `environment.yml`, qui permettent de refaire le résultat
-    sur un autre poste.
+    Le dossier du projet, avec son historique git.
   ]
 
   #tableau(
     columns: (auto, 1fr, 1fr),
     align: left + horizon,
-    [Commande], [Parcours standard, `recette.py`], [Parcours avancé, `train.py`],
-    [`git log --oneline --graph --all`], [six commits, et l'étiquette `v1.0`], [douze commits, dont un de fusion, et l'étiquette `v1.0`],
+    [Commande], [Parcours standard], [Parcours avancé],
+    [`git log --oneline`], [huit commits, neuf avec le bonus], [douze commits au moins],
     [`git status`], [« rien à valider » ; `sortie/` n'est pas listé], [« rien à valider » ; `sortie/` n'est pas listé],
-    [`python <nom>.py --help`], [les trois arguments et leur aide], [les options des trois fonctionnalités],
-    [le résultat], [`sortie/<recette>.html`], [`sortie/train.mp4`],
+    [l'aide], [`python recette.py --help`], [`recette --help`],
+    [le résultat], [`sortie/crepes_6_US.csv`], [le même, et `environment.yml`, `pyproject.toml`],
   )
 
   #notes[
-    Le cours 6 publie le dépôt sur GitHub : le README en est la page
-    d'accueil. Le parcours standard publie le dépôt de la recette.
+    Le README et l'étiquette `v1.0` (étape B7) se font après la séance si
+    le temps manque.
   ]
 ]

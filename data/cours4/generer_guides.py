@@ -24,6 +24,9 @@ DEPOT = Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import generer_corriges as corriges  # noqa: E402
 
+sys.path.insert(0, str(DEPOT / "outils"))
+from modifications import modifications  # noqa: E402
+
 
 def fence(code, langue="python"):
     return "```" + langue + "\n" + code.strip("\n") + "\n```"
@@ -402,7 +405,7 @@ liste ; `conda activate nom` l'active dans le terminal : les commandes
 tapées ensuite (`python`, `magick`, `ffmpeg`, `jupyter`) sont celles de cet
 environnement.
 
-**Si une étape de la partie B échoue.** `git status` montre les fichiers
+{t.get('rappel_modifications', '')}**Si une étape de la partie B échoue.** `git status` montre les fichiers
 modifiés depuis le dernier commit ; `git restore {p}.py` remet le fichier
 dans l'état du dernier commit.
 
@@ -1179,6 +1182,37 @@ RESUMES_TRAIN.update({
            "la commande `train` fonctionne depuis n'importe quel dossier ; treize commits."),
 })
 
+RAPPEL_MODIFICATIONS_TRAIN = """**Les lignes à modifier.** À partir de l'étape B2, le guide donne en entier
+le code d'une fonction nouvelle. Pour une fonction qui existe déjà, il ne
+donne que les lignes qui changent, comme dans cet extrait de l'étape B3.3 :
+
+```diff
+-  42 def image(fichier, decor):
++     def image(fichier, decor, decalage):
+   43     \"\"\"Une image de la vidéo, 640 × 480 pixels, écrite dans `fichier`.\"\"\"
+   44     commande = [MAGICK] + arguments_fond(decor)
+-  45     commande = commande + arguments_plan(decor) + ["-composite"]
++         commande = commande + arguments_plan(decor, decalage) + ["-composite"]
+   46     commande = commande + [str(fichier)]
+```
+
+Une ligne marquée `-` est à supprimer, une ligne marquée `+` est à ajouter.
+Les lignes sans signe ne changent pas et indiquent l'endroit de la
+modification. Le signe `…` remplace des lignes qui ne changent pas.
+
+Le nombre qui suit le signe est le numéro de la ligne dans VS Code, quand
+les modifications sont faites de haut en bas. Une ligne ajoutée n'a pas de
+numéro. Si le fichier n'a pas les mêmes lignes vides que le guide, les
+numéros diffèrent de quelques lignes, et les lignes sans signe permettent
+de retrouver l'endroit.
+
+Une ligne ajoutée se copie sans le `+` ni les cinq espaces qui le suivent.
+Pour plusieurs lignes, les coller dans VS Code, sélectionner leurs six
+premiers caractères en rectangle (`Maj+Alt` en faisant glisser la souris),
+puis appuyer sur `Suppr`.
+
+"""
+
 
 def _entre(texte, debut, fin):
     """Les lignes de `texte` de la ligne qui commence par `debut` à celle qui commence par `fin`, incluses."""
@@ -1188,14 +1222,26 @@ def _entre(texte, debut, fin):
     return "\n".join(lignes[i:j + 1])
 
 
+def _inserer(texte, apres, morceau):
+    """`texte`, avec `morceau` collé juste après `apres`, qui n'y figure qu'une fois."""
+    assert texte.count(apres) == 1, apres
+    return texte.replace(apres, apres + morceau)
+
+
 def partie_b_train(t):
     F = corriges.F
+    v = corriges.version_train
     entete = F["doc"] + "\n" + F["imports"] + F["outils"]
     fonctions_b1 = F["titre-image"] + F["fond"] + corriges.image_train(False, []) + F["taille"]
     main_b1 = F["main-fond"] + corriges.APPEL
-    image_b2 = corriges.image_train(False, [corriges.LIGNE_FENETRE])
-    image_b3 = corriges.image_train(False, [corriges.LIGNE_PLAN_0])
-    image_b3_decalage = corriges.image_train(True, [corriges.LIGNE_PLAN])
+    # Après la première version, le guide donne les lignes qui changent. Les
+    # numéros sont ceux du fichier au moment de la modification : une fonction
+    # nouvelle, collée d'un bloc, est comptée dans l'état de départ.
+    b2_colle = _inserer(v("b1"), F["fond"], F["fenetre"])
+    b3_colle = _inserer(v("b1"), F["fond"], F["plan-b3-plan"])
+    b6_video_colle = _inserer(v("b5"), F["serie"], F["assembler"])
+    b6_import = v("b6-video").replace("import subprocess\n", "import shutil\nimport subprocess\n")
+    b6_colle = _inserer(b6_import, F["assembler"], F["nettoyer"])
     conflit = _entre(corriges.rejouer_train(), "<<<<<<<", ">>>>>>>")
     resolution = _entre(corriges.version_train("b4"), "def arguments_plan", corriges.LIGNE_FENETRE.rstrip())
     return f"""# Partie B · Du notebook au programme
@@ -1364,9 +1410,9 @@ coller :
 {fence(F["fenetre"])}
 
 Puis, dans la fonction `image`, ajouter la ligne de la fenêtre sous la ligne
-qui lit le fond. La fonction devient :
+qui lit le fond :
 
-{fence(image_b2)}
+{modifications(b2_colle, v("b2"))}
 
 `-composite` pose la dernière image lue, la fenêtre, sur l'image lue avant
 elle, le fond : les pixels transparents de la vitre laissent voir le fond.
@@ -1408,7 +1454,7 @@ fonction qui découpe l'emprise à la colonne 0 (sections 4 et 6 du notebook) :
 
 Puis ajouter la ligne du plan dans `image` :
 
-{fence(image_b3)}
+{modifications(b3_colle, v("b3-plan"))}
 
 Enregistrer. **Vérification** : `python train.py` écrit une image où les
 voiles et la plage sont posées sur le fond.
@@ -1421,18 +1467,10 @@ git commit -am "Plan : le plan posé sur le fond"
 
 Le décalage est la colonne de la bande où commence l'emprise (section « La
 méthode », schéma de l'emprise). `-crop 640x480+400+0` découpe l'emprise à la
-colonne 400. Remplacer la fonction `arguments_plan` par :
+colonne 400. Modifier la fonction `arguments_plan`, la fonction `image`, qui
+reçoit maintenant le décalage, et la fonction `main` :
 
-{fence(F["plan-b3-decalage"])}
-
-puis la fonction `image`, qui reçoit maintenant le décalage, par :
-
-{fence(image_b3_decalage)}
-
-puis toute la fonction `main`, de `def main():` jusqu'à la ligne vide qui
-précède `if __name__`, par :
-
-{fence(sans_titre(F["main-decalage"]))}
+{modifications(v("b3-plan"), v("b3-decalage"))}
 
 Le nom du fichier écrit contient le décalage, sur quatre chiffres : deux
 décalages donnent deux fichiers, que l'on peut comparer.
@@ -1458,10 +1496,10 @@ git commit -am "Plan : l'option --decalage"
 
 La bande se raccorde d'un bord à l'autre : le programme la fait tourner
 avant de découper l'emprise (section « La méthode », schémas du cylindre et
-de la rotation). Remplacer la fonction `arguments_plan` par la version de la
+de la rotation). Modifier la fonction `arguments_plan` comme dans la
 section 5 du notebook :
 
-{fence(F["plan"])}
+{modifications(v("b3-decalage"), v("b3"))}
 
 `-roll -1500+0` fait tourner la bande de 1 500 colonnes vers la gauche ;
 `-crop 640x480+0+0` découpe ensuite l'emprise à partir de la colonne 0, qui
@@ -1598,9 +1636,9 @@ git commit -am "Série : les fonctions decalages et serie"
 
 ### B5.2 L'option `--images` dans `main`
 
-Remplacer toute la fonction `main` par :
+Modifier la fonction `main` :
 
-{fence(sans_titre(F["main-serie"]))}
+{modifications(v("b5-fonctions"), v("b5"))}
 
 La nouvelle option n'a pas de valeur par défaut : sans elle,
 `options.images` vaut `None`, et le programme écrit une image seule, comme
@@ -1638,9 +1676,9 @@ Dans `train.py`, après la fonction `serie`, coller :
 
 {fence(F["assembler"])}
 
-Puis remplacer la fonction `main` par :
+Puis modifier la fonction `main` :
 
-{fence(sans_titre(F["main-video"]))}
+{modifications(b6_video_colle, v("b6-video"))}
 
 `action="store_true"` fait de `--video` une option sans valeur : présente,
 elle vaut `True`.
@@ -1660,20 +1698,16 @@ git commit -am "Vidéo : la fonction assembler, les options --video et --cadence
 
 En tête du fichier, ajouter `import shutil` aux imports :
 
-```python
-import argparse
-import shutil
-import subprocess
-```
+{modifications(v("b6-video"), b6_import)}
 
 Après la fonction `assembler`, coller :
 
 {fence(F["nettoyer"])}
 
-`shutil.rmtree` supprime un dossier et tout son contenu. Puis remplacer la
-fonction `main` par :
+`shutil.rmtree` supprime un dossier et tout son contenu. Puis modifier la
+fonction `main` :
 
-{fence(sans_titre(F["main"]))}
+{modifications(b6_colle, v("b6"))}
 
 Enregistrer. **Vérification** : `python train.py --images 24 --video --nettoyer`
 affiche `images intermédiaires supprimées` ; `sortie/` contient la vidéo, et
@@ -1879,7 +1913,7 @@ def verifier_annexe_plans():
 
 for _t in TDS:
     if _t["td"] == "4c_train":
-        _t.update(partie_b=partie_b_train, resumes=RESUMES_TRAIN, tableau_b=TABLEAU_B_TRAIN, resume_b=RESUME_B_TRAIN,
+        _t.update(partie_b=partie_b_train, rappel_modifications=RAPPEL_MODIFICATIONS_TRAIN, resumes=RESUMES_TRAIN, tableau_b=TABLEAU_B_TRAIN, resume_b=RESUME_B_TRAIN,
                   arbre_projet_donnees="├── decor/               (les images du décor)\n",
                   arbre_depart_extra=("│   ├── decor/\n│   │   ├── fond.png\n│   │   ├── plan.png\n│   │   ├── fenetre.png\n"
                                       "│   │   ├── voiles.png\n│   │   ├── plage_jaune.png\n│   │   └── plage.png\n"
@@ -1888,7 +1922,10 @@ verifier_annexe_plans()
 
 
 for t in TDS:
-    rangement = "td" if t["td"] == "4c_train" else "propositions"
-    cible = DEPOT / "src" / "cours4" / "notebook" / rangement / t["td"] / "guide.md"
+    # Le train est passé au projet 7 le 30/09/2026, en proposition pour le TD 7b.
+    if t["td"] == "4c_train":
+        cible = DEPOT / "src" / "cours7" / "notebook" / "propositions" / t["td"] / "guide.md"
+    else:
+        cible = DEPOT / "src" / "cours4" / "notebook" / "propositions" / t["td"] / "guide.md"
     cible.write_text(guide(t), encoding="utf-8")
     print("ok", cible)

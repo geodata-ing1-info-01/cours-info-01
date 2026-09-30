@@ -1,0 +1,19 @@
+# La fiche d'identité du projet, lue par pip : `pip install -e .` installe la
+# commande `recette`, qui appelle la fonction main du fichier src/recette.py.
+
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "recette"
+version = "0.1"
+description = "(à compléter : une phrase)"
+requires-python = ">=3.9"
+
+[project.scripts]
+recette = "recette:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+py-modules = ["recette", "quantites"]

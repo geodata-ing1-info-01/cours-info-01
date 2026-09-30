@@ -5,9 +5,9 @@ subtitle: Le fichier .ipynb, le noyau et le client, et les outils qui ouvrent un
 
 Cette page réunit ce qu'il faut savoir d'un notebook pour choisir un outil
 et comprendre ses messages. Les notebooks sont enseignés dans les séances.
-La page [Le client et le noyau d'un
-notebook](../../cours4/notebook/01_client_noyau.md) du cours 4 les reprend
-avec des TD.
+La page [Un notebook et la syntaxe de
+Markdown](../../cours1_v2/notebook/04_notebook.md) de la version 2 du
+cours 1 les présente avec des TD.
 
 ## Le fichier d'un notebook
 

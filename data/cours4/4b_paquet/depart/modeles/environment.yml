@@ -1,0 +1,9 @@
+# L'environnement du programme recette : conda env create -f environment.yml
+name: recette
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pandoc
+  - pip
+  - setuptools

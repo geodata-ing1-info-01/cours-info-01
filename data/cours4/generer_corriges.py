@@ -22,6 +22,8 @@ Modifier le code ici, pas dans `corriges/`, puis relancer `generer_guides.py`.
 from pathlib import Path
 
 CORRIGES = Path(__file__).resolve().parent / "corriges"
+# Le train est passé au projet 7 le 30/09/2026 : ses corrigés sont rangés avec ceux du cours 7.
+CORRIGES_TRAIN = Path(__file__).resolve().parent.parent / "cours7" / "corriges" / "4c_train"
 
 # Les états successifs du fichier, un par commit de code, dans l'ordre du TD.
 ETATS = ["b1-dessin", "b1", "b2-fonctions", "b2", "b3-video", "b3"]
@@ -841,7 +843,7 @@ def main():
         ecrire(base / "b5" / "src" / (nom + ".py"), version(nom, "b3"))
         print("ok", td)
     # Le TD 4c : un corrigé par étape, le programme final dans b6/ et b8/src/.
-    base = CORRIGES / "4c_train"
+    base = CORRIGES_TRAIN
     for etat in ("b1", "b2", "b3", "b4", "b5", "b6"):
         ecrire(base / etat / "train.py", version_train(etat))
     ecrire(base / "b8" / "src" / "train.py", version_train("b6"))
