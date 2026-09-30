@@ -538,7 +538,7 @@ La fonction `generer_page` enchaîne les deux étapes du programme : `generer`
 écrit la recette en Markdown, puis pandoc la convertit en page HTML, à côté,
 avec la même feuille de style. `pagetitle` donne le titre de l'onglet du
 navigateur, sans ajouter de titre dans la page : la recette a déjà le sien.
-Le TD 3a reprend cette forme dans un script.
+Le TD 3b reprend cette forme dans un script.
 
 ```{code-cell} ipython3
 def generer_page(fichier_ingredients, fichier_recette, fichier_sortie, personnes=4, unites="SI"):

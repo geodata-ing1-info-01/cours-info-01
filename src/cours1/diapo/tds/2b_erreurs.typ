@@ -9,7 +9,7 @@
 #let td = (
   numero: "2b",
   titre: "Trois programmes fautifs",
-  annonce: "Afficher les caractères invisibles, puis corriger trois programmes Python qui refusent de s'exécuter",
+  annonce: "Objectif : lire les messages d'erreur de Python et corriger la ligne qu'ils désignent, sur trois programmes",
   dossier: "cours1/2b_erreurs/",
   duree: "10′",
 )

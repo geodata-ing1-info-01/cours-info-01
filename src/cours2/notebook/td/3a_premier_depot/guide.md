@@ -12,11 +12,11 @@ Le TD se fait dans un terminal bash, avec git. Sur les postes de la salle,
 c'est la fenêtre Git Bash ; la page [Git et Git
 Bash](../../../../annexes/configuration/git.md) décrit comment l'ouvrir.
 
-| Étape | Questions | Ce qu'on fait |
-|---|---|---|
-| 1 | 1 | enregistrer l'alias `git llog`, qui affiche le graphe du projet |
-| 2 | 2 et 3 | créer le dossier du projet, et y initialiser un dépôt |
-| 3 | 4 et 5 | créer `README.md`, puis l'enregistrer en un premier commit |
+| Étape | Objectif | Questions | Ce qu'on fait |
+|---|---|---|---|
+| 1 | afficher l'historique d'un dépôt sous forme de graphe | 1 | enregistrer l'alias `git llog`, qui affiche le graphe du projet |
+| 2 | créer un dépôt git | 2 et 3 | créer le dossier du projet, et y initialiser un dépôt |
+| 3 | enregistrer un premier état du projet | 4 et 5 | créer `README.md`, puis l'enregistrer en un premier commit |
 
 Chaque étape commence par un encadré qui la résume. Ce que chaque étape fait
 constater est expliqué à la fin du guide, dans « Ce que le TD fait

@@ -22,12 +22,12 @@ Les deux versions sont fournies dans le dossier du TD :
 └── td_4c_conflits.pdf
 ```
 
-| Étape | Questions | Ce qu'on fait |
-|---|---|---|
-| 1 | 21 | la première version, sur `main_code` |
-| 2 | 22 et 23 | la seconde version, sur une nouvelle branche `main_code_bis` |
-| 3 | 24 | fusionner les deux branches dans `develop` : le conflit |
-| 4 | 25 | résoudre le conflit, et terminer la fusion |
+| Étape | Objectif | Questions | Ce qu'on fait |
+|---|---|---|---|
+| 1 | modifier un fichier sur une branche | 21 | la première version, sur `main_code` |
+| 2 | modifier la même ligne sur une autre branche | 22 et 23 | la seconde version, sur une nouvelle branche `main_code_bis` |
+| 3 | fusionner deux modifications de la même ligne | 24 | fusionner les deux branches dans `develop` : le conflit |
+| 4 | résoudre un conflit, puis terminer la fusion | 25 | résoudre le conflit, et terminer la fusion |
 
 Chaque étape commence par un encadré qui la résume. Ce que chaque étape fait
 constater est expliqué à la fin du guide, dans « Ce que le TD fait

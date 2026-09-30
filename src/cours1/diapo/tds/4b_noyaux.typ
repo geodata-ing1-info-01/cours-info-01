@@ -9,7 +9,7 @@
 #let td = (
   numero: "4b",
   titre: "Le client, le noyau, et où ils sont installés",
-  annonce: "Vérifier ce qu'un environnement contient, constater ce qui manque, puis installer de quoi ouvrir un notebook des deux façons : tout au même endroit, ou le client et le noyau séparés",
+  annonce: "Objectif : installer de quoi ouvrir un notebook de deux façons, le client et le noyau au même endroit ou séparés",
   dossier: "cours1/4b_noyaux/",
   duree: "20′",
   facultatif: true,

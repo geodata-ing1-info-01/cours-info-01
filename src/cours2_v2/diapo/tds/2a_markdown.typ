@@ -11,7 +11,7 @@
 #let td = (
   numero: "2a",
   titre: "Une recette en Markdown, convertie par pandoc",
-  annonce: "Mettre en forme un texte brut en Markdown, avec l'aperçu de VS Code, puis le convertir en page web et en document LibreOffice",
+  annonce: "Objectif : structurer un texte brut en Markdown, avec l'aperçu de VS Code, puis le convertir en page web et en document LibreOffice",
   dossier: "cours2/2a_markdown/",
   duree: "12′",
 )

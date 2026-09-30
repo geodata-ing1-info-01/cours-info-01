@@ -12,7 +12,7 @@
 #let td = (
   numero: "3a",
   titre: "Un notebook dans JupyterLab",
-  annonce: "Lancer JupyterLab, exécuter les cellules d'un notebook dans le désordre, voir ce que le noyau retient, lui ajouter une cellule de texte en Markdown, puis relancer JupyterLab depuis Git Bash",
+  annonce: "Objectif : exécuter un notebook dans JupyterLab, voir ce que le noyau retient d'une cellule à l'autre, et documenter le notebook en Markdown",
   dossier: "cours1/3a_notebook/",
   duree: "12′",
 )

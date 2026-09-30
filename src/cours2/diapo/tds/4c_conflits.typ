@@ -5,7 +5,7 @@
 #let td = (
   numero: "4c",
   titre: "Créer et résoudre un conflit",
-  annonce: "Modifier main.py de deux façons sur deux branches, fusionner les deux dans develop, résoudre le conflit.",
+  annonce: "Objectif : fusionner deux branches qui modifient la même ligne, et résoudre le conflit qui en résulte.",
   dossier: "cours2/4c_conflits/",
   duree: "25′",
 )

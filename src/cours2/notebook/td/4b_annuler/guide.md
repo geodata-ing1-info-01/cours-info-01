@@ -12,11 +12,11 @@ On travaille dans le dépôt du TD 3a, tel que le TD 4a l'a laissé,
 `~/Desktop/info01/cours2/3a_premier_depot/travail/projet_2`, dans Git Bash.
 Le TD n'a pas de fichier de départ.
 
-| Étape | Questions | Ce qu'on fait |
-|---|---|---|
-| 1 | 18 | vider les deux fichiers de `src`, et enregistrer ce commit |
-| 2 | 19 | repérer le commit fautif, et l'annuler avec `git revert` |
-| 3 | 20 | faire un commit sur `main_code`, puis la mettre à jour sur `develop` avec `git rebase` |
+| Étape | Objectif | Questions | Ce qu'on fait |
+|---|---|---|---|
+| 1 | enregistrer une erreur dans l'historique | 18 | vider les deux fichiers de `src`, et enregistrer ce commit |
+| 2 | annuler un commit sans réécrire l'historique | 19 | repérer le commit fautif, et l'annuler avec `git revert` |
+| 3 | mettre une branche à jour sur une autre | 20 | faire un commit sur `main_code`, puis la mettre à jour sur `develop` avec `git rebase` |
 
 Chaque étape commence par un encadré qui la résume. Ce que chaque étape fait
 constater est expliqué à la fin du guide, dans « Ce que le TD fait

@@ -22,13 +22,13 @@ Le terminal du module est **Git Bash**, installé avec git sur les postes de
 la salle. Les commandes de ce guide sont celles de bash : elles se tapent à
 l'identique dans le terminal de macOS et de Linux.
 
-| Étape | Ce qu'on fait |
-|---|---|
-| 1 | ouvrir Git Bash dans le dossier du TD, et lire l'invite |
-| 2 | se déplacer et lister le contenu des dossiers |
-| 3 | copier, renommer et ouvrir des fichiers |
-| 4 | écrire un nom de fichier qui contient un espace |
-| 5 | copier plusieurs fichiers d'un coup, supprimer un fichier |
+| Étape | Objectif | Ce qu'on fait |
+|---|---|---|
+| 1 | situer le terminal dans l'arborescence | ouvrir Git Bash dans le dossier du TD, et lire l'invite |
+| 2 | se déplacer par des chemins relatifs | se déplacer et lister le contenu des dossiers |
+| 3 | manipuler des fichiers par des commandes | copier, renommer et ouvrir des fichiers |
+| 4 | écrire un chemin qui contient un espace | écrire un nom de fichier qui contient un espace |
+| 5 | agir sur plusieurs fichiers en une commande | copier plusieurs fichiers d'un coup, supprimer un fichier |
 
 ## Rappels avant de commencer
 

@@ -24,13 +24,13 @@ Le TD nécessite VS Code, avec le terminal réglé au TD 2a pour fonctionner
 comme une invite de commandes d'Anaconda, et un navigateur. Les étapes 2, 3 et 5 téléchargent des paquets : la
 session réseau doit être ouverte.
 
-| Étape | Ce qu'on fait |
-|---|---|
-| 1 | copier le projet, l'ouvrir dans VS Code, et le lire |
-| 2 | créer un environnement d'essai qui ne contient que Python |
-| 3 | installer les deux sortes de dépendances, et lancer le programme |
-| 4 | écrire `environment.yml` et la section « Installation » du `README` |
-| 5 | effacer l'environnement, et le refaire en suivant ces deux fichiers |
+| Étape | Objectif | Ce qu'on fait |
+|---|---|---|
+| 1 | lire un projet avant de l'installer | copier le projet, l'ouvrir dans VS Code, et le lire |
+| 2 | partir d'un environnement qui ne contient que Python | créer un environnement d'essai qui ne contient que Python |
+| 3 | trouver et installer ce dont le programme dépend | installer les deux sortes de dépendances, et lancer le programme |
+| 4 | décrire l'environnement et l'installation du projet | écrire `environment.yml` et la section « Installation » du `README` |
+| 5 | refaire l'environnement à partir de sa seule description | effacer l'environnement, et le refaire en suivant ces deux fichiers |
 
 La feuille du TD numérote ses opérations de 1 à 11 ; le guide reprend ces
 numéros. Chaque étape commence par un encadré qui la résume. Ce que chaque

@@ -12,10 +12,10 @@ On travaille dans le dépôt du TD 3a, tel que le TD 4c l'a laissé,
 `~/Desktop/info01/cours2/3a_premier_depot/travail/projet_2`, dans Git Bash.
 Le TD n'a pas de fichier de départ.
 
-| Étape | Questions | Ce qu'on fait |
-|---|---|---|
-| 1 | 26 | fusionner `develop` dans `master` |
-| 2 | 27 | poser le tag `v1.0`, et vérifier la version |
+| Étape | Objectif | Questions | Ce qu'on fait |
+|---|---|---|---|
+| 1 | reporter le travail terminé sur la branche principale | 26 | fusionner `develop` dans `master` |
+| 2 | nommer une version livrée | 27 | poser le tag `v1.0`, et vérifier la version |
 
 Chaque étape commence par un encadré qui la résume. Ce que chaque étape fait
 constater est expliqué à la fin du guide, dans « Ce que le TD fait

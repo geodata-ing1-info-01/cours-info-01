@@ -25,13 +25,13 @@ jusqu'à ce que le message disparaisse. Le TD dure une dizaine de minutes.
 Le TD suppose le TD 1a fait : VS Code a Git Bash pour terminal, affiche les
 espaces, et enregistre les fichiers après un court délai.
 
-| Étape | Ce qu'on fait |
-|---|---|
-| 1 | préparer le dossier du TD |
-| 2 | lire les caractères invisibles et la barre d'état |
-| 3 | corriger `surface.py` |
-| 4 | corriger `moyenne.py` |
-| 5 | corriger `chemin.py` |
+| Étape | Objectif | Ce qu'on fait |
+|---|---|---|
+| 1 | travailler sur des copies des programmes | préparer le dossier du TD |
+| 2 | voir les caractères invisibles, l'encodage et les fins de ligne | lire les caractères invisibles et la barre d'état |
+| 3 | lire un message d'erreur et trouver la faute | corriger `surface.py` |
+| 4 | corriger la ligne que le message désigne | corriger `moyenne.py` |
+| 5 | remplacer un chemin absolu par un chemin relatif | corriger `chemin.py` |
 
 Chaque étape commence par un encadré qui la résume. Ce que chaque étape fait
 constater est expliqué à la fin du guide, dans « Ce que le TD fait

@@ -24,14 +24,14 @@ La configuration se fait une fois par poste. Elle reste pour les séances
 suivantes : les postes de la salle gardent les réglages d'une séance à
 l'autre.
 
-| Étape | Ce qu'on fait |
-|---|---|
-| 1 | copier et décompresser les fichiers de la séance, dans Git Bash |
-| 2 | lancer VS Code et ouvrir le dossier `cours2` |
-| 3 | installer l'extension Python |
-| 4 | faire de Git Bash le terminal de VS Code |
-| 5 | choisir l'interpréteur Python, et lancer un programme |
-| 6 | deux réglages, puis leur fichier `settings.json` |
+| Étape | Objectif | Ce qu'on fait |
+|---|---|---|
+| 1 | récupérer les fichiers de la séance en ligne de commande | copier et décompresser les fichiers de la séance, dans Git Bash |
+| 2 | ouvrir un projet dans l'IDE | lancer VS Code et ouvrir le dossier `cours2` |
+| 3 | donner à l'IDE le langage du projet | installer l'extension Python |
+| 4 | utiliser le terminal du cours 1 dans l'IDE | faire de Git Bash le terminal de VS Code |
+| 5 | choisir le Python qui exécute le code | choisir l'interpréteur Python, et lancer un programme |
+| 6 | régler l'IDE, et lire où ses réglages sont écrits | deux réglages, puis leur fichier `settings.json` |
 
 Chaque étape se termine par une vérification. Une étape dont la
 vérification échoue se reprend avant de passer à la suivante ; la fin de

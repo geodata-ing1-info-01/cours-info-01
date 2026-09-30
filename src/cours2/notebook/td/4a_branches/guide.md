@@ -14,12 +14,12 @@ la feuille, et dure une trentaine de minutes.
 On travaille dans le dépôt créé au TD 3a,
 `~/Desktop/info01/cours2/3a_premier_depot/travail/projet_2`, dans Git Bash.
 
-| Étape | Questions | Ce qu'on fait |
-|---|---|---|
-| 1 | 6 à 8 | créer `develop` et `documentation`, décrire le projet, fusionner |
-| 2 | 9 à 12 | créer `main_code`, y écrire le programme principal |
-| 3 | 13 à 16 | créer `operations`, y écrire les fonctions de calcul |
-| 4 | 17 | fusionner `main_code`, puis `operations`, dans `develop` |
+| Étape | Objectif | Questions | Ce qu'on fait |
+|---|---|---|---|
+| 1 | développer sur une branche, puis fusionner | 6 à 8 | créer `develop` et `documentation`, décrire le projet, fusionner |
+| 2 | isoler le programme principal sur sa branche | 9 à 12 | créer `main_code`, y écrire le programme principal |
+| 3 | isoler les fonctions de calcul sur une autre branche | 13 à 16 | créer `operations`, y écrire les fonctions de calcul |
+| 4 | réunir deux branches dans une troisième | 17 | fusionner `main_code`, puis `operations`, dans `develop` |
 
 Chaque étape commence par un encadré qui la résume. Ce que chaque étape fait
 constater est expliqué à la fin du guide, dans « Ce que le TD fait

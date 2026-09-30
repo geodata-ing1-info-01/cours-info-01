@@ -26,12 +26,12 @@ suppose que le TD 4a a été fait : l'environnement `recette` doit exister. Les
 commandes `conda install` et `conda create` téléchargent des paquets, et
 nécessitent une session réseau ouverte.
 
-| Étape | Ce qu'on fait |
-|---|---|
-| 1 | constater ce que les environnements contiennent, et ce qui manque |
-| 2 | installer le client et le noyau dans le même environnement |
-| 3 | installer un noyau dans un autre environnement que le client |
-| 4 | exécuter le notebook du projet recette |
+| Étape | Objectif | Ce qu'on fait |
+|---|---|---|
+| 1 | relever ce qu'un environnement contient | constater ce que les environnements contiennent, et ce qui manque |
+| 2 | ouvrir un notebook avec le client et le noyau au même endroit | installer le client et le noyau dans le même environnement |
+| 3 | séparer le client du noyau | installer un noyau dans un autre environnement que le client |
+| 4 | exécuter un notebook dans l'environnement de son projet | exécuter le notebook du projet recette |
 
 Chaque étape commence par un encadré qui la résume. Les numéros entre
 parenthèses, (1) à (15), sont ceux de la feuille du TD. Ce que chaque étape

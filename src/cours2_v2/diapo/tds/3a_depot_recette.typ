@@ -14,7 +14,7 @@
 #let td = (
   numero: "3a",
   titre: "Un dépôt git pour la recette",
-  annonce: "Versionner la recette du TD 2a : commits, différences, fichiers ignorés, une branche fusionnée, un conflit résolu, le graphe du dépôt",
+  annonce: "Objectif : versionner la recette du TD 2a, en suivre les versions, les différences et les branches, et résoudre un conflit de fusion",
   dossier: "cours2/3a_depot_recette/",
   duree: "40′",
 )
@@ -45,7 +45,7 @@
 
     `git config` sans `--global` : le réglage ne vaut que pour ce dépôt. Les
     postes sont partagés (même compte `eleve`) ; un réglage `--global`
-    signerait les commits des autres élèves. Même choix au TD 3a du cours 3.
+    signerait les commits des autres élèves. Même choix au TD 3b du cours 3.
   ]
 ]
 

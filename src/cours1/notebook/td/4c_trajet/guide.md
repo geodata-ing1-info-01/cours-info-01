@@ -24,12 +24,12 @@ Python, ffmpeg et ImageMagick, et nécessite une session réseau ouverte. Le
 guide suit la section « Installation » du `README` du projet ; le TD demande
 de suivre cette section soi-même, et le guide ne sert qu'en cas de blocage.
 
-| Étape | Ce qu'on fait |
-|---|---|
-| 1 | copier le projet et lire son `README` |
-| 2 | installer le projet par les commandes du `README` |
-| 3 | lancer la commande, et lire ce qu'elle produit |
-| 4 | en option : les commandes `magick` et `ffmpeg` une à une, dans un notebook |
+| Étape | Objectif | Ce qu'on fait |
+|---|---|---|
+| 1 | trouver dans le `README` ce qu'il faut pour installer | copier le projet et lire son `README` |
+| 2 | installer un projet par sa documentation | installer le projet par les commandes du `README` |
+| 3 | relier la commande à ce qu'elle produit | lancer la commande, et lire ce qu'elle produit |
+| 4 | exécuter une à une les commandes que le projet enchaîne | en option : les commandes `magick` et `ffmpeg` une à une, dans un notebook |
 
 Chaque étape commence par un encadré qui la résume. Ce que chaque étape fait
 constater est expliqué à la fin du guide, dans « Ce que le TD fait

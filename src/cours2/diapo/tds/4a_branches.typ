@@ -5,7 +5,7 @@
 #let td = (
   numero: "4a",
   titre: "Branches et fusions",
-  annonce: "Créer les branches develop, documentation, main_code et operations, puis les fusionner dans develop.",
+  annonce: "Objectif : développer chaque partie du projet sur sa branche, puis réunir les branches par des fusions.",
   dossier: "cours2/4a_branches/",
   duree: "30′",
 )

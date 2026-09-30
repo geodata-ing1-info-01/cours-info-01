@@ -303,20 +303,39 @@
     machine et le dossier courant. La commande se tape après le `$`.
   ]
 
+  // Les couleurs de l'invite réelle de Git Bash, assombries pour le fond
+  // blanc : chaque élément de l'invite a la couleur de sa ligne du tableau.
+  #let vert = rgb("#1a7f37")
+  #let violet = rgb("#a2248f")
+  #let jaune = rgb("#9a6700")
+  #let invite = (
+    text(fill: vert, "eleve@POSTE-12"), " ",
+    text(fill: violet, "MINGW64"), " ",
+    text(fill: jaune, "~/Desktop/info01/cours1"),
+  ).join()
+  #let ligne(couleur, element, sens) = (
+    text(fill: couleur, raw(element)), text(fill: couleur, sens),
+  )
   #grid(
     columns: (1.25fr, 1fr), column-gutter: 18pt, align: horizon,
     fenetre("MINGW64:/c/Users/eleve/Desktop/info01/cours1", code: true)[
-      #raw("eleve@POSTE-12 MINGW64 ~/Desktop/info01/cours1\n$ ls\n1a_formats/  2a_terminal/  2b_programme/  3a_notebook/\n\neleve@POSTE-12 MINGW64 ~/Desktop/info01/cours1\n$ ")
+      #set text(size: 11pt)
+      #invite \
+      \$ ls \
+      1a#sym.underscore;formats/#h(0.6em)2a#sym.underscore;terminal/#h(0.6em)2b#sym.underscore;programme/#h(0.6em)3a#sym.underscore;notebook/ \
+      #v(0.4em)
+      #invite \
+      \$
     ],
     tableau(
       columns: (auto, 1fr),
       align: left + horizon,
       [Dans l'invite], [Ce qu'il désigne],
-      [`eleve`], [l'utilisateur],
-      [`POSTE-12`], [la machine],
-      [`MINGW64`], [Git Bash sous Windows],
-      [`~`], [le dossier personnel, `C:\Users\eleve`],
-      [`~/Desktop/…`], [le dossier courant],
+      ..ligne(vert, "eleve", [l'utilisateur]),
+      ..ligne(vert, "POSTE-12", [la machine]),
+      ..ligne(violet, "MINGW64", [Git Bash sous Windows]),
+      ..ligne(jaune, "~", [le dossier personnel, `C:\Users\eleve`]),
+      ..ligne(jaune, "~/Desktop/…", [le dossier courant]),
       [`$`], [l'attente d'une commande],
     ),
   )
@@ -327,8 +346,9 @@
   ]
 
   #notes[
-    Schéma : l'invite réelle est en couleur (utilisateur en vert, `MINGW64`
-    en violet, dossier en jaune). Le nom du poste est inventé.
+    Schéma : les couleurs sont celles de l'invite réelle (utilisateur et
+    machine en vert, `MINGW64` en violet, dossier en jaune), assombries pour
+    le fond blanc. Le nom du poste est inventé.
 
     Le dossier courant est celui où s'exécutent les commandes : `ls` sans
     argument liste ce dossier. Le faire repérer sur leur écran au TD 2a.
@@ -422,9 +442,10 @@
 // des diapositives 15 et 16 est dans la partie 1, après les formats.
 
 // --------------------------------------------
-#d("Le chemin d'un fichier")[
+#d("Le chemin d'un fichier en ligne de commande")[
   #annonce[
-    Un chemin #text(fill: attention, weight: demi-gras)[absolu] part de la
+    En ligne de commande, un fichier se désigne par son chemin, écrit après
+    le nom de la commande. Un chemin #text(fill: attention, weight: demi-gras)[absolu] part de la
     racine, un chemin #text(fill: attention, weight: demi-gras)[relatif] du
     dossier où l'on se trouve.
   ]

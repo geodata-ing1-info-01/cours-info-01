@@ -1,11 +1,11 @@
 """Fabrique les fichiers des TD du cours 3 : recettes, images, outil portable.
 
 Le dépôt versionne les recettes (`recettes/`), les modèles et le programme de
-secours du TD 3a ; tout ce qui vient d'ailleurs est téléchargé une fois dans `fourni/`,
+secours du TD 3b ; tout ce qui vient d'ailleurs est téléchargé une fois dans `fourni/`,
 et `build` recopie ou dérive ce que chaque TD reçoit dans son `produit/`.
 
-    python make_data.py fetch    # télécharge dans 2b_images/fourni/, 3a_cli/fourni/ et 3b_markdown/fourni/
-    python make_data.py build    # remplit produit/ des cinq TD, depuis recettes/, 3b_markdown/ et fourni/
+    python make_data.py fetch    # télécharge dans 2b_images/fourni/, 3b_cli/fourni/ et 3a_markdown/fourni/
+    python make_data.py build    # remplit produit/ des cinq TD, depuis recettes/, 3a_markdown/ et fourni/
 
 Chaque TD reçoit sa propre copie des données : un dossier livré se suffit,
 aucun TD ne renvoie à un chemin d'un TD précédent.
@@ -33,8 +33,8 @@ CORRIGES = ICI / "corriges"
 TD_RECETTE = ICI / "1a_recette"
 TD_FICHIERS = ICI / "2a_fichiers"
 TD_IMAGES = ICI / "2b_images"
-TD_CLI = ICI / "3a_cli"
-TD_MARKDOWN = ICI / "3b_markdown"
+TD_CLI = ICI / "3b_cli"
+TD_MARKDOWN = ICI / "3a_markdown"
 
 # Commons et le Met demandent un User-Agent identifiable.
 ENTETES = {"User-Agent": "info01-cours (https://github.com/ ; cours d'introduction à l'informatique)"}
@@ -50,7 +50,7 @@ VAGUE_ORIGINAL = "vague_original.jpg"
 VAGUE = "vague.jpg"
 LARGEUR_VAGUE = 2000
 
-# --- Photos des recettes (TD 3a) ---------------------------------------------
+# --- Photos des recettes (TD 3b) ---------------------------------------------
 
 # Une photo par recette, prise sur Wikimedia Commons en 960 px de large. La
 # page de chaque fichier donne la licence ; `CREDITS.md` la recopie dans le
@@ -75,13 +75,13 @@ PHOTOS = {
 }
 LARGEUR_PHOTO = 960
 
-# La photo de la recette écrite au TD 3b, qui n'est pas dans `recettes/`.
+# La photo de la recette écrite au TD 3a, qui n'est pas dans `recettes/`.
 PHOTO_GAUFRES = {
     "fichier": "Gaufre molle.jpg",
     "auteur": "Jre", "licence": "domaine public",
 }
 
-# --- ImageMagick portable (TD 3a, option) -------------------------------------
+# --- ImageMagick portable (TD 3b, option) -------------------------------------
 
 # Un seul exécutable, sans installateur ni droits d'administration. Les
 # autres `.exe` de l'archive sont des copies de celui-ci, les `.xml` sont
@@ -231,7 +231,7 @@ def build() -> None:
         encoding="utf-8")
     print(f"✓ {TD_IMAGES.name}/produit/depart/")
 
-    # TD 3a : les recettes avec leurs photos, l'outil portable, le corrigé.
+    # TD 3b : les recettes avec leurs photos, l'outil portable, le corrigé.
     produit = TD_CLI / "produit"
     vider(produit)
     (produit / "travail").mkdir()
@@ -245,20 +245,25 @@ def build() -> None:
     else:
         print(f"! ni `7z` ni `py7zr` : extraire magick.exe de {archive.name} "
               f"à la main dans {exe.parent.relative_to(ICI)}/")
-    corrige = CORRIGES / "3a_cli"
+    corrige = CORRIGES / "3b_cli"
     if corrige.is_dir():
         shutil.copytree(corrige, produit / "_corrige")
     print(f"✓ {TD_CLI.name}/produit/depart/")
 
-    # TD 3b : le texte de la recette et le résultat attendu sont versionnés
-    # dans `3b_markdown/depart/` ; `produit/` y ajoute la photo, la feuille de
-    # style de la page et les crédits.
+    # TD 3a : le dépôt des recettes, `depart/recettes/`, reçoit les quatre
+    # recettes et la feuille de style ; `outils/construire_notebooks.py` y
+    # ajoute `pages.ipynb`. Le texte de la nouvelle recette et le résultat
+    # attendu sont versionnés dans `3a_markdown/depart/` ; `produit/` y ajoute
+    # la photo des gaufres et les crédits.
     produit = TD_MARKDOWN / "produit"
     vider(produit)
     (produit / "travail").mkdir()
     depart = produit / "depart"
+    for dossier in sorted(RECETTES.iterdir()):
+        if dossier.is_dir():
+            shutil.copytree(dossier, depart / "recettes" / dossier.name)
+    shutil.copy2(RECETTES / "style.css", depart / "recettes" / "style.css")
     (depart / "gaufres").mkdir(parents=True)
-    shutil.copy2(RECETTES / "style.css", depart / "gaufres" / "style.css")
     photo = TD_MARKDOWN / "fourni" / "gaufres.jpg"
     if photo.exists():
         shutil.copy2(photo, depart / "gaufres" / "photo.jpg")

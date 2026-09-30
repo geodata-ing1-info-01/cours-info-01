@@ -9,7 +9,7 @@
 #let td = (
   numero: "1a",
   titre: "Fichiers, formats et extensions",
-  annonce: "Exporter, copier, renommer et ouvrir les fichiers d'un même texte : ce que l'extension décide, et ce que le contenu est vraiment",
+  annonce: "Objectif : distinguer l'extension d'un fichier et son contenu, sur un même texte enregistré dans plusieurs formats",
   dossier: "cours1/1a_formats/",
   duree: "20′",
 )

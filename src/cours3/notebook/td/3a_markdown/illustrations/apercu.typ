@@ -1,10 +1,10 @@
-// VS Code : `recette.md` des gaufres à gauche, son aperçu à droite (étape 1
-// du TD 3b). Compilé en PNG par `outils/compiler_guides.py` et
+// VS Code : `recette.md` des gaufres à gauche, son aperçu à droite (étape 2
+// du TD 3a). Compilé en PNG par `outils/compiler_guides.py` et
 // `outils/construire_notebooks.py`.
 #import "../../../../../commun/illustrations_td.typ": vscode-apercu
 #import "../../../../../commun/theme.typ": gris
 #set page(width: auto, height: auto, margin: 12pt, fill: white)
-#vscode-apercu("gaufres", "recette.md", (
+#vscode-apercu("recettes", "recette.md", (
   "# Gaufres",
   "",
   "*Pour 8 gaufres, 10 minutes de préparation…*",
@@ -33,4 +33,4 @@
   #line(length: 100%, stroke: 0.5pt + gris.darken(20%))
   1. Mélanger la farine, le sucre… \
   2. Creuser un puits au centre…
-], fichiers: ("ingredients.csv", "photo.jpg", "recette.md", "recette_a_formater.txt", "style.css"))
+], fichiers: ("crepes", "gaufres", "mousse_chocolat", "pate_pizza", "salade_lentilles", ".gitignore", "style.css"))

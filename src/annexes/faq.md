@@ -43,6 +43,7 @@ même message a parfois deux causes selon la fenêtre.
 | Je clique sur Anaconda Navigator et rien ne se passe pendant des minutes | {ref}`A4 <dep-a4>` |
 | Navigator affiche « offline mode » | {ref}`A4 <dep-a4>` |
 | « There is an instance of Anaconda Navigator already running », sans fenêtre | {ref}`A5 <dep-a5>` |
+| L'icône de démarrage de Navigator reste à l'écran : comment arrêter Navigator | {ref}`A13 <dep-a13>` |
 | Navigator propose une mise à jour, ou affiche « updating packages » sans avancer | {ref}`A6 <dep-a6>` |
 | `… activate.ps1 cannot be loaded because running scripts is disabled on this system` | {ref}`A7 <dep-a7>` |
 | Même message pour `conda-hook.ps1` ou `profile.ps1` | {ref}`A7 <dep-a7>` |

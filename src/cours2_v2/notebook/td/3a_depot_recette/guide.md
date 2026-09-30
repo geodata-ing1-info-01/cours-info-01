@@ -30,16 +30,16 @@ poste où git parle anglais, les messages sont les mêmes, en anglais : le
 guide donne entre parenthèses les phrases anglaises à reconnaître. Les
 identifiants de commit (`a16d497`…) sont différents sur chaque poste.
 
-| Étape | Ce qu'on fait | Commits à la fin |
-|---|---|---|
-| 0 | copier la recette dans `travail/`, l'ouvrir dans VS Code | 0 |
-| 1 | créer le dépôt, faire le premier commit | 1 |
-| 2 | modifier la recette, lire la différence, faire un commit | 2 |
-| 3 | abîmer une ligne, puis la restaurer | 2 |
-| 4 | produire la page et le document, les ignorer | 3 |
-| 5 | une variante sans gluten sur une branche, fusionnée | 6 |
-| 6 | la même ligne modifiée sur deux branches, et le conflit résolu | 9 |
-| 7 | pour aller plus loin : une seconde copie du dépôt | 10 |
+| Étape | Objectif | Ce qu'on fait | Commits à la fin |
+|---|---|---|---|
+| 0 | séparer le travail des fichiers livrés | copier la recette dans `travail/`, l'ouvrir dans VS Code | 0 |
+| 1 | créer un dépôt et enregistrer un premier état | créer le dépôt, faire le premier commit | 1 |
+| 2 | lire une différence, puis l'enregistrer | modifier la recette, lire la différence, faire un commit | 2 |
+| 3 | annuler une modification non enregistrée | abîmer une ligne, puis la restaurer | 2 |
+| 4 | ne pas versionner les fichiers produits | produire la page et le document, les ignorer | 3 |
+| 5 | développer une variante sur une branche, puis fusionner | une variante sans gluten sur une branche, fusionnée | 6 |
+| 6 | résoudre un conflit de fusion | la même ligne modifiée sur deux branches, et le conflit résolu | 9 |
+| 7 | copier un dépôt, et récupérer un commit fait dans la copie | pour aller plus loin : une seconde copie du dépôt | 10 |
 
 Si le temps manque en séance, s'arrêter après l'étape 5 ; l'étape 6 se
 fait ensuite avec ce guide.

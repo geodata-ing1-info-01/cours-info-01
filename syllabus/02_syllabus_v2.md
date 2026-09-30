@@ -18,7 +18,7 @@
 |---|---|
 | 1, TD 2a | terminal de VS Code (PowerShell, qui refuse `activate.ps1`), remplacé par un profil « Anaconda Prompt » |
 | 2 | bash (captures sous Linux) |
-| 3 | invite de commandes d'Anaconda (préparation), Git Bash avec `conda init bash` (TD 3a) |
+| 3 | invite de commandes d'Anaconda (préparation), Git Bash avec `conda init bash` (TD 3b) |
 | 4 | Git Bash dans VS Code |
 | 5 | invite de commandes d'Anaconda ; « Git Bash a la sienne » pour la clé SSH |
 
@@ -133,9 +133,9 @@ Objectif : installer un projet dans son propre environnement, manipuler chemins 
 - **Chemins (20′)** : `recette.ipynb`, comme en 2026 ; le renvoi au « programme recette du cours 1 » disparaît, la recette est présentée ici.
 - **Fichiers (20′)** : ⌨️ `fichiers.ipynb` en TD, comme en 2026 (`open`, `with`, modes, `encoding`, ligne par ligne, CSV, `read_text`).
 - **Texte et binaire (15′)** : 🎓 le schéma bit → octet → hexadécimal → caractère (diapositive 19 du cours 1 de 2026, « Fichiers binaires et fichiers texte », reprise dans la partie encodage du cours 3 le 28/09/2026) et la table ASCII (31), puis quelques cellules d'`images.ipynb` exécutées avec la salle : § 1 (cellules 1 à 5, PGM `P2` lu comme texte puis ouvert comme image), § 2 (7 à 10, le même en `P5`, octets et en-tête), § 7 (42, 47, 49 : octets de « é » en UTF-8, « é » décodé en cp1252, « œuf »). Le reste du notebook passe en lecture autonome : § 3 et 4 (`hexdump`, signatures) en annexe, § 5 et 6 (poids, compression, temps de lecture) repris au projet 7.
-- **Ligne de commande (45′)** : TD 3a comme en 2026, l'étape 6 (`pyproject.toml`, `pip install -e .`) reçoit la diapositive 102 du cours 1 de 2026. L'étape 4 (le README) reçoit la diapositive « Le README d'un projet » du cours 2 v2, avec le bloc de code Markdown (`src/cours2_v2/diapo/a_reprendre/readme_cours3.typ`, décision du 28/09/2026).
+- **Ligne de commande (45′)** : TD 3b comme en 2026, l'étape 6 (`pyproject.toml`, `pip install -e .`) reçoit la diapositive 102 du cours 1 de 2026. L'étape 4 (le README) reçoit la diapositive « Le README d'un projet » du cours 2 v2, avec le bloc de code Markdown (`src/cours2_v2/diapo/a_reprendre/readme_cours3.typ`, décision du 28/09/2026).
 
-**Budget** : 20 + 20 + 20 + 15 + 45 = **120′**, sans marge. Ce qui se retire d'abord : les étapes facultatives du TD 3a, puis les § 5 et 6 de `fichiers.ipynb` (CSV, `pathlib`) en lecture autonome.
+**Budget** : 20 + 20 + 20 + 15 + 45 = **120′**, sans marge. Ce qui se retire d'abord : les étapes facultatives du TD 3b, puis les § 5 et 6 de `fichiers.ipynb` (CSV, `pathlib`) en lecture autonome.
 
 ## Projet (séance 4) — Une animation, du notebook au programme
 
@@ -208,7 +208,7 @@ Statuts : **gardé** (même séance), **réduit** (même séance, moins de temps
 | c1 | Markdown : intention, syntaxe complète, TD 3a recette | intention dans les notes du c1 ; tableau, image, TD recette et conversion par pandoc au c2 (une diapositive et le TD 2a) ; plan du README et bloc de code au c3 ; diagramme `mermaid` en annexe | déplacé |
 | c1 | Notebook, TD 3b ouvert de trois façons | c1, TD 3a, JupyterLab lancé depuis l'invite de commandes d'Anaconda puis Git Bash | réduit |
 | c1 | Bibliothèques, dépendances, environnements (partie 4) | p4, partie A ; c3 pour la pratique | déplacé |
-| c1 | `pyproject.toml` | c3, TD 3a étape 6 | déplacé |
+| c1 | `pyproject.toml` | c3, TD 3b étape 6 | déplacé |
 | c1 | Le terminal de l'éditeur | c2 | déplacé |
 | c1 | Client et serveur d'un notebook | c5, réseau | déplacé |
 | c1 | TD 4a, installer le projet recette | c3, `conda create` et installation des paquets demandés | déplacé |
@@ -234,7 +234,7 @@ Statuts : **gardé** (même séance), **réduit** (même séance, moins de temps
 | c3 | `images.ipynb` § 1, 2, 7 (PGM `P2` et `P5`, UTF-8) | c3, cellules exécutées avec la salle | réduit |
 | c3 | `images.ipynb` § 3, 4 (`hexdump`, signatures) | — | annexe |
 | c3 | `images.ipynb` § 5, 6 (poids, compression, temps de lecture) | projet 7, facultatif | déplacé |
-| c3 | Du notebook au programme, `main`, `argparse`, TD 3a | c3 | gardé |
+| c3 | Du notebook au programme, `main`, `argparse`, TD 3b | c3 | gardé |
 | p4 | Présentation, TD montre et tourbillon | p4 | gardé |
 | p4 | Partie A, créer l'environnement et exécuter le notebook (35′) | p4, ≈ 20′ | réduit |
 | p4 | Partie B, du notebook au programme | p4, avec 15′ de plus ; B4 (README) en séance | gardé |
@@ -286,7 +286,7 @@ Statuts : **gardé** (même séance), **réduit** (même séance, moins de temps
 | c1 · 54 | La palette de commandes et les réglages | c2, les réglages |
 | c1 · 79 à 82, 88 à 89 | Notebook, TD 3b | c1 allégé (partie 3, TD 3a) |
 | c1 · 90 à 101 | Bibliothèques, dépendances, environnements | p4, partie A ; `PATH` (101) au c1 |
-| c1 · 102 | `pyproject.toml` | c3, TD 3a étape 6 |
+| c1 · 102 | `pyproject.toml` | c3, TD 3b étape 6 |
 | c1 · 103 | Le terminal de l'éditeur | c2 |
 | c1 · 104 à 106 | Client et serveur d'un notebook | c5, réseau |
 | c1 · 107 à 113 | TD 4a, installer le projet recette | c3, ouverture pratique (même démarche sur l'environnement de la séance) |

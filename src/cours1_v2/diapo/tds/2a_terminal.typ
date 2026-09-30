@@ -13,7 +13,7 @@
 #let td = (
   numero: "2a",
   titre: "Les fichiers du TD 1a en ligne de commande",
-  annonce: "Se déplacer, copier, renommer et ouvrir des fichiers dans Git Bash",
+  annonce: "Objectif : manipuler des fichiers en ligne de commande, dans Git Bash : se déplacer, copier, renommer, ouvrir",
   dossier: "cours1/2a_terminal/",
   duree: "15′",
 )

@@ -1,4 +1,4 @@
-// VS Code après `git checkout -b arguments`, à l'étape 3.1 du TD 3a : la
+// VS Code après `git checkout -b arguments`, à l'étape 2.1 du TD 3b : la
 // branche dans la barre d'état et dans l'invite. Compilé en PNG par
 // `outils/compiler_guides.py` et `outils/construire_notebooks.py`.
 #import "../../../../../commun/illustrations_td.typ": vscode-branche
@@ -8,5 +8,5 @@
   "Switched to a new branch 'arguments'",
   "(base)",
   "eleve@POSTE MINGW64",
-  "~/Desktop/info01/cours3/3a_cli/travail (arguments)",
+  "~/Desktop/info01/cours3/3b_cli/travail (arguments)",
 ), fichiers: (".gitignore", "recette.py", "recettes", "style.css"))

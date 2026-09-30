@@ -7,7 +7,7 @@
 #let td = (
   numero: "3a",
   titre: "Un premier dépôt",
-  annonce: "Configurer l'affichage du graphe, créer le dépôt, enregistrer un premier commit.",
+  annonce: "Objectif : créer un dépôt git, y enregistrer un premier état du projet, et lire son historique en graphe.",
   dossier: "cours2/3a_premier_depot/",
   duree: "15′",
 )

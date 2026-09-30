@@ -4,6 +4,6 @@
 #set page(width: auto, height: auto, margin: 12pt, fill: white)
 #vscode-git-bash(
   "travail",
-  "(base)\neleve@POSTE MINGW64\n~/Desktop/info01/cours3/3a_cli/travail\n$",
+  "(base)\neleve@POSTE MINGW64\n~/Desktop/info01/cours3/3b_cli/travail\n$",
   fichiers: ("recettes", "style.css"),
 )

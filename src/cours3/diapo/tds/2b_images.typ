@@ -13,7 +13,7 @@
 #let td = (
   numero: "2b",
   titre: "Images : texte et binaire",
-  annonce: "Facultatif, après la séance : ouvrir images.ipynb, une image en texte et en binaire",
+  annonce: "Facultatif, après la séance. Objectif : comparer une image enregistrée en texte et en binaire, dans images.ipynb",
   dossier: "cours3/2b_images/",
   duree: "10′",
 )

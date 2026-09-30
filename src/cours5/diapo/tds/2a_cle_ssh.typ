@@ -8,7 +8,7 @@
 #let td = (
   numero: "2a",
   titre: "Une clé SSH sur votre compte",
-  annonce: "Fabriquer une paire de clés, coller la clé publique sur GitHub, vérifier la connexion",
+  annonce: "Objectif : s'identifier auprès de GitHub par une paire de clés SSH",
   dossier: "cours5/2a_cle_ssh/",
   duree: "20′",
 )

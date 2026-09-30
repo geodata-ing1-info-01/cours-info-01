@@ -1,38 +1,38 @@
-// TD 1a du cours 3 — « Ouvrir le notebook de la recette ».
+// TD 1a du cours 3 — « Le notebook de la recette ».
 //
 // Inclus par `cours3.typ`, qui porte les réglages globaux et importe `td`
 // pour le sommaire des TD ; compilable seul par `outils/compiler_tds.py`. Un
 // fichier inclus n'hérite pas des imports de son appelant.
 //
-// Ce TD ouvre le notebook que l'exposé de la partie 1 vient de présenter ;
-// le notebook explique lui-même chaque section.
+// Ce TD fait faire le notebook que l'exposé de la partie 1 a présenté ; le
+// notebook explique lui-même chaque section. Depuis le 29/09/2026, les TD
+// sont tous en fin de séance, après le TD 0a qui copie le notebook dans
+// `travail/`.
 #import "../../../commun/prelude.typ": *
 
 #let td = (
   numero: "1a",
-  titre: "Ouvrir le notebook de la recette",
-  annonce: "Ouvrir recette.ipynb dans JupyterLab ; chaque section du notebook explique ce qu'elle fait",
+  titre: "Le notebook de la recette",
+  annonce: "Objectif : construire les chemins du programme de la recette avec pathlib, et lancer pandoc depuis Python, dans recette.ipynb, section par section",
   dossier: "cours3/1a_recette/",
-  duree: "5′",
+  duree: "20′",
 )
-// Dans le cours, l'ouverture est commune à la partie (`separateur-cours-td`,
-// dans `cours3.typ`) ; seule la feuille de TD remet celle-ci.
-#if feuille-seule { separateur-td(..td) }
+#separateur-td(..td)
 
-#d("Ouvrir le notebook")[
+#d("Faire le notebook recette.ipynb")[
   #annonce[
-    Les notebooks sont livrés dans `depart/notebook/`. On travaille sur une
-    copie, dans `travail/` : `depart/` ne se modifie pas.
+    Le notebook reprend la partie 1 de l'exposé. Il s'exécute dans sa copie,
+    `1a_recette/travail/recette.ipynb`, faite au TD 0a.
   ]
 
   #tableau(
     columns: (auto, 1fr),
     align: left + horizon,
     [], [Ce qu'il faut faire],
-    [1], [dans l'explorateur, copier `depart/notebook/recette.ipynb` dans `travail/`],
-    [2], [dans le panneau de gauche de JupyterLab, descendre jusqu'à `cours3/1a_recette/travail/`, double-cliquer sur `recette.ipynb`],
-    [3], [ouvrir aussi `depart/recettes/crepes/recette.md` par un double-clic],
-    [4], [exécuter les sections dans l'ordre ; une ligne terminée par `# à compléter` est à écrire, la réponse est repliée sous la cellule],
+    [1], [dans le panneau de gauche de JupyterLab, ouvrir `1a_recette/`, puis `travail/`, et double-cliquer sur `recette.ipynb`],
+    [2], [ouvrir aussi `depart/recettes/crepes/recette.md` par un double-clic],
+    [3], [exécuter les sections dans l'ordre ; une ligne terminée par `# à compléter` est à écrire, la réponse est repliée sous la cellule],
+    [4], [sections 1 à 4.3 en séance ; la section 4.4 se fait après la séance],
   )
 
   #legende[
@@ -41,9 +41,8 @@
   ]
 
   #notes[
-    La copie est la première étape, et elle compte : le notebook lit `depart/`
-    par un chemin qui remonte d'un cran, `..`, ce qui suppose qu'il est dans
-    `travail/`. Ouvert depuis `depart/notebook/`, il ne trouverait rien.
+    `travail/` vide : la copie du TD 0a n'est pas faite. La faire avant
+    d'ouvrir le notebook.
 
     Le nom du noyau en haut à droite est celui du TD 3b du cours 1. S'il
     manque, cliquer dessus et choisir `Python 3`.

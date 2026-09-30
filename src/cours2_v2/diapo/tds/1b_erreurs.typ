@@ -11,7 +11,7 @@
 #let td = (
   numero: "1b",
   titre: "Trois programmes fautifs",
-  annonce: "Lire les caractères invisibles et la barre d'état de VS Code, puis corriger trois programmes Python qui s'arrêtent sur une erreur",
+  annonce: "Objectif : lire ce que l'éditeur montre d'un fichier, puis les messages d'erreur de Python, et corriger la ligne qu'ils désignent, sur trois programmes",
   dossier: "cours2/1b_erreurs/",
   duree: "10′",
 )

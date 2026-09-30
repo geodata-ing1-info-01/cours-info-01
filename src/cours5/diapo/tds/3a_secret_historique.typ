@@ -8,7 +8,7 @@
 #let td = (
   numero: "3a",
   titre: "Un secret dans l'historique",
-  annonce: "Committer une fausse clé, la supprimer, constater qu'elle est toujours dans le dépôt, puis l'en tenir à l'écart",
+  annonce: "Objectif : suivre un secret enregistré par erreur dans un dépôt git, puis le tenir à l'écart des commits",
   dossier: "cours5/3a_secret_historique/",
   duree: "10′",
   facultatif: true,

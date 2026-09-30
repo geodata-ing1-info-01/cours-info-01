@@ -29,13 +29,13 @@ TD 3a, dans un dépôt git. Une recette convient à un premier dépôt : ses
 modifications (une quantité, une étape) se lisent sans connaître un
 programme.
 
-| Étape | Ce qu'on fait |
-|---|---|
-| 1 | ouvrir le dossier, créer `recette.md` et ouvrir l'aperçu |
-| 2 | poser les titres et la liste des étapes |
-| 3 | écrire le tableau des ingrédients |
-| 4 | afficher la photo |
-| 5 | convertir le fichier avec pandoc, et comparer au résultat attendu |
+| Étape | Objectif | Ce qu'on fait |
+|---|---|---|
+| 1 | écrire du Markdown avec son rendu à côté | ouvrir le dossier, créer `recette.md` et ouvrir l'aperçu |
+| 2 | structurer un texte : titres, liste numérotée | poser les titres et la liste des étapes |
+| 3 | présenter des données en tableau | écrire le tableau des ingrédients |
+| 4 | insérer une image par un chemin relatif | afficher la photo |
+| 5 | convertir le Markdown en d'autres formats | convertir le fichier avec pandoc, et comparer au résultat attendu |
 
 Ce que chaque étape fait constater est expliqué à la fin du guide, dans « Ce
 que le TD fait constater » : faire l'étape d'abord, et noter ce qu'on

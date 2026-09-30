@@ -21,12 +21,12 @@ douzaine de minutes.
 Le TD nécessite un navigateur, VS Code configuré au TD 2a, et Anaconda
 Navigator.
 
-| Étape | Ce qu'on fait |
-|---|---|
-| 1 | ouvrir le notebook dans le navigateur |
-| 2 | ouvrir le notebook dans l'éditeur |
-| 3 | ouvrir le notebook depuis Anaconda Navigator |
-| 4 | relancer une cellule, et lire ce que le noyau retient |
+| Étape | Objectif | Ce qu'on fait |
+|---|---|---|
+| 1 | exécuter un notebook sans rien installer | ouvrir le notebook dans le navigateur |
+| 2 | exécuter un notebook dans un IDE | ouvrir le notebook dans l'éditeur |
+| 3 | exécuter un notebook dans JupyterLab | ouvrir le notebook depuis Anaconda Navigator |
+| 4 | relire l'état du noyau d'une cellule à l'autre | relancer une cellule, et lire ce que le noyau retient |
 
 Ce que chaque étape fait constater est expliqué à la fin du guide, dans « Ce
 que le TD fait constater » : faire l'étape d'abord, et noter ce qu'on

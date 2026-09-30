@@ -20,13 +20,13 @@ de minutes.
 Tout se fait dans VS Code, configuré au TD 2a. L'aperçu Markdown et le rendu
 des diagrammes sont livrés avec l'éditeur : il n'y a rien à installer.
 
-| Étape | Ce qu'on fait |
-|---|---|
-| 1 | ouvrir le dossier, créer `recette.md` et ouvrir l'aperçu |
-| 2 | poser les titres et la liste des étapes |
-| 3 | écrire le tableau des ingrédients |
-| 4 | afficher la photo |
-| 5 | dessiner l'ordre des opérations, et comparer au résultat attendu |
+| Étape | Objectif | Ce qu'on fait |
+|---|---|---|
+| 1 | écrire du Markdown avec son rendu à côté | ouvrir le dossier, créer `recette.md` et ouvrir l'aperçu |
+| 2 | structurer un texte : titres, liste numérotée | poser les titres et la liste des étapes |
+| 3 | présenter des données en tableau | écrire le tableau des ingrédients |
+| 4 | insérer une image par un chemin relatif | afficher la photo |
+| 5 | décrire un enchaînement en texte, avec Mermaid | dessiner l'ordre des opérations, et comparer au résultat attendu |
 
 Ce que chaque étape fait constater est expliqué à la fin du guide, dans « Ce
 que le TD fait constater » : faire l'étape d'abord, et noter ce qu'on

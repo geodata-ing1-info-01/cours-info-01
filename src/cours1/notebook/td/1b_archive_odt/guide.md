@@ -21,12 +21,12 @@ Il demande l'explorateur de fichiers, qui sait extraire et créer une archive
 ZIP, Notepad++ (ou, à défaut, le Bloc-notes) et LibreOffice Writer pour
 rouvrir le résultat.
 
-| Étape | Ce qu'on fait |
-|---|---|
-| 1 | ouvrir le `.odt` comme une archive |
-| 2 | lire `content.xml` |
-| 3 | modifier le texte et la mise en forme |
-| 4 | recompresser, et rouvrir dans LibreOffice |
+| Étape | Objectif | Ce qu'on fait |
+|---|---|---|
+| 1 | voir de quoi un fichier `.odt` est fait | ouvrir le `.odt` comme une archive |
+| 2 | repérer le texte et ses styles dans le XML | lire `content.xml` |
+| 3 | modifier un document sans logiciel de bureautique | modifier le texte et la mise en forme |
+| 4 | reconstruire un document que LibreOffice ouvre | recompresser, et rouvrir dans LibreOffice |
 
 Ce que le TD fait constater est expliqué à la fin du guide, dans « Ce que le
 TD fait constater ».

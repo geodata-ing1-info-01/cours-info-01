@@ -134,6 +134,16 @@ Kornell, Hays & Bjork, *Unsuccessful retrieval attempts enhance subsequent
 learning* (JEP:LMC, 2009) —
 [texte](https://bjorklab.psych.ucla.edu/wp-content/uploads/sites/13/2016/07/Hays_Kornell_RBjork_inpress.pdf).
 
+**Diapositives d'étape de TD** (à l'essai depuis le 30/09/2026). Une
+diapositive « Étape n » donne, l'un sous l'autre, ce qu'on doit obtenir à la
+fin de l'étape, puis les pistes pour y arriver (gabarit `attendu-pistes`).
+Ce sont les seules diapositives où une liste est admise : une coche marque
+ce qu'on vérifie, un numéro l'ordre des opérations. Un attendu décrit un
+résultat visible, par exemple « `python recette.py` affiche la recette pour
+6 personnes », et non une commande ou un fragment de code seuls. Une piste
+commence par un verbe. Les deux listes ne sont pas côte à côte, car leurs
+lignes sembleraient se répondre.
+
 ## Illustrations et captures d'écran
 
 Un schéma dessiné est préféré par défaut : rien à distribuer, rien à refaire
@@ -191,7 +201,7 @@ Pas d'encadré « à retenir » qui recopie le paragraphe précédent.
 ## Vérification avant de committer un support
 
 - [ ] Chaque titre de diapositive nomme le sujet, sans slogan ni contraste.
-- [ ] Aucune diapositive ne contient de liste à puces.
+- [ ] Aucune diapositive ne contient de liste à puces, sauf les diapositives d'étape de TD (« TD et corrigé »).
 - [ ] Aucun paragraphe d'une seule phrase courte destiné à faire effet.
 - [ ] Le gras ne marque que des termes définis.
 - [ ] Aucun encadré ne répète le paragraphe voisin.

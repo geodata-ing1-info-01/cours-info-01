@@ -30,13 +30,13 @@ Le dossier `depart\` contient aussi les mêmes fichiers pour un second texte,
 *Auld Lang Syne* de Robert Burns (1788). Qui a fini en avance peut refaire
 les étapes avec lui.
 
-| Étape | Ce qu'on fait |
-|---|---|
-| 1 | copier les fichiers de la séance sur le poste |
-| 2 | préparer le dossier du TD |
-| 3 | exporter un même document en trois formats |
-| 4 | ouvrir une page web depuis son disque |
-| 5 | lire les fichiers avec deux éditeurs de texte |
+| Étape | Objectif | Ce qu'on fait |
+|---|---|---|
+| 1 | travailler sur le disque du poste, hors du dossier partagé | copier les fichiers de la séance sur le poste |
+| 2 | travailler sur des copies, à côté des fichiers livrés | préparer le dossier du TD |
+| 3 | produire un même texte dans plusieurs formats | exporter un même document en trois formats |
+| 4 | lire l'adresse d'une page ouverte depuis le disque | ouvrir une page web depuis son disque |
+| 5 | comparer fichiers texte et fichiers binaires dans un éditeur | lire les fichiers avec deux éditeurs de texte |
 
 Chaque étape commence par un encadré qui la résume. Ce que chaque étape fait
 constater est expliqué à la fin du guide, dans « Ce que le TD fait

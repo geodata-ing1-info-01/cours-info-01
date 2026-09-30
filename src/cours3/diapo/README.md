@@ -26,9 +26,13 @@ fermer), le texte vu comme une suite de caractères et la position de lecture
 l'encodage, ASCII et UTF-8, la fin de ligne, puis le mode binaire, qui lit
 les octets sans les décoder (`02b_encodage.typ`) ; enfin `with`, les modes
 `"w"` et `"a"`, et les lignes du programme qui lisent et écrivent un fichier
-(`02c_fichiers.typ`). La partie 3
-ne contient que son ouverture et le TD 3a, qui commence par la différence
-entre notebook et script. Une diapositive reprise par une section de notebook
+(`02c_fichiers.typ`). Les TD suivent l'exposé, tous en fin de séance : le
+TD 0a (l'archive, les deux arborescences, JupyterLab ouvert sur `cours3/`),
+les notebooks des TD 1a et 2a, la diapositive des deux parcours
+(`parties/03_parcours.typ`, aussi projetée à l'ouverture), puis les TD 3a et
+3b. Le TD 3b commence par l'environnement conda, selon les groupes, le guide
+détaillé et le matériel de départ, puis la différence entre notebook et
+script. Une diapositive reprise par une section de notebook
 passe `cellule:` au gabarit `d`, qui ajoute à la ligne de titre le cartouche
 « § n » de cette section.
 

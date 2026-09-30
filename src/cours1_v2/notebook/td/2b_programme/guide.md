@@ -23,15 +23,15 @@ relance. Il lance ensuite un script de commandes, puis refait le calcul
 ligne à ligne dans une session interactive. Il dure une vingtaine de
 minutes.
 
-| Étape | Ce qu'on fait |
-|---|---|
-| 1 | trouver quel python la commande lance |
-| 2 | rendre le Python d'Anaconda disponible dans Git Bash, une fois par poste |
-| 3 | ouvrir `altitudes.py` dans Notepad++ |
-| 4 | le lancer dans Git Bash |
-| 5 | le modifier, et le relancer avant et après l'enregistrement |
-| 6 | lancer un script de commandes, si le temps le permet |
-| 7 | refaire le calcul dans une session interactive de Python |
+| Étape | Objectif | Ce qu'on fait |
+|---|---|---|
+| 1 | identifier le programme qu'une commande lance | trouver quel python la commande lance |
+| 2 | rendre un programme accessible depuis le terminal | rendre le Python d'Anaconda disponible dans Git Bash, une fois par poste |
+| 3 | lire un programme Python dans un éditeur | ouvrir `altitudes.py` dans Notepad++ |
+| 4 | exécuter un programme depuis le terminal | le lancer dans Git Bash |
+| 5 | relier le fichier enregistré à ce qui s'exécute | le modifier, et le relancer avant et après l'enregistrement |
+| 6 | enchaîner des commandes dans un script | lancer un script de commandes, si le temps le permet |
+| 7 | exécuter du Python ligne à ligne, en interactif | refaire le calcul dans une session interactive de Python |
 
 Sur un poste où l'étape 2 est déjà faite, l'invite de Git Bash commence
 par `(base)`, et `type -a python` affiche en premier le Python d'Anaconda :

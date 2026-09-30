@@ -13,7 +13,7 @@
 #let td = (
   numero: "1a",
   titre: "Configurer VS Code",
-  annonce: "En classe entière : copier les fichiers de la séance, ouvrir le dossier dans VS Code, installer l'extension Python, choisir l'interpréteur, faire de Git Bash le terminal",
+  annonce: "En classe entière. Objectif : configurer VS Code pour un projet Python, avec Git Bash comme terminal, et savoir où ses réglages sont écrits",
   dossier: "cours2/1a_vscode/",
   duree: "25′",
 )

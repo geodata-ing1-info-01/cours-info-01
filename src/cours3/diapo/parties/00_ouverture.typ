@@ -37,55 +37,32 @@
 // --------------------------------------------
 #d("Contenu de la séance")[
   #annonce[
-    La séance comprend deux notebooks autonomes, puis, au choix, un script
-    écrit dans l'éditeur ou une recette écrite en Markdown. Chaque TD a son
-    dossier dans l'archive `cours3/`.
+    Les TD suivent l'exposé : la préparation du poste, deux notebooks
+    autonomes, puis, au choix, une recette en Markdown ou un script. Chaque
+    TD a son dossier dans l'archive `cours3/`.
   ]
 
   #tableau(
     columns: (auto, auto, 1fr, auto),
     align: (left + horizon, left + horizon, left + horizon, center + horizon),
     [Partie], [Fichier], [Contenu], [Durée],
-    [Préparation du poste de travail], [TD 0a], [récupérer l'archive, lancer JupyterLab], [10 min],
-    [Environnement (selon les groupes)], [TD 0a], [`info01-cours3` : pandoc, Pillow], [+15 min],
+    [Préparation du poste de travail], [TD 0a], [récupérer l'archive, copier les notebooks, lancer JupyterLab], [10 min],
     [Chemins et programmes externes], [`recette.ipynb`], [`pathlib` ; pandoc lancé par `subprocess`], [20 min],
     [Fichiers texte et encodage], [`fichiers.ipynb`], [lire et écrire un fichier ; ASCII et UTF-8], [30 min],
-    [Au choix : ligne de commande], [TD 3a], [`recette.py`, `main`, `argparse`], [45 min],
-    [ou Markdown], [TD 3b], [une recette, sa page, un dépôt], [45 min],
+    [Au choix : Markdown], [TD 3a], [une recette, sa page, un dépôt], [45 min],
+    [ou ligne de commande], [TD 3b], [`recette.py`, `argparse`, un README], [45 min],
   )
 
   #notes[
-    Chaque partie commence par quelques diapositives (le programme, ses améliorations, les bibliothèques), puis travail autonome sur le notebook : un texte explicatif par section, une réponse repliée sous chaque ligne à compléter.
+    TD 3b : l'environnement `info01-cours3` en tête, selon les groupes, 15 min de plus.
+    Exposé des parties 1 et 2 d'abord (le programme, ses améliorations, les bibliothèques, puis les fichiers), puis tous les TD. Les notebooks se font en autonomie : un texte explicatif par section, une réponse repliée sous chaque ligne à compléter.
     Le cartouche « § n » d'une diapositive renvoie à la section du notebook qui la reprend.
     `images.ipynb` (PGM, formats d'image, compression) est facultatif.
-    La dernière partie est un TD au choix, 3a ou 3b : le passage en script, `main` et `argparse` sont présentés dans la partie 1.
+    La dernière partie est un TD au choix, 3a ou 3b : le passage en script et `argparse` sont présentés dans la partie 1 ; la fonction `main` est un bonus du TD 3b.
   ]
 ]
 
 // --------------------------------------------
-#d("Deux parcours")[
-  #annonce[
-    Les deux notebooks sont communs. Pour la dernière partie, chaque élève
-    choisit l'un des deux parcours.
-  ]
-
-  #tableau(
-    columns: (auto, 1fr, 1fr),
-    align: left + horizon,
-    [], [Parcours standard], [Parcours avancé],
-    [Tronc commun], table.cell(colspan: 2)[TD 0a ; `recette.ipynb` (TD 1a) ; `fichiers.ipynb`, sections 1 à 9 (TD 2a)],
-    [Dernière partie], [TD 3b : la recette des gaufres en Markdown, sa page produite par le programme du TD 1a, un dépôt git], [TD 3a : le programme `recette.py`, lancé depuis le terminal, un commit par étape],
-    [En plus, si le temps le permet], [finir les notebooks], [`images.ipynb` ; `fichiers.ipynb`, section 12],
-  )
-
-  #legende[
-    Conseil : le parcours avancé si `fichiers.ipynb` est terminé jusqu'à la
-    section 9 à la fin de la partie 2. Le TD 3a est repris au projet 4 par
-    le parcours standard.
-  ]
-
-  #notes[
-    Le TD 3b reprend le TD Markdown du cours 1, que beaucoup n'ont pas fini,
-    sur une nouvelle recette.
-  ]
-]
+// La diapositive des deux parcours est aussi projetée avant les TD 3a et
+// 3b, en rappel : elle est dans un fichier à part, inclus deux fois.
+#include "03_parcours.typ"

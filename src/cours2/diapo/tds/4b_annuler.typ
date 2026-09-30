@@ -6,7 +6,7 @@
 #let td = (
   numero: "4b",
   titre: "Annuler et remettre à jour",
-  annonce: "Annuler un commit avec revert, puis mettre main_code à jour sur develop avec rebase.",
+  annonce: "Objectif : annuler un commit sans réécrire l'historique, puis mettre une branche à jour sur une autre.",
   dossier: "cours2/4b_annuler/",
   duree: "15′",
 )

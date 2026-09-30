@@ -9,7 +9,7 @@
 #let td = (
   numero: "3a",
   titre: "Mettre en forme une recette en Markdown",
-  annonce: "Un texte brut sans structure, repris en Markdown, avec l'aperçu ouvert à côté",
+  annonce: "Objectif : structurer un texte brut en Markdown, avec l'aperçu ouvert à côté",
   dossier: "cours1/3a_markdown/",
   duree: "20′",
 )

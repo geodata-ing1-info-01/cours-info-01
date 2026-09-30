@@ -99,7 +99,8 @@ Vérifier
 Remède
 : Cliquer une seule fois, puis attendre deux minutes, avec la session
   réseau ouverte. Répondre No à une proposition de mise à jour
-  ({ref}`A6 <dep-a6>`). Navigator n'est pas nécessaire : VS Code se lance
+  ({ref}`A6 <dep-a6>`). Pour arrêter un Navigator bloqué, voir
+  {ref}`A13 <dep-a13>`. Navigator n'est pas nécessaire : VS Code se lance
   depuis le menu Démarrer ([VS Code](../configuration/vscode.md)). Une mention
   « offline mode » dans Navigator n'est pas une erreur : elle signale
   l'absence de réseau, et Navigator fonctionne quand même.
@@ -121,7 +122,7 @@ Vérifier
 
 Remède
 : Si le premier clic date de moins de deux minutes, attendre. Sinon, dans
-  le Gestionnaire des tâches, clic droit sur le processus, Fin de tâche,
+  le Gestionnaire des tâches, arrêter le processus ({ref}`A13 <dep-a13>`),
   puis relancer Navigator une seule fois. Si le message revient alors
   qu'aucun processus n'est présent, taper `anaconda-navigator --reset`
   dans l'invite de commandes d'Anaconda, puis relancer.
@@ -304,6 +305,42 @@ Remède
   réglages à zéro, puis relancer. Si la console affiche un autre chemin
   que l'invite de commandes d'Anaconda : Préférences (menu Outils, ou Tools), rubrique
   « Interpréteur Python », choisir l'option par défaut, celle de Spyder.
+
+(dep-a13)=
+### A13. Arrêter Navigator bloqué au démarrage
+
+Ce qu'on voit
+: L'icône de démarrage de Navigator reste à l'écran, sans fenêtre, depuis
+  plusieurs minutes. L'onglet Processus du Gestionnaire des tâches ne montre
+  pas d'application « Anaconda Navigator ».
+
+Cause
+: Tant que sa fenêtre n'est pas ouverte, Navigator est un programme Python
+  sans fenêtre, `pythonw.exe`, rangé dans les processus en arrière-plan. Il
+  attend des commandes `conda` ou des serveurs ({ref}`A4 <dep-a4>`).
+
+Vérifier
+: Ouvrir le Gestionnaire des tâches (`Ctrl` + `Maj` + `Échap`), onglet
+  Détails. Clic droit sur l'en-tête d'une colonne, « Sélectionner les
+  colonnes », cocher « Ligne de commande », puis OK. Le processus de
+  Navigator est le `pythonw.exe` dont la ligne de commande contient
+  `anaconda-navigator`.
+
+Remède
+: Clic droit sur ce processus, « Fin de l'arborescence du processus » :
+  les commandes `conda` qu'il a lancées s'arrêtent avec lui, et l'icône
+  disparaît. Dans l'invite de commandes d'Anaconda, une seule commande fait
+  la même chose :
+
+  ```text
+  taskkill /F /T /IM pythonw.exe
+  ```
+
+  Elle arrête tous les programmes `pythonw.exe`, dont Spyder s'il est
+  ouvert. Ensuite, lancer JupyterLab sans Navigator : dans l'invite de
+  commandes d'Anaconda, se placer dans le dossier de la séance avec `cd`,
+  puis taper `jupyter lab` ([JupyterLab](../configuration/jupyterlab.md)).
+  Ces manipulations restent à vérifier sur un poste de la salle.
 
 ## Outils installés dans un environnement
 

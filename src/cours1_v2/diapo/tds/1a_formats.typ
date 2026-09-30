@@ -14,7 +14,7 @@
 #let td = (
   numero: "1a",
   titre: "Fichiers, formats et extensions",
-  annonce: "Copier les fichiers de la séance sur le poste, puis exporter et ouvrir les fichiers d'un même texte",
+  annonce: "Objectif : récupérer les fichiers de la séance, puis distinguer l'extension d'un fichier et son contenu, sur un même texte enregistré dans plusieurs formats",
   dossier: "cours1/1a_formats/",
   duree: "15′",
 )

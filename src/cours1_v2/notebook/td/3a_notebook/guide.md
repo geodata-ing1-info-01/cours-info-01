@@ -26,13 +26,13 @@ JupyterLab depuis l'invite de commandes d'Anaconda, puis depuis Git Bash, où
 les commandes d'Anaconda sont disponibles depuis le début du TD 2b.
 Anaconda Navigator sert de dernier secours.
 
-| Étape | Ce qu'on fait |
-|---|---|
-| 1 | lancer JupyterLab et ouvrir le notebook |
-| 2 | exécuter les cellules |
-| 3 | relancer une cellule, et lire ce que le noyau retient |
-| 4 | ajouter une cellule de texte |
-| 5 | relancer JupyterLab depuis Git Bash, si le temps le permet |
+| Étape | Objectif | Ce qu'on fait |
+|---|---|---|
+| 1 | ouvrir un notebook dans JupyterLab | lancer JupyterLab et ouvrir le notebook |
+| 2 | exécuter un notebook cellule par cellule | exécuter les cellules |
+| 3 | relire l'état du noyau d'une cellule à l'autre | relancer une cellule, et lire ce que le noyau retient |
+| 4 | documenter un notebook en Markdown | ajouter une cellule de texte |
+| 5 | lancer JupyterLab depuis un terminal | relancer JupyterLab depuis Git Bash, si le temps le permet |
 
 Ce que chaque étape fait constater est expliqué à la fin du guide, dans « Ce
 que le TD fait constater » : faire l'étape d'abord, et noter ce qu'on

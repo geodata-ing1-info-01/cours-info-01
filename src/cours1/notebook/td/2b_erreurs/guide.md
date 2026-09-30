@@ -21,13 +21,13 @@ Le TD se fait dans VS Code, configuré au TD 2a : l'extension Python est
 installée, et le terminal intégré s'ouvre dans l'environnement `base`
 d'Anaconda. Les commandes se tapent dans ce terminal.
 
-| Étape | Ce qu'on fait |
-|---|---|
-| 1 | préparer le dossier du TD dans l'éditeur |
-| 2 | afficher les caractères invisibles |
-| 3 | corriger `surface.py` |
-| 4 | corriger `moyenne.py` |
-| 5 | corriger `chemin.py` |
+| Étape | Objectif | Ce qu'on fait |
+|---|---|---|
+| 1 | travailler sur des copies des programmes | préparer le dossier du TD dans l'éditeur |
+| 2 | voir les espaces, les tabulations et les fins de ligne | afficher les caractères invisibles |
+| 3 | lire un message d'erreur et trouver la faute | corriger `surface.py` |
+| 4 | corriger la ligne que le message désigne | corriger `moyenne.py` |
+| 5 | remplacer un chemin absolu par un chemin relatif | corriger `chemin.py` |
 
 Chaque étape commence par un encadré qui la résume. Ce que chaque étape fait
 constater est expliqué à la fin du guide, dans « Ce que le TD fait

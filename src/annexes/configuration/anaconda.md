@@ -247,7 +247,9 @@ La page d'accueil d'Anaconda Navigator.
 Le bouton Launch d'une fiche lance l'application dans l'environnement
 affiché en haut. Quand Navigator est lent ou ne s'ouvre pas
 ({ref}`A4 <dep-a4>`, {ref}`A5 <dep-a5>`), chaque application se lance
-aussi depuis un terminal, comme l'indique sa page.
+aussi depuis un terminal, comme l'indique sa page. Un Navigator bloqué au
+démarrage, dont l'icône reste à l'écran, s'arrête depuis le Gestionnaire
+des tâches ({ref}`A13 <dep-a13>`).
 
 ## Documentation officielle
 

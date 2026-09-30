@@ -24,13 +24,13 @@ refait ligne à ligne dans une session interactive, puis son exécution est
 suivie pas à pas avec le débogueur. Le TD nécessite Anaconda Navigator, VS
 Code, et une connexion réseau pour installer l'extension.
 
-| Étape | Ce qu'on fait |
-|---|---|
-| 1 | lancer VS Code depuis Anaconda Navigator |
-| 2 | ouvrir le dossier du TD, et installer l'extension Python |
-| 3 | choisir l'interpréteur, et régler le terminal |
-| 4 | lancer le programme en entier, puis ligne à ligne |
-| 5 | exécuter le programme pas à pas |
+| Étape | Objectif | Ce qu'on fait |
+|---|---|---|
+| 1 | démarrer l'IDE avec le Python d'Anaconda | lancer VS Code depuis Anaconda Navigator |
+| 2 | donner à l'IDE le langage du projet | ouvrir le dossier du TD, et installer l'extension Python |
+| 3 | choisir le Python qui exécute le code | choisir l'interpréteur, et régler le terminal |
+| 4 | exécuter un programme en entier, puis ligne à ligne | lancer le programme en entier, puis ligne à ligne |
+| 5 | suivre l'exécution et la valeur des variables | exécuter le programme pas à pas |
 
 Chaque étape commence par un encadré qui la résume. Ce que chaque étape fait
 constater est expliqué à la fin du guide, dans « Ce que le TD fait

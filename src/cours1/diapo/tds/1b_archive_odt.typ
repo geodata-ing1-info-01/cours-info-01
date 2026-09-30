@@ -9,7 +9,7 @@
 #let td = (
   numero: "1b",
   titre: "Un .odt est une archive ZIP",
-  annonce: "Ouvrir le document comme une archive, modifier son contenu dans un éditeur de texte, recompresser : LibreOffice rouvre le résultat",
+  annonce: "Objectif : voir de quoi est fait un document de traitement de texte, et le modifier sans son logiciel",
   dossier: "cours1/1b_archive_odt/",
   duree: "12′",
   facultatif: true,

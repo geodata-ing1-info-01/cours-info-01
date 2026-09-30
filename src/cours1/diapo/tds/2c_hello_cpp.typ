@@ -9,7 +9,7 @@
 #let td = (
   numero: "2c",
   titre: "Le même programme en C++",
-  annonce: "Configurer l'éditeur pour un second langage : l'extension, le compilateur, puis la compilation",
+  annonce: "Objectif : configurer l'éditeur pour un second langage, compilé, et comparer son programme à celui écrit en Python",
   dossier: "cours1/2c_hello_cpp/",
   duree: "10′",
   facultatif: true,

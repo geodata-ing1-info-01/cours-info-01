@@ -10,7 +10,7 @@
 #let td = (
   numero: "2a",
   titre: "Configurer l'éditeur de code, et lancer un programme",
-  annonce: "Lancer VS Code, installer l'extension Python et configurer l'interpréteur Python.\nExécuter un programme de trois façons : en entier, ligne à ligne, pas à pas",
+  annonce: "Objectif : configurer un IDE pour Python, puis exécuter un programme de trois façons : en entier, ligne à ligne, pas à pas",
   dossier: "cours1/2a_vscode_python/",
   duree: "25′",
 )

@@ -1,26 +1,24 @@
 // TD 0a du cours 3 — « Préparation du poste de travail ».
 //
-// Inclus par `cours3.typ`, après l'ouverture, qui porte les réglages globaux
-// et importe `td` pour le sommaire des TD ; compilable seul par
-// `outils/compiler_tds.py`. Un fichier inclus n'hérite pas des imports de son
-// appelant.
+// Inclus par `cours3.typ`, après l'exposé, en tête des TD, qui porte les
+// réglages globaux et importe `td` pour le sommaire des TD ; compilable seul
+// par `outils/compiler_tds.py`. Un fichier inclus n'hérite pas des imports de
+// son appelant.
 //
-// Trois diapositives : récupérer l'archive, vérifier que les outils se
-// lancent, puis, selon les groupes, créer l'environnement `info01-cours3`.
-// Les deux premières étaient dans l'ouverture jusqu'au 25/09/2026. La
-// troisième a été ajoutée pour 2026 (syllabus v1.5, 24/09/2026) : la partie 4
-// du cours 1 (bibliothèques et environnements) n'a pas été jouée. Les groupes
-// qui ne la font pas lancent JupyterLab depuis `base`. La diapositive de
-// rappel des commandes conda et l'installation en deux temps sont dans
-// l'historique git (avant le 25/09/2026).
+// Récupérer l'archive, lire l'arborescence extraite, copier les deux
+// notebooks dans `travail/`, vérifier que les outils se lancent, puis ouvrir
+// JupyterLab sur le dossier `cours3/`. Depuis le 29/09/2026, tous les TD
+// sont en fin de séance, et l'environnement conda, selon les groupes, est
+// passé en tête du TD 3b (`tds/3b_cli.typ`), le seul qui s'en sert.
 #import "../../../commun/prelude.typ": *
+#import "../schemas.typ": *
 
 #let td = (
   numero: "0a",
   titre: "Préparation du poste de travail",
-  annonce: "Récupérer l'archive de la séance et vérifier que les outils se lancent ; selon les groupes, créer l'environnement conda de la séance",
+  annonce: "Objectif : préparer le poste pour les TD de la séance, avec l'archive extraite, les deux notebooks copiés dans travail/ et JupyterLab ouvert sur cours3/",
   dossier: "cours3/",
-  duree: "10′, +15′ selon les groupes",
+  duree: "10′",
 )
 #separateur-td(..td)
 
@@ -28,7 +26,7 @@
 #d("Lancement de la séance : récupération données")[
   #annonce[
     L'archive `info01-cours3.zip` est dans le dossier partagé `formationTemp`.
-    Il faut la copier sur le Bureau (ou autre dossier de votre préférence) puis la décompresser. 
+    Il faut la copier sur le Bureau (ou autre dossier de votre préférence) puis la décompresser.
   ]
 
   #tableau(
@@ -36,11 +34,11 @@
     align: left + horizon,
     [], [Ce qu'il faut faire], [Ce que vous devez obtenir],
     [1], [ouvrir le dossier partagé `formationTemp`, copier `info01-cours3.zip` sur le Bureau],
-      [l'archive sur le Bureau, 14 Mo],
-    [2], [clic droit sur l'archive #sym.arrow.r Extraire tout],
-      [un dossier `cours3/`, quatre sous-dossiers `1a_recette/`, `2a_fichiers/`, `2b_images/`, `3a_cli/`],
-    [3], [ouvrir `cours3/1a_recette/` : `depart/`, `travail/` vide, la feuille du TD],
-      [`depart/notebook/` contient `recette.ipynb`],
+      [l'archive sur le Bureau, 16 Mo],
+    [2], [clic droit sur l'archive #sym.arrow.r Extraire tout ; dans le dossier proposé, effacer la fin, `\info01-cours3`, puis Extraire],
+      [un dossier `cours3/` sur le Bureau, à côté de l'archive],
+    [3], [ouvrir `cours3/` et lire la barre d'adresse de l'explorateur],
+      [`C:\Users\eleve\Desktop\cours3`],
   )
 
   #avertissement[
@@ -51,8 +49,90 @@
   #notes[
     Vécu à la séance 1 : des fichiers ouverts depuis l'archive sans
     extraction, et du travail fait dans le dossier partagé, perdu ou écrasé
-    par le voisin. 
+    par le voisin.
     Faire les trois étapes avec les étudiants, avant de lancer quoi que ce soit.
+
+    Sans l'étape 2, le dossier extrait est `Desktop\info01-cours3\cours3` :
+    un dossier de plus, et les chemins des diapositives ne correspondent
+    plus. Même consigne que la page « Récupérer les fichiers d'une séance ».
+  ]
+]
+
+// --------------------------------------------
+#d("Le dossier cours3 après extraction")[
+  #annonce[
+    Chaque TD a son dossier. Dans chacun, `depart/` contient les fichiers
+    livrés, et `travail/`, vide, reçoit les copies et ce que vous écrivez.
+  ]
+
+  #align(center, arborescence(
+    (0, "Desktop/", "le Bureau, `C:\\Users\\eleve\\Desktop`"),
+    (1, "info01-cours3.zip", "l'archive copiée"),
+    (1, "cours3/", "le dossier extrait"),
+    (2, "1a_recette/"),
+    (3, "depart/"),
+    (4, "notebook/"),
+    (5, "recette.ipynb", "le premier notebook"),
+    (4, "recettes/", "les données"),
+    (3, "travail/", "vide"),
+    (3, "td_1a_recette.pdf", "la feuille du TD"),
+    (2, "2a_fichiers/", "la même organisation, avec `fichiers.ipynb`"),
+    (2, "2b_images/", "facultatif"),
+    (2, "3a_markdown/", "parcours standard"),
+    (2, "3b_cli/", "parcours avancé"),
+    taille: 11.5pt,
+  ))
+]
+
+// --------------------------------------------
+#d("Les deux notebooks à copier")[
+  #annonce[
+    Chaque notebook se copie de `depart/notebook/` dans le dossier
+    `travail/` du même TD. Le notebook s'ouvre et s'exécute dans
+    `travail/`.
+  ]
+
+  #grid(
+    columns: (1fr, 1fr), column-gutter: 24pt,
+    arborescence(
+      (0, "1a_recette/"),
+      (1, "depart/"),
+      (2, "notebook/"),
+      (3, "recette.ipynb", "à copier"),
+      (1, "travail/"),
+      (2, text(fill: attention)[recette.ipynb], "la copie"),
+    ),
+    arborescence(
+      (0, "2a_fichiers/"),
+      (1, "depart/"),
+      (2, "notebook/"),
+      (3, "fichiers.ipynb", "à copier"),
+      (1, "travail/"),
+      (2, text(fill: attention)[fichiers.ipynb], "la copie"),
+    ),
+  )
+
+  #v(0.6em)
+  #tableau(
+    columns: (auto, 1fr),
+    align: left + horizon,
+    [], [Ce qu'il faut faire, dans l'explorateur de fichiers],
+    [1], [ouvrir `cours3/1a_recette/depart/notebook/`, clic droit sur `recette.ipynb` #sym.arrow.r Copier],
+    [2], [ouvrir `cours3/1a_recette/travail/`, clic droit dans le dossier #sym.arrow.r Coller],
+    [3], [même chose pour `fichiers.ipynb`, de `2a_fichiers/depart/notebook/` dans `2a_fichiers/travail/`],
+  )
+
+  #legende[
+    Le fichier de `depart/` reste tel quel : il sert à recommencer.
+  ]
+
+  #notes[
+    Le notebook lit `depart/` par un chemin qui remonte d'un dossier, `..`,
+    ce qui suppose qu'il est dans `travail/`. Ouvert depuis
+    `depart/notebook/`, il ne trouve pas les recettes.
+
+    Un glisser-déposer sur le même disque déplace le fichier, et `depart/`
+    ne le contient plus.
   ]
 ]
 
@@ -60,7 +140,7 @@
 #d("Lancement de la séance : test notebook")[
   #annonce[
     La séance demande d'exécuter des notebooks et d'écrire du code Python.
-    Avant de commencer, chacun vérifie que ses outils se lancent.\ 
+    Avant de commencer, chacun vérifie que ses outils se lancent.\
     Par défault on utilisera vscode ou jupyter lab.
     Si ça ne fonctionne pas demandez, selon les cas ça sera dépannage ou changement de poste.
   ]
@@ -83,14 +163,10 @@
   ]
 
   #notes[
-    Groupes qui créent l'environnement (diapositive suivante) : ne vérifier
-    ici que l'invite de commandes d'Anaconda ; JupyterLab se lance à la dernière étape,
-    depuis `info01-cours3`.
-
-    Dix minutes, pas plus. 
+    Dix minutes, pas plus.
     Navigator a été lent ou muet sur les VM à la séance 1 : donner la commande `jupyter lab` tout de suite à ceux qui n'ont rien au bout de trente secondes.
 
-    VS Code sert pour le TD 3a, pas pour les notebooks. 
+    VS Code sert aux TD 3a et 3b. Les notebooks s'ouvrent dans JupyterLab.
     Si pb d'environnement d'Anaconda sur ces postes avec vscode, et pas le temps de configurer tenter spyder.
 
     Un poste qui ne lance ni JupyterLab ni un éditeur en dix minutes : en
@@ -99,57 +175,70 @@
 ]
 
 // --------------------------------------------
-#d("Environnement de la séance : selon les groupes")[
+#d("JupyterLab ouvert sur le dossier cours3")[
   #annonce[
-    Un environnement conda contient un Python et ses paquets, indépendants
-    de ceux des autres environnements.
+    Le panneau de gauche de JupyterLab montre le dossier de lancement et ses
+    sous-dossiers. Il ne remonte pas au-dessus de ce dossier.
   ]
+
+  #tableau(
+    columns: (auto, 1.3fr, 1fr),
+    align: left + horizon,
+    [Lancement], [Ce qu'il faut faire], [Dossier affiché],
+    [Invite de commandes d'Anaconda], [`cd Desktop\cours3`, puis `jupyter lab`],
+      [`cours3/`],
+    [Anaconda Navigator], [fiche JupyterLab #sym.arrow.r *Launch*],
+      [`C:\Users\eleve` : ouvrir `Desktop`, puis `cours3`],
+    [Autre disque (`D:`, clé USB)], [invite de commandes : `cd /d D:\…\cours3`, puis `jupyter lab`],
+      [`cours3/` ; ce disque n'apparaît pas depuis Navigator],
+  )
+
+  #legende[
+    Pour écrire le chemin après `cd /d`, glisser le dossier `cours3/` depuis
+    l'explorateur dans la fenêtre de l'invite de commandes. Cette fenêtre
+    fait tourner le serveur de JupyterLab et reste ouverte pendant la séance.
+  ]
+
+  #notes[
+    L'invite de commandes d'Anaconda s'ouvre dans `C:\Users\eleve` ; le
+    chemin relatif `Desktop\cours3` part de là. `/d` change aussi de disque :
+    sans lui, `cd D:\…` ne change pas le disque courant.
+
+    Bureau synchronisé par OneDrive : le chemin passe par `OneDrive\Bureau`
+    ou `OneDrive\Desktop`. Le glisser-déposer du dossier donne le bon
+    chemin dans tous les cas.
+
+    JupyterLab déjà lancé sur le mauvais dossier : fermer l'onglet, taper
+    `Ctrl+C` dans l'invite de commandes, puis relancer depuis le bon dossier.
+  ]
+]
+
+// --------------------------------------------
+#d("Le panneau des fichiers de JupyterLab")[
+  #annonce[
+    La ligne du haut du panneau donne le chemin du dossier affiché, depuis
+    le dossier de lancement. Le Bureau y porte son nom réel, `Desktop`.
+  ]
+
+  #panneau-jupyterlab(
+    ("Desktop", "cours3", "1a_recette", "travail"),
+    ("recette.ipynb",),
+    largeur: 60%,
+  )
 
   #tableau(
     columns: (auto, 1fr),
     align: left + horizon,
-    [], [Ce qu'il faut faire, dans l'invite de commandes d'Anaconda],
-    [1], [`conda create -n info01-cours3 -c conda-forge python=3.12 jupyterlab jupyterlab-myst pandoc pillow`, puis `y`],
-    [2], [`conda activate info01-cours3`],
-    [3], [`pandoc --version`, puis `python -c "import PIL"`],
-    [4], [`cd` vers le dossier `cours3/` extrait sur le Bureau, puis `jupyter lab`],
+    [Action], [Effet],
+    [double-clic sur un dossier], [affiche son contenu],
+    [clic sur un nom de la ligne du haut], [revient à ce dossier],
+    [clic sur l'icône de dossier], [revient au dossier de lancement],
+    [double-clic sur `recette.ipynb`], [ouvre le notebook dans un onglet],
   )
 
   #legende[
-    `-n` donne le nom de l'environnement, `-c conda-forge` le dépôt des
-    paquets. Le terminal de `jupyter lab` fait tourner le serveur des
-    notebooks et reste ouvert.
-  ]
-
-  #notes[
-    Le téléchargement prend plusieurs minutes. Mesurer la durée de l'étape 1
-    sur un poste de la salle avant la séance. Si elle dépasse cinq minutes :
-    lancer l'étape 1 dès le début de la séance, commencer la partie 1 dans
-    `base`, et revenir aux étapes 2 à 4 quand l'installation est finie.
-
-    `conda env list` liste les environnements du poste, `*` sur l'actif :
-    à montrer à ceux qui vont vite.
-
-    `jupyterlab-myst` : affiche les encadrés MyST des notebooks
-    (`:::{admonition} À faire`). Dans `base`, sans l'extension, ils
-    s'affichent en texte brut.
-
-    Préfixe `info01-` : distingue l'environnement de ceux des autres
-    enseignements sur le même poste.
-
-    `python -c` exécute le code écrit entre guillemets ; Pillow s'importe
-    sous le nom `PIL`. `base`, l'environnement installé avec Anaconda,
-    contient déjà pandoc et Pillow ; les notebooks fonctionnent donc aussi
-    sans ce TD. Choix de conda : il installe aussi des programmes qui ne sont
-    pas du Python, comme pandoc ou ffmpeg (projet 4).
-
-    Pour écrire le chemin après `cd`, glisser le dossier `cours3/` depuis
-    l'explorateur dans la fenêtre du terminal. À la section 4.4 de
-    `recette.ipynb`, `shutil.which("pandoc")` renvoie un chemin dans
-    `envs\info01-cours3\Library\bin`.
-
-    Séances suivantes : `conda activate info01-cours3` seulement, si
-    l'environnement n'est pas effacé à la déconnexion (à vérifier). Le
-    projet 4 crée un environnement depuis un fichier `environment.yml`.
+    Le panneau dessiné est celui de JupyterLab lancé depuis Navigator, dans
+    le dossier du compte. Lancé depuis `cours3/`, le chemin commence à
+    `1a_recette`.
   ]
 ]

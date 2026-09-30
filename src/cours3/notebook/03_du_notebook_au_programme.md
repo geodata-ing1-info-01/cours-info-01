@@ -1,20 +1,20 @@
 ---
 title: Du notebook au programme
-subtitle: Le code du notebook dans un fichier .py, une fonction main, et ses valeurs lues sur la ligne de commande avec argparse
+subtitle: Le code du notebook dans un fichier .py, et ses valeurs lues sur la ligne de commande avec argparse ; la fonction main, en bonus
 ---
 
 Cette partie fait passer le code du notebook `recette.ipynb` dans un
-programme, `recette.py`, lancé depuis un terminal. Elle présente la fonction
-`main` et la façon dont Python lit un script, puis `argparse`, qui lit les
-valeurs du programme sur la ligne de commande. Le programme se construit par
-étapes, un commit git par étape. Un TD l'accompagne, le TD 3a ; il est
-présenté en fin de page.
+programme, `recette.py`, lancé depuis un terminal. Elle présente `argparse`,
+qui lit les valeurs du programme sur la ligne de commande. Le programme se
+construit par étapes, un commit git par étape. Un TD l'accompagne, le TD 3b ;
+il est présenté en fin de page, avec la fonction `main`, qu'il ajoute en
+bonus.
 
 ## Du notebook à la ligne de commande
 
 Dans un notebook, les valeurs du programme sont écrites dans une cellule.
 Changer une valeur oblige à relancer les cellules qui en dépendent, dans
-l'ordre. Le script du TD 3a reçoit les valeurs sur la ligne de commande, et
+l'ordre. Le script du TD 3b reçoit les valeurs sur la ligne de commande, et
 une seule commande produit la page.
 
 ```{figure} figures/3_notebook_valeurs.svg
@@ -42,69 +42,6 @@ dépendent.
   - `-u US`
 ```
 
-## La fonction `main`
-
-Les lignes du programme sont placées dans une fonction, `main`. La fin du
-fichier appelle `main` seulement si le fichier est lancé avec
-`python recette.py` :
-
-```python
-# les fonctions utiles, sans changement
-def lire_ingredients(chemin):
-    ...
-
-
-# le programme, dans une fonction : ses lignes sont indentées
-def main():
-    ingredients = lire_ingredients(...)
-    ...
-
-
-# vrai si le fichier est lancé avec python
-if __name__ == "__main__":
-    main()
-```
-
-Le résultat de `python recette.py` est le même qu'avant le passage dans
-`main`.
-
-## La lecture d'un script par Python
-
-Lancé ou importé, un fichier est lu de haut en bas, et chaque ligne est
-exécutée. Un `def` crée la fonction sans exécuter son corps : le corps ne
-s'exécute qu'à l'appel. `__name__` est une variable que Python définit dans
-chaque fichier : elle vaut `"__main__"` dans le fichier lancé, et le nom du
-module, ici `"recette"`, dans un fichier importé.
-
-```{list-table}
-:header-rows: 1
-
-* - Ligne de `recette.py`
-  - `python recette.py`
-  - `from recette import lire_ingredients`
-* - `import csv`
-  - exécutée : `csv` est chargé
-  - exécutée : `csv` est chargé
-* - `def lire_ingredients(chemin): …`
-  - la fonction est créée
-  - la fonction est créée
-* - `def main(): …`
-  - la fonction est créée
-  - la fonction est créée
-* - `if __name__ == "__main__":`
-  - `__name__` vaut `"__main__"` : vrai
-  - `__name__` vaut `"recette"` : faux
-* - `    main()`
-  - exécutée : la page est produite
-  - ignorée
-```
-
-Sans le test, `main()` serait aussi exécutée à l'import : récupérer
-`lire_ingredients` pour la réutiliser ou la tester produirait la page et
-lancerait pandoc. Un fichier de tests, par exemple, appelle
-`lire_ingredients` sur un CSV connu et vérifie le résultat ; le projet 7 en
-écrit un.
-
 ## Les arguments d'un script avec `argparse`
 
 `argparse`, de la bibliothèque standard, lit les arguments écrits après le nom
@@ -117,16 +54,10 @@ Le script minimal lit un argument, le nom de la recette :
 ```python
 import argparse
 
-
-def main():
-    analyseur = argparse.ArgumentParser()
-    analyseur.add_argument("nom")
-    options = analyseur.parse_args()
-    print("Recette demandée :", options.nom)
-
-
-if __name__ == "__main__":
-    main()
+analyseur = argparse.ArgumentParser()
+analyseur.add_argument("nom")
+options = analyseur.parse_args()
+print("Recette demandée :", options.nom)
 ```
 
 ```text
@@ -197,19 +128,83 @@ Les trois arguments s'ajoutent sur une branche, `arguments`, un commit par
 argument, puis la branche est fusionnée dans `master`. VS Code affiche la
 branche courante en bas à gauche de la fenêtre, dans la barre d'état.
 
+## En bonus du TD 3b : la fonction `main`
+
+Les lignes du programme sont placées dans une fonction, `main`. La fin du
+fichier appelle `main` seulement si le fichier est lancé avec
+`python recette.py` :
+
+```python
+# les fonctions utiles, sans changement
+def lire_ingredients(chemin):
+    ...
+
+
+# le programme, dans une fonction : ses lignes sont indentées
+def main():
+    ingredients = lire_ingredients(...)
+    ...
+
+
+# vrai si le fichier est lancé avec python
+if __name__ == "__main__":
+    main()
+```
+
+Le résultat de `python recette.py` est le même qu'avant le passage dans
+`main`.
+
+### La lecture d'un script par Python
+
+Lancé ou importé, un fichier est lu de haut en bas, et chaque ligne est
+exécutée. Un `def` crée la fonction sans exécuter son corps : le corps ne
+s'exécute qu'à l'appel. `__name__` est une variable que Python définit dans
+chaque fichier : elle vaut `"__main__"` dans le fichier lancé, et le nom du
+module, ici `"recette"`, dans un fichier importé.
+
+```{list-table}
+:header-rows: 1
+
+* - Ligne de `recette.py`
+  - `python recette.py`
+  - `from recette import lire_ingredients`
+* - `import csv`
+  - exécutée : `csv` est chargé
+  - exécutée : `csv` est chargé
+* - `def lire_ingredients(chemin): …`
+  - la fonction est créée
+  - la fonction est créée
+* - `def main(): …`
+  - la fonction est créée
+  - la fonction est créée
+* - `if __name__ == "__main__":`
+  - `__name__` vaut `"__main__"` : vrai
+  - `__name__` vaut `"recette"` : faux
+* - `    main()`
+  - exécutée : la page est produite
+  - ignorée
+```
+
+Sans le test, `main()` serait aussi exécutée à l'import : récupérer
+`lire_ingredients` pour la réutiliser ou la tester produirait la page et
+lancerait pandoc. Un fichier de tests, par exemple, appelle
+`lire_ingredients` sur un CSV connu et vérifie le résultat ; le projet 7 en
+écrit un.
+
 ## Le dossier du script
 
 Un chemin relatif part du dossier courant : celui du notebook, ou celui du
 terminal qui lance le script. `Path(__file__).parent` désigne le dossier du
-script lui-même, d'où qu'on le lance. L'étape 5 du TD 3a, facultative, range
+script lui-même, d'où qu'on le lance. L'étape 5 du TD 3b, facultative, range
 le code dans `src/` et les données dans `data/`, et fait partir les chemins
 des données de ce dossier.
 
 ## TD de la partie
 
-- [TD 3a](td/3a_cli/guide.md), dans le dossier `cours3/3a_cli/` de l'archive, 45 minutes : écrire
-  `recette.py` à partir du notebook, puis une fonction `main`, les trois
-  arguments sur une branche, et un README ; un commit par étape. Les étapes 5
+- [TD 3b](td/3b_cli/guide.md), dans le dossier `cours3/3b_cli/` de l'archive, 45 minutes : écrire
+  `recette.py` à partir du notebook, puis les trois arguments sur une
+  branche, un README et, en bonus, une fonction `main` ; un commit par
+  étape. Les étapes 5
   et 6, facultatives, rangent le projet en `src/` et `data/`, puis
   l'installent comme une commande. Le guide détaillé du TD est livré dans le
   même dossier, en PDF, en page HTML et en notebook ; le code se copie depuis
@@ -228,14 +223,14 @@ des données de ce dossier.
   - écrire `recette.py` à partir du notebook
   - 1
 * - 2
-  - mettre le programme dans une fonction `main`
-  - 2
-* - 3
   - lire la recette, le nombre de personnes et les unités sur la ligne de
     commande, sur une branche
-  - 5
-* - 4
+  - 4
+* - 3
   - écrire un `README.md`
+  - 5
+* - 4 (bonus)
+  - mettre le programme dans une fonction `main`
   - 6
 * - 5 (facultatif)
   - ranger le code dans `src/` et les données dans `data/`
@@ -245,9 +240,9 @@ des données de ce dossier.
   - 8
 ```
 
-Le TD 3a est celui du parcours avancé. Le parcours standard fait à la place
-le [TD 3b](td/3b_markdown/guide.md), une recette en Markdown, et le TD 3a au
-projet 4.
+Le TD 3b est celui du parcours avancé. Le parcours standard fait à la place
+le [TD 3a](td/3a_markdown/guide.md), une recette en Markdown. Le projet 4
+revoit ces notions pour les deux parcours.
 
 Les TD des autres parties sont dans [Travaux dirigés de la séance
 3](travaux_diriges.md).

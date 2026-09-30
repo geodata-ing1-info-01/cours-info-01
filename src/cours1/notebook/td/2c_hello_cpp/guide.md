@@ -24,12 +24,12 @@ le permet, ou seul ensuite. Sous Windows, l'installation du compilateur
 nécessite une connexion réseau et prend quelques minutes. VS Code est configuré comme au TD 2a, et son
 terminal intégré s'ouvre dans l'environnement `base` d'Anaconda.
 
-| Étape | Ce qu'on fait |
-|---|---|
-| 1 | installer l'extension C/C++ |
-| 2 | installer un compilateur |
-| 3 | compiler, puis lancer |
-| 4 | comparer avec le programme Python |
+| Étape | Objectif | Ce qu'on fait |
+|---|---|---|
+| 1 | donner à l'éditeur un second langage | installer l'extension C/C++ |
+| 2 | disposer d'un compilateur C++ | installer un compilateur |
+| 3 | transformer un source en exécutable, puis le lancer | compiler, puis lancer |
+| 4 | comparer un programme compilé et un programme interprété | comparer avec le programme Python |
 
 Chaque étape commence par un encadré qui la résume. Ce que le TD fait
 constater est expliqué à la fin du guide, dans « Ce que le TD fait

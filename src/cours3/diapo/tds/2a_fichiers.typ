@@ -4,23 +4,23 @@
 // pour le sommaire des TD ; compilable seul par `outils/compiler_tds.py`. Un
 // fichier inclus n'hérite pas des imports de son appelant.
 //
-// Comme le TD 1a, ce fichier ouvre le notebook que la première moitié de la
-// partie 2 vient de présenter : `fichiers.ipynb`, dont les sections suivent
-// les diapositives de la partie. Le TD 2b, facultatif, ouvre `images.ipynb`.
+// Comme le TD 1a, ce fichier fait faire le notebook que la partie 2 de
+// l'exposé a présenté : `fichiers.ipynb`, dont les sections suivent les
+// diapositives de la partie. Le TD 2b, facultatif, ouvre `images.ipynb`.
+// Depuis le 29/09/2026, les TD sont tous en fin de séance, après le TD 0a
+// qui copie le notebook dans `travail/`.
 #import "../../../commun/prelude.typ": *
 
 #let td = (
   numero: "2a",
   titre: "Lire et écrire des fichiers texte",
-  annonce: "Ouvrir fichiers.ipynb ; chaque section du notebook explique ce qu'elle fait",
+  annonce: "Objectif : lire et écrire des fichiers texte en Python, et relier leurs caractères à leurs octets, dans fichiers.ipynb, section par section",
   dossier: "cours3/2a_fichiers/",
-  duree: "15′",
+  duree: "30′",
 )
-// Dans le cours, l'ouverture est commune à la partie (`separateur-cours-td`,
-// dans `cours3.typ`) ; seule la feuille de TD remet celle-ci.
-#if feuille-seule { separateur-td(..td) }
+#separateur-td(..td)
 
-#d("Ouvrir le notebook des fichiers")[
+#d("Faire le notebook fichiers.ipynb")[
   #annonce[
     Les fonctions utiles de `recette.ipynb` ouvrent, lisent et écrivent des
     fichiers sans que ces lignes aient été expliquées. `fichiers.ipynb`
@@ -32,13 +32,11 @@
     columns: (auto, 1.4fr, 1fr),
     align: left + horizon,
     [], [Ce qu'il faut faire], [Ce que vous constatez],
-    [1], [dans l'explorateur, copier `2a_fichiers/depart/notebook/fichiers.ipynb` dans `2a_fichiers/travail/`],
-      reponse[`2a_fichiers/travail/fichiers.ipynb`],
-    [2], [dans le panneau de gauche de JupyterLab, double-cliquer dessus],
+    [1], [dans le panneau de gauche de JupyterLab, revenir à `cours3/`, ouvrir `2a_fichiers/`, puis `travail/`, et double-cliquer sur `fichiers.ipynb`, la copie faite au TD 0a],
       reponse[un second onglet, à côté du premier],
-    [3], [exécuter la section 0],
+    [2], [exécuter la section 0],
       reponse[`True True` : les chemins de la section 3.3, retrouvés],
-    [4], [exécuter les sections 1 à 9 ; les sections 10 et 11 se font après la séance],
+    [3], [exécuter les sections 1 à 9 ; les sections 10 et 11 se font après la séance],
       reponse[« Ãª » lu en `cp1252` ; `b'\xc3\xaa'` en mode binaire ; `essai.txt` écrit, complété, remplacé],
   )
 

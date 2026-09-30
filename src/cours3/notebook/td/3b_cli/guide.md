@@ -1,5 +1,5 @@
 ---
-title: "TD 3a — Une ligne de commande pour la recette"
+title: "TD 3b — Une ligne de commande pour la recette"
 subtitle: Guide détaillé, étape par étape
 jupytext:
   text_representation:
@@ -10,7 +10,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-Ce guide détaille les étapes de la feuille du TD 3a. Pour chaque étape, il
+Ce guide détaille les étapes de la feuille du TD 3b. Pour chaque étape, il
 indique :
 
 - le dossier dans lequel se placer ;
@@ -23,22 +23,22 @@ Le TD transforme le code du notebook `recette.ipynb` (TD 1a) en un programme
 `recette.py`, lancé depuis un terminal. Chaque étape se termine par un commit
 git.
 
-Le code de ce guide se copie depuis `guide_3a_cli.html`, ouvert dans un
+Le code de ce guide se copie depuis `guide_3b_cli.html`, ouvert dans un
 navigateur, ou depuis `guide.ipynb`, ouvert dans JupyterLab. Copié depuis le
 PDF, il perd ses indentations, qu'il faut alors refaire dans VS Code.
 
 Le tableau résume les étapes ; chaque numéro d'étape renvoie à la page qui
 la détaille. Chaque page commence par un encadré qui résume l'étape.
 
-| Étape | Ce qu'on fait | Commits à la fin |
-|---|---|---|
-| [0](#étape-0-préparer-le-dossier-de-travail-et-le-dépôt-git) | préparer le dossier `travail/` et créer le dépôt git | 0 |
-| [1](#étape-1-le-code-du-notebook-dans-un-fichier) | écrire `recette.py` à partir du notebook | 1 |
-| [2](#étape-2-une-fonction-main) | mettre le programme dans une fonction `main` | 2 |
-| [3](#étape-3-les-arguments-sur-une-branche) | lire la recette, le nombre de personnes et les unités sur la ligne de commande, sur une branche | 5 |
-| [4](#étape-4-un-readme) | écrire un `README.md` | 6 |
-| [5](#étape-5-facultative-le-code-dans-src-les-données-dans-data) (facultatif, après la séance) | ranger le code dans `src/` et les données dans `data/` | 7 |
-| [6](#étape-6-facultative-une-commande-installée) (facultatif, après la séance) | installer le programme comme une commande | 8 |
+| Étape | Objectif | Ce qu'on fait | Commits à la fin |
+|---|---|---|---|
+| [0](#étape-0-préparer-le-dossier-de-travail-et-le-dépôt-git) | séparer les données dans un dépôt | préparer le dossier `travail/` et créer le dépôt git | 0 |
+| [1](#étape-1-le-code-du-notebook-dans-un-fichier) | passer du notebook au script | écrire `recette.py` à partir du notebook | 1 |
+| [2](#étape-2-les-arguments-sur-une-branche) | passer des arguments, sur une branche | lire la recette, le nombre de personnes et les unités sur la ligne de commande, sur une branche | 4 |
+| [3](#étape-3-un-readme) | documenter l'usage du programme | écrire un `README.md` | 5 |
+| [4](#étape-4-bonus-une-fonction-main) (bonus) | structurer le script avec `main` | mettre le programme dans une fonction `main` | 6 |
+| [5](#étape-5-facultative-le-code-dans-src-les-données-dans-data) (facultatif, après la séance) | séparer le code et les données du projet | ranger le code dans `src/` et les données dans `data/` | 7 |
+| [6](#étape-6-facultative-une-commande-installée) (facultatif, après la séance) | installer le programme comme une commande | installer le programme comme une commande | 8 |
 
 ## Rappels avant de commencer
 
@@ -70,6 +70,42 @@ Windows (`cmd`) et de Git Bash.
 non enregistré a un point blanc sur son onglet ; `python` lit le fichier
 enregistré sur le disque, pas ce qui est affiché dans l'éditeur.
 
+**Les lignes à modifier.** À partir de l'étape 2, le guide donne en entier
+un bloc de lignes nouvelles à coller. Pour modifier des lignes qui existent
+déjà, il ne donne que les lignes qui changent, comme à l'étape 2.3 :
+
+```diff
+    8
+    9 # Les trois valeurs à changer
+-  10 PERSONNES = 4
+   10 UNITES = "SI"      # "SI" ou "US"
+   11
+    …
+   66         recettes_disponibles.append(dossier.name)
+   67 analyseur.add_argument("nom", choices=recettes_disponibles, help="la recette")
++     analyseur.add_argument("-p", "--personnes", type=int, default=4, help="nombre de personnes (défaut : 4)")
+   69 options = analyseur.parse_args()
+   70 NOM = options.nom
++     PERSONNES = options.personnes
+   72
+   73 # La recette : le tableau des ingrédients inséré sous « ## Ingrédients »
+```
+
+Une ligne marquée `-` est à supprimer, une ligne marquée `+` est à ajouter.
+Les lignes sans signe ne changent pas et indiquent l'endroit de la
+modification. Le signe `…` remplace des lignes qui ne changent pas.
+
+Le nombre qui suit le signe est le numéro de la ligne dans VS Code, quand
+les modifications sont faites de haut en bas. Une ligne ajoutée n'a pas de
+numéro. Si le fichier n'a pas les mêmes lignes vides que le guide, les
+numéros diffèrent de quelques lignes, et les lignes sans signe permettent
+de retrouver l'endroit.
+
+Une ligne ajoutée se copie sans le `+` ni les cinq espaces qui le suivent.
+Pour plusieurs lignes, les coller dans VS Code, sélectionner leurs six
+premiers caractères en rectangle (`Maj+Alt` en faisant glisser la souris),
+puis appuyer sur `Suppr`.
+
 **Si une étape échoue.** `git status` montre les fichiers modifiés depuis le
 dernier commit. `git restore recette.py` remet `recette.py` dans l'état du
 dernier commit. Le résultat attendu de l'étape 1 est dans
@@ -81,11 +117,11 @@ dernier commit. Le résultat attendu de l'étape 1 est dans
 >
 > **À obtenir :** `git status` liste `recettes/`, `style.css` et `.gitignore`, et pas `depart/`.
 
-**Dossier de départ** : `cours3/3a_cli/`, tel que décompressé depuis
+**Dossier de départ** : `cours3/3b_cli/`, tel que décompressé depuis
 l'archive.
 
 ```text
-3a_cli/
+3b_cli/
 ├── depart/
 │   ├── recettes/
 │   │   ├── crepes/
@@ -115,18 +151,18 @@ Dans l'explorateur de fichiers Windows, copier le dossier
 
 ### 0.2 Ouvrir `travail/` dans VS Code
 
-Dans VS Code : Fichier → Ouvrir le dossier… → choisir `3a_cli/travail/`.
+Dans VS Code : Fichier → Ouvrir le dossier… → choisir `3b_cli/travail/`.
 Ouvrir ensuite un terminal Git Bash (voir les rappels).
 
 **Vérification** : le panneau de gauche de VS Code affiche `recettes/` et
 `style.css` ; dans le terminal, `pwd` affiche un chemin qui se termine par
-`3a_cli/travail`.
+`3b_cli/travail`.
 
 Si ce n'est pas le cas, taper `cd` suivi du chemin du dossier `travail/`,
 par exemple :
 
 ```text
-cd /c/Users/eleve/Desktop/info01/cours3/3a_cli/travail
+cd /c/Users/eleve/Desktop/info01/cours3/3b_cli/travail
 ```
 
 ### 0.3 conda dans Git Bash
@@ -189,8 +225,8 @@ git status
 
 affiche `recettes/` et `style.css` sous « Untracked files » (« Fichiers non
 suivis »). Si
-`git status` affiche `depart/`, le dépôt a été créé dans `3a_cli/` au lieu de
-`travail/` : supprimer le dossier caché `3a_cli/.git`, revenir dans
+`git status` affiche `depart/`, le dépôt a été créé dans `3b_cli/` au lieu de
+`travail/` : supprimer le dossier caché `3b_cli/.git`, revenir dans
 `travail/` et recommencer.
 
 Régler ensuite votre nom et votre adresse pour ce dépôt. Le poste est
@@ -457,23 +493,312 @@ travail/
 └── style.css
 ```
 
-## Étape 2 · Une fonction `main`
+## Étape 2 · Les arguments, sur une branche
+
+> **À faire :** sur une branche `arguments`, ajouter trois arguments `argparse`, un commit par argument ; puis `git checkout master` et `git merge arguments`.
+>
+> **À obtenir :** `python recette.py pate_pizza -p 6 -u US` écrit la page ; quatre commits.
+
+**Entrée** : `recette.py` de l'étape 1, où `NOM`, `PERSONNES` et `UNITES`
+sont écrits en tête du fichier.
+
+**Sortie** : les trois valeurs sont lues sur la ligne de commande :
+
+```text
+python recette.py pate_pizza -p 6 -u US
+```
+
+Le travail se fait sur une branche `arguments`, un commit par argument, puis
+la branche est fusionnée dans `master`.
+
+### 2.1 Créer la branche
+
+```text
+git checkout -b arguments
+git branch
+```
+
+**Vérification** : `git branch` affiche `master` et `* arguments` ;
+l'étoile marque la branche courante.
+
+VS Code affiche aussi la branche courante, en bas à gauche de la fenêtre,
+dans la barre d'état. L'invite de Git Bash la donne entre parenthèses, après
+le dossier courant.
+
+![La branche courante dans la barre d'état de VS Code et dans l'invite de Git Bash](illustrations/branche_courante.png)
+
+### 2.2 Premier argument : le nom de la recette
+
+En tête du fichier, ajouter `import argparse` avec les autres imports, et
+supprimer la ligne `NOM = "crepes"` :
+
+```diff
+    1 """La recette des crêpes pour quatre personnes, en page HTML, par pandoc."""
+    2
++     import argparse
+    4 import csv
+    5 import shutil
+    …
+    8
+    9 # Les trois valeurs à changer
+-  10 NOM = "crepes"
+   10 PERSONNES = 4
+   11 UNITES = "SI"      # "SI" ou "US"
+```
+
+Juste avant le commentaire « # La recette … », qui commence le programme,
+coller, sans indentation :
+
+```python
+# Les valeurs viennent de la ligne de commande
+analyseur = argparse.ArgumentParser(description="Met une recette à l'échelle et en fait une page HTML.")
+# Les recettes disponibles : les dossiers de recettes/ (section 3.4 du notebook)
+recettes_disponibles = []
+for dossier in sorted(DONNEES.iterdir()):
+    if dossier.is_dir():
+        recettes_disponibles.append(dossier.name)
+analyseur.add_argument("nom", choices=recettes_disponibles, help="la recette")
+options = analyseur.parse_args()
+NOM = options.nom
+```
+
+Enregistrer. **Vérifications**, dans l'ordre :
+
+| Commande | Ce qui doit s'afficher |
+|---|---|
+| `python recette.py` | `error: the following arguments are required: nom` |
+| `python recette.py gaufres` | `error: argument nom: invalid choice: 'gaufres'` et la liste des recettes |
+| `python recette.py mousse_chocolat` | la page `sortie/mousse_chocolat.html` est écrite |
+| `python recette.py --help` | l'aide : `nom` et sa liste de valeurs |
+
+Puis le commit :
+
+```text
+git commit -am "Argument : le nom de la recette"
+```
+
+`-a` ajoute les fichiers déjà suivis qui ont été modifiés : pas besoin de
+`git add recette.py`.
+
+### 2.3 Deuxième argument : le nombre de personnes
+
+Supprimer la ligne `PERSONNES = 4` en tête du fichier, et ajouter deux lignes
+dans le programme :
+
+```diff
+    8
+    9 # Les trois valeurs à changer
+-  10 PERSONNES = 4
+   10 UNITES = "SI"      # "SI" ou "US"
+   11
+    …
+   66         recettes_disponibles.append(dossier.name)
+   67 analyseur.add_argument("nom", choices=recettes_disponibles, help="la recette")
++     analyseur.add_argument("-p", "--personnes", type=int, default=4, help="nombre de personnes (défaut : 4)")
+   69 options = analyseur.parse_args()
+   70 NOM = options.nom
++     PERSONNES = options.personnes
+   72
+   73 # La recette : le tableau des ingrédients inséré sous « ## Ingrédients »
+```
+
+Enregistrer. **Vérifications** :
+
+| Commande | Ce qui doit s'afficher |
+|---|---|
+| `python recette.py pate_pizza -p 6` | `… : 6 personne(s), unités SI` |
+| `python recette.py pate_pizza` | `… : 4 personne(s)` : la valeur par défaut |
+| `python recette.py pate_pizza -p six` | `error: argument -p/--personnes: invalid int value: 'six'` |
+
+```text
+git commit -am "Argument : le nombre de personnes"
+```
+
+### 2.4 Troisième argument : les unités
+
+Supprimer la ligne `UNITES = "SI"` en tête du fichier, avec le commentaire
+`# Les trois valeurs à changer` et la ligne vide qui le précède, et ajouter
+deux lignes dans le programme :
+
+```diff
+    6 import subprocess
+    7 from pathlib import Path
+-   8
+-   9 # Les trois valeurs à changer
+-  10 UNITES = "SI"      # "SI" ou "US"
+    8
+    9 # Les chemins partent du dossier du terminal (section 3.3 du notebook)
+    …
+   64 analyseur.add_argument("nom", choices=recettes_disponibles, help="la recette")
+   65 analyseur.add_argument("-p", "--personnes", type=int, default=4, help="nombre de personnes (défaut : 4)")
++     analyseur.add_argument("-u", "--unites", choices=("SI", "US"), default="SI", help="unités du tableau (défaut : SI)")
+   67 options = analyseur.parse_args()
+   68 NOM = options.nom
+   69 PERSONNES = options.personnes
++     UNITES = options.unites
+   71
+   72 # La recette : le tableau des ingrédients inséré sous « ## Ingrédients »
+```
+
+Enregistrer. **Vérifications** :
+
+| Commande | Ce qui doit s'afficher |
+|---|---|
+| `python recette.py pate_pizza -p 6 -u US` | `… : 6 personne(s), unités US` ; la page donne des `oz` et des `cup` |
+| `python recette.py --help` | les trois arguments, avec leurs textes d'aide |
+
+```text
+git commit -am "Argument : les unités"
+git log --oneline
+```
+
+**Vérification** : quatre lignes.
+
+Le début du programme doit maintenant être :
+
+```python
+# Les valeurs viennent de la ligne de commande
+analyseur = argparse.ArgumentParser(description="Met une recette à l'échelle et en fait une page HTML.")
+# Les recettes disponibles : les dossiers de recettes/ (section 3.4 du notebook)
+recettes_disponibles = []
+for dossier in sorted(DONNEES.iterdir()):
+    if dossier.is_dir():
+        recettes_disponibles.append(dossier.name)
+analyseur.add_argument("nom", choices=recettes_disponibles, help="la recette")
+analyseur.add_argument("-p", "--personnes", type=int, default=4, help="nombre de personnes (défaut : 4)")
+analyseur.add_argument("-u", "--unites", choices=("SI", "US"), default="SI", help="unités du tableau (défaut : SI)")
+options = analyseur.parse_args()
+NOM = options.nom
+PERSONNES = options.personnes
+UNITES = options.unites
+
+# La recette : le tableau des ingrédients inséré sous « ## Ingrédients »
+...
+```
+
+### 2.5 Fusionner la branche dans `master`
+
+```text
+git checkout master
+```
+
+**Vérification** : ouvrir `recette.py` dans VS Code : les lignes
+`argparse` ont disparu. Le fichier est dans l'état du dernier commit de
+`master`, celui de l'étape 1.
+
+```text
+git merge arguments
+git log --oneline --graph
+```
+
+**Vérification** : git affiche `Fast-forward` (avance rapide) ;
+`recette.py` contient de nouveau les trois arguments ; `git log` affiche
+quatre commits sur une seule ligne verticale. `python recette.py crepes -p 2`
+fonctionne.
+
+Le graphe des commits, avant et après la fusion :
+
+![La branche arguments, avant et après la fusion](illustrations/branche.png)
+
+`git log --oneline --graph` affiche les commits du plus récent au plus
+ancien, `c4` en haut. Les identifiants à sept caractères sont différents
+sur chaque poste :
+
+```text
+* 4d9b3f1 (HEAD -> master, arguments) Argument : les unités
+* 91c07e5 Argument : le nombre de personnes
+* 2a6f8d0 Argument : le nom de la recette
+* 0c4a9e8 Le programme du notebook, dans un fichier
+```
+
+## Étape 3 · Un README
+
+> **À faire :** compléter le README à partir de `depart/modeles/README.md` ; `git add README.md` ; un commit.
+>
+> **À obtenir :** cinq commits.
+
+**Entrée** : le modèle `depart/modeles/README.md`.
+
+**Sortie** : `travail/README.md`, complété et versionné.
+
+### 3.1 Copier le modèle
+
+Dans l'explorateur, copier `depart/modeles/README.md` dans `travail/`.
+L'ouvrir dans VS Code. Il contient cinq parties et des passages
+« (À compléter …) ».
+
+### 3.2 Compléter
+
+Remplacer chaque passage « (À compléter …) » :
+
+- la phrase d'objectif : ce que fait le programme, en une phrase ;
+- l'installation : comment récupérer le dossier (archive ou `git clone`) ;
+- l'exécution : un exemple avec `-p` et `-u`, par exemple
+  `python recette.py pate_pizza -p 6 -u US` ;
+- les recettes disponibles : les noms des dossiers de `recettes/` ;
+- l'auteur : votre nom.
+
+**Vérification** : `Ctrl+Maj+V` dans VS Code affiche l'aperçu de la page.
+Chaque commande écrite dans le README fonctionne quand on la colle dans le
+terminal, depuis `travail/`.
+
+### 3.3 Le commit
+
+`README.md` est un fichier nouveau : `git commit -a` ne l'ajoute pas.
+
+```text
+git add README.md
+git commit -m "Un README"
+git log --oneline
+```
+
+**Vérification** : cinq lignes.
+
+**Dossier à la fin de l'étape 3** (fin du TD obligatoire) :
+
+```text
+travail/
+├── .git/
+├── .gitignore
+├── README.md
+├── recette.py
+├── recettes/
+├── sortie/          (non versionné)
+└── style.css
+```
+
+## Étape 4 (bonus) · Une fonction `main`
 
 > **À faire :** mettre le programme dans `def main():`, appelée sous `if __name__ == "__main__":` ; un commit.
 >
-> **À obtenir :** la même page ; deux lignes dans `git log --oneline`.
+> **À obtenir :** la même page ; six lignes dans `git log --oneline`.
 
-**Entrée** : `recette.py` de l'étape 1.
+**Entrée** : `recette.py` de l'étape 2 : les fonctions utiles, puis le
+programme, de haut en bas.
 
 **Sortie** : le même fichier, dont le programme est dans une fonction
 `main`, appelée en bas du fichier. La page produite est la même.
 
-### 2.1 Le programme dans `main`
+Un fichier Python peut être lancé (`python recette.py`) ou importé par un
+autre fichier (`import recette`), par exemple pour réutiliser
+`lire_ingredients`, ou pour la tester. Dans les deux cas, Python exécute le
+fichier de haut en bas. Tant que le programme n'est pas dans une fonction,
+l'importer le lance. Pour le voir, dans `travail/` :
+
+```text
+python -c "import recette"
+```
+
+**Vérification** : le message se termine par `error: the following
+arguments are required: nom`. L'import a exécuté le programme, jusqu'à la
+lecture des arguments. `python -c` exécute le code écrit entre guillemets.
+
+### 4.1 Le programme dans `main`
 
 Dans `recette.py`, repérer la première ligne du programme :
 
 ```python
-# La recette : le tableau des ingrédients inséré sous « ## Ingrédients »
+# Les valeurs viennent de la ligne de commande
 ```
 
 Juste au-dessus, écrire :
@@ -490,18 +815,19 @@ Le bas du fichier doit ressembler à ceci :
 
 ```python
 def main():
-    # La recette : le tableau des ingrédients inséré sous « ## Ingrédients »
-    ingredients = lire_ingredients(DONNEES / NOM / "ingredients.csv")
+    # Les valeurs viennent de la ligne de commande
+    analyseur = argparse.ArgumentParser(description="Met une recette à l'échelle et en fait une page HTML.")
     ...
     print(page, ":", PERSONNES, "personne(s), unités", UNITES)
 ```
 
-Supprimer le dossier `sortie/` dans l'explorateur, puis `python recette.py`.
+Supprimer le dossier `sortie/` dans l'explorateur, puis
+`python recette.py crepes`.
 
 **Vérification** : rien ne s'affiche et `sortie/` n'est pas recréé. `def main():`
 définit la fonction ; rien ne l'appelle encore.
 
-### 2.2 L'appel de `main`
+### 4.2 L'appel de `main`
 
 À la toute fin du fichier, sans indentation, ajouter :
 
@@ -512,12 +838,23 @@ if __name__ == "__main__":
     main()
 ```
 
-Enregistrer, puis `python recette.py`.
+`__name__` est une variable que Python définit dans chaque fichier : elle
+vaut `"__main__"` quand le fichier est lancé par `python`, et le nom du
+fichier, `"recette"`, quand il est importé.
+
+Enregistrer, puis `python recette.py crepes`.
 
 **Vérification** : la page est de nouveau produite, avec le même message
-qu'à l'étape 1.
+qu'à l'étape 2. Puis :
 
-### 2.3 Le commit
+```text
+python -c "import recette"
+```
+
+**Vérification** : rien ne s'affiche. L'import définit les fonctions, dont
+`main`, sans lancer le programme.
+
+### 4.3 Le commit
 
 ```text
 git diff
@@ -546,258 +883,7 @@ git commit -am "Une fonction main"
 git log --oneline
 ```
 
-`-a` ajoute les fichiers déjà suivis qui ont été modifiés : pas besoin de
-`git add recette.py`.
-
-**Vérification** : `git log --oneline` affiche deux lignes.
-
-## Étape 3 · Les arguments, sur une branche
-
-> **À faire :** sur une branche `arguments`, ajouter trois arguments `argparse`, un commit par argument ; puis `git checkout master` et `git merge arguments`.
->
-> **À obtenir :** `python recette.py pate_pizza -p 6 -u US` écrit la page ; cinq commits.
-
-**Entrée** : `recette.py` de l'étape 2, où `NOM`, `PERSONNES` et `UNITES`
-sont écrits en tête du fichier.
-
-**Sortie** : les trois valeurs sont lues sur la ligne de commande :
-
-```text
-python recette.py pate_pizza -p 6 -u US
-```
-
-Le travail se fait sur une branche `arguments`, un commit par argument, puis
-la branche est fusionnée dans `master`.
-
-### 3.1 Créer la branche
-
-```text
-git checkout -b arguments
-git branch
-```
-
-**Vérification** : `git branch` affiche `master` et `* arguments` ;
-l'étoile marque la branche courante.
-
-VS Code affiche aussi la branche courante, en bas à gauche de la fenêtre,
-dans la barre d'état. L'invite de Git Bash la donne entre parenthèses, après
-le dossier courant.
-
-![La branche courante dans la barre d'état de VS Code et dans l'invite de Git Bash](illustrations/branche_courante.png)
-
-### 3.2 Premier argument : le nom de la recette
-
-En tête du fichier, ajouter `import argparse` avec les autres imports :
-
-```python
-import argparse
-import csv
-...
-```
-
-Supprimer la ligne `NOM = "crepes"` en tête du fichier.
-
-Au début de `main`, avant le commentaire « La recette … », coller (en
-gardant les quatre espaces d'indentation) :
-
-```python
-    # Les valeurs viennent de la ligne de commande
-    analyseur = argparse.ArgumentParser(description="Met une recette à l'échelle et en fait une page HTML.")
-    # Les recettes disponibles : les dossiers de recettes/ (section 3.4 du notebook)
-    recettes_disponibles = []
-    for dossier in sorted(DONNEES.iterdir()):
-        if dossier.is_dir():
-            recettes_disponibles.append(dossier.name)
-    analyseur.add_argument("nom", choices=recettes_disponibles, help="la recette")
-    options = analyseur.parse_args()
-    NOM = options.nom
-```
-
-Enregistrer. **Vérifications**, dans l'ordre :
-
-| Commande | Ce qui doit s'afficher |
-|---|---|
-| `python recette.py` | `error: the following arguments are required: nom` |
-| `python recette.py gaufres` | `error: argument nom: invalid choice: 'gaufres'` et la liste des recettes |
-| `python recette.py mousse_chocolat` | la page `sortie/mousse_chocolat.html` est écrite |
-| `python recette.py --help` | l'aide : `nom` et sa liste de valeurs |
-
-Puis le commit :
-
-```text
-git commit -am "Argument : le nom de la recette"
-```
-
-### 3.3 Deuxième argument : le nombre de personnes
-
-Supprimer la ligne `PERSONNES = 4` en tête du fichier. Dans `main`, sous la
-ligne `analyseur.add_argument("nom", …)`, ajouter :
-
-```python
-    analyseur.add_argument("-p", "--personnes", type=int, default=4, help="nombre de personnes (défaut : 4)")
-```
-
-et sous la ligne `NOM = options.nom` :
-
-```python
-    PERSONNES = options.personnes
-```
-
-Enregistrer. **Vérifications** :
-
-| Commande | Ce qui doit s'afficher |
-|---|---|
-| `python recette.py pate_pizza -p 6` | `… : 6 personne(s), unités SI` |
-| `python recette.py pate_pizza` | `… : 4 personne(s)` : la valeur par défaut |
-| `python recette.py pate_pizza -p six` | `error: argument -p/--personnes: invalid int value: 'six'` |
-
-```text
-git commit -am "Argument : le nombre de personnes"
-```
-
-### 3.4 Troisième argument : les unités
-
-Supprimer la ligne `UNITES = "SI"` en tête du fichier. Dans `main`, sous la
-ligne `--personnes`, ajouter :
-
-```python
-    analyseur.add_argument("-u", "--unites", choices=("SI", "US"), default="SI", help="unités du tableau (défaut : SI)")
-```
-
-et sous `PERSONNES = options.personnes` :
-
-```python
-    UNITES = options.unites
-```
-
-Enregistrer. **Vérifications** :
-
-| Commande | Ce qui doit s'afficher |
-|---|---|
-| `python recette.py pate_pizza -p 6 -u US` | `… : 6 personne(s), unités US` ; la page donne des `oz` et des `cup` |
-| `python recette.py --help` | les trois arguments, avec leurs textes d'aide |
-
-```text
-git commit -am "Argument : les unités"
-git log --oneline
-```
-
-**Vérification** : cinq lignes.
-
-Le début de `main` doit maintenant être :
-
-```python
-def main():
-    # Les valeurs viennent de la ligne de commande
-    analyseur = argparse.ArgumentParser(description="Met une recette à l'échelle et en fait une page HTML.")
-    # Les recettes disponibles : les dossiers de recettes/ (section 3.4 du notebook)
-    recettes_disponibles = []
-    for dossier in sorted(DONNEES.iterdir()):
-        if dossier.is_dir():
-            recettes_disponibles.append(dossier.name)
-    analyseur.add_argument("nom", choices=recettes_disponibles, help="la recette")
-    analyseur.add_argument("-p", "--personnes", type=int, default=4, help="nombre de personnes (défaut : 4)")
-    analyseur.add_argument("-u", "--unites", choices=("SI", "US"), default="SI", help="unités du tableau (défaut : SI)")
-    options = analyseur.parse_args()
-    NOM = options.nom
-    PERSONNES = options.personnes
-    UNITES = options.unites
-
-    # La recette : le tableau des ingrédients inséré sous « ## Ingrédients »
-    ...
-```
-
-### 3.5 Fusionner la branche dans `master`
-
-```text
-git checkout master
-```
-
-**Vérification** : ouvrir `recette.py` dans VS Code : les lignes
-`argparse` ont disparu. Le fichier est dans l'état du dernier commit de
-`master`, celui de l'étape 2.
-
-```text
-git merge arguments
-git log --oneline --graph
-```
-
-**Vérification** : git affiche `Fast-forward` (avance rapide) ;
-`recette.py` contient de nouveau les trois arguments ; `git log` affiche cinq
-commits sur une seule ligne verticale. `python recette.py crepes -p 2`
-fonctionne.
-
-Le graphe des commits, avant et après la fusion :
-
-![La branche arguments, avant et après la fusion](illustrations/branche.png)
-
-`git log --oneline --graph` affiche les commits du plus récent au plus
-ancien, `c5` en haut. Les identifiants à sept caractères sont différents
-sur chaque poste :
-
-```text
-* 4d9b3f1 (HEAD -> master, arguments) Argument : les unités
-* 91c07e5 Argument : le nombre de personnes
-* 2a6f8d0 Argument : le nom de la recette
-* e35b712 Une fonction main
-* 0c4a9e8 Le programme du notebook, dans un fichier
-```
-
-## Étape 4 · Un README
-
-> **À faire :** compléter le README à partir de `depart/modeles/README.md` ; `git add README.md` ; un commit.
->
-> **À obtenir :** six commits.
-
-**Entrée** : le modèle `depart/modeles/README.md`.
-
-**Sortie** : `travail/README.md`, complété et versionné.
-
-### 4.1 Copier le modèle
-
-Dans l'explorateur, copier `depart/modeles/README.md` dans `travail/`.
-L'ouvrir dans VS Code. Il contient cinq parties et des passages
-« (À compléter …) ».
-
-### 4.2 Compléter
-
-Remplacer chaque passage « (À compléter …) » :
-
-- la phrase d'objectif : ce que fait le programme, en une phrase ;
-- l'installation : comment récupérer le dossier (archive ou `git clone`) ;
-- l'exécution : un exemple avec `-p` et `-u`, par exemple
-  `python recette.py pate_pizza -p 6 -u US` ;
-- les recettes disponibles : les noms des dossiers de `recettes/` ;
-- l'auteur : votre nom.
-
-**Vérification** : `Ctrl+Maj+V` dans VS Code affiche l'aperçu de la page.
-Chaque commande écrite dans le README fonctionne quand on la colle dans le
-terminal, depuis `travail/`.
-
-### 4.3 Le commit
-
-`README.md` est un fichier nouveau : `git commit -a` ne l'ajoute pas.
-
-```text
-git add README.md
-git commit -m "Un README"
-git log --oneline
-```
-
-**Vérification** : six lignes.
-
-**Dossier à la fin de l'étape 4** (fin du TD obligatoire) :
-
-```text
-travail/
-├── .git/
-├── .gitignore
-├── README.md
-├── recette.py
-├── recettes/
-├── sortie/          (non versionné)
-└── style.css
-```
+**Vérification** : `git log --oneline` affiche six lignes.
 
 ## Étape 5 (facultative) · Le code dans `src/`, les données dans `data/`
 
@@ -827,24 +913,25 @@ git status
 
 ### 5.2 Les chemins partent du script
 
-Dans `src/recette.py`, remplacer les quatre lignes de chemins :
+Dans `src/recette.py`, remplacer le commentaire et les quatre lignes de
+chemins :
 
-```python
-RACINE = Path.cwd()
-DONNEES = RACINE / "recettes"
-STYLE = RACINE / "style.css"
-SORTIE = RACINE / "sortie"
-```
-
-par :
-
-```python
-# Les données partent du dossier du script, la sortie du dossier du terminal
-ICI = Path(__file__).resolve().parent      # src/
-RACINE = ICI.parent                        # le dossier du projet
-DONNEES = RACINE / "data" / "recettes"
-STYLE = RACINE / "data" / "style.css"
-SORTIE = Path.cwd() / "sortie"
+```diff
+    7 from pathlib import Path
+    8
+-   9 # Les chemins partent du dossier du terminal (section 3.3 du notebook)
+-  10 RACINE = Path.cwd()
+-  11 DONNEES = RACINE / "recettes"
+-  12 STYLE = RACINE / "style.css"
+-  13 SORTIE = RACINE / "sortie"
++     # Les données partent du dossier du script, la sortie du dossier du terminal
++     ICI = Path(__file__).resolve().parent      # src/
++     RACINE = ICI.parent                        # le dossier du projet
++     DONNEES = RACINE / "data" / "recettes"
++     STYLE = RACINE / "data" / "style.css"
++     SORTIE = Path.cwd() / "sortie"
+   15
+   16
 ```
 
 `__file__` est le chemin du fichier `.py` en cours d'exécution.
@@ -854,7 +941,7 @@ SORTIE = Path.cwd() / "sortie"
 | Dossier du terminal | Commande | Où la page est écrite |
 |---|---|---|
 | `travail/` | `python src/recette.py crepes` | `travail/sortie/crepes.html` |
-| `3a_cli/` (après `cd ..`) | `python travail/src/recette.py crepes` | `3a_cli/sortie/crepes.html` |
+| `3b_cli/` (après `cd ..`) | `python travail/src/recette.py crepes` | `3b_cli/sortie/crepes.html` |
 
 Revenir dans `travail/` (`cd travail`), puis :
 
@@ -872,7 +959,8 @@ jour le README (`python src/recette.py …`) et le valider par un commit.
 > **À obtenir :** la commande `recette` fonctionne depuis n'importe quel dossier ; huit commits.
 
 **Sortie** : une commande `recette`, utilisable dans n'importe quel dossier,
-sans écrire `python` ni le chemin du script.
+sans écrire `python` ni le chemin du script. Cette étape suppose l'étape 4 : la commande
+appelle la fonction `main`.
 
 ### 6.1 Le fichier `pyproject.toml`
 

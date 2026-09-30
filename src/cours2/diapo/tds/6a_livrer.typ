@@ -5,7 +5,7 @@
 #let td = (
   numero: "6a",
   titre: "Publier une version",
-  annonce: "Fusionner develop dans master, puis taguer le commit obtenu.",
+  annonce: "Objectif : livrer une version du projet, sur la branche principale et sous un nom.",
   dossier: "cours2/6a_livrer/",
   duree: "10′",
 )

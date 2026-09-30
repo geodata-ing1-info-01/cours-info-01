@@ -7,7 +7,7 @@
 #let td = (
   numero: "1a",
   titre: "Les ordres de grandeur de votre poste",
-  annonce: "Relever les caractéristiques du poste, puis mesurer quatre temps avec un script fourni",
+  annonce: "Objectif : relever les caractéristiques du poste, puis comparer les vitesses du processeur, de la mémoire, du disque et du réseau",
   dossier: "cours5/1a_mesures/",
   duree: "15′",
 )

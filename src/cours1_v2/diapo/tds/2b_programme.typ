@@ -15,7 +15,7 @@
 #let td = (
   numero: "2b",
   titre: "Écrire et lancer un programme",
-  annonce: "Trouver quel python la commande lance et rendre celui d'Anaconda disponible ; lancer, modifier et relancer un programme, puis un script de commandes ; Python en interactif",
+  annonce: "Objectif : lancer un programme Python depuis le terminal, en sachant quel Python l'exécute, puis utiliser Python en interactif",
   dossier: "cours1/2b_programme/",
   duree: "20′",
 )
@@ -100,13 +100,13 @@
     Repli sans droits, qui n'écrit que dans le dossier personnel :
     `echo 'eval "$(/c/ProgramData/anaconda3/Scripts/conda.exe shell.bash hook)"' >> ~/.bash_profile`.
 
-    Message connu (guide du TD 3a du cours 3) : si chaque nouveau terminal
+    Message connu (guide du TD 3b du cours 3) : si chaque nouveau terminal
     affiche l'aide de `cygpath`, puis `bash: : No such file or directory`,
     l'environnement est activé quand même ; le `cygpath` d'Anaconda échoue
     sous Git Bash. Correctif, une fois :
     `sed -i '1i cygpath() { /usr/bin/cygpath "$@"; }' ~/.bash_profile`.
 
-    Même démarche que l'étape 0.3 du TD 3a du cours 3 de 2026 (`source`,
+    Même démarche que l'étape 0.3 du TD 3b du cours 3 de 2026 (`source`,
     puis `conda init bash`).
 
     Vérifier aussi où est `~` : `pwd -W` dans `~`. Si le profil est sur un
