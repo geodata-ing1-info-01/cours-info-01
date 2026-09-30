@@ -1,5 +1,7 @@
 # Projet 7, TD 7b — La scène complète (document de conception)
 
+> **Remplacé le 30/09/2026** par [refonte_30-09.md](refonte_30-09.md) : ce document décrit les TD d'avant la refonte, gardés dans l'historique git.
+
 > 27/09/2026, remplace la version du 25/09 (effets `poteaux` et `parallaxe` sur le `train.py` de l'époque). Pour les élèves du parcours avancé, qui ont fait le TD 4c ([conception](../4_projet_animation/td_4c_train.md)). Cadre commun du projet 7 : [contenu_detaille.md](contenu_detaille.md).
 
 ## Objectif

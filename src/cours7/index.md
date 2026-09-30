@@ -1,25 +1,18 @@
 ---
-title: "Séance 7 — Une fonctionnalité de plus, par une pull request"
+title: "Séance 7 — Projet d'application 2"
 ---
-
-:::{note} Page à rédiger
-Le plan ci-dessous est celui du document de conception
-(`syllabus/cours/7_projet_effets/contenu_detaille.md`, 27/09/2026), qui
-remplace le benchmark d'image du plan initial. Les guides et les
-diapositives de la séance sont à écrire.
-:::
 
 ## Objectif
 
-Ajouter des fonctionnalités à son programme du projet 4, dans son dépôt
-GitHub du cours 6, et les livrer par des pull requests. Une des
-fonctionnalités se calcule avec numpy, sur un tableau de nombres. Chaque
-élève garde le parcours choisi aux cours 3 et 4.
+Reprendre un projet depuis GitHub, lui ajouter des fonctionnalités sur des
+branches, et livrer chaque branche par une pull request, fusionnée sur le
+site. Chaque élève garde son parcours.
 
-## Parcours standard : TD 7a, le livre de recettes
+## Parcours standard : TD 7a, compléter son projet, par des pull requests
 
-Le programme `recette.py` traite une recette par appel. Le TD le complète
-pour en faire un livre de recettes.
+Le TD part du programme `recette.py` du projet 4, publié au cours 6. Il lui
+ajoute la page HTML de chaque recette, écrite par pandoc, puis toutes les
+recettes et un sommaire.
 
 ```{list-table}
 :header-rows: 1
@@ -27,32 +20,33 @@ pour en faire un livre de recettes.
 * - Étape
   - Ce qu'on fait
   - Durée
-* - C0
-  - le dépôt, une branche, l'environnement du programme
+* - D0
+  - cloner son dépôt `recette`, relancer le programme
+  - 15 min
+* - D1
+  - branche `page` : l'option `--page`, la page HTML d'une recette par
+    pandoc
+  - 25 min
+* - D2
+  - la pull request de `page`, fusionnée sur GitHub, puis `git pull`
   - 10 min
-* - C1
-  - `--toutes` : vingt recettes de plus, et toutes les pages en une
-    commande (`glob`)
+* - D3
+  - branche `livre` : six recettes de plus, l'option `--toutes`
   - 20 min
-* - C2
-  - le sommaire, une page de liens vers toutes les recettes
+* - D4
+  - le sommaire, `sortie/index.html` ; la pull request de `livre`
   - 15 min
-* - C3
-  - la photo de chaque recette, réduite avec Pillow
-  - 15 min
-* - C4
-  - `--frigo` : les recettes faisables avec les ingrédients qu'on a,
-    calculées avec numpy
-  - 30 min
-* - PR
-  - une pull request pour le livre, une pour le frigo, fusionnées sur le site
-  - 10 min
+* - D5
+  - bonus : les pages publiées avec GitHub Pages
+  -
 ```
 
-## Parcours avancé : TD 7b, la scène complète du train
+## Parcours avancé : TD 7b, reprendre et compléter le projet d'un autre
 
-Le programme `train.py` n'a qu'un plan mobile. Le TD complète la scène du
-clip.
+Le TD part du dépôt `train`, commencé par le module : un programme qui
+fabrique la vidéo de deux plans du paysage, défilant sur un fond. Deux
+diapositives présentent d'abord numpy : une image comme tableau de nombres,
+et un masque de colonnes.
 
 ```{list-table}
 :header-rows: 1
@@ -60,29 +54,27 @@ clip.
 * - Étape
   - Ce qu'on fait
   - Durée
-* - C0
-  - le dépôt, une branche, numpy et Pillow dans l'environnement `animation`
-  - 10 min
-* - C1
-  - plusieurs plans, chacun à sa vitesse
+* - E0
+  - cloner le dépôt `train`, le pousser vers son compte ; l'environnement
+    `train` ; la vidéo
   - 20 min
-* - C2
-  - les plans et leurs vitesses décrits dans `decor/plans.csv`
-  - 15 min
-* - C3
-  - l'effet des poteaux, avec une boucle sur les pixels puis avec numpy ;
-    le test d'égalité et le chronométrage
-  - 35 min
-* - C4
-  - `--boucle` : une vidéo qui boucle sans saut
-  - 15 min
-* - PR
-  - une pull request pour les plans, une pour les poteaux
+* - E1
+  - lire `decor/plans.csv` et la fonction `image`
   - 10 min
+* - E2
+  - deux branches, `fenetre` et `poteaux` ; la fenêtre, et sa pull request
+  - 20 min
+* - E3
+  - les ombres des poteaux, un calque calculé avec numpy ; la pull request
+    de `poteaux`, qui s'arrête sur un conflit, résolu sur le poste
+  - 40 min
+* - E4
+  - bonus : un troisième plan, une ligne de plus dans `decor/plans.csv`
+  -
 ```
 
 ## Avant la séance
 
-Garder son dépôt GitHub du cours 6. Qui n'en a pas, ou dont le programme ne
-fonctionne pas, part d'un dépôt de référence (`recette` ou `train`) : le
-cloner, puis le pousser vers un dépôt vide de son compte.
+Garder son dépôt GitHub du cours 6, et la clé SSH du cours 5 enregistrée
+sur son compte. Qui n'a pas de dépôt `recette` utilisable part du dépôt de
+référence : le cloner, puis le pousser vers un dépôt vide de son compte.
