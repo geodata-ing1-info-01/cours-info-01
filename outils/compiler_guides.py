@@ -81,6 +81,9 @@ pre { background: #f2f2f2; padding: .6rem; overflow-x: auto; font-size: .9em; }
 code { font-size: .95em; }
 table { border-collapse: collapse; }
 th, td { border: 1px solid #ccc; padding: .3rem .5rem; vertical-align: top; }
+/* Blocs ```diff : lignes supprimées en rouge, lignes ajoutées en vert, comme dans le PDF */
+pre.diff span.st { color: #b31d28; }
+pre.diff span.va { color: #22863a; }
 </style>
 """
 
