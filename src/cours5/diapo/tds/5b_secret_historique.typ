@@ -1,4 +1,4 @@
-// TD 5c — « Un secret dans l'historique », facultatif.
+// TD 5b — « Un secret dans l'historique », facultatif.
 //
 // Inclus par `cours5.typ`, qui porte les réglages globaux et importe `td`
 // pour le sommaire des TD ; compilable seul par `outils/compiler_tds.py`.
@@ -6,10 +6,10 @@
 #import "../style.typ": terminal
 
 #let td = (
-  numero: "5c",
+  numero: "5b",
   titre: "Un secret dans l'historique",
   annonce: "Objectif : suivre un secret enregistré par erreur dans un dépôt git, puis le tenir à l'écart des commits",
-  dossier: "cours5/5c_secret_historique/",
+  dossier: "cours5/5b_secret_historique/",
   duree: "10′",
   statut: "facultatif",
 )

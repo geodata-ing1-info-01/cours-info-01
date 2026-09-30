@@ -1,4 +1,4 @@
-# Un secret dans l'historique — TD 5c, cours 5, facultatif
+# Un secret dans l'historique — TD 5b, cours 5, facultatif
 
 Committer une fausse clé, la supprimer, constater qu'elle est toujours dans le
 dépôt, puis l'en tenir à l'écart. Aucun fichier fourni : le dépôt se crée dans
@@ -6,7 +6,7 @@ dépôt, puis l'en tenir à l'écart. Aucun fichier fourni : le dépôt se crée
 
 ## Committer, supprimer, relire
 
-Depuis `cours5/5c_secret_historique/`, dans l'invite de commandes d'Anaconda :
+Depuis `cours5/5b_secret_historique/`, dans l'invite de commandes d'Anaconda :
 
 ```bash
 git init travail

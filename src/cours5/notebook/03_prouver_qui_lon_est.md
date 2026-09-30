@@ -8,9 +8,9 @@ mots de passe, et décrit les quatre façons d'obtenir le mot de passe d'une
 autre personne. Elle présente ensuite une parade par façon : l'empreinte, avec
 un sel et un calcul lent ; un mot de passe long et tiré au hasard ; le
 chiffrement du trajet ; le deuxième facteur. Elle se termine par la paire de
-clés SSH, qui remplace le mot de passe pour une machine ou un programme. Le
-TD 5b l'accompagne : il crée une paire de clés et la déclare sur GitHub ; il
-est présenté en fin de page.
+clés SSH, qui remplace le mot de passe pour une machine ou un programme. La
+partie n'a pas de TD : la paire de clés est créée et déclarée sur GitHub au
+cours 6.
 
 ## La connexion à un site
 
@@ -439,8 +439,8 @@ Selon Microsoft (2023), un deuxième facteur réduit de 99,2 % le nombre de
 comptes compromis, et de 98,6 % même quand le mot de passe a fui. Les trois
 facteurs sont ceux de l'ANSSI (PG-078, 2021).
 
-GitHub impose un deuxième facteur depuis 2023. On l'active à la création du
-compte, avec une application à codes, et on garde les codes de secours : sans
+GitHub impose un deuxième facteur depuis 2023. On l'active au cours 6, à la
+création du compte, avec une application à codes, et on garde les codes de secours : sans
 eux, la perte du téléphone fait perdre le compte.
 
 Une **passkey** est une paire de clés gardée par le téléphone ou l'ordinateur,
@@ -531,13 +531,7 @@ chiffre la clé privée sur le disque, et la protège en cas de vol du poste.
 Elle est recommandée sur un portable personnel ; en salle, on s'en passe pour
 ne pas la retaper à chaque `push`.
 
-## TD de la partie
+## TD de la séance
 
-- TD 5b, `cours5/5b_cle_ssh/`, 20 minutes : créer une paire de clés avec
-  `ssh-keygen`, coller la clé publique sur GitHub, puis vérifier la connexion
-  avec `ssh -T git@github.com`. Le TD demande un compte GitHub, créé avant la
-  séance. Le dossier contient un fichier `config` à copier dans `.ssh` si le
-  port 22 est fermé en sortie.
-
-Les TD des autres parties sont dans [Travaux dirigés de la séance
+Les TD de la séance sont dans [Travaux dirigés de la séance
 5](travaux_diriges.md).

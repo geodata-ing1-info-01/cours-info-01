@@ -3,7 +3,7 @@
 Vue d'ensemble : [../../01_syllabus_v1.md](../../01_syllabus_v1.md) (section « Cours 5 »).
 
 **Supports** : [`src/cours5/diapo/`](../../../src/cours5/diapo/) (typst, 43 pages d'exposé hors TD, dont la page de titre et cinq séparateurs ; deux photos annotées dans [`illustrations/cours5/`](../../../illustrations/cours5/) ; `--input notes=true` pour la version annotée, `--input corrige=true` pour le corrigé, `--input tds=false` pour le fil du cours).
-**TD** : trois, `5a` (mesures), `5b` (clé SSH), `5c` (secret dans l'historique, facultatif). Un fichier par TD dans [`src/cours5/diapo/tds/`](../../../src/cours5/diapo/tds/), un dossier de même nom dans [`data/cours5/`](../../../data/cours5/).
+**TD** : deux, `5a` (mesures), `5b` (secret dans l'historique, facultatif). Le TD de la clé SSH sur GitHub (ancien `5b`) est retiré le 30/09/2026 : le compte GitHub et la clé SSH sont mis en place au cours 6. Un fichier par TD dans [`src/cours5/diapo/tds/`](../../../src/cours5/diapo/tds/), un dossier de même nom dans [`data/cours5/`](../../../data/cours5/).
 Conventions d'écriture : [`STYLE.md`](../../../STYLE.md).
 
 Objectif : donner les ordres de grandeur du matériel et du réseau qui expliquent la vitesse des outils, puis préparer la forge du cours 6 : une clé SSH sur le compte, et ce qui ne doit jamais entrer dans un dépôt.
@@ -49,11 +49,11 @@ Deux fils relient la séance au reste du module :
 | Ouverture | cours | 3′ |
 | 1. Le matériel | cours | 30′ |
 | 2. Le réseau | cours, puis TD 5a | 15′ + 15′ |
-| 3. Prouver qui l'on est | cours, puis TD 5b | 20′ + 20′ |
-| 4. Les secrets de vos programmes | cours ; TD 5c facultatif | 15′ |
+| 3. Prouver qui l'on est | cours | 20′ |
+| 4. Les secrets de vos programmes | cours ; TD 5b facultatif | 15′ |
 | Clôture | cours | 2′ |
 
-Total : 120′, dont 35′ de TD.
+Total : 100′, dont 15′ de TD. Les 20′ du TD de la clé SSH, retiré le 30/09/2026, sont libres.
 
 ---
 
@@ -127,18 +127,7 @@ Troisième jet (20 septembre 2026). Le syllabus partait de la cryptographie et a
 
 Disparues par rapport au deuxième jet : « Prouver qui l'on est » (tableau mot de passe / clé, absorbé par 26 et 28), « Empreinte et chiffrement » (absorbé par 22 et 26), « Mots de passe » (remplacé par 24).
 
-### ⌨️ TD 5b — Une clé SSH sur votre compte (20′)
-
-Dossier `cours5/5b_cle_ssh/`. Prérequis : un compte GitHub créé avant la séance (page « Avant les séances »).
-
-1. Dans l'invite de commandes d'Anaconda : `ssh-keygen -t ed25519 -C "prenom.nom@etu.ecole.fr"`, Entrée à chaque question (emplacement par défaut, sans phrase de passe pour aujourd'hui).
-2. `type %USERPROFILE%\.ssh\id_ed25519.pub`, copier la ligne.
-3. GitHub → Settings → SSH and GPG keys → New SSH key, coller, enregistrer.
-4. `ssh -T git@github.com` : accepter l'empreinte du serveur à la première connexion, lire `Hi <compte>! You've successfully authenticated`.
-
-Ce que le TD fait constater : le fichier `.pub` est une seule ligne ; le fichier sans extension n'est jamais ouvert ni copié ; la question `Are you sure you want to continue connecting` est l'empreinte du serveur, posée une fois.
-
-À vérifier en salle avant la séance : que le port 22 sortant est ouvert. Sinon, GitHub accepte SSH sur le port 443 (`ssh.github.com`), avec un fichier `.ssh/config` à fournir dans le dossier du TD. `ssh-keygen` et `ssh` sont installés d'origine sous Windows 10 et 11 (`C:\Windows\System32\OpenSSH`).
+Le TD de la clé SSH sur GitHub (ancien TD 5b, `cours5/5b_cle_ssh/`) est retiré le 30/09/2026 : le compte GitHub, son deuxième facteur et la clé SSH sont mis en place au cours 6. Son déroulé est dans l'historique git (commit 67fc666 et antérieurs).
 
 ## Partie 4 — Les secrets de vos programmes (🎓 15′, 6 pages)
 
@@ -151,13 +140,13 @@ Ce qui est retenu, et pourquoi. Les dix mesures de cybermalveillance.gouv.fr et 
 35. **Si un secret a fui.** Chaîne : révoquer, remplacer, nettoyer, prévenir. La première étape passe avant tout, parce que l'historique a déjà été copié.
 36. **Mises à jour et sauvegardes.** Tableau : une mise à jour ferme une faille connue et publiée ; une sauvegarde suit la règle 3-2-1 ; un dépôt poussé sur la forge est une copie du code ; les données ignorées par git sont à sauvegarder à part.
 
-### ⌨️ TD 5c — Un secret dans l'historique (10′, facultatif)
+### ⌨️ TD 5b — Un secret dans l'historique (10′, facultatif)
 
-Dossier `cours5/5c_secret_historique/`. Rejouer la diapositive 33 : `git init`, un `config.py` avec une fausse clé, commit ; supprimer, commit ; `git log -p` montre les deux. Puis `.gitignore` et `config.example.py`, et `git status` ne voit plus `config.py`.
+Dossier `cours5/5b_secret_historique/`. Rejouer la diapositive 33 : `git init`, un `config.py` avec une fausse clé, commit ; supprimer, commit ; `git log -p` montre les deux. Puis `.gitignore` et `config.example.py`, et `git status` ne voit plus `config.py`.
 
 ## Clôture (1 page)
 
-37. **Vers le cours 6.** Tableau : fait aujourd'hui (compte sur la forge, clé enregistrée, deuxième facteur, règle du `.gitignore`, commit local et push réseau) ; au cours 6 (`clone`, `push`, `pull`, branches en équipe).
+37. **Vers le cours 6.** Tableau : vu aujourd'hui (la clé à la place du mot de passe, le deuxième facteur, le secret dans un fichier ignoré, commit local et push réseau) ; au cours 6 (le compte GitHub avec un deuxième facteur, la clé SSH créée et déclarée, `clone`, `push`, `pull`, branches en équipe).
 
 ---
 

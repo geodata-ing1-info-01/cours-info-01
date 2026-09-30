@@ -87,8 +87,8 @@ Le TD `4c_trajet` portait le numéro 5a sur son ouverture ; il devient le TD 1j.
 | Ancien nom | Nouveau nom | Dossier | Statut |
 |---|---|---|---|
 | TD 1a | TD 5a | `5a_mesures/` |  |
-| TD 2a | TD 5b | `5b_cle_ssh/` |  |
-| TD 3a | TD 5c | `5c_secret_historique/` | facultatif |
+| TD 2a | supprimé le 30/09/2026 (clé SSH sur GitHub, vue au cours 6) | | |
+| TD 3a | TD 5b | `5b_secret_historique/` | facultatif |
 
 ## Projet 7
 

@@ -150,7 +150,7 @@ Inchangé sur le fond. La diapositive « Client et serveur » reçoit l'exemple 
 Objectif : avoir employé une fois GitHub de bout en bout (dépôt distant, `push`, `pull`, `clone`, conflit, pull request). L'outil « trajectoire » de 2026 est retiré : le cours 6 ne demande pas d'écrire de code nouveau.
 
 - **🎓 15′ · La forge** : compte, dépôt distant, `remote`, `clone`, `push`, `pull`, en partant des copies d'un dépôt vues au cours 2 (la forge est une copie de plus) ; les organisations du travail à plusieurs, d'après Pro Git, chapitre 5.1 (centralisée, gestionnaire d'intégration, qui est celle de la pull request) ; branche de fonctionnalité et pull request.
-- **⌨️ 20′ · Publier son dépôt** : créer un dépôt vide sur GitHub ; `git remote add origin`, `git push -u origin master` avec la clé SSH du cours 5 ; voir l'historique sur le site.
+- **⌨️ 20′ · Publier son dépôt** : créer un dépôt vide sur GitHub ; `git remote add origin`, `git push -u origin master` avec la clé SSH, créée et déclarée au cours 6 (TD retiré du cours 5 le 30/09/2026) ; voir l'historique sur le site.
 - **⌨️ 20′ · Deux copies du même dépôt** : d'abord sans forge, `git clone` du dépôt dans un autre dossier ou sur une clé USB, un commit dans la copie, `git pull` depuis la copie (ce que proposait l'étape 7, facultative, du TD 2d) ; puis par la forge : `git clone` depuis GitHub dans un autre dossier, un commit dans ce clone, `push`, `pull` dans le premier dossier.
 - **⌨️ 20′ · Un conflit** : modifier une ligne du README sur le site, la même ligne en local ; `pull`, résoudre le conflit, `push`.
 - **⌨️ 20′ · Une pull request** : une branche qui améliore le README, poussée ; ouvrir la pull request sur le site, la fusionner ; `pull` dans le dossier local.
@@ -239,7 +239,7 @@ Statuts : **gardé** (même séance), **réduit** (même séance, moins de temps
 | p4 | Partie A, créer l'environnement et exécuter le notebook (35′) | p4, ≈ 20′ | réduit |
 | p4 | Partie B, du notebook au programme | p4, avec 15′ de plus ; B4 (README) en séance | gardé |
 | c5 | Matériel et réseau, ordres de grandeur, TD 5a | c5 | gardé |
-| c5 | Mots de passe, clé SSH, secrets, TD 5b et 5c | c5, dans Git Bash au lieu de l'invite de commandes d'Anaconda | gardé |
+| c5 | Mots de passe, clé SSH, secrets, TD 5b (clé SSH, passé au cours 6 le 30/09/2026) et 5c | c5, dans Git Bash au lieu de l'invite de commandes d'Anaconda | gardé |
 | c6 | Forge : compte, `remote`, `clone`, `push`, `pull` | c6, sur le dépôt du projet 4 | gardé |
 | c6 | Outil « trajectoire », jalons J1 à J5 | — | retiré |
 | c6 | Boucle contre numpy | projet 7, sur l'effet choisi | déplacé |

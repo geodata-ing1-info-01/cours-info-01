@@ -23,21 +23,20 @@
     [Partie], [Nature], [Durée],
     [Le matériel], [cours], [30′],
     [Le réseau], [cours et TD 5a], [30′],
-    [Prouver qui l'on est], [cours et TD 5b], [40′],
-    [Les secrets de vos programmes], [cours ; TD 5c facultatif], [15′],
+    [Prouver qui l'on est], [cours], [20′],
+    [Les secrets de vos programmes], [cours ; TD 5b facultatif], [15′],
   )
 
   #legende[
-    Durées indicatives. Aujourd'hui, tout est dans `cours5/` ; les deux TD en
-    séance durent 35′ en tout.
+    Durées indicatives. Aujourd'hui, tout est dans `cours5/` ; le TD fait en
+    séance dure 15′.
   ]
 
   #notes[
     Moins de TD que dans les séances précédentes. La première moitié est de la
     culture générale ; la seconde prépare le cours 6.
 
-    Le TD 5b est indispensable : le cours 6 commence par `git clone`, qui
-    demande la clé. Le compte GitHub est à créer avant la séance (page « Avant
-    les séances » du book).
+    La clé SSH, le compte GitHub et son deuxième facteur sont mis en place au
+    cours 6.
   ]
 ]

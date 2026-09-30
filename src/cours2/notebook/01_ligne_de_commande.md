@@ -173,7 +173,7 @@ Un fichier ou un dossier dont le nom commence par un point est **caché** :
 `ls` ne l'affiche pas, et l'explorateur de fichiers non plus. Les logiciels y
 enregistrent leurs réglages et leurs données de travail. Git enregistre les
 siennes dans un dossier caché, `.git`, sujet de la partie suivante ; SSH
-enregistre les clés du cours 5 dans `.ssh`.
+enregistre les clés du cours 6 dans `.ssh`.
 
 L'option `-a` de `ls` affiche aussi les éléments cachés :
 

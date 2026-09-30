@@ -52,7 +52,7 @@ ligne dans VS Code, quand les modifications sont faites de haut en bas.
 
 ## Au début de la séance
 
-- Le compte GitHub du cours 6, avec la clé SSH du cours 5 enregistrée.
+- Le compte GitHub du cours 6, avec la clé SSH du cours 6 enregistrée.
 - L'archive `info01-cours7.zip`, copiée depuis `formationTemp` sur le
   Bureau, puis extraite : clic droit, Extraire tout, en effaçant la fin du
   dossier proposé, `\info01-cours7`. Le dossier extrait est

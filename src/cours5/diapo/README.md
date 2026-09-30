@@ -27,14 +27,12 @@ donnees/          tendances.py télécharge les séries de Karl Rupp et écrit
                   tendances.typ, versionné
 parties/          00 ouverture, 01 matériel, 02 réseau, 03 prouver qui
                   l'on est, 04 secrets, 99 clôture
-tds/              5a_mesures, 5b_cle_ssh, 5c_secret_historique (facultatif)
+tds/              5a_mesures, 5b_secret_historique (facultatif)
 ```
 
 Les sorties de terminal sont réelles : `ssh-keygen` (OpenSSH 9.6), `git log`
 rejoué sur un dépôt de deux commits, `mesures.py` sur le poste de préparation.
-Les chemins Windows sont recomposés à partir de ces sorties. La sortie de
-`ssh -T git@github.com` reprend le message de GitHub et son empreinte ED25519
-publiée.
+Les chemins Windows sont recomposés à partir de ces sorties.
 
 Les deux photos annotées viennent de Wikimedia Commons et sont décrites dans
 [`illustrations/cours5/README.md`](../../../illustrations/cours5/README.md) ;

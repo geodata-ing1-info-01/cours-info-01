@@ -79,7 +79,7 @@ Les TD 4a noyaux et 4b ligne de commande (reprise du TD 3f) sont retirés, et re
 
 ## Cours 5 — Matériel, réseau ; mots de passe, clés, secrets (13/10)
 
-Inchangé, sauf deux diapositives ajoutées après « Client et serveur », dans [`src/cours5/diapo/parties/02_reseau.typ`](../src/cours5/diapo/parties/02_reseau.typ). Elles reprennent les schémas de la partie 4 du cours 1, non jouée ([`src/cours1/diapo/schemas_notebooks.typ`](../src/cours1/diapo/schemas_notebooks.typ)).
+Le TD de la clé SSH sur GitHub (ancien TD 5b) est retiré le 30/09/2026 : le compte GitHub, son deuxième facteur et la clé SSH sont mis en place au cours 6. Le TD du secret dans l'historique devient le TD 5b, facultatif. La partie « Prouver qui l'on est » garde son exposé, clé et connexion SSH comprises (20′). Deux diapositives sont ajoutées après « Client et serveur », dans [`src/cours5/diapo/parties/02_reseau.typ`](../src/cours5/diapo/parties/02_reseau.typ). Elles reprennent les schémas de la partie 4 du cours 1, non jouée ([`src/cours1/diapo/schemas_notebooks.typ`](../src/cours1/diapo/schemas_notebooks.typ)).
 
 - **Client et serveur sur le même poste** : le schéma client (JupyterLab dans le navigateur, VS Code) et serveur (`jupyter-server`, `ipykernel`) sur la même machine, reliés par `localhost`. Démonstration de deux minutes, en note : `jupyter lab` dans un terminal, une ligne par requête dans le terminal, le terminal fermé puis une cellule exécutée.
 - **Trois emplacements pour le serveur** : sur un ordinateur distant (Colab), sur le poste (`jupyter lab`), dans le navigateur (JupyterLite). *Passée au parcours standard du projet 4 (TD 4a) ; le parcours avancé ne la voit pas.*
@@ -91,13 +91,14 @@ La note de « Client et serveur » qui renvoyait au cours 1 est retirée.
 Repris du v2. L'outil « trajectoire » est retiré ; le cours 6 ne demande pas d'écrire de code nouveau. Les branches, le `rebase` et les conflits ont été vus au cours 2 de 2026 ; la séance ne les reprend pas en exposé.
 
 - **🎓 15′ · La forge** : compte, dépôt distant, `remote`, `clone`, `push`, `pull` ; branche de fonctionnalité et pull request.
-- **⌨️ 20′ · Publier son dépôt** : créer un dépôt vide sur GitHub ; `git remote add origin`, `git push -u origin master` avec la clé SSH du cours 5 ; voir l'historique sur le site.
+- **⌨️ 20′ · Le compte et la clé SSH** *(venu du cours 5 le 30/09/2026)* : le compte GitHub avec un deuxième facteur ; `ssh-keygen`, la clé publique sur le compte, `ssh -T git@github.com` ; `ssh.github.com` sur le port 443 si le port 22 est fermé.
+- **⌨️ 20′ · Publier son dépôt** : créer un dépôt vide sur GitHub ; `git remote add origin`, `git push -u origin master` avec la clé SSH ; voir l'historique sur le site.
 - **⌨️ 20′ · Deux copies du même dépôt** : `git clone` dans un autre dossier ; un commit dans ce clone, `push` ; `pull` dans le premier dossier.
 - **⌨️ 20′ · Un conflit** : modifier une ligne du README sur le site, la même ligne en local ; `pull`, résoudre le conflit, `push`.
 - **⌨️ 20′ · Une pull request** : une branche qui améliore le README, poussée ; ouvrir la pull request sur le site, la fusionner ; `pull` dans le dossier local.
 - **Élèves sans projet 4 terminé** : un dépôt de référence par parcours (`recette.py`, `train.py`), à copier et publier à la place du leur. *Écrit pour les TD montre et tourbillon ; à refaire pour les deux parcours actuels.*
 
-**Budget** : **95′**, avec 25′ de marge pour les problèmes de clé SSH et d'authentification. Supports à écrire (`src/cours6/`).
+**Budget** : **115′**, avec 5′ de marge ; les problèmes de clé SSH et d'authentification se règlent pendant le TD du compte et de la clé. Supports à écrire (`src/cours6/`).
 
 ## Projet 7 — Projet d'application 2, par des pull requests (03/11)
 

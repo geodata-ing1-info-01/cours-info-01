@@ -6,8 +6,9 @@ title: "Séance 5 — Matériel, réseau, mots de passe, clés SSH et secrets"
 
 Quatre parties. Les deux premières donnent les ordres de grandeur du matériel
 et du réseau. Les deux suivantes partent du mot de passe, des façons de le
-perdre et des parades, jusqu'à la clé SSH et aux secrets d'un programme, ce
-qu'il faut avoir en place avant la forge du cours 6.
+perdre et des parades, jusqu'à la clé SSH et aux secrets d'un programme. Le
+compte GitHub et la clé SSH déclarée sur ce compte sont mis en place au
+cours 6.
 
 ```{list-table}
 :header-rows: 1
@@ -22,14 +23,14 @@ qu'il faut avoir en place avant la forge du cours 6.
   - local et distant, client et serveur, débit et latence, le sans-fil ; TD 5a
   - 30 min
 * - [Prouver qui l'on est](notebook/03_prouver_qui_lon_est.md)
-  - le mot de passe, les quatre façons de le perdre, les parades, le deuxième facteur, la clé SSH ; TD 5b
-  - 40 min
+  - le mot de passe, les quatre façons de le perdre, les parades, le deuxième facteur, la clé SSH
+  - 20 min
 * - [Les secrets de vos programmes](notebook/04_secrets.md)
   - ce qui ne va pas dans un dépôt, et quoi faire si c'est arrivé
   - 15 min
 ```
 
-Le TD 5c, facultatif, rejoue sur un dépôt neuf ce que la partie 4 montre : un
+Le TD 5b, facultatif, rejoue sur un dépôt neuf ce que la partie 4 montre : un
 secret supprimé reste dans l'historique.
 
 Les TD sont réunis, par partie, dans [Travaux dirigés de la séance
@@ -42,35 +43,26 @@ dossier par TD, et dans chacun la feuille du TD en PDF. L'archive se récupère
 depuis le dossier partagé, comme décrit dans [Récupérer les fichiers d'une
 séance](../avant/donnees.md).
 
-Le TD 5b demande un compte GitHub : le créer avant la séance, avec l'adresse
-de l'école, et activer la double authentification quand GitHub la propose.
-Le cours 6 commence par `git clone` et suppose la clé en place.
-
 ## Vers le cours 6
 
-Le cours 6 utilise le compte, la clé et le deuxième facteur mis en place
-pendant cette séance.
+Au cours 6, chacun crée son compte GitHub, avec un deuxième facteur, et y
+déclare une clé SSH, avant de publier son dépôt.
 
 ```{list-table}
 :header-rows: 1
 
-* - Fait pendant la séance
+* - Vu pendant la séance
   - Au cours 6
-* - un compte sur la forge
-  - un dépôt distant pour chaque projet
-* - une clé SSH sur ce compte
-  - `git clone`, `git push`, `git pull` sans mot de passe
-* - un deuxième facteur sur le compte
-  - demandé par GitHub à la première connexion
+* - la clé à la place du mot de passe
+  - une clé SSH créée sur le poste et déclarée sur le compte GitHub ;
+    `git clone`, `git push`, `git pull` sans mot de passe
+* - le deuxième facteur
+  - activé à la création du compte GitHub
 * - le secret dans un fichier ignoré
   - le `.gitignore` du dépôt de chacun
 * - le commit en local, le push sur le réseau
   - travailler à plusieurs sur le même dépôt : branches, fusion
 ```
-
-Le cours 6 commence par `git clone` : la clé doit fonctionner avant la
-séance. Un TD 5b non terminé se termine avant, avec la feuille du TD dans
-`cours5/5b_cle_ssh/`.
 
 ```{toctree}
 :maxdepth: 1

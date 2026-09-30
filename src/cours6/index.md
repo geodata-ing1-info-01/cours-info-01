@@ -26,9 +26,14 @@ sur le dépôt git du projet 4, et ne demande pas d'écrire de code nouveau.
   - un compte, un dépôt distant, `remote`, `clone`, `push`, `pull` ; une
     branche de fonctionnalité et une pull request
   - 15 min
+* - Le compte et la clé SSH
+  - créer son compte GitHub avec un deuxième facteur ; créer une paire de
+    clés avec `ssh-keygen`, déclarer la clé publique sur le compte, vérifier
+    la connexion avec `ssh -T git@github.com`
+  - 20 min
 * - Publier son dépôt
   - créer un dépôt vide sur GitHub, `git remote add origin`, `git push`
-    avec la clé SSH du cours 5, voir l'historique sur le site
+    avec la clé SSH, voir l'historique sur le site
   - 20 min
 * - Deux copies du même dépôt
   - `git clone` dans un autre dossier, un commit dans ce clone, `push`,
@@ -49,5 +54,4 @@ Les élèves qui n'ont pas terminé le projet 4 partent d'un dépôt de référe
 
 ## Avant la séance
 
-Déclarer sur GitHub la clé SSH créée au cours 5. Garder le dépôt git du
-projet 4 sur le poste, ou le copier sur une clé USB.
+Garder le dépôt git du projet 4 sur le poste, ou le copier sur une clé USB.

@@ -3,7 +3,8 @@
 // Le fil : la table des comptes d'un site, les quatre façons d'obtenir le
 // mot de passe d'un autre, une parade par façon (l'empreinte, la longueur et
 // le hasard, le chiffrement, le deuxième facteur), puis la clé, qui remplace
-// le mot de passe pour les machines et les programmes. Le TD 5b suit.
+// le mot de passe pour les machines et les programmes. La clé déclarée sur
+// GitHub est faite au cours 6 (TD de la clé SSH retiré le 30/09/2026).
 #import "../../../commun/prelude.typ": *
 #import "../schemas.typ": schema-cles, schema-echange-ssh, schema-connexion, repere
 #import "../style.typ": terminal
@@ -473,9 +474,9 @@ d("L'entropie d'un mot de passe")[
     Microsoft (2023) : moins 98,6 % de comptes compromis avec un deuxième
     facteur, même quand le mot de passe a fui.
 
-    GitHub impose un deuxième facteur depuis 2023. L'activer à la création du
-    compte, avec une application à codes. Garder les codes de secours : sans
-    eux, la perte du téléphone fait perdre le compte.
+    GitHub impose un deuxième facteur depuis 2023 ; il est activé au cours 6,
+    à la création du compte, avec une application à codes. Garder les codes
+    de secours : sans eux, la perte du téléphone fait perdre le compte.
 
     Passkey : une paire de clés gardée par le téléphone ou l'ordinateur, à la
     place du mot de passe ; même principe que la clé SSH.

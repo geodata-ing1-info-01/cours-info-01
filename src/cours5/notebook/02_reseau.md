@@ -117,7 +117,7 @@ commande comme `ssh alice@calcul.ecole.fr`, le nom de domaine est
 Le **DNS** (*Domain Name System*) est un annuaire, qui associe un nom de
 domaine à une adresse IP. La requête DNS est faite une fois ; la réponse est
 gardée en mémoire. Le port 443 sert au web chiffré (HTTPS), le port 22 à SSH.
-Un pare-feu peut fermer le port 22 en sortie ; le TD 5b donne la marche à
+Un pare-feu peut fermer le port 22 en sortie ; le cours 6 donne la marche à
 suivre dans ce cas. Savoir lire le nom de domaine d'une adresse sert aussi à
 reconnaître l'hameçonnage, présenté dans la partie suivante.
 

@@ -125,10 +125,10 @@ Deux moitiés ; la seconde prépare directement la forge (cours 6). Déroulé di
 **B. Prouver qui l'on est, et les secrets des programmes (~1 h).**
 
 - **🎓 20′ · Prouver qui l'on est** : identifiant et mot de passe (le serveur garde une empreinte) ; les quatre façons de perdre un mot de passe (deviné, volé sur le serveur, volé chez vous, intercepté) ; combien de temps pour le deviner ; hameçonnage ; une parade par menace ; le deuxième facteur ; la clé à la place du mot de passe, la connexion SSH, les deux fichiers.
-- **⌨️ 20′ · TD 5b** : dans l'invite de commandes d'Anaconda, `ssh-keygen`, la clé publique sur le compte GitHub, `ssh -T git@github.com`.
+- *TD de la clé SSH sur GitHub retiré le 30/09/2026 : le compte GitHub et la clé SSH sont mis en place au cours 6.*
 - **🎓 15′ · Les secrets de vos programmes** : ce qui est un secret, un secret dans un dépôt y reste (`git log -p`), séparer le code et les secrets (`.gitignore`, fichier modèle), si un secret a fui, mises à jour et sauvegardes.
-- **⌨️ TD 5c, facultatif** : un secret dans l'historique, rejoué sur un dépôt neuf.
-- **Clôture** : « Vers le cours 6 » (compte, clé SSH, deuxième facteur, secret ignoré ; le cours 6 commence par `git clone`).
+- **⌨️ TD 5b, facultatif** : un secret dans l'historique, rejoué sur un dépôt neuf.
+- **Clôture** : « Vers le cours 6 » (ce qui a été vu aujourd'hui, et ce que le cours 6 en fait : compte GitHub, deuxième facteur, clé SSH déclarée, secret ignoré).
 
 ## Cours 6 — Forge & git en équipe ; outil « trajectoire » (CM)
 

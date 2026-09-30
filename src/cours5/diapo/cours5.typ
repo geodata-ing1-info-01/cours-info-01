@@ -22,8 +22,7 @@
 #let tds = sys.inputs.at("tds", default: "") != "false"
 
 #import "tds/5a_mesures.typ": td as td-5a
-#import "tds/5b_cle_ssh.typ": td as td-5b
-#import "tds/5c_secret_historique.typ": td as td-5c
+#import "tds/5b_secret_historique.typ": td as td-5b
 
 #include "parties/00_ouverture.typ"
 
@@ -36,18 +35,15 @@
   sommaire-td(td-5a)
 }
 
+// La clé SSH sur GitHub (ancien TD 5b) est retirée le 30/09/2026 : l'accès à
+// GitHub est vu au cours 6.
 #include "parties/03_prouver_qui_lon_est.typ"
-#if tds {
-  include "tds/5b_cle_ssh.typ"
-} else {
-  sommaire-td(td-5b)
-}
 
 #include "parties/04_secrets.typ"
 #if tds {
-  include "tds/5c_secret_historique.typ"
+  include "tds/5b_secret_historique.typ"
 } else {
-  sommaire-td(td-5c)
+  sommaire-td(td-5b)
 }
 
 #include "parties/99_cloture.typ"

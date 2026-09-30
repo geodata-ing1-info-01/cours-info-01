@@ -75,6 +75,6 @@ et un masque de colonnes.
 
 ## Avant la séance
 
-Garder son dépôt GitHub du cours 6, et la clé SSH du cours 5 enregistrée
+Garder son dépôt GitHub du cours 6, et la clé SSH du cours 6 enregistrée
 sur son compte. Qui n'a pas de dépôt `recette` utilisable part du dépôt de
 référence : le cloner, puis le pousser vers un dépôt vide de son compte.

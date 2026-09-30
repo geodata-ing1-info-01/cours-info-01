@@ -57,7 +57,7 @@
 
   #notes[
     Le guide de chaque TD, dans son dossier, détaille chaque étape : le
-    faire ouvrir dès le début. La clé SSH du cours 5 doit être enregistrée
+    faire ouvrir dès le début. La clé SSH du cours 6 doit être enregistrée
     sur le compte GitHub de chaque élève.
   ]
 ]

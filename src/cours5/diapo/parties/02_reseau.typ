@@ -126,7 +126,7 @@
     gardée en mémoire.
 
     Port 443 : web chiffré (HTTPS). Port 22 : SSH. Le pare-feu de l'école peut
-    fermer le port 22 en sortie : à vérifier avant le TD 5b.
+    fermer le port 22 en sortie : à vérifier avant le cours 6.
 
     Lire le nom de domaine sert contre l'hameçonnage (partie 3).
   ]
