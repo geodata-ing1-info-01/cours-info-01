@@ -25,14 +25,14 @@
 
 // Le TP d'origine est un seul exercice de 27 questions, découpé en cinq TD
 // joués chacun après la partie qui l'outille. Le projet qu'ils construisent
-// reste dans `cours2/3a_premier_depot/travail/projet_2`.
+// reste dans `cours2/2a_premier_depot/travail/projet_2`.
 #let tds = sys.inputs.at("tds", default: "") != "false"
 
-#import "tds/3a_premier_depot.typ": td as td-3a
-#import "tds/4a_branches.typ": td as td-4a
-#import "tds/4b_annuler.typ": td as td-4b
-#import "tds/4c_conflits.typ": td as td-4c
-#import "tds/6a_livrer.typ": td as td-6a
+#import "tds/2a_premier_depot.typ": td as td-2a
+#import "tds/2b_branches.typ": td as td-2b
+#import "tds/2c_annuler.typ": td as td-2c
+#import "tds/2d_conflits.typ": td as td-2d
+#import "tds/2e_livrer.typ": td as td-2e
 
 #include "parties/00_ouverture.typ"
 
@@ -42,25 +42,25 @@
 
 #include "parties/03_git_local.typ"
 #if tds {
-  include "tds/3a_premier_depot.typ"
+  include "tds/2a_premier_depot.typ"
 } else {
-  sommaire-td(td-3a)
+  sommaire-td(td-2a)
 }
 
 #include "parties/04_branches.typ"
 #if tds {
-  include "tds/4a_branches.typ"
-  include "tds/4b_annuler.typ"
-  include "tds/4c_conflits.typ"
+  include "tds/2b_branches.typ"
+  include "tds/2c_annuler.typ"
+  include "tds/2d_conflits.typ"
 } else {
-  sommaire-td(td-4a, td-4b, td-4c)
+  sommaire-td(td-2b, td-2c, td-2d)
 }
 
 #include "parties/05_informations.typ"
 
 #include "parties/06_bonnes_pratiques.typ"
 #if tds {
-  include "tds/6a_livrer.typ"
+  include "tds/2e_livrer.typ"
 } else {
-  sommaire-td(td-6a)
+  sommaire-td(td-2e)
 }

@@ -2,7 +2,7 @@
 """Compile chaque TD d'une séance en feuille de TD séparée.
 
 Un TD est un fichier de `src/cours<n>/diapo/tds/`, nommé comme le dossier que
-l'étudiant ouvre : `2c_hello_cpp.typ` pour `cours1/2c_hello_cpp/`. Le même
+l'étudiant ouvre : `1e_hello_cpp.typ` pour `cours1/1e_hello_cpp/`. Le même
 fichier sert deux fois : inclus par `cours<n>.typ`, il est projeté au milieu du
 cours ; compilé seul par ce script, il donne un PDF court que l'étudiant garde
 sous les yeux pendant qu'il travaille.
@@ -14,9 +14,9 @@ sous les yeux pendant qu'il travaille.
 
 Le PDF est déposé dans le dossier que le TD annonce lui-même, par le champ
 `dossier:` de sa description `td` — celui que l'étudiant a justement ouvert.
-Ce champ est le chemin vu par l'étudiant, `cours1/2c_hello_cpp/` ; dans le
+Ce champ est le chemin vu par l'étudiant, `cours1/1e_hello_cpp/` ; dans le
 dépôt, il est sous `data/`. Le PDF s'appelle `td_<dossier>.pdf`, soit
-`td_2c_hello_cpp.pdf`, et n'est pas versionné.
+`td_1e_hello_cpp.pdf`, et n'est pas versionné.
 
 Un cours sans dossier `tds/` n'est pas une erreur : ses TD peuvent n'avoir
 qu'un guide en Markdown, compilé par `outils/compiler_guides.py`. Un TD peut

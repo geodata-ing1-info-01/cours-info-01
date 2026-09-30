@@ -9,7 +9,7 @@ bibliothèques de la séance, puis deux d'entre elles : `pathlib`, qui construit
 les chemins à partir d'une seule racine, et `subprocess`, qui lance pandoc
 depuis Python. La troisième, `argparse`, est présentée dans la page [Du
 notebook au programme](03_du_notebook_au_programme.md). Un TD accompagne cette
-partie, le notebook `recette.ipynb` du TD 1a ; il est présenté en fin de page.
+partie, le notebook `recette.ipynb` du TD 3b ; il est présenté en fin de page.
 
 ## Le programme de la recette
 
@@ -29,7 +29,7 @@ Chaque recette a son dossier, qui contient les deux mêmes fichiers. Le
 programme écrit ses résultats dans `travail/`, et ne modifie jamais `depart/`.
 
 ```text
-1a_recette/
+3b_recette/
 ├── depart/
 │   ├── notebook/recette.ipynb       ← le notebook livré, à copier dans travail/
 │   ├── recettes/
@@ -82,14 +82,14 @@ Les fonctions utiles du programme sont données dans le notebook :
 Le code de départ écrit chaque chemin en entier, depuis la racine du disque :
 
 ```python
-ingredients = lire_ingredients("C:/Users/alice/Desktop/cours3/1a_recette/depart/recettes/crepes/ingredients.csv")
+ingredients = lire_ingredients("C:/Users/alice/Desktop/cours3/3b_recette/depart/recettes/crepes/ingredients.csv")
 ingredients = adapter(ingredients, 4, "SI")
 
-with open("C:/Users/alice/Desktop/cours3/1a_recette/depart/recettes/crepes/recette.md", encoding="utf-8") as fichier:
+with open("C:/Users/alice/Desktop/cours3/3b_recette/depart/recettes/crepes/recette.md", encoding="utf-8") as fichier:
     source = fichier.read()
 complete = source.replace("## Ingrédients", "## Ingrédients pour 4 personnes en SI\n\n" + tableau(ingredients))
 
-with open("C:/Users/alice/Desktop/cours3/1a_recette/travail/crepes.md", "w", encoding="utf-8") as fichier:
+with open("C:/Users/alice/Desktop/cours3/3b_recette/travail/crepes.md", "w", encoding="utf-8") as fichier:
     fichier.write(complete)
 ```
 
@@ -164,20 +164,20 @@ ni dossier et ne vérifie pas leur existence : `exists()` le fait.
 ```python
 from pathlib import Path
 
-dossier = Path("C:/Users/alice/Desktop/cours3/1a_recette")
+dossier = Path("C:/Users/alice/Desktop/cours3/3b_recette")
 print(dossier / "depart" / "recettes")
 ```
 
 ### Une seule valeur en dur : la racine
 
-Avec `pathlib`, seul le chemin de la racine du TD, le dossier `1a_recette/`,
+Avec `pathlib`, seul le chemin de la racine du TD, le dossier `3b_recette/`,
 reste écrit en dur. Deux dossiers sont construits à partir de la racine :
 `DONNEES`, qui contient les données en entrée, et `SORTIE`, où le programme
 écrit les fichiers produits. Les chemins des fichiers partent de l'un ou de
 l'autre, en suivant l'arborescence :
 
 ```text
-1a_recette/                      ← RACINE
+3b_recette/                      ← RACINE
 ├── depart/
 │   └── recettes/                ← DONNEES
 │       └── crepes/              ← RECETTE
@@ -189,7 +189,7 @@ l'autre, en suivant l'arborescence :
 ```
 
 ```python
-RACINE = Path("C:/Users/alice/Desktop/cours3/1a_recette")
+RACINE = Path("C:/Users/alice/Desktop/cours3/3b_recette")
 
 # les données en entrée, puis les fichiers produits
 DONNEES = RACINE / "depart" / "recettes"
@@ -324,7 +324,7 @@ exister dans un environnement et manquer dans un autre.
 
 ## TD de la partie
 
-- TD 1a, `recette.ipynb`, 20 minutes, dans le dossier `cours3/1a_recette/` de
+- TD 3b, `recette.ipynb`, 20 minutes, dans le dossier `cours3/3b_recette/` de
   l'archive : le programme de départ, ses chemins en dur, puis les chemins
   construits avec `pathlib`, pour une recette puis pour toutes ; enfin la
   conversion par pandoc, dans le terminal puis depuis Python. Le notebook se

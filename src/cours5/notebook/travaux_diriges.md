@@ -5,13 +5,13 @@ subtitle: Les trois TD de la séance, rangés par partie
 
 Chaque TD a son dossier dans l'archive `cours5/` de la séance, avec sa
 feuille en PDF, `td_<dossier>.pdf`. Deux TD se font en séance, 35 minutes en
-tout : le TD 1a après la partie sur le réseau, le TD 2a après la partie sur
-les mots de passe et les clés. Le TD 3a est facultatif, pour qui va plus vite
+tout : le TD 5a après la partie sur le réseau, le TD 5b après la partie sur
+les mots de passe et les clés. Le TD 5c est facultatif, pour qui va plus vite
 ou pour après la séance. Les commandes se tapent dans l'invite de commandes d'Anaconda.
 
 ## Le matériel et le réseau
 
-- TD 1a, `1a_mesures/`, 15 minutes : les ordres de grandeur du poste ([page
+- TD 5a, `5a_mesures/`, 15 minutes : les ordres de grandeur du poste ([page
   du matériel](01_materiel.md), [page du réseau](02_reseau.md)).
 
 Le TD se fait en deux étapes. La première lit les caractéristiques du poste
@@ -22,7 +22,7 @@ disque, et la vitesse du lien réseau. Si le gestionnaire des tâches ne
 s'ouvre pas, la commande `systeminfo` donne le processeur et la mémoire.
 
 La seconde étape lance le script fourni, depuis le dossier
-`cours5/1a_mesures/` :
+`cours5/5a_mesures/` :
 
 ```text
 python mesures.py
@@ -53,7 +53,7 @@ locales.
 
 ## Prouver qui l'on est
 
-- TD 2a, `2a_cle_ssh/`, 20 minutes : une clé SSH sur votre compte GitHub
+- TD 5b, `5b_cle_ssh/`, 20 minutes : une clé SSH sur votre compte GitHub
   ([page de la partie](03_prouver_qui_lon_est.md)).
 
 Le TD demande un compte GitHub, créé avant la séance, avec l'adresse de
@@ -128,12 +128,12 @@ copy config %USERPROFILE%\.ssh\config
 ssh -T git@github.com
 ```
 
-Un TD 2a non terminé se termine avant le cours 6, avec la feuille du TD : le
+Un TD 5b non terminé se termine avant le cours 6, avec la feuille du TD : le
 cours 6 commence par `git clone`, qui demande la clé.
 
 ## Les secrets de vos programmes
 
-- TD 3a, facultatif, `3a_secret_historique/`, 10 minutes : un secret dans
+- TD 5c, facultatif, `5c_secret_historique/`, 10 minutes : un secret dans
   l'historique ([page de la partie](04_secrets.md)).
 
 Le dossier ne contient pas de fichier fourni : le dépôt se crée dans

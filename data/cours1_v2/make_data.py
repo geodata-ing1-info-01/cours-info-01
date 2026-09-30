@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Données des TD du cours 1, version 2 (proposition 2027-2028).
 
-Les TD 1a et 2a de la version 2 travaillent sur les fichiers du TD 1a de la
+Les TD 1a et 1b de la version 2 travaillent sur les fichiers du TD 1a de la
 version 1 : ce script les recopie depuis `data/cours1/1a_formats/produit/depart/`,
 que `data/cours1/make_data.py build` fabrique. Les autres TD ont leurs
 fichiers versionnés dans leur dossier.
@@ -18,7 +18,7 @@ from pathlib import Path
 
 ICI = Path(__file__).resolve().parent
 DEPART_V1 = ICI.parent / "cours1" / "1a_formats" / "produit" / "depart"
-TDS = ("1a_formats", "2a_terminal")
+TDS = ("1a_formats", "1b_terminal")
 
 
 def build() -> None:

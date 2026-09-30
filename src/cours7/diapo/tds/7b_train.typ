@@ -17,9 +17,10 @@
 #let td = (
   numero: "7b",
   titre: "Reprendre et compléter le projet d'un autre",
-  annonce: "Parcours avancé. TD d'application : récupérer un projet commencé par d'autres, le faire tourner, puis lui ajouter deux effets sur deux branches, dont un calculé avec numpy, et résoudre le conflit de leur fusion",
+  annonce: "TD d'application : récupérer un projet commencé par d'autres, le faire tourner, puis lui ajouter deux effets sur deux branches, dont un calculé avec numpy, et résoudre le conflit de leur fusion",
   dossier: "cours7/7b_train/",
   duree: "100′",
+  statut: "parcours avancé",
 )
 #separateur-td(..td)
 

@@ -8,8 +8,8 @@ sur plusieurs lignes de commits en parallèle, et HEAD, qui désigne le commit
 sur lequel on se trouve. Elle décrit ensuite les deux façons de réunir deux
 branches, la fusion et le rebase, et ce qui se passe quand deux branches ont
 modifié les mêmes lignes d'un fichier. Trois TD l'accompagnent, le [TD
-4a](td/4a_branches/guide.md), le [TD 4b](td/4b_annuler/guide.md) et le [TD
-4c](td/4c_conflits/guide.md) ; ils sont présentés en fin de page.
+2b](td/2b_branches/guide.md), le [TD 2c](td/2c_annuler/guide.md) et le [TD
+2d](td/2d_conflits/guide.md) ; ils sont présentés en fin de page.
 
 ## Les branches
 
@@ -63,7 +63,7 @@ emploie `git checkout`, comme les diapositives.
 
 **HEAD** désigne le commit sur lequel on se trouve, celui dont la copie de
 travail a le contenu. Le plus souvent, HEAD désigne une branche, et donc son
-dernier commit ; `git llog`, l'alias défini au TD 3a, l'affiche sous la forme
+dernier commit ; `git llog`, l'alias défini au TD 2a, l'affiche sous la forme
 `HEAD -> develop`.
 
 ```{figure} figures/3_head.svg
@@ -136,7 +136,7 @@ Fast-forward
  1 file changed, 4 insertions(+)
 ```
 
-Le TD 4a fait les deux : un premier merge en avance rapide, puis un second qui
+Le TD 2b fait les deux : un premier merge en avance rapide, puis un second qui
 crée un commit de fusion.
 
 ### Le rebase
@@ -215,17 +215,17 @@ façon ; il se reprend avec `git rebase --continue`.
 
 ## TD de la partie
 
-Les trois TD continuent le projet créé au TD 3a, une petite calculatrice en
+Les trois TD continuent le projet créé au TD 2a, une petite calculatrice en
 Python.
 
-- [TD 4a — Branches et fusions](td/4a_branches/guide.md), 30 minutes :
+- [TD 2b — Branches et fusions](td/2b_branches/guide.md), 30 minutes :
   créer les branches `develop`, `documentation`, `main_code` et
   `operations`, y écrire la description et le code du projet, puis les
   fusionner dans `develop`.
-- [TD 4b — Annuler et remettre à jour](td/4b_annuler/guide.md),
+- [TD 2c — Annuler et remettre à jour](td/2c_annuler/guide.md),
   15 minutes : annuler une fausse manœuvre avec `git revert`, puis mettre
   une branche à jour avec `git rebase`.
-- [TD 4c — Créer et résoudre un conflit](td/4c_conflits/guide.md),
+- [TD 2d — Créer et résoudre un conflit](td/2d_conflits/guide.md),
   25 minutes : modifier le même fichier de deux façons sur deux branches, les
   fusionner, puis résoudre le conflit.
 

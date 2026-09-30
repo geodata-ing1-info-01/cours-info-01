@@ -8,7 +8,7 @@ successives d'un projet, et sa place parmi les systèmes de version. Elle
 décrit ensuite la commande `git` et ses sous-commandes, puis celles qui
 créent un dépôt, enregistrent une version, comparent et annulent une
 modification, et ignorent des fichiers. Les exemples sont ceux du [TD
-3a](td/3a_depot_recette/guide.md), qui versionne la recette du TD 2a ; il
+2d](td/2d_depot_recette/guide.md), qui versionne la recette du TD 2c ; il
 est présenté en fin de page.
 
 ## À quoi sert git
@@ -119,7 +119,7 @@ Les copies d'un même dépôt, et les échanges entre elles.
 Comme le réseau de l'école n'est pas accessible depuis chez soi, les
 commits passent du poste de la salle à l'ordinateur personnel par une clé
 USB ou par la forge. La séance travaille sur une seule copie ; le cours 6 pratique
-ces échanges, et l'étape 7 du TD 3a fait une seconde copie pour ceux qui
+ces échanges, et l'étape 7 du TD 2d fait une seconde copie pour ceux qui
 ont fini.
 
 ## La commande git et ses sous-commandes
@@ -188,11 +188,11 @@ caché, `.git`, qui contiendra l'historique. Le dossier courant se vérifie
 avant, par `pwd` ou dans l'invite de Git Bash.
 
 ```text
-$ cd ~/Desktop/info01/cours2/3a_depot_recette/travail
+$ cd ~/Desktop/info01/cours2/2d_depot_recette/travail
 $ pwd
-/c/Users/eleve/Desktop/info01/cours2/3a_depot_recette/travail
+/c/Users/eleve/Desktop/info01/cours2/2d_depot_recette/travail
 $ git init
-Dépôt Git vide initialisé dans …/3a_depot_recette/travail/.git/
+Dépôt Git vide initialisé dans …/2d_depot_recette/travail/.git/
 $ ls -a
 .
 ..
@@ -283,7 +283,7 @@ second commit, l'historique forme une chaîne :
 ```{figure} figures/3_chaine.svg
 :alt: Deux commits, a16 puis fe4, reliés par une flèche de fe4 vers a16. Sous fe4, le cartouche master ; au-dessus, HEAD, qui désigne fe4.
 
-Les deux premiers commits du TD 3a. La flèche va de chaque commit vers son
+Les deux premiers commits du TD 2d. La flèche va de chaque commit vers son
 parent.
 ```
 
@@ -412,7 +412,7 @@ Certains fichiers du dossier n'ont pas leur place dans le dépôt.
 
 Un fichier **`.gitignore`**, à la racine du dépôt, liste des motifs de
 noms, un par ligne. `git status` n'affiche plus les fichiers qui y
-correspondent, et `git add` ne les ajoute pas. Au TD 3a, pandoc a produit
+correspondent, et `git add` ne les ajoute pas. Au TD 2d, pandoc a produit
 `recette.html` et `recette.odt` :
 
 ```text
@@ -453,7 +453,7 @@ Un fichier déjà suivi le reste, même s'il correspond à un motif :
 
 ## TD de la partie
 
-- [TD 3a — Un dépôt git pour la recette](td/3a_depot_recette/guide.md),
+- [TD 2d — Un dépôt git pour la recette](td/2d_depot_recette/guide.md),
   40 minutes. Les étapes 0 à 4 appliquent cette page : le dépôt et le
   premier commit, modifier, comparer et restaurer, ignorer les fichiers
   produits par pandoc. Les étapes 5 à 7 appliquent la page suivante.

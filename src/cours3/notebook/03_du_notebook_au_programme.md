@@ -6,7 +6,7 @@ subtitle: Le code du notebook dans un fichier .py, et ses valeurs lues sur la li
 Cette partie fait passer le code du notebook `recette.ipynb` dans un
 programme, `recette.py`, lancé depuis un terminal. Elle présente `argparse`,
 qui lit les valeurs du programme sur la ligne de commande. Le programme se
-construit par étapes, un commit git par étape. Un TD l'accompagne, le TD 3b ;
+construit par étapes, un commit git par étape. Un TD l'accompagne, le TD 3f ;
 il est présenté en fin de page, avec la fonction `main`, qu'il ajoute en
 bonus.
 
@@ -14,7 +14,7 @@ bonus.
 
 Dans un notebook, les valeurs du programme sont écrites dans une cellule.
 Changer une valeur oblige à relancer les cellules qui en dépendent, dans
-l'ordre. Le script du TD 3b reçoit les valeurs sur la ligne de commande, et
+l'ordre. Le script du TD 3f reçoit les valeurs sur la ligne de commande, et
 une seule commande produit la page.
 
 ```{figure} figures/3_notebook_valeurs.svg
@@ -128,7 +128,7 @@ Les trois arguments s'ajoutent sur une branche, `arguments`, un commit par
 argument, puis la branche est fusionnée dans `master`. VS Code affiche la
 branche courante en bas à gauche de la fenêtre, dans la barre d'état.
 
-## En bonus du TD 3b : la fonction `main`
+## En bonus du TD 3f : la fonction `main`
 
 Les lignes du programme sont placées dans une fonction, `main`. La fin du
 fichier appelle `main` seulement si le fichier est lancé avec
@@ -195,13 +195,13 @@ lancerait pandoc. Un fichier de tests, par exemple, appelle
 
 Un chemin relatif part du dossier courant : celui du notebook, ou celui du
 terminal qui lance le script. `Path(__file__).parent` désigne le dossier du
-script lui-même, d'où qu'on le lance. L'étape 5 du TD 3b, facultative, range
+script lui-même, d'où qu'on le lance. L'étape 5 du TD 3f, facultative, range
 le code dans `src/` et les données dans `data/`, et fait partir les chemins
 des données de ce dossier.
 
 ## TD de la partie
 
-- [TD 3b](td/3b_cli/guide.md), dans le dossier `cours3/3b_cli/` de l'archive, 45 minutes : écrire
+- [TD 3f](td/3f_cli/guide.md), dans le dossier `cours3/3f_cli/` de l'archive, 45 minutes : écrire
   `recette.py` à partir du notebook, puis les trois arguments sur une
   branche, un README et, en bonus, une fonction `main` ; un commit par
   étape. Les étapes 5
@@ -240,8 +240,8 @@ des données de ce dossier.
   - 8
 ```
 
-Le TD 3b est celui du parcours avancé. Le parcours standard fait à la place
-le [TD 3a](td/3a_markdown/guide.md), une recette en Markdown. Le projet 4
+Le TD 3f est celui du parcours avancé. Le parcours standard fait à la place
+le [TD 3e](td/3e_markdown/guide.md), une recette en Markdown. Le projet 4
 revoit ces notions pour les deux parcours.
 
 Les TD des autres parties sont dans [Travaux dirigés de la séance

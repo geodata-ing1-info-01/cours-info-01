@@ -134,7 +134,7 @@
   #face-a-face(
     panneau("Depuis l'invite de commandes d'Anaconda")[
       #text(size: 16pt)[```console
-      (base) …>cd Desktop\info01\cours1\3a_notebook
+      (base) …>cd Desktop\info01\cours1\1d_notebook
       (base) …>jupyter lab
       ```]
       #v(0.3em)
@@ -145,12 +145,12 @@
     ],
     panneau("Depuis Git Bash")[
       #text(size: 16pt)[```console
-      $ cd ~/Desktop/info01/cours1/3a_notebook
+      $ cd ~/Desktop/info01/cours1/1d_notebook
       $ jupyter lab
       ```]
       #v(0.3em)
       #text(size: 15pt, fill: estompe)[
-        Le terminal du module, après le réglage du TD 2b.
+        Le terminal du module, après le réglage du TD 1c.
       ]
     ],
   )

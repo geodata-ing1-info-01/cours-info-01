@@ -25,14 +25,14 @@
 
 // Un TD par fichier de `tds/`, nommé comme le dossier que l'étudiant ouvre.
 // Le TD 1a de 2026 est coupé en deux : la partie faite à la souris reste en
-// 1a, la partie faite au terminal devient le TD 2a, joué après l'exposé sur
+// 1a, la partie faite au terminal devient le TD 1b, joué après l'exposé sur
 // le terminal.
 #let tds = sys.inputs.at("tds", default: "") != "false"
 
 #import "tds/1a_formats.typ": td as td-1a
-#import "tds/2a_terminal.typ": td as td-2a
-#import "tds/2b_programme.typ": td as td-2b
-#import "tds/3a_notebook.typ": td as td-3a
+#import "tds/1b_terminal.typ": td as td-1b
+#import "tds/1c_programme.typ": td as td-1c
+#import "tds/1d_notebook.typ": td as td-1d
 
 #include "parties/00_ouverture.typ"
 
@@ -45,23 +45,23 @@
 
 #include "parties/02_terminal.typ"
 #if tds {
-  include "tds/2a_terminal.typ"
+  include "tds/1b_terminal.typ"
 } else {
-  sommaire-td(td-2a)
+  sommaire-td(td-1b)
 }
 
 #include "parties/02b_programme.typ"
 #if tds {
-  include "tds/2b_programme.typ"
+  include "tds/1c_programme.typ"
 } else {
-  sommaire-td(td-2b)
+  sommaire-td(td-1c)
 }
 
 #include "parties/03_notebook.typ"
 #if tds {
-  include "tds/3a_notebook.typ"
+  include "tds/1d_notebook.typ"
 } else {
-  sommaire-td(td-3a)
+  sommaire-td(td-1d)
 }
 
 #include "parties/99_cloture.typ"

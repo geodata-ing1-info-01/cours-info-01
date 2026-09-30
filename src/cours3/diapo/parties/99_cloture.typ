@@ -1,4 +1,4 @@
-// Clôture du cours 3 — incluse en dernier par `cours3.typ`, après le TD 3b.
+// Clôture du cours 3 — incluse en dernier par `cours3.typ`, après le TD 3f.
 // Un fichier inclus n'hérite pas des imports de son appelant.
 #import "../../../commun/prelude.typ": *
 
@@ -13,7 +13,7 @@
     [`subprocess.run([...])`], [un programme externe, appelé depuis Python, en liste],
     [Un caractère], [un nombre ; ASCII en a 128, sur un octet ; UTF-8 écrit les autres sur deux à quatre],
     [`argparse`], [les valeurs sur la ligne de commande, vérifiées, et l'aide de `--help`],
-    [Un environnement conda], [un Python et ses paquets ; `conda create -n nom … paquets` le crée avec eux (TD 3b, selon les groupes)],
+    [Un environnement conda], [un Python et ses paquets ; `conda create -n nom … paquets` le crée avec eux (TD 3f, selon les groupes)],
   )
 
   #notes[

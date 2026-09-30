@@ -8,7 +8,7 @@ son graphe de commits, la différence entre deux états, et l'état des fichiers
 Elle décrit ensuite le fichier `.gitignore`, qui liste les fichiers que git ne
 doit pas suivre, puis les règles qui gardent un dépôt lisible : les messages
 de commit, et l'organisation des branches. Un TD l'accompagne, le [TD
-6a](td/6a_livrer/guide.md) ; il est présenté en fin de page.
+2e](td/2e_livrer/guide.md) ; il est présenté en fin de page.
 
 ## Le graphe des commits
 
@@ -23,8 +23,8 @@ commits qu'ils désignent.
 git log --graph --pretty=oneline --abbrev-commit --decorate
 ```
 
-Le TD 3a enregistre cette commande sous un nom court, un **alias** : `git
-llog`. Voici le graphe du projet de la séance à la fin du TD 4c, avec `--all`
+Le TD 2a enregistre cette commande sous un nom court, un **alias** : `git
+llog`. Voici le graphe du projet de la séance à la fin du TD 2d, avec `--all`
 pour afficher toutes les branches :
 
 ```text
@@ -90,8 +90,7 @@ formats texte vus au cours 1 : sur un fichier `.py`, `.md` ou `.csv`, la
 différence se lit ; sur un fichier binaire, comme un `.docx` ou une image, git
 affiche seulement que les deux versions sont différentes. Une ligne peut aussi
 apparaître modifiée alors qu'elle semble identique à l'écran : elle ne diffère
-alors que par des espaces, des tabulations ou la fin de ligne, que le TD 2b du
-cours 1 a fait afficher dans l'éditeur.
+alors que par des espaces, des tabulations ou la fin de ligne, que le TD 1d a fait afficher dans l'éditeur.
 
 ## L'état des fichiers
 
@@ -195,12 +194,12 @@ fonctionnalités ; chaque fonctionnalité a sa branche.
 
 Le projet des TD suit cette organisation : `develop` part de `master`, et le
 travail se fait sur `documentation`, `main_code` et `operations`, fusionnées
-dans `develop`. Le TD 6a fusionne `develop` dans `master` et pose le tag de la
+dans `develop`. Le TD 2e fusionne `develop` dans `master` et pose le tag de la
 première version.
 
 ## TD de la partie
 
-- [TD 6a — Publier une version](td/6a_livrer/guide.md), 10 minutes :
+- [TD 2e — Publier une version](td/2e_livrer/guide.md), 10 minutes :
   fusionner `develop` dans `master`, puis poser le tag `v1.0` sur le commit
   obtenu.
 

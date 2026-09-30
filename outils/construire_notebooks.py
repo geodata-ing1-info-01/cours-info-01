@@ -13,7 +13,7 @@ elles s'exécutent à la construction du book, et n'ont pas à être distribuée
 
 Le `.ipynb` est déposé dans `produit/` du TD, et `outils/livrer_tds.py` le
 prend au passage, comme le reste de `produit/`. Un sous-dossier sous `<td>/`
-est reproduit sous `produit/` : `td/1a_recette/depart/notebook/recette.md`
+est reproduit sous `produit/` : `td/3b_recette/depart/notebook/recette.md`
 donne `produit/depart/notebook/recette.ipynb`, que l'étudiant copie dans
 `travail/` avant de l'ouvrir. La clé `execution` de l'en-tête MyST dit alors,
 relativement au notebook livré, depuis quel dossier il s'exécute
@@ -26,7 +26,7 @@ relativement au notebook livré, depuis quel dossier il s'exécute
 on veut qu'ils voient le résultat attendu sans avoir à tout relancer. Sans
 l'option, les cellules sont vides, ce qui est la forme à ouvrir en séance.
 Un notebook qui ne tourne que dans l'environnement que son TD fait créer
-(`outils_video` du TD 4c du cours 1, dans `trajet_ensg`) porte
+(`outils_video` du TD 1j, dans `trajet_ensg`) porte
 `executer: false` dans son en-tête : il est converti, jamais exécuté.
 
 Un notebook à compléter en séance marque ses cellules de solution par

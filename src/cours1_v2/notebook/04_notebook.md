@@ -7,7 +7,7 @@ Cette partie présente le notebook, un document qui réunit du texte, du code
 et ses résultats, que les cours et les TD de Python du module emploient. Elle
 donne la syntaxe minimale de Markdown, dans laquelle s'écrivent ses cellules
 de texte, puis la façon de lancer JupyterLab sur les postes de la salle. Le
-[TD 3a](td/3a_notebook/guide.md) l'accompagne ; il est présenté en fin de
+[TD 1d](td/1d_notebook/guide.md) l'accompagne ; il est présenté en fin de
 page.
 
 ## Programmation littérale
@@ -134,16 +134,16 @@ réglage de Git Bash manque sur un poste.
 Démarrer, « Anaconda Prompt ». conda y est actif sans réglage.
 
 ```text
-(base) …>cd Desktop\info01\cours1\3a_notebook
+(base) …>cd Desktop\info01\cours1\1d_notebook
 (base) …>jupyter lab
 ```
 :::
 
 :::{grid-item}
-**Depuis Git Bash**, le terminal du module, après le réglage du TD 2b.
+**Depuis Git Bash**, le terminal du module, après le réglage du TD 1c.
 
 ```text
-$ cd ~/Desktop/info01/cours1/3a_notebook
+$ cd ~/Desktop/info01/cours1/1d_notebook
 $ jupyter lab
 ```
 :::
@@ -162,7 +162,7 @@ Le cours 5 explique l'organisation en client et serveur d'un notebook.
 
 ## TD de la partie
 
-- [TD 3a — Un notebook dans JupyterLab](td/3a_notebook/guide.md), 12
+- [TD 1d — Un notebook dans JupyterLab](td/1d_notebook/guide.md), 12
   minutes : ouvrir `altitudes.ipynb` dans JupyterLab ; exécuter les cellules
   dans le désordre, et voir ce que le noyau retient ; ajouter une cellule de
   texte en tête ; relancer JupyterLab depuis Git Bash si le temps le permet.

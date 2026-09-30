@@ -16,9 +16,10 @@
 #let td = (
   numero: "7a",
   titre: "Compléter son projet, par des pull requests",
-  annonce: "Parcours standard. TD d'application : récupérer son projet du projet 4 depuis GitHub, lui ajouter l'écriture des pages HTML des recettes et d'un sommaire, sur des branches livrées par des pull requests",
+  annonce: "TD d'application : récupérer son projet du projet 4 depuis GitHub, lui ajouter l'écriture des pages HTML des recettes et d'un sommaire, sur des branches livrées par des pull requests",
   dossier: "cours7/7a_recette/",
   duree: "85′",
+  statut: "parcours standard",
 )
 #separateur-td(..td)
 

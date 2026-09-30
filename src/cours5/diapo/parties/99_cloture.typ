@@ -24,7 +24,7 @@
   ]
 
   #notes[
-    Un TD 2a non terminé se termine avant le cours 6, seul, avec la feuille du
-    TD dans `cours5/2a_cle_ssh/`.
+    Un TD 5b non terminé se termine avant le cours 6, seul, avec la feuille du
+    TD dans `cours5/5b_cle_ssh/`.
   ]
 ]

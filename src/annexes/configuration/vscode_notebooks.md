@@ -43,7 +43,7 @@ d'un `import` qui marche dans l'un et pas dans l'autre ({ref}`J4 <dep-j4>`).
 
 ## Un noyau dans son propre environnement
 
-Un environnement créé au TD 4a n'a de noyau que si le paquet `ipykernel` y
+Un environnement créé au TD 1h n'a de noyau que si le paquet `ipykernel` y
 est installé. VS Code le propose au premier lancement ({ref}`J2 <dep-j2>`)
 ; sinon, dans l'invite de commandes d'Anaconda :
 

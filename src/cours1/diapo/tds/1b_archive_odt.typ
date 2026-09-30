@@ -1,4 +1,4 @@
-// TD 1b du cours 1 — « Un .odt est une archive ZIP ».
+// TD 1b — « Un .odt est une archive ZIP ».
 //
 // Inclus par `cours1.typ`, qui porte les réglages globaux et importe `td`
 // pour le sommaire des TD ; compilable seul par `outils/compiler_tds.py`, qui
@@ -12,7 +12,7 @@
   annonce: "Objectif : voir de quoi est fait un document de traitement de texte, et le modifier sans son logiciel",
   dossier: "cours1/1b_archive_odt/",
   duree: "12′",
-  facultatif: true,
+  statut: "facultatif",
 )
 #separateur-td(..td)
 #d[`.odt` un format qui est une archive de plusieurs fichiers][
@@ -108,7 +108,7 @@
     `fo:color="red"` est ignoré et le titre reste noir ; il faut
     `fo:color="#c0392b"`. Occasion de dire ce qu'est un code hexadécimal,
     deux chiffres par composante. CSS accepte les deux écritures, on le
-    verra au TD 3a.
+    verra au TD 1f.
   ]
 ]
 

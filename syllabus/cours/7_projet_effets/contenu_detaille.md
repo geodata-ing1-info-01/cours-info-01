@@ -2,7 +2,7 @@
 
 > **Remplacé le 30/09/2026** par [refonte_30-09.md](refonte_30-09.md) : ce document décrit les TD d'avant la refonte, gardés dans l'historique git.
 
-> 27/09/2026. Séance du 03/11/2026. Remplace le premier jet du 24/09 (un effet d'image au choix, en boucle puis avec numpy, pour la montre et le tourbillon du projet 4). Depuis le 26/09, les cours 3 et 4 ont deux parcours : le parcours standard aboutit au programme `recette.py` (TD 3b du cours 3, repris au TD 4b), le parcours avancé au programme `train.py` (TD 4c). Le projet 7 suit ces deux parcours : TD 7a pour la recette, TD 7b pour le train ([variante_train.md](variante_train.md)). Le dossier garde son nom, `7_projet_effets/`, pour ne pas casser les liens.
+> 27/09/2026. Séance du 03/11/2026. Remplace le premier jet du 24/09 (un effet d'image au choix, en boucle puis avec numpy, pour la montre et le tourbillon du projet 4). Depuis le 26/09, les cours 3 et 4 ont deux parcours : le parcours standard aboutit au programme `recette.py` (TD 3f, repris au TD 4b), le parcours avancé au programme `train.py` (TD 4c). Le projet 7 suit ces deux parcours : TD 7a pour la recette, TD 7b pour le train ([variante_train.md](variante_train.md)). Le dossier garde son nom, `7_projet_effets/`, pour ne pas casser les liens.
 
 ## Objectif
 
@@ -10,7 +10,7 @@ Chaque élève ajoute des fonctionnalités à son programme du projet 4, dans so
 
 | Compétence | Vue | Ici |
 |---|---|---|
-| Installer un paquet dans un environnement, et le noter dans `environment.yml` | cours 3 (TD 0a), projet 4 | Pillow et numpy |
+| Installer un paquet dans un environnement, et le noter dans `environment.yml` | cours 3 (TD 3a), projet 4 | Pillow et numpy |
 | Branche, commit, `merge` | cours 2, projet 4 | une branche par fonctionnalité |
 | `push`, pull request | cours 6 | une pull request par branche, dans son propre dépôt |
 | Lire et écrire des fichiers | cours 3 | CSV, images, pages |
@@ -32,7 +32,7 @@ La comparaison entre une boucle et numpy est gardée au TD 7b seulement, où ell
 
 Chaque élève part de son dépôt GitHub du cours 6. Pour qui n'en a pas, ou dont le dépôt ne fonctionne pas, deux dépôts de référence, publics, hébergés dans une organisation GitHub du module :
 
-- `recette` : l'état du TD 3b à la fin de l'étape 4 (`recette.py`, `recettes/` avec les photos et `CREDITS.md`, `style.css`, `README.md`, `.gitignore`) ;
+- `recette` : l'état du TD 3f à la fin de l'étape 4 (`recette.py`, `recettes/` avec les photos et `CREDITS.md`, `style.css`, `README.md`, `.gitignore`) ;
 - `train` : l'état du TD 4c à la fin de l'étape B7 (`train.py`, `decor/`, `environment.yml`, `README.md`, `.gitignore`).
 
 L'élève crée un dépôt vide sur son compte, puis :
@@ -48,7 +48,7 @@ Le dépôt garde l'historique du TD, et les pull requests restent dans le dépô
 
 ## TD 7a — Le livre de recettes (parcours standard)
 
-Le programme du TD 3b traite une recette par appel. Le TD le complète pour en faire un livre : toutes les recettes, un sommaire, les photos, puis la recherche des recettes faisables avec ce qu'on a, comme dans les applications de recettes (Paprika, SuperCook).
+Le programme du TD 3f traite une recette par appel. Le TD le complète pour en faire un livre : toutes les recettes, un sommaire, les photos, puis la recherche des recettes faisables avec ce qu'on a, comme dans les applications de recettes (Paprika, SuperCook).
 
 ### Déroulé (≈ 120′)
 
@@ -123,6 +123,6 @@ Voir [variante_train.md](variante_train.md) : plusieurs plans décrits dans `dec
 
 ## Reste à faire
 
-1. Créer l'organisation GitHub et y publier les dépôts `recette` et `train`, construits depuis les corrigés (`data/cours3/corriges/3b_cli/`, `data/cours4/corriges/4c_train/`).
+1. Créer l'organisation GitHub et y publier les dépôts `recette` et `train`, construits depuis les corrigés (`data/cours3/corriges/3f_cli/`, `data/cours4/corriges/4c_train/`).
 2. Écrire les diapositives (`src/cours7/diapo/cours7.typ`). Les guides sont écrits (27/09).
 3. Vérifier en salle : `conda install pillow numpy` dans l'environnement de la recette et dans `animation` ; le temps de `--boucle` (480 images) sur un poste.

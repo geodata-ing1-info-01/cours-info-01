@@ -232,7 +232,7 @@
 
   #legende[
     Serveurs web : 92 % sous Unix, dont Linux (W3Techs, septembre 2026).
-    Développeurs : enquête Stack Overflow 2025. Les commandes du TD 2a dans
+    Développeurs : enquête Stack Overflow 2025. Les commandes du TD 1b dans
     les trois interpréteurs sont en annexe de son guide.
   ]
 
@@ -322,7 +322,7 @@
       #set text(size: 11pt)
       #invite \
       \$ ls \
-      1a#sym.underscore;formats/#h(0.6em)2a#sym.underscore;terminal/#h(0.6em)2b#sym.underscore;programme/#h(0.6em)3a#sym.underscore;notebook/ \
+      1a#sym.underscore;formats/#h(0.6em)1b#sym.underscore;terminal/#h(0.6em)1c#sym.underscore;programme/#h(0.6em)1d#sym.underscore;notebook/ \
       #v(0.4em)
       #invite \
       \$
@@ -341,7 +341,7 @@
   )
 
   #legende[
-    Le `/` à la fin d'un nom signale un dossier. Après le TD 2b, une ligne
+    Le `/` à la fin d'un nom signale un dossier. Après le TD 1c, une ligne
     `(base)` s'ajoute au-dessus : l'environnement conda actif.
   ]
 
@@ -351,7 +351,7 @@
     le fond blanc. Le nom du poste est inventé.
 
     Le dossier courant est celui où s'exécutent les commandes : `ls` sans
-    argument liste ce dossier. Le faire repérer sur leur écran au TD 2a.
+    argument liste ce dossier. Le faire repérer sur leur écran au TD 1b.
 
     Git Bash ajoute `-F` à `ls` (alias de `/etc/profile.d/aliases.sh`), d'où
     le `/` après les dossiers.
@@ -385,7 +385,7 @@
   #notes[
     L'interpréteur découpe la ligne aux espaces : le premier mot est le
     programme, les autres lui sont transmis. D'où les guillemets autour d'un
-    nom de fichier qui contient une espace, au TD 2a.
+    nom de fichier qui contient une espace, au TD 1b.
 
     Forme générale, à écrire au tableau :
     `commande [options] <arguments>`. Les crochets désignent ce qui est
@@ -469,7 +469,7 @@
       #h(0.75em)├─ 1a_formats\\ \
       #h(0.75em)│#h(0.3em)└─ depart\\ \
       #h(0.75em)│#h(1.6em)└─ raven.odt \
-      #h(0.75em)└─ 2b_programme\\ \
+      #h(0.75em)└─ 1c_programme\\ \
       #h(2.05em)└─ altitudes.py
     ],
     tableau(
@@ -478,7 +478,7 @@
       [], [Le chemin de `raven.odt`], [Depuis],
       [Absolu], [`C:\Users\alice\cours1\1a_formats\depart\raven.odt`], [la racine],
       [Relatif], [`1a_formats\depart\raven.odt`], [`cours1`],
-      [Relatif qui remonte], [`..\1a_formats\depart\raven.odt`], [`2b_programme`],
+      [Relatif qui remonte], [`..\1a_formats\depart\raven.odt`], [`1c_programme`],
     ),
   )
 
@@ -493,7 +493,7 @@
     pas a priori le chemin absolu du dossier d'un utilisateur, mais il peut
     imposer une arborescence relative, comme `../1a_formats/`, et il tourne
     chez tout le monde. Le chemin en dur, absolu, casse au premier
-    changement de poste ; le TD 1b du cours 2 en fait corriger un.
+    changement de poste ; le TD 2b en fait corriger un.
     (28/09 : exemple refait sur les dossiers de la v2.)
 
     Lire l'arborescence avant le tableau : les trois chemins désignent le
@@ -571,7 +571,7 @@
 
   #legende[
     Git Bash remplace le motif par la liste des noms qui correspondent, puis
-    lance la commande. Le TD 2b crée un fichier caché, `.bash_profile`,
+    lance la commande. Le TD 1c crée un fichier caché, `.bash_profile`,
     dans le dossier personnel ; le cours 2 un dossier caché, `.git`.
   ]
 

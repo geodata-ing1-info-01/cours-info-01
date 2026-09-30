@@ -9,7 +9,7 @@ les ordres de grandeur des tailles et des temps d'accès, compare le processeur
 et la carte graphique, et suit trente ans d'évolution des processeurs. Elle se
 termine par l'électricité consommée par les appareils et par les services en
 ligne, et par le coût de ces services. La partie n'a pas de TD propre : le TD
-1a, fait après la partie sur le réseau, relève les caractéristiques du poste
+5a, fait après la partie sur le réseau, relève les caractéristiques du poste
 et mesure ses temps d'accès.
 
 ## Les composants d'un ordinateur
@@ -86,7 +86,7 @@ d'instructions. La **fréquence**, ou cadence, donne le nombre de cycles par
 seconde : une fréquence de 3 GHz fait 3 milliards de cycles par seconde. Un
 programme Python ordinaire occupe un seul cœur ; les autres cœurs servent aux
 autres programmes ouverts. Les postes de la salle ont 4 cœurs, valeur relevée
-au TD 1a ; un portable en a 4 à 8, un serveur de calcul 32 à 128.
+au TD 5a ; un portable en a 4 à 8, un serveur de calcul 32 à 128.
 
 ## La température du processeur
 
@@ -512,7 +512,7 @@ domaine, s'il en a un.
 
 ## TD de la partie
 
-La partie n'a pas de TD propre. Le TD 1a, `cours5/1a_mesures/`, fait après la
+La partie n'a pas de TD propre. Le TD 5a, `cours5/5a_mesures/`, fait après la
 partie sur le réseau, relève le processeur, la mémoire et le disque du poste,
 puis mesure leurs temps avec un script Python. Les TD de la séance sont
 réunis dans [Travaux dirigés de la séance 5](travaux_diriges.md).

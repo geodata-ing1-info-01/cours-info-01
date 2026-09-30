@@ -26,16 +26,16 @@ Trois parties, qui alternent une explication courte et des TD sur machine.
 * - [Le terminal](notebook/02_terminal.md)
   - la ligne de commande, le terminal Git Bash, la forme d'une commande, les
     commandes de base, les chemins
-  - 2a
+  - 1b
 * - [Premier programme](notebook/03_premier_programme.md)
   - Python, un programme en ligne de commande ; une commande désigne un
     fichier, cherché dans `PATH` ; compilé et interprété ; un script de
     commandes
-  - 2b
+  - 1c
 * - [Un notebook et la syntaxe de Markdown](notebook/04_notebook.md)
   - texte, code et résultats dans un document ; ce que le noyau retient ;
     une cellule de texte en Markdown ; lancer JupyterLab
-  - 3a
+  - 1d
 ```
 
 Les guides détaillés des TD sont réunis dans [Travaux dirigés de la

@@ -201,7 +201,7 @@ conda activate recette
 ```
 
 Cet environnement va dans `C:\Users\<nom>\.conda\envs\recette`, où le
-compte a tous les droits. C'est ce que fait le TD 4a.
+compte a tous les droits. C'est ce que fait le TD 1h.
 
 (dep-a9)=
 ### A9. « CondaHTTPError » à `conda create`, ou « Solving environment » très long

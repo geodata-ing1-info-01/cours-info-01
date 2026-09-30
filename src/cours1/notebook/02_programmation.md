@@ -9,9 +9,9 @@ programme et le système d'exploitation. Elle présente ensuite l'éditeur de
 code, le logiciel dans lequel ce texte s'écrit, et ce qu'il apporte par
 rapport à un éditeur de texte ordinaire : la coloration, le soulignement des
 fautes, la police à chasse fixe et l'affichage des espaces. Trois TD
-l'accompagnent, le [TD 2a](td/2a_vscode_python/guide.md), le
-[TD 2b](td/2b_erreurs/guide.md) et le [TD 2c,
-facultatif](td/2c_hello_cpp/guide.md) ; ils sont présentés en fin de page.
+l'accompagnent, le [TD 1c](td/1c_vscode_python/guide.md), le
+[TD 1d](td/1d_erreurs/guide.md) et le [TD 1e,
+facultatif](td/1e_hello_cpp/guide.md) ; ils sont présentés en fin de page.
 
 ## D'un programme à une application
 
@@ -92,8 +92,8 @@ calculs par du code écrit en C et compilé. Le cours 6 et le projet de la
 séance 7 mesurent cet écart.
 
 Les deux fichiers de la figure sont ceux des TD : `bonjour.py` est le
-programme du TD 2a, et `bonjour.cpp` le même programme écrit en C++, que le
-TD 2c compile.
+programme du TD 1c, et `bonjour.cpp` le même programme écrit en C++, que le
+TD 1e compile.
 
 :::{note}
 Certains langages combinent les deux chemins. Un programme Java est compilé
@@ -411,17 +411,17 @@ sur ce point avec git.
 
 ## TD de la partie
 
-- [TD 2a — Configurer l'éditeur de code, et lancer un
-  programme](td/2a_vscode_python/guide.md), 25 minutes : lancer VS Code,
+- [TD 1c — Configurer l'éditeur de code, et lancer un
+  programme](td/1c_vscode_python/guide.md), 25 minutes : lancer VS Code,
   installer l'extension Python et choisir l'interpréteur, puis exécuter un
   même programme en entier, ligne à ligne et pas à pas.
-- [TD 2b — Trois programmes fautifs](td/2b_erreurs/guide.md), 10 minutes :
+- [TD 1d — Trois programmes fautifs](td/1d_erreurs/guide.md), 10 minutes :
   afficher les caractères invisibles dans l'éditeur, puis corriger trois
   programmes Python qui refusent de s'exécuter.
-- [TD 2c — Le même programme en C++](td/2c_hello_cpp/guide.md), facultatif,
+- [TD 1e — Le même programme en C++](td/1e_hello_cpp/guide.md), facultatif,
   10 minutes : configurer l'éditeur pour un second langage, avec son
   extension et son compilateur, puis compiler et exécuter le programme du
-  TD 2a écrit en C++.
+  TD 1c écrit en C++.
 
 Les TD des autres parties sont dans [Travaux dirigés de la
 séance 1](travaux_diriges.md).

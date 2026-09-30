@@ -167,6 +167,6 @@ git add .")
 
   #notes[
     Un tag donne un nom choisi (`v1.0`) à un commit, dont l'identifiant est
-    une empreinte SHA-1 de 40 caractères. Le TD 6a en pose un.
+    une empreinte SHA-1 de 40 caractères. Le TD 2e en pose un.
   ]
 ]

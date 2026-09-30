@@ -45,7 +45,7 @@ Ce qu'on voit
 
 Cause
 : Le noyau est le paquet `ipykernel`, installé dans l'environnement qui
-  exécute le notebook. `base` l'a ; un environnement créé au TD 4a ne l'a
+  exécute le notebook. `base` l'a ; un environnement créé au TD 1h ne l'a
   que si on l'y a installé.
 
 Remède
@@ -88,7 +88,7 @@ Ce qu'on voit
 Cause
 : Le noyau du notebook se choisit à part, indépendamment de l'interpréteur
   des fichiers `.py` et du terminal ({ref}`V8 <dep-v8>`). C'est le sujet du
-  TD 4b.
+  TD 1i.
 
 Remède
 : Bouton du noyau en haut à droite, choisir l'environnement voulu, puis

@@ -16,8 +16,8 @@ entraînent, et l'environnement dans lequel elles sont installées. Elle
 présente ensuite les deux fichiers qui décrivent un projet et son
 environnement, le terminal de l'éditeur de code, puis la façon dont un
 notebook s'exécute, avec un client et un serveur. Trois TD l'accompagnent, le
-[TD 4a](td/4a_recette/guide.md), le [TD 4b, facultatif](td/4b_noyaux/guide.md)
-et le [TD 4c, facultatif](td/4c_trajet/guide.md) ; ils sont présentés en fin
+[TD 1h](td/1h_recette/guide.md), le [TD 1i, facultatif](td/1i_noyaux/guide.md)
+et le [TD 1j, facultatif](td/1j_trajet/guide.md) ; ils sont présentés en fin
 de page.
 
 ## Les bibliothèques d'un programme
@@ -92,7 +92,7 @@ message :
 ModuleNotFoundError: No module named 'numpy'
 ```
 
-Le TD 4a fait rencontrer ce message. Sa cause est que la bibliothèque n'est
+Le TD 1h fait rencontrer ce message. Sa cause est que la bibliothèque n'est
 pas installée dans l'environnement où le programme s'exécute. La bibliothèque standard ne suffit
 pas aux programmes du métier : ni `numpy`, ni `pillow`, ni `pandas` n'en font
 partie. La suite de la partie montre comment installer une bibliothèque,
@@ -100,7 +100,7 @@ puis comment décrire ce qu'on a installé.
 
 ## Un programme d'exemple : l'objectif
 
-Le programme qui sert d'exemple dans cette partie, et au TD 4a, fabrique une
+Le programme qui sert d'exemple dans cette partie, et au TD 1h, fabrique une
 page de recette. Il lit deux fichiers : la description de la recette, en
 Markdown, et les quantités d'ingrédients pour une personne, en unités du
 système international. Il écrit une page HTML, où les quantités sont adaptées
@@ -189,7 +189,7 @@ la bibliothèque standard avec l'interpréteur, et seules les bibliothèques
 installées peuvent manquer.
 
 La cellule suivante exécute les quatre premières étapes sur les fichiers
-réels du projet du TD 4a. La bibliothèque `tabulate` est installée dans
+réels du projet du TD 1h. La bibliothèque `tabulate` est installée dans
 l'environnement qui construit cette page ; le code du projet, lui, n'y est pas
 installé, et la cellule ajoute son dossier `src` à la liste des dossiers où
 Python cherche les modules, `sys.path`, ce que fait aussi l'installation du
@@ -201,11 +201,11 @@ from pathlib import Path
 
 from tabulate import tabulate
 
-# Le projet du TD 4a, cherché en remontant depuis le dossier de cette page.
+# Le projet du TD 1h, cherché en remontant depuis le dossier de cette page.
 projet = next(
-    dossier / "data/cours1/4a_recette/depart/recette"
+    dossier / "data/cours1/1h_recette/depart/recette"
     for dossier in [Path.cwd(), *Path.cwd().parents]
-    if (dossier / "data/cours1/4a_recette").is_dir()
+    if (dossier / "data/cours1/1h_recette").is_dir()
 )
 sys.path.insert(0, str(projet / "src"))
 
@@ -491,7 +491,7 @@ Un projet qui n'a pas ce fichier écrit au moins dans son `README` les
 commandes qui composent son environnement.
 
 Une installation se refait à partir du fichier qui la décrit, sans dépendre
-du souvenir des commandes tapées. Le TD 4a fait écrire les deux textes qui
+du souvenir des commandes tapées. Le TD 1h fait écrire les deux textes qui
 manquent pour cela à son projet : le fichier `environment.yml`, et la
 section du `README` qui dit comment installer le projet.
 
@@ -541,9 +541,9 @@ print(sys.executable)
 Un projet Python se décrit dans un fichier texte, `pyproject.toml`, placé à
 la racine du projet : son nom, sa version, les versions de Python qu'il
 accepte, et les bibliothèques dont son code a besoin. Voici l'essentiel de
-celui du projet du TD 4a :
+celui du projet du TD 1h :
 
-```{literalinclude} ../../../data/cours1/4a_recette/depart/recette/pyproject.toml
+```{literalinclude} ../../../data/cours1/1h_recette/depart/recette/pyproject.toml
 :language: toml
 :lines: 10-21
 ```
@@ -563,7 +563,7 @@ celui du projet du TD 4a :
   - la commande que l'installation du projet crée, ici `recette`
 ```
 
-Le projet du TD 4a contient ainsi deux fichiers de description, qui ne
+Le projet du TD 1h contient ainsi deux fichiers de description, qui ne
 décrivent pas la même chose et ne s'adressent pas au même outil. Aucun des
 deux n'installe quoi que ce soit.
 
@@ -620,7 +620,7 @@ invisibles, vu à la partie 2, permet de la trouver.
 L'éditeur de code ouvre un terminal dans sa propre fenêtre, déjà placé dans le
 dossier du projet ouvert. Ce terminal intégré est le même programme qu'un
 terminal ouvert hors de l'éditeur, affiché dans la fenêtre de celui-ci. Le TD
-2a s'en est servi pour lancer le premier programme.
+1c s'en est servi pour lancer le premier programme.
 
 ```{list-table}
 :header-rows: 1
@@ -744,16 +744,16 @@ existe des noyaux pour d'autres langages, comme `IRkernel` pour R ou `IJulia` po
 
 ## TD de la partie
 
-- [TD 4a — Installer un projet Python, et décrire son
-  installation](td/4a_recette/guide.md), 20 minutes : installer dans un
+- [TD 1h — Installer un projet Python, et décrire son
+  installation](td/1h_recette/guide.md), 20 minutes : installer dans un
   environnement neuf les deux sortes de dépendances du projet de la recette,
   puis écrire le fichier qui décrit cet environnement et la section du
   `README` qui dit comment l'installer.
-- [TD 4b — Le client, le noyau, et où ils sont
-  installés](td/4b_noyaux/guide.md), facultatif, 20 minutes : vérifier ce
+- [TD 1i — Le client, le noyau, et où ils sont
+  installés](td/1i_noyaux/guide.md), facultatif, 20 minutes : vérifier ce
   qu'un environnement contient pour ouvrir un notebook, puis installer le
   client et le noyau au même endroit ou séparément.
-- [TD 4c — Installer un projet en lisant son README](td/4c_trajet/guide.md),
+- [TD 1j — Installer un projet en lisant son README](td/1j_trajet/guide.md),
   facultatif, 15 minutes : installer et lancer un projet écrit par d'autres,
   dont les dépendances ne sont pas des bibliothèques Python, à partir de sa
   seule documentation.

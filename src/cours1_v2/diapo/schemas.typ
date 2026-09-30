@@ -86,7 +86,7 @@
 // Copier un fichier dans l'explorateur de fichiers
 //
 // Dessin de typst, sans cetz : `grid` et `rect` s'écrivent `std.grid` et
-// `std.rect` dans ce fichier. La fenêtre montre le dossier `depart/` du TD 2a,
+// `std.rect` dans ce fichier. La fenêtre montre le dossier `depart/` du TD 1b,
 // `raven.odt` sélectionné et le menu du clic droit, « Copier » en surbrillance.
 
 #let _icone-fichier = box(width: 12pt, height: 15pt, baseline: 3pt,
@@ -110,7 +110,7 @@
 
 #let explorateur-copie() = fenetre("Explorateur de fichiers")[
   #block(width: 100%, stroke: 0.6pt + estompe, inset: (x: 6pt, y: 4pt), radius: 2pt,
-         text(font: police-code, size: 13pt)[…\\2a_terminal\\depart])
+         text(font: police-code, size: 13pt)[…\\1b_terminal\\depart])
   #block(width: 55%)[
     #_entree("raven.odt", choisie: true)
     #_entree("raven_brut.html")
@@ -123,7 +123,7 @@
 // La même copie dans Git Bash. L'invite est en petit et estompée, la commande
 // en grand : c'est elle que la diapositive compare au menu.
 #let git-bash-copie() = fenetre("Git Bash", code: true)[
-  #let invite = text(size: 12.5pt, fill: estompe, raw("eleve@POSTE-12 MINGW64 ~/Desktop/info01/cours1/2a_terminal"))
+  #let invite = text(size: 12.5pt, fill: estompe, raw("eleve@POSTE-12 MINGW64 ~/Desktop/info01/cours1/1b_terminal"))
   #invite
   #v(-2pt)
   #text(size: 19pt, raw("$ cp depart/raven.odt travail/"))
@@ -162,9 +162,9 @@
 }
 
 // La commande `ls depart` dans Git Bash, avec sa sortie : la liste du dossier
-// `depart/` du TD 2a, telle que le guide du TD la montre. Une ligne par
+// `depart/` du TD 1b, telle que le guide du TD la montre. Une ligne par
 // `raw`, pour estomper l'invite.
-#let _invite-2a = "eleve@POSTE-12 MINGW64 ~/Desktop/info01/cours1/2a_terminal"
+#let _invite-2a = "eleve@POSTE-12 MINGW64 ~/Desktop/info01/cours1/1b_terminal"
 
 #let git-bash-ls() = fenetre("Git Bash", code: true)[
   #set par(leading: 0.45em)

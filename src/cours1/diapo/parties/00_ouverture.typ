@@ -178,14 +178,14 @@
 "cours1/                un dossier par TD, dans l'ordre de la séance
 ├── 1a_formats/
 ├── 1b_archive_odt/    facultatif
-├── 2a_vscode_python/
-├── 2b_erreurs/
-├── 2c_hello_cpp/      facultatif
-├── 3a_markdown/
-├── 3b_notebooks/
-├── 4a_recette/
-├── 4b_noyaux/         facultatif
-└── 4c_trajet/         facultatif")
+├── 1c_vscode_python/
+├── 1d_erreurs/
+├── 1e_hello_cpp/      facultatif
+├── 1f_markdown/
+├── 1g_notebooks/
+├── 1h_recette/
+├── 1i_noyaux/         facultatif
+└── 1j_trajet/         facultatif")
     ]
   ]
 
@@ -202,7 +202,7 @@
     propre dossier : c'est le dossier ouvert qui fixe où s'ouvre le terminal.
 
     Les TD facultatifs ne sont pas faits en séance : ils sont là pour qui va
-    plus vite, ou pour après. Le `2c`, C++, demande un compilateur qui n'est
+    plus vite, ou pour après. Le TD 1e, C++, demande un compilateur qui n'est
     pas installé d'origine sous Windows.
 
     L'archive `info01-cours1.zip` est assemblée par `outils/livrer_tds.py`.
@@ -223,9 +223,9 @@
     align: (left + horizon, left + horizon, right + horizon),
     [Partie], [Nature], [Durée],
     [Logiciels et formats de fichier], [cours et TD 1a], [25′],
-    [Programmation et éditeur de code], [cours et TD 2a, 2b], [35′],
-    [Markdown et notebook], [cours et TD 3a, 3b], [30′],
-    [Bibliothèques et environnements Python], [cours et TD 4a], [30′],
+    [Programmation et éditeur de code], [cours et TD 1c, 1d], [35′],
+    [Markdown et notebook], [cours et TD 1f, 1g], [30′],
+    [Bibliothèques et environnements Python], [cours et TD 1h], [30′],
   )
 
   #avertissement[
@@ -234,7 +234,7 @@
   ]
 
   #legende[
-    Durées indicatives. Les TD 1b, 2c, 4b et 4c sont facultatifs.
+    Durées indicatives. Les TD 1b, 1e, 1i et 1j sont facultatifs.
   ]
 
   #notes[

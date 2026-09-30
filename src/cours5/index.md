@@ -19,17 +19,17 @@ qu'il faut avoir en place avant la forge du cours 6.
   - composants, tailles et temps d'accès, trente ans d'évolution, puissance et consommation, coût des services en ligne
   - 30 min
 * - [Le réseau](notebook/02_reseau.md)
-  - local et distant, client et serveur, débit et latence, le sans-fil ; TD 1a
+  - local et distant, client et serveur, débit et latence, le sans-fil ; TD 5a
   - 30 min
 * - [Prouver qui l'on est](notebook/03_prouver_qui_lon_est.md)
-  - le mot de passe, les quatre façons de le perdre, les parades, le deuxième facteur, la clé SSH ; TD 2a
+  - le mot de passe, les quatre façons de le perdre, les parades, le deuxième facteur, la clé SSH ; TD 5b
   - 40 min
 * - [Les secrets de vos programmes](notebook/04_secrets.md)
   - ce qui ne va pas dans un dépôt, et quoi faire si c'est arrivé
   - 15 min
 ```
 
-Le TD 3a, facultatif, rejoue sur un dépôt neuf ce que la partie 4 montre : un
+Le TD 5c, facultatif, rejoue sur un dépôt neuf ce que la partie 4 montre : un
 secret supprimé reste dans l'historique.
 
 Les TD sont réunis, par partie, dans [Travaux dirigés de la séance
@@ -42,7 +42,7 @@ dossier par TD, et dans chacun la feuille du TD en PDF. L'archive se récupère
 depuis le dossier partagé, comme décrit dans [Récupérer les fichiers d'une
 séance](../avant/donnees.md).
 
-Le TD 2a demande un compte GitHub : le créer avant la séance, avec l'adresse
+Le TD 5b demande un compte GitHub : le créer avant la séance, avec l'adresse
 de l'école, et activer la double authentification quand GitHub la propose.
 Le cours 6 commence par `git clone` et suppose la clé en place.
 
@@ -69,8 +69,8 @@ pendant cette séance.
 ```
 
 Le cours 6 commence par `git clone` : la clé doit fonctionner avant la
-séance. Un TD 2a non terminé se termine avant, avec la feuille du TD dans
-`cours5/2a_cle_ssh/`.
+séance. Un TD 5b non terminé se termine avant, avec la feuille du TD dans
+`cours5/5b_cle_ssh/`.
 
 ```{toctree}
 :maxdepth: 1

@@ -8,7 +8,7 @@ oui pour le chemin en ligne de commande, qui est écrit et testé ; le chemin
 
 Supports : diapositives « Mode graphique et mode texte », « Ce que “facile à
 utiliser” veut dire » et le TD 5, « Une vidéo, deux chemins ».
-Scripts et données : [`data/cours1/4c_trajet/`](../../../data/cours1/4c_trajet/).
+Scripts et données : [`data/cours1/1j_trajet/`](../../../data/cours1/1j_trajet/).
 
 ## Ce que le TD doit montrer
 

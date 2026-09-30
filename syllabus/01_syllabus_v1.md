@@ -44,18 +44,18 @@ Objectif : comprendre ce qu'est un logiciel et un fichier, écrire et lancer un 
   - ⌨️ **TD 1b · 12′ · facultatif · Un `.odt` est une archive ZIP** : ouvrir l'archive, modifier `content.xml`, recompresser, rouvrir dans LibreOffice.
 - **Partie 2 · Programmation et éditeur de code (35′)**
   - 🎓 programme et application ; compilé et interprété ; du code source aux instructions machine ; la place de l'interpréteur ; les fonctions d'un IDE ; l'édition de texte dans un IDE (syntaxe et coloration, chasse fixe, indentation en espaces ou tabulation).
-  - ⌨️ **TD 2a · 25′ · Configurer VS Code et lancer un programme** : lancer VS Code depuis Anaconda Navigator ; installer l'extension Python ; palette de commandes et réglages ; choisir l'interpréteur ; hors Anaconda, remplacer le terminal PowerShell par un profil « Anaconda Prompt » ; lancer `altitudes.py` ; Python en interactif ; en option, la même chose dans l'invite de commandes d'Anaconda seul ; débogueur pas à pas.
-  - ⌨️ **TD 2b · 10′ · Trois programmes fautifs** : afficher les caractères invisibles, corriger trois erreurs de nature différente.
-  - ⌨️ **TD 2c · 10′ · facultatif · Le même programme en C++** : extension C/C++, compilateur par conda-forge (`gxx`, erreur `crt2.o` de la dernière version), compiler puis lancer.
+  - ⌨️ **TD 1c · 25′ · Configurer VS Code et lancer un programme** : lancer VS Code depuis Anaconda Navigator ; installer l'extension Python ; palette de commandes et réglages ; choisir l'interpréteur ; hors Anaconda, remplacer le terminal PowerShell par un profil « Anaconda Prompt » ; lancer `altitudes.py` ; Python en interactif ; en option, la même chose dans l'invite de commandes d'Anaconda seul ; débogueur pas à pas.
+  - ⌨️ **TD 1d · 10′ · Trois programmes fautifs** : afficher les caractères invisibles, corriger trois erreurs de nature différente.
+  - ⌨️ **TD 1e · 10′ · facultatif · Le même programme en C++** : extension C/C++, compilateur par conda-forge (`gxx`, erreur `crt2.o` de la dernière version), compiler puis lancer.
 - **Partie 3 · Markdown et notebook (30′)**
   - 🎓 les fichiers texte d'un projet ; le format de la documentation ; l'intention de Markdown (Gruber, 2004) et sa syntaxe ; programmation littérale ; le bloc de texte en Markdown ; un notebook dans JupyterLab, lancé depuis Navigator.
-  - ⌨️ **TD 3a · 20′ · Une recette en Markdown** : aperçu dans VS Code, titre, tableau, liste numérotée, diagramme `mermaid`.
-  - ⌨️ **TD 3b · 12′ · Le notebook, ouvert de trois façons** : le programme du TD 2a découpé en cellules, ouvert dans le navigateur (jupyter.org/try-jupyter), dans VS Code et dans JupyterLab ; ce que le noyau retient d'une cellule à l'autre.
+  - ⌨️ **TD 1f · 20′ · Une recette en Markdown** : aperçu dans VS Code, titre, tableau, liste numérotée, diagramme `mermaid`.
+  - ⌨️ **TD 1g · 12′ · Le notebook, ouvert de trois façons** : le programme du TD 1c découpé en cellules, ouvert dans le navigateur (jupyter.org/try-jupyter), dans VS Code et dans JupyterLab ; ce que le noyau retient d'une cellule à l'autre.
 - **Partie 4 · Bibliothèques et environnements Python (30′) — non traitée le 15/09**
   - 🎓 bibliothèques et `import` ; exemple : le programme « recette » en neuf lignes ; dépendances et numéros de version ; l'environnement contre les conflits de dépendances ; outils (pip, conda, conda-forge, mamba, pixi, uv) ; dépôts (PyPI, conda-forge) ; créer un environnement et le décrire (`environment.yml`) ; ce que change l'activation (`PATH`) ; `pyproject.toml` ; le terminal de l'éditeur ; client et serveur d'un notebook, les trois emplacements du serveur, les clients.
-  - ⌨️ **TD 4a · 20′ · Installer un projet Python et décrire son installation** : projet `recette`, environnement d'essai, deux dépendances (publiée et locale), écrire `environment.yml` et la section d'installation du README, refaire l'environnement depuis le fichier.
-  - ⌨️ **TD 4b · 20′ · facultatif · Le client, le noyau, et où ils sont** : tout dans le même environnement, ou client et noyau séparés.
-  - ⌨️ **TD 4c · 15′ · facultatif · Installer un projet en lisant son README** : projet `trajet` (vidéo commentée du trajet gare-école, magick et ffmpeg).
+  - ⌨️ **TD 1h · 20′ · Installer un projet Python et décrire son installation** : projet `recette`, environnement d'essai, deux dépendances (publiée et locale), écrire `environment.yml` et la section d'installation du README, refaire l'environnement depuis le fichier.
+  - ⌨️ **TD 1i · 20′ · facultatif · Le client, le noyau, et où ils sont** : tout dans le même environnement, ou client et noyau séparés.
+  - ⌨️ **TD 1j · 15′ · facultatif · Installer un projet en lisant son README** : projet `trajet` (vidéo commentée du trajet gare-école, magick et ffmpeg).
 - **Clôture** : « À retenir » (logiciel, application, interface, extension, format, dépendance, environnement, notebook).
 
 *Détail & exercices : [`cours/1_formats_et_environnement/`](cours/1_formats_et_environnement/). Supports : [`src/cours1/`](../src/cours1/), données : [`data/cours1/`](../data/cours1/).*
@@ -70,13 +70,13 @@ Objectif : se repérer dans un terminal, et versionner un projet en local avec g
 
 - **🎓 · Ligne de commande** (13 pages, sans TD) : le terminal et son invite (utilisateur, dossier courant) ; bash, `commande [-o] [--option] <arguments>`, `--help` ; commandes utiles (`ls`, `cd`, `cp`, `mv`, `rm`, `pwd`, `touch`, `mkdir`) ; arborescence, racine, chemin absolu et relatif, `..` ; fichiers cachés (`.git`, `.ssh`) ; le motif `*` (présenté comme « expressions régulières »).
 - **🎓 · Git local** : à quoi sert git (états du projet, travail à plusieurs), quand l'utiliser ; `init`, commit, fichiers suivis et non suivis, zone de préparation ; annuler un commit (`revert`) ; `tag`.
-- ⌨️ **TD 3a · 15′ · Un premier dépôt** : alias du graphe, `git init` de `projet_2`, `README.md`, premier commit.
+- ⌨️ **TD 2a · 15′ · Un premier dépôt** : alias du graphe, `git init` de `projet_2`, `README.md`, premier commit.
 - **🎓 · Branches** : branche, `HEAD`, fusion par `merge` et par `rebase`, conflits et leur résolution.
-- ⌨️ **TD 4a · 30′ · Branches et fusions** : branches `develop`, `documentation`, `main_code`, `operations`, fusionnées dans `develop`.
-- ⌨️ **TD 4b · 15′ · Annuler et remettre à jour** : `revert`, puis `rebase` de `main_code` sur `develop`.
-- ⌨️ **TD 4c · 25′ · Créer et résoudre un conflit** : `main.py` modifié sur deux branches.
+- ⌨️ **TD 2b · 30′ · Branches et fusions** : branches `develop`, `documentation`, `main_code`, `operations`, fusionnées dans `develop`.
+- ⌨️ **TD 2c · 15′ · Annuler et remettre à jour** : `revert`, puis `rebase` de `main_code` sur `develop`.
+- ⌨️ **TD 2d · 25′ · Créer et résoudre un conflit** : `main.py` modifié sur deux branches.
 - **🎓 · Informations et bonnes pratiques** : `log --graph`, `diff`, `status` ; `.gitignore` ; messages de commit, ne pas committer de code non fonctionnel, organisation main / develop / feature.
-- ⌨️ **TD 6a · 10′ · Publier une version** : fusionner `develop` dans `master`, taguer.
+- ⌨️ **TD 2e · 10′ · Publier une version** : fusionner `develop` dans `master`, taguer.
 - **Bilan horaire** : 95′ de TD annoncés, plus l'exposé ; la séance ne tient pas en 2 h.
 
 *Supports : [`src/cours2/`](../src/cours2/), données : [`data/cours2/`](../data/cours2/).*
@@ -88,13 +88,13 @@ Objectif : manipuler des chemins et lire des fichiers en Python, construire un p
 > Trois notebooks, dont les deux premiers se font pendant l'exposé, puis un TD de construction. 57 diapositives.
 
 - **⌨️ 10′ · Préparation du poste** : copier l'archive depuis `formationTemp`, lancer JupyterLab (Navigator, ou `jupyter lab` dans l'invite de commandes d'Anaconda) ou VS Code ; Spyder en repli.
-- **Chemins (20′)**, ⌨️ **TD 1a · `recette.ipynb`** suivi pendant l'exposé : le programme « recette » avec ses chemins en dur (lire le CSV, adapter les quantités, insérer le tableau) ; `pathlib.Path` et `/` ; la racine lue automatiquement ; lister un dossier pour traiter plusieurs recettes ; les parties d'un chemin ; `pandoc` dans le terminal, puis depuis le notebook ; où le terminal trouve `pandoc` (`PATH`, `shutil.which`) ; `subprocess.run([...])`.
+- **Chemins (20′)**, ⌨️ **TD 3b · `recette.ipynb`** suivi pendant l'exposé : le programme « recette » avec ses chemins en dur (lire le CSV, adapter les quantités, insérer le tableau) ; `pathlib.Path` et `/` ; la racine lue automatiquement ; lister un dossier pour traiter plusieurs recettes ; les parties d'un chemin ; `pandoc` dans le terminal, puis depuis le notebook ; où le terminal trouve `pandoc` (`PATH`, `shutil.which`) ; `subprocess.run([...])`.
 - **Texte et binaire (45′)**
-  - ⌨️ **TD 2a · 20′ · `fichiers.ipynb`** : `open`, `read`, `close` ; `with` ; les modes ; lire ligne par ligne ; lire un CSV ; `read_text`, `write_text`, `read_bytes`.
-  - ⌨️ **TD 2b · 25′ · `images.ipynb`** : le format PGM ; P2 (texte) et P5 (binaire) ; lire octet par octet (`hexdump` en six lignes, `Format-Hex`, extension Hex Editor) ; la signature des formats ; le poids d'une image (P5, P2, BMP) ; la compression ; le temps de lecture ; ASCII et UTF-8 ; des noms de lieux hors ASCII.
+  - ⌨️ **TD 3c · 20′ · `fichiers.ipynb`** : `open`, `read`, `close` ; `with` ; les modes ; lire ligne par ligne ; lire un CSV ; `read_text`, `write_text`, `read_bytes`.
+  - ⌨️ **TD 3d · 25′ · `images.ipynb`** : le format PGM ; P2 (texte) et P5 (binaire) ; lire octet par octet (`hexdump` en six lignes, `Format-Hex`, extension Hex Editor) ; la signature des formats ; le poids d'une image (P5, P2, BMP) ; la compression ; le temps de lecture ; ASCII et UTF-8 ; des noms de lieux hors ASCII.
 - **Ligne de commande (45′)**
   - 🎓 du notebook au programme : le même code dans un fichier ; ce que l'interpréteur exécute ; une fonction `main` et `if __name__ == "__main__"` ; `argparse`.
-  - ⌨️ **TD 3a · 45′ · Une ligne de commande pour la recette** : dépôt git dans `travail/`, terminal Git Bash avec `conda init bash` ; étape 1 le code dans `recette.py`, étape 2 une fonction `main`, étape 3 les arguments sur une branche, étape 4 un README ; facultatif, étape 5 `src/` et `data/`, étape 6 `pyproject.toml` et `pip install -e .` ; un commit par étape.
+  - ⌨️ **TD 3f · 45′ · Une ligne de commande pour la recette** : dépôt git dans `travail/`, terminal Git Bash avec `conda init bash` ; étape 1 le code dans `recette.py`, étape 2 une fonction `main`, étape 3 les arguments sur une branche, étape 4 un README ; facultatif, étape 5 `src/` et `data/`, étape 6 `pyproject.toml` et `pip install -e .` ; un commit par étape.
 - **Clôture** : « À retenir » (chemin relatif, `Path(__file__)`, `encoding="utf-8"`, `subprocess.run`, `__main__`, binaire, signature, caractère, `argparse`).
 
 *Supports : [`src/cours3/`](../src/cours3/), données : [`data/cours3/`](../data/cours3/).*
@@ -120,14 +120,14 @@ Deux moitiés ; la seconde prépare directement la forge (cours 6). Déroulé di
 
 - **🎓 30′ · Le matériel** : composants (schéma, photo d'un boîtier ouvert, photo d'une carte mère), processeur, température du processeur (question à la salle), mémoire vive et disque, le chemin d'une donnée, tailles, temps d'accès sur échelle log et « si la mémoire vive valait une seconde », processeur et carte graphique, trente ans de processeurs, puissance de calcul et consommation, électricité et coût des services en ligne.
 - **🎓 15′ · Le réseau** : local et distant, client et serveur, adresse, nom et port (rappel de SNT), débit et latence, la distance, le lien le plus lent, le sans-fil, commit et push.
-- **⌨️ 15′ · TD 1a** : les caractéristiques du poste dans le gestionnaire des tâches, puis `mesures.py` dans l'invite de commandes d'Anaconda : additions, copie en mémoire, écriture et relecture sur le disque, aller-retour et téléchargement.
+- **⌨️ 15′ · TD 5a** : les caractéristiques du poste dans le gestionnaire des tâches, puis `mesures.py` dans l'invite de commandes d'Anaconda : additions, copie en mémoire, écriture et relecture sur le disque, aller-retour et téléchargement.
 
 **B. Prouver qui l'on est, et les secrets des programmes (~1 h).**
 
 - **🎓 20′ · Prouver qui l'on est** : identifiant et mot de passe (le serveur garde une empreinte) ; les quatre façons de perdre un mot de passe (deviné, volé sur le serveur, volé chez vous, intercepté) ; combien de temps pour le deviner ; hameçonnage ; une parade par menace ; le deuxième facteur ; la clé à la place du mot de passe, la connexion SSH, les deux fichiers.
-- **⌨️ 20′ · TD 2a** : dans l'invite de commandes d'Anaconda, `ssh-keygen`, la clé publique sur le compte GitHub, `ssh -T git@github.com`.
+- **⌨️ 20′ · TD 5b** : dans l'invite de commandes d'Anaconda, `ssh-keygen`, la clé publique sur le compte GitHub, `ssh -T git@github.com`.
 - **🎓 15′ · Les secrets de vos programmes** : ce qui est un secret, un secret dans un dépôt y reste (`git log -p`), séparer le code et les secrets (`.gitignore`, fichier modèle), si un secret a fui, mises à jour et sauvegardes.
-- **⌨️ TD 3a, facultatif** : un secret dans l'historique, rejoué sur un dépôt neuf.
+- **⌨️ TD 5c, facultatif** : un secret dans l'historique, rejoué sur un dépôt neuf.
 - **Clôture** : « Vers le cours 6 » (compte, clé SSH, deuxième facteur, secret ignoré ; le cours 6 commence par `git clone`).
 
 ## Cours 6 — Forge & git en équipe ; outil « trajectoire » (CM)

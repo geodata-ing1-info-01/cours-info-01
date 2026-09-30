@@ -1,7 +1,7 @@
 // Partie 1 du cours 3 — le programme de la recette, ses améliorations, et
 // les trois bibliothèques qui les permettent.
 //
-// Incluse par `cours3.typ`, avant le TD 1a qui fait ouvrir `recette.ipynb`.
+// Incluse par `cours3.typ`, avant le TD 3b qui fait ouvrir `recette.ipynb`.
 // Ordre : l'objectif du programme et ses données, le code de départ et ses
 // trois problèmes, les améliorations jusqu'à la ligne de commande,
 // puis `pathlib`, `subprocess` et `argparse`, avec l'essentiel pour les TD.
@@ -62,11 +62,11 @@
     programme écrit ses résultats dans `travail/`.
   ]
 
-  #sortie("1a_recette/\n├── depart/\n│   ├── notebook/recette.ipynb       ← le notebook livré, à copier dans travail/\n│   ├── recettes/\n│   │   ├── crepes/\n│   │   │   ├── ingredients.csv      ← les quantités pour une personne\n│   │   │   └── recette.md           ← le texte, sans tableau des ingrédients\n│   │   ├── mousse_chocolat/\n│   │   ├── pate_pizza/\n│   │   └── salade_lentilles/\n│   └── style.css\n└── travail/                         ← le notebook et les fichiers produits", taille: 12pt)
+  #sortie("3b_recette/\n├── depart/\n│   ├── notebook/recette.ipynb       ← le notebook livré, à copier dans travail/\n│   ├── recettes/\n│   │   ├── crepes/\n│   │   │   ├── ingredients.csv      ← les quantités pour une personne\n│   │   │   └── recette.md           ← le texte, sans tableau des ingrédients\n│   │   ├── mousse_chocolat/\n│   │   ├── pate_pizza/\n│   │   └── salade_lentilles/\n│   └── style.css\n└── travail/                         ← le notebook et les fichiers produits", taille: 12pt)
 
   #notes[
     `depart/` ne se modifie pas. Le nom du dossier de recette servira de
-    nom de recette sur la ligne de commande, au TD 3b.
+    nom de recette sur la ligne de commande, au TD 3f.
   ]
 ]
 
@@ -95,7 +95,7 @@
   ]
 
   #notes[
-    Diapositive présentée avant l'ouverture du notebook (TD 1a) ; le code s'exécute au § 2.
+    Diapositive présentée avant l'ouverture du notebook (TD 3b) ; le code s'exécute au § 2.
     Au § 2, on doit obtenir une erreur `FileNotFoundError` sur le premier chemin. 
     Puis faire modifier ce même bloc, où chacun adapte avec les chemins de son poste. 
     Ceux-ci sont lus dans la barre d'adresse de l'explorateur, mais il faut remplacer les `\` des chemins windows avec des `/` pour respecter les conventions de python. 
@@ -155,7 +155,7 @@
     [Bibliothèque], [Problème résolu], [Ce qu'elle fournit], [Où],
     [`pathlib`], [des chemins écrits en entier, propres à un poste], [des chemins construits à partir d'une racine ; le parcours d'un dossier], [`recette.ipynb` § 3],
     [`subprocess`], [la conversion en HTML tapée à la main dans le terminal], [le lancement de pandoc depuis Python], [`recette.ipynb` § 4],
-    [`argparse`], [des valeurs modifiées dans le code avant chaque lancement], [la lecture des valeurs écrites après le nom du script, et l'aide `--help`], [`recette.py`, TD 3b],
+    [`argparse`], [des valeurs modifiées dans le code avant chaque lancement], [la lecture des valeurs écrites après le nom du script, et l'aide `--help`], [`recette.py`, TD 3f],
   )
 
   #legende[
@@ -210,7 +210,7 @@
 
   #face-a-face(
     panneau("L'arborescence du TD")[
-      #sortie("1a_recette/                ← RACINE\n├── depart/\n│   └── recettes/          ← DONNEES\n│       └── crepes/\n│           ├── ingredients.csv\n│           └── recette.md\n└── travail/               ← SORTIE\n    └── crepes.md", taille: 12pt)
+      #sortie("3b_recette/                ← RACINE\n├── depart/\n│   └── recettes/          ← DONNEES\n│       └── crepes/\n│           ├── ingredients.csv\n│           └── recette.md\n└── travail/               ← SORTIE\n    └── crepes.md", taille: 12pt)
     ],
     panneau("Le code")[
       #sortie("from pathlib import Path\n\nRACINE = Path.cwd().parent\nDONNEES = RACINE / \"depart\" / \"recettes\"\nSORTIE = RACINE / \"travail\"\nDONNEES / \"crepes\" / \"recette.md\"\n\nfor dossier in DONNEES.iterdir():\n    print(dossier.name)", taille: 12pt)
@@ -257,7 +257,7 @@
 
     Code allégé du § 3.1 : la fonction a aussi deux paramètres `personnes`
     et `unites`, avec des valeurs par défaut, et `C:/…` abrège
-    `C:/Users/alice/Desktop/cours3/1a_recette/…`.
+    `C:/Users/alice/Desktop/cours3/3b_recette/…`.
   ]
 ]
 
@@ -270,7 +270,7 @@
 
   #face-a-face(
     panneau("L'arborescence du TD")[
-      #sortie("1a_recette/                 ← RACINE\n├── depart/\n│   └── recettes/           ← DONNEES\n│       └── crepes/         ← RECETTE\n│           ├── ingredients.csv\n│           └── recette.md\n└── travail/                ← SORTIE\n    ├── recette.ipynb       ← Path.cwd()\n    └── crepes.md", taille: 11pt)
+      #sortie("3b_recette/                 ← RACINE\n├── depart/\n│   └── recettes/           ← DONNEES\n│       └── crepes/         ← RECETTE\n│           ├── ingredients.csv\n│           └── recette.md\n└── travail/                ← SORTIE\n    ├── recette.ipynb       ← Path.cwd()\n    └── crepes.md", taille: 11pt)
     ],
     panneau("Après, § 3.3")[
       #sortie("RACINE = Path.cwd().parent\nDONNEES = RACINE / \"depart\" / \"recettes\"\nSORTIE = RACINE / \"travail\"\nRECETTE = DONNEES / \"crepes\"\n\nFICHIER_INGREDIENTS = RECETTE / \"ingredients.csv\"\nFICHIER_RECETTE = RECETTE / \"recette.md\"\nFICHIER_SORTIE = SORTIE / \"crepes.md\"\n\ngenerer(FICHIER_INGREDIENTS, FICHIER_RECETTE,\n        FICHIER_SORTIE)", taille: 11pt)
@@ -283,7 +283,7 @@
   ]
 
   #notes[
-    Le § 3.2 écrit d'abord la racine en dur, `Path("C:/…/1a_recette")`,
+    Le § 3.2 écrit d'abord la racine en dur, `Path("C:/…/3b_recette")`,
     puis le § 3.3 la déduit du dossier courant : `Path.cwd()` est
     `travail/`, le dossier du notebook, et `.parent` le dossier au-dessus.
   ]
@@ -324,7 +324,7 @@
   )
 
   #v(0.5em)
-  #sortie("(base) C:\\Users\\moi> cd Desktop\\cours3\\1a_recette\\travail\n(base) C:\\Users\\moi\\Desktop\\cours3\\1a_recette\\travail> pandoc crepes.md -o crepes.html", taille: 12pt)
+  #sortie("(base) C:\\Users\\moi> cd Desktop\\cours3\\3b_recette\\travail\n(base) C:\\Users\\moi\\Desktop\\cours3\\3b_recette\\travail> pandoc crepes.md -o crepes.html", taille: 12pt)
 
   #v(0.3em)
   #tableau(
@@ -391,7 +391,7 @@
 
   #face-a-face(
     panneau("L'arborescence")[
-      #sortie("cours3/                    ← dossier courant C\n└── 1a_recette/           ← dossier courant B\n    ├── depart/\n    └── travail/           ← dossier courant A\n        ├── recette.ipynb\n        ├── crepes.md\n        └── crepes.html", taille: 11pt)
+      #sortie("cours3/                    ← dossier courant C\n└── 3b_recette/           ← dossier courant B\n    ├── depart/\n    └── travail/           ← dossier courant A\n        ├── recette.ipynb\n        ├── crepes.md\n        └── crepes.html", taille: 11pt)
     ],
     panneau("La même conversion, depuis chaque dossier")[
       #tableau(
@@ -400,7 +400,7 @@
         [], [Commande],
         [A], [`pandoc crepes.md -o crepes.html`],
         [B], [`pandoc travail\crepes.md -o travail\crepes.html`],
-        [C], [`pandoc 1a_recette\travail\crepes.md -o 1a_recette\travail\crepes.html`],
+        [C], [`pandoc 3b_recette\travail\crepes.md -o 3b_recette\travail\crepes.html`],
       )
     ],
   )
@@ -418,7 +418,7 @@
     racine.
 
     Dans une chaîne Python, `\t` est une tabulation : écrire les chemins
-    avec `/` ou avec `Path`, jamais `"1a_recette\travail"`.
+    avec `/` ou avec `Path`, jamais `"3b_recette\travail"`.
   ]
 ]
 
@@ -439,7 +439,7 @@
   )
 
   #v(0.4em)
-  #sortie("print(str(fichier_sortie))\nC:\\Users\\moi\\Desktop\\cours3\\1a_recette\\travail\\crepes.md", taille: 12pt)
+  #sortie("print(str(fichier_sortie))\nC:\\Users\\moi\\Desktop\\cours3\\3b_recette\\travail\\crepes.md", taille: 12pt)
 
   #legende[
     `fichier_sortie` vaut `RACINE / "travail" / "crepes.md"`, et `RACINE`
@@ -457,7 +457,7 @@
 #d("Du notebook à la ligne de commande")[
   #annonce[
     Dans le notebook, changer une valeur oblige à relancer les cellules qui
-    en dépendent. Le script du TD 3b reçoit les valeurs sur la ligne de
+    en dépendent. Le script du TD 3f reçoit les valeurs sur la ligne de
     commande, et une seule commande produit la page.
   ]
 
@@ -467,7 +467,7 @@
     align: top,
     schema-notebook-valeurs(),
     [
-      #panneau("Invite de commandes d'Anaconda : recette.py, TD 3b")[
+      #panneau("Invite de commandes d'Anaconda : recette.py, TD 3f")[
         #sortie("> python recette.py pate_pizza -p 6 -u US\n…\\sortie\\pate_pizza.html :\n6 personne(s), unités US", taille: 11pt)
       ]
       #v(0.3em)
@@ -486,13 +486,13 @@
     Schéma : la cellule des valeurs n'existe pas telle quelle dans
     `recette.ipynb`, où `generer` reçoit les valeurs à l'appel ; elle
     représente le cas d'un notebook paramétré en tête. Sortie du terminal :
-    exécution réelle du corrigé du TD 3b, chemin abrégé.
+    exécution réelle du corrigé du TD 3f, chemin abrégé.
   ]
 ]
 
 // --------------------------------------------
 // Un script minimal, sans fonction `main` : la fonction `main` est présentée
-// dans le TD 3b, en bonus (29/09/2026).
+// dans le TD 3f, en bonus (29/09/2026).
 #d("Un script qui lit la ligne de commande")[
   #annonce[
     Le script lit le nom de la recette, écrit après le nom du script. La

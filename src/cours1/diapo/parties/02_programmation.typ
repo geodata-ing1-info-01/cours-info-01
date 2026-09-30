@@ -99,7 +99,7 @@
     Semer le facteur ×100 à ×1000 du cours 6 et du TD 7 : `numpy` délègue
     à du C compilé. Ne pas développer.
 
-    Les noms de fichiers sont ceux des TD 2a et 2c à venir ; le dire
+    Les noms de fichiers sont ceux des TD 1c et 1e à venir ; le dire
     une fois.
 
     Si question « Et Java ? » répondre en une phrase, les deux à la
@@ -229,7 +229,7 @@
 
     Conséquence pratique : lancer un programme Python suppose Python
     installé, alors qu'un exécutable compilé se lance seul. C'est ce que
-    le TD 2c fera constater, et pourquoi la partie « Environnement
+    le TD 1e fera constater, et pourquoi la partie « Environnement
     de programmation » existe.
 
     Le navigateur interprète trois langages sans qu'on l'appelle «
@@ -482,9 +482,9 @@
   ]
 
   #notes[
-    Les deux lignes sont celles de `cours1/2b_erreurs/surface.py` :
+    Les deux lignes sont celles de `cours1/1d_erreurs/surface.py` :
     la cinquième indentée par quatre espaces, la sixième par une tabulation.
-    C'est le fichier que le TD 2b fera corriger ; le message d'erreur
+    C'est le fichier que le TD 1d fera corriger ; le message d'erreur
     s'y lit à ce moment, ne pas le projeter ici.
 
     Python refuse ce mélange dans une même indentation, et le dit par
@@ -496,7 +496,7 @@
     Python l'impose à 4, convention du langage ; un fichier venu d'ailleurs
     peut être écrit autrement.
 
-    Ne pas montrer ici comment afficher les blancs : le TD 2b s'en
+    Ne pas montrer ici comment afficher les blancs : le TD 1d s'en
     charge, et cela s'apprend en le faisant, pas en le regardant.
 
     Fins de ligne, à dire en passant : Windows en met deux (`CRLF`), Linux et

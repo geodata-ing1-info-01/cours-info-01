@@ -2,7 +2,7 @@
 //
 // Première moitié du TD 1a de 2026 : copier les fichiers de la séance,
 // exporter, ouvrir une page web depuis le disque, deux éditeurs de texte. Le
-// renommage des extensions et l'espace dans un nom passent au TD 2a, en ligne
+// renommage des extensions et l'espace dans un nom passent au TD 1b, en ligne
 // de commande ; la table ASCII au cours 3.
 //
 // Inclus par `cours1_v2.typ` ; compilable seul par

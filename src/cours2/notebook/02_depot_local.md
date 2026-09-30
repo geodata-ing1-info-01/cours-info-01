@@ -7,7 +7,7 @@ Cette partie présente git, un logiciel qui enregistre les états successifs
 d'un projet, puis les commandes qui créent un dépôt et y enregistrent un
 premier état. Elle décrit ensuite les états par lesquels passe un fichier, et
 deux opérations sur les états déjà enregistrés : en annuler un, et en nommer
-un. Un TD l'accompagne, le [TD 3a](td/3a_premier_depot/guide.md) ; il est
+un. Un TD l'accompagne, le [TD 2a](td/2a_premier_depot/guide.md) ; il est
 présenté en fin de page.
 
 ## À quoi sert git
@@ -183,7 +183,7 @@ git revert <identifiant du commit>
 Le commit annulé reste dans l'historique, et le nouveau commit s'y ajoute.
 L'historique garde donc la trace de l'erreur et de sa correction. Git ouvre un
 éditeur dans le terminal pour le message du nouveau commit, déjà rempli :
-`Revert "<message du commit annulé>"`. Le [TD 4b](td/4b_annuler/guide.md) fait
+`Revert "<message du commit annulé>"`. Le [TD 2c](td/2c_annuler/guide.md) fait
 annuler un commit de cette façon.
 
 ## Étiqueter un commit
@@ -203,12 +203,12 @@ git tag -a <nom du tag> -m "<message du tag>"
 ```
 
 La commande pose le tag sur le commit courant. `git tag`, sans argument, liste
-les tags du dépôt. Le [TD 6a](td/6a_livrer/guide.md) pose le tag `v1.0` sur la
+les tags du dépôt. Le [TD 2e](td/2e_livrer/guide.md) pose le tag `v1.0` sur la
 première version du projet.
 
 ## TD de la partie
 
-- [TD 3a — Un premier dépôt](td/3a_premier_depot/guide.md), 15 minutes :
+- [TD 2a — Un premier dépôt](td/2a_premier_depot/guide.md), 15 minutes :
   configurer un alias qui affiche le graphe du projet, créer un dossier et y
   initialiser un dépôt, puis y enregistrer un premier fichier en un premier
   commit.

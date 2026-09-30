@@ -78,7 +78,7 @@ Vérification possible à B5-B6 : le fichier écrit en unités US, copié dans
 - Toutes les recettes sont écrites pour 4 personnes : `PERSONNES_RECETTE`
   reste une constante du programme.
 - Une seule fonction de conversion, qui reçoit la table de l'autre système.
-- Pas de `main` (le cours 3 l'a mise en bonus du TD 3b) : elle ouvre le TD 4b.
+- Pas de `main` (le cours 3 l'a mise en bonus du TD 3f) : elle ouvre le TD 4b.
 - `argparse` sans `choices` pour le nom de la recette : un nom inconnu
   donne un `FileNotFoundError`, à lire au même titre que les erreurs de B1.
 - Les quantités sont affichées et écrites avec `round(quantite, 1)`.

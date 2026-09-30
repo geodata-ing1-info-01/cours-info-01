@@ -14,7 +14,7 @@ python outils/verifier_diapos.py src/cours3/diapo/cours3.pdf
 
 Ce que cette séance a de particulier : les parties 1 et 2 sont de l'exposé
 seul, et leurs notebooks (`recette.ipynb`, `fichiers.ipynb`, `images.ipynb`)
-se font en autonomie ; les TD 1a, 2a et 2b n'ont plus de diapositive dans le
+se font en autonomie ; les TD 3b, 3c et 3d n'ont plus de diapositive dans le
 déroulé, et leurs fichiers `tds/` ne servent plus qu'aux feuilles de TD. La
 partie 1 (`01_programme.typ`) présente l'objectif et les étapes du programme
 de la recette, ses données, le code de départ et ses trois problèmes, les
@@ -27,10 +27,10 @@ l'encodage, ASCII et UTF-8, la fin de ligne, puis le mode binaire, qui lit
 les octets sans les décoder (`02b_encodage.typ`) ; enfin `with`, les modes
 `"w"` et `"a"`, et les lignes du programme qui lisent et écrivent un fichier
 (`02c_fichiers.typ`). Les TD suivent l'exposé, tous en fin de séance : le
-TD 0a (l'archive, les deux arborescences, JupyterLab ouvert sur `cours3/`),
-les notebooks des TD 1a et 2a, la diapositive des deux parcours
-(`parties/03_parcours.typ`, aussi projetée à l'ouverture), puis les TD 3a et
-3b. Le TD 3b commence par l'environnement conda, selon les groupes, le guide
+TD 3a (l'archive, les deux arborescences, JupyterLab ouvert sur `cours3/`),
+les notebooks des TD 3b et 3c, la diapositive des deux parcours
+(`parties/03_parcours.typ`, aussi projetée à l'ouverture), puis les TD 3e et
+3f. Le TD 3f commence par l'environnement conda, selon les groupes, le guide
 détaillé et le matériel de départ, puis la différence entre notebook et
 script. Une diapositive reprise par une section de notebook
 passe `cellule:` au gabarit `d`, qui ajoute à la ligne de titre le cartouche

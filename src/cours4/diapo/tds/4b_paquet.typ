@@ -14,9 +14,10 @@
 #let td = (
   numero: "4b",
   titre: "Un programme installable",
-  annonce: "Parcours avancé. TD d'application : transformer le script du TD 4a en projet Python installable, avec une fonction main, deux modules, un environnement et une commande",
+  annonce: "TD d'application : transformer le script du TD 4a en projet Python installable, avec une fonction main, deux modules, un environnement et une commande",
   dossier: "cours4/4b_paquet/",
   duree: "55′",
+  statut: "parcours avancé",
 )
 #separateur-td(..td)
 

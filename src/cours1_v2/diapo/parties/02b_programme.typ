@@ -27,7 +27,7 @@
   #face-a-face(
     panneau[Dans Git Bash][
       #terminal(
-        "$ cd ~/Desktop/info01/cours1/2b_programme",
+        "$ cd ~/Desktop/info01/cours1/1c_programme",
         "$ python altitudes.py",
         "moyenne : 129.0 m",
       )
@@ -36,8 +36,8 @@
       #terminal(
         titre: "Anaconda Prompt",
         taille: 17pt,
-        "(base) …>cd Desktop\\info01\\cours1\\2b_programme",
-        "(base) …\\2b_programme>python altitudes.py",
+        "(base) …>cd Desktop\\info01\\cours1\\1c_programme",
+        "(base) …\\1c_programme>python altitudes.py",
         "moyenne : 129.0 m",
       )
     ],
@@ -53,7 +53,7 @@
     Sortie relevée avec Python 3.12 sous Linux. `…` remplace le dossier
     personnel, `C:\Users\eleve`, où l'invite d'Anaconda s'ouvre.
 
-    Git Bash demande le réglage du début du TD 2b ; l'invite de commandes
+    Git Bash demande le réglage du début du TD 1c ; l'invite de commandes
     d'Anaconda reste le recours si ce réglage manque sur un poste, comme
     pour JupyterLab à la partie 3.
 
@@ -93,7 +93,7 @@
     est exécuté directement.
 
     Documentation de conda : « Activation prepends to PATH ». Le réglage du
-    début du TD 2b le fait à chaque ouverture de Git Bash.
+    début du TD 1c le fait à chaque ouverture de Git Bash.
 
     `ls` est aussi un fichier, `/usr/bin/ls`, fourni par Git for Windows.
     Dans l'invite de commandes, `where python` joue le rôle de
@@ -234,7 +234,7 @@
 
   #notes[
     L'interpréteur lit le fichier sur le disque : une modification non
-    enregistrée n'est pas exécutée. Le TD 2b le fait constater.
+    enregistrée n'est pas exécutée. Le TD 1c le fait constater.
 
     Le notebook, à la partie 3, réunit les deux : du code enregistré,
     exécuté morceau par morceau.
@@ -264,10 +264,10 @@
   #face-a-face(
     panneau[`commandes.sh`, dans Notepad++][
       #text(size: 18pt)[```bash
-      # Commandes du TD 2a, puis le programme du TD 2b.
-      # Lancer depuis 2b_programme : bash commandes.sh
+      # Commandes du TD 1b, puis le programme du TD 1c.
+      # Lancer depuis 1c_programme : bash commandes.sh
       mkdir -p copies
-      cp ../2a_terminal/depart/*.html copies/
+      cp ../1b_terminal/depart/*.html copies/
       ls copies
       python altitudes.py
       ```]
@@ -286,7 +286,7 @@
   #legende[
     Une ligne qui commence par `#` est un commentaire. `python` y est une
     commande comme les autres. L'équivalent pour l'invite de commandes est
-    un fichier `.bat`, en annexe du guide du TD 2b.
+    un fichier `.bat`, en annexe du guide du TD 1c.
   ]
 
   #notes[

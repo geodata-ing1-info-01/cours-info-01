@@ -11,7 +11,7 @@ transforme en projet installable (TD 4b), et le train, TD 4c jusque-là, passe a
 
 | | Avant | Adopté |
 |---|---|---|
-| TD 7a, standard | livre de recettes : `--toutes`, sommaire, photo (Pillow), `--frigo` (numpy) | la recette en pages HTML, reprise du TD 3b (pandoc par `subprocess`), puis toutes les recettes et un sommaire ; photo et `--frigo` retirés |
+| TD 7a, standard | livre de recettes : `--toutes`, sommaire, photo (Pillow), `--frigo` (numpy) | la recette en pages HTML, reprise du TD 3f (pandoc par `subprocess`), puis toutes les recettes et un sommaire ; photo et `--frigo` retirés |
 | TD 7b, avancé | suite du TD 4c : plusieurs plans, `poteaux` en boucle puis numpy, `--boucle` | le train récupéré d'un dépôt de référence (deux plans, sans fenêtre), utilisé, lu, puis complété sur deux branches : la fenêtre, puis les poteaux avec numpy ; un conflit à la seconde pull request |
 | GitHub | pull requests dans son dépôt | au moins une pull request par TD, dans les deux TD : branche, `push`, pull request sur le site, fusion, `pull` |
 
@@ -33,7 +33,7 @@ jusqu'à l'étape B7 (README, étiquette `v1.0`).
 
 Fourni dans `depart/` : le texte des recettes en Markdown (`recettes/<nom>.md`,
 les quatre du projet 4 et six autres, avec leurs CSV pour 4 personnes),
-`style.css`. Ce qui est repris du TD 3b (4b ligne de commande) : la page et
+`style.css`. Ce qui est repris du TD 3f (4b ligne de commande) : la page et
 son appel de pandoc ; de l'ancien TD 7a : `--toutes` et le sommaire.
 
 ## TD 7b · Reprendre et compléter le projet d'un autre (avancé, ≈ 100 min)

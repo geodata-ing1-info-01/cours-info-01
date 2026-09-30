@@ -75,7 +75,7 @@ commit 9cb1911  Premier script de carte
     Des programmes lisent les commits publics en continu et testent les clés
     trouvées : un secret poussé est copié avant d'être supprimé.
 
-    Le TD 3a rejoue cette sortie ; il est facultatif.
+    Le TD 5c rejoue cette sortie ; il est facultatif.
   ]
 ]
 

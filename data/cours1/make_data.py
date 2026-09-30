@@ -5,7 +5,7 @@ puis en dérive les variantes utilisées en séance.
 
     python make_data.py fetch    # télécharge les sources dans 1a_formats/fourni/
     python make_data.py build    # génère les fichiers dans 1a_formats/produit/depart/,
-                                 # et recopie la photo du TD 3a depuis son fourni/
+                                 # et recopie la photo du TD 1f depuis son fourni/
 
 Hors ligne : déposer un .txt dans 1a_formats/fourni/ (nom = clé, ex. raven.txt)
 et lancer directement `build`.
@@ -29,11 +29,11 @@ TRAVAIL = PRODUIT / "travail"
 CORRIGE = PRODUIT / "_corrige"
 # Le TD 1b, l'archive .odt, repart du même `raven.odt`, dans son propre dossier.
 ARCHIVE = ICI / "1b_archive_odt" / "produit"
-# La photo de la recette du TD 3a : elle vient d'ailleurs, donc de `fourni/`,
+# La photo de la recette du TD 1f : elle vient d'ailleurs, donc de `fourni/`,
 # et ne se refabrique pas — mais elle doit partir dans l'archive, donc elle est
 # recopiée dans `produit/`, seul dossier que `livrer_tds.py` livre.
-PHOTO_SOURCE = ICI / "3a_markdown" / "fourni" / "crepes.jpg"
-PHOTO_SORTIE = ICI / "3a_markdown" / "produit" / "depart" / "crepes.jpg"
+PHOTO_SOURCE = ICI / "1f_markdown" / "fourni" / "crepes.jpg"
+PHOTO_SORTIE = ICI / "1f_markdown" / "produit" / "depart" / "crepes.jpg"
 
 # Textes du domaine public. `debut`/`fin` délimitent l'extrait utile dans le
 # fichier brut (Gutenberg entoure le texte d'un long préambule de licence).

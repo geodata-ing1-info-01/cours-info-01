@@ -126,7 +126,7 @@
     gardée en mémoire.
 
     Port 443 : web chiffré (HTTPS). Port 22 : SSH. Le pare-feu de l'école peut
-    fermer le port 22 en sortie : à vérifier avant le TD 2a.
+    fermer le port 22 en sortie : à vérifier avant le TD 5b.
 
     Lire le nom de domaine sert contre l'hameçonnage (partie 3).
   ]
@@ -220,7 +220,7 @@
     Le facteur 8 entre bits et octets est l'erreur la plus fréquente. Les
     opérateurs donnent les débits en bits par seconde.
 
-    Débits observés en pratique. Le TD 1a en mesure un depuis la salle.
+    Débits observés en pratique. Le TD 5a en mesure un depuis la salle.
   ]
 ]
 

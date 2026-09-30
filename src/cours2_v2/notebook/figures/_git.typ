@@ -1,6 +1,6 @@
 // Dessins communs aux schémas git de la page de cours, repris de
 // `diapo/parties/04_git.typ` (mêmes commits, mêmes identifiants, ceux du
-// rejeu du TD 3a).
+// rejeu du TD 2d).
 #import "../../../commun/prelude.typ": *
 #import "../../../commun/schemas_git.typ": *
 

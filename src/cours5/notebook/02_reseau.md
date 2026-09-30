@@ -8,7 +8,7 @@ présente le modèle client et serveur, et ce qu'il faut pour joindre un
 serveur : son adresse, son nom et un port. Elle distingue ensuite deux
 grandeurs, la latence et le débit, et donne leurs valeurs selon la distance
 et le lien, sans-fil compris. Elle se termine par ce qui sépare un commit d'un
-push. Le TD 1a l'accompagne ; il est présenté en fin de page.
+push. Le TD 5a l'accompagne ; il est présenté en fin de page.
 
 ## Local et distant
 
@@ -117,7 +117,7 @@ commande comme `ssh alice@calcul.ecole.fr`, le nom de domaine est
 Le **DNS** (*Domain Name System*) est un annuaire, qui associe un nom de
 domaine à une adresse IP. La requête DNS est faite une fois ; la réponse est
 gardée en mémoire. Le port 443 sert au web chiffré (HTTPS), le port 22 à SSH.
-Un pare-feu peut fermer le port 22 en sortie ; le TD 2a donne la marche à
+Un pare-feu peut fermer le port 22 en sortie ; le TD 5b donne la marche à
 suivre dans ce cas. Savoir lire le nom de domaine d'une adresse sert aussi à
 reconnaître l'hameçonnage, présenté dans la partie suivante.
 
@@ -224,7 +224,7 @@ dernier lien : le Wi-Fi ou la 4G.
   - 13 min
 ```
 
-Ces débits sont ceux observés en pratique. Le TD 1a en mesure un depuis la
+Ces débits sont ceux observés en pratique. Le TD 5a en mesure un depuis la
 salle.
 
 :::{warning}
@@ -305,7 +305,7 @@ emploie `git push`, puis `git pull` pour recevoir les commits des autres.
 
 ## TD de la partie
 
-- TD 1a, `cours5/1a_mesures/`, 15 minutes : relever le processeur, la
+- TD 5a, `cours5/5a_mesures/`, 15 minutes : relever le processeur, la
   mémoire, le disque et le lien réseau du poste dans le gestionnaire des
   tâches, puis mesurer quatre temps avec le script `mesures.py` : un calcul,
   la mémoire, le disque et le réseau.

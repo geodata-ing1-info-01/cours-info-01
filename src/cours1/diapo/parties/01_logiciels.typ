@@ -353,7 +353,7 @@
       └─ cours1\\ \
       #h(0.75em)├─ 1a_formats\\ \
       #h(0.75em)│#h(0.3em)└─ raven.odt \
-      #h(0.75em)└─ 2b_erreurs\\ \
+      #h(0.75em)└─ 1d_erreurs\\ \
       #h(2.05em)└─ chemin.py
     ],
     tableau(
@@ -362,7 +362,7 @@
       [], [Le chemin de `raven.odt`], [Depuis],
       [Absolu], [`C:\Users\alice\cours1\1a_formats\raven.odt`], [la racine],
       [Relatif], [`1a_formats\raven.odt`], [`cours1`],
-      [Relatif qui remonte], [`..\1a_formats\raven.odt`], [`2b_erreurs`],
+      [Relatif qui remonte], [`..\1a_formats\raven.odt`], [`1d_erreurs`],
     ),
   )
 
@@ -377,7 +377,7 @@
     pas a priori le chemin absolu du dossier d'un utilisateur, mais il peut
     imposer une arborescence relative : `chemin.py` lit `../1a_formats/`,
     et il tourne chez tout le monde. C'est le chemin en dur, absolu, qui
-    casse au premier changement de poste, et le TD 2b en fait corriger un —
+    casse au premier changement de poste, et le TD 1d en fait corriger un —
     celui-là même, sur ce fichier.
 
     Lire l'arborescence avant le tableau : les trois chemins désignent le

@@ -4,5 +4,5 @@
 #show: schema-de-cours.with(largeur: 17cm)
 
 #fenetre("MINGW64:/c/Users/eleve/Desktop/info01/cours1", code: true)[
-  #raw("eleve@POSTE-12 MINGW64 ~/Desktop/info01/cours1\n$ ls\n1a_formats/  2a_terminal/  2b_programme/  3a_notebook/\n\neleve@POSTE-12 MINGW64 ~/Desktop/info01/cours1\n$ ")
+  #raw("eleve@POSTE-12 MINGW64 ~/Desktop/info01/cours1\n$ ls\n1a_formats/  1b_terminal/  1c_programme/  1d_notebook/\n\neleve@POSTE-12 MINGW64 ~/Desktop/info01/cours1\n$ ")
 ]

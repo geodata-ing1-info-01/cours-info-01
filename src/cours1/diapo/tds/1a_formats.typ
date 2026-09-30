@@ -1,4 +1,4 @@
-// TD 1a du cours 1 — « Fichiers, formats et extensions ».
+// TD 1a — « Fichiers, formats et extensions ».
 //
 // Inclus par `cours1.typ`, qui porte les réglages globaux et importe `td`
 // pour le sommaire des TD ; compilable seul par `outils/compiler_tds.py`, qui

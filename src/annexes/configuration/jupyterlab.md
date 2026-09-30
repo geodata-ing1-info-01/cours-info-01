@@ -24,7 +24,7 @@ cache.
 
 `jupyter lab` n'est pas une commande de Windows : c'est un programme de
 l'environnement actif, celui que l'invite affiche entre parenthèses.
-Dans `base`, il est là. Dans un environnement créé au TD 4a, il n'y est
+Dans `base`, il est là. Dans un environnement créé au TD 1h, il n'y est
 que si on l'y installe, et il entraîne `ipykernel` avec lui :
 
 ```

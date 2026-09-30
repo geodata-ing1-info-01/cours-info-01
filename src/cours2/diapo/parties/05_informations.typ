@@ -41,7 +41,7 @@
   )
 
   #notes[
-    Le TD 3a en fait l'alias `git llog`. Sans `--graph`, l'historique
+    Le TD 2a en fait l'alias `git llog`. Sans `--graph`, l'historique
     s'affiche en une seule colonne, sans les branches.
   ]
 ]

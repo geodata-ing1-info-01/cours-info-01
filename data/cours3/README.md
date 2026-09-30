@@ -5,12 +5,12 @@ Quatre TD, et deux dossiers de la séance qui ne sont pas livrés :
 | Dossier | Ce que c'est |
 |---|---|
 | `recettes/` | les quatre recettes (`recette.md`, `ingredients.csv`, pour une personne en SI) et `style.css` : la source, versionnée, que `make_data.py` recopie dans les TD qui s'en servent |
-| `corriges/` | le TD 3b étape par étape (`3b_cli/etape<n>/`), versionné ici pour ne pas partir dans l'archive |
-| `1a_recette/` | notebook `recette.ipynb` : chemins, `pathlib`, pandoc par `subprocess` |
-| `2a_fichiers/` | notebook `fichiers.ipynb` : comment le code de la recette ouvre, lit et écrit ses fichiers (`open`, la position de lecture, octets et encodage, ASCII et UTF-8, fin de ligne, mode binaire, `with`, les modes, `csv`) |
-| `2b_images/` | notebook `images.ipynb`, facultatif : texte et binaire sur des images PGM, formats d'image, compression |
-| `3b_cli/` | `recette.py` construit depuis le notebook et transformé en ligne de commande, un commit par étape ; modèles de README et de `pyproject.toml` |
-| `3a_markdown/` | parcours standard : la recette des gaufres en Markdown, mise en page par le programme de `recette.ipynb`, un dépôt git |
+| `corriges/` | le TD 3f étape par étape (`3f_cli/etape<n>/`), versionné ici pour ne pas partir dans l'archive |
+| `3b_recette/` | notebook `recette.ipynb` : chemins, `pathlib`, pandoc par `subprocess` |
+| `3c_fichiers/` | notebook `fichiers.ipynb` : comment le code de la recette ouvre, lit et écrit ses fichiers (`open`, la position de lecture, octets et encodage, ASCII et UTF-8, fin de ligne, mode binaire, `with`, les modes, `csv`) |
+| `3d_images/` | notebook `images.ipynb`, facultatif : texte et binaire sur des images PGM, formats d'image, compression |
+| `3f_cli/` | `recette.py` construit depuis le notebook et transformé en ligne de commande, un commit par étape ; modèles de README et de `pyproject.toml` |
+| `3e_markdown/` | parcours standard : la recette des gaufres en Markdown, mise en page par le programme de `recette.ipynb`, un dépôt git |
 
 Les données sont dupliquées d'un TD à l'autre plutôt que citées par un chemin
 relatif : chaque dossier se suffit.

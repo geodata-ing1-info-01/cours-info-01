@@ -127,7 +127,7 @@ Cause
 Remède
 : Cliquer « Enter interpreter path… », puis « Find… », et choisir le fichier
   `C:\ProgramData\anaconda3\python.exe`. Pour que la liste devienne
-  complète (avec les environnements du TD 4a) : le réglage
+  complète (avec les environnements du TD 1h) : le réglage
   `python.condaPath`, décrit dans [Python et environnement
   conda](../configuration/vscode_python.md), puis « Developer: Reload
   Window ». Le chemin exact est celui du raccourci « Anaconda Prompt »

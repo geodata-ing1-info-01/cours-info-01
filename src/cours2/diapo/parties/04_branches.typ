@@ -200,7 +200,7 @@ git rebase <b_1> <b_2>")
   #notes[
     Le rebase réécrit l'historique : les commits replacés sont de nouveaux
     commits, avec un autre identifiant, d'où les « bis ». Une branche que
-    quelqu'un d'autre a déjà récupérée ne se rebase pas. Le TD 4b le fait
+    quelqu'un d'autre a déjà récupérée ne se rebase pas. Le TD 2c le fait
     constater sur la branche `main_code`.
   ]
 ]
@@ -312,6 +312,6 @@ git rebase --continue")
   #notes[
     Git s'arrête quand les deux branches modifient les mêmes lignes. Les
     marqueurs `<<<<<<<`, `=======` et `>>>>>>>` sont du texte ordinaire : les
-    supprimer après avoir choisi. Oubli fréquent au TD 4c.
+    supprimer après avoir choisi. Oubli fréquent au TD 2d.
   ]
 ]

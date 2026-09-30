@@ -7,7 +7,7 @@ Cette partie présente la ligne de commande, à côté de l'interface graphique
 qu'on connaît déjà. Elle décrit ensuite le terminal et l'interpréteur de
 commandes, le terminal du module, Git Bash, la forme d'une commande, les
 commandes de base et l'écriture des chemins. Le [TD
-2a](td/2a_terminal/guide.md) l'accompagne ; il est présenté en fin de page.
+1b](td/1b_terminal/guide.md) l'accompagne ; il est présenté en fin de page.
 
 ## Interface graphique et ligne de commande
 
@@ -77,7 +77,7 @@ Deux programmes se partagent le travail :
   programme qu'elle nomme.
 
 ```{figure} figures/2_terminal.svg
-:alt: À gauche, une chaîne de quatre étapes : ce qu'on tape, ls depart puis Entrée ; le terminal, la fenêtre, qui transmet la ligne ; l'interpréteur de commandes, bash, qui découpe la ligne et lance ls ; le programme ls, qui écrit la liste des fichiers. À droite, la fenêtre de Git Bash, avec la commande ls depart et la liste des fichiers du dossier depart du TD 2a.
+:alt: À gauche, une chaîne de quatre étapes : ce qu'on tape, ls depart puis Entrée ; le terminal, la fenêtre, qui transmet la ligne ; l'interpréteur de commandes, bash, qui découpe la ligne et lance ls ; le programme ls, qui écrit la liste des fichiers. À droite, la fenêtre de Git Bash, avec la commande ls depart et la liste des fichiers du dossier depart du TD 1b.
 
 La commande `ls depart`, de la frappe à la liste des fichiers.
 ```
@@ -179,7 +179,7 @@ bash n'est pas fourni avec Windows. Le module l'emploie pour trois raisons :
   - `ls`, `cp`
 ```
 
-Le guide du [TD 2a](td/2a_terminal/guide.md) donne en annexe les commandes du
+Le guide du [TD 1b](td/1b_terminal/guide.md) donne en annexe les commandes du
 TD dans les trois interpréteurs.
 
 ## L'invite de Git Bash
@@ -188,7 +188,7 @@ Avant chaque commande, Git Bash affiche une invite : l'utilisateur, la
 machine et le **dossier courant**. La commande se tape après le `$`.
 
 ```{figure} figures/2_invite.svg
-:alt: Une fenêtre de Git Bash. L'invite eleve@POSTE-12 MINGW64 ~/Desktop/info01/cours1, puis $ ls, puis la liste 1a_formats/ 2a_terminal/ 2b_programme/ 3a_notebook/, puis de nouveau l'invite et $.
+:alt: Une fenêtre de Git Bash. L'invite eleve@POSTE-12 MINGW64 ~/Desktop/info01/cours1, puis $ ls, puis la liste 1a_formats/ 1b_terminal/ 1c_programme/ 1d_notebook/, puis de nouveau l'invite et $.
 
 L'invite de Git Bash, dessinée ; le nom du poste est inventé.
 ```
@@ -212,7 +212,7 @@ L'invite de Git Bash, dessinée ; le nom du poste est inventé.
   - l'attente d'une commande
 ```
 
-Le `/` à la fin d'un nom signale un dossier. Après le TD 2b, une ligne
+Le `/` à la fin d'un nom signale un dossier. Après le TD 1c, une ligne
 `(base)` s'ajoute au-dessus de l'invite : l'environnement conda actif.
 
 ## La forme d'une commande
@@ -329,7 +329,7 @@ C:\Users\alice\
    ├─ 1a_formats\
    │  └─ depart\
    │     └─ raven.odt
-   └─ 2b_programme\
+   └─ 1c_programme\
       └─ altitudes.py
 ```
 
@@ -347,7 +347,7 @@ C:\Users\alice\
   - `cours1`
 * - Relatif qui remonte
   - `..\1a_formats\depart\raven.odt`
-  - `2b_programme`
+  - `1c_programme`
 ```
 
 - Deux points, `..`, désignent le **dossier parent** ; un point, `.`, le
@@ -360,7 +360,7 @@ Un programme ne connaît pas à l'avance le chemin absolu du dossier d'un
 utilisateur, mais il peut s'appuyer sur la position relative des fichiers.
 Un projet qui n'emploie que des **chemins relatifs** se copie, se déplace et
 s'envoie sans modification ; un chemin absolu écrit dans le code ne vaut que
-sur le poste où il a été écrit. Le TD 1b du cours 2 fait corriger un chemin
+sur le poste où il a été écrit. Le TD 2b fait corriger un chemin
 de ce genre.
 
 ## Les chemins dans Git Bash
@@ -410,7 +410,7 @@ $ ls -a travail
 
 `.` et `..`, le dossier courant et son parent, sont les deux entrées cachées
 de tout dossier. Les logiciels enregistrent leurs réglages dans des fichiers
-cachés : le TD 2b crée `.bash_profile` dans le dossier personnel, et le
+cachés : le TD 1c crée `.bash_profile` dans le dossier personnel, et le
 cours 2 un dossier caché, `.git`.
 
 Dans un nom de fichier, **`*` remplace n'importe quelle suite de
@@ -421,7 +421,7 @@ correspondent, puis lance la commande.
 :header-rows: 1
 
 * - Commande
-  - Noms désignés dans `depart/` du TD 2a
+  - Noms désignés dans `depart/` du TD 1b
 * - `ls depart/*.txt`
   - les deux fichiers `.txt`
 * - `ls depart/raven*`
@@ -438,8 +438,8 @@ employées par `grep` ou le module `re` de Python, ont une autre syntaxe, où
 
 ## TD de la partie
 
-- [TD 2a — Les fichiers du TD 1a en ligne de
-  commande](td/2a_terminal/guide.md), 15 minutes : se déplacer avec `pwd`,
+- [TD 1b — Les fichiers du TD 1a en ligne de
+  commande](td/1b_terminal/guide.md), 15 minutes : se déplacer avec `pwd`,
   `ls` et `cd` ; copier, renommer et ouvrir des fichiers avec `cp`, `mv` et
   `start` ; un nom avec une espace ; `mkdir`, le motif `*` et `rm`.
 

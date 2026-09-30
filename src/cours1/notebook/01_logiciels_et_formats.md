@@ -246,7 +246,7 @@ C:\Users\alice\
 └─ cours1\
    ├─ 1a_formats\
    │  └─ raven.odt
-   └─ 2b_erreurs\
+   └─ 1d_erreurs\
       └─ chemin.py
 ```
 
@@ -254,7 +254,7 @@ C:\Users\alice\
 |---|---|---|
 | Absolu | `C:\Users\alice\cours1\1a_formats\raven.odt` | n'importe où |
 | Relatif | `1a_formats\raven.odt` | `cours1` |
-| Relatif qui remonte | `..\1a_formats\raven.odt` | `2b_erreurs` |
+| Relatif qui remonte | `..\1a_formats\raven.odt` | `1d_erreurs` |
 :::
 
 :::{tab-item} macOS
@@ -265,7 +265,7 @@ C:\Users\alice\
 └─ cours1/
    ├─ 1a_formats/
    │  └─ raven.odt
-   └─ 2b_erreurs/
+   └─ 1d_erreurs/
       └─ chemin.py
 ```
 
@@ -273,7 +273,7 @@ C:\Users\alice\
 |---|---|---|
 | Absolu | `/Users/alice/cours1/1a_formats/raven.odt` | n'importe où |
 | Relatif | `1a_formats/raven.odt` | `cours1` |
-| Relatif qui remonte | `../1a_formats/raven.odt` | `2b_erreurs` |
+| Relatif qui remonte | `../1a_formats/raven.odt` | `1d_erreurs` |
 :::
 
 :::{tab-item} Linux
@@ -284,7 +284,7 @@ C:\Users\alice\
 └─ cours1/
    ├─ 1a_formats/
    │  └─ raven.odt
-   └─ 2b_erreurs/
+   └─ 1d_erreurs/
       └─ chemin.py
 ```
 
@@ -292,7 +292,7 @@ C:\Users\alice\
 |---|---|---|
 | Absolu | `/home/alice/cours1/1a_formats/raven.odt` | n'importe où |
 | Relatif | `1a_formats/raven.odt` | `cours1` |
-| Relatif qui remonte | `../1a_formats/raven.odt` | `2b_erreurs` |
+| Relatif qui remonte | `../1a_formats/raven.odt` | `1d_erreurs` |
 :::
 
 ::::
@@ -307,7 +307,7 @@ fichiers : `chemin.py` lit le dossier `1a_formats` voisin, par un chemin qui rem
 où `cours1` contient les mêmes dossiers. Un projet qui n'emploie que des
 chemins relatifs se copie, se déplace et s'envoie sans modification ; un
 chemin absolu écrit dans le code ne vaut que sur le poste où il a été écrit.
-Le TD 2b fait corriger un chemin de ce genre.
+Le TD 1d fait corriger un chemin de ce genre.
 
 ## Extension et type de fichier
 

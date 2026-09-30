@@ -6,8 +6,8 @@ subtitle: Ce qu'un éditeur de code ajoute à un éditeur de texte, et la config
 Cette partie présente l'éditeur de code, le logiciel dans lequel s'écrivent
 les programmes, leurs réglages et leur documentation. Elle décrit ce qu'il
 ajoute à un éditeur de texte ordinaire, puis la fenêtre de VS Code et sa
-configuration. Deux TD l'accompagnent, le [TD 1a](td/1a_vscode/guide.md) et
-le [TD 1b](td/1b_erreurs/guide.md) ; ils sont présentés en fin de page.
+configuration. Deux TD l'accompagnent, le [TD 2a](td/2a_vscode/guide.md) et
+le [TD 2b](td/2b_erreurs/guide.md) ; ils sont présentés en fin de page.
 
 ## Les fonctions d'un IDE
 
@@ -161,8 +161,8 @@ Les octets du fichier sont les mêmes dans les deux colonnes. Python
 n'accepte pas qu'un même bloc mélange les deux caractères, et s'arrête sur
 l'erreur `TabError: inconsistent use of tabs and spaces in indentation`.
 Sur un éditeur réglé sur 4 colonnes, le mélange ne se voit pas, sauf si
-l'éditeur dessine les espaces et les tabulations, comme ici. Le TD 1a règle
-VS Code pour qu'il les dessine, et le TD 1b s'en sert.
+l'éditeur dessine les espaces et les tabulations, comme ici. Le TD 2a règle
+VS Code pour qu'il les dessine, et le TD 2b s'en sert.
 
 La barre d'état de VS Code, en bas à droite, indique deux réglages du
 fichier ouvert :
@@ -181,9 +181,9 @@ comme modifiées des lignes qui ne diffèrent que par leur fin.
 La fenêtre de VS Code a trois zones de travail, et une barre d'état en bas.
 
 ```{figure} figures/1_vscode.svg
-:alt: La fenêtre de VS Code, dessinée. À gauche, l'arborescence du dossier cours2 : 1a_vscode, qui contient altitudes.py, sélectionné, puis 1b_erreurs, 2a_markdown et 3a_depot_recette. Au centre, le fichier altitudes.py, coloré, avec les numéros de ligne et le bouton d'exécution. En bas, le terminal Git Bash : (base), l'invite eleve@POSTE MINGW64 ~/Desktop/info01/cours2, la commande python 1a_vscode/altitudes.py et la sortie moyenne : 129.0 m. En bas, la barre d'état : Ln 8, Col 1, Spaces: 4, UTF-8, LF, Python 3.x ('base').
+:alt: La fenêtre de VS Code, dessinée. À gauche, l'arborescence du dossier cours2 : 2a_vscode, qui contient altitudes.py, sélectionné, puis 2b_erreurs, 2c_markdown et 2d_depot_recette. Au centre, le fichier altitudes.py, coloré, avec les numéros de ligne et le bouton d'exécution. En bas, le terminal Git Bash : (base), l'invite eleve@POSTE MINGW64 ~/Desktop/info01/cours2, la commande python 2a_vscode/altitudes.py et la sortie moyenne : 129.0 m. En bas, la barre d'état : Ln 8, Col 1, Spaces: 4, UTF-8, LF, Python 3.x ('base').
 
-La fenêtre de VS Code après la configuration du TD 1a, dessinée.
+La fenêtre de VS Code après la configuration du TD 2a, dessinée.
 ```
 
 ```{list-table}
@@ -219,14 +219,14 @@ terminal) ; E, la barre d'état. Capture de la documentation de VS Code,
 ```
 
 La capture ouvre deux fichiers côte à côte, et son terminal est
-PowerShell. Sur les postes de la salle, le TD 1a fait de Git Bash le
+PowerShell. Sur les postes de la salle, le TD 2a fait de Git Bash le
 terminal de VS Code. VS Code s'affiche en anglais par défaut, et le module
 ne demande pas d'en changer : les intitulés cités sont les intitulés
 anglais.
 
 ## Configurer VS Code
 
-Le TD 1a se fait en classe entière : toute la salle fait la même étape en
+Le TD 2a se fait en classe entière : toute la salle fait la même étape en
 même temps. Il règle VS Code une fois par poste :
 
 1. **installer l'extension Python**, en cherchant son identifiant,
@@ -294,7 +294,7 @@ Un réglage s'écrit à l'un de deux **niveaux** :
 
 Quand un réglage est écrit aux deux niveaux, celui du dossier l'emporte. Les
 réglages sont écrits dans un fichier texte, `settings.json`, que la palette
-ouvre par « Preferences: Open User Settings (JSON) ». Après le TD 1a, le
+ouvre par « Preferences: Open User Settings (JSON) ». Après le TD 2a, le
 fichier User contient ces trois lignes, parmi d'autres éventuelles :
 
 ```text
@@ -309,11 +309,11 @@ VS Code](../../annexes/configuration/vscode_reglages.md) en donne d'autres.
 
 ## TD de la partie
 
-- [TD 1a — Configurer VS Code](td/1a_vscode/guide.md), en classe entière,
+- [TD 2a — Configurer VS Code](td/2a_vscode/guide.md), en classe entière,
   25 minutes : copier les fichiers de la séance, ouvrir le dossier dans VS
   Code, installer l'extension Python, faire de Git Bash le terminal,
   choisir l'interpréteur, régler l'affichage des espaces.
-- [TD 1b — Trois programmes fautifs](td/1b_erreurs/guide.md), 10 minutes :
+- [TD 2b — Trois programmes fautifs](td/2b_erreurs/guide.md), 10 minutes :
   lire les caractères invisibles et la barre d'état, puis corriger trois
   programmes Python qui s'arrêtent sur une erreur.
 

@@ -9,7 +9,7 @@ commandes, puis la forme commune à toutes les commandes et celles qui servent
 ensuite le chemin d'un fichier, vu au cours 1, tel qu'il s'écrit dans le
 terminal, et les motifs qui désignent plusieurs fichiers à la fois. La partie
 n'a pas de TD propre : ses commandes servent dans tous les TD de la séance, à
-partir du [TD 3a](td/3a_premier_depot/guide.md).
+partir du [TD 2a](td/2a_premier_depot/guide.md).
 
 ## Le terminal
 
@@ -105,8 +105,8 @@ Dans le dossier de la séance, `ls` affiche le nom des dossiers de TD :
 
 ```text
 $ ls
-3a_premier_depot  4a_branches  4b_annuler  4c_conflits  6a_livrer  README.md
-$ ls 4c_conflits/depart
+2a_premier_depot  2b_branches  2c_annuler  2d_conflits  2e_livrer  README.md
+$ ls 2d_conflits/depart
 main_operations.py  main_regex.py
 ```
 
@@ -122,7 +122,7 @@ avec `pwd`, et la liste des fichiers visés avec `ls`, avant de lancer `rm`.
 :::
 
 La touche Tab complète un nom de fichier ou de dossier commencé : taper `cd
-4c`, puis Tab, écrit `cd 4c_conflits/`. La flèche vers le haut rappelle les
+2d`, puis Tab, écrit `cd 2d_conflits/`. La flèche vers le haut rappelle les
 commandes précédentes.
 
 ## Les chemins dans le terminal
@@ -165,7 +165,7 @@ Sous Windows, Git Bash écrit le disque `C:` comme un dossier de la racine,
 `C:\Users\eleve\Desktop\info01\cours2`, s'écrit donc
 `/c/Users/eleve/Desktop/info01/cours2`, ou `~/Desktop/info01/cours2`, puisque
 `~` désigne `/c/Users/eleve`. Dans les chemins relatifs, rien ne change : `cd
-../4a_branches` fonctionne de la même façon sous les trois systèmes.
+../2b_branches` fonctionne de la même façon sous les trois systèmes.
 
 ## Les fichiers cachés
 
@@ -179,7 +179,7 @@ L'option `-a` de `ls` affiche aussi les éléments cachés :
 
 ```text
 $ ls -a
-.  ..  README.md  td_3a_premier_depot.pdf  travail
+.  ..  README.md  td_2a_premier_depot.pdf  travail
 ```
 
 La liste commence par `.` et `..`, le dossier courant et son parent, que tout
@@ -204,9 +204,9 @@ Un motif peut contenir des `/` : `*/depart/*.py` désigne tous les fichiers
 
 ```text
 $ ls */depart/*.py
-4a_branches/depart/main_base.py
-4c_conflits/depart/main_operations.py
-4c_conflits/depart/main_regex.py
+2b_branches/depart/main_base.py
+2d_conflits/depart/main_operations.py
+2d_conflits/depart/main_regex.py
 ```
 
 Entre crochets, un tiret donne un intervalle : `reunion_[0-9][0-9].txt`
@@ -220,5 +220,5 @@ existent et se ressemblent, mais leur syntaxe diffère. Les motifs, en anglais
 *glob*, sont ceux de bash et ne servent qu'à désigner des noms de fichiers.
 Les expressions régulières servent à chercher un texte dans un autre, dans la
 commande `grep` ou le module `re` de Python ; `*` y signifie « le caractère
-précédent, répété zéro fois ou plus ». Le TD 4c en emploie une, en Python.
+précédent, répété zéro fois ou plus ». Le TD 2d en emploie une, en Python.
 :::

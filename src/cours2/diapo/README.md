@@ -158,15 +158,15 @@ Le reste — texte, ordre, schémas, découpage des étapes — suit l'original.
 Le TP d'origine est un exercice unique : ses 27 questions construisent le
 même projet. Il est découpé en cinq TD, joués chacun après la partie qui
 l'outille. Le dépôt qu'ils construisent reste dans
-`data/cours2/3a_premier_depot/travail/projet_2` d'un TD à l'autre.
+`data/cours2/2a_premier_depot/travail/projet_2` d'un TD à l'autre.
 
 | TD | Questions | Joué après |
 |---|---|---|
-| `3a_premier_depot` | 1 à 5 | le dépôt local |
-| `4a_branches` | 6 à 17 | les branches |
-| `4b_annuler` | 18 à 20 | les branches |
-| `4c_conflits` | 21 à 25 | les branches |
-| `6a_livrer` | 26 et 27 | les bonnes pratiques |
+| `2a_premier_depot` | 1 à 5 | le dépôt local |
+| `2b_branches` | 6 à 17 | les branches |
+| `2c_annuler` | 18 à 20 | les branches |
+| `2d_conflits` | 21 à 25 | les branches |
+| `2e_livrer` | 26 et 27 | les bonnes pratiques |
 
 Trois corrections ont été faites au sujet : `sub()` n'existait pas dans la
 liste des fonctions à écrire et devient `neg()` ; le motif de l'expression

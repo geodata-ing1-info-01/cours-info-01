@@ -15,7 +15,7 @@
   #notes[
     Ouvrir un terminal et le montrer à la place de la diapositive. Chacun
     repère sur son écran l'utilisateur, le dossier courant et l'invite. Le
-    préfixe `(base)` est l'environnement conda actif, vu au TD 2a du cours 1.
+    préfixe `(base)` est l'environnement conda actif, vu au TD 1c.
 
     Les couleurs sont mises par bash : l'utilisateur en vert, le dossier
     courant en bleu.
@@ -224,6 +224,6 @@ mkdir <nom_dossier>")
 ), notes: notes[
   Ces motifs sont ceux du shell (*globbing*). Les expressions régulières de
   `grep` et du module `re` de Python ont une autre syntaxe : `*` y signifie
-  « zéro ou plusieurs fois le caractère précédent ». Le TD 4c emploie
+  « zéro ou plusieurs fois le caractère précédent ». Le TD 2d emploie
   `re.search`.
 ])

@@ -1,16 +1,16 @@
 # Données — Cours 2 : ligne de commande et git local
 
 Un dossier par TD, dans l'ordre de la séance. Les cinq TD construisent le
-même dépôt : chacun reprend le projet là où le précédent l'a laissé. Le TD 3a
-le crée dans `3a_premier_depot/travail/projet_2`, et il y reste.
+même dépôt : chacun reprend le projet là où le précédent l'a laissé. Le TD 2a
+le crée dans `2a_premier_depot/travail/projet_2`, et il y reste.
 
 | Dossier | Questions | Ce qu'on y fait |
 |---|---|---|
-| [`3a_premier_depot/`](3a_premier_depot/) | 1 à 5 | l'alias `git llog`, `git init`, un `README.md`, un premier commit |
-| [`4a_branches/`](4a_branches/) | 6 à 17 | `develop`, `documentation`, `main_code`, `operations`, et leurs fusions |
-| [`4b_annuler/`](4b_annuler/) | 18 à 20 | annuler avec `revert`, mettre une branche à jour avec `rebase` |
-| [`4c_conflits/`](4c_conflits/) | 21 à 25 | fabriquer un conflit, puis le résoudre |
-| [`6a_livrer/`](6a_livrer/) | 26 et 27 | fusionner `develop` dans `master`, taguer la version |
+| [`2a_premier_depot/`](2a_premier_depot/) | 1 à 5 | l'alias `git llog`, `git init`, un `README.md`, un premier commit |
+| [`2b_branches/`](2b_branches/) | 6 à 17 | `develop`, `documentation`, `main_code`, `operations`, et leurs fusions |
+| [`2c_annuler/`](2c_annuler/) | 18 à 20 | annuler avec `revert`, mettre une branche à jour avec `rebase` |
+| [`2d_conflits/`](2d_conflits/) | 21 à 25 | fabriquer un conflit, puis le résoudre |
+| [`2e_livrer/`](2e_livrer/) | 26 et 27 | fusionner `develop` dans `master`, taguer la version |
 
 Le projet est une petite calculatrice : `src/operations.py` porte quatre
 fonctions (`add`, `mult`, `neg`, `inv`), `src/main.py` lit une opération tapée

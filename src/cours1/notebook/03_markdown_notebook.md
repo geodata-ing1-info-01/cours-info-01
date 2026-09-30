@@ -14,8 +14,8 @@ Cette partie présente les fichiers texte d'un projet autres que le code, puis
 Markdown, le format dans lequel s'écrit sa documentation. Elle décrit ensuite
 le notebook, un document qui réunit du texte écrit en Markdown, du code et les
 résultats de ce code, et la façon de l'ouvrir dans JupyterLab. Deux TD
-l'accompagnent, le [TD 3a](td/3a_markdown/guide.md) et le
-[TD 3b](td/3b_notebooks/guide.md) ; ils sont présentés en fin de page.
+l'accompagnent, le [TD 1f](td/1f_markdown/guide.md) et le
+[TD 1g](td/1g_notebooks/guide.md) ; ils sont présentés en fin de page.
 
 ## Les fichiers texte d'un projet
 
@@ -180,7 +180,7 @@ Les marques courantes de Markdown, et leur affichage.
 
 La syntaxe complète est décrite par Gruber sur
 [daringfireball.net/projects/markdown/syntax](https://daringfireball.net/projects/markdown/syntax).
-Deux marques absentes du schéma servent au TD 3a. Un **tableau** s'écrit avec
+Deux marques absentes du schéma servent au TD 1f. Un **tableau** s'écrit avec
 des barres verticales entre les colonnes, et une ligne de tirets sous la ligne
 d'en-tête ; l'alignement des barres d'une ligne à l'autre n'est pas
 obligatoire. Un **bloc de code** s'écrit entre deux lignes de trois accents
@@ -299,7 +299,7 @@ construction du site.
 Le notebook sert à explorer des données et à expliquer une démarche. Il ne
 convient pas pour livrer un outil qui doit s'exécuter seul, du début à la
 fin : le code d'un tel outil s'écrit dans un script `.py`, sujet du
-cours 3. Le tableau situe le notebook parmi les façons d'exécuter du Python vues depuis le TD 2a.
+cours 3. Le tableau situe le notebook parmi les façons d'exécuter du Python vues depuis le TD 1c.
 
 ```{list-table}
 :header-rows: 1
@@ -321,7 +321,7 @@ cours 3. Le tableau situe le notebook parmi les façons d'exécuter du Python vu
 ## Le bloc de texte d'un notebook
 
 Le bloc de texte d'un notebook s'écrit en Markdown, avec la même syntaxe que
-le `README.md` et le fichier du TD 3a. Le bloc suivant, par exemple :
+le `README.md` et le fichier du TD 1f. Le bloc suivant, par exemple :
 
 ```markdown
 # Longueur d'un trajet
@@ -374,7 +374,7 @@ l'ouverture du notebook ; ce choix est traité à la partie 4.
 
 JupyterLab est livré avec la distribution Anaconda. Il se lance depuis la
 page d'accueil d'Anaconda Navigator, par le bouton *Launch* de sa fiche,
-comme l'éditeur de code au TD 2a. Le numéro affiché sous le nom de
+comme l'éditeur de code au TD 1c. Le numéro affiché sous le nom de
 l'application est la version installée. La commande `jupyter lab`, tapée dans
 un terminal où l'environnement `base` d'Anaconda est actif, lance la même
 application.
@@ -392,11 +392,11 @@ organisation en client et serveur.
 
 ## TD de la partie
 
-- [TD 3a — Mettre en forme une recette en Markdown](td/3a_markdown/guide.md),
+- [TD 1f — Mettre en forme une recette en Markdown](td/1f_markdown/guide.md),
   20 minutes : reprendre en Markdown un texte brut sans structure, avec
   l'aperçu ouvert à côté, pour décider ce qui est un titre, une étape ou une
   donnée.
-- [TD 3b — Le notebook, ouvert de trois façons](td/3b_notebooks/guide.md),
+- [TD 1g — Le notebook, ouvert de trois façons](td/1g_notebooks/guide.md),
   12 minutes : ouvrir le même notebook dans le navigateur, dans l'éditeur et
   dans JupyterLab, et constater ce que le noyau retient d'une cellule à
   l'autre.

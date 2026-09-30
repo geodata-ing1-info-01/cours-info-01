@@ -3,7 +3,7 @@
 // Le fil : la table des comptes d'un site, les quatre façons d'obtenir le
 // mot de passe d'un autre, une parade par façon (l'empreinte, la longueur et
 // le hasard, le chiffrement, le deuxième facteur), puis la clé, qui remplace
-// le mot de passe pour les machines et les programmes. Le TD 2a suit.
+// le mot de passe pour les machines et les programmes. Le TD 5b suit.
 #import "../../../commun/prelude.typ": *
 #import "../schemas.typ": schema-cles, schema-echange-ssh, schema-connexion, repere
 #import "../style.typ": terminal

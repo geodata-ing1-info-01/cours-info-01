@@ -109,7 +109,7 @@
     précédente, ne demandait rien de plus que l'interpréteur.
 
     Le message d'erreur est le même que celui de la partie 2 et que celui
-    du TD 4a à venir. Troisième rencontre, et cette fois la
+    du TD 1h à venir. Troisième rencontre, et cette fois la
     cause est nommée : la bibliothèque n'est pas dans l'environnement
     actif.
 
@@ -669,7 +669,7 @@
     `environment.yml` dit de quoi la *machine* a besoin, y compris ce qui
     n'est pas du Python ; `pyproject.toml` dit de quoi le *code* a besoin.
     Les deux coexistent dans la plupart des projets, et dans celui du
-    TD 4a.
+    TD 1h.
 
     C'est un troisième usage du texte, après le code et la documentation :
     décrire. Ils ont croisé `.json` et `.yaml` à « Les fichiers texte d'un
@@ -683,7 +683,7 @@
     d'indentation, jamais de tabulation, et l'éditeur le signale. C'est
     « Espaces, tabulations et fins de ligne » qui resurgit.
 
-    La ligne surlignée est celle que le TD 4a fait lire avant de
+    La ligne surlignée est celle que le TD 1h fait lire avant de
     lancer quoi que ce soit : le projet annonce avoir besoin de `markdown`.
 
     Boucler la partie : le code réutilisé au début est disponible parce que
@@ -716,7 +716,7 @@
   ]
 
   #notes[
-    Ils s'en sont servis au TD 2a, « hello world », sans qu'on le
+    Ils s'en sont servis au TD 1c, « hello world », sans qu'on le
     nomme.
 
     La troisième ligne évite le `ModuleNotFoundError` de la diapositive

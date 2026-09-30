@@ -21,9 +21,9 @@
 
 #let tds = sys.inputs.at("tds", default: "") != "false"
 
-#import "tds/1a_mesures.typ": td as td-1a
-#import "tds/2a_cle_ssh.typ": td as td-2a
-#import "tds/3a_secret_historique.typ": td as td-3a
+#import "tds/5a_mesures.typ": td as td-5a
+#import "tds/5b_cle_ssh.typ": td as td-5b
+#import "tds/5c_secret_historique.typ": td as td-5c
 
 #include "parties/00_ouverture.typ"
 
@@ -31,23 +31,23 @@
 
 #include "parties/02_reseau.typ"
 #if tds {
-  include "tds/1a_mesures.typ"
+  include "tds/5a_mesures.typ"
 } else {
-  sommaire-td(td-1a)
+  sommaire-td(td-5a)
 }
 
 #include "parties/03_prouver_qui_lon_est.typ"
 #if tds {
-  include "tds/2a_cle_ssh.typ"
+  include "tds/5b_cle_ssh.typ"
 } else {
-  sommaire-td(td-2a)
+  sommaire-td(td-5b)
 }
 
 #include "parties/04_secrets.typ"
 #if tds {
-  include "tds/3a_secret_historique.typ"
+  include "tds/5c_secret_historique.typ"
 } else {
-  sommaire-td(td-3a)
+  sommaire-td(td-5c)
 }
 
 #include "parties/99_cloture.typ"

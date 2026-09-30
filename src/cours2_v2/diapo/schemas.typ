@@ -1,10 +1,10 @@
 // Schémas du cours 2 v2.
 //
 // `fenetre-vscode` : la fenêtre de VS Code telle que les élèves la
-// configurent au TD 1a, dessinée (28/09/2026). Elle remplace la capture du
+// configurent au TD 2a, dessinée (28/09/2026). Elle remplace la capture du
 // cours 1 de 2026 (projet trajet), absente du dépôt, dont le repli ne
 // dessinait qu'une fenêtre vide. Intitulés en anglais, comme sur les postes ;
-// disposition simplifiée. Le programme est `1a_vscode/altitudes.py`, et la
+// disposition simplifiée. Le programme est `2a_vscode/altitudes.py`, et la
 // sortie du terminal est la sienne.
 #import "../../commun/theme.typ": accent, brun, estompe, gris, police-code, demi-gras
 
@@ -41,11 +41,11 @@
         #_nom-zone[l'arborescence]
         #block(inset: (x: 8pt, bottom: 4pt), text(size: 9.5pt, weight: demi-gras, fill: estompe)[EXPLORER])
         #_ligne-arbre(text(weight: demi-gras)[⌄ COURS2])
-        #_ligne-arbre([⌄ 1a_vscode], retrait: 1)
+        #_ligne-arbre([⌄ 2a_vscode], retrait: 1)
         #_ligne-arbre([altitudes.py], retrait: 2, courant: true)
-        #_ligne-arbre([› 1b_erreurs], retrait: 1)
-        #_ligne-arbre([› 2a_markdown], retrait: 1)
-        #_ligne-arbre([› 3a_depot_recette], retrait: 1)
+        #_ligne-arbre([› 2b_erreurs], retrait: 1)
+        #_ligne-arbre([› 2c_markdown], retrait: 1)
+        #_ligne-arbre([› 2d_depot_recette], retrait: 1)
       ],
       grid(
         rows: (auto, auto),
@@ -79,7 +79,7 @@
           #block(inset: (x: 8pt, y: 2pt))[
             #set text(size: 13pt)
             #set par(leading: 0.4em)
-            #raw("(base)\neleve@POSTE MINGW64 ~/Desktop/info01/cours2\n$ python 1a_vscode/altitudes.py\nmoyenne : 129.0 m", block: true)
+            #raw("(base)\neleve@POSTE MINGW64 ~/Desktop/info01/cours2\n$ python 2a_vscode/altitudes.py\nmoyenne : 129.0 m", block: true)
           ]
         ],
       ),

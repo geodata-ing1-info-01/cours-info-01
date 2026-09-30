@@ -11,8 +11,8 @@ kernelspec:
 ---
 
 *Version 2 du cours 1 : proposition de travail pour 2027-2028. Ce guide
-reprend celui du TD 1a du cours 1 de 2026 ; le renommage des extensions et
-l'espace dans un nom de fichier passent au TD 2a, en ligne de commande, et la
+reprend celui du TD 1a de 2026 ; le renommage des extensions et
+l'espace dans un nom de fichier passent au TD 1b, en ligne de commande, et la
 table ASCII au cours 3.*
 
 Le TD commence par copier les fichiers de la séance sur le poste. Il manipule
@@ -137,7 +137,7 @@ Il faut donc extraire l'archive, une fois, avant de commencer :
 3. Laisser cochée « Afficher les fichiers extraits une fois l'opération
    terminée », puis cliquer sur « Extraire ».
 4. Le dossier `cours1` s'ouvre. Il contient un dossier par TD, numéroté
-   dans l'ordre de la séance (`1a_formats`, `2a_terminal`…), avec dans
+   dans l'ordre de la séance (`1a_formats`, `1b_terminal`…), avec dans
    chacun la feuille du TD en PDF, et un fichier `README.md` qui liste les
    TD.
 

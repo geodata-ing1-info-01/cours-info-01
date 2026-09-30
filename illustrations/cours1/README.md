@@ -55,7 +55,7 @@ for f in raven_brut raven_style; do
 done
 
 # le rendu de la recette : pandoc produit le HTML, mermaid dessine le schéma
-pandoc data/cours1/3a_markdown/recette.md -t html -o page.html   # + script mermaid
+pandoc data/cours1/1f_markdown/recette.md -t html -o page.html   # + script mermaid
 chromium --headless --disable-gpu --hide-scrollbars \
     --virtual-time-budget=25000 --screenshot="$D/apercu_recette.png" \
     --window-size=760,1180 "file://$PWD/page.html"

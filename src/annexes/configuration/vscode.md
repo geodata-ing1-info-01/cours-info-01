@@ -29,7 +29,7 @@ du TD depuis l'explorateur dans la fenêtre, ce qui écrit son chemin, puis
 Entrée :
 
 ```
-(base) C:\Users\eleve>code "C:\Users\eleve\Desktop\cours1\2a_vscode_python"
+(base) C:\Users\eleve>code "C:\Users\eleve\Desktop\cours1\1c_vscode_python"
 ```
 
 VS Code s'ouvre sur ce dossier. Lancé ainsi, il connaît l'environnement

@@ -113,7 +113,7 @@ d("La carte mère")[
     à une autre instruction. Une ligne de Python correspond à des dizaines ou
     des centaines d'instructions.
 
-    Cœurs : 4 sur les postes de la salle (relevé au TD 1a), 4 à 8 sur un
+    Cœurs : 4 sur les postes de la salle (relevé au TD 5a), 4 à 8 sur un
     portable, 32 à 128 sur un serveur de calcul.
   ]
 ]
@@ -208,7 +208,7 @@ d("La carte mère")[
 
     SSD : mémoire flash, sans pièce mobile. Disque dur : plateau tournant, cent
     fois plus lent à l'accès. Les postes de la salle ont un SSD (relevé au
-    TD 1a).
+    TD 5a).
   ]
 ]
 

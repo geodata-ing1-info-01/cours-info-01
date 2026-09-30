@@ -144,6 +144,18 @@ résultat visible, par exemple « `python recette.py` affiche la recette pour
 commence par un verbe. Les deux listes ne sont pas côte à côte, car leurs
 lignes sembleraient se répondre.
 
+**Nom d'un TD** (règle du 30/09/2026). Un TD s'appelle « TD » suivi du
+numéro de sa séance et d'une lettre : a, b, c, dans l'ordre où la séance
+fait ses TD. Le TD 3e est le cinquième TD de la séance 3, et aucun autre TD
+du module ne porte ce nom : un renvoi n'a pas besoin d'ajouter « du cours
+3 ». La lettre ne dépend pas des parties de l'exposé. Le dossier, le fichier
+de `tds/` et le guide portent le même nom (`3e_markdown`). Le statut du TD
+est le champ `statut` de son dictionnaire, `"facultatif"`, `"parcours
+standard"` ou `"parcours avancé"`, absent quand tous le font. Il est écrit
+à côté du numéro sur l'ouverture, le sommaire et le README de l'archive, et
+jamais dans le nom du dossier, pour qu'un TD change de statut sans changer
+de nom. Les anciens numéros sont dans `src/anciens_noms_td.md`.
+
 ## Illustrations et captures d'écran
 
 Un schéma dessiné est préféré par défaut : rien à distribuer, rien à refaire
@@ -208,7 +220,8 @@ Pas d'encadré « à retenir » qui recopie le paragraphe précédent.
 - [ ] Les commandes montrées ont été exécutées.
 - [ ] Ce que le TD fait constater est dans `reponse[…]`.
 - [ ] Un TD nouveau est un fichier de `tds/` nommé comme son dossier, avec son dictionnaire `td` en tête, importé et inclus par `cours<n>.typ`.
-- [ ] Les chemins cités dans un TD sont ceux de l'archive livrée : `cours1/2a_vscode_python/`, sans `data/` ni `produit/`.
+- [ ] Un TD nouveau s'appelle `<séance><lettre>`, la lettre suivant l'ordre de la séance ; son statut est dans `statut`, pas dans son nom.
+- [ ] Les chemins cités dans un TD sont ceux de l'archive livrée : `cours1/1c_vscode_python/`, sans `data/` ni `produit/`.
 - [ ] `python outils/verifier_diapos.py` ne signale rien.
 - [ ] `python outils/verifier_style.py` ne signale rien, ou chaque signalement a été relu.
 

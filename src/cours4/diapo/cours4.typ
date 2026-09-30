@@ -73,7 +73,7 @@
     columns: (auto, 1fr, 1fr),
     align: left + horizon,
     [], [Parcours standard], [Parcours avancé],
-    [Au cours 3], [TD 3a : une recette en Markdown], [TD 3b : le programme `recette.py`],
+    [Au cours 3], [TD 3e : une recette en Markdown], [TD 3f : le programme `recette.py`],
     [Au projet 4], [TD 4a, en suivant le guide détaillé], [TD 4a en 50 minutes, puis TD 4b],
     [Dossier], [`cours4/4a_recette/`], [`cours4/4a_recette/`, puis les fichiers à compléter de `cours4/4b_paquet/`],
   )

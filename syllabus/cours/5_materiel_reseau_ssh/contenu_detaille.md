@@ -3,7 +3,7 @@
 Vue d'ensemble : [../../01_syllabus_v1.md](../../01_syllabus_v1.md) (section « Cours 5 »).
 
 **Supports** : [`src/cours5/diapo/`](../../../src/cours5/diapo/) (typst, 43 pages d'exposé hors TD, dont la page de titre et cinq séparateurs ; deux photos annotées dans [`illustrations/cours5/`](../../../illustrations/cours5/) ; `--input notes=true` pour la version annotée, `--input corrige=true` pour le corrigé, `--input tds=false` pour le fil du cours).
-**TD** : trois, `1a` (mesures), `2a` (clé SSH), `3a` (secret dans l'historique, facultatif). Un fichier par TD dans [`src/cours5/diapo/tds/`](../../../src/cours5/diapo/tds/), un dossier de même nom dans [`data/cours5/`](../../../data/cours5/).
+**TD** : trois, `5a` (mesures), `5b` (clé SSH), `5c` (secret dans l'historique, facultatif). Un fichier par TD dans [`src/cours5/diapo/tds/`](../../../src/cours5/diapo/tds/), un dossier de même nom dans [`data/cours5/`](../../../data/cours5/).
 Conventions d'écriture : [`STYLE.md`](../../../STYLE.md).
 
 Objectif : donner les ordres de grandeur du matériel et du réseau qui expliquent la vitesse des outils, puis préparer la forge du cours 6 : une clé SSH sur le compte, et ce qui ne doit jamais entrer dans un dépôt.
@@ -14,7 +14,7 @@ Objectif : donner les ordres de grandeur du matériel et du réseau qui explique
 
 La séance 1 a été trop longue pour la salle. Celle-ci est écrite avec moins de TD : deux en séance (35′ en tout) et un facultatif. Le contenu est surtout de la culture générale ; les schémas et deux photos portent l'essentiel, les tableaux le reste, et les notes de conduite sont brèves.
 
-Deuxième jet (20 septembre 2026) : ajout de deux photos annotées (boîtier ouvert, carte mère), de trente ans d'évolution des processeurs, de la puissance et de la consommation des appareils (du téléphone à touches au superordinateur), de l'électricité et du coût des services en ligne, et du sans-fil. Deux diapositives sont passées en notes pour tenir : « Ce que cela change pour un programme » (dans les notes de « Si la mémoire vive valait une seconde ») et « Où une clé SSH sert » (dans les notes de « Prouver qui l'on est », et dans le README du TD 2a). Le compte, après le troisième jet, est de 37 diapositives de contenu, plus la page de titre et cinq séparateurs.
+Deuxième jet (20 septembre 2026) : ajout de deux photos annotées (boîtier ouvert, carte mère), de trente ans d'évolution des processeurs, de la puissance et de la consommation des appareils (du téléphone à touches au superordinateur), de l'électricité et du coût des services en ligne, et du sans-fil. Deux diapositives sont passées en notes pour tenir : « Ce que cela change pour un programme » (dans les notes de « Si la mémoire vive valait une seconde ») et « Où une clé SSH sert » (dans les notes de « Prouver qui l'on est », et dans le README du TD 5b). Le compte, après le troisième jet, est de 37 diapositives de contenu, plus la page de titre et cinq séparateurs.
 
 ## Ce que les étudiants ont déjà vu
 
@@ -48,9 +48,9 @@ Deux fils relient la séance au reste du module :
 |--------|--------|-------|
 | Ouverture | cours | 3′ |
 | 1. Le matériel | cours | 30′ |
-| 2. Le réseau | cours, puis TD 1a | 15′ + 15′ |
-| 3. Prouver qui l'on est | cours, puis TD 2a | 20′ + 20′ |
-| 4. Les secrets de vos programmes | cours ; TD 3a facultatif | 15′ |
+| 2. Le réseau | cours, puis TD 5a | 15′ + 15′ |
+| 3. Prouver qui l'on est | cours, puis TD 5b | 20′ + 20′ |
+| 4. Les secrets de vos programmes | cours ; TD 5c facultatif | 15′ |
 | Clôture | cours | 2′ |
 
 Total : 120′, dont 35′ de TD.
@@ -99,9 +99,9 @@ Sources : Brendan Gregg, *Systems Performance* (2020), table 2.2 des latences ; 
 19b. **Le sans-fil.** Tableau : Bluetooth, Wi-Fi, 4G et 5G, LoRa, GNSS ; portée, débit, latence, usage (dont les corrections RTK par la 4G, et le GNSS qui ne fait que recevoir, à 50 bit/s). Deux règles en légende : une onde est partagée, une onde s'écoute.
 20. **Un commit et un push.** Schéma : le commit écrit sur le disque local (millisecondes), le push traverse le réseau (latence, puis débit). Conséquence : on peut travailler sans réseau et pousser quand on veut.
 
-### ⌨️ TD 1a — Les ordres de grandeur de votre poste (15′)
+### ⌨️ TD 5a — Les ordres de grandeur de votre poste (15′)
 
-Dossier `cours5/1a_mesures/`. Deux étapes :
+Dossier `cours5/5a_mesures/`. Deux étapes :
 
 1. Gestionnaire des tâches (`Ctrl` + `Maj` + `Échap`), onglet Performance : relever le nombre de cœurs, la cadence, la taille de la mémoire vive, le type et la taille du disque.
 2. `python mesures.py` : quatre mesures (10 millions d'additions, copier 100 Mo en mémoire, écrire puis relire 100 Mo sur le disque, un aller-retour vers `github.com` et un téléchargement de 10 Mo). Remplir le tableau, comparer à l'échelle de la diapositive 9.
@@ -127,9 +127,9 @@ Troisième jet (20 septembre 2026). Le syllabus partait de la cryptographie et a
 
 Disparues par rapport au deuxième jet : « Prouver qui l'on est » (tableau mot de passe / clé, absorbé par 26 et 28), « Empreinte et chiffrement » (absorbé par 22 et 26), « Mots de passe » (remplacé par 24).
 
-### ⌨️ TD 2a — Une clé SSH sur votre compte (20′)
+### ⌨️ TD 5b — Une clé SSH sur votre compte (20′)
 
-Dossier `cours5/2a_cle_ssh/`. Prérequis : un compte GitHub créé avant la séance (page « Avant les séances »).
+Dossier `cours5/5b_cle_ssh/`. Prérequis : un compte GitHub créé avant la séance (page « Avant les séances »).
 
 1. Dans l'invite de commandes d'Anaconda : `ssh-keygen -t ed25519 -C "prenom.nom@etu.ecole.fr"`, Entrée à chaque question (emplacement par défaut, sans phrase de passe pour aujourd'hui).
 2. `type %USERPROFILE%\.ssh\id_ed25519.pub`, copier la ligne.
@@ -151,9 +151,9 @@ Ce qui est retenu, et pourquoi. Les dix mesures de cybermalveillance.gouv.fr et 
 35. **Si un secret a fui.** Chaîne : révoquer, remplacer, nettoyer, prévenir. La première étape passe avant tout, parce que l'historique a déjà été copié.
 36. **Mises à jour et sauvegardes.** Tableau : une mise à jour ferme une faille connue et publiée ; une sauvegarde suit la règle 3-2-1 ; un dépôt poussé sur la forge est une copie du code ; les données ignorées par git sont à sauvegarder à part.
 
-### ⌨️ TD 3a — Un secret dans l'historique (10′, facultatif)
+### ⌨️ TD 5c — Un secret dans l'historique (10′, facultatif)
 
-Dossier `cours5/3a_secret_historique/`. Rejouer la diapositive 33 : `git init`, un `config.py` avec une fausse clé, commit ; supprimer, commit ; `git log -p` montre les deux. Puis `.gitignore` et `config.example.py`, et `git status` ne voit plus `config.py`.
+Dossier `cours5/5c_secret_historique/`. Rejouer la diapositive 33 : `git init`, un `config.py` avec une fausse clé, commit ; supprimer, commit ; `git log -p` montre les deux. Puis `.gitignore` et `config.example.py`, et `git status` ne voit plus `config.py`.
 
 ## Clôture (1 page)
 

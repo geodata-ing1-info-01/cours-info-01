@@ -26,20 +26,20 @@ Bash.
     espaces ou en tabulations ; la fenêtre de VS Code et sa configuration
     (l'extension Python, l'interpréteur, Git Bash comme terminal, les
     réglages User et Workspace) ; trois programmes fautifs à corriger
-  - 1a, en classe entière ; 1b
+  - 2a, en classe entière ; 2b
 * - [Une recette en Markdown](notebook/02_markdown.md)
   - un format texte pour les documents d'un projet ; le tableau et l'image ;
     la conversion par pandoc
-  - 2a
+  - 2c
 * - [Git et le dépôt local](notebook/03_git_local.md)
   - les systèmes de version et les copies d'un dépôt ; la commande git et
     son aide ; le dépôt, l'index et le commit, `status`, `log`, `diff`,
     `restore`, `.gitignore`
-  - 3a, étapes 0 à 4
+  - 2d, étapes 0 à 4
 * - [Branches, fusion et conflits](notebook/04_branches.md)
   - les branches, la fusion et les conflits ; l'organisation des branches
     à plusieurs
-  - 3a, étapes 5 à 7
+  - 2d, étapes 5 à 7
 ```
 
 Les guides détaillés des TD sont réunis dans [Travaux dirigés de la

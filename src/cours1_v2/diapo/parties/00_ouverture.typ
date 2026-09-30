@@ -181,9 +181,9 @@
       #raw(
 "cours1/                un dossier par TD, dans l'ordre de la séance
 ├── 1a_formats/
-├── 2a_terminal/
-├── 2b_programme/
-└── 3a_notebook/")
+├── 1b_terminal/
+├── 1c_programme/
+└── 1d_notebook/")
     ]
   ]
 
@@ -198,7 +198,7 @@
     Rappeler le nom du dossier à chaque TD.
 
     Version 2 : aucun TD facultatif dans la séance. Les TD 1b (archive
-    `.odt`), 4b et 4c de 2026 restent dans l'archive 2026 du book ; le TD 2c
+    `.odt`), 1i et 1j de 2026 restent dans l'archive 2026 du book ; le TD 1e
     (C++) est l'annexe « C++ ».
   ]
 ]
@@ -215,8 +215,8 @@
     align: (left + horizon, left + horizon, right + horizon),
     [Partie], [Nature], [Durée],
     [Logiciels, fichiers et stockage], [cours et TD 1a], [30′],
-    [Terminal et premier programme], [cours et TD 2a, 2b], [50′],
-    [Un notebook et la syntaxe de Markdown], [cours et TD 3a], [15′],
+    [Terminal et premier programme], [cours et TD 1b, 1c], [50′],
+    [Un notebook et la syntaxe de Markdown], [cours et TD 1d], [15′],
   )
 
   #avertissement[

@@ -13,7 +13,7 @@ kernelspec:
 :::{note}
 Cette page n'est pas jouée en séance : elle se fait seule, et prépare le cours 2.
 Elle repart d'un fichier déjà écrit, la recette mise en forme en Markdown en
-séance, dans `cours1/3a_markdown/depart/`.
+séance, dans `cours1/1f_markdown/depart/`.
 :::
 
 Le choix d'un format décide de ce qu'on peut faire du fichier ; comparer deux
@@ -48,7 +48,7 @@ def dossier_seance(depart: Path = Path.cwd()) -> Path:
                 return candidat
     raise FileNotFoundError("dossier de la séance introuvable depuis " + str(depart))
 
-recette = dossier_seance() / "3a_markdown" / "depart" / "recette.md"
+recette = dossier_seance() / "1f_markdown" / "depart" / "recette.md"
 avant = recette.read_text(encoding="utf-8").splitlines(keepends=True)
 apres = [
     ligne.replace("1 heure de repos", "2 heures de repos")
@@ -88,7 +88,7 @@ par courriel.
 :::{admonition} À faire — modifier, comparer, appliquer
 :class: tip
 
-Le dossier `cours1/3a_markdown/depart/` contient `comparer.py`, un programme d'une
+Le dossier `cours1/1f_markdown/depart/` contient `comparer.py`, un programme d'une
 quarantaine de lignes qui n'emploie que la bibliothèque standard.
 
 1. Ouvrez `recette.md`, puis **Fichier → Enregistrer sous**, sous le nom

@@ -9,7 +9,7 @@ autre personne. Elle présente ensuite une parade par façon : l'empreinte, avec
 un sel et un calcul lent ; un mot de passe long et tiré au hasard ; le
 chiffrement du trajet ; le deuxième facteur. Elle se termine par la paire de
 clés SSH, qui remplace le mot de passe pour une machine ou un programme. Le
-TD 2a l'accompagne : il crée une paire de clés et la déclare sur GitHub ; il
+TD 5b l'accompagne : il crée une paire de clés et la déclare sur GitHub ; il
 est présenté en fin de page.
 
 ## La connexion à un site
@@ -533,7 +533,7 @@ ne pas la retaper à chaque `push`.
 
 ## TD de la partie
 
-- TD 2a, `cours5/2a_cle_ssh/`, 20 minutes : créer une paire de clés avec
+- TD 5b, `cours5/5b_cle_ssh/`, 20 minutes : créer une paire de clés avec
   `ssh-keygen`, coller la clé publique sur GitHub, puis vérifier la connexion
   avec `ssh -T git@github.com`. Le TD demande un compte GitHub, créé avant la
   séance. Le dossier contient un fichier `config` à copier dans `.ssh` si le

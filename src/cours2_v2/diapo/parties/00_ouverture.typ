@@ -26,10 +26,10 @@
       #set align(left)
       #raw(
 "cours2/                  un dossier par TD, dans l'ordre de la séance
-├── 1a_vscode/
-├── 1b_erreurs/
-├── 2a_markdown/
-└── 3a_depot_recette/")
+├── 2a_vscode/
+├── 2b_erreurs/
+├── 2c_markdown/
+└── 2d_depot_recette/")
     ]
   ]
 
@@ -39,7 +39,7 @@
   ]
 
   #notes[
-    L'archive se copie et se décompresse à la première étape du TD 1a, dans
+    L'archive se copie et se décompresse à la première étape du TD 2a, dans
     Git Bash (`unzip`), en classe entière.
   ]
 ]
@@ -56,10 +56,10 @@
     align: (left + horizon, left + horizon, right + horizon),
     [Partie], [Nature], [Durée],
     [L'éditeur de code et Markdown], [cours], [10′],
-    [Configurer l'éditeur de code], [TD 1a, en classe entière], [25′],
-    [Corriger trois programmes], [TD 1b], [10′],
-    [Une recette en Markdown], [TD 2a], [12′],
-    [Git local], [cours et TD 3a], [62′],
+    [Configurer l'éditeur de code], [TD 2a, en classe entière], [25′],
+    [Corriger trois programmes], [TD 2b], [10′],
+    [Une recette en Markdown], [TD 2c], [12′],
+    [Git local], [cours et TD 2d], [62′],
   )
 
   #legende[
@@ -70,10 +70,10 @@
     Budget : 10 + 25 + 10 + 12 + 62 = 119′, 1′ de marge (syllabus v2,
     28/09/2026). Premier
     poste à surveiller : la configuration. Si elle dépasse 25′, le guide du
-    TD 1a, distribué avant la séance, doit la faire commencer avant.
+    TD 2a, distribué avant la séance, doit la faire commencer avant.
 
     Si la séance déborde, retirer dans l'ordre : la diapositive
-    « L'organisation des branches à plusieurs », l'étape `.odt` du TD 2a.
+    « L'organisation des branches à plusieurs », l'étape `.odt` du TD 2c.
 
     `revert` et `rebase` sont en annexe ; `tag` au projet 7 ; l'organisation
     des branches à plusieurs, en théorie en fin de partie git, puis au

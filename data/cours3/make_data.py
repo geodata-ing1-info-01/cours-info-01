@@ -1,11 +1,11 @@
 """Fabrique les fichiers des TD du cours 3 : recettes, images, outil portable.
 
 Le dépôt versionne les recettes (`recettes/`), les modèles et le programme de
-secours du TD 3b ; tout ce qui vient d'ailleurs est téléchargé une fois dans `fourni/`,
+secours du TD 3f ; tout ce qui vient d'ailleurs est téléchargé une fois dans `fourni/`,
 et `build` recopie ou dérive ce que chaque TD reçoit dans son `produit/`.
 
-    python make_data.py fetch    # télécharge dans 2b_images/fourni/, 3b_cli/fourni/ et 3a_markdown/fourni/
-    python make_data.py build    # remplit produit/ des cinq TD, depuis recettes/, 3a_markdown/ et fourni/
+    python make_data.py fetch    # télécharge dans 3d_images/fourni/, 3f_cli/fourni/ et 3e_markdown/fourni/
+    python make_data.py build    # remplit produit/ des cinq TD, depuis recettes/, 3e_markdown/ et fourni/
 
 Chaque TD reçoit sa propre copie des données : un dossier livré se suffit,
 aucun TD ne renvoie à un chemin d'un TD précédent.
@@ -30,16 +30,16 @@ ICI = Path(__file__).parent
 RECETTES = ICI / "recettes"
 CORRIGES = ICI / "corriges"
 
-TD_RECETTE = ICI / "1a_recette"
-TD_FICHIERS = ICI / "2a_fichiers"
-TD_IMAGES = ICI / "2b_images"
-TD_CLI = ICI / "3b_cli"
-TD_MARKDOWN = ICI / "3a_markdown"
+TD_RECETTE = ICI / "3b_recette"
+TD_FICHIERS = ICI / "3c_fichiers"
+TD_IMAGES = ICI / "3d_images"
+TD_CLI = ICI / "3f_cli"
+TD_MARKDOWN = ICI / "3e_markdown"
 
 # Commons et le Met demandent un User-Agent identifiable.
 ENTETES = {"User-Agent": "info01-cours (https://github.com/ ; cours d'introduction à l'informatique)"}
 
-# --- Images du TD 2b --------------------------------------------------------
+# --- Images du TD 3d --------------------------------------------------------
 
 # L'objet 45434 du Met est *Under the Wave off Kanagawa* ; l'API renvoie
 # l'URL de l'image originale, CC0, 3 859 × 2 594 pixels. `build` la réduit à
@@ -50,7 +50,7 @@ VAGUE_ORIGINAL = "vague_original.jpg"
 VAGUE = "vague.jpg"
 LARGEUR_VAGUE = 2000
 
-# --- Photos des recettes (TD 3b) ---------------------------------------------
+# --- Photos des recettes (TD 3f) ---------------------------------------------
 
 # Une photo par recette, prise sur Wikimedia Commons en 960 px de large. La
 # page de chaque fichier donne la licence ; `CREDITS.md` la recopie dans le
@@ -75,13 +75,13 @@ PHOTOS = {
 }
 LARGEUR_PHOTO = 960
 
-# La photo de la recette écrite au TD 3a, qui n'est pas dans `recettes/`.
+# La photo de la recette écrite au TD 3e, qui n'est pas dans `recettes/`.
 PHOTO_GAUFRES = {
     "fichier": "Gaufre molle.jpg",
     "auteur": "Jre", "licence": "domaine public",
 }
 
-# --- ImageMagick portable (TD 3b, option) -------------------------------------
+# --- ImageMagick portable (TD 3f, option) -------------------------------------
 
 # Un seul exécutable, sans installateur ni droits d'administration. Les
 # autres `.exe` de l'archive sont des copies de celui-ci, les `.xml` sont
@@ -90,7 +90,7 @@ MAGICK_VERSION = "7.1.2-31"
 MAGICK_ARCHIVE = f"ImageMagick-{MAGICK_VERSION}-portable-Q16-x64.7z"
 MAGICK_URL = f"https://github.com/ImageMagick/ImageMagick/releases/download/{MAGICK_VERSION}/{MAGICK_ARCHIVE}"
 
-# Le motif 4 × 4 du TD 2b, écrit en clair : c'est un fichier texte, et c'est
+# Le motif 4 × 4 du TD 3d, écrit en clair : c'est un fichier texte, et c'est
 # le point.
 MOTIF = "P2\n4 4\n255\n0 255 0 255\n255 0 255 0\n0 255 0 255\n255 0 255 0\n"
 
@@ -196,14 +196,14 @@ def reduire(source: Path, cible: Path, largeur: int) -> None:
 
 
 def build() -> None:
-    # TD 1a : les recettes et le notebook (posé là par construire_notebooks.py).
+    # TD 3b : les recettes et le notebook (posé là par construire_notebooks.py).
     produit = TD_RECETTE / "produit"
     vider(produit)
     (produit / "travail").mkdir()
     copier_recettes(produit / "depart", avec_photos=False)
     print(f"✓ {TD_RECETTE.name}/produit/depart/")
 
-    # TD 2a : les recettes, que relit le notebook des fichiers (posé là par
+    # TD 3c : les recettes, que relit le notebook des fichiers (posé là par
     # construire_notebooks.py).
     produit = TD_FICHIERS / "produit"
     vider(produit)
@@ -211,7 +211,7 @@ def build() -> None:
     copier_recettes(produit / "depart", avec_photos=False)
     print(f"✓ {TD_FICHIERS.name}/produit/depart/")
 
-    # TD 2b : les images de départ.
+    # TD 3d : les images de départ.
     produit = TD_IMAGES / "produit"
     vider(produit)
     (produit / "travail").mkdir()
@@ -231,7 +231,7 @@ def build() -> None:
         encoding="utf-8")
     print(f"✓ {TD_IMAGES.name}/produit/depart/")
 
-    # TD 3b : les recettes avec leurs photos, l'outil portable, le corrigé.
+    # TD 3f : les recettes avec leurs photos, l'outil portable, le corrigé.
     produit = TD_CLI / "produit"
     vider(produit)
     (produit / "travail").mkdir()
@@ -245,15 +245,15 @@ def build() -> None:
     else:
         print(f"! ni `7z` ni `py7zr` : extraire magick.exe de {archive.name} "
               f"à la main dans {exe.parent.relative_to(ICI)}/")
-    corrige = CORRIGES / "3b_cli"
+    corrige = CORRIGES / "3f_cli"
     if corrige.is_dir():
         shutil.copytree(corrige, produit / "_corrige")
     print(f"✓ {TD_CLI.name}/produit/depart/")
 
-    # TD 3a : le dépôt des recettes, `depart/recettes/`, reçoit les quatre
+    # TD 3e : le dépôt des recettes, `depart/recettes/`, reçoit les quatre
     # recettes et la feuille de style ; `outils/construire_notebooks.py` y
     # ajoute `pages.ipynb`. Le texte de la nouvelle recette et le résultat
-    # attendu sont versionnés dans `3a_markdown/depart/` ; `produit/` y ajoute
+    # attendu sont versionnés dans `3e_markdown/depart/` ; `produit/` y ajoute
     # la photo des gaufres et les crédits.
     produit = TD_MARKDOWN / "produit"
     vider(produit)

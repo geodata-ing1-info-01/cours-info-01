@@ -1,5 +1,5 @@
 // Diapositive retirée du cours 2 v2 le 28/09/2026, à reprendre au cours 3 v2,
-// où le README s'écrit (étape 4 du TD 3a). Ce fichier n'est inclus nulle
+// où le README s'écrit (étape 4 du TD 2d). Ce fichier n'est inclus nulle
 // part. Le bloc de code Markdown (trois accents graves), vu jusque-là sur la
 // diapositive « Tableau, bloc de code et image » du cours 2 v2, y va aussi :
 // il sert dans un README.

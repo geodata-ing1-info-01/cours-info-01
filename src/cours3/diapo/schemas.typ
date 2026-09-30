@@ -48,7 +48,7 @@
 //
 //   #arborescence(
 //     (0, "cours3/"),
-//     (1, "1a_recette/"),
+//     (1, "3b_recette/"),
 //     (2, "travail/", "vide"),
 //   )
 #let arborescence(..entrees, taille: 12pt) = {

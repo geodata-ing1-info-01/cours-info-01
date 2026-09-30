@@ -3,13 +3,13 @@
 //
 // Reprend les diapositives 43 à 46 du cours 1 de 2026 (fonctions d'un IDE,
 // édition, règles du langage, chasse fixe), sans les reformuler. Celle de
-// l'indentation vient du cours 1 v2 (27/09/2026), avec le TD 1b qui s'en sert.
+// l'indentation vient du cours 1 v2 (27/09/2026), avec le TD 2b qui s'en sert.
 //
 // Depuis le 28/09/2026, la partie ouvre la séance : l'éditeur est expliqué
-// avant d'être configuré (TD 1a, en classe entière). La partie « Configurer
+// avant d'être configuré (TD 2a, en classe entière). La partie « Configurer
 // l'éditeur de code » et son séparateur sont retirés. La partie se termine
 // par la diapositive Markdown (`03_markdown.typ`) puis par « Visual Studio
-// Code » (`03b_vscode.typ`), juste avant le TD 1a.
+// Code » (`03b_vscode.typ`), juste avant le TD 2a.
 #import "../../../commun/prelude.typ": *
 #import "../../../cours1/diapo/schemas.typ": souligne-ondule, blancs
 
@@ -62,8 +62,8 @@
     environment_). Exemples si la question vient : RStudio ou l'IDE Arduino ne
     servent qu'un langage, Eclipse et VSCode s'étendent.
 
-    Débogage : TD 2a du cours 1 de 2026, dans l'archive du book. Panneau
-    git : au TD 3a.
+    Débogage : TD 1c de 2026, dans l'archive du book. Panneau
+    git : au TD 2d.
 
     Microsoft présente VSCode comme un éditeur plutôt que comme un IDE,
     ses fonctions avancées venant d'extensions. Ne pas s'y attarder si la
@@ -127,7 +127,7 @@
     Deux services tirés de la même chose, les règles écrites du langage : la
     couleur, puis le soulignement.
 
-    À gauche, le `content.xml` d'un `.odt` (TD 1b du cours 1 de 2026, dans l'archive du book), le
+    À gauche, le `content.xml` d'un `.odt` (TD 1b de 2026, dans l'archive du book), le
     texte entre les balises. On n'écrit pas de code dans Word ni dans
     LibreOffice.
 
@@ -194,7 +194,7 @@
 
 // --------------------------------------------
 // Reprise de la diapositive 47 du cours 1 de 2026. Passée du cours 1 v2 au
-// cours 2 v2 le 27/09/2026, avec le TD des programmes fautifs (TD 1b).
+// cours 2 v2 le 27/09/2026, avec le TD des programmes fautifs (TD 2b).
 #d("L'indentation, en espaces ou en tabulation")[
   #annonce[
     Un espace et une tabulation sont deux caractères différents. Une
@@ -222,9 +222,9 @@
   ]
 
   #notes[
-    Les deux lignes sont celles de `cours2/1b_erreurs/depart/surface.py` :
+    Les deux lignes sont celles de `cours2/2b_erreurs/depart/surface.py` :
     la cinquième indentée par quatre espaces, la sixième par une tabulation.
-    Le TD 1b fera corriger ce fichier ; le message d'erreur s'y lit à ce
+    Le TD 2b fera corriger ce fichier ; le message d'erreur s'y lit à ce
     moment, ne pas le projeter ici.
 
     Python refuse ce mélange dans une même indentation, et le dit par
@@ -234,8 +234,8 @@
     VS Code insère quatre espaces pour une tabulation dans un fichier
     Python.
 
-    Les blancs s'afficheront après le réglage du TD 1a (« render
-    whitespace ») ; le TD 1b s'en sert.
+    Les blancs s'afficheront après le réglage du TD 2a (« render
+    whitespace ») ; le TD 2b s'en sert.
 
     Fins de ligne, à dire en passant : Windows en met deux (`CRLF`), Linux et
     macOS un seul (`LF`). Un même fichier n'a donc pas la même taille selon la

@@ -139,19 +139,17 @@ def description(cours: str, td: Path) -> dict[str, str]:
             trouve = re.search(r'^title:\s*"?(.+?)"?\s*$', guide.read_text(encoding="utf-8"), re.M)
             if trouve:
                 titre = re.sub(r"^TD \w+ — ", "", trouve.group(1))
-        return {"numero": td.name.split("_")[0], "titre": titre, "facultatif": "false"}
+        return {"numero": td.name.split("_")[0], "titre": titre}
     texte = source.read_text(encoding="utf-8")
-    champs = dict(re.findall(r'^\s*(\w+):\s*"([^"]*)"', texte, re.M))
-    champs["facultatif"] = "true" if re.search(r"facultatif:\s*true", texte) else "false"
-    return champs
+    return dict(re.findall(r'^\s*(\w+):\s*"([^"]*)"', texte, re.M))
 
 
 def readme(cours: str, tds: list[Path]) -> str:
     lignes = [
         f"# Cours {cours} — travaux dirigés",
         "",
-        "Un dossier par TD, dans l'ordre de la séance : le chiffre est le bloc,",
-        "la lettre l'ordre dans le bloc. La feuille du TD (`td_<dossier>.pdf`) et,",
+        "Un dossier par TD, dans l'ordre de la séance : le chiffre est la séance,",
+        "la lettre l'ordre dans la séance. La feuille du TD (`td_<dossier>.pdf`) et,",
         "quand il existe, le guide détaillé (`guide_<dossier>.pdf`) sont dans son dossier.",
         "",
         "| TD | Titre | Dossier | |",
@@ -159,8 +157,7 @@ def readme(cours: str, tds: list[Path]) -> str:
     ]
     for td in tds:
         d = description(cours, td)
-        statut = "facultatif" if d["facultatif"] == "true" else ""
-        lignes.append(f"| {d['numero']} | {d['titre']} | `{td.name}/` | {statut} |")
+        lignes.append(f"| {d['numero']} | {d['titre']} | `{td.name}/` | {d.get('statut', '')} |")
     lignes.append("")
     return "\n".join(lignes)
 

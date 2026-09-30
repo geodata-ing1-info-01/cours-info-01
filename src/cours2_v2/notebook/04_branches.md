@@ -8,7 +8,7 @@ sans toucher à la version principale, puis la fusion, qui réunit deux
 branches, et le conflit, quand deux branches ont modifié la même ligne.
 Elle se termine par l'organisation des branches quand on travaille à
 plusieurs. Les exemples sont ceux des étapes 5 et 6 du [TD
-3a](td/3a_depot_recette/guide.md) ; il est présenté en fin de page.
+2d](td/2d_depot_recette/guide.md) ; il est présenté en fin de page.
 
 ## Les branches
 
@@ -96,7 +96,7 @@ Deux cas se présentent :
 - **les deux branches ont avancé** : git crée un **commit de fusion**, qui a
   deux parents, le dernier commit de chaque branche.
 
-Au TD 3a, `master` a reçu le conseil et `sans-gluten` la farine de
+Au TD 2d, `master` a reçu le conseil et `sans-gluten` la farine de
 sarrasin. La fusion crée le commit `edae9b6` :
 
 ```text
@@ -128,7 +128,7 @@ différentes, git ne peut pas choisir entre elles. La fusion s'arrête sur un
 La fusion de `pour-18` dans `master` s'arrête sur un conflit.
 ```
 
-À l'étape 6 du TD 3a, la troisième ligne de `recette.md` est modifiée des
+À l'étape 6 du TD 2d, la troisième ligne de `recette.md` est modifiée des
 deux côtés depuis `eda` :
 
 ```{list-table}
@@ -239,7 +239,7 @@ la version rendue.
 
 ## TD de la partie
 
-- [TD 3a — Un dépôt git pour la recette](td/3a_depot_recette/guide.md),
+- [TD 2d — Un dépôt git pour la recette](td/2d_depot_recette/guide.md),
   40 minutes. Les étapes 5 et 6 appliquent cette page : une branche
   fusionnée, puis un conflit résolu ; le graphe du dépôt se dessine sur
   papier avant d'être comparé à `git log --oneline --graph --all

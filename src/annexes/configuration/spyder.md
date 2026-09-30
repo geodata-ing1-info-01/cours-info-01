@@ -69,7 +69,7 @@ afficher le chemin d'Anaconda ({ref}`A12 <dep-a12>`).
 
 Spyder ne crée pas d'environnement : c'est le travail de conda, dans
 l'invite de commandes d'Anaconda ([Les environnements](anaconda.md#les-environnements),
-TD 4a). Une fois l'environnement créé, Spyder peut y ouvrir une console, à
+TD 1h). Une fois l'environnement créé, Spyder peut y ouvrir une console, à
 une condition : le paquet `spyder-kernels` doit y être installé, à la
 version qui correspond à celle de Spyder (menu Aide, À propos de Spyder) :
 

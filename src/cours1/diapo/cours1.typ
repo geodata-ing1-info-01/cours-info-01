@@ -21,8 +21,8 @@
 )
 
 // Chaque TD est un fichier de `tds/`, nommé comme le dossier que l'étudiant
-// ouvre : `2c_hello_cpp.typ` pour `cours1/2c_hello_cpp/`. Le chiffre est le
-// bloc, joué au même moment du cours ; la lettre, l'ordre dans le bloc.
+// ouvre : `1e_hello_cpp.typ` pour `cours1/1e_hello_cpp/`. Le chiffre est la
+// séance ; la lettre, l'ordre dans la séance.
 // Chaque fichier se compile aussi seul, en feuille de TD déposée dans son
 // dossier de données (`outils/compiler_tds.py`).
 //
@@ -36,14 +36,14 @@
 
 #import "tds/1a_formats.typ": td as td-1a
 #import "tds/1b_archive_odt.typ": td as td-1b
-#import "tds/2a_vscode_python.typ": td as td-2a
-#import "tds/2b_erreurs.typ": td as td-2b
-#import "tds/2c_hello_cpp.typ": td as td-2c
-#import "tds/3a_markdown.typ": td as td-3a
-#import "tds/3b_notebooks.typ": td as td-3b
-#import "tds/4a_recette.typ": td as td-4a
-#import "tds/4b_noyaux.typ": td as td-4b
-#import "tds/4c_trajet.typ": td as td-4c
+#import "tds/1c_vscode_python.typ": td as td-1c
+#import "tds/1d_erreurs.typ": td as td-1d
+#import "tds/1e_hello_cpp.typ": td as td-1e
+#import "tds/1f_markdown.typ": td as td-1f
+#import "tds/1g_notebooks.typ": td as td-1g
+#import "tds/1h_recette.typ": td as td-1h
+#import "tds/1i_noyaux.typ": td as td-1i
+#import "tds/1j_trajet.typ": td as td-1j
 
 #include "parties/00_ouverture.typ"
 
@@ -57,28 +57,28 @@
 
 #include "parties/02_programmation.typ"
 #if tds {
-  include "tds/2a_vscode_python.typ"
-  include "tds/2b_erreurs.typ"
-  include "tds/2c_hello_cpp.typ"
+  include "tds/1c_vscode_python.typ"
+  include "tds/1d_erreurs.typ"
+  include "tds/1e_hello_cpp.typ"
 } else {
-  sommaire-td(td-2a, td-2b, td-2c)
+  sommaire-td(td-1c, td-1d, td-1e)
 }
 
 #include "parties/03_markdown_notebook.typ"
 #if tds {
-  include "tds/3a_markdown.typ"
-  include "tds/3b_notebooks.typ"
+  include "tds/1f_markdown.typ"
+  include "tds/1g_notebooks.typ"
 } else {
-  sommaire-td(td-3a, td-3b)
+  sommaire-td(td-1f, td-1g)
 }
 
 #include "parties/04_projet_python.typ"
 #if tds {
-  include "tds/4a_recette.typ"
-  include "tds/4b_noyaux.typ"
-  include "tds/4c_trajet.typ"
+  include "tds/1h_recette.typ"
+  include "tds/1i_noyaux.typ"
+  include "tds/1j_trajet.typ"
 } else {
-  sommaire-td(td-4a, td-4b, td-4c)
+  sommaire-td(td-1h, td-1i, td-1j)
 }
 
 #include "parties/99_cloture.typ"

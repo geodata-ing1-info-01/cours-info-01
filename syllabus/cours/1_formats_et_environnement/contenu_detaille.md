@@ -4,7 +4,7 @@ Vue d'ensemble : [../../01_syllabus_v1.md](../../01_syllabus_v1.md) (section « 
 Inversion C1↔C3 : [../../inversion_c1_c3.md](../../inversion_c1_c3.md).
 
 **Supports** : [`src/cours1/notebook/`](../../../src/cours1/notebook/) (MyST, 4 pages) et [`src/cours1/diapo/`](../../../src/cours1/diapo/) (typst, 119 diapositives en assertion-evidence avec les captures d'écran ; `--input notes=true` pour la version annotée, `--input corrige=true` pour le corrigé des TD, `--input tds=false` pour le fil du cours avec un sommaire à la place de chaque bloc de TD, `--input captures=true` si les captures d'écran sont en place).
-**TD** : dix, numérotés `1a`…`5b` (chiffre = bloc, lettre = ordre dans le bloc), quatre facultatifs (`1b`, `2c`, `5a`, `5b`). Un fichier par TD dans [`src/cours1/diapo/tds/`](../../../src/cours1/diapo/tds/), un dossier de même nom dans [`data/cours1/`](../../../data/cours1/), et l'archive remise aux étudiants assemblée par `outils/livrer_tds.py`.
+**TD** : dix, numérotés `1a`…`1j` (lettre = ordre dans la séance), quatre facultatifs (`1b`, `1e`, `1i`, `1j`). Un fichier par TD dans [`src/cours1/diapo/tds/`](../../../src/cours1/diapo/tds/), un dossier de même nom dans [`data/cours1/`](../../../data/cours1/), et l'archive remise aux étudiants assemblée par `outils/livrer_tds.py`.
 Conventions d'écriture : [`STYLE.md`](../../../STYLE.md).
 Illustrations manquantes, relevées diapositive par diapositive : [`illustrations_a_chercher.md`](illustrations_a_chercher.md).
 **Données** : [`data/cours1/`](../../../data/cours1/) — générées par `make_data.py`.
@@ -165,7 +165,7 @@ La quatrième ligne est la plus instructive et n'est pas intuitive : avec une ex
 - **un style, sans code hexadécimal** : dans `content.xml`, remplacer `Text_20_body` par `Heading_20_1` sur un paragraphe, qui devient un titre. Une diapositive montre la ligne avant et après, la partie changée en couleur. Le `_20_` intrigue toujours : ce n'est pas un nom en trois morceaux, c'est « Text body » dont l'espace est encodé, un nom XML n'en acceptant pas. ODF écrit chaque caractère interdit sous la forme de son code hexadécimal entre tirets bas, et l'espace vaut 20 — le même principe que le `%20` des adresses web. Le nom lisible est dans l'attribut `style:display-name`, et l'explication est donnée aux étudiants dans le notebook, avec un lien vers la spécification ;
 - la taille : dans `styles.xml`, sur `Heading_20_1`, passer `fo:font-size` de `115%` à `220%`.
 
-> **Sur la couleur, question attendue** : ODF n'accepte **pas** de nom de couleur. Vérifié — `fo:color="red"` est ignoré et le titre reste noir ; il faut `fo:color="#c0392b"`. C'est donc l'occasion d'expliquer le code hexadécimal, deux chiffres par composante rouge, verte et bleue. CSS, lui, accepte les deux écritures, ce qui se vérifie au TD 3a.
+> **Sur la couleur, question attendue** : ODF n'accepte **pas** de nom de couleur. Vérifié — `fo:color="red"` est ignoré et le titre reste noir ; il faut `fo:color="#c0392b"`. C'est donc l'occasion d'expliquer le code hexadécimal, deux chiffres par composante rouge, verte et bleue. CSS, lui, accepte les deux écritures, ce qui se vérifie au TD 1f.
 
 `content.xml` fait 4 ko sur 21 lignes, dont une de 1 300 caractères : le Bloc-notes l'ouvre, en activant le retour à la ligne, mais l'éditeur de code du module est nettement plus confortable, puisqu'il colore et replie les balises.
 
@@ -210,7 +210,7 @@ Une capture d'écran de VSCode ouvert sur un petit projet sert de support : les 
 
 ### 🎓 4′ — Lancer un programme depuis l'éditeur
 
-La partie a dit qu'un IDE sert à lancer et à tester, sans jamais montrer par où. Trois menus suffisent, et ils sont projetés avant le TD 2a plutôt que découverts pendant.
+La partie a dit qu'un IDE sert à lancer et à tester, sans jamais montrer par où. Trois menus suffisent, et ils sont projetés avant le TD 1c plutôt que découverts pendant.
 
 | | Le bouton d'exécution | Le terminal intégré |
 |---|---|---|
@@ -237,11 +237,11 @@ Python vient avec l'environnement ; un compilateur C++, non. **Windows n'en four
 
 > **Le nom de l'exécutable est le piège**, et il faut le projeter : conda-forge installe `x86_64-w64-mingw32-g++.exe`, pas `g++`. C'est le nom complet de la cible, et il ne s'invente pas. Vérifié sur un poste de l'école en septembre 2026.
 
-> **La version fixée est le second piège**, et il n'est pas de notre fait. `gxx` 16.2.0, celui que conda prend par défaut, échoue à l'édition de liens sous Windows — `cannot find crt2.o` —, parce que les fichiers de démarrage sont installés dans `sysroot\usr\lib` et que cette version de gcc n'y cherche plus. Défaut du paquet conda-forge, ouvert le 4 septembre 2026 ([issue 229](https://github.com/conda-forge/ctng-compilers-feedstock/issues/229)) et non corrigé au 13 septembre ; les versions 13.4.0, 14.4.0 et 15.3.0 en sont indemnes. Une diapositive du TD 2c montre le message, à passer si la compilation sort du premier coup. Réparations et chemin sans conda : [`data/cours1/2c_hello_cpp/README.md`](../../../data/cours1/2c_hello_cpp/README.md).
+> **La version fixée est le second piège**, et il n'est pas de notre fait. `gxx` 16.2.0, celui que conda prend par défaut, échoue à l'édition de liens sous Windows — `cannot find crt2.o` —, parce que les fichiers de démarrage sont installés dans `sysroot\usr\lib` et que cette version de gcc n'y cherche plus. Défaut du paquet conda-forge, ouvert le 4 septembre 2026 ([issue 229](https://github.com/conda-forge/ctng-compilers-feedstock/issues/229)) et non corrigé au 13 septembre ; les versions 13.4.0, 14.4.0 et 15.3.0 en sont indemnes. Une diapositive du TD 1e montre le message, à passer si la compilation sort du premier coup. Réparations et chemin sans conda : [`data/cours1/1e_hello_cpp/README.md`](../../../data/cours1/1e_hello_cpp/README.md).
 
 > Ne pas employer `m2w64-toolchain`, encore proposé par de vieilles réponses en ligne : le paquet affiche lui-même à l'activation qu'il est obsolète et renvoie vers `gcc`, `gxx` et `gfortran`.
 
-L'installation demande du réseau et quelques minutes : la lancer avant la séance si possible, sinon au début du TD 2c en enchaînant sur autre chose pendant qu'elle tourne. C'est la seule étape de la séance qui dépende du réseau de la salle. La justification de l'environnement est repoussée à la partie 4, et il faut le dire plutôt que de laisser la question en suspens.
+L'installation demande du réseau et quelques minutes : la lancer avant la séance si possible, sinon au début du TD 1e en enchaînant sur autre chose pendant qu'elle tourne. C'est la seule étape de la séance qui dépende du réseau de la salle. La justification de l'environnement est repoussée à la partie 4, et il faut le dire plutôt que de laisser la question en suspens.
 
 ### 🎓 3′ — Ouvrir un terminal où conda existe
 
@@ -257,9 +257,9 @@ Les postes de la salle ont Anaconda installé : c'est lui qui fournit l'invite d
 
 > **La troisième ligne est celle qui sert toute l'année** : choisir l'interpréteur dans l'éditeur suffit, l'extension Python plaçant ensuite tous les terminaux intégrés dans cet environnement — on n'a plus à taper `conda activate`. Faire lire l'invite à voix haute une fois : `(base)` et `(base)` ne sont pas la même chose, et les confondre fait installer les paquets là où ils ne serviront pas.
 
-### ⌨️ 25′ — TD 2a : configurer l'éditeur de code, et lancer un programme ; puis TD 2c, le même en C++ *(facultatif)*
+### ⌨️ 25′ — TD 1c : configurer l'éditeur de code, et lancer un programme ; puis TD 1e, le même en C++ *(facultatif)*
 
-Le TD a été renommé et étoffé en septembre 2026, après des essais sur les postes de l'école (machines virtuelles Windows avec Anaconda) : la configuration de l'éditeur n'y est pas immédiate, et c'est elle, plus que le hello world, qui est le sujet. Le dossier s'appelle `2a_vscode_python/`. Le fil, dans l'ordre des diapositives :
+Le TD a été renommé et étoffé en septembre 2026, après des essais sur les postes de l'école (machines virtuelles Windows avec Anaconda) : la configuration de l'éditeur n'y est pas immédiate, et c'est elle, plus que le hello world, qui est le sujet. Le dossier s'appelle `1c_vscode_python/`. Le fil, dans l'ordre des diapositives :
 
 1. **Lancer VS Code depuis Anaconda Navigator**, après avoir choisi `base` dans la liste des environnements. Doc Anaconda : « When you launch VS Code from Navigator, it will automatically use the Python interpreter in the currently selected environment ». Que le terminal intégré hérite bien de l'environnement est **à vérifier sur un poste avant la séance** : la doc ne le dit pas.
 2. **L'extension Python**, `ms-python.python`, que Navigator n'installe pas.
@@ -271,19 +271,19 @@ Le TD a été renommé et étoffé en septembre 2026, après des essais sur les 
 
 **Les étapes sont écrites une par une et projetées telles quelles** — l'objectif seul ne suffit pas à cette séance, une étape sous-entendue est une étape où la moitié de la salle s'arrête sans le dire.
 
-1. **Fichier → Ouvrir le dossier**, puis choisir `cours1/2a_vscode_python/` — le dossier, pas un fichier.
+1. **Fichier → Ouvrir le dossier**, puis choisir `cours1/1c_vscode_python/` — le dossier, pas un fichier.
 2. **`Ctrl`+`Maj`+`P`**, taper « Python: Select Interpreter », choisir `base`. Rien ne se passe visiblement, et c'est normal : le réglage sert au terminal qu'on ouvre juste après. Sans lui, `python` peut être un autre que celui du module.
-3. **Terminal → Nouveau terminal** : il s'ouvre en bas, déjà dans `2a_vscode_python/`, ce qu'il faut faire remarquer après les erreurs de chemin du début de séance.
+3. **Terminal → Nouveau terminal** : il s'ouvre en bas, déjà dans `1c_vscode_python/`, ce qu'il faut faire remarquer après les erreurs de chemin du début de séance.
 4. Taper `python bonjour.py`, puis Entrée.
 
-Puis, au TD 2c, facultatif, dans `cours1/2c_hello_cpp/` :
+Puis, au TD 1e, facultatif, dans `cours1/1e_hello_cpp/` :
 
 5. Taper `g++ bonjour.cpp -o bonjour`, puis Entrée. **Rien ne s'affiche**, et c'est l'étape où la question vient : faire regarder l'arborescence plutôt que le terminal, `bonjour` vient d'y apparaître.
 6. Taper `./bonjour`, puis Entrée.
 
 Le bouton d'exécution fait la même chose que l'étape 4, et il existe aussi pour le C++ : c'est la diapositive précédente. Le montrer après, jamais avant — la commande écrite à la main est celle qui reste.
 
-| | `bonjour.py` (TD 2a) | `bonjour.cpp` (TD 2c) |
+| | `bonjour.py` (TD 1c) | `bonjour.cpp` (TD 1e) |
 |---|---|---|
 | Ce qu'on tape | `python bonjour.py` | `g++ bonjour.cpp -o bonjour`, puis `./bonjour` |
 | Étapes | une | deux : compiler, puis exécuter |
@@ -295,7 +295,7 @@ La taille de l'exécutable dépend du compilateur et du système — 19 560 octe
 
 C'est la diapositive « Deux chemins du texte à l'exécution » faite à la main : y renvoyer explicitement. Faire ensuite ouvrir `bonjour` dans l'éditeur pour constater qu'il est illisible — la diapositive « Code source et fichier exécutable », vérifiée par eux.
 
-Sous Windows, `g++` n'est pas fourni : l'environnement conda du module, à défaut MinGW-w64 par MSYS2, les Build Tools de Visual Studio ou le sous-système Windows pour Linux. Prévoir un poste de démonstration si personne ne l'a. Détails dans [`data/cours1/2c_hello_cpp/README.md`](../../../data/cours1/2c_hello_cpp/README.md).
+Sous Windows, `g++` n'est pas fourni : l'environnement conda du module, à défaut MinGW-w64 par MSYS2, les Build Tools de Visual Studio ou le sous-système Windows pour Linux. Prévoir un poste de démonstration si personne ne l'a. Détails dans [`data/cours1/1e_hello_cpp/README.md`](../../../data/cours1/1e_hello_cpp/README.md).
 
 #### À essayer sur un poste de la salle, dans cet ordre
 
@@ -312,9 +312,9 @@ L'essai 1 est celui que les supports décrivent ; les essais 2 et 3 servent le j
 
 ---
 
-### ⌨️ 8′ — TD 2a, suite : le même programme, trois façons de l'exécuter
+### ⌨️ 8′ — TD 1c, suite : le même programme, trois façons de l'exécuter
 
-`cours1/2a_vscode_python/altitudes.py`, six lignes qui calculent une moyenne d'altitudes. Choisi pour trois raisons : il tient à l'écran, il a une boucle donc un état qui change, et son résultat se vérifie de tête — le `hello world` n'avait aucune de ces propriétés. Les altitudes sont celles de la diapositive « Coloration syntaxique » : le même extrait, devenu un programme qui tourne.
+`cours1/1c_vscode_python/altitudes.py`, six lignes qui calculent une moyenne d'altitudes. Choisi pour trois raisons : il tient à l'écran, il a une boucle donc un état qui change, et son résultat se vérifie de tête — le `hello world` n'avait aucune de ces propriétés. Les altitudes sont celles de la diapositive « Coloration syntaxique » : le même extrait, devenu un programme qui tourne.
 
 1. **En entier** : `python altitudes.py` → `moyenne : 129.0 m`. Une seule ligne de sortie ; ce qui s'est passé entre-temps n'est pas visible.
 2. **Ligne à ligne**, dans la session interactive : `total` s'affiche sans `print`, ce qui donne accès à l'intérieur du calcul. Faire refaire la boucle en affichant `total` à chaque tour — 128,4 puis 259,4 puis 387,0.
@@ -335,7 +335,7 @@ Diapositive de remarque, une minute. « Python » nomme le langage ; plusieurs p
 | Jython | Java | permet d'employer les bibliothèques Java |
 | MicroPython | C | tient dans un microcontrôleur |
 
-> Le seul qu'ils rencontreront est CPython, et il faut le dire ainsi pour qu'ils ne cherchent pas à choisir. Que l'interpréteur de référence soit écrit en C boucle avec « Code source et fichier exécutable » : les octets montrés étaient ceux de ce programme, compilé comme le `bonjour.exe` du TD 2c. Ne pas ouvrir la question de la vitesse, qui revient au cours 6.
+> Le seul qu'ils rencontreront est CPython, et il faut le dire ainsi pour qu'ils ne cherchent pas à choisir. Que l'interpréteur de référence soit écrit en C boucle avec « Code source et fichier exécutable » : les octets montrés étaient ceux de ce programme, compilé comme le `bonjour.exe` du TD 1e. Ne pas ouvrir la question de la vitesse, qui revient au cours 6.
 
 ---
 
@@ -362,7 +362,7 @@ Certaines bibliothèques ne sont que du Python ; d'autres enveloppent du code é
 | Selon la machine | le même fichier partout | un fichier par système et par version de Python |
 | Pourquoi | rien à compiler | la vitesse, ou une bibliothèque qui existait déjà |
 
-> **C'est la troisième ligne qui compte.** Une enveloppe doit exister précompilée pour chaque système et chaque version de Python ; quand elle n'existe pas, l'installation tente de compiler sur place et échoue faute de compilateur — le « Microsoft Visual C++ 14.0 is required » que tout le monde a déjà vu. C'est exactement ce que conda résout, et pourquoi le module l'emploie plutôt que `pip` seul : il distribue les binaires précompilés, et sait installer ce qui n'est pas du Python, comme le compilateur C++ de la partie 2 ou `ffmpeg`. Les quatre exemples sont choisis pour être compris **sans notion préalable** : `markdown` convertit en HTML ce qu'ils viennent d'écrire au TD 3a, et c'est du Python de bout en bout ; `pillow` ouvre les `.jpg` et `.png` de la grille des extensions, mais ne les décode pas lui-même — il appelle `libjpeg` et `libpng`, deux bibliothèques C plus vieilles que les étudiants.
+> **C'est la troisième ligne qui compte.** Une enveloppe doit exister précompilée pour chaque système et chaque version de Python ; quand elle n'existe pas, l'installation tente de compiler sur place et échoue faute de compilateur — le « Microsoft Visual C++ 14.0 is required » que tout le monde a déjà vu. C'est exactement ce que conda résout, et pourquoi le module l'emploie plutôt que `pip` seul : il distribue les binaires précompilés, et sait installer ce qui n'est pas du Python, comme le compilateur C++ de la partie 2 ou `ffmpeg`. Les quatre exemples sont choisis pour être compris **sans notion préalable** : `markdown` convertit en HTML ce qu'ils viennent d'écrire au TD 1f, et c'est du Python de bout en bout ; `pillow` ouvre les `.jpg` et `.png` de la grille des extensions, mais ne les décode pas lui-même — il appelle `libjpeg` et `libpng`, deux bibliothèques C plus vieilles que les étudiants.
 
 ### 🎓 6′ — L'outil, et le minimum de ligne de commande pour s'en servir
 
@@ -385,7 +385,7 @@ Suivent **deux diapositives seulement**, le minimum pour lire ces lignes :
 
 ### 🎓 4′ — Le terminal de l'éditeur de code
 
-Ils s'en sont déjà servis sans qu'on le nomme, au TD 2a, « hello world » : c'est le moment d'y revenir. Le terminal intégré n'est pas un autre terminal, c'est le même programme affiché dans la fenêtre de l'éditeur — le dire, parce que la question vient.
+Ils s'en sont déjà servis sans qu'on le nomme, au TD 1c, « hello world » : c'est le moment d'y revenir. Le terminal intégré n'est pas un autre terminal, c'est le même programme affiché dans la fenêtre de l'éditeur — le dire, parce que la question vient.
 
 | L'action | Ce qu'elle règle |
 |---|---|
@@ -411,10 +411,10 @@ conda activate recette
 
 - **Anaconda** : <https://www.anaconda.com/download>. Le dépôt ne distribue plus d'`environment.yml` commun : chaque TD qui a besoin d'un environnement fait écrire le sien.
 - Vérification : invite `(recette)`, puis `import sys; print(sys.executable)`, dont le chemin doit contenir le nom de l'environnement actif.
-- **Message à marteler** : `ModuleNotFoundError` alors qu'« on vient d'installer » = presque toujours le **mauvais environnement actif**. Le TD 3b le fait constater.
+- **Message à marteler** : `ModuleNotFoundError` alors qu'« on vient d'installer » = presque toujours le **mauvais environnement actif**. Le TD 1h le fait constater.
 - L'environnement sert à **installer des outils**, pas à packager un projet (décision de conception du module).
 
-> ⚠️ **Point de bascule de la séance.** Si l'environnement manque sur quelques postes, le TD 3b ne se fait pas, et le cours 3 démarre mal. Prévoir : consigne d'installation **avant** la rentrée, une clé USB avec l'installeur Miniforge (Windows/macOS), et un binôme d'entraide. Voir les leviers d'allègement dans [`inversion_c1_c3.md`](../../inversion_c1_c3.md).
+> ⚠️ **Point de bascule de la séance.** Si l'environnement manque sur quelques postes, le TD 1h ne se fait pas, et le cours 3 démarre mal. Prévoir : consigne d'installation **avant** la rentrée, une clé USB avec l'installeur Miniforge (Windows/macOS), et un binôme d'entraide. Voir les leviers d'allègement dans [`inversion_c1_c3.md`](../../inversion_c1_c3.md).
 
 ### 🎓 3′ — Les outils d'installation, et d'où viennent les paquets
 
@@ -428,7 +428,7 @@ Trois diapositives courtes, insérées après « L'outil qui installe un environ
 
 > **Sur le canal `defaults` d'Anaconda**, si la question vient : le module emploie Miniforge, qui n'installe que depuis conda-forge, parce que les conditions d'utilisation du dépôt d'Anaconda demandent une licence payante aux organisations au-delà d'une certaine taille. La raison est dans [`INSTALLATION.md`](../../../INSTALLATION.md) et n'a pas à être développée en séance.
 
-### ⌨️ 12′ — TD 3b : installer une bibliothèque et s'en servir
+### ⌨️ 12′ — TD 1h : installer une bibliothèque et s'en servir
 
 Fichiers : [`data/cours1/environnement/`](../../../data/cours1/environnement/) — un petit projet Python écrit comme les dépôts qu'ils ouvriront cette année : `pyproject.toml`, `environment.yml`, `README.md`, le paquet `page_html/` et `style.css`. Le README y donne le déroulé complet. Trois diapositives d'étapes, après l'ouverture brune.
 
@@ -466,7 +466,7 @@ Trois choses de la séance se referment à l'étape 8, et elles se nomment une p
 
 > **Mesuré sur la machine de préparation**, sous Linux, avec le solveur `libmamba` de conda 24.7 : création de l'environnement en 10 s (index en cache), 28 paquets ; `conda install markdown` en 7 s et 3 paquets dans l'environnement neuf, contre 1 paquet de 85 ko et 1 min 52 s à froid dans `base`. Trente postes en même temps iront moins vite. Commenter la sortie de `conda install` pendant qu'elle tourne plutôt que d'attendre en silence. Les libellés de menu de l'éditeur n'ont pas été vérifiés sur un poste Windows. Poste sans réseau : les étapes 3 et 6 échouent ; projeter le résultat, et faire quand même les étapes 10 et 11, qui ne demandent que d'éditer un fichier.
 
-> **Pourquoi `markdown` et pas `jinja2`.** L'idée d'un `.odt` produit depuis un modèle, par substitution dans `content.xml`, a été écartée pour une raison mesurée : `jinja2` **est déjà installé** dans `base`, tiré comme dépendance de Sphinx et de JupyterLab, et `conda install jinja2` n'installerait rien. `markdown` est absent des deux environnements, et il est l'exemple « tout en Python » de la diapositive « Ce qu'une bibliothèque contient vraiment » : l'installation la vérifie. Il n'est **pas** ajouté à l'`environment.yml` du module, l'objet du TD 3b étant d'ajouter une bibliothèque à un environnement qui existe déjà.
+> **Pourquoi `markdown` et pas `jinja2`.** L'idée d'un `.odt` produit depuis un modèle, par substitution dans `content.xml`, a été écartée pour une raison mesurée : `jinja2` **est déjà installé** dans `base`, tiré comme dépendance de Sphinx et de JupyterLab, et `conda install jinja2` n'installerait rien. `markdown` est absent des deux environnements, et il est l'exemple « tout en Python » de la diapositive « Ce qu'une bibliothèque contient vraiment » : l'installation la vérifie. Il n'est **pas** ajouté à l'`environment.yml` du module, l'objet du TD 1h étant d'ajouter une bibliothèque à un environnement qui existe déjà.
 ### 🎓 4′ — Python en interactif
 
 Taper `python` sans nom de fichier ouvre une session interactive : chaque ligne est lue, exécutée, et son résultat affiché aussitôt, sans `print`. La trace projetée est une session réelle, dans `data/cours1/formats/`, qui réimporte le script des octets de tête.
@@ -516,9 +516,9 @@ Deux façons d'exécuter du Python, et elles ne servent pas à la même chose : 
 
 Cette diapositive **remplace** « Ce que le notebook réunit », récapitulation que le minutage désignait déjà comme la première à sauter : la partie garde donc sa longueur, et « À retenir » assure seule la clôture de la séance.
 
-### ⌨️ 15′ — TD 4a : le notebook, ouvert de trois façons
+### ⌨️ 15′ — TD 1g : le notebook, ouvert de trois façons
 
-Support : deux notebooks écrits pour le TD, `src/cours1/notebook/td/4a_notebooks/`, en MyST et convertis par `python outils/construire_notebooks.py`. `altitudes.ipynb` reprend le programme du TD 2a et fait constater ce que le noyau retient entre deux cellules ; `recette.ipynb` reprend celui du TD 3b, une fonction par cellule et rien d'importé, avec en tête un chemin relatif à commenter et à changer.
+Support : deux notebooks écrits pour le TD, `src/cours1/notebook/td/4a_notebooks/`, en MyST et convertis par `python outils/construire_notebooks.py`. `altitudes.ipynb` reprend le programme du TD 1c et fait constater ce que le noyau retient entre deux cellules ; `recette.ipynb` reprend celui du TD 1h, une fonction par cellule et rien d'importé, avec en tête un chemin relatif à commenter et à changer.
 
 Ouvrir un `.ipynb` dans VSCode demande l'extension `ms-toolsai.jupyter`, la troisième et dernière du module : l'éditeur la propose à la première ouverture.
 
@@ -532,7 +532,7 @@ L'ordre est celui de l'engagement croissant : rien à installer, puis l'éditeur
 
 > **Les deux cellules à faire attendre.** Dans `altitudes.ipynb`, la dernière : relancer la boucle sans relancer les données ajoute une seconde fois les trois altitudes, et c'est ce que le noyau retient qui se voit. Dans `recette.ipynb`, la première : elle est à commenter ligne à ligne avant d'être exécutée, ce qui oblige à lire du code qu'on n'a pas écrit.
 
-> **Dans le navigateur, ce qui marche et ce qui ne marche pas.** JupyterLite exécute Python par Pyodide et n'est pas limité à la bibliothèque standard : `%pip install` y pose une bibliothèque pure Python. Ce qui échoue est tout ce qui demande un processus au système, `subprocess` en tête — d'où le notebook du TD 4c, qui appelle ffmpeg et ne tourne qu'en local.
+> **Dans le navigateur, ce qui marche et ce qui ne marche pas.** JupyterLite exécute Python par Pyodide et n'est pas limité à la bibliothèque standard : `%pip install` y pose une bibliothèque pure Python. Ce qui échoue est tout ce qui demande un processus au système, `subprocess` en tête — d'où le notebook du TD 1j, qui appelle ffmpeg et ne tourne qu'en local.
 
 > Le noyau à choisir dans l'éditeur est la même question que l'interpréteur de la partie 2, et la même réponse — `base`. Le dire ainsi plutôt que comme une nouveauté. Et le fichier source étant en MyST, donc du texte comparable ligne à ligne, c'est « Deux formats de notebook » vérifié sur le support qu'ils ont sous les yeux.
 
@@ -569,7 +569,7 @@ La preuve visuelle est un face-à-face de ce que coûte l'édition sans outil ad
 
 La comparaison sert à désamorcer une inquiétude, et il faut la formuler dans ce sens : un langage s'apprend plus vite qu'une langue, parce qu'il a peu de règles et presque pas d'exceptions. Ce qui est difficile n'est pas la syntaxe mais de savoir quoi écrire, et cela relève du cours de programmation. La contrepartie est la dernière ligne : la machine n'interprète pas les intentions.
 
-> On ne peut pas écrire un logiciel qui corrige un texte français de façon sûre ; on peut en écrire un qui vérifie un programme. C'est exactement ce que fait l'extension installée au TD 2b.
+> On ne peut pas écrire un logiciel qui corrige un texte français de façon sûre ; on peut en écrire un qui vérifie un programme. C'est exactement ce que fait l'extension installée au TD 1d.
 
 ### 🎓 4′ — Coloration et vérification
 
@@ -618,9 +618,9 @@ Les trois du module, avec leur identifiant, qui est ce qu'il faut chercher dans 
 
 > Identifiants relevés sur le poste de préparation, où les trois extensions sont installées. L'extension Python installe elle-même Pylance, qui fait la vérification : ne le dire que si quelqu'un remarque qu'une deuxième extension est apparue.
 
-### ⌨️ 10′ — TD 2b : extensions de langage et programmes fautifs
+### ⌨️ 10′ — TD 1d : extensions de langage et programmes fautifs
 
-Ouvrir `cours1/2b_erreurs/` dans l'éditeur. Trois fichiers Python courts, chacun fautif d'un genre différent. Détails et messages complets dans [`data/cours1/2b_erreurs/README.md`](../../../data/cours1/2b_erreurs/README.md).
+Ouvrir `cours1/1d_erreurs/` dans l'éditeur. Trois fichiers Python courts, chacun fautif d'un genre différent. Détails et messages complets dans [`data/cours1/1d_erreurs/README.md`](../../../data/cours1/1d_erreurs/README.md).
 
 **1. Installer l'extension.** Ouvrir `surface.py` **avant** toute installation : le texte est déjà coloré, ce qui surprend et doit surprendre — la coloration ne vient pas de l'extension. Installer ensuite `ms-python.python` par `Ctrl`+`Maj`+`X`, rouvrir le fichier : une ligne se souligne, sans que rien ait été exécuté. C'est cela que l'extension apporte.
 
@@ -689,7 +689,7 @@ Six lignes dans un bloc `mermaid`, et l'aperçu dessine les boîtes et les flèc
 
 > L'intérêt n'est pas de dessiner joli, c'est que le schéma soit du texte : il se compare ligne à ligne, il se versionne, et on le corrige sans rouvrir un logiciel de dessin. Faire remarquer que le dessin n'est pas dans le fichier — les boîtes sont calculées à l'affichage, comme la coloration l'était pour le code. Le cours 2 s'en sert pour représenter l'historique d'un dépôt git.
 
-### ⌨️ 20′ — TD 3a : formatage HTML et Markdown
+### ⌨️ 20′ — TD 1f : formatage HTML et Markdown
 
 Données : `cours1/1a_formats/`, produites dans le dépôt par `python make_data.py fetch && python make_data.py build`.
 Textes du domaine public : **The Raven** (Poe, 1845) et **Auld Lang Syne** (Burns, 1788).
@@ -701,11 +701,11 @@ Textes du domaine public : **The Raven** (Poe, 1845) et **Auld Lang Syne** (Burn
 
 C'est l'aspect graphique du fil « texte » : le même contenu, deux présentations, et la seconde se règle dans un fichier texte qu'on édite dans le même éditeur. Faire éditer `style.css` en direct — `background`, `font-family`, `max-width` — et recharger : le retour est immédiat, et c'est ce qui fait comprendre la séparation.
 
-**Second temps — mettre en forme une recette.** Support dans `cours1/3a_markdown/` : `recette_a_formater.txt` (le texte de départ, sans aucune structure), `ingredients.csv`, et `recette.md` (le résultat attendu, à n'ouvrir qu'après avoir essayé). L'exercice n'est pas de recopier des marques, c'est de **décider ce qui est un titre, ce qui est une étape et ce qui est une donnée** : la mise en forme est une lecture du contenu.
+**Second temps — mettre en forme une recette.** Support dans `cours1/1f_markdown/` : `recette_a_formater.txt` (le texte de départ, sans aucune structure), `ingredients.csv`, et `recette.md` (le résultat attendu, à n'ouvrir qu'après avoir essayé). L'exercice n'est pas de recopier des marques, c'est de **décider ce qui est un titre, ce qui est une étape et ce qui est une donnée** : la mise en forme est une lecture du contenu.
 
 | | Ce qu'il faut faire |
 |---|---|
-| 1 | ouvrir `cours1/3a_markdown/`, puis `recette_a_formater.txt` |
+| 1 | ouvrir `cours1/1f_markdown/`, puis `recette_a_formater.txt` |
 | 2 | l'enregistrer sous `recette.md`, aperçu côte à côte par `Ctrl`+`K` puis `V` |
 | 3 | un titre en `#`, deux sous-titres en `##` |
 | 4 | les étapes de préparation en liste numérotée |
@@ -717,7 +717,7 @@ C'est l'aspect graphique du fil « texte » : le même contenu, deux présentati
 > **Ce qui est sorti de la séance.** Le TD comptait cinq étapes : remettre en forme un `.txt` d'une seule ligne, renommer un `.donnees`, ouvrir un `.odt` comme une archive ZIP. Les trois premières travaillaient l'édition d'un poème plus que le format, et n'employaient pas Markdown : elles sont conservées en annexe, avec leurs diapositives, en attendant d'être reprises ou supprimées. Le même sort échoit à « Binaire, hexadécimal et encodage du texte » et au mini-projet « Les premiers octets d'un fichier ».
 ## Annexes et bonus
 
-### ⌨️ 15′ — TD 4c, facultatif : installer un projet en lisant son README
+### ⌨️ 15′ — TD 1j, facultatif : installer un projet en lisant son README
 
 Trois diapositives désormais, au lieu d'une, pour que le bonus explique au lieu d'annoncer :
 
@@ -843,24 +843,24 @@ Les autres leviers connus, à activer au moment de figer la séance :
 
 Le deck distingue trois régimes par la couleur de fond de ses diapositives d'ouverture, et par rien d'autre : blanc pour l'exposé, bleu pour les diapositives de section (`separateur`), brun pour les TD (`separateur-td`, et `sommaire-td` quand le support est compilé sans eux). C'est la distinction 🎓 / ⌨️ de ce document, rendue visible de loin.
 
-Dix TD dans la séance, un par ouverture brune, répartis sur les quatre parties du deck. Le chiffre est le bloc — les TD d'un même bloc se jouent à la suite, au même moment du cours — et la lettre l'ordre dans le bloc. Quatre sont facultatifs : ils ne sont pas faits en séance, mais leurs diapositives et leurs fichiers sont dans le deck et dans l'archive, pour qui va plus vite ou pour après.
+Dix TD dans la séance, un par ouverture brune, répartis sur les quatre parties du deck. Le chiffre est la séance et la lettre l'ordre dans la séance (anciens numéros : `src/anciens_noms_td.md`). Quatre sont facultatifs : ils ne sont pas faits en séance, mais leurs diapositives et leurs fichiers sont dans le deck et dans l'archive, pour qui va plus vite ou pour après.
 
 | TD | Ouverture | Partie | Contenu | |
 |----|-----------|--------|---------|-|
 | 1a | *Fichiers, formats et extensions* | 1 | `depart/` et `travail/`, exporter en PDF et PNG, copier et renommer, ce que le système lance, la page HTML et son adresse, l'espace dans un nom, la table ASCII, le Bloc-notes | |
 | 1b | *Un .odt est une archive ZIP* | 1 | ouvrir le `.odt` comme une archive, modifier `content.xml` et `styles.xml`, recompresser | facultatif |
-| 2a | *Configurer l'éditeur de code, et lancer un programme* | 2 | VS Code depuis Anaconda ou hors Anaconda (le terminal `cmd`), l'extension, la palette et les réglages, l'interpréteur, puis un programme exécuté en entier, ligne à ligne, pas à pas | |
-| 2b | *Trois programmes fautifs* | 2 | afficher les caractères invisibles, corriger trois fichiers Python dont un chemin en dur | |
-| 2c | *Le même programme en C++* | 2 | l'extension, le compilateur, puis compiler et voir ce qui reste sur le disque | facultatif |
-| 3a | *Mettre en forme une recette en Markdown* | 3 | un texte brut repris en Markdown, l'aperçu ouvert à côté | |
-| 3b | *Le notebook, ouvert de trois façons* | 3 | `altitudes.ipynb` dans le navigateur, depuis Navigator, et dans l'éditeur — aucune ne demande de créer un environnement | |
-| 4a | *Installer un projet Python, et décrire son installation* | 4 | un environnement neuf, les deux sortes de dépendances, puis l'`environment.yml` et la section « Installation » à écrire | |
-| 4b | *Le client, le noyau, et où ils sont installés* | 4 | vérifier ce que `base` contient, constater ce qui manque dans `recette`, puis installer des deux façons — tout au même endroit, ou le client et le noyau séparés — et le notebook `recette.ipynb` | facultatif |
-| 4c | *Installer un projet en lisant son README* | 4 | installer et lancer le projet `trajet` sur sa seule documentation, puis voir ce que la commande enchaîne | facultatif |
+| 1c | *Configurer l'éditeur de code, et lancer un programme* | 2 | VS Code depuis Anaconda ou hors Anaconda (le terminal `cmd`), l'extension, la palette et les réglages, l'interpréteur, puis un programme exécuté en entier, ligne à ligne, pas à pas | |
+| 1d | *Trois programmes fautifs* | 2 | afficher les caractères invisibles, corriger trois fichiers Python dont un chemin en dur | |
+| 1e | *Le même programme en C++* | 2 | l'extension, le compilateur, puis compiler et voir ce qui reste sur le disque | facultatif |
+| 1f | *Mettre en forme une recette en Markdown* | 3 | un texte brut repris en Markdown, l'aperçu ouvert à côté | |
+| 1g | *Le notebook, ouvert de trois façons* | 3 | `altitudes.ipynb` dans le navigateur, depuis Navigator, et dans l'éditeur — aucune ne demande de créer un environnement | |
+| 1h | *Installer un projet Python, et décrire son installation* | 4 | un environnement neuf, les deux sortes de dépendances, puis l'`environment.yml` et la section « Installation » à écrire | |
+| 1i | *Le client, le noyau, et où ils sont installés* | 4 | vérifier ce que `base` contient, constater ce qui manque dans `recette`, puis installer des deux façons — tout au même endroit, ou le client et le noyau séparés — et le notebook `recette.ipynb` | facultatif |
+| 1j | *Installer un projet en lisant son README* | 4 | installer et lancer le projet `trajet` sur sa seule documentation, puis voir ce que la commande enchaîne | facultatif |
 
-Chaque TD est un fichier de `src/cours1/diapo/tds/`, nommé comme le dossier de l'archive qu'il fait ouvrir (`2c_hello_cpp.typ` ↔ `cours1/2c_hello_cpp/`), et commence par un dictionnaire `td` — numéro, titre, annonce, dossier, durée, facultatif — qui alimente l'ouverture brune, le sommaire de la version `--sans-tds`, et la feuille de TD déposée dans le dossier. Les diapositives citent les chemins tels que l'archive les montre, sans `data/` ni `produit/`.
+Chaque TD est un fichier de `src/cours1/diapo/tds/`, nommé comme le dossier de l'archive qu'il fait ouvrir (`1e_hello_cpp.typ` ↔ `cours1/1e_hello_cpp/`), et commence par un dictionnaire `td` — numéro, titre, annonce, dossier, durée, facultatif — qui alimente l'ouverture brune, le sommaire de la version `--sans-tds`, et la feuille de TD déposée dans le dossier. Les diapositives citent les chemins tels que l'archive les montre, sans `data/` ni `produit/`.
 
-Le C++ (2c) et l'archive `.odt` du TD d'ouverture (1b) sont passés facultatifs en septembre 2026 : installer l'extension, puis un compilateur sous Windows, puis compiler, prenait plus que les dix minutes prévues ; et l'archive `.odt` demande un gestionnaire d'archives et une recompression qui piège tout le monde une fois, pour une leçon que la page HTML et sa feuille de style donnent aussi. Le TD des programmes fautifs (2b) est passé avant le C++ et ne contient plus que du Python — deux fautes d'écriture, et un chemin absolu qui n'existe que sur un autre poste. Le mini-projet des premiers octets a été supprimé en septembre 2026 : il demandait d'avoir lancé Python, arrivait en fin de séance, et sa leçon — l'extension ne décrit pas le contenu — est déjà celle du TD 1a. Le TD des notebooks a été coupé en deux au même moment : l'ouverture d'un notebook rejoint la partie Markdown, devenue « Markdown et notebook » (3b), et la séparation du client et du noyau passe en facultatif avec le notebook de la recette (4b). Ce dernier part désormais d'une vérification : `base` porte JupyterLab et `ipykernel` avec la distribution Anaconda, pas avec Miniconda ni Miniforge, et le TD 3b ne marche sans rien installer que grâce à la première. Les étapes « Python en interactif » et « Exécuter pas à pas » de la fin du TD 2a sont les candidates suivantes si le temps manque encore : à vérifier en séance avant de trancher.
+Le C++ (1e) et l'archive `.odt` du TD d'ouverture (1b) sont passés facultatifs en septembre 2026 : installer l'extension, puis un compilateur sous Windows, puis compiler, prenait plus que les dix minutes prévues ; et l'archive `.odt` demande un gestionnaire d'archives et une recompression qui piège tout le monde une fois, pour une leçon que la page HTML et sa feuille de style donnent aussi. Le TD des programmes fautifs (1d) est passé avant le C++ et ne contient plus que du Python — deux fautes d'écriture, et un chemin absolu qui n'existe que sur un autre poste. Le mini-projet des premiers octets a été supprimé en septembre 2026 : il demandait d'avoir lancé Python, arrivait en fin de séance, et sa leçon — l'extension ne décrit pas le contenu — est déjà celle du TD 1a. Le TD des notebooks a été coupé en deux au même moment : l'ouverture d'un notebook rejoint la partie Markdown, devenue « Markdown et notebook » (1g), et la séparation du client et du noyau passe en facultatif avec le notebook de la recette (1i). Ce dernier part désormais d'une vérification : `base` porte JupyterLab et `ipykernel` avec la distribution Anaconda, pas avec Miniconda ni Miniforge, et le TD 1g ne marche sans rien installer que grâce à la première. Les étapes « Python en interactif » et « Exécuter pas à pas » de la fin du TD 1c sont les candidates suivantes si le temps manque encore : à vérifier en séance avant de trancher.
 
 La création de l'environnement lui-même n'en fait pas partie : elle est faite avant la séance, sur consigne d'installation, et seule sa commande est projetée.
 

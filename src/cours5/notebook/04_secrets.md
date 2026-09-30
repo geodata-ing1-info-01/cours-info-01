@@ -8,7 +8,7 @@ programme. Il se perd des mêmes façons qu'un mot de passe, et aussi par le
 dépôt git. Cette partie distingue ce qui est un secret de ce qui se partage,
 montre qu'un secret committé reste dans l'historique, puis présente la façon
 de séparer le code et les secrets, et ce qu'il faut faire quand un secret a
-fui. Elle se termine par les mises à jour et les sauvegardes. Le TD 3a,
+fui. Elle se termine par les mises à jour et les sauvegardes. Le TD 5c,
 facultatif, l'accompagne ; il est présenté en fin de page.
 
 ## Ce qui est un secret
@@ -74,7 +74,7 @@ Des programmes lisent les commits publics en continu et testent les clés
 trouvées : un secret poussé est copié avant d'être supprimé. En 2025,
 28,65 millions de secrets ont été ajoutés dans des commits publics sur
 GitHub, et 64 % des secrets trouvés en 2022 étaient encore valides en 2026
-(GitGuardian, *State of Secrets Sprawl 2026*). Le TD 3a, facultatif, rejoue
+(GitGuardian, *State of Secrets Sprawl 2026*). Le TD 5c, facultatif, rejoue
 cette sortie.
 
 ## Séparer le code et les secrets
@@ -170,7 +170,7 @@ professionnels.
 
 ## TD de la partie
 
-- TD 3a, facultatif, `cours5/3a_secret_historique/`, 10 minutes : committer
+- TD 5c, facultatif, `cours5/5c_secret_historique/`, 10 minutes : committer
   une fausse clé, la supprimer, constater avec `git log -p` qu'elle est
   toujours dans le dépôt, puis la tenir à l'écart avec un modèle et un
   `.gitignore`.

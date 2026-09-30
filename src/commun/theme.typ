@@ -358,39 +358,42 @@
 // dossier où déposer la feuille de TD : une seule description, trois emplois.
 //
 //   #let td = (
-//     numero: "2c",                      // chiffre : le bloc ; lettre : l'ordre dedans
+//     numero: "1e",                      // chiffre : la séance ; lettre : l'ordre dans la séance
 //     titre: "Le même programme en C++",
 //     annonce: "…",                      // une phrase, facultative
-//     dossier: "cours1/2c_hello_cpp/",   // tel que l'étudiant le voit
+//     dossier: "cours1/1e_hello_cpp/",   // tel que l'étudiant le voit
 //     duree: "10′",                      // indicative, facultative
-//     facultatif: true,                  // ce que la séance ne fait pas
-//   )
+//     statut: "facultatif",              // ou "parcours standard", "parcours avancé" ;
+//   )                                    // absent pour un TD que tous font
+//
+// Le statut est écrit à côté du numéro, jamais dans le nom du dossier : un TD
+// peut changer de statut sans changer de nom.
 //   #separateur-td(..td)
 //
 // `dossier` est le chemin dans l'archive remise aux étudiants — sans `data/`,
 // ni `produit/`, ni `fourni/`, qui sont l'affaire du dépôt. Toute ouverture de
 // TD doit le porter : sans lui, la salle cherche ses fichiers au lieu d'écouter
 // la consigne.
-#let mention-td(numero, facultatif) = {
+#let mention-td(numero, statut) = {
   petites-capitales("TD")
   if numero != none [ #numero]
-  if facultatif [ #h(0.3em) #sym.dot.c #h(0.3em) #petites-capitales("facultatif")]
+  if statut != none [ #h(0.3em) #sym.dot.c #h(0.3em) #petites-capitales(statut)]
 }
 
 #let separateur-td(
   numero: none, titre: "", annonce: none, dossier: none,
-  duree: none, facultatif: false,
+  duree: none, statut: none,
 ) = {
   let dossier-et-duree = if dossier != none and duree != none [
     #dossier #h(1.5em) #text(font: police-texte, fill: white.darken(30%))[#sym.approx #duree]
   ] else { dossier }
-  _separation(brun, white, gris, titre, annonce, mention-td(numero, facultatif), dossier-et-duree)
+  _separation(brun, white, gris, titre, annonce, mention-td(numero, statut), dossier-et-duree)
 }
 
 // Sommaire des TD d'un bloc, projeté à leur place quand le support est compilé
 // sans eux (`--input tds=false`) : une seule diapositive, sur le fond brun des
-// TD, qui dit ce qu'il y a à faire, dans quel dossier, et ce qui est
-// facultatif. Les dictionnaires sont ceux des fichiers de TD, importés par
+// TD, qui dit ce qu'il y a à faire, dans quel dossier, et le statut de
+// chaque TD (facultatif, parcours standard ou avancé). Les dictionnaires sont ceux des fichiers de TD, importés par
 // l'assemblage : ce que le sommaire liste et ce que le TD projette ne peuvent
 // pas diverger.
 // Vrai quand un fichier de TD est compilé seul, en feuille de TD, par
@@ -412,7 +415,7 @@
 #let separateur-cours-td(
   titre-partie, annonce-partie: none, notebook: none,
   numero: none, titre: "", annonce: none, dossier: none,
-  duree: none, facultatif: false,
+  duree: none, statut: none,
 ) = {
   let l = largeur-diapo
   let haut = hauteur-diapo
@@ -443,7 +446,7 @@
   // ce qui vaut aussi en double largeur.
   place(horizon + left, dx: 0.62 * l - 2 * marge-x, block(width: 0.38 * l)[
     #text(size: pt-footnotesize, fill: gris, weight: demi-gras)[
-      #mention-td(numero, facultatif)
+      #mention-td(numero, statut)
     ]
     #v(0.5em)
     #line(length: 40%, stroke: 1.5pt + gris)
@@ -489,14 +492,14 @@
       column-gutter: 24pt, row-gutter: 1.05em,
       align: (left + top, left + top, right + top),
       ..for td in tds.pos() {
-        let facultatif = td.at("facultatif", default: false)
+        let statut = td.at("statut", default: none)
         let duree = td.at("duree", default: none)
         (
           text(weight: demi-gras)[TD #td.numero],
           [
             #td.titre
-            #if facultatif [
-              #text(size: pt-footnotesize, fill: white.darken(30%))[— facultatif]
+            #if statut != none [
+              #text(size: pt-footnotesize, fill: white.darken(30%))[— #statut]
             ]
             #linebreak()
             #text(size: pt-footnotesize, font: police-code, fill: white.darken(20%))[#td.dossier]

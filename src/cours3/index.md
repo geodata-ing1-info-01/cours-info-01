@@ -15,9 +15,9 @@ code.
 Trois parties, chacune présentée par quelques diapositives, puis travaillée
 dans un TD. Les deux premières s'accompagnent d'un notebook autonome, commun
 à tous. Pour la troisième, chaque élève choisit un parcours : le parcours
-avancé écrit un programme lancé au terminal (TD 3b), le parcours standard
-écrit une recette en Markdown, mise en page par le programme du TD 1a
-(TD 3a).
+avancé écrit un programme lancé au terminal (TD 3f), le parcours standard
+écrit une recette en Markdown, mise en page par le programme du TD 3b
+(TD 3e).
 
 ```{list-table}
 :header-rows: 1
@@ -55,7 +55,7 @@ Les TD sont réunis, par partie, dans [Travaux dirigés de la séance
 Les fichiers des TD sont dans l'archive `cours3/` : un dossier par TD, avec
 ses propres données et la feuille du TD en PDF. Python, JupyterLab, Pillow et
 pandoc sont dans l'environnement `base` d'Anaconda. Selon les groupes, le TD
-3b commence par créer un environnement de la séance, `info01-cours3`, en une
+3f commence par créer un environnement de la séance, `info01-cours3`, en une
 commande dans l'invite de commandes d'Anaconda.
 
 L'archive vient du dossier partagé `formationTemp` ; elle se copie et se
@@ -70,11 +70,11 @@ distribuée après.
 
 | TD | Fichier | Ce qu'on y fait |
 |---|---|---|
-| 1a | `recette.ipynb` | le code de génération de recette, ses chemins refaits avec `pathlib`, converti par pandoc |
-| 2a | `fichiers.ipynb` | comment le code de la recette ouvre, lit et écrit ses fichiers ; octets, ASCII et UTF-8, fin de ligne, mode binaire |
-| 2b | `images.ipynb` | facultatif : un motif PGM de seize pixels en texte et en binaire, *La Grande Vague* en cinq formats, la compression |
-| 3a | `recette.md` | parcours standard : la recette des gaufres, écrite en Markdown et ajoutée à un dépôt git de recettes, et sa page |
-| 3b | `recette.py` | parcours avancé : le code du notebook dans un fichier, puis `argparse`, un README et, en bonus, `main` ; un commit par étape |
+| 3b | `recette.ipynb` | le code de génération de recette, ses chemins refaits avec `pathlib`, converti par pandoc |
+| 3c | `fichiers.ipynb` | comment le code de la recette ouvre, lit et écrit ses fichiers ; octets, ASCII et UTF-8, fin de ligne, mode binaire |
+| 3d | `images.ipynb` | facultatif : un motif PGM de seize pixels en texte et en binaire, *La Grande Vague* en cinq formats, la compression |
+| 3e | `recette.md` | parcours standard : la recette des gaufres, écrite en Markdown et ajoutée à un dépôt git de recettes, et sa page |
+| 3f | `recette.py` | parcours avancé : le code du notebook dans un fichier, puis `argparse`, un README et, en bonus, `main` ; un commit par étape |
 
 Les images sont libres : *Under the Wave off Kanagawa*
 (The Met, CC0), photos de Wikimedia Commons créditées dans
@@ -100,7 +100,7 @@ Les images sont libres : *Under the Wave off Kanagawa*
   - les valeurs sur la ligne de commande, vérifiées, et l'aide de `--help`
 * - Un environnement conda
   - un Python et ses paquets ; `conda create -n nom … paquets` le crée avec
-    eux (TD 3b, selon les groupes)
+    eux (TD 3f, selon les groupes)
 ```
 
 ```{toctree}

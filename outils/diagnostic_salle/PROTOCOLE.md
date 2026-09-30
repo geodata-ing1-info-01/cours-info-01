@@ -253,7 +253,7 @@ Puis taper `python -c "import sys; print(sys.executable)"`.
 Attendu : le `python.exe` d'Anaconda. Si c'est `C:\Python27\…` ou l'alias du
 Store, le PATH du terminal ne contient pas Anaconda et l'activation a échoué.
 
-Remède : le profil cmd du TD 2a (`terminal.integrated.profiles.windows` +
+Remède : le profil cmd du TD 1c (`terminal.integrated.profiles.windows` +
 `defaultProfile.windows`), niveau User, puis « Developer: Reload Window » et
 refaire B5. Si B5 passe alors que B3 échouait, on a un terminal qui marche
 mais toujours pas de découverte : les deux sont indépendants.

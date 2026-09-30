@@ -76,8 +76,7 @@ de commandes d'Anaconda fonctionne donc sans réglage.
 (conda-git-bash)=
 ### Git Bash
 
-Git Bash est le terminal du module à partir du [TD 2a du cours
-1](../../cours1_v2/notebook/td/2a_terminal/guide.md), qui fait cette
+Git Bash est le terminal du module à partir du [TD 1c](../../cours1_v2/notebook/td/1b_terminal/guide.md), qui fait cette
 configuration. À son ouverture, Git Bash ne connaît pas conda. Deux
 commandes, tapées une fois dans Git Bash, le configurent :
 
@@ -140,7 +139,7 @@ Un environnement est un dossier qui contient un Python et les paquets
 installés avec lui. `base` est celui d'Anaconda. Sur les postes de la
 salle, son dossier n'est pas modifiable par un compte élève : on n'y
 installe rien. Chaque TD qui a besoin d'un paquet crée son propre
-environnement, qui va dans `C:\Users\<nom>\.conda\envs`. Le TD 4a fait
+environnement, qui va dans `C:\Users\<nom>\.conda\envs`. Le TD 1h fait
 créer le premier ; les commandes, dans l'invite de commandes d'Anaconda :
 
 ```

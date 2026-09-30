@@ -33,8 +33,8 @@ python outils/livrer_tds.py                       # l'archive remise aux étudia
 options se combinent : `--notes --corrige` produit `cours1-notes-corrige.pdf`.
 
 L'exposé et les TD sont dans deux dossiers, `parties/` et `tds/`, et un fichier
-par TD, nommé comme le dossier que l'étudiant ouvre : `2c_hello_cpp.typ` pour
-`cours1/2c_hello_cpp/`. Le chiffre est le bloc, joué au même moment du cours ;
+par TD, nommé comme le dossier que l'étudiant ouvre : `1e_hello_cpp.typ` pour
+`cours1/1e_hello_cpp/`. Le chiffre est le bloc, joué au même moment du cours ;
 la lettre, l'ordre dans le bloc. Chaque fichier commence par un dictionnaire
 `td` — numéro, titre, annonce, dossier, durée, `facultatif` — qui alimente
 l'ouverture brune du TD, et que `cours1.typ` importe.
@@ -137,7 +137,7 @@ n'arrondit jamais.
 | `page-titre(titre:, sous-titre:, auteur:, date:, fond:)` | page de titre d'une séance, posée où on la veut |
 | `d(titre, sous-titre: none, cellule: none, fichier: none)` | une diapositive ordinaire ; avec `cellule`, la ligne de titre porte le cartouche « § n » du notebook à exécuter |
 | `separateur(titre, annonce:)` | diapositive de section, fond bleu |
-| `separateur-td(..td)` | ouverture d'un TD, fond brun : mention « TD 2b », « facultatif » s'il l'est, titre, annonce, dossier et durée |
+| `separateur-td(..td)` | ouverture d'un TD, fond brun : mention « TD 1d », « facultatif » s'il l'est, titre, annonce, dossier et durée |
 | `sommaire-td(td-1, td-2, …)` | la liste des TD d'un bloc, fond brun, à la place des TD dans la version `--sans-tds` |
 | `separateur-reprise(titre, annonce:)` | retour à l'exposé après un TD en milieu de partie |
 | `separateur-cours-td(titre-partie, annonce-partie:, notebook:, ..td)` | ouverture commune d'une partie et du TD joué en même temps : page partagée par une oblique, la partie en bleu à gauche, à droite en brun le TD et le notebook à suivre pendant l'exposé (cours 3) ; la feuille de TD, compilée avec `--input feuille=true`, garde `separateur-td` |
@@ -151,10 +151,10 @@ trois : ils sont ajoutés ici, en n'employant que les couleurs du thème.
 
 ```typst
 #let td = (
-  numero: "2c",                      // chiffre : le bloc ; lettre : l'ordre dedans
+  numero: "1e",                      // chiffre : le bloc ; lettre : l'ordre dedans
   titre: "Le même programme en C++",
   annonce: "…",                      // facultative
-  dossier: "cours1/2c_hello_cpp/",   // tel que l'étudiant le voit
+  dossier: "cours1/1e_hello_cpp/",   // tel que l'étudiant le voit
   duree: "10′",                      // indicative, facultative
   facultatif: true,                  // ce que la séance ne fait pas
 )

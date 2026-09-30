@@ -47,7 +47,7 @@ présentée en séance, se fait seule, et prépare le cours 2.
 
 Anaconda doit être installé, par la consigne envoyée avant la rentrée : c'est
 tout ce que la séance suppose. Chaque TD qui a besoin d'autre chose crée son
-propre environnement, et c'est le sujet du TD 4a.
+propre environnement, et c'est le sujet du TD 1h.
 
 ```{toctree}
 :maxdepth: 1

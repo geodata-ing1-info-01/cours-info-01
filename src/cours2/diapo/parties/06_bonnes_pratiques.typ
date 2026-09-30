@@ -63,7 +63,7 @@
 
     #if etape == 4 {
       notes[
-        Ce modèle s'appelle git flow. Le TD 6a en joue la première règle :
+        Ce modèle s'appelle git flow. Le TD 2e en joue la première règle :
         master ne reçoit que la version terminée, taguée.
       ]
     }

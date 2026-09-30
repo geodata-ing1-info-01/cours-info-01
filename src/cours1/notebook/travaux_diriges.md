@@ -19,32 +19,32 @@ ils se font seuls ensuite.
 
 ## Programmation et éditeur de code
 
-- [TD 2a — Configurer l'éditeur de code, et lancer un programme](td/2a_vscode_python/guide.md), 25 minutes
-- [TD 2b — Trois programmes fautifs](td/2b_erreurs/guide.md), 10 minutes
-- [TD 2c — Le même programme en C++](td/2c_hello_cpp/guide.md), facultatif, 10 minutes
+- [TD 1c — Configurer l'éditeur de code, et lancer un programme](td/1c_vscode_python/guide.md), 25 minutes
+- [TD 1d — Trois programmes fautifs](td/1d_erreurs/guide.md), 10 minutes
+- [TD 1e — Le même programme en C++](td/1e_hello_cpp/guide.md), facultatif, 10 minutes
 
 ## Markdown et notebook
 
-- [TD 3a — Mettre en forme une recette en Markdown](td/3a_markdown/guide.md), 20 minutes
-- [TD 3b — Le notebook, ouvert de trois façons](td/3b_notebooks/guide.md), 12 minutes
+- [TD 1f — Mettre en forme une recette en Markdown](td/1f_markdown/guide.md), 20 minutes
+- [TD 1g — Le notebook, ouvert de trois façons](td/1g_notebooks/guide.md), 12 minutes
 
 ## Bibliothèques et environnements Python
 
-- [TD 4a — Installer un projet Python, et décrire son installation](td/4a_recette/guide.md), 20 minutes
-- [TD 4b — Le client, le noyau, et où ils sont installés](td/4b_noyaux/guide.md), facultatif, 20 minutes
-- [TD 4c — Installer un projet en lisant son README](td/4c_trajet/guide.md), facultatif, 15 minutes
+- [TD 1h — Installer un projet Python, et décrire son installation](td/1h_recette/guide.md), 20 minutes
+- [TD 1i — Le client, le noyau, et où ils sont installés](td/1i_noyaux/guide.md), facultatif, 20 minutes
+- [TD 1j — Installer un projet en lisant son README](td/1j_trajet/guide.md), facultatif, 15 minutes
 
 ```{toctree}
 :hidden:
 
 td/1a_formats/guide
 td/1b_archive_odt/guide
-td/2a_vscode_python/guide
-td/2b_erreurs/guide
-td/2c_hello_cpp/guide
-td/3a_markdown/guide
-td/3b_notebooks/guide
-td/4a_recette/guide
-td/4b_noyaux/guide
-td/4c_trajet/guide
+td/1c_vscode_python/guide
+td/1d_erreurs/guide
+td/1e_hello_cpp/guide
+td/1f_markdown/guide
+td/1g_notebooks/guide
+td/1h_recette/guide
+td/1i_noyaux/guide
+td/1j_trajet/guide
 ```

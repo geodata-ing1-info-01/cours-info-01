@@ -8,7 +8,7 @@ le terminal lance comme `ls` ou `cp`. Elle explique comment le terminal
 trouve le fichier d'une commande, ce qui distingue un langage compilé d'un
 langage interprété, puis les deux façons d'employer l'interpréteur Python,
 et le script de commandes, qui enchaîne des commandes enregistrées. Le [TD
-2b](td/2b_programme/guide.md) l'accompagne ; il est présenté en fin de page.
+1c](td/1c_programme/guide.md) l'accompagne ; il est présenté en fin de page.
 
 ## Python, un programme en ligne de commande
 
@@ -22,7 +22,7 @@ terminal où Python est disponible convient :
 **Dans Git Bash**
 
 ```text
-$ cd ~/Desktop/info01/cours1/2b_programme
+$ cd ~/Desktop/info01/cours1/1c_programme
 $ python altitudes.py
 moyenne : 129.0 m
 ```
@@ -32,8 +32,8 @@ moyenne : 129.0 m
 **Dans l'invite de commandes d'Anaconda**
 
 ```text
-(base) …>cd Desktop\info01\cours1\2b_programme
-(base) …\2b_programme>python altitudes.py
+(base) …>cd Desktop\info01\cours1\1c_programme
+(base) …\1c_programme>python altitudes.py
 moyenne : 129.0 m
 ```
 :::
@@ -42,7 +42,7 @@ moyenne : 129.0 m
 
 L'invite de commandes d'Anaconda est `cmd`, avec conda déjà activé :
 `python` y lance le Python d'Anaconda sans réglage. Dans Git Bash, il faut le
-réglage du début du TD 2b. Si ce réglage échoue sur un poste, le Python de
+réglage du début du TD 1c. Si ce réglage échoue sur un poste, le Python de
 la séance se fait dans l'invite de commandes d'Anaconda.
 
 Comme `ls` ou `cp`, `python` est une **commande**, qu'un script peut lancer.
@@ -68,7 +68,7 @@ La liste des dossiers de `PATH`, avant et après l'activation de conda.
 - `type -a python` affiche les fichiers trouvés, dans l'ordre ; dans
   l'invite de commandes, `where python` joue le même rôle.
 - `conda activate` met les dossiers d'Anaconda **en tête** de `PATH`. Le
-  réglage du TD 2b le fait à chaque ouverture de Git Bash.
+  réglage du TD 1c le fait à chaque ouverture de Git Bash.
 
 `ls` est aussi un fichier, `/usr/bin/ls`, fourni par Git for Windows.
 
@@ -170,7 +170,7 @@ disque. La ligne de version, relevée sous Linux, diffère sur les postes.
 :::{warning}
 L'interpréteur lit le fichier **enregistré** sur le disque. Une
 modification faite dans l'éditeur mais pas enregistrée n'est pas exécutée :
-le TD 2b le fait constater.
+le TD 1c le fait constater.
 :::
 
 Le programme s'écrit dans **Notepad++**, un éditeur de texte qui colore le
@@ -189,10 +189,10 @@ commande, aussi souvent qu'il le faut.
 **`commandes.sh`, dans Notepad++**
 
 ```bash
-# Commandes du TD 2a, puis le programme du TD 2b.
-# Lancer depuis 2b_programme : bash commandes.sh
+# Commandes du TD 1b, puis le programme du TD 1c.
+# Lancer depuis 1c_programme : bash commandes.sh
 mkdir -p copies
-cp ../2a_terminal/depart/*.html copies/
+cp ../1b_terminal/depart/*.html copies/
 ls copies
 python altitudes.py
 ```
@@ -216,7 +216,7 @@ moyenne : 129.0 m
 - `mkdir -p` ne signale pas d'erreur si le dossier existe déjà, au second
   lancement.
 - L'équivalent pour l'invite de commandes est un fichier `.bat`, en annexe
-  du guide du TD 2b.
+  du guide du TD 1c.
 
 bash est donc un interpréteur, comme `python` : l'un lit des commandes,
 l'autre du Python.
@@ -234,7 +234,7 @@ On choisit, pour une tâche, le plus simple des outils qui la font.
 
 ## TD de la partie
 
-- [TD 2b — Écrire et lancer un programme](td/2b_programme/guide.md), 20
+- [TD 1c — Écrire et lancer un programme](td/1c_programme/guide.md), 20
   minutes : voir quel `python` la commande lance ; régler conda dans Git
   Bash, une fois par poste ; ouvrir `altitudes.py` dans Notepad++, le
   lancer, le modifier et le relancer ; lancer `commandes.sh` si le temps le

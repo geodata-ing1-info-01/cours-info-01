@@ -9,8 +9,8 @@ plusieurs lignes, et descend d'un niveau à chaque section : le texte est une
 suite de caractères, chaque caractère est écrit en octets, et l'encodage
 définit ce passage. Elle présente ensuite le mode binaire, qui lit les octets
 sans les décoder, puis `with` et les modes d'écriture. Deux TD l'accompagnent,
-le notebook `fichiers.ipynb` du TD 2a et, facultatif, le notebook
-`images.ipynb` du TD 2b ; ils sont présentés en fin de page.
+le notebook `fichiers.ipynb` du TD 3c et, facultatif, le notebook
+`images.ipynb` du TD 3d ; ils sont présentés en fin de page.
 
 ## Lire un fichier : ouvrir, lire, fermer
 
@@ -367,11 +367,11 @@ lire ou écrire, fermer, en une ligne : `chemin.read_text(encoding="utf-8")`,
 
 ## TD de la partie
 
-- TD 2a, `fichiers.ipynb`, dans le dossier `cours3/2a_fichiers/` de
+- TD 3c, `fichiers.ipynb`, dans le dossier `cours3/3c_fichiers/` de
   l'archive : les sections suivent l'ordre de cette page ; les sections 10 et
   11, le CSV et les raccourcis de `pathlib`, se font après la séance, et la
   section 12, facultative, lit à la main un fichier `.npy` en mode binaire.
-- TD 2b, `images.ipynb`, facultatif, dans `cours3/2b_images/` : une image
+- TD 3d, `images.ipynb`, facultatif, dans `cours3/3d_images/` : une image
   PGM en texte et en binaire, la signature d'un format, une image en cinq
   formats et la compression.
 

@@ -27,7 +27,7 @@ donnees/          tendances.py télécharge les séries de Karl Rupp et écrit
                   tendances.typ, versionné
 parties/          00 ouverture, 01 matériel, 02 réseau, 03 prouver qui
                   l'on est, 04 secrets, 99 clôture
-tds/              1a_mesures, 2a_cle_ssh, 3a_secret_historique (facultatif)
+tds/              5a_mesures, 5b_cle_ssh, 5c_secret_historique (facultatif)
 ```
 
 Les sorties de terminal sont réelles : `ssh-keygen` (OpenSSH 9.6), `git log`

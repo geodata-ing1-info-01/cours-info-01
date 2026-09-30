@@ -3,9 +3,9 @@ title: C++
 subtitle: L'extension de VS Code, un compilateur, et un premier programme compilé
 ---
 
-Cette page reprend le TD 2c du cours 1, facultatif : le programme
-`bonjour.py` du TD 2a, réécrit en C++, compilé puis lancé. Le fichier
-`bonjour.cpp` est dans le dossier `cours1/2c_hello_cpp/` de l'archive du
+Cette page reprend le TD 1e, facultatif : le programme
+`bonjour.py` du TD 1c, réécrit en C++, compilé puis lancé. Le fichier
+`bonjour.cpp` est dans le dossier `cours1/1e_hello_cpp/` de l'archive du
 cours 1 ; il s'écrit aussi à la main :
 
 ```cpp

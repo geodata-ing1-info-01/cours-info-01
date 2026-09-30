@@ -15,18 +15,18 @@ TD fait constater.
 
 ## Terminal et premier programme
 
-- [TD 2a — Les fichiers du TD 1a en ligne de commande](td/2a_terminal/guide.md), 15 minutes
-- [TD 2b — Écrire et lancer un programme](td/2b_programme/guide.md), 20 minutes
+- [TD 1b — Les fichiers du TD 1a en ligne de commande](td/1b_terminal/guide.md), 15 minutes
+- [TD 1c — Écrire et lancer un programme](td/1c_programme/guide.md), 20 minutes
 
 ## Un notebook et la syntaxe de Markdown
 
-- [TD 3a — Un notebook dans JupyterLab](td/3a_notebook/guide.md), 12 minutes
+- [TD 1d — Un notebook dans JupyterLab](td/1d_notebook/guide.md), 12 minutes
 
 ```{toctree}
 :hidden:
 
 td/1a_formats/guide
-td/2a_terminal/guide
-td/2b_programme/guide
-td/3a_notebook/guide
+td/1b_terminal/guide
+td/1c_programme/guide
+td/1d_notebook/guide
 ```

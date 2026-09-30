@@ -2,7 +2,7 @@
 //
 // Employés par les diapositives de la partie 1 (`parties/01_programme.typ`)
 // et par les illustrations de `recette.ipynb`
-// (`notebook/td/1a_recette/illustrations/`), pour ne les dessiner qu'une fois.
+// (`notebook/td/3b_recette/illustrations/`), pour ne les dessiner qu'une fois.
 //
 //     #import "../schemas_programme.typ": schema-objectif, schema-etapes
 

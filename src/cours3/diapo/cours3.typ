@@ -21,11 +21,11 @@
 
 #let tds = sys.inputs.at("tds", default: "") != "false"
 
-#import "tds/0a_preparation.typ": td as td-0a
-#import "tds/1a_recette.typ": td as td-1a
-#import "tds/2a_fichiers.typ": td as td-2a
-#import "tds/3a_markdown.typ": td as td-3a
-#import "tds/3b_cli.typ": td as td-3b
+#import "tds/3a_preparation.typ": td as td-3a
+#import "tds/3b_recette.typ": td as td-3b
+#import "tds/3c_fichiers.typ": td as td-3c
+#import "tds/3e_markdown.typ": td as td-3e
+#import "tds/3f_cli.typ": td as td-3f
 
 #let partie-1 = (
   titre: "Chemins et programmes externes",
@@ -48,24 +48,24 @@
 #include "parties/02c_fichiers.typ"
 
 // Les TD : la préparation du poste, sans l'environnement, puis les deux
-// notebooks. `images.ipynb` (TD 2b), facultatif, n'a que sa feuille.
+// notebooks. `images.ipynb` (TD 3d), facultatif, n'a que sa feuille.
 #if tds {
-  include "tds/0a_preparation.typ"
-  include "tds/1a_recette.typ"
-  include "tds/2a_fichiers.typ"
+  include "tds/3a_preparation.typ"
+  include "tds/3b_recette.typ"
+  include "tds/3c_fichiers.typ"
 } else {
-  sommaire-td(td-0a, td-1a, td-2a)
+  sommaire-td(td-3a, td-3b, td-3c)
 }
 
-// Dernière partie, au choix : rappel des deux parcours, puis le TD 3a
-// (standard) et le TD 3b (avancé), qui commence par l'environnement conda,
+// Dernière partie, au choix : rappel des deux parcours, puis le TD 3e
+// (standard) et le TD 3f (avancé), qui commence par l'environnement conda,
 // selon les groupes.
 #include "parties/03_parcours.typ"
 #if tds {
-  include "tds/3a_markdown.typ"
-  include "tds/3b_cli.typ"
+  include "tds/3e_markdown.typ"
+  include "tds/3f_cli.typ"
 } else {
-  sommaire-td(td-3a, td-3b)
+  sommaire-td(td-3e, td-3f)
 }
 
 #include "parties/99_cloture.typ"

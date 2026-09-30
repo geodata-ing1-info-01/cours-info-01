@@ -1,5 +1,5 @@
 // Dernière diapositive de la partie « L'éditeur de code », juste avant le
-// TD 1a qui configure la fenêtre qu'elle montre. Incluse par `cours2_v2.typ`.
+// TD 2a qui configure la fenêtre qu'elle montre. Incluse par `cours2_v2.typ`.
 // Un fichier inclus n'hérite pas des imports de son appelant.
 #import "../../../commun/prelude.typ": *
 #import "../schemas.typ": fenetre-vscode
@@ -17,14 +17,14 @@
   #fenetre-vscode(hauteur: 240pt)
 
   #notes[
-    Schéma de la fenêtre après la configuration du TD 1a. En bas, la barre
+    Schéma de la fenêtre après la configuration du TD 2a. En bas, la barre
     d'état : position, indentation, encodage, fin de ligne, interpréteur
-    (TD 1b).
+    (TD 2b).
 
     Générique : une extension par langage, et une configuration qui dépend
-    du système. Le panneau git vient au TD 3a.
+    du système. Le panneau git vient au TD 2d.
 
-    Faire retrouver les trois zones sur les postes au début du TD 1a.
+    Faire retrouver les trois zones sur les postes au début du TD 2a.
 
     La commande du terminal part du dossier ouvert, `cours2` : le chemin
     du programme est relatif à lui.

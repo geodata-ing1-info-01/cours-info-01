@@ -39,8 +39,8 @@ fois, téléchargements inclus).
 
 Les étudiants n'ont pas cet environnement et n'en ont pas besoin. Ce qu'on leur
 demande d'installer est **Anaconda**, dont l'environnement `base` suffit aux
-premiers TD ; ceux qui demandent autre chose — `recette` au TD 4a,
-`trajet_ensg` au TD 5a — font créer le leur, et c'est le sujet de la séance.
+premiers TD ; ceux qui demandent autre chose — `recette` au TD 1h,
+`trajet_ensg` au TD 1j — font créer le leur, et c'est le sujet de la séance.
 
 ### Vérifier
 
@@ -400,8 +400,8 @@ rm -rf _build
 
 Des cellules des pages du cours 1 lisent des fichiers de TD versionnés :
 `04_bibliotheques_environnements.md` le projet
-`data/cours1/4a_recette/depart/recette/`, et `05_comparer_versions.md`
-`data/cours1/3a_markdown/depart/recette.md`. Une page qui lirait un fichier fabriqué, dans
+`data/cours1/1h_recette/depart/recette/`, et `05_comparer_versions.md`
+`data/cours1/1f_markdown/depart/recette.md`. Une page qui lirait un fichier fabriqué, dans
 `data/cours<n>/<td>/produit/`, demanderait de **générer les données avant de
 construire** (section 2), sinon la build échoue
 (`nb_execution_raise_on_error = True` : une cellule cassée doit se voir).

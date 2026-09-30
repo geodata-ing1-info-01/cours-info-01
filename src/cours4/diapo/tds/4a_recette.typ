@@ -11,7 +11,7 @@
 // départ, les corrigés et le guide détaillé sont écrits par
 // `data/cours4/generer_recette.py`.
 //
-// Plan des diapositives, celui des TD 3a et 3b du cours 3 : le guide et le
+// Plan des diapositives, celui des TD 3e et 3f : le guide et le
 // matériel, la vue d'ensemble, les aide-mémoire, puis une diapositive par
 // étape (objectif en annonce, attendu et pistes, renvoi au guide, constat
 // dans le corrigé seulement).

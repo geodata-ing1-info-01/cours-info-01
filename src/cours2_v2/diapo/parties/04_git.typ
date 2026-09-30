@@ -8,13 +8,13 @@
 //
 // Reprise du 28/09/2026 : deux diapositives sur les systèmes de version et
 // les copies d'un dépôt (théorie ; pratique au cours 6, et à l'étape 7 du
-// TD 3a pour ceux qui ont fini) ; un graphe par notion, dessiné sur
+// TD 2d pour ceux qui ont fini) ; un graphe par notion, dessiné sur
 // l'historique du TD ; `git status` et `git log` fondus dans les diapositives
 // voisines ; le fichier binaire retiré ; une diapositive théorique sur les
 // branches à plusieurs, en fin de partie.
 //
-// Toutes les sorties sont celles du rejeu du TD 3a (git 2.43, en français) :
-// `src/cours2_v2/notebook/td/3a_depot_recette/rejeu/sortie.txt`. Dans les
+// Toutes les sorties sont celles du rejeu du TD 2d (git 2.43, en français) :
+// `src/cours2_v2/notebook/td/2d_depot_recette/rejeu/sortie.txt`. Dans les
 // graphes, chaque pastille porte le début de l'identifiant du commit.
 #import "../../../commun/prelude.typ": *
 #import "../../../commun/schemas_git.typ": graphe-git, marque-tete, marque-conflit, rouge-attention
@@ -101,7 +101,7 @@
     Colonne de gauche : ce que la plupart ont déjà fait. Rien n'indique ce qui
     distingue deux copies, ni laquelle est la bonne.
 
-    Colonne de droite : `git log --oneline` relevé à l'étape 4 du TD 3a.
+    Colonne de droite : `git log --oneline` relevé à l'étape 4 du TD 2d.
   ]
 ]
 
@@ -165,7 +165,7 @@
 
 // --------------------------------------------
 // Nouveau (28/09/2026). Théorie seule ; la pratique est au cours 6, et à
-// l'étape 7 du TD 3a pour ceux qui ont fini.
+// l'étape 7 du TD 2d pour ceux qui ont fini.
 #d("Les copies d'un dépôt")[
   #annonce[
     Une copie d'un dépôt git a tous ses commits. Deux copies échangent
@@ -192,7 +192,7 @@
   ]
 
   #notes[
-    Pas de pratique aujourd'hui, hors l'étape 7 du TD 3a (seconde copie par
+    Pas de pratique aujourd'hui, hors l'étape 7 du TD 2d (seconde copie par
     `git clone`, un commit passé par `git pull`), pour ceux qui ont fini.
 
     Comme le réseau de l'école n'est pas accessible depuis chez soi, les
@@ -292,7 +292,7 @@
     caché, `.git`, qui contiendra l'historique.
   ]
 
-  #console("$ cd ~/Desktop/info01/cours2/3a_depot_recette/travail\n$ pwd\n/c/Users/eleve/Desktop/info01/cours2/3a_depot_recette/travail\n$ git init\nDépôt Git vide initialisé dans …/3a_depot_recette/travail/.git/\n$ ls -a\n.\n..\ncrepes.jpg\n.git\nrecette.md", taille: 17pt)
+  #console("$ cd ~/Desktop/info01/cours2/2d_depot_recette/travail\n$ pwd\n/c/Users/eleve/Desktop/info01/cours2/2d_depot_recette/travail\n$ git init\nDépôt Git vide initialisé dans …/2d_depot_recette/travail/.git/\n$ ls -a\n.\n..\ncrepes.jpg\n.git\nrecette.md", taille: 17pt)
 
   #legende[
     Les fichiers du dossier ne changent pas. Supprimer `.git` supprime
@@ -837,7 +837,7 @@
   ]
 
   #notes[
-    Théorie seule aujourd'hui. Le TD 3a fait une branche et une fusion, seul,
+    Théorie seule aujourd'hui. Le TD 2d fait une branche et une fusion, seul,
     sur un dépôt.
 
     Les quatre règles du cours de 2026 : `master` ne reçoit que des

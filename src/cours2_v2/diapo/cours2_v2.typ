@@ -9,7 +9,7 @@
 // sont copiées sans être reformulées. La partie git est réécrite sur le
 // modèle des autres cours (titre, annonce, preuve visuelle) ; elle reprend
 // les schémas de `commun/schemas_git.typ`. Les sorties de git viennent du
-// rejeu du TD 3a : `src/cours2_v2/notebook/td/3a_depot_recette/rejeu/`.
+// rejeu du TD 2d : `src/cours2_v2/notebook/td/2d_depot_recette/rejeu/`.
 //
 //   python outils/compiler_diapos.py --cours 2_v2            # à projeter
 //   python outils/compiler_diapos.py --cours 2_v2 --notes    # notes de conduite
@@ -25,34 +25,34 @@
 
 #let tds = sys.inputs.at("tds", default: "") != "false"
 
-#import "tds/1a_vscode.typ": td as td-1a
-#import "tds/1b_erreurs.typ": td as td-1b
-#import "tds/2a_markdown.typ": td as td-2a
-#import "tds/3a_depot_recette.typ": td as td-3a
+#import "tds/2a_vscode.typ": td as td-2a
+#import "tds/2b_erreurs.typ": td as td-2b
+#import "tds/2c_markdown.typ": td as td-2c
+#import "tds/2d_depot_recette.typ": td as td-2d
 
 #include "parties/00_ouverture.typ"
 
 // L'éditeur est présenté, avec Markdown en fin de partie, puis configuré en
-// classe entière (TD 1a) et employé (TD 1b, TD 2a). Ordre du 28/09/2026 ;
+// classe entière (TD 2a) et employé (TD 2b, TD 2c). Ordre du 28/09/2026 ;
 // `parties/01_vscode.typ` retiré.
 #include "parties/02_editeur.typ"
 #include "parties/03_markdown.typ"
 #include "parties/03b_vscode.typ"
 #if tds {
-  include "tds/1a_vscode.typ"
-  include "tds/1b_erreurs.typ"
-  include "tds/2a_markdown.typ"
+  include "tds/2a_vscode.typ"
+  include "tds/2b_erreurs.typ"
+  include "tds/2c_markdown.typ"
 } else {
-  sommaire-td(td-1a)
-  sommaire-td(td-1b)
   sommaire-td(td-2a)
+  sommaire-td(td-2b)
+  sommaire-td(td-2c)
 }
 
 #include "parties/04_git.typ"
 #if tds {
-  include "tds/3a_depot_recette.typ"
+  include "tds/2d_depot_recette.typ"
 } else {
-  sommaire-td(td-3a)
+  sommaire-td(td-2d)
 }
 
 #include "parties/99_cloture.typ"

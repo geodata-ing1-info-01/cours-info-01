@@ -2,15 +2,15 @@
 // Un fichier inclus n'hérite pas des imports de son appelant.
 //
 // Placée en fin de la partie « L'éditeur de code », avant « Visual Studio
-// Code » et les TD 1a, 1b et 2a (28/09/2026).
+// Code » et les TD 2a, 2b et 2c (28/09/2026).
 //
 // Ramenée le 28/09/2026 à une diapositive, sans séparateur de partie : la
 // syntaxe minimale est vue au cours 1 v2 (notebook), et le cours 2 emploie
-// Markdown pour fabriquer le projet que git versionne au TD 3a.
+// Markdown pour fabriquer le projet que git versionne au TD 2d.
 // Retirés : « L'intention de Markdown » (dans les notes de la diapositive
 // Markdown du cours 1 v2) ; « Tableau, bloc de code et image » (le tableau
-// et l'image dans les consignes du TD 2a, le bloc de code au cours 3) ;
-// « Convertir un fichier Markdown : pandoc » (dernière étape du TD 2a) ;
+// et l'image dans les consignes du TD 2c, le bloc de code au cours 3) ;
+// « Convertir un fichier Markdown : pandoc » (dernière étape du TD 2c) ;
 // « Le README d'un projet » (au cours 3, `../a_reprendre/readme_cours3.typ`).
 #import "../../../commun/prelude.typ": *
 
@@ -47,12 +47,12 @@
   )
 
   #legende[
-    La recette du TD 2a sert ensuite de projet pour git. Le `README.md` d'un
+    La recette du TD 2c sert ensuite de projet pour git. Le `README.md` d'un
     projet s'écrit de la même façon.
   ]
 
   #notes[
-    Syntaxe minimale vue au cours 1, dans les cellules du notebook. Le TD 2a
+    Syntaxe minimale vue au cours 1, dans les cellules du notebook. Le TD 2c
     ajoute le tableau et l'image ; la forme à taper est dans la consigne.
 
     Pourquoi une recette pour git : une quantité, une étape ou un conseil
@@ -64,8 +64,8 @@
     Le `README.md` : la forge l'affiche en page d'accueil du dépôt (cours 6) ;
     son plan est au cours 3.
 
-    pandoc, en fin de TD 2a : le même `.md` converti en page web et en
-    `.odt`. Le TD 3a ignore ces fichiers produits ; le cours 3 appelle
+    pandoc, en fin de TD 2c : le même `.md` converti en page web et en
+    `.odt`. Le TD 2d ignore ces fichiers produits ; le cours 3 appelle
     pandoc depuis Python.
   ]
 ]

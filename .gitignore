@@ -22,18 +22,23 @@ data/*/*/fourni/
 # Exécutables et pages que les TD produisent à côté de leur source : ils y
 # naissent parce que c'est la commande que les étudiants tapent, et non par
 # manque de rangement.
-data/*/2c_hello_cpp/bonjour
+data/*/1e_hello_cpp/bonjour
 data/*/*/*.exe
-data/*/4c_trajet/**/etape_*.png
-data/*/4c_trajet/**/trajet.srt
-data/*/4c_trajet/**/trajet.mp4
-data/*/4c_trajet/**/montage.txt
-data/*/4c_trajet/**/*.egg-info/
+data/*/1j_trajet/**/etape_*.png
+data/*/1j_trajet/**/trajet.srt
+data/*/1j_trajet/**/trajet.mp4
+data/*/1j_trajet/**/montage.txt
+data/*/1j_trajet/**/*.egg-info/
+data/*/1h_recette/**/*.html
+data/*/1h_recette/**/*.egg-info/
 data/*/4a_recette/**/*.html
 data/*/4a_recette/**/*.egg-info/
-data/*/3a_markdown/**/recette_v*.md
-data/*/3a_markdown/**/*.diff
-data/*/3a_markdown/**/*.odt
+data/*/1f_markdown/**/recette_v*.md
+data/*/1f_markdown/**/*.diff
+data/*/1f_markdown/**/*.odt
+data/*/3e_markdown/**/recette_v*.md
+data/*/3e_markdown/**/*.diff
+data/*/3e_markdown/**/*.odt
 
 # Ce que les étudiants déposent dans le `travail/` d'un TD : leurs copies et
 # ce qu'ils en tirent. Le dossier lui-même est suivi, par son `.gitkeep`.

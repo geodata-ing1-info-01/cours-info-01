@@ -212,7 +212,7 @@
     l'image. Le chemin de l'image est relatif au `.md`, occasion de
     rappeler les chemins de la partie 1.
 
-    Ce que la colonne de gauche ne montre pas et qui sert au TD 3a : un
+    Ce que la colonne de gauche ne montre pas et qui sert au TD 1f : un
     tableau s'écrit avec des barres verticales, un bloc de code entre trois
     accents graves. Renvoyer à la page de Gruber, en légende.
 
@@ -284,7 +284,7 @@
 
   #legende[
     Le `#` fait un titre, les deux astérisques mettent en gras : rien de neuf
-    depuis le TD 3a, Markdown.
+    depuis le TD 1f, Markdown.
   ]
 
   #notes[
@@ -338,7 +338,7 @@
 #d("Lancer JupyterLab depuis Anaconda")[
   #annonce[
     JupyterLab est livré avec Anaconda, et se lance depuis la page d'accueil de
-    Navigator, comme VS Code au TD 2a.
+    Navigator, comme VS Code au TD 1c.
   ]
 
   #align(center, illustration(
@@ -352,7 +352,7 @@
   ))
 
   #legende[
-    La même page qu'au TD 2a, une fiche plus loin. Le numéro sous le nom est
+    La même page qu'au TD 1c, une fiche plus loin. Le numéro sous le nom est
     la version installée : il n'y a rien à installer.
   ]
 
@@ -366,7 +366,7 @@
     permet au TD de se faire sans rien installer, et c'est aussi ce dont VS
     Code a besoin pour exécuter un notebook. Une installation Miniconda ou
     Miniforge, elle, part d'un `base` minimal : la fiche porterait
-    « Install ». Le TD 4b le fait vérifier au lieu de le supposer.
+    « Install ». Le TD 1i le fait vérifier au lieu de le supposer.
 
     Ce qui s'ouvre est un onglet de navigateur sur une adresse `localhost` :
     la page est chez eux, le serveur aussi. Le dire ici et le faire

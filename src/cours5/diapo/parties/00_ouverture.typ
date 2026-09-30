@@ -22,9 +22,9 @@
     align: (left + horizon, left + horizon, right + horizon),
     [Partie], [Nature], [Durée],
     [Le matériel], [cours], [30′],
-    [Le réseau], [cours et TD 1a], [30′],
-    [Prouver qui l'on est], [cours et TD 2a], [40′],
-    [Les secrets de vos programmes], [cours ; TD 3a facultatif], [15′],
+    [Le réseau], [cours et TD 5a], [30′],
+    [Prouver qui l'on est], [cours et TD 5b], [40′],
+    [Les secrets de vos programmes], [cours ; TD 5c facultatif], [15′],
   )
 
   #legende[
@@ -36,7 +36,7 @@
     Moins de TD que dans les séances précédentes. La première moitié est de la
     culture générale ; la seconde prépare le cours 6.
 
-    Le TD 2a est indispensable : le cours 6 commence par `git clone`, qui
+    Le TD 5b est indispensable : le cours 6 commence par `git clone`, qui
     demande la clé. Le compte GitHub est à créer avant la séance (page « Avant
     les séances » du book).
   ]
