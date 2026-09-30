@@ -42,6 +42,11 @@ fichier.
 l'archive les montre, `cours1/1a_formats/raven.odt` ; c'est donc depuis
 `livraison/cours1/` qu'on rejoue un TD, jamais depuis `data/`.
 
+Un TD qui se fait à la racine de l'archive (`dossier: "cours3/"`, la
+préparation du poste) n'a pas de dossier : sa feuille, `td_<fichier du TD>.pdf`,
+est déposée par `compiler_tds.py` dans `data/cours<n>/` et livrée à la racine
+de l'archive, et le README le liste avec les autres.
+
 Un dossier de TD est un sous-dossier de `data/cours<n>/` dont le nom commence
 par son numéro, `1a_`, `2b_`, `4_` : ce qui n'en porte pas (`make_data.py`, le
 README de la séance) est l'affaire du dépôt et n'est pas livré. L'archive porte
@@ -71,6 +76,17 @@ MOTIF_TD = re.compile(r"^\d+[a-z]?_")
 def dossiers_td(cours: str) -> list[Path]:
     donnees = RACINE / "data" / f"cours{cours}"
     return sorted(d for d in donnees.iterdir() if d.is_dir() and MOTIF_TD.match(d.name))
+
+
+def feuilles_racine(cours: str) -> list[tuple[str, Path]]:
+    """Les TD faits à la racine de l'archive : (nom du fichier du TD, sa feuille dans `data/`)."""
+    tds = RACINE / f"src/cours{cours}/diapo/tds"
+    racine = []
+    for source in sorted(tds.glob("*.typ")) if tds.is_dir() else []:
+        dossier = re.search(r'dossier:\s*"([^"]+)"', source.read_text(encoding="utf-8"))
+        if dossier and len(Path(dossier.group(1)).parts) == 1:
+            racine.append((source.stem, RACINE / "data" / f"cours{cours}" / f"td_{source.stem}.pdf"))
+    return racine
 
 
 def suivis_par_git(dossier: Path) -> list[Path]:
@@ -126,11 +142,12 @@ def a_livrer(td: Path) -> list[tuple[Path, Path]]:
     return couples
 
 
-def description(cours: str, td: Path) -> dict[str, str]:
+def description(cours: str, td: Path | str) -> dict[str, str]:
     """Le dictionnaire `td` du fichier typst de même nom, lu à la regex.
 
     Sans fichier typst, le titre vient de l'en-tête du guide, s'il existe.
     """
+    td = Path(td)
     source = RACINE / f"src/cours{cours}/diapo/tds/{td.name}.typ"
     if not source.exists():
         titre = td.name
@@ -144,20 +161,26 @@ def description(cours: str, td: Path) -> dict[str, str]:
     return dict(re.findall(r'^\s*(\w+):\s*"([^"]*)"', texte, re.M))
 
 
-def readme(cours: str, tds: list[Path]) -> str:
+def readme(cours: str, tds: list[Path], racine: list[str]) -> str:
     lignes = [
         f"# Cours {cours} — travaux dirigés",
         "",
         "Un dossier par TD, dans l'ordre de la séance : le chiffre est la séance,",
         "la lettre l'ordre dans la séance. La feuille du TD (`td_<dossier>.pdf`) et,",
         "quand il existe, le guide détaillé (`guide_<dossier>.pdf`) sont dans son dossier.",
+        "Un TD qui se fait à la racine de l'archive a sa feuille à la racine.",
         "",
         "| TD | Titre | Dossier | |",
         "|----|-------|---------|-|",
     ]
+    rangees = []
     for td in tds:
         d = description(cours, td)
-        lignes.append(f"| {d['numero']} | {d['titre']} | `{td.name}/` | {d.get('statut', '')} |")
+        rangees.append((d["numero"], f"| {d['numero']} | {d['titre']} | `{td.name}/` | {d.get('statut', '')} |"))
+    for nom in racine:
+        d = description(cours, nom)
+        rangees.append((d["numero"], f"| {d['numero']} | {d['titre']} | racine, `td_{nom}.pdf` | {d.get('statut', '')} |"))
+    lignes += [rangee for _, rangee in sorted(rangees)]
     lignes.append("")
     return "\n".join(lignes)
 
@@ -228,11 +251,22 @@ def livrer(cours: str, lister: bool) -> int:
             else:
                 (cible / td.name / vide).mkdir(parents=True, exist_ok=True)
 
+    racine = []
+    for nom, feuille in feuilles_racine(cours):
+        if not feuille.exists():
+            print(f"  {nom} : feuille de TD absente ({feuille.relative_to(RACINE)})", file=sys.stderr)
+            continue
+        racine.append(nom)
+        total += 1
+        print(f"{feuille.name} : à la racine")
+        if not lister:
+            shutil.copy2(feuille, cible / feuille.name)
+
     if lister:
         print(f"\n{total} fichier(s) iraient dans {cible.relative_to(RACINE)}/")
         return 0
 
-    (cible / "README.md").write_text(readme(cours, tds), encoding="utf-8")
+    (cible / "README.md").write_text(readme(cours, tds, racine), encoding="utf-8")
     with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as z:
         for f in sorted(cible.rglob("*")):
             # Un dossier vide n'a pas de fichier à écrire : il faut l'inscrire

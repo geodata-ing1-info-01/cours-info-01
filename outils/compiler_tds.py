@@ -16,7 +16,11 @@ Le PDF est déposé dans le dossier que le TD annonce lui-même, par le champ
 `dossier:` de sa description `td` — celui que l'étudiant a justement ouvert.
 Ce champ est le chemin vu par l'étudiant, `cours1/1e_hello_cpp/` ; dans le
 dépôt, il est sous `data/`. Le PDF s'appelle `td_<dossier>.pdf`, soit
-`td_1e_hello_cpp.pdf`, et n'est pas versionné.
+`td_1e_hello_cpp.pdf`, et n'est pas versionné. Un TD qui se fait à la racine
+de l'archive, comme la préparation du poste (`dossier: "cours3/"`), n'a pas de
+dossier à lui : sa feuille est déposée dans `data/cours<n>/` et porte le nom du
+fichier du TD, `td_3a_preparation.pdf` ; `outils/livrer_tds.py` la met à la
+racine de l'archive.
 
 Un cours sans dossier `tds/` n'est pas une erreur : ses TD peuvent n'avoir
 qu'un guide en Markdown, compilé par `outils/compiler_guides.py`. Un TD peut
@@ -56,8 +60,9 @@ def destination(dossier: str, cours: str) -> Path:
     return RACINE / "data" / f"cours{cours}" / Path(*Path(dossier).parts[1:])
 
 
-def nom_pdf(dossier: str, corrige: bool) -> str:
-    nom = Path(dossier.rstrip("/")).name
+def nom_pdf(td: Path, dossier: str, corrige: bool) -> str:
+    """`td_<dossier>.pdf`, ou `td_<fichier du TD>.pdf` pour un TD fait à la racine de l'archive."""
+    nom = td.stem if len(Path(dossier).parts) == 1 else Path(dossier.rstrip("/")).name
     return f"td_{nom}{'-corrige' if corrige else ''}.pdf"
 
 
@@ -78,7 +83,7 @@ def compiler(td: Path, assemblage: Path, cours: str, corrige: bool, captures: bo
         print(f"{td.name} : {cible} n'existe pas, ignoré", file=sys.stderr)
         return 0
 
-    sortie = cible / nom_pdf(dossier, corrige)
+    sortie = cible / nom_pdf(td, dossier, corrige)
     temporaire = assemblage.with_name("_td_en_cours.typ")
     temporaire.write_text(
         "// Assemblage temporaire, écrit par outils/compiler_tds.py.\n"
@@ -130,7 +135,7 @@ def main() -> int:
             if dossier is None:
                 print(f"{td.name} → aucun dossier annoncé")
             else:
-                print(f"{td.name} → {destination(dossier, options.cours).relative_to(RACINE)}/{nom_pdf(dossier, False)}")
+                print(f"{td.name} → {destination(dossier, options.cours).relative_to(RACINE)}/{nom_pdf(td, dossier, False)}")
         return 0
 
     if shutil.which("typst") is None:
