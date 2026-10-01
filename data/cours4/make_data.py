@@ -125,7 +125,8 @@ def dessiner(cible: Path, taille: str, fond: str, formes: list[tuple[str, str]],
         commande.append("+antialias")
     for couleur, primitive in formes:
         commande += ["-fill", couleur, "-draw", primitive]
-    commande.append("PNG32:" + str(cible))
+    # sans date dans le PNG : le dépôt de référence `train` garde les mêmes commits d'une génération à l'autre
+    commande += ["-define", "png:exclude-chunks=date,time", "PNG32:" + str(cible)]
     subprocess.run(commande, check=True)
 
 
@@ -164,7 +165,7 @@ def decor_train(dossier: Path) -> None:
                     "(", "-size", "640x480", "xc:white", "+antialias", "-fill", "black",
                     "-draw", "roundrectangle 40,30 599,449 56,56", ")",
                     "-alpha", "off", "-compose", "CopyOpacity", "-composite",
-                    "PNG32:" + str(dossier / "fenetre.png")], check=True)
+                    "-define", "png:exclude-chunks=date,time", "PNG32:" + str(dossier / "fenetre.png")], check=True)
 
 
 # ---- TD 4c : les images des schémas de la composition ------------------------

@@ -177,22 +177,22 @@ cd recette
 ```
 
 **Cas B, pas de dépôt, ou un programme qui ne fonctionne pas.** Le module
-publie un dépôt de référence, `recette`, sur le compte GitHub
-`<organisation>` (le nom est donné en début de séance). Sur son compte
-GitHub, créer d'abord un dépôt vide nommé `recette` (New repository, sans
+publie un dépôt de référence, `td7a-recette`, sur le compte GitHub
+`geodata-ing1-info-01`. Sur son compte GitHub, créer d'abord un dépôt vide nommé `recette` (New repository, sans
 README), puis :
 
 ```text
 cd travail
-git clone git@github.com:<organisation>/recette.git
+git clone git@github.com:geodata-ing1-info-01/td7a-recette.git recette
 cd recette
 git remote set-url origin git@github.com:<compte>/recette.git
 git push -u origin master
 ```
 
 `git remote set-url` change l'adresse du dépôt distant `origin` : les
-`push` suivants vont au dépôt de l'élève. Le dépôt garde l'historique du
-projet 4.
+`push` suivants vont au dépôt de l'élève. Le dernier argument de
+`git clone` nomme le dossier local `recette`, comme dans le cas A. Le dépôt
+garde l'historique du projet 4.
 
 Dans les deux cas, régler votre nom et votre adresse pour ce dépôt :
 
@@ -491,17 +491,18 @@ un conflit, que l'on résout sur le poste.
 ### E0.1 Le dépôt
 
 Sur votre compte GitHub, créer un dépôt vide nommé `train` (New
-repository, sans README). Le nom du compte du module est donné en début de
-séance. Puis :
+repository, sans README). Le compte du module est `geodata-ing1-info-01`.
+Puis :
 
 ```text
 cd travail
-git clone git@github.com:<organisation>/train.git
+git clone git@github.com:geodata-ing1-info-01/td7b-train.git train
 cd train
 git remote set-url origin git@github.com:<compte>/train.git
 git push -u origin master
 ```
 
+Le dernier argument de `git clone` nomme le dossier local `train`.
 `git remote set-url` change l'adresse du dépôt distant `origin` : les
 `push` suivants vont à votre dépôt. Régler ensuite votre nom, votre
 adresse, et la façon dont `git pull` réunit deux historiques (par une

@@ -6,14 +6,14 @@ branches, et livre chaque branche par une pull request.
 
 TD 7a, parcours standard, la recette en pages. Départ : le programme du
 TD 4a à l'étape B6 (`data/cours4/corriges/4a_recette/b6/`), dans le dépôt de
-l'élève ou dans le dépôt de référence `recette`.
+l'élève ou dans le dépôt de référence `td7a-recette`.
 
     d1  l'option --page : la page HTML d'une recette, par pandoc
     d3  l'option --toutes : toutes les recettes, une boucle sur leurs noms
     d4  le sommaire, sortie/index.html
 
 TD 7b, parcours avancé, la fenêtre du train. Départ : le dépôt de référence
-`train`, dont le programme écrit la vidéo de deux plans qui défilent sur le
+`td7b-train`, dont le programme écrit la vidéo de deux plans qui défilent sur le
 fond, sans la fenêtre. Deux branches parties du même commit :
 
     e2  branche fenetre : la fenêtre posée sur chaque image
@@ -599,7 +599,7 @@ def main():
     guides_projet7.ecrire_guides()
 
     if options.depots:
-        for nom, fabriquer in (("recette", depot_recette), ("train", depot_train)):
+        for nom, fabriquer in (("td7a-recette", depot_recette), ("td7b-train", depot_train)):
             cible = options.depots / nom
             if cible.exists():
                 shutil.rmtree(cible)

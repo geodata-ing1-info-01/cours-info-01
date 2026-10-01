@@ -70,17 +70,18 @@ Ouvrir le dossier `cours7/7b_train/` dans VS Code, puis un terminal Git Bash
 ### E0.1 Le dépôt
 
 Sur votre compte GitHub, créer un dépôt vide nommé `train` (New
-repository, sans README). Le nom du compte du module est donné en début de
-séance. Puis :
+repository, sans README). Le compte du module est `geodata-ing1-info-01`.
+Puis :
 
 ```text
 cd travail
-git clone git@github.com:<organisation>/train.git
+git clone git@github.com:geodata-ing1-info-01/td7b-train.git train
 cd train
 git remote set-url origin git@github.com:<compte>/train.git
 git push -u origin master
 ```
 
+Le dernier argument de `git clone` nomme le dossier local `train`.
 `git remote set-url` change l'adresse du dépôt distant `origin` : les
 `push` suivants vont à votre dépôt. Régler ensuite votre nom, votre
 adresse, et la façon dont `git pull` réunit deux historiques (par une
@@ -351,7 +352,7 @@ Dans `train.py`, la fonction `image` contient les deux versions :
     commande = commande + [str(POTEAUX), "-composite"]
 =======
     commande = commande + [str(DECOR / "fenetre.png"), "-composite"]
->>>>>>> 71cd9968a69bb0254a143c2cdf02354fbe36f87b
+>>>>>>> 586b3cb3f7a1a4e1391c836ac75e57fc5c3f18b5
 ```
 
 Entre `<<<<<<< HEAD` et `=======` : la version de la branche `poteaux`.

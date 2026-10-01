@@ -3,7 +3,7 @@
 École d'ingénieurs (géomatique), 1re année, profils variés (prépa littéraire ou scientifique).
 Module d'**infrastructure de travail** (outils + concepts génériques) complémentaire du cours d'algo/programmation parallèle.
 
-Le book est en ligne : **<https://ndavid.github.io/ecue-info-01/>**.
+Le book est en ligne : **<https://geodata-ing1-info-01.github.io/cours-info-01/>**.
 
 ## Structure du dépôt
 
@@ -42,7 +42,7 @@ Pour **recompiler** les supports, il faut en plus la chaîne documentaire :
 conda env create -f environment-supports.yml && conda activate info01
 python outils/compiler_diapos.py                               # diapositives → PDF
 sphinx-build -E -b html src _build/html                        # book → _build/html/index.html
-python outils/publier_book.py livraison/*.zip                  # book + archives → https://ndavid.github.io/ecue-info-01/
+python outils/publier_book.py livraison/*.zip                  # book + archives → https://geodata-ing1-info-01.github.io/cours-info-01/
 ```
 
 La dernière ligne reconstruit le book, dépose les fichiers donnés dans

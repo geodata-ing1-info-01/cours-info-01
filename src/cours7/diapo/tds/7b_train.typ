@@ -81,11 +81,11 @@
     align: left + horizon,
     [Fichier], [Emplacement], [Usage],
     [`guide_7b_train.pdf`, `.html`, `guide.ipynb`], [`cours7/7b_train/`], [le détail des étapes, le code à copier],
-    [le dépôt `train`], [sur GitHub, compte du module], [`train.py`, `decor/`, `environment.yml`, un README],
+    [le dépôt `td7b-train`], [sur GitHub, compte `geodata-ing1-info-01`], [`train.py`, `decor/`, `environment.yml`, un README],
   )
 
   #notes[
-    Le nom du compte GitHub du module est à donner en début de séance. Le
+    Le compte GitHub du module est `geodata-ing1-info-01`. Le
     dépôt de référence est écrit par `generer_projet7.py --depots`.
   ]
 ]

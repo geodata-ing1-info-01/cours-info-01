@@ -141,7 +141,7 @@ def main() -> None:
         print(f"\nBook dans {SORTIE.relative_to(RACINE)}/, non publié.")
         return
     publier()
-    print("\nPublié : https://ndavid.github.io/ecue-info-01/")
+    print("\nPublié : https://geodata-ing1-info-01.github.io/cours-info-01/")
 
 
 if __name__ == "__main__":
