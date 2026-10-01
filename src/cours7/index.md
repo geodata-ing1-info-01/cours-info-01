@@ -12,7 +12,8 @@ site. Chaque élève garde son parcours.
 
 Le TD part du programme `recette.py` du projet 4, publié au cours 6. Il lui
 ajoute la page HTML de chaque recette, écrite par pandoc, puis toutes les
-recettes et un sommaire.
+recettes et un sommaire. Le [guide détaillé](notebook/td/7a_recette/guide.md)
+donne chaque étape.
 
 ```{list-table}
 :header-rows: 1
@@ -43,10 +44,11 @@ recettes et un sommaire.
 
 ## Parcours avancé : TD 7b, reprendre et compléter le projet d'un autre
 
-Le TD part du dépôt `train`, commencé par le module : un programme qui
+Le TD part du dépôt `td7b-train`, commencé par le module : un programme qui
 fabrique la vidéo de deux plans du paysage, défilant sur un fond. Deux
 diapositives présentent d'abord numpy : une image comme tableau de nombres,
-et un masque de colonnes.
+et un masque de colonnes. Le [guide détaillé](notebook/td/7b_train/guide.md)
+donne chaque étape.
 
 ```{list-table}
 :header-rows: 1
@@ -78,3 +80,10 @@ et un masque de colonnes.
 Garder son dépôt GitHub du cours 6, et la clé SSH du cours 6 enregistrée
 sur son compte. Qui n'a pas de dépôt `recette` utilisable part du dépôt de
 référence : le cloner, puis le pousser vers un dépôt vide de son compte.
+
+```{toctree}
+:hidden:
+
+notebook/td/7a_recette/guide
+notebook/td/7b_train/guide
+```

@@ -89,7 +89,7 @@ exclude_patterns = [
 # Les guides des autres cours ne sont pas encore relus pour le book (leurs
 # images sont cherchées dans `data/`, depuis `produit/`).
 # Les versions 2 des cours 1 et 2 (propositions 2027-2028) aussi.
-GUIDES_DANS_LE_BOOK = {"cours1", "cours2", "cours3", "cours4", "cours1_v2", "cours2_v2"}
+GUIDES_DANS_LE_BOOK = {"cours1", "cours2", "cours3", "cours4", "cours7", "cours1_v2", "cours2_v2"}
 _SRC = Path(__file__).resolve().parent
 
 
@@ -133,3 +133,32 @@ exclude_patterns += sorted(
             and source.relative_to(_SRC).parts[0] in GUIDES_DANS_LE_BOOK)
 )
 language = "fr"
+
+
+# Le lien vers l'archive d'une séance, en tête de sa page et des guides de ses
+# TD. `outils/publier_book.py` donne dans `INFO01_TELECHARGEMENTS` le nom des
+# archives qu'il dépose dans `telechargements/`. Une construction sans
+# archives, celle du book ouvert par double-clic, n'ajoute donc aucun lien
+# qui mènerait à un fichier absent. Le lien est en HTML, comme celui de
+# `index.md` : Sphinx ne cherche pas à résoudre un fichier qu'il ne construit
+# pas.
+_ARCHIVES = set(filter(None, __import__("os").environ.get("INFO01_TELECHARGEMENTS", "").split(",")))
+
+
+def _lien_archive(app, docname, source) -> None:
+    parties = docname.split("/")
+    if not (parties[0].startswith("cours") and parties[-1] in ("index", "guide")):
+        return
+    archive = f"info01-{parties[0]}.zip"
+    if archive not in _ARCHIVES:
+        return
+    href = "../" * (len(parties) - 1) + "telechargements/" + archive
+    note = (f':::{{note}}\nLes fichiers des TD de la séance sont dans l\'archive '
+            f'<a href="{href}">{archive}</a>.\n:::\n\n')
+    texte = source[0]
+    fin = texte.find("\n---\n", 4) + 5 if texte.startswith("---\n") else 0
+    source[0] = texte[:fin] + "\n" + note + texte[fin:]
+
+
+def setup(app):
+    app.connect("source-read", _lien_archive)

@@ -28,6 +28,7 @@ from __future__ import annotations
 
 import argparse
 import html
+import os
 import shutil
 import subprocess
 import sys
@@ -47,10 +48,12 @@ def taille_lisible(octets: int) -> str:
     return f"{octets:.1f} To"
 
 
-def construire() -> None:
+def construire(fichiers: list[Path]) -> None:
+    # `src/conf.py` ajoute aux pages des séances le lien vers leur archive, si elle est déposée
+    env = dict(os.environ, INFO01_TELECHARGEMENTS=",".join(f.name for f in fichiers))
     subprocess.run(
         ["sphinx-build", "-E", "-b", "html", "src", str(SORTIE.relative_to(RACINE))],
-        cwd=RACINE, check=True,
+        cwd=RACINE, check=True, env=env,
     )
 
 
@@ -133,7 +136,7 @@ def main() -> None:
                         help="construire sans pousser gh-pages")
     args = parser.parse_args()
 
-    construire()
+    construire(args.fichiers)
     deposes = deposer([f.resolve() for f in args.fichiers])
     for f in deposes:
         print(f"telechargements/{f.name} ({taille_lisible(f.stat().st_size)})")
