@@ -1,0 +1,1138 @@
+
+<!DOCTYPE html>
+
+
+<html lang="fr" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>TD 1j — Installer un projet en lisant son README (facultatif) &#8212; Introduction à l&#39;informatique</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../../../_static/documentation_options.js?v=72dce1d2"></script>
+    <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../../../../_static/translations.js?v=e6b791cb"></script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cours1/notebook/td/1j_trajet/guide';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="../../../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Recherche" href="../../../../search.html" />
+    <link rel="next" title="Annexe — Comparer deux versions d’un fichier" href="../../05_comparer_versions.html" />
+    <link rel="prev" title="TD 1i — Le client, le noyau, et où ils sont installés (facultatif)" href="../1i_noyaux/guide.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="fr"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../../../_static/searchtools.js"></script>
+    <script src="../../../../_static/language_data.js"></script>
+    <script src="../../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Passer au contenu principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Haut de page</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Alerte de version"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navigation dans le site">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="Sur cette page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction à l'informatique</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../index.html">
+                    Introduction à l’informatique
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Avant les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/poste.html">Premiers tests du poste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/donnees.html">Récupérer les fichiers d’une séance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/python.html">Anaconda et JupyterLab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/vscode.html">VS Code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Après les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../apres/sauvegarder.html">Sauvegarder son travail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../apres/s_entrainer.html">S’entraîner : jeux et exercices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours1_v2/index.html">Séance 1, version 2 — Logiciels, fichiers, terminal et premier programme</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/01_logiciels_stockage.html">Logiciels, fichiers et stockage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/02_terminal.html">Le terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/03_premier_programme.html">Premier programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/04_notebook.html">Un notebook et la syntaxe de Markdown</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours1_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 1, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1b_terminal/guide.html">TD 1b — Les fichiers du TD 1a en ligne de commande</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1c_programme/guide.html">TD 1c — Écrire et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1d_notebook/guide.html">TD 1d — Un notebook dans JupyterLab</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours2_v2/index.html">Séance 2, version 2 — Éditeur de code, Markdown et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/01_editeur_de_code.html">L’éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/02_markdown.html">Une recette en Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/03_git_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/04_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours2_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/2a_vscode/guide.html">TD 2a — Configurer VS Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/2b_erreurs/guide.html">TD 2b — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/2c_markdown/guide.html">TD 2c — Une recette en Markdown, convertie par pandoc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/2d_depot_recette/guide.html">TD 2d — Un dépôt git pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours3/index.html">Séance 3 — Chemins, fichiers et ligne de commande</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/01_chemins_programmes.html">Chemins et programmes externes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/02_fichiers_encodage.html">Fichiers et encodage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/03_du_notebook_au_programme.html">Du notebook au programme</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours3/notebook/travaux_diriges.html">Travaux dirigés de la séance 3</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours3/notebook/td/3e_markdown/guide.html">TD 3e — Une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours3/notebook/td/3f_cli/guide.html">TD 3f — Une ligne de commande pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours4/index.html">Séance 4 — Projet d’application 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours4/notebook/travaux_diriges.html">Travaux dirigés du projet 4</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours4/notebook/td/4a_recette/guide.html">TD 4a — Un script Python, pas à pas</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours4/notebook/td/4b_paquet/guide.html">TD 4b — Un programme installable</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours5/index.html">Séance 5 — Matériel, réseau, mots de passe, clés SSH et secrets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/01_materiel.html">Le matériel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/02_reseau.html">Le réseau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/03_prouver_qui_lon_est.html">Prouver qui l’on est</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/04_secrets.html">Les secrets de vos programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/travaux_diriges.html">Travaux dirigés de la séance 5</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cours6/index.html">Séance 6 — La forge, sur le dépôt du projet 4</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours7/index.html">Séance 7 — Projet d’application 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours7/notebook/td/7a_recette/guide.html">TD 7a — Compléter son projet, par des pull requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours7/notebook/td/7b_train/guide.html">TD 7b — Reprendre et compléter le projet d’un autre</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Annexes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/configuration/index.html">Configuration des postes de la salle</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/anaconda.html">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/jupyterlab.html">JupyterLab</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../annexes/configuration/vscode.html">VS Code</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_python.html">Python et environnement conda</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_notebooks.html">Notebooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_reglages.html">Fichiers de réglages</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/git.html">Git et Git Bash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/spyder.html">Spyder</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/poste_personnel/index.html">Configuration d’un ordinateur personnel</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/conda.html">Python et conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/vscode.html">VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/git_outils.html">Git et éditeurs de texte</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/notions/index.html">Notions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/outils.html">Choisir entre JupyterLab, Spyder et VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/notebooks.html">Les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/terminaux.html">Les terminaux en ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/variables_environnement.html">Variables d’environnement et recherche des programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/environnements.html">Les environnements conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/vscode_environnements.html">Comment VS Code gère les environnements Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/git_bash.html">Git Bash : une fenêtre, bash et des programmes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/faq.html">FAQ</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/reseau.html">Problèmes de réseau et de compte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/bureautique.html">Problèmes avec les logiciels de texte et de bureautique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/anaconda.html">Problèmes avec Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/jupyterlab.html">Problèmes avec JupyterLab et les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/vscode.html">Problèmes avec VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/git.html">Problèmes avec git</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/plus_loin/index.html">Pour aller plus loin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/gestionnaires.html">venv, uv et pixi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/cpp.html">C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/programme_interpreteur.html">Programme, application et interpréteur</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Archive 2026</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../../index.html">Séance 1, 2026 — Logiciel, programmation et formats de fichier</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../01_logiciels_et_formats.html">Logiciels et formats de fichier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../02_programmation.html">Programmation et éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../03_markdown_notebook.html">Markdown et notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_bibliotheques_environnements.html">Bibliothèques et environnements Python</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../../travaux_diriges.html">Travaux dirigés de la séance 1</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1b_archive_odt/guide.html">TD 1b — Un .odt est une archive ZIP (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1c_vscode_python/guide.html">TD 1c — Configurer l’éditeur de code, et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1d_erreurs/guide.html">TD 1d — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1e_hello_cpp/guide.html">TD 1e — Le même programme en C++ (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1f_markdown/guide.html">TD 1f — Mettre en forme une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1g_notebooks/guide.html">TD 1g — Le notebook, ouvert de trois façons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1h_recette/guide.html">TD 1h — Installer un projet Python, et décrire son installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1i_noyaux/guide.html">TD 1i — Le client, le noyau, et où ils sont installés (facultatif)</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">TD 1j — Installer un projet en lisant son README (facultatif)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../05_comparer_versions.html">Annexe — Comparer deux versions d’un fichier</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours2/index.html">Séance 2, 2026 — Ligne de commande et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/01_ligne_de_commande.html">La ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/02_depot_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/03_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/04_lire_et_tenir_un_depot.html">Lire et tenir un dépôt</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2a_premier_depot/guide.html">TD 2a — Un premier dépôt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2b_branches/guide.html">TD 2b — Branches et fusions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2c_annuler/guide.html">TD 2c — Annuler et remettre à jour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2d_conflits/guide.html">TD 2d — Créer et résoudre un conflit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2e_livrer/guide.html">TD 2e — Publier une version</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Thème">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Thème" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Clair"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Sombre"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="Paramètres système"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>Paramètres système</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Clair</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Sombre</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>TD 1j — Installer un projet en lisant son README (facultatif)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#copier-le-projet-et-lire-son-readme">1 · Copier le projet et lire son README</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-fichiers-du-td">Les fichiers du TD</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#copier-le-projet">Copier le projet</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lire-le-readme">Lire le README</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installer-le-projet">2 · Installer le projet</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#se-placer-dans-le-dossier-du-projet">Se placer dans le dossier du projet</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-trois-commandes">Les trois commandes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verifier-l-installation">Vérifier l’installation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#en-cas-d-erreur">En cas d’erreur</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lancer-la-commande-et-lire-ce-qu-elle-produit">3 · Lancer la commande, et lire ce qu’elle produit</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lancer-trajet">Lancer <code class="docutils literal notranslate"><span class="pre">trajet</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-fichiers-que-la-commande-a-ecrits">Les fichiers que la commande a écrits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#changer-un-texte-et-relancer">Changer un texte, et relancer</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#en-option-les-commandes-une-a-une">4 · En option : les commandes, une à une</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ouvrir-le-notebook">Ouvrir le notebook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regler-le-chemin-du-projet">Régler le chemin du projet</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#executer-les-cellules">Exécuter les cellules</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-le-td-fait-constater">Ce que le TD fait constater</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etapes-1-et-2-ce-dont-le-projet-depend">Étapes 1 et 2 : ce dont le projet dépend</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-3-ce-que-la-commande-enchaine">Étape 3 : ce que la commande enchaîne</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-4-les-commandes-dans-un-notebook">Étape 4 : les commandes dans un notebook</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="td-1j-installer-un-projet-en-lisant-son-readme-facultatif">
+<h1>TD 1j — Installer un projet en lisant son README (facultatif)<a class="headerlink" href="#td-1j-installer-un-projet-en-lisant-son-readme-facultatif" title="Lien vers cette rubrique">#</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Les fichiers des TD de la séance sont dans l’archive <a href="../../../../telechargements/info01-cours1.zip">info01-cours1.zip</a>.</p>
+</div>
+<p>Le projet <code class="docutils literal notranslate"><span class="pre">trajet</span></code> produit une vidéo commentée du trajet à pied entre la
+gare de Noisy-Champs et l’école, à partir d’un fond de carte et d’un fichier
+d’étapes. Le TD consiste à installer ce projet, qu’on n’a pas écrit, et à le
+lancer, en suivant uniquement sa documentation, puis à lire l’un après
+l’autre les fichiers que la commande produit. Le TD dure un quart d’heure,
+et il est facultatif : il se fait en séance si le temps le permet, ou seul
+ensuite.</p>
+<p>Le TD nécessite l’invite de commandes d’Anaconda, où se tapent les commandes, un éditeur de
+texte (VSCode ou Notepad++) et un lecteur vidéo. L’installation télécharge
+Python, ffmpeg et ImageMagick, et nécessite une session réseau ouverte. Le
+guide suit la section « Installation » du <code class="docutils literal notranslate"><span class="pre">README</span></code> du projet ; le TD demande
+de suivre cette section soi-même, et le guide ne sert qu’en cas de blocage.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Étape</p></th>
+<th class="head"><p>Objectif</p></th>
+<th class="head"><p>Ce qu’on fait</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>trouver dans le <code class="docutils literal notranslate"><span class="pre">README</span></code> ce qu’il faut pour installer</p></td>
+<td><p>copier le projet et lire son <code class="docutils literal notranslate"><span class="pre">README</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>installer un projet par sa documentation</p></td>
+<td><p>installer le projet par les commandes du <code class="docutils literal notranslate"><span class="pre">README</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>relier la commande à ce qu’elle produit</p></td>
+<td><p>lancer la commande, et lire ce qu’elle produit</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>exécuter une à une les commandes que le projet enchaîne</p></td>
+<td><p>en option : les commandes <code class="docutils literal notranslate"><span class="pre">magick</span></code> et <code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code> une à une, dans un notebook</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Chaque étape commence par un encadré qui la résume. Ce que chaque étape fait
+constater est expliqué à la fin du guide, dans « Ce que le TD fait
+constater » : faire l’étape d’abord, et noter ce qu’on observe, avant de lire
+l’explication.</p>
+<section id="copier-le-projet-et-lire-son-readme">
+<h2>1 · Copier le projet et lire son README<a class="headerlink" href="#copier-le-projet-et-lire-son-readme" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> copier <code class="docutils literal notranslate"><span class="pre">depart\trajet\</span></code> dans <code class="docutils literal notranslate"><span class="pre">travail\</span></code> ; lire le <code class="docutils literal notranslate"><span class="pre">README</span></code>
+du projet, et repérer sa section « Installation ».</p>
+<p><strong>À obtenir :</strong> <code class="docutils literal notranslate"><span class="pre">travail\trajet\</span></code> contient le projet, et on sait quelles
+commandes taper, dans quel ordre.</p>
+</div></blockquote>
+<section id="les-fichiers-du-td">
+<h3>Les fichiers du TD<a class="headerlink" href="#les-fichiers-du-td" title="Lien vers cette rubrique">#</a></h3>
+<p>Ouvrir <code class="docutils literal notranslate"><span class="pre">info01\cours1\1j_trajet\</span></code>. Le dossier contient :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>1j_trajet\
+├── depart\
+│   └── trajet\                 le projet, tel qu'il est fourni
+│       ├── README.md               sa documentation
+│       ├── pyproject.toml          ce qu'est le projet, et ce dont il dépend
+│       ├── environment.yml         l'environnement conda dans lequel il s'exécute
+│       ├── data\
+│       │   ├── carte.png           le fond de carte
+│       │   ├── carte.json          l'emprise et la taille de la carte
+│       │   └── etapes.csv          une ligne par point du trajet
+│       └── src\trajet\             le code, en quatre modules
+├── travail\                    vide
+├── outils_video.ipynb          facultatif : les commandes une à une (étape 4)
+├── carte.py                    le programme qui a fabriqué le fond de carte
+├── td_1j_trajet.pdf            la feuille du TD
+└── README.md
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">depart\</span></code> contient le projet fourni, et ne se modifie pas. <code class="docutils literal notranslate"><span class="pre">travail\</span></code> reçoit
+la copie du projet, qu’on installe et qu’on modifie. <code class="docutils literal notranslate"><span class="pre">carte.py</span></code> a été lancé
+une fois par l’enseignant, avant la séance, pour télécharger le fond de carte
+depuis OpenStreetMap : il n’est pas à relancer.</p>
+</section>
+<section id="copier-le-projet">
+<h3>Copier le projet<a class="headerlink" href="#copier-le-projet" title="Lien vers cette rubrique">#</a></h3>
+<p>Dans l’explorateur : sélectionner le dossier <code class="docutils literal notranslate"><span class="pre">depart\trajet</span></code>, <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">C</span></code>,
+ouvrir <code class="docutils literal notranslate"><span class="pre">travail\</span></code>, puis <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">V</span></code>.</p>
+<p><strong>Vérification</strong> : <code class="docutils literal notranslate"><span class="pre">travail\trajet\</span></code> contient <code class="docutils literal notranslate"><span class="pre">README.md</span></code>, <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>,
+<code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>, <code class="docutils literal notranslate"><span class="pre">data\</span></code> et <code class="docutils literal notranslate"><span class="pre">src\</span></code>.</p>
+</section>
+<section id="lire-le-readme">
+<h3>Lire le README<a class="headerlink" href="#lire-le-readme" title="Lien vers cette rubrique">#</a></h3>
+<p>Ouvrir <code class="docutils literal notranslate"><span class="pre">travail\trajet\README.md</span></code> dans VSCode, et afficher son aperçu
+(<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">V</span></code>), ou l’ouvrir dans Notepad++. Le lire en entier avant de
+taper quoi que ce soit : il décrit le projet, les fichiers qu’il produit,
+puis son installation et son utilisation.</p>
+<p><strong>À noter</strong> : le nombre de commandes de la section « Installation », et ce
+qu’elle indique sur <code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code> et ImageMagick.</p>
+</section>
+</section>
+<section id="installer-le-projet">
+<h2>2 · Installer le projet<a class="headerlink" href="#installer-le-projet" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> taper les trois commandes de la section « Installation »,
+dans l’ordre, depuis le dossier <code class="docutils literal notranslate"><span class="pre">travail\trajet\</span></code> ; vérifier
+l’installation.</p>
+<p><strong>À obtenir :</strong> l’invite commence par <code class="docutils literal notranslate"><span class="pre">(trajet_ensg)</span></code>, et
+<code class="docutils literal notranslate"><span class="pre">magick</span> <span class="pre">--version</span></code>, <code class="docutils literal notranslate"><span class="pre">ffmpeg</span> <span class="pre">-version</span></code> et <code class="docutils literal notranslate"><span class="pre">trajet</span> <span class="pre">--help</span></code> répondent.</p>
+</div></blockquote>
+<section id="se-placer-dans-le-dossier-du-projet">
+<h3>Se placer dans le dossier du projet<a class="headerlink" href="#se-placer-dans-le-dossier-du-projet" title="Lien vers cette rubrique">#</a></h3>
+<p>Menu Démarrer, taper <code class="docutils literal notranslate"><span class="pre">anaconda</span></code>, choisir « Anaconda Prompt ». Puis :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd C:\Users\eleve\Desktop\info01\cours1\1j_trajet\travail\trajet
+dir
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">dir</span></code> doit lister <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> et <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> : la première
+commande lit <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>, et la troisième <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>, dans le
+dossier courant.</p>
+</section>
+<section id="les-trois-commandes">
+<h3>Les trois commandes<a class="headerlink" href="#les-trois-commandes" title="Lien vers cette rubrique">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>conda env create -f environment.yml
+conda activate trajet_ensg
+python -m pip install -e .
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">create</span> <span class="pre">-f</span> <span class="pre">environment.yml</span></code> lit le nom de l’environnement,
+<code class="docutils literal notranslate"><span class="pre">trajet_ensg</span></code>, et la liste de ses paquets dans le fichier, puis les
+installe. Le téléchargement prend plusieurs minutes. Contrairement à
+<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span></code>, la commande ne demande pas de confirmation.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">trajet_ensg</span></code> : l’invite passe de <code class="docutils literal notranslate"><span class="pre">(base)</span></code> à
+<code class="docutils literal notranslate"><span class="pre">(trajet_ensg)</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">.</span></code> installe le projet lui-même. Le point
+désigne le dossier courant, <code class="docutils literal notranslate"><span class="pre">travail\trajet</span></code>, et <code class="docutils literal notranslate"><span class="pre">-e</span></code> installe le projet
+là où il est, sans le copier : une modification de ses fichiers prend
+effet sans réinstallation.</p></li>
+</ol>
+<p>Ouvrir <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> et <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> dans l’éditeur pendant que la
+première commande s’exécute. Les deux fichiers commencent par un
+commentaire, qui explique ce qu’ils contiennent.</p>
+<p><strong>À noter</strong> : ce qu”<code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> installe, et ce que <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>
+déclare dans <code class="docutils literal notranslate"><span class="pre">dependencies</span></code>.</p>
+</section>
+<section id="verifier-l-installation">
+<h3>Vérifier l’installation<a class="headerlink" href="#verifier-l-installation" title="Lien vers cette rubrique">#</a></h3>
+<p>Le <code class="docutils literal notranslate"><span class="pre">README</span></code> donne trois commandes de vérification :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>magick --version
+ffmpeg -version
+trajet --help
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">magick</span></code> est la commande d’ImageMagick. <code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code> prend un seul tiret devant
+<code class="docutils literal notranslate"><span class="pre">-version</span></code>, <code class="docutils literal notranslate"><span class="pre">magick</span></code> en prend deux. <code class="docutils literal notranslate"><span class="pre">trajet</span> <span class="pre">--help</span></code> affiche les options de la
+commande du projet : <code class="docutils literal notranslate"><span class="pre">--carte</span></code>, <code class="docutils literal notranslate"><span class="pre">--etapes</span></code> et <code class="docutils literal notranslate"><span class="pre">--sortie</span></code>.</p>
+<p><strong>Vérification</strong> : chacune des trois commandes affiche du texte, et aucune ne
+répond « n’est pas reconnu ».</p>
+<p><strong>À noter</strong> : pour <code class="docutils literal notranslate"><span class="pre">magick</span></code> et <code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code>, ce qu’ils sont, et dans quel
+fichier du projet ils sont déclarés.</p>
+</section>
+<section id="en-cas-d-erreur">
+<h3>En cas d’erreur<a class="headerlink" href="#en-cas-d-erreur" title="Lien vers cette rubrique">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">'conda'</span> <span class="pre">n'est</span> <span class="pre">pas</span> <span class="pre">reconnu</span> <span class="pre">en</span> <span class="pre">tant</span> <span class="pre">que</span> <span class="pre">commande</span> <span class="pre">interne</span> <span class="pre">ou</span> <span class="pre">externe</span></code> : la
+commande a été tapée dans un <code class="docutils literal notranslate"><span class="pre">cmd</span></code> ou un PowerShell ordinaire. La taper
+dans l’invite de commandes d’Anaconda.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EnvironmentFileNotFound</span></code> ou un fichier introuvable à la première
+commande : le dossier courant n’est pas <code class="docutils literal notranslate"><span class="pre">travail\trajet</span></code>. Refaire le <code class="docutils literal notranslate"><span class="pre">cd</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CondaToSNonInteractiveError:</span> <span class="pre">Terms</span> <span class="pre">of</span> <span class="pre">Service</span> <span class="pre">have</span> <span class="pre">not</span> <span class="pre">been</span> <span class="pre">accepted</span></code>, ou
+une question <code class="docutils literal notranslate"><span class="pre">Do</span> <span class="pre">you</span> <span class="pre">accept</span> <span class="pre">the</span> <span class="pre">Terms</span> <span class="pre">of</span> <span class="pre">Service</span> <span class="pre">(ToS)</span> <span class="pre">…</span> <span class="pre">[(a)ccept/(r)eject/(v)iew]</span></code> : répondre <code class="docutils literal notranslate"><span class="pre">a</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CondaHTTPError:</span> <span class="pre">HTTP</span> <span class="pre">000</span> <span class="pre">CONNECTION</span> <span class="pre">FAILED</span></code> : la session réseau n’est pas
+ouverte. L’ouvrir, et relancer la commande. Sans réseau, l’environnement ne
+peut pas être créé : lire le <code class="docutils literal notranslate"><span class="pre">README</span></code> et le code, et regarder la vidéo d’un
+voisin.</p></li>
+<li><p>« Solving environment » qui dure plusieurs minutes : la première commande
+qui emploie <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> télécharge la liste de ses paquets. Attendre.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'magick'</span> <span class="pre">n'est</span> <span class="pre">pas</span> <span class="pre">reconnu</span></code> ou <code class="docutils literal notranslate"><span class="pre">'ffmpeg'</span> <span class="pre">n'est</span> <span class="pre">pas</span> <span class="pre">reconnu</span></code>, alors que
+l’installation a réussi : l’environnement n’est pas actif dans cette
+fenêtre. Taper <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">trajet_ensg</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'trajet'</span> <span class="pre">n'est</span> <span class="pre">pas</span> <span class="pre">reconnu</span></code> : la troisième commande n’a pas été tapée, ou
+pas avec <code class="docutils literal notranslate"><span class="pre">trajet_ensg</span></code> actif. Activer l’environnement, se placer dans
+<code class="docutils literal notranslate"><span class="pre">travail\trajet</span></code>, et la taper.</p></li>
+</ul>
+</section>
+</section>
+<section id="lancer-la-commande-et-lire-ce-qu-elle-produit">
+<h2>3 · Lancer la commande, et lire ce qu’elle produit<a class="headerlink" href="#lancer-la-commande-et-lire-ce-qu-elle-produit" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> lancer <code class="docutils literal notranslate"><span class="pre">trajet</span></code> ; regarder <code class="docutils literal notranslate"><span class="pre">trajet.mp4</span></code> ; ouvrir les fichiers
+intermédiaires ; changer un texte d”<code class="docutils literal notranslate"><span class="pre">etapes.csv</span></code> et relancer.</p>
+<p><strong>À obtenir :</strong> <code class="docutils literal notranslate"><span class="pre">travail\trajet\</span></code> contient <code class="docutils literal notranslate"><span class="pre">trajet.mp4</span></code>, et une seconde
+vidéo, avec le texte changé, est produite par la même commande.</p>
+</div></blockquote>
+<section id="lancer-trajet">
+<h3>Lancer <code class="docutils literal notranslate"><span class="pre">trajet</span></code><a class="headerlink" href="#lancer-trajet" title="Lien vers cette rubrique">#</a></h3>
+<p>Dans l’invite de commandes d’Anaconda, toujours dans <code class="docutils literal notranslate"><span class="pre">travail\trajet</span></code> et avec <code class="docutils literal notranslate"><span class="pre">trajet_ensg</span></code>
+actif :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>trajet
+</pre></div>
+</div>
+<p>La commande s’exécute pendant quelques secondes, puis affiche une ligne qui donne le
+chemin de la vidéo, le nombre d’étapes, la durée en secondes et la taille en
+octets. Ouvrir <code class="docutils literal notranslate"><span class="pre">travail\trajet\trajet.mp4</span></code> par double-clic, dans le lecteur
+vidéo du poste.</p>
+<p><strong>À noter</strong> : le nombre d’étapes, la durée de la vidéo, et où apparaissent les
+textes.</p>
+</section>
+<section id="les-fichiers-que-la-commande-a-ecrits">
+<h3>Les fichiers que la commande a écrits<a class="headerlink" href="#les-fichiers-que-la-commande-a-ecrits" title="Lien vers cette rubrique">#</a></h3>
+<p>Afficher le contenu de <code class="docutils literal notranslate"><span class="pre">travail\trajet\</span></code> dans l’explorateur. La commande y a
+écrit huit fichiers à côté du projet : cinq images, <code class="docutils literal notranslate"><span class="pre">etape_01.png</span></code> à
+<code class="docutils literal notranslate"><span class="pre">etape_05.png</span></code>, <code class="docutils literal notranslate"><span class="pre">trajet.srt</span></code>, <code class="docutils literal notranslate"><span class="pre">montage.txt</span></code> et <code class="docutils literal notranslate"><span class="pre">trajet.mp4</span></code>.</p>
+<ol class="arabic simple">
+<li><p>Ouvrir <code class="docutils literal notranslate"><span class="pre">data\etapes.csv</span></code> dans l’éditeur. La première ligne nomme les
+colonnes : <code class="docutils literal notranslate"><span class="pre">numero,duree,x,y,texte</span></code>.</p></li>
+<li><p>Ouvrir <code class="docutils literal notranslate"><span class="pre">etape_01.png</span></code>, puis <code class="docutils literal notranslate"><span class="pre">etape_05.png</span></code>, dans la visionneuse d’images.</p></li>
+<li><p>Ouvrir <code class="docutils literal notranslate"><span class="pre">trajet.srt</span></code> et <code class="docutils literal notranslate"><span class="pre">montage.txt</span></code> dans l’éditeur.</p></li>
+</ol>
+<p>Relever, pour chaque étape du traitement, le fichier lu et le fichier écrit :</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Étape</p></th>
+<th class="head"><p>Qui la fait</p></th>
+<th class="head"><p>Entrée</p></th>
+<th class="head"><p>Sortie</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>lecture</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">etapes.py</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">data\etapes.csv</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>tracé</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">images.py</span></code>, par <code class="docutils literal notranslate"><span class="pre">magick</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">data\carte.png</span></code> et les étapes</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>commentaires</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">montage.py</span></code></p></td>
+<td><p>les étapes et leurs durées</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>montage</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">montage.py</span></code>, par <code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code></p></td>
+<td><p>les images et le <code class="docutils literal notranslate"><span class="pre">.srt</span></code></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Les modules sont dans <code class="docutils literal notranslate"><span class="pre">src\trajet\</span></code>, et <code class="docutils literal notranslate"><span class="pre">__main__.py</span></code> les appelle dans cet
+ordre : sa fonction <code class="docutils literal notranslate"><span class="pre">main</span></code> compte une trentaine de lignes, et se lit sans
+difficulté.</p>
+<p><strong>À noter</strong> : la colonne « Sortie » ; la forme des lignes de <code class="docutils literal notranslate"><span class="pre">trajet.srt</span></code> et
+de <code class="docutils literal notranslate"><span class="pre">montage.txt</span></code>, et le rapport entre les nombres qu’elles contiennent et la
+colonne <code class="docutils literal notranslate"><span class="pre">duree</span></code> d”<code class="docutils literal notranslate"><span class="pre">etapes.csv</span></code>.</p>
+</section>
+<section id="changer-un-texte-et-relancer">
+<h3>Changer un texte, et relancer<a class="headerlink" href="#changer-un-texte-et-relancer" title="Lien vers cette rubrique">#</a></h3>
+<ol class="arabic simple">
+<li><p>Dans <code class="docutils literal notranslate"><span class="pre">travail\trajet\data\etapes.csv</span></code>, changer le texte d’une étape, en
+fin de ligne, sans toucher aux virgules ni aux nombres. Enregistrer.</p></li>
+<li><p>Relancer <code class="docutils literal notranslate"><span class="pre">trajet</span></code> dans l’invite de commandes d’Anaconda.</p></li>
+<li><p>Rouvrir <code class="docutils literal notranslate"><span class="pre">trajet.mp4</span></code>, puis <code class="docutils literal notranslate"><span class="pre">trajet.srt</span></code>.</p></li>
+</ol>
+<p>Le fichier est un CSV : les virgules séparent les colonnes. Un texte qui
+contient lui-même une virgule doit être entouré de guillemets droits,
+<code class="docutils literal notranslate"><span class="pre">&quot;comme,</span> <span class="pre">ceci&quot;</span></code>.</p>
+<p><strong>À noter</strong> : ce qu’il a fallu refaire pour obtenir la nouvelle vidéo, et ce
+qu’il aurait fallu refaire pour obtenir la même chose avec un logiciel de
+montage à la souris.</p>
+</section>
+</section>
+<section id="en-option-les-commandes-une-a-une">
+<h2>4 · En option : les commandes, une à une<a class="headerlink" href="#en-option-les-commandes-une-a-une" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> ouvrir <code class="docutils literal notranslate"><span class="pre">outils_video.ipynb</span></code> avec un noyau de <code class="docutils literal notranslate"><span class="pre">trajet_ensg</span></code> ;
+exécuter ses cellules.</p>
+<p><strong>À obtenir :</strong> les images produites par <code class="docutils literal notranslate"><span class="pre">magick</span></code> et la durée de la vidéo
+produite par <code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code>, affichées sous les cellules qui les ont produites.</p>
+</div></blockquote>
+<p>Le notebook <code class="docutils literal notranslate"><span class="pre">outils_video.ipynb</span></code> reprend les commandes <code class="docutils literal notranslate"><span class="pre">magick</span></code> et <code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code> du
+projet, isolées, avec leur résultat affiché sous chacune. Il ne s’exécute pas
+dans le navigateur, avec JupyterLite : il lance des programmes par
+<code class="docutils literal notranslate"><span class="pre">subprocess</span></code>, ce qu’un onglet de navigateur ne peut pas faire.</p>
+<section id="ouvrir-le-notebook">
+<h3>Ouvrir le notebook<a class="headerlink" href="#ouvrir-le-notebook" title="Lien vers cette rubrique">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">trajet_ensg</span></code> ne contient ni client ni noyau Jupyter : son <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>
+n’installe que Python, ffmpeg et ImageMagick. Le notebook peut recevoir un
+noyau de deux façons, celles du TD 1i :</p>
+<ul class="simple">
+<li><p>dans VSCode : ouvrir <code class="docutils literal notranslate"><span class="pre">cours1\1j_trajet\outils_video.ipynb</span></code> (menu File,
+Open File…), « Select Kernel »,
+« Python Environments… », <code class="docutils literal notranslate"><span class="pre">trajet_ensg</span></code>. À l’exécution de la première
+cellule, VSCode propose d’installer <code class="docutils literal notranslate"><span class="pre">ipykernel</span></code> : accepter ;</p></li>
+<li><p>dans JupyterLab : installer le client dans l’environnement, puis le
+lancer depuis le dossier du TD :</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>conda install -n trajet_ensg -c conda-forge jupyterlab
+conda activate trajet_ensg
+cd C:\Users\eleve\Desktop\info01\cours1\1j_trajet
+jupyter lab
+</pre></div>
+</div>
+<p>Dans les deux cas, le noyau est celui de <code class="docutils literal notranslate"><span class="pre">trajet_ensg</span></code>, dont l’environnement
+est actif : les commandes <code class="docutils literal notranslate"><span class="pre">magick</span></code>, <code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code> et <code class="docutils literal notranslate"><span class="pre">trajet</span></code> y sont trouvées.</p>
+</section>
+<section id="regler-le-chemin-du-projet">
+<h3>Régler le chemin du projet<a class="headerlink" href="#regler-le-chemin-du-projet" title="Lien vers cette rubrique">#</a></h3>
+<p>La première cellule désigne le projet par <code class="docutils literal notranslate"><span class="pre">PROJET</span> <span class="pre">=</span> <span class="pre">Path(&quot;depart/trajet&quot;)</span></code>,
+un chemin relatif au dossier du notebook. Le projet installé, et la vidéo de
+l’étape 3, sont dans <code class="docutils literal notranslate"><span class="pre">travail\trajet</span></code> : remplacer la ligne par</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">PROJET</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"travail/trajet"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>avant d’exécuter. Avec <code class="docutils literal notranslate"><span class="pre">depart/trajet</span></code>, la cellule <code class="docutils literal notranslate"><span class="pre">ffprobe</span></code> répond que
+<code class="docutils literal notranslate"><span class="pre">trajet.mp4</span></code> n’existe pas encore, et la dernière consigne du notebook fait
+modifier le fichier d’étapes de <code class="docutils literal notranslate"><span class="pre">depart\</span></code>, que la commande <code class="docutils literal notranslate"><span class="pre">trajet</span></code> ne lit
+pas.</p>
+</section>
+<section id="executer-les-cellules">
+<h3>Exécuter les cellules<a class="headerlink" href="#executer-les-cellules" title="Lien vers cette rubrique">#</a></h3>
+<p>Exécuter les cellules une à une (<code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">Entrée</span></code>). La fonction <code class="docutils literal notranslate"><span class="pre">lancer</span></code>
+affiche chaque commande, précédée de <code class="docutils literal notranslate"><span class="pre">$</span></code>, avant de la lancer ; les images et
+la vidéo produites sont enregistrées dans <code class="docutils literal notranslate"><span class="pre">travail\essai\</span></code>, que la
+première cellule crée.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Ce que le notebook montre</p></th>
+<th class="head"><p>Ce qu’on y voit</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">subprocess.run</span></code></p></td>
+<td><p>la commande donnée en liste, un élément par argument</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">magick</span> <span class="pre">identify</span></code>, <code class="docutils literal notranslate"><span class="pre">-resize</span></code>, <code class="docutils literal notranslate"><span class="pre">-draw</span></code></p></td>
+<td><p>l’image produite, affichée dans la cellule qui l’a produite</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ffprobe</span></code>, puis <code class="docutils literal notranslate"><span class="pre">ffmpeg</span> <span class="pre">-f</span> <span class="pre">concat</span></code></p></td>
+<td><p>la liste de montage écrite à la main, et la vidéo qu’elle produit</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La dernière cellule lance la commande <code class="docutils literal notranslate"><span class="pre">trajet</span></code> elle-même, avec les options
+<code class="docutils literal notranslate"><span class="pre">--carte</span></code> et <code class="docutils literal notranslate"><span class="pre">--sortie</span></code>. Taper <code class="docutils literal notranslate"><span class="pre">trajet</span> <span class="pre">--help</span></code> dans l’invite de commandes d’Anaconda pour
+lire les trois chemins que la commande accepte.</p>
+<p><strong>À noter</strong> : pour la commande de la cellule <code class="docutils literal notranslate"><span class="pre">-draw</span></code>, ce que représente
+chacun des éléments de la liste, et à quel endroit du fichier
+<code class="docutils literal notranslate"><span class="pre">src\trajet\images.py</span></code> la même commande est construite.</p>
+</section>
+</section>
+<section id="ce-que-le-td-fait-constater">
+<h2>Ce que le TD fait constater<a class="headerlink" href="#ce-que-le-td-fait-constater" title="Lien vers cette rubrique">#</a></h2>
+<p>Cette section se lit après avoir fait les étapes.</p>
+<section id="etapes-1-et-2-ce-dont-le-projet-depend">
+<h3>Étapes 1 et 2 : ce dont le projet dépend<a class="headerlink" href="#etapes-1-et-2-ce-dont-le-projet-depend" title="Lien vers cette rubrique">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Ce qu’on fait</p></th>
+<th class="head"><p>Ce qu’on constate</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>copier <code class="docutils literal notranslate"><span class="pre">depart\trajet\</span></code> dans <code class="docutils literal notranslate"><span class="pre">travail\</span></code>, lire son <code class="docutils literal notranslate"><span class="pre">README</span></code></p></td>
+<td><p>une section « Installation », trois commandes</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>les taper, dans l’ordre</p></td>
+<td><p>l’environnement <code class="docutils literal notranslate"><span class="pre">trajet_ensg</span></code>, puis le projet installé</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">magick</span> <span class="pre">--version</span></code> et <code class="docutils literal notranslate"><span class="pre">ffmpeg</span> <span class="pre">-version</span></code></p></td>
+<td><p>deux programmes, qui ne sont pas des bibliothèques Python</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">trajet</span></code>, puis ouvrir <code class="docutils literal notranslate"><span class="pre">trajet.mp4</span></code></p></td>
+<td><p>cinq étapes, vingt et une secondes, sous-titres incrustés</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Trois commandes et trois vérifications suffisent à installer le projet,
+parce que quelqu’un les a écrites et essayées. Le TD 1h a fait écrire ce
+type de documentation pour le projet <code class="docutils literal notranslate"><span class="pre">recette</span></code> ; ce TD en montre l’usage, en
+installant, à partir de sa seule documentation, un projet écrit par
+quelqu’un d’autre.</p>
+<p><code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> déclare une liste de dépendances vide,
+<code class="docutils literal notranslate"><span class="pre">dependencies</span> <span class="pre">=</span> <span class="pre">[]</span></code>, et un commentaire précise que ce n’est pas un oubli :
+le code n’importe que la bibliothèque standard de Python. Le projet ne
+fonctionne pourtant pas sans <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>, qui installe <code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code> et
+<code class="docutils literal notranslate"><span class="pre">imagemagick</span></code>. Ce sont des programmes, que le code lance par <code class="docutils literal notranslate"><span class="pre">subprocess</span></code>
+comme on les lancerait au terminal, et non des paquets Python : <code class="docutils literal notranslate"><span class="pre">pip</span></code> ne
+sait pas les installer, alors que <code class="docutils literal notranslate"><span class="pre">conda</span></code> le peut. Les deux fichiers ne
+décrivent donc pas la même chose : <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> décrit le projet Python,
+<code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> l’environnement complet dans lequel il s’exécute. Comme
+les programmes sont appelés depuis le code Python, et non depuis un script
+propre à un système, le projet fonctionne sous Windows, macOS et Linux.</p>
+<p>La troisième commande, <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">.</span></code>, est celle du TD 1h : le
+code étant sous <code class="docutils literal notranslate"><span class="pre">src\</span></code>, <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">trajet</span></code> échoue tant que le projet
+n’est pas installé. Elle crée aussi la commande <code class="docutils literal notranslate"><span class="pre">trajet</span></code>, que
+<code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> déclare dans sa section <code class="docutils literal notranslate"><span class="pre">[project.scripts]</span></code> ;
+<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">trajet</span></code> fait la même chose.</p>
+</section>
+<section id="etape-3-ce-que-la-commande-enchaine">
+<h3>Étape 3 : ce que la commande enchaîne<a class="headerlink" href="#etape-3-ce-que-la-commande-enchaine" title="Lien vers cette rubrique">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Étape</p></th>
+<th class="head"><p>Qui la fait</p></th>
+<th class="head"><p>Entrée</p></th>
+<th class="head"><p>Sortie</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>lecture</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">etapes.py</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">data\etapes.csv</span></code></p></td>
+<td><p>cinq étapes, en mémoire</p></td>
+</tr>
+<tr class="row-odd"><td><p>tracé</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">images.py</span></code>, par <code class="docutils literal notranslate"><span class="pre">magick</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">data\carte.png</span></code> et les étapes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">etape_01.png</span></code> à <code class="docutils literal notranslate"><span class="pre">etape_05.png</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>commentaires</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">montage.py</span></code></p></td>
+<td><p>les étapes et leurs durées</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">trajet.srt</span></code> et <code class="docutils literal notranslate"><span class="pre">montage.txt</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>montage</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">montage.py</span></code>, par <code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code></p></td>
+<td><p>les images et le <code class="docutils literal notranslate"><span class="pre">.srt</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">trajet.mp4</span></code>, 21 secondes</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Chaque étape produit un fichier que la suivante lit. <code class="docutils literal notranslate"><span class="pre">etapes.csv</span></code> a six
+lignes de données : le point de départ, de durée nulle, puis cinq étapes de
+4, 4, 4, 4 et 5 secondes, soit 21 secondes et cinq images. Chaque image
+montre en bleu le chemin déjà parcouru, et en orange le segment de l’étape.</p>
+<p>Les deux fichiers du milieu sont du texte. <code class="docutils literal notranslate"><span class="pre">trajet.srt</span></code> est un format de
+sous-titres : pour chaque étape, un numéro, un intervalle de temps et le
+texte, par exemple <code class="docutils literal notranslate"><span class="pre">00:00:16,000</span> <span class="pre">--&gt;</span> <span class="pre">00:00:21,000</span></code> pour la cinquième.
+<code class="docutils literal notranslate"><span class="pre">montage.txt</span></code> est la liste que <code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code> lit en mode <code class="docutils literal notranslate"><span class="pre">concat</span></code> : une ligne
+<code class="docutils literal notranslate"><span class="pre">file</span></code> et une ligne <code class="docutils literal notranslate"><span class="pre">duration</span></code> par image, et la dernière image répétée, sans
+quoi <code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code> la coupe. Ces fichiers sont écrits par un programme et lus par
+un autre, et restent lisibles dans un éditeur. <code class="docutils literal notranslate"><span class="pre">etapes.csv</span></code> est du texte de
+la même façon, comme le <code class="docutils literal notranslate"><span class="pre">content.xml</span></code> d’un <code class="docutils literal notranslate"><span class="pre">.odt</span></code> au TD 1b : le contenu utile
+de ces fichiers est du texte, que deux programmes s’échangent.</p>
+<p>Changer un texte d’étape a nécessité de modifier une ligne d”<code class="docutils literal notranslate"><span class="pre">etapes.csv</span></code> et
+de relancer une commande. La même vidéo montée à la souris, dans un logiciel
+de montage, serait à refaire en entier. La ligne de commande demande plus de
+travail pour produire la première vidéo, et presque aucun pour les
+suivantes.</p>
+<p>Le fond de carte, <code class="docutils literal notranslate"><span class="pre">carte.png</span></code>, est livré avec le projet. Le serveur de tuiles
+d’OpenStreetMap est un service bénévole, dont les conditions d’usage
+interdisent qu’une promotion entière lui envoie des requêtes en même temps :
+<code class="docutils literal notranslate"><span class="pre">carte.py</span></code> a téléchargé le fond de carte une fois, avant la séance. La mention « © les contributeurs
+d’OpenStreetMap », incrustée en bas de l’image, est exigée par la licence
+des données, l’ODbL.</p>
+</section>
+<section id="etape-4-les-commandes-dans-un-notebook">
+<h3>Étape 4 : les commandes dans un notebook<a class="headerlink" href="#etape-4-les-commandes-dans-un-notebook" title="Lien vers cette rubrique">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">subprocess.run</span></code> reçoit la commande sous forme de liste, un élément par
+argument : Python ne découpe pas la commande aux espaces, et un nom de fichier qui contient
+un espace n’a pas à être protégé par des guillemets. L’instruction de dessin
+<code class="docutils literal notranslate"><span class="pre">line</span> <span class="pre">398,248</span> <span class="pre">410,360</span></code>, qui contient des espaces, est un seul argument de
+<code class="docutils literal notranslate"><span class="pre">-draw</span></code>. Dans la cellule <code class="docutils literal notranslate"><span class="pre">-draw</span></code>, <code class="docutils literal notranslate"><span class="pre">CARTE</span></code> est l’image d’entrée, <code class="docutils literal notranslate"><span class="pre">-fill</span></code>,
+<code class="docutils literal notranslate"><span class="pre">-stroke</span></code> et <code class="docutils literal notranslate"><span class="pre">-strokewidth</span></code> règlent le trait pour les <code class="docutils literal notranslate"><span class="pre">-draw</span></code> qui suivent,
+chaque <code class="docutils literal notranslate"><span class="pre">-draw</span></code> trace un segment, et le dernier élément est l’image de sortie.
+<code class="docutils literal notranslate"><span class="pre">images.py</span></code> construit la même liste dans sa fonction <code class="docutils literal notranslate"><span class="pre">_commande</span></code>, un <code class="docutils literal notranslate"><span class="pre">-draw</span></code>
+par segment du trajet.</p>
+<p>Le notebook ne s’exécute pas dans JupyterLite : un onglet de navigateur ne
+peut pas lancer de programme. Cette limite est la contrepartie de
+l’exécution dans l’onglet, qui rendait JupyterLite commode au TD 1g, où rien
+n’était à installer. Une bibliothèque écrite uniquement en Python s’y
+installe par <code class="docutils literal notranslate"><span class="pre">%pip</span> <span class="pre">install</span></code>, mais pas un programme comme ffmpeg. Les outils du
+notebook, ImageMagick et ffmpeg, sont aussi ceux du projet de la séance 4,
+le studio d’animation.</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../1i_noyaux/guide.html"
+       title="page précédente">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">précédent</p>
+        <p class="prev-next-title">TD 1i — Le client, le noyau, et où ils sont installés (facultatif)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../05_comparer_versions.html"
+       title="page suivante">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">suivant</p>
+        <p class="prev-next-title">Annexe — Comparer deux versions d’un fichier</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#copier-le-projet-et-lire-son-readme">1 · Copier le projet et lire son README</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-fichiers-du-td">Les fichiers du TD</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#copier-le-projet">Copier le projet</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lire-le-readme">Lire le README</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installer-le-projet">2 · Installer le projet</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#se-placer-dans-le-dossier-du-projet">Se placer dans le dossier du projet</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-trois-commandes">Les trois commandes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verifier-l-installation">Vérifier l’installation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#en-cas-d-erreur">En cas d’erreur</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lancer-la-commande-et-lire-ce-qu-elle-produit">3 · Lancer la commande, et lire ce qu’elle produit</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lancer-trajet">Lancer <code class="docutils literal notranslate"><span class="pre">trajet</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-fichiers-que-la-commande-a-ecrits">Les fichiers que la commande a écrits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#changer-un-texte-et-relancer">Changer un texte, et relancer</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#en-option-les-commandes-une-a-une">4 · En option : les commandes, une à une</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ouvrir-le-notebook">Ouvrir le notebook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regler-le-chemin-du-projet">Régler le chemin du projet</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#executer-les-cellules">Exécuter les cellules</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-le-td-fait-constater">Ce que le TD fait constater</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etapes-1-et-2-ce-dont-le-projet-depend">Étapes 1 et 2 : ce dont le projet dépend</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-3-ce-que-la-commande-enchaine">Étape 3 : ce que la commande enchaîne</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-4-les-commandes-dans-un-notebook">Étape 4 : les commandes dans un notebook</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par 1re année géomatique
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, module info01 — CC-BY-4.0.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

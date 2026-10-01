@@ -1,0 +1,970 @@
+
+<!DOCTYPE html>
+
+
+<html lang="fr" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Problèmes avec Anaconda &#8212; Introduction à l&#39;informatique</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../_static/documentation_options.js?v=72dce1d2"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../../_static/translations.js?v=e6b791cb"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'annexes/problemes/anaconda';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Recherche" href="../../search.html" />
+    <link rel="next" title="Problèmes avec JupyterLab et les notebooks" href="jupyterlab.html" />
+    <link rel="prev" title="Problèmes avec les logiciels de texte et de bureautique" href="bureautique.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="fr"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Passer au contenu principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Haut de page</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Alerte de version"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navigation dans le site">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="Sur cette page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction à l'informatique</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Introduction à l’informatique
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Avant les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../avant/poste.html">Premiers tests du poste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../avant/donnees.html">Récupérer les fichiers d’une séance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../avant/python.html">Anaconda et JupyterLab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../avant/vscode.html">VS Code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Après les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../apres/sauvegarder.html">Sauvegarder son travail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../apres/s_entrainer.html">S’entraîner : jeux et exercices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours1_v2/index.html">Séance 1, version 2 — Logiciels, fichiers, terminal et premier programme</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1_v2/notebook/01_logiciels_stockage.html">Logiciels, fichiers et stockage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1_v2/notebook/02_terminal.html">Le terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1_v2/notebook/03_premier_programme.html">Premier programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1_v2/notebook/04_notebook.html">Un notebook et la syntaxe de Markdown</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours1_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 1, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1_v2/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1_v2/notebook/td/1b_terminal/guide.html">TD 1b — Les fichiers du TD 1a en ligne de commande</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1_v2/notebook/td/1c_programme/guide.html">TD 1c — Écrire et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1_v2/notebook/td/1d_notebook/guide.html">TD 1d — Un notebook dans JupyterLab</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours2_v2/index.html">Séance 2, version 2 — Éditeur de code, Markdown et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2_v2/notebook/01_editeur_de_code.html">L’éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2_v2/notebook/02_markdown.html">Une recette en Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2_v2/notebook/03_git_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2_v2/notebook/04_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours2_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2_v2/notebook/td/2a_vscode/guide.html">TD 2a — Configurer VS Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2_v2/notebook/td/2b_erreurs/guide.html">TD 2b — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2_v2/notebook/td/2c_markdown/guide.html">TD 2c — Une recette en Markdown, convertie par pandoc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2_v2/notebook/td/2d_depot_recette/guide.html">TD 2d — Un dépôt git pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours3/index.html">Séance 3 — Chemins, fichiers et ligne de commande</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours3/notebook/01_chemins_programmes.html">Chemins et programmes externes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours3/notebook/02_fichiers_encodage.html">Fichiers et encodage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours3/notebook/03_du_notebook_au_programme.html">Du notebook au programme</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours3/notebook/travaux_diriges.html">Travaux dirigés de la séance 3</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours3/notebook/td/3e_markdown/guide.html">TD 3e — Une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours3/notebook/td/3f_cli/guide.html">TD 3f — Une ligne de commande pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours4/index.html">Séance 4 — Projet d’application 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours4/notebook/travaux_diriges.html">Travaux dirigés du projet 4</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours4/notebook/td/4a_recette/guide.html">TD 4a — Un script Python, pas à pas</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../cours4/notebook/td/4b_paquet/guide.html">TD 4b — Un programme installable</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours5/index.html">Séance 5 — Matériel, réseau, mots de passe, clés SSH et secrets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours5/notebook/01_materiel.html">Le matériel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours5/notebook/02_reseau.html">Le réseau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours5/notebook/03_prouver_qui_lon_est.html">Prouver qui l’on est</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours5/notebook/04_secrets.html">Les secrets de vos programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours5/notebook/travaux_diriges.html">Travaux dirigés de la séance 5</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cours6/index.html">Séance 6 — La forge, sur le dépôt du projet 4</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours7/index.html">Séance 7 — Projet d’application 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours7/notebook/td/7a_recette/guide.html">TD 7a — Compléter son projet, par des pull requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours7/notebook/td/7b_train/guide.html">TD 7b — Reprendre et compléter le projet d’un autre</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Annexes</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../configuration/index.html">Configuration des postes de la salle</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../configuration/anaconda.html">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration/jupyterlab.html">JupyterLab</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../configuration/vscode.html">VS Code</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/vscode_python.html">Python et environnement conda</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/vscode_notebooks.html">Notebooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/vscode_reglages.html">Fichiers de réglages</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration/git.html">Git et Git Bash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration/spyder.html">Spyder</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../poste_personnel/index.html">Configuration d’un ordinateur personnel</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../poste_personnel/conda.html">Python et conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../poste_personnel/vscode.html">VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../poste_personnel/git_outils.html">Git et éditeurs de texte</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../notions/index.html">Notions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notions/outils.html">Choisir entre JupyterLab, Spyder et VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notions/notebooks.html">Les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notions/terminaux.html">Les terminaux en ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notions/variables_environnement.html">Variables d’environnement et recherche des programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notions/environnements.html">Les environnements conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notions/vscode_environnements.html">Comment VS Code gère les environnements Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notions/git_bash.html">Git Bash : une fenêtre, bash et des programmes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../faq.html">FAQ</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="reseau.html">Problèmes de réseau et de compte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bureautique.html">Problèmes avec les logiciels de texte et de bureautique</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Problèmes avec Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jupyterlab.html">Problèmes avec JupyterLab et les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vscode.html">Problèmes avec VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="git.html">Problèmes avec git</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../plus_loin/index.html">Pour aller plus loin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../plus_loin/gestionnaires.html">venv, uv et pixi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plus_loin/cpp.html">C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plus_loin/programme_interpreteur.html">Programme, application et interpréteur</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Archive 2026</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours1/index.html">Séance 1, 2026 — Logiciel, programmation et formats de fichier</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1/notebook/01_logiciels_et_formats.html">Logiciels et formats de fichier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1/notebook/02_programmation.html">Programmation et éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1/notebook/03_markdown_notebook.html">Markdown et notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1/notebook/04_bibliotheques_environnements.html">Bibliothèques et environnements Python</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours1/notebook/travaux_diriges.html">Travaux dirigés de la séance 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1b_archive_odt/guide.html">TD 1b — Un .odt est une archive ZIP (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1c_vscode_python/guide.html">TD 1c — Configurer l’éditeur de code, et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1d_erreurs/guide.html">TD 1d — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1e_hello_cpp/guide.html">TD 1e — Le même programme en C++ (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1f_markdown/guide.html">TD 1f — Mettre en forme une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1g_notebooks/guide.html">TD 1g — Le notebook, ouvert de trois façons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1h_recette/guide.html">TD 1h — Installer un projet Python, et décrire son installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1i_noyaux/guide.html">TD 1i — Le client, le noyau, et où ils sont installés (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1j_trajet/guide.html">TD 1j — Installer un projet en lisant son README (facultatif)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1/notebook/05_comparer_versions.html">Annexe — Comparer deux versions d’un fichier</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours2/index.html">Séance 2, 2026 — Ligne de commande et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2/notebook/01_ligne_de_commande.html">La ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2/notebook/02_depot_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2/notebook/03_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2/notebook/04_lire_et_tenir_un_depot.html">Lire et tenir un dépôt</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2/notebook/td/2a_premier_depot/guide.html">TD 2a — Un premier dépôt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2/notebook/td/2b_branches/guide.html">TD 2b — Branches et fusions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2/notebook/td/2c_annuler/guide.html">TD 2c — Annuler et remettre à jour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2/notebook/td/2d_conflits/guide.html">TD 2d — Créer et résoudre un conflit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2/notebook/td/2e_livrer/guide.html">TD 2e — Publier une version</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Thème">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Thème" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Clair"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Sombre"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="Paramètres système"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>Paramètres système</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Clair</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Sombre</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Problèmes avec Anaconda</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problemes">Problèmes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a1-anaconda-prompt-n-est-pas-dans-le-menu-demarrer">A1. « Anaconda Prompt » n’est pas dans le menu Démarrer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a2-conda-n-est-pas-reconnu-en-tant-que-commande-interne-ou-externe">A2. « “conda” n’est pas reconnu en tant que commande interne ou externe »</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a3-l-invite-ne-commence-pas-par-base">A3. L’invite ne commence pas par <code class="docutils literal notranslate"><span class="pre">(base)</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a4-anaconda-navigator-met-plusieurs-minutes-a-s-ouvrir">A4. Anaconda Navigator met plusieurs minutes à s’ouvrir</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a5-there-is-an-instance-of-anaconda-navigator-already-running">A5. « There is an instance of Anaconda Navigator already running »</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a6-navigator-propose-une-mise-a-jour-ou-affiche-updating-packages-sans-avancer">A6. Navigator propose une mise à jour, ou affiche « updating packages » sans avancer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a7-cannot-be-loaded-because-running-scripts-is-disabled-on-this-system">A7. « … cannot be loaded because running scripts is disabled on this system »</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a8-environmentnotwritableerror-a-conda-install">A8. « EnvironmentNotWritableError » à <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a9-condahttperror-a-conda-create-ou-solving-environment-tres-long">A9. « CondaHTTPError » à <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span></code>, ou « Solving environment » très long</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a10-condatosnoninteractiveerror-terms-of-service-have-not-been-accepted">A10. « CondaToSNonInteractiveError: Terms of Service have not been accepted »</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a11-un-environnement-cree-n-apparait-pas-dans-la-liste">A11. Un environnement créé n’apparaît pas dans la liste</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a12-spyder-met-du-temps-a-s-ouvrir-ou-ne-s-ouvre-pas">A12. Spyder met du temps à s’ouvrir, ou ne s’ouvre pas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a13-arreter-navigator-bloque-au-demarrage">A13. Arrêter Navigator bloqué au démarrage</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outils-installes-dans-un-environnement">Outils installés dans un environnement</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#x1-pandoc-n-est-pas-reconnu-apres-un-conda-install-reussi">X1. « “pandoc” n’est pas reconnu » après un <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span></code> réussi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#x2-convert-repond-format-de-lecteur-non-valide">X2. <code class="docutils literal notranslate"><span class="pre">convert</span></code> répond « Format de lecteur non valide »</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="problemes-avec-anaconda">
+<h1>Problèmes avec Anaconda<a class="headerlink" href="#problemes-avec-anaconda" title="Lien vers cette rubrique">#</a></h1>
+<p>Les deux façons de lancer Anaconda, et ses fichiers, sont dans
+<a class="reference internal" href="../configuration/anaconda.html"><span class="std std-doc">Installation et configuration</span></a>.</p>
+<section id="problemes">
+<span id="dep-anaconda"></span><h2>Problèmes<a class="headerlink" href="#problemes" title="Lien vers cette rubrique">#</a></h2>
+<section id="a1-anaconda-prompt-n-est-pas-dans-le-menu-demarrer">
+<span id="dep-a1"></span><h3>A1. « Anaconda Prompt » n’est pas dans le menu Démarrer<a class="headerlink" href="#a1-anaconda-prompt-n-est-pas-dans-le-menu-demarrer" title="Lien vers cette rubrique">#</a></h3>
+<dl class="simple myst">
+<dt>Ce qu’on voit</dt><dd><p>Taper <code class="docutils literal notranslate"><span class="pre">anaconda</span></code> dans le menu Démarrer ne propose rien, ou seulement
+Navigator.</p>
+</dd>
+<dt>Cause</dt><dd><p>Anaconda n’est pas installé sur ce poste, ou ses raccourcis ont été
+créés pour un autre compte.</p>
+</dd>
+<dt>Vérifier</dt><dd><p>Ouvrir un <code class="docutils literal notranslate"><span class="pre">cmd</span></code> (menu Démarrer, taper <code class="docutils literal notranslate"><span class="pre">cmd</span></code>) et taper
+<code class="docutils literal notranslate"><span class="pre">dir</span> <span class="pre">C:\ProgramData\anaconda3\Scripts\activate.bat</span></code>. Si la réponse est
+« Fichier introuvable », essayer <code class="docutils literal notranslate"><span class="pre">dir</span> <span class="pre">%USERPROFILE%\anaconda3</span></code> puis
+<code class="docutils literal notranslate"><span class="pre">dir</span> <span class="pre">C:\anaconda3</span></code>.</p>
+</dd>
+<dt>Remède</dt><dd><p>Dans le <code class="docutils literal notranslate"><span class="pre">cmd</span></code>, taper, avec le chemin trouvé :</p>
+</dd>
+</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">call</span> <span class="n">C</span><span class="p">:</span>\<span class="n">ProgramData</span>\<span class="n">anaconda3</span>\<span class="n">Scripts</span>\<span class="n">activate</span><span class="o">.</span><span class="n">bat</span> <span class="n">C</span><span class="p">:</span>\<span class="n">ProgramData</span>\<span class="n">anaconda3</span>
+</pre></div>
+</div>
+<p>L’invite passe à <code class="docutils literal notranslate"><span class="pre">(base)</span></code>. La fenêtre est alors une invite de commandes d’Anaconda. Si
+aucun chemin n’existe, Anaconda n’est pas sur le poste : le signaler.</p>
+</section>
+<section id="a2-conda-n-est-pas-reconnu-en-tant-que-commande-interne-ou-externe">
+<span id="dep-a2"></span><h3>A2. « “conda” n’est pas reconnu en tant que commande interne ou externe »<a class="headerlink" href="#a2-conda-n-est-pas-reconnu-en-tant-que-commande-interne-ou-externe" title="Lien vers cette rubrique">#</a></h3>
+<dl class="simple myst">
+<dt>Ce qu’on voit</dt><dd><p>Ce message dans un <code class="docutils literal notranslate"><span class="pre">cmd</span></code>. Dans PowerShell : « conda : Le terme “conda”
+n’est pas reconnu », ou « CommandNotFoundError: Your shell has not been
+properly configured to use “conda activate” ».</p>
+</dd>
+<dt>Cause</dt><dd><p>La commande <code class="docutils literal notranslate"><span class="pre">conda</span></code> n’est connue que de l’invite de commandes d’Anaconda. Un <code class="docutils literal notranslate"><span class="pre">cmd</span></code> ou
+un PowerShell ordinaire ne la connaît pas
+(<a class="reference internal" href="../notions/variables_environnement.html"><span class="std std-doc">Variables d’environnement</span></a>).</p>
+</dd>
+<dt>Remède</dt><dd><p>Taper la commande dans l’invite de commandes d’Anaconda (<a class="reference internal" href="#dep-a1"><span class="std std-ref">A1</span></a>). Dans VS
+Code, faire le réglage du terminal, qui ouvre un <code class="docutils literal notranslate"><span class="pre">cmd</span></code> activé
+(<a class="reference internal" href="vscode.html#dep-v5"><span class="std std-ref">V5</span></a>).</p>
+</dd>
+</dl>
+</section>
+<section id="a3-l-invite-ne-commence-pas-par-base">
+<span id="dep-a3"></span><h3>A3. L’invite ne commence pas par <code class="docutils literal notranslate"><span class="pre">(base)</span></code><a class="headerlink" href="#a3-l-invite-ne-commence-pas-par-base" title="Lien vers cette rubrique">#</a></h3>
+<dl class="simple myst">
+<dt>Ce qu’on voit</dt><dd><p>L’invite est <code class="docutils literal notranslate"><span class="pre">C:\Users\&lt;nom&gt;&gt;</span></code> ou <code class="docutils literal notranslate"><span class="pre">PS</span> <span class="pre">C:\Users\&lt;nom&gt;&gt;</span></code>, sans nom entre
+parenthèses.</p>
+</dd>
+<dt>Cause</dt><dd><p>Aucun environnement n’est activé. La commande <code class="docutils literal notranslate"><span class="pre">python</span></code> lance alors un
+autre Python que celui d’Anaconda, ou aucun (<a class="reference internal" href="vscode.html#dep-v7"><span class="std std-ref">V7</span></a>).</p>
+</dd>
+<dt>Vérifier</dt><dd><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-c</span> <span class="pre">&quot;import</span> <span class="pre">sys;</span> <span class="pre">print(sys.executable)&quot;</span></code> : le chemin doit
+contenir <code class="docutils literal notranslate"><span class="pre">anaconda3</span></code>.</p>
+</dd>
+<dt>Remède</dt><dd><p>Si <code class="docutils literal notranslate"><span class="pre">conda</span></code> répond dans cette fenêtre, taper <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">base</span></code>. Sinon,
+ouvrir une invite de commandes d’Anaconda (<a class="reference internal" href="#dep-a1"><span class="std std-ref">A1</span></a>). Dans VS Code, voir
+<a class="reference internal" href="vscode.html#dep-v5"><span class="std std-ref">V5</span></a>.</p>
+</dd>
+</dl>
+</section>
+<section id="a4-anaconda-navigator-met-plusieurs-minutes-a-s-ouvrir">
+<span id="dep-a4"></span><h3>A4. Anaconda Navigator met plusieurs minutes à s’ouvrir<a class="headerlink" href="#a4-anaconda-navigator-met-plusieurs-minutes-a-s-ouvrir" title="Lien vers cette rubrique">#</a></h3>
+<dl class="simple myst">
+<dt>Ce qu’on voit</dt><dd><p>Après le clic, rien pendant une à plusieurs minutes. Parfois une fenêtre
+noire apparaît et disparaît. Puis la fenêtre de Navigator s’ouvre, ou le
+message de <a class="reference internal" href="#dep-a5"><span class="std std-ref">A5</span></a> si on a cliqué une seconde fois.</p>
+</dd>
+<dt>Cause</dt><dd><p>Au démarrage, Navigator charge plusieurs centaines de Mo de fichiers,
+lance plusieurs commandes <code class="docutils literal notranslate"><span class="pre">conda</span></code>, puis contacte des serveurs (page
+d’accueil, mise à jour, compte). Après le démarrage du poste, la première
+ouverture est la plus longue. Sans session réseau (<a class="reference internal" href="reseau.html#dep-r1"><span class="std std-ref">R1</span></a>),
+chaque requête vers un serveur attend dix à trente secondes avant
+d’abandonner.</p>
+</dd>
+<dt>Vérifier</dt><dd><p>Ouvrir le Gestionnaire des tâches (<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">Échap</span></code>). Un
+processus « Anaconda Navigator » ou <code class="docutils literal notranslate"><span class="pre">pythonw.exe</span></code> est présent tant que
+Navigator se lance. S’il est présent depuis plus de cinq minutes sans
+fenêtre, il est bloqué.</p>
+</dd>
+<dt>Remède</dt><dd><p>Cliquer une seule fois, puis attendre deux minutes, avec la session
+réseau ouverte. Répondre No à une proposition de mise à jour
+(<a class="reference internal" href="#dep-a6"><span class="std std-ref">A6</span></a>). Pour arrêter un Navigator bloqué, voir
+<a class="reference internal" href="#dep-a13"><span class="std std-ref">A13</span></a>. Navigator n’est pas nécessaire : VS Code se lance
+depuis le menu Démarrer (<a class="reference internal" href="../configuration/vscode.html"><span class="std std-doc">VS Code</span></a>). Une mention
+« offline mode » dans Navigator n’est pas une erreur : elle signale
+l’absence de réseau, et Navigator fonctionne quand même.</p>
+</dd>
+</dl>
+</section>
+<section id="a5-there-is-an-instance-of-anaconda-navigator-already-running">
+<span id="dep-a5"></span><h3>A5. « There is an instance of Anaconda Navigator already running »<a class="headerlink" href="#a5-there-is-an-instance-of-anaconda-navigator-already-running" title="Lien vers cette rubrique">#</a></h3>
+<dl class="simple myst">
+<dt>Ce qu’on voit</dt><dd><p>Ce message, et aucune fenêtre de Navigator.</p>
+</dd>
+<dt>Cause</dt><dd><p>Un Navigator est déjà lancé : celui du premier clic, qui n’a pas fini de
+s’ouvrir (<a class="reference internal" href="#dep-a4"><span class="std std-ref">A4</span></a>), ou un Navigator resté ouvert depuis une
+session précédente, ou un Navigator bloqué sans fenêtre.</p>
+</dd>
+<dt>Vérifier</dt><dd><p>Gestionnaire des tâches (<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">Échap</span></code>), onglet Processus :
+chercher « Anaconda Navigator » ou <code class="docutils literal notranslate"><span class="pre">pythonw.exe</span></code>.</p>
+</dd>
+<dt>Remède</dt><dd><p>Si le premier clic date de moins de deux minutes, attendre. Sinon, dans
+le Gestionnaire des tâches, arrêter le processus (<a class="reference internal" href="#dep-a13"><span class="std std-ref">A13</span></a>),
+puis relancer Navigator une seule fois. Si le message revient alors
+qu’aucun processus n’est présent, taper <code class="docutils literal notranslate"><span class="pre">anaconda-navigator</span> <span class="pre">--reset</span></code>
+dans l’invite de commandes d’Anaconda, puis relancer.</p>
+</dd>
+</dl>
+</section>
+<section id="a6-navigator-propose-une-mise-a-jour-ou-affiche-updating-packages-sans-avancer">
+<span id="dep-a6"></span><h3>A6. Navigator propose une mise à jour, ou affiche « updating packages » sans avancer<a class="headerlink" href="#a6-navigator-propose-une-mise-a-jour-ou-affiche-updating-packages-sans-avancer" title="Lien vers cette rubrique">#</a></h3>
+<dl class="simple myst">
+<dt>Ce qu’on voit</dt><dd><p>Au démarrage, une boîte « Update Application ». Si on accepte, Navigator
+se relance et repropose la même mise à jour, ou affiche « updating
+packages on “root” » et ne va pas plus loin.</p>
+</dd>
+<dt>Cause</dt><dd><p>Sur les postes de la salle, <code class="docutils literal notranslate"><span class="pre">base</span></code> n’est pas modifiable par un compte
+élève. La mise à jour ne peut pas se faire, et Navigator ne le détecte
+pas.</p>
+</dd>
+<dt>Remède</dt><dd><p>Répondre No, et cocher « Don’t show again » si la case est proposée. Si
+la mise à jour a été acceptée et que Navigator ne va plus loin, terminer
+le processus (<a class="reference internal" href="#dep-a5"><span class="std std-ref">A5</span></a>). Dans Preferences, cocher « Hide update
+dialog on startup » évite la question les fois suivantes.</p>
+</dd>
+</dl>
+</section>
+<section id="a7-cannot-be-loaded-because-running-scripts-is-disabled-on-this-system">
+<span id="dep-a7"></span><h3>A7. « … cannot be loaded because running scripts is disabled on this system »<a class="headerlink" href="#a7-cannot-be-loaded-because-running-scripts-is-disabled-on-this-system" title="Lien vers cette rubrique">#</a></h3>
+<dl class="simple myst">
+<dt>Ce qu’on voit</dt><dd><p>Dans PowerShell, au démarrage du terminal de VS Code ou après
+<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span></code> : <code class="docutils literal notranslate"><span class="pre">…</span> <span class="pre">\activate.ps1</span> <span class="pre">cannot</span> <span class="pre">be</span> <span class="pre">loaded</span> <span class="pre">because</span> <span class="pre">running</span> <span class="pre">scripts</span> <span class="pre">is</span> <span class="pre">disabled</span> <span class="pre">on</span> <span class="pre">this</span> <span class="pre">system</span></code>, ou le même message pour
+<code class="docutils literal notranslate"><span class="pre">conda-hook.ps1</span></code> ou <code class="docutils literal notranslate"><span class="pre">profile.ps1</span></code>.</p>
+</dd>
+<dt>Cause</dt><dd><p>PowerShell est réglé pour exécuter les commandes tapées, mais aucun
+fichier de script : sa stratégie d’exécution est <code class="docutils literal notranslate"><span class="pre">Restricted</span></code>, la
+valeur par défaut de Windows. L’activation d’un environnement dans
+PowerShell passe par un script.</p>
+</dd>
+<dt>Remède</dt><dd><p>Employer un <code class="docutils literal notranslate"><span class="pre">cmd</span></code> à la place de PowerShell : <code class="docutils literal notranslate"><span class="pre">activate.bat</span></code> n’est pas un
+script PowerShell et n’est pas concerné. C’est ce que fait l’Anaconda
+Prompt (<a class="reference internal" href="../notions/terminaux.html"><span class="std std-doc">Les terminaux</span></a>), et ce que le réglage
+du terminal donne à VS Code (<a class="reference internal" href="vscode.html#dep-v5"><span class="std std-ref">V5</span></a>).</p>
+<p>Le compte peut aussi changer la stratégie pour lui-même, sans droits
+d’administration, si aucune stratégie de groupe ne l’impose. Dans un
+terminal PowerShell, <code class="docutils literal notranslate"><span class="pre">Get-ExecutionPolicy</span> <span class="pre">-List</span></code> le dit : les lignes
+<code class="docutils literal notranslate"><span class="pre">MachinePolicy</span></code> et <code class="docutils literal notranslate"><span class="pre">UserPolicy</span></code> doivent être à <code class="docutils literal notranslate"><span class="pre">Undefined</span></code>. Alors :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Set</span><span class="o">-</span><span class="n">ExecutionPolicy</span> <span class="o">-</span><span class="n">ExecutionPolicy</span> <span class="n">RemoteSigned</span> <span class="o">-</span><span class="n">Scope</span> <span class="n">CurrentUser</span>
+</pre></div>
+</div>
+<p>Répondre <code class="docutils literal notranslate"><span class="pre">O</span></code>, fermer et rouvrir le terminal. <code class="docutils literal notranslate"><span class="pre">RemoteSigned</span></code> autorise les
+scripts du poste et exige une signature pour ceux téléchargés. Le
+réglage suit le compte, pas le poste ; sur une machine virtuelle remise
+à zéro, il est à refaire.</p>
+</dd>
+</dl>
+</section>
+<section id="a8-environmentnotwritableerror-a-conda-install">
+<span id="dep-a8"></span><h3>A8. « EnvironmentNotWritableError » à <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span></code><a class="headerlink" href="#a8-environmentnotwritableerror-a-conda-install" title="Lien vers cette rubrique">#</a></h3>
+<dl class="simple myst">
+<dt>Ce qu’on voit</dt><dd><p><code class="docutils literal notranslate"><span class="pre">EnvironmentNotWritableError:</span> <span class="pre">The</span> <span class="pre">current</span> <span class="pre">user</span> <span class="pre">does</span> <span class="pre">not</span> <span class="pre">have</span> <span class="pre">write</span> <span class="pre">permissions</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">target</span> <span class="pre">environment.</span> <span class="pre">environment</span> <span class="pre">location:</span> <span class="pre">C:\ProgramData\anaconda3</span></code>.</p>
+</dd>
+<dt>Cause</dt><dd><p>La commande visait <code class="docutils literal notranslate"><span class="pre">base</span></code>, que le compte élève ne peut pas modifier.</p>
+</dd>
+<dt>Remède</dt><dd><p>Créer son propre environnement et y installer ce dont on a besoin :</p>
+</dd>
+</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">recette</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">python</span> <span class="n">pandoc</span>
+<span class="n">conda</span> <span class="n">activate</span> <span class="n">recette</span>
+</pre></div>
+</div>
+<p>Cet environnement va dans <code class="docutils literal notranslate"><span class="pre">C:\Users\&lt;nom&gt;\.conda\envs\recette</span></code>, où le
+compte a tous les droits. C’est ce que fait le TD 1h.</p>
+</section>
+<section id="a9-condahttperror-a-conda-create-ou-solving-environment-tres-long">
+<span id="dep-a9"></span><h3>A9. « CondaHTTPError » à <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span></code>, ou « Solving environment » très long<a class="headerlink" href="#a9-condahttperror-a-conda-create-ou-solving-environment-tres-long" title="Lien vers cette rubrique">#</a></h3>
+<dl class="simple myst">
+<dt>Ce qu’on voit</dt><dd><p><code class="docutils literal notranslate"><span class="pre">CondaHTTPError:</span> <span class="pre">HTTP</span> <span class="pre">000</span> <span class="pre">CONNECTION</span> <span class="pre">FAILED</span> <span class="pre">for</span> <span class="pre">url</span> <span class="pre">&lt;…&gt;</span></code>, ou <code class="docutils literal notranslate"><span class="pre">HTTP</span> <span class="pre">403</span></code>,
+<code class="docutils literal notranslate"><span class="pre">HTTP</span> <span class="pre">407</span></code>, une erreur <code class="docutils literal notranslate"><span class="pre">SSL</span></code>. Ou bien une ligne « Solving environment »
+qui dure plusieurs minutes.</p>
+</dd>
+<dt>Cause</dt><dd><p><code class="docutils literal notranslate"><span class="pre">000</span> <span class="pre">CONNECTION</span> <span class="pre">FAILED</span></code> : la session réseau n’est pas ouverte
+(<a class="reference internal" href="reseau.html#dep-r1"><span class="std std-ref">R1</span></a>). <code class="docutils literal notranslate"><span class="pre">407</span></code> ou <code class="docutils literal notranslate"><span class="pre">SSL</span></code> : le réseau passe par un proxy
+(<a class="reference internal" href="reseau.html#dep-r2"><span class="std std-ref">R2</span></a>). <code class="docutils literal notranslate"><span class="pre">403</span></code> : le serveur a répondu par un refus ; voir aussi
+<a class="reference internal" href="#dep-a10"><span class="std std-ref">A10</span></a>. Une résolution longue sans message d’erreur : la
+première commande qui emploie <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> télécharge la liste des
+paquets du canal, plusieurs dizaines de Mo, avant de calculer quoi
+installer. Sur un réseau lent, cela prend plusieurs minutes.</p>
+</dd>
+<dt>Vérifier</dt><dd><p>Dans un <code class="docutils literal notranslate"><span class="pre">cmd</span></code>, <code class="docutils literal notranslate"><span class="pre">curl.exe</span> <span class="pre">-sS</span> <span class="pre">-I</span> <span class="pre">-m</span> <span class="pre">10</span> <span class="pre">https://conda.anaconda.org</span></code> doit
+répondre par une ligne <code class="docutils literal notranslate"><span class="pre">HTTP/…</span> <span class="pre">200</span></code>.</p>
+</dd>
+<dt>Remède</dt><dd><p>Ouvrir la session réseau et relancer la commande. Si le message contient
+<code class="docutils literal notranslate"><span class="pre">JSONDecodeError</span></code> ou <code class="docutils literal notranslate"><span class="pre">Invalid</span> <span class="pre">index</span></code>, taper <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">clean</span> <span class="pre">--index-cache</span></code>
+puis relancer. N’indiquer qu’un canal, <code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">conda-forge</span></code> : la résolution
+reste plus courte.</p>
+</dd>
+</dl>
+</section>
+<section id="a10-condatosnoninteractiveerror-terms-of-service-have-not-been-accepted">
+<span id="dep-a10"></span><h3>A10. « CondaToSNonInteractiveError: Terms of Service have not been accepted »<a class="headerlink" href="#a10-condatosnoninteractiveerror-terms-of-service-have-not-been-accepted" title="Lien vers cette rubrique">#</a></h3>
+<dl class="simple myst">
+<dt>Ce qu’on voit</dt><dd><p>Ce message, avec les adresses <code class="docutils literal notranslate"><span class="pre">https://repo.anaconda.com/pkgs/main</span></code> et
+<code class="docutils literal notranslate"><span class="pre">https://repo.anaconda.com/pkgs/r</span></code>. Ou une question <code class="docutils literal notranslate"><span class="pre">Do</span> <span class="pre">you</span> <span class="pre">accept</span> <span class="pre">the</span> <span class="pre">Terms</span> <span class="pre">of</span> <span class="pre">Service</span> <span class="pre">(ToS)</span> <span class="pre">for</span> <span class="pre">https://repo.anaconda.com/pkgs/main?</span> <span class="pre">[(a)ccept/(r)eject/(v)iew]</span></code>.</p>
+</dd>
+<dt>Cause</dt><dd><p>Depuis Anaconda 2025.06, conda demande une fois par compte d’accepter
+les conditions d’utilisation des canaux d’Anaconda. Ces canaux sont
+consultés par défaut, même avec <code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">conda-forge</span></code>.</p>
+</dd>
+<dt>Remède</dt><dd><p>Répondre <code class="docutils literal notranslate"><span class="pre">a</span></code> à la question. Ou, une fois pour toutes, taper :</p>
+</dd>
+</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">tos</span> <span class="n">accept</span> <span class="o">--</span><span class="n">override</span><span class="o">-</span><span class="n">channels</span> <span class="o">--</span><span class="n">channel</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">repo</span><span class="o">.</span><span class="n">anaconda</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pkgs</span><span class="o">/</span><span class="n">main</span> <span class="o">--</span><span class="n">channel</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">repo</span><span class="o">.</span><span class="n">anaconda</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pkgs</span><span class="o">/</span><span class="n">r</span>
+</pre></div>
+</div>
+<p>Autre possibilité : ne pas consulter ces canaux. <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">-n</span> <span class="pre">recette</span> <span class="pre">--override-channels</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">python</span> <span class="pre">pandoc</span></code> n’emploie que
+conda-forge, qui n’a pas de conditions à accepter ; et le fichier
+<code class="docutils literal notranslate"><span class="pre">.condarc</span></code> décrit dans <a class="reference internal" href="../configuration/anaconda.html"><span class="std std-doc">Anaconda, section
+Configuration</span></a> rend ce choix permanent, y
+compris pour un <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span></code> lancé par VS Code.</p>
+</section>
+<section id="a11-un-environnement-cree-n-apparait-pas-dans-la-liste">
+<span id="dep-a11"></span><h3>A11. Un environnement créé n’apparaît pas dans la liste<a class="headerlink" href="#a11-un-environnement-cree-n-apparait-pas-dans-la-liste" title="Lien vers cette rubrique">#</a></h3>
+<dl class="simple myst">
+<dt>Ce qu’on voit</dt><dd><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">list</span></code> ne cite pas l’environnement. Ou il y est, mais VS Code
+(« Select Interpreter », « Select Kernel ») ou Navigator ne le proposent
+pas.</p>
+</dd>
+<dt>Cause</dt><dd><p>conda tient la liste des environnements dans
+<code class="docutils literal notranslate"><span class="pre">C:\Users\&lt;nom&gt;\.conda\environments.txt</span></code>. VS Code et Navigator lisent
+cette liste à leur démarrage et ne la relisent pas d’eux-mêmes.</p>
+</dd>
+<dt>Vérifier</dt><dd><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">list</span></code> dans l’invite de commandes d’Anaconda.</p>
+</dd>
+<dt>Remède</dt><dd><p>Si conda connaît l’environnement : dans VS Code, palette
+(<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">P</span></code>), « Python: Clear Cache and Reload Window » ou
+« Python Environments: Refresh Environment Managers » ; dans Navigator,
+onglet Environments, bouton « Update index ». Si conda ne le connaît
+pas : l’activer une fois par son chemin, <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">C:\Users\&lt;nom&gt;\.conda\envs\&lt;nom&gt;</span></code>, ce qui l’ajoute à la liste.</p>
+</dd>
+</dl>
+</section>
+<section id="a12-spyder-met-du-temps-a-s-ouvrir-ou-ne-s-ouvre-pas">
+<span id="dep-a12"></span><h3>A12. Spyder met du temps à s’ouvrir, ou ne s’ouvre pas<a class="headerlink" href="#a12-spyder-met-du-temps-a-s-ouvrir-ou-ne-s-ouvre-pas" title="Lien vers cette rubrique">#</a></h3>
+<dl class="simple myst">
+<dt>Ce qu’on voit</dt><dd><p>Après le clic, rien pendant une minute ou plus. Ou une fenêtre qui
+s’ouvre puis se ferme. Ou la console de Spyder affiche un autre chemin
+que l’invite de commandes d’Anaconda.</p>
+</dd>
+<dt>Cause</dt><dd><p>Comme Navigator, Spyder charge beaucoup de fichiers au premier
+lancement après le démarrage du poste. Une fenêtre qui se ferme aussitôt
+est une erreur de démarrage, que le lancement par bouton ne montre pas.</p>
+</dd>
+<dt>Vérifier</dt><dd><p>Dans l’invite de commandes d’Anaconda, taper <code class="docutils literal notranslate"><span class="pre">spyder</span></code> puis Entrée : la fenêtre
+affiche ce que Spyder écrit, et une erreur y reste lisible.</p>
+</dd>
+<dt>Remède</dt><dd><p>Attendre une minute au premier lancement. Si Spyder ne s’ouvre pas
+depuis l’invite de commandes d’Anaconda non plus, taper <code class="docutils literal notranslate"><span class="pre">spyder</span> <span class="pre">--reset</span></code>, qui remet ses
+réglages à zéro, puis relancer. Si la console affiche un autre chemin
+que l’invite de commandes d’Anaconda : Préférences (menu Outils, ou Tools), rubrique
+« Interpréteur Python », choisir l’option par défaut, celle de Spyder.</p>
+</dd>
+</dl>
+</section>
+<section id="a13-arreter-navigator-bloque-au-demarrage">
+<span id="dep-a13"></span><h3>A13. Arrêter Navigator bloqué au démarrage<a class="headerlink" href="#a13-arreter-navigator-bloque-au-demarrage" title="Lien vers cette rubrique">#</a></h3>
+<dl class="simple myst">
+<dt>Ce qu’on voit</dt><dd><p>L’icône de démarrage de Navigator reste à l’écran, sans fenêtre, depuis
+plusieurs minutes. L’onglet Processus du Gestionnaire des tâches ne montre
+pas d’application « Anaconda Navigator ».</p>
+</dd>
+<dt>Cause</dt><dd><p>Tant que sa fenêtre n’est pas ouverte, Navigator est un programme Python
+sans fenêtre, <code class="docutils literal notranslate"><span class="pre">pythonw.exe</span></code>, rangé dans les processus en arrière-plan. Il
+attend des commandes <code class="docutils literal notranslate"><span class="pre">conda</span></code> ou des serveurs (<a class="reference internal" href="#dep-a4"><span class="std std-ref">A4</span></a>).</p>
+</dd>
+<dt>Vérifier</dt><dd><p>Ouvrir le Gestionnaire des tâches (<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">Échap</span></code>), onglet
+Détails. Clic droit sur l’en-tête d’une colonne, « Sélectionner les
+colonnes », cocher « Ligne de commande », puis OK. Le processus de
+Navigator est le <code class="docutils literal notranslate"><span class="pre">pythonw.exe</span></code> dont la ligne de commande contient
+<code class="docutils literal notranslate"><span class="pre">anaconda-navigator</span></code>.</p>
+</dd>
+<dt>Remède</dt><dd><p>Clic droit sur ce processus, « Fin de l’arborescence du processus » :
+les commandes <code class="docutils literal notranslate"><span class="pre">conda</span></code> qu’il a lancées s’arrêtent avec lui, et l’icône
+disparaît. Dans l’invite de commandes d’Anaconda, une seule commande fait
+la même chose :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>taskkill /F /T /IM pythonw.exe
+</pre></div>
+</div>
+<p>Elle arrête tous les programmes <code class="docutils literal notranslate"><span class="pre">pythonw.exe</span></code>, dont Spyder s’il est
+ouvert. Ensuite, lancer JupyterLab sans Navigator : dans l’invite de
+commandes d’Anaconda, se placer dans le dossier de la séance avec <code class="docutils literal notranslate"><span class="pre">cd</span></code>,
+puis taper <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">lab</span></code> (<a class="reference internal" href="../configuration/jupyterlab.html"><span class="std std-doc">JupyterLab</span></a>).
+Ces manipulations restent à vérifier sur un poste de la salle.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="outils-installes-dans-un-environnement">
+<h2>Outils installés dans un environnement<a class="headerlink" href="#outils-installes-dans-un-environnement" title="Lien vers cette rubrique">#</a></h2>
+<p>Le module installe pandoc, typst, ImageMagick et ffmpeg avec conda, dans
+l’environnement du TD. Ces outils ne répondent que dans une fenêtre où cet
+environnement est activé.</p>
+<section id="x1-pandoc-n-est-pas-reconnu-apres-un-conda-install-reussi">
+<span id="dep-x1"></span><h3>X1. « “pandoc” n’est pas reconnu » après un <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span></code> réussi<a class="headerlink" href="#x1-pandoc-n-est-pas-reconnu-apres-un-conda-install-reussi" title="Lien vers cette rubrique">#</a></h3>
+<dl class="simple myst">
+<dt>Ce qu’on voit</dt><dd><p><code class="docutils literal notranslate"><span class="pre">'pandoc'</span> <span class="pre">n'est</span> <span class="pre">pas</span> <span class="pre">reconnu</span> <span class="pre">en</span> <span class="pre">tant</span> <span class="pre">que</span> <span class="pre">commande</span> <span class="pre">interne</span> <span class="pre">ou</span> <span class="pre">externe</span></code>
+(ou <code class="docutils literal notranslate"><span class="pre">typst</span></code>, <code class="docutils literal notranslate"><span class="pre">magick</span></code>, <code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code>), alors que l’installation s’est bien
+passée.</p>
+</dd>
+<dt>Cause</dt><dd><p>L’outil est installé dans un environnement, et la fenêtre où on tape la
+commande a un autre environnement actif, ou aucun.</p>
+</dd>
+<dt>Vérifier</dt><dd><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">list</span> <span class="pre">-n</span> <span class="pre">&lt;env&gt;</span> <span class="pre">pandoc</span></code> dit dans quel environnement il est.
+<code class="docutils literal notranslate"><span class="pre">where</span> <span class="pre">pandoc</span></code> dans la fenêtre dit s’il y est visible.</p>
+</dd>
+<dt>Remède</dt><dd><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">&lt;env&gt;</span></code> dans la fenêtre. Dans VS Code, choisir cet
+environnement comme interpréteur (<a class="reference internal" href="vscode.html#dep-v6"><span class="std std-ref">V6</span></a>), puis ouvrir un
+nouveau terminal.</p>
+</dd>
+</dl>
+</section>
+<section id="x2-convert-repond-format-de-lecteur-non-valide">
+<span id="dep-x2"></span><h3>X2. <code class="docutils literal notranslate"><span class="pre">convert</span></code> répond « Format de lecteur non valide »<a class="headerlink" href="#x2-convert-repond-format-de-lecteur-non-valide" title="Lien vers cette rubrique">#</a></h3>
+<dl class="simple myst">
+<dt>Ce qu’on voit</dt><dd><p><code class="docutils literal notranslate"><span class="pre">convert</span> <span class="pre">image.png</span> <span class="pre">image.jpg</span></code> répond <code class="docutils literal notranslate"><span class="pre">Format</span> <span class="pre">de</span> <span class="pre">lecteur</span> <span class="pre">non</span> <span class="pre">valide</span></code> ou
+affiche une aide sur les systèmes de fichiers.</p>
+</dd>
+<dt>Cause</dt><dd><p><code class="docutils literal notranslate"><span class="pre">convert.exe</span></code> est aussi le nom d’un utilitaire de Windows, qui convertit
+des disques, et Windows le trouve avant celui d’ImageMagick.</p>
+</dd>
+<dt>Remède</dt><dd><p>Employer <code class="docutils literal notranslate"><span class="pre">magick</span></code> : <code class="docutils literal notranslate"><span class="pre">magick</span> <span class="pre">image.png</span> <span class="pre">image.jpg</span></code>. C’est la commande
+d’ImageMagick 7, et la seule que le module emploie.</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="bureautique.html"
+       title="page précédente">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">précédent</p>
+        <p class="prev-next-title">Problèmes avec les logiciels de texte et de bureautique</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="jupyterlab.html"
+       title="page suivante">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">suivant</p>
+        <p class="prev-next-title">Problèmes avec JupyterLab et les notebooks</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problemes">Problèmes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a1-anaconda-prompt-n-est-pas-dans-le-menu-demarrer">A1. « Anaconda Prompt » n’est pas dans le menu Démarrer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a2-conda-n-est-pas-reconnu-en-tant-que-commande-interne-ou-externe">A2. « “conda” n’est pas reconnu en tant que commande interne ou externe »</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a3-l-invite-ne-commence-pas-par-base">A3. L’invite ne commence pas par <code class="docutils literal notranslate"><span class="pre">(base)</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a4-anaconda-navigator-met-plusieurs-minutes-a-s-ouvrir">A4. Anaconda Navigator met plusieurs minutes à s’ouvrir</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a5-there-is-an-instance-of-anaconda-navigator-already-running">A5. « There is an instance of Anaconda Navigator already running »</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a6-navigator-propose-une-mise-a-jour-ou-affiche-updating-packages-sans-avancer">A6. Navigator propose une mise à jour, ou affiche « updating packages » sans avancer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a7-cannot-be-loaded-because-running-scripts-is-disabled-on-this-system">A7. « … cannot be loaded because running scripts is disabled on this system »</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a8-environmentnotwritableerror-a-conda-install">A8. « EnvironmentNotWritableError » à <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a9-condahttperror-a-conda-create-ou-solving-environment-tres-long">A9. « CondaHTTPError » à <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span></code>, ou « Solving environment » très long</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a10-condatosnoninteractiveerror-terms-of-service-have-not-been-accepted">A10. « CondaToSNonInteractiveError: Terms of Service have not been accepted »</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a11-un-environnement-cree-n-apparait-pas-dans-la-liste">A11. Un environnement créé n’apparaît pas dans la liste</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a12-spyder-met-du-temps-a-s-ouvrir-ou-ne-s-ouvre-pas">A12. Spyder met du temps à s’ouvrir, ou ne s’ouvre pas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a13-arreter-navigator-bloque-au-demarrage">A13. Arrêter Navigator bloqué au démarrage</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outils-installes-dans-un-environnement">Outils installés dans un environnement</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#x1-pandoc-n-est-pas-reconnu-apres-un-conda-install-reussi">X1. « “pandoc” n’est pas reconnu » après un <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span></code> réussi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#x2-convert-repond-format-de-lecteur-non-valide">X2. <code class="docutils literal notranslate"><span class="pre">convert</span></code> répond « Format de lecteur non valide »</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par 1re année géomatique
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, module info01 — CC-BY-4.0.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

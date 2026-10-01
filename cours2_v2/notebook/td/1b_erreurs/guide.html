@@ -1,0 +1,1039 @@
+
+<!DOCTYPE html>
+
+
+<html lang="fr" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>TD 1b — Trois programmes fautifs &#8212; Introduction à l&#39;informatique</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../../../_static/documentation_options.js?v=72dce1d2"></script>
+    <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../../../../_static/translations.js?v=e6b791cb"></script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cours2_v2/notebook/td/1b_erreurs/guide';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="../../../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Recherche" href="../../../../search.html" />
+    <link rel="next" title="TD 2a — Une recette en Markdown, convertie par pandoc" href="../2a_markdown/guide.html" />
+    <link rel="prev" title="TD 1a — Configurer VS Code" href="../1a_vscode/guide.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="fr"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../../../_static/searchtools.js"></script>
+    <script src="../../../../_static/language_data.js"></script>
+    <script src="../../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Passer au contenu principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Haut de page</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Alerte de version"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navigation dans le site">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="Sur cette page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction à l'informatique</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../index.html">
+                    Introduction à l’informatique
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Avant les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/poste.html">Premiers tests du poste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/donnees.html">Récupérer les fichiers d’une séance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/python.html">Anaconda et JupyterLab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/vscode.html">VS Code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Après les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../apres/sauvegarder.html">Sauvegarder son travail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../apres/s_entrainer.html">S’entraîner : jeux et exercices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Séances</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours1_v2/index.html">Séance 1, version 2 — Logiciels, fichiers, terminal et premier programme</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/01_logiciels_stockage.html">Logiciels, fichiers et stockage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/02_terminal.html">Le terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/03_premier_programme.html">Premier programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/04_notebook.html">Un notebook et la syntaxe de Markdown</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours1_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 1, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/2a_terminal/guide.html">TD 2a — Les fichiers du TD 1a en ligne de commande</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/2b_programme/guide.html">TD 2b — Écrire et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/3a_notebook/guide.html">TD 3a — Un notebook dans JupyterLab</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../../index.html">Séance 2, version 2 — Éditeur de code, Markdown et git local</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../01_editeur_de_code.html">L’éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../02_markdown.html">Une recette en Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../03_git_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../../travaux_diriges.html">Travaux dirigés de la séance 2, version 2</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../1a_vscode/guide.html">TD 1a — Configurer VS Code</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">TD 1b — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../2a_markdown/guide.html">TD 2a — Une recette en Markdown, convertie par pandoc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../3a_depot_recette/guide.html">TD 3a — Un dépôt git pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours3/index.html">Séance 3 — Chemins, fichiers et ligne de commande</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/01_chemins_programmes.html">Chemins et programmes externes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/02_fichiers_encodage.html">Fichiers et encodage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/03_du_notebook_au_programme.html">Du notebook au programme</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours3/notebook/travaux_diriges.html">Travaux dirigés de la séance 3</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours3/notebook/td/3a_cli/guide.html">TD 3a — Une ligne de commande pour la recette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours3/notebook/td/3b_markdown/guide.html">TD 3b — Une recette en Markdown</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours4/index.html">Séance 4 — Du notebook au programme, en deux parcours</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours4/notebook/01_client_noyau.html">Le client et le noyau d’un notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours4/notebook/02_animation.html">Une animation en ligne de commande</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours4/notebook/travaux_diriges.html">Travaux dirigés du projet 4</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours4/notebook/td/4b_cli/guide.html">TD 4b — Une ligne de commande pour la recette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours4/notebook/td/4c_train/guide.html">TD 4c — La fenêtre du train</a></li>
+
+
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours5/index.html">Séance 5 — Matériel, réseau, mots de passe, clés SSH et secrets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/01_materiel.html">Le matériel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/02_reseau.html">Le réseau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/03_prouver_qui_lon_est.html">Prouver qui l’on est</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/04_secrets.html">Les secrets de vos programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/travaux_diriges.html">Travaux dirigés de la séance 5</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cours6/index.html">Séance 6 — La forge, sur le dépôt du projet 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cours7/index.html">Séance 7 — Une fonctionnalité de plus, par une pull request</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Annexes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/configuration/index.html">Configuration des postes de la salle</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/anaconda.html">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/jupyterlab.html">JupyterLab</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../annexes/configuration/vscode.html">VS Code</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_python.html">Python et environnement conda</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_notebooks.html">Notebooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_reglages.html">Fichiers de réglages</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/git.html">Git et Git Bash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/spyder.html">Spyder</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/poste_personnel/index.html">Configuration d’un ordinateur personnel</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/conda.html">Python et conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/vscode.html">VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/git_outils.html">Git et éditeurs de texte</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/notions/index.html">Notions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/outils.html">Choisir entre JupyterLab, Spyder et VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/notebooks.html">Les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/terminaux.html">Les terminaux en ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/variables_environnement.html">Variables d’environnement et recherche des programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/environnements.html">Les environnements conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/vscode_environnements.html">Comment VS Code gère les environnements Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/git_bash.html">Git Bash : une fenêtre, bash et des programmes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/faq.html">FAQ</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/reseau.html">Problèmes de réseau et de compte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/bureautique.html">Problèmes avec les logiciels de texte et de bureautique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/anaconda.html">Problèmes avec Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/jupyterlab.html">Problèmes avec JupyterLab et les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/vscode.html">Problèmes avec VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/git.html">Problèmes avec git</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/plus_loin/index.html">Pour aller plus loin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/gestionnaires.html">venv, uv et pixi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/cpp.html">C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/programme_interpreteur.html">Programme, application et interpréteur</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Archive 2026</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours1/index.html">Séance 1, 2026 — Logiciel, programmation et formats de fichier</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/01_logiciels_et_formats.html">Logiciels et formats de fichier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/02_programmation.html">Programmation et éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/03_markdown_notebook.html">Markdown et notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/04_bibliotheques_environnements.html">Bibliothèques et environnements Python</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours1/notebook/travaux_diriges.html">Travaux dirigés de la séance 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1b_archive_odt/guide.html">TD 1b — Un .odt est une archive ZIP (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/2a_vscode_python/guide.html">TD 2a — Configurer l’éditeur de code, et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/2b_erreurs/guide.html">TD 2b — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/2c_hello_cpp/guide.html">TD 2c — Le même programme en C++ (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/3a_markdown/guide.html">TD 3a — Mettre en forme une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/3b_notebooks/guide.html">TD 3b — Le notebook, ouvert de trois façons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/4a_recette/guide.html">TD 4a — Installer un projet Python, et décrire son installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/4b_noyaux/guide.html">TD 4b — Le client, le noyau, et où ils sont installés (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/4c_trajet/guide.html">TD 4c — Installer un projet en lisant son README (facultatif)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/05_comparer_versions.html">Annexe — Comparer deux versions d’un fichier</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours2/index.html">Séance 2, 2026 — Ligne de commande et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/01_ligne_de_commande.html">La ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/02_depot_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/03_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/04_lire_et_tenir_un_depot.html">Lire et tenir un dépôt</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/3a_premier_depot/guide.html">TD 3a — Un premier dépôt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/4a_branches/guide.html">TD 4a — Branches et fusions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/4b_annuler/guide.html">TD 4b — Annuler et remettre à jour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/4c_conflits/guide.html">TD 4c — Créer et résoudre un conflit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/6a_livrer/guide.html">TD 6a — Publier une version</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Thème">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Thème" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Clair"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Sombre"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="Paramètres système"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>Paramètres système</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Clair</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Sombre</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>TD 1b — Trois programmes fautifs</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparer-le-dossier-du-td">1 · Préparer le dossier du TD</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-deux-dossiers-du-td">Les deux dossiers du TD</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ouvrir-le-dossier-dans-vs-code">Ouvrir le dossier dans VS Code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#copier-les-fichiers">Copier les fichiers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lire-les-caracteres-invisibles-et-la-barre-d-etat">2 · Lire les caractères invisibles et la barre d’état</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-espaces-dessines">Les espaces dessinés</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-barre-d-etat">La barre d’état</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#corriger-surface-py">3 · Corriger <code class="docutils literal notranslate"><span class="pre">surface.py</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lancer-et-lire-le-message">Lancer et lire le message</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trouver-la-faute">Trouver la faute</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corriger-et-relancer">Corriger et relancer</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#corriger-moyenne-py">4 · Corriger <code class="docutils literal notranslate"><span class="pre">moyenne.py</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Lancer et lire le message</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Corriger et relancer</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#corriger-chemin-py">5 · Corriger <code class="docutils literal notranslate"><span class="pre">chemin.py</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Lancer et lire le message</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retrouver-le-fichier-sur-son-poste">Retrouver le fichier sur son poste</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Corriger et relancer</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-le-td-fait-constater">Ce que le TD fait constater</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-2-ce-que-l-editeur-affiche-des-caracteres-invisibles">Étape 2 : ce que l’éditeur affiche des caractères invisibles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-trois-fautes">Les trois fautes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-programme-correct-sur-un-autre-poste">Un programme correct sur un autre poste</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-le-programme-fonctionne-veut-dire-ici">Ce que « le programme fonctionne » veut dire ici</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="td-1b-trois-programmes-fautifs">
+<h1>TD 1b — Trois programmes fautifs<a class="headerlink" href="#td-1b-trois-programmes-fautifs" title="Lien vers cette rubrique">#</a></h1>
+<p><em>Version 2 du cours 2 : proposition de travail pour 2027-2028. Ce guide
+reprend celui du TD 2b du cours 1 de 2026. Joué au cours 1 v2 dans
+Notepad++, il est passé au cours 2 v2 le 27/09/2026, après la partie sur
+l’éditeur de code : les programmes s’ouvrent dans VS Code et se lancent dans
+son terminal, Git Bash.</em></p>
+<p>Le TD fait lire dans VS Code les caractères qu’on ne voit pas, les espaces et
+les tabulations, puis corriger trois programmes Python courts qui s’arrêtent
+sur un message d’erreur. Chacun contient une faute d’un genre différent. On
+lance le programme, on lit le message, on corrige la copie, et on relance
+jusqu’à ce que le message disparaisse. Le TD dure une dizaine de minutes.</p>
+<p>Le TD suppose le TD 1a fait : VS Code a Git Bash pour terminal, affiche les
+espaces, et enregistre les fichiers après un court délai.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Étape</p></th>
+<th class="head"><p>Ce qu’on fait</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>préparer le dossier du TD</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>lire les caractères invisibles et la barre d’état</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>corriger <code class="docutils literal notranslate"><span class="pre">surface.py</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>corriger <code class="docutils literal notranslate"><span class="pre">moyenne.py</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>corriger <code class="docutils literal notranslate"><span class="pre">chemin.py</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Chaque étape commence par un encadré qui la résume. Ce que chaque étape fait
+constater est expliqué à la fin du guide, dans « Ce que le TD fait
+constater » : faire l’étape d’abord, et noter ce qu’on observe, avant de lire
+l’explication.</p>
+<section id="preparer-le-dossier-du-td">
+<h2>1 · Préparer le dossier du TD<a class="headerlink" href="#preparer-le-dossier-du-td" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> ouvrir le dossier <code class="docutils literal notranslate"><span class="pre">cours2/1b_erreurs/</span></code> dans VS Code, avec un
+terminal Git Bash ; copier les trois fichiers de <code class="docutils literal notranslate"><span class="pre">depart/</span></code> dans <code class="docutils literal notranslate"><span class="pre">travail/</span></code>.</p>
+<p><strong>À obtenir :</strong> l’invite du terminal se termine par <code class="docutils literal notranslate"><span class="pre">1b_erreurs</span></code>, et
+<code class="docutils literal notranslate"><span class="pre">travail/</span></code> contient <code class="docutils literal notranslate"><span class="pre">chemin.py</span></code>, <code class="docutils literal notranslate"><span class="pre">moyenne.py</span></code> et <code class="docutils literal notranslate"><span class="pre">surface.py</span></code>.</p>
+</div></blockquote>
+<section id="les-deux-dossiers-du-td">
+<h3>Les deux dossiers du TD<a class="headerlink" href="#les-deux-dossiers-du-td" title="Lien vers cette rubrique">#</a></h3>
+<p>Le dossier du TD est dans l’archive de la séance :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>~/Desktop/info01/cours2/1b_erreurs/
+├── depart/
+│   ├── chemin.py       compte les caractères du poème du TD 1a du cours 1
+│   ├── moyenne.py      calcule la moyenne de quatre altitudes
+│   └── surface.py      calcule la surface d'une parcelle rectangulaire
+├── travail/            vide
+├── td_1b_erreurs.pdf   la feuille du TD
+└── README.md
+</pre></div>
+</div>
+<p>Comme au cours 1, <code class="docutils literal notranslate"><span class="pre">depart/</span></code> contient les fichiers fournis, et ne se modifie
+pas ; les corrections se font sur des copies, dans <code class="docutils literal notranslate"><span class="pre">travail/</span></code>. Si une copie
+est abîmée, on en refait une à partir de <code class="docutils literal notranslate"><span class="pre">depart/</span></code>.</p>
+</section>
+<section id="ouvrir-le-dossier-dans-vs-code">
+<h3>Ouvrir le dossier dans VS Code<a class="headerlink" href="#ouvrir-le-dossier-dans-vs-code" title="Lien vers cette rubrique">#</a></h3>
+<ol class="arabic simple">
+<li><p>Dans VS Code : Fichier, Ouvrir le dossier…, puis choisir
+<code class="docutils literal notranslate"><span class="pre">Bureau\info01\cours2\1b_erreurs</span></code>.</p></li>
+<li><p>Menu Terminal, Nouveau terminal. Le terminal s’ouvre en bas de la
+fenêtre, dans le dossier ouvert.</p></li>
+</ol>
+<p><strong>Vérification</strong> : l’invite a la forme suivante (le nom du poste change
+d’une machine à l’autre).</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>(base)
+eleve@POSTE MINGW64 ~/Desktop/info01/cours2/1b_erreurs
+$
+</pre></div>
+</div>
+<p>Si le terminal n’est pas Git Bash, le choisir par la flèche à côté du <code class="docutils literal notranslate"><span class="pre">+</span></code>,
+comme au TD 1a. Si la ligne <code class="docutils literal notranslate"><span class="pre">(base)</span></code> manque, et que <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">--version</span></code> ne
+répond pas, le réglage de conda dans Git Bash (TD 2b du cours 1) n’a pas été
+fait sur ce poste.</p>
+</section>
+<section id="copier-les-fichiers">
+<h3>Copier les fichiers<a class="headerlink" href="#copier-les-fichiers" title="Lien vers cette rubrique">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cp depart/*.py travail/
+ls travail
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">depart/*.py</span> <span class="pre">travail/</span></code> copie dans <code class="docutils literal notranslate"><span class="pre">travail/</span></code> les fichiers de <code class="docutils literal notranslate"><span class="pre">depart/</span></code>
+dont le nom se termine par <code class="docutils literal notranslate"><span class="pre">.py</span></code>. Le motif <code class="docutils literal notranslate"><span class="pre">*</span></code> a été vu au TD 2a du cours 1.</p>
+<p><strong>Vérification</strong> : <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">travail</span></code> affiche <code class="docutils literal notranslate"><span class="pre">chemin.py</span></code>, <code class="docutils literal notranslate"><span class="pre">moyenne.py</span></code> et
+<code class="docutils literal notranslate"><span class="pre">surface.py</span></code>, et l’explorateur de VS Code les montre sous <code class="docutils literal notranslate"><span class="pre">travail</span></code>.</p>
+</section>
+</section>
+<section id="lire-les-caracteres-invisibles-et-la-barre-d-etat">
+<h2>2 · Lire les caractères invisibles et la barre d’état<a class="headerlink" href="#lire-les-caracteres-invisibles-et-la-barre-d-etat" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> ouvrir <code class="docutils literal notranslate"><span class="pre">travail/moyenne.py</span></code> ; repérer les espaces
+dessinés ; lire deux indications de la barre d’état.</p>
+<p><strong>À obtenir :</strong> des points au début des lignes indentées, et <code class="docutils literal notranslate"><span class="pre">LF</span></code> dans la
+barre d’état.</p>
+</div></blockquote>
+<section id="les-espaces-dessines">
+<h3>Les espaces dessinés<a class="headerlink" href="#les-espaces-dessines" title="Lien vers cette rubrique">#</a></h3>
+<p>Un espace et une tabulation ne se distinguent pas à l’œil : les deux
+laissent un blanc. Le réglage du TD 1a, « render whitespace » à <code class="docutils literal notranslate"><span class="pre">all</span></code>, fait
+dessiner par VS Code un point pour chaque espace et une flèche pour chaque
+tabulation. S’il n’a pas été fait : <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">,</span></code>, chercher
+« render whitespace », choisir <code class="docutils literal notranslate"><span class="pre">all</span></code>.</p>
+<p>Ouvrir <code class="docutils literal notranslate"><span class="pre">travail/moyenne.py</span></code>, par un clic dans l’explorateur de VS Code.</p>
+<p><strong>Vérification</strong> : un point apparaît entre chaque mot, et quatre points au
+début de la ligne 7, <code class="docutils literal notranslate"><span class="pre">total</span> <span class="pre">=</span> <span class="pre">total</span> <span class="pre">+</span> <span class="pre">altitude</span></code>.</p>
+</section>
+<section id="la-barre-d-etat">
+<h3>La barre d’état<a class="headerlink" href="#la-barre-d-etat" title="Lien vers cette rubrique">#</a></h3>
+<p>La barre d’état est la bande en bas de la fenêtre. Avec un fichier Python
+ouvert, elle affiche entre autres, à droite :</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>L’indication</p></th>
+<th class="head"><p>Ce qu’elle dit</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Ln</span> <span class="pre">7,</span> <span class="pre">Col</span> <span class="pre">5</span></code></p></td>
+<td><p>la ligne et la colonne du curseur</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Espaces</span> <span class="pre">:</span> <span class="pre">4</span></code></p></td>
+<td><p>l’indentation que VS Code emploie pour ce fichier</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">UTF-8</span></code></p></td>
+<td><p>l’encodage du fichier</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">LF</span></code> ou <code class="docutils literal notranslate"><span class="pre">CRLF</span></code></p></td>
+<td><p>comment les lignes du fichier se terminent</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Python</span></code></p></td>
+<td><p>le langage que l’éditeur a associé au fichier, d’après son extension</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Intitulés à vérifier sur la version de VS Code des postes.</p>
+<p><strong>À noter</strong> : laquelle des deux fins de ligne, <code class="docutils literal notranslate"><span class="pre">LF</span></code> ou <code class="docutils literal notranslate"><span class="pre">CRLF</span></code>, la barre
+d’état affiche pour <code class="docutils literal notranslate"><span class="pre">moyenne.py</span></code>.</p>
+</section>
+</section>
+<section id="corriger-surface-py">
+<h2>3 · Corriger <code class="docutils literal notranslate"><span class="pre">surface.py</span></code><a class="headerlink" href="#corriger-surface-py" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> lancer <code class="docutils literal notranslate"><span class="pre">travail/surface.py</span></code> ; lire le message ; trouver la
+faute dans l’éditeur ; la corriger ; relancer.</p>
+<p><strong>À obtenir :</strong> <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">travail/surface.py</span></code> affiche une surface, et plus
+aucun message d’erreur.</p>
+</div></blockquote>
+<section id="lancer-et-lire-le-message">
+<h3>Lancer et lire le message<a class="headerlink" href="#lancer-et-lire-le-message" title="Lien vers cette rubrique">#</a></h3>
+<p>Dans le terminal de VS Code, taper la commande suivante, puis Entrée :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python travail/surface.py
+</pre></div>
+</div>
+<p>Le message se lit de bas en haut. La dernière ligne donne le genre de
+l’erreur et sa description ; au-dessus, <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&quot;…\travail\surface.py&quot;,</span> <span class="pre">line</span> <span class="pre">6</span></code>
+désigne le fichier et le numéro de la ligne fautive, puis vient la ligne
+elle-même :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>    return aire
+TabError: inconsistent use of tabs and spaces in indentation
+</pre></div>
+</div>
+<p>Dans Git Bash, le séparateur des dossiers s’écrit <code class="docutils literal notranslate"><span class="pre">/</span></code>. Écrit avec <code class="docutils literal notranslate"><span class="pre">\</span></code>,
+<code class="docutils literal notranslate"><span class="pre">travail\surface.py</span></code> y devient <code class="docutils literal notranslate"><span class="pre">travailsurface.py</span></code>, un fichier qui n’existe
+pas.</p>
+</section>
+<section id="trouver-la-faute">
+<h3>Trouver la faute<a class="headerlink" href="#trouver-la-faute" title="Lien vers cette rubrique">#</a></h3>
+<p>Ouvrir <code class="docutils literal notranslate"><span class="pre">travail/surface.py</span></code>, et regarder les lignes 5 et 6, qui forment le
+corps de la fonction <code class="docutils literal notranslate"><span class="pre">surface</span></code>. Elles paraissent alignées. VS Code souligne
+la ligne 6.</p>
+<p><strong>À noter</strong> : ce que VS Code dessine au début de la ligne 5, et au début de
+la ligne 6.</p>
+</section>
+<section id="corriger-et-relancer">
+<h3>Corriger et relancer<a class="headerlink" href="#corriger-et-relancer" title="Lien vers cette rubrique">#</a></h3>
+<ol class="arabic simple">
+<li><p>Au début de la ligne 6, supprimer le blanc qui précède <code class="docutils literal notranslate"><span class="pre">return</span></code>.</p></li>
+<li><p>Taper quatre espaces à la barre d’espace, pour que la ligne soit
+indentée comme la ligne 5, et vérifier que quatre points s’affichent.</p></li>
+<li><p>Enregistrer, <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">S</span></code>, ou attendre l’enregistrement automatique réglé
+au TD 1a. Un point blanc sur l’onglet du fichier signale une modification
+non enregistrée : <code class="docutils literal notranslate"><span class="pre">python</span></code> exécute le fichier tel qu’il est sur le disque.</p></li>
+<li><p>Relancer <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">travail/surface.py</span></code>. La flèche vers le haut du clavier
+rappelle la commande précédente.</p></li>
+</ol>
+<p><strong>Vérification</strong> : le terminal affiche <code class="docutils literal notranslate"><span class="pre">294.0</span></code>, et rien d’autre.</p>
+</section>
+</section>
+<section id="corriger-moyenne-py">
+<h2>4 · Corriger <code class="docutils literal notranslate"><span class="pre">moyenne.py</span></code><a class="headerlink" href="#corriger-moyenne-py" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> lancer <code class="docutils literal notranslate"><span class="pre">travail/moyenne.py</span></code> ; lire le message ; corriger la
+ligne qu’il désigne ; relancer.</p>
+<p><strong>À obtenir :</strong> <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">travail/moyenne.py</span></code> affiche une moyenne, et plus
+aucun message d’erreur.</p>
+</div></blockquote>
+<section id="id1">
+<h3>Lancer et lire le message<a class="headerlink" href="#id1" title="Lien vers cette rubrique">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python travail/moyenne.py
+</pre></div>
+</div>
+<p>Le message désigne la ligne 6. Il la recopie, et place un accent
+circonflexe, <code class="docutils literal notranslate"><span class="pre">^</span></code>, sous l’endroit où Python s’est arrêté :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>    for altitude in altitudes
+                             ^
+SyntaxError: expected ':'
+</pre></div>
+</div>
+<p><strong>À noter</strong> : ce que le message dit attendre, et l’endroit précis que
+désigne le <code class="docutils literal notranslate"><span class="pre">^</span></code>.</p>
+</section>
+<section id="id2">
+<h3>Corriger et relancer<a class="headerlink" href="#id2" title="Lien vers cette rubrique">#</a></h3>
+<ol class="arabic simple">
+<li><p>Passer à l’onglet de <code class="docutils literal notranslate"><span class="pre">moyenne.py</span></code>, et aller à la ligne 6. Son numéro est
+dans la marge de gauche ; <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">G</span></code>, puis <code class="docutils literal notranslate"><span class="pre">6</span></code> et Entrée, y conduit
+directement. VS Code souligne déjà cette ligne.</p></li>
+<li><p>Ajouter à cette ligne le caractère que le message demande, à l’endroit
+qu’il désigne.</p></li>
+<li><p>Enregistrer, puis relancer <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">travail/moyenne.py</span></code>.</p></li>
+</ol>
+<p><strong>Vérification</strong> : le terminal affiche <code class="docutils literal notranslate"><span class="pre">130.05</span></code>, et rien d’autre.</p>
+</section>
+</section>
+<section id="corriger-chemin-py">
+<h2>5 · Corriger <code class="docutils literal notranslate"><span class="pre">chemin.py</span></code><a class="headerlink" href="#corriger-chemin-py" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> lancer <code class="docutils literal notranslate"><span class="pre">travail/chemin.py</span></code> ; lire le message ; remplacer le
+chemin du fichier lu par un chemin relatif ; relancer.</p>
+<p><strong>À obtenir :</strong> <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">travail/chemin.py</span></code> affiche un nombre de
+caractères, et plus aucun message d’erreur.</p>
+</div></blockquote>
+<section id="id3">
+<h3>Lancer et lire le message<a class="headerlink" href="#id3" title="Lien vers cette rubrique">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python travail/chemin.py
+</pre></div>
+</div>
+<p>Le message se termine par :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>FileNotFoundError: [Errno 2] No such file or directory: 'C:/Users/alice/cours1/1a_formats/depart/raven_une_ligne.txt'
+</pre></div>
+</div>
+<p>Ouvrir <code class="docutils literal notranslate"><span class="pre">travail/chemin.py</span></code>. Le programme ouvre un fichier texte, le lit en
+entier, et affiche son nombre de caractères. VS Code ne souligne rien.</p>
+<p><strong>À noter</strong> : à quel poste, et à quel utilisateur, appartient le chemin écrit
+à la ligne 3 ; si ce chemin existe sur le vôtre.</p>
+</section>
+<section id="retrouver-le-fichier-sur-son-poste">
+<h3>Retrouver le fichier sur son poste<a class="headerlink" href="#retrouver-le-fichier-sur-son-poste" title="Lien vers cette rubrique">#</a></h3>
+<p>Le fichier que le programme veut lire est <code class="docutils literal notranslate"><span class="pre">raven_une_ligne.txt</span></code>, le poème du
+TD 1a du cours 1. Sur les postes de la salle, il est ici :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>C:\Users\eleve\Desktop\info01\cours1\1a_formats\depart\raven_une_ligne.txt
+</pre></div>
+</div>
+<p>Le dossier courant du terminal est <code class="docutils literal notranslate"><span class="pre">~/Desktop/info01/cours2/1b_erreurs</span></code>,
+celui que l’invite affiche. Un chemin relatif se lit à partir de ce dossier
+courant : <code class="docutils literal notranslate"><span class="pre">..</span></code> désigne le dossier parent, ici <code class="docutils literal notranslate"><span class="pre">cours2/</span></code>, <code class="docutils literal notranslate"><span class="pre">../..</span></code> le parent de
+celui-ci, <code class="docutils literal notranslate"><span class="pre">info01/</span></code>, et la suite du chemin descend de là jusqu’au fichier.</p>
+</section>
+<section id="id4">
+<h3>Corriger et relancer<a class="headerlink" href="#id4" title="Lien vers cette rubrique">#</a></h3>
+<ol class="arabic">
+<li><p>À la ligne 3 de <code class="docutils literal notranslate"><span class="pre">travail/chemin.py</span></code>, remplacer le texte entre guillemets
+par :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>../../cours1/1a_formats/depart/raven_une_ligne.txt
+</pre></div>
+</div>
+<p>Garder les guillemets, et écrire les séparateurs avec <code class="docutils literal notranslate"><span class="pre">/</span></code>, que Python
+accepte sous Windows comme ailleurs.</p>
+</li>
+<li><p>Enregistrer, puis relancer <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">travail/chemin.py</span></code>, depuis le même
+terminal.</p></li>
+</ol>
+<p><strong>Vérification</strong> : le terminal affiche <code class="docutils literal notranslate"><span class="pre">1341</span> <span class="pre">caractères</span></code>.</p>
+<p>Si le message <code class="docutils literal notranslate"><span class="pre">FileNotFoundError</span></code> revient, avec le nouveau chemin, vérifier
+dans l’ordre : que l’invite se termine par <code class="docutils literal notranslate"><span class="pre">1b_erreurs</span></code> ; que
+<code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">../../cours1/1a_formats/depart</span></code> affiche <code class="docutils literal notranslate"><span class="pre">raven_une_ligne.txt</span></code> ; que le
+chemin ne contient pas de faute de frappe.</p>
+<p><strong>À noter</strong> : à partir de quel dossier le chemin relatif est compté, celui
+du fichier <code class="docutils literal notranslate"><span class="pre">chemin.py</span></code> ou celui du terminal. Pour le vérifier, taper
+<code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">travail</span></code>, puis <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">chemin.py</span></code>, et comparer ; revenir ensuite avec
+<code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">..</span></code>.</p>
+</section>
+</section>
+<section id="ce-que-le-td-fait-constater">
+<h2>Ce que le TD fait constater<a class="headerlink" href="#ce-que-le-td-fait-constater" title="Lien vers cette rubrique">#</a></h2>
+<p>Cette section se lit après avoir fait les étapes.</p>
+<section id="etape-2-ce-que-l-editeur-affiche-des-caracteres-invisibles">
+<h3>Étape 2 : ce que l’éditeur affiche des caractères invisibles<a class="headerlink" href="#etape-2-ce-que-l-editeur-affiche-des-caracteres-invisibles" title="Lien vers cette rubrique">#</a></h3>
+<p>L’affichage des caractères invisibles montre la différence entre un espace
+et une tabulation, qui est dans le fichier et ne se voit pas autrement. Cet
+affichage est le seul moyen de repérer une indentation qui mélange les deux,
+et il resservira avec git, dans la suite de la séance : git signale des
+lignes modifiées qui semblent identiques, et qui ne diffèrent que par des
+espaces et des tabulations.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Unix</span> <span class="pre">(LF)</span></code> et <code class="docutils literal notranslate"><span class="pre">Windows</span> <span class="pre">(CR</span> <span class="pre">LF)</span></code> nomment la façon dont les lignes se
+terminent. Linux et macOS terminent une ligne par un caractère, <code class="docutils literal notranslate"><span class="pre">LF</span></code> (saut
+de ligne, de valeur <code class="docutils literal notranslate"><span class="pre">0A</span></code>) ; Windows par deux, <code class="docutils literal notranslate"><span class="pre">CR</span></code> puis <code class="docutils literal notranslate"><span class="pre">LF</span></code>. Les fichiers du
+TD sont écrits avec <code class="docutils literal notranslate"><span class="pre">LF</span></code> : la barre d’état de VS Code affiche <code class="docutils literal notranslate"><span class="pre">LF</span></code>. Un même
+texte n’a donc pas la même taille selon le système qui l’a enregistré ; la
+partie sur git y revient.</p>
+</section>
+<section id="les-trois-fautes">
+<h3>Les trois fautes<a class="headerlink" href="#les-trois-fautes" title="Lien vers cette rubrique">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fichier</p></th>
+<th class="head"><p>Ce que dit le message</p></th>
+<th class="head"><p>La faute</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">surface.py</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TabError:</span> <span class="pre">inconsistent</span> <span class="pre">use</span> <span class="pre">of</span> <span class="pre">tabs</span> <span class="pre">and</span> <span class="pre">spaces</span> <span class="pre">in</span> <span class="pre">indentation</span></code>, ligne 6</p></td>
+<td><p>la ligne 5 est indentée par quatre espaces, la ligne 6 par une tabulation</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">moyenne.py</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SyntaxError:</span> <span class="pre">expected</span> <span class="pre">':'</span></code>, ligne 6</p></td>
+<td><p>il manque les deux-points à la fin de la ligne du <code class="docutils literal notranslate"><span class="pre">for</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">chemin.py</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">FileNotFoundError:</span> <span class="pre">[Errno</span> <span class="pre">2]</span> <span class="pre">No</span> <span class="pre">such</span> <span class="pre">file</span> <span class="pre">or</span> <span class="pre">directory:</span> <span class="pre">'C:/Users/alice/…'</span></code></p></td>
+<td><p>le chemin est celui du poste d’Alice ; il faut écrire <code class="docutils literal notranslate"><span class="pre">../../cours1/1a_formats/depart/raven_une_ligne.txt</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Messages relevés avec Python 3.12. Une fois corrigés, les trois programmes
+affichent <code class="docutils literal notranslate"><span class="pre">294.0</span></code>, <code class="docutils literal notranslate"><span class="pre">130.05</span></code> et <code class="docutils literal notranslate"><span class="pre">1341</span> <span class="pre">caractères</span></code>.</p>
+<p>Les trois fautes sont rangées par difficulté de lecture. Dans <code class="docutils literal notranslate"><span class="pre">surface.py</span></code>,
+les lignes 5 et 6 sont alignées à l’écran, et diffèrent dans le fichier : la
+ligne 5 commence par quatre espaces, la ligne 6 par une tabulation. Python
+refuse une indentation qui mélange les deux, et seul l’affichage des
+caractères invisibles montre ce mélange à l’écran. Dans <code class="docutils literal notranslate"><span class="pre">moyenne.py</span></code>, le
+message suffit à trouver la faute : il nomme le caractère attendu, <code class="docutils literal notranslate"><span class="pre">:</span></code>,
+et le <code class="docutils literal notranslate"><span class="pre">^</span></code> désigne la fin de la ligne 6, où il manque. En Python, une ligne
+qui ouvre un bloc (<code class="docutils literal notranslate"><span class="pre">for</span></code>, <code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">def</span></code>) se termine par deux-points.</p>
+<p>VS Code souligne les deux premières fautes avant tout lancement : il
+vérifie les règles d’écriture de Python, comme le montre la diapositive
+« Texte brut et règles du langage ». Au cours 1, Notepad++ colorait le même
+code sans rien souligner.</p>
+</section>
+<section id="un-programme-correct-sur-un-autre-poste">
+<h3>Un programme correct sur un autre poste<a class="headerlink" href="#un-programme-correct-sur-un-autre-poste" title="Lien vers cette rubrique">#</a></h3>
+<p>La troisième faute est d’une autre nature. <code class="docutils literal notranslate"><span class="pre">chemin.py</span></code> respecte les règles
+d’écriture du langage, l’éditeur ne souligne rien, et le programme
+fonctionne sur le poste d’Alice, qui l’a écrit. Il échoue ailleurs parce
+qu’il contient un chemin <strong>absolu</strong>, <code class="docutils literal notranslate"><span class="pre">C:/Users/alice/…</span></code>, qui part de la
+racine du disque et n’existe que sur ce poste-là.</p>
+<p>Un chemin <strong>relatif</strong> part du dossier courant, celui où se trouve le
+terminal ; le dossier du fichier <code class="docutils literal notranslate"><span class="pre">.py</span></code> n’intervient pas. Depuis <code class="docutils literal notranslate"><span class="pre">1b_erreurs/</span></code>,
+<code class="docutils literal notranslate"><span class="pre">../../cours1/1a_formats/depart/raven_une_ligne.txt</span></code> remonte de deux
+dossiers, jusqu’à <code class="docutils literal notranslate"><span class="pre">info01/</span></code>, puis descend dans le TD 1a du cours 1. Il
+désigne le bon fichier sur tout poste où les archives des cours sont
+extraites de la même façon, quel que soit le nom de l’utilisateur, et quel
+que soit le système. Lancé depuis <code class="docutils literal notranslate"><span class="pre">travail/</span></code>, le même programme échoue : deux
+dossiers plus haut, on est dans <code class="docutils literal notranslate"><span class="pre">cours2/</span></code>, qui ne contient pas <code class="docutils literal notranslate"><span class="pre">cours1/</span></code>.</p>
+<p>Le dossier dans lequel le terminal a été ouvert, ou celui où <code class="docutils literal notranslate"><span class="pre">cd</span></code> a conduit,
+décide donc de ce que désigne un chemin relatif. Un chemin absolu
+dans un programme est l’erreur la plus fréquente des rendus de code des
+autres cours : le programme ne fonctionne que sur le poste de son auteur.</p>
+</section>
+<section id="ce-que-le-programme-fonctionne-veut-dire-ici">
+<h3>Ce que « le programme fonctionne » veut dire ici<a class="headerlink" href="#ce-que-le-programme-fonctionne-veut-dire-ici" title="Lien vers cette rubrique">#</a></h3>
+<p>La vérification demandée à chaque étape est que le programme se lance et
+n’affiche plus de message d’erreur. Elle ne dit pas que le résultat est
+juste : un programme qui calcule autre chose que ce qu’on voulait s’exécute
+sans message.</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../1a_vscode/guide.html"
+       title="page précédente">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">précédent</p>
+        <p class="prev-next-title">TD 1a — Configurer VS Code</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../2a_markdown/guide.html"
+       title="page suivante">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">suivant</p>
+        <p class="prev-next-title">TD 2a — Une recette en Markdown, convertie par pandoc</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparer-le-dossier-du-td">1 · Préparer le dossier du TD</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-deux-dossiers-du-td">Les deux dossiers du TD</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ouvrir-le-dossier-dans-vs-code">Ouvrir le dossier dans VS Code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#copier-les-fichiers">Copier les fichiers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lire-les-caracteres-invisibles-et-la-barre-d-etat">2 · Lire les caractères invisibles et la barre d’état</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-espaces-dessines">Les espaces dessinés</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-barre-d-etat">La barre d’état</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#corriger-surface-py">3 · Corriger <code class="docutils literal notranslate"><span class="pre">surface.py</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lancer-et-lire-le-message">Lancer et lire le message</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trouver-la-faute">Trouver la faute</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corriger-et-relancer">Corriger et relancer</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#corriger-moyenne-py">4 · Corriger <code class="docutils literal notranslate"><span class="pre">moyenne.py</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Lancer et lire le message</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Corriger et relancer</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#corriger-chemin-py">5 · Corriger <code class="docutils literal notranslate"><span class="pre">chemin.py</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Lancer et lire le message</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retrouver-le-fichier-sur-son-poste">Retrouver le fichier sur son poste</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Corriger et relancer</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-le-td-fait-constater">Ce que le TD fait constater</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-2-ce-que-l-editeur-affiche-des-caracteres-invisibles">Étape 2 : ce que l’éditeur affiche des caractères invisibles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-trois-fautes">Les trois fautes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-programme-correct-sur-un-autre-poste">Un programme correct sur un autre poste</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-le-programme-fonctionne-veut-dire-ici">Ce que « le programme fonctionne » veut dire ici</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par 1re année géomatique
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, module info01 — CC-BY-4.0.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1395 @@
+
+<!DOCTYPE html>
+
+
+<html lang="fr" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>TD 4a — Un script Python, pas à pas &#8212; Introduction à l&#39;informatique</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../../../_static/documentation_options.js?v=72dce1d2"></script>
+    <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../../../../_static/translations.js?v=e6b791cb"></script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cours4/notebook/td/4a_recette/guide';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="../../../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Recherche" href="../../../../search.html" />
+    <link rel="next" title="TD 4b — Un programme installable" href="../4b_paquet/guide.html" />
+    <link rel="prev" title="Travaux dirigés du projet 4" href="../../travaux_diriges.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="fr"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../../../_static/searchtools.js"></script>
+    <script src="../../../../_static/language_data.js"></script>
+    <script src="../../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Passer au contenu principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Haut de page</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Alerte de version"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navigation dans le site">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="Sur cette page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction à l'informatique</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../index.html">
+                    Introduction à l’informatique
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Avant les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/poste.html">Premiers tests du poste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/donnees.html">Récupérer les fichiers d’une séance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/python.html">Anaconda et JupyterLab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/vscode.html">VS Code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Après les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../apres/sauvegarder.html">Sauvegarder son travail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../apres/s_entrainer.html">S’entraîner : jeux et exercices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Séances</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours1_v2/index.html">Séance 1, version 2 — Logiciels, fichiers, terminal et premier programme</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/01_logiciels_stockage.html">Logiciels, fichiers et stockage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/02_terminal.html">Le terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/03_premier_programme.html">Premier programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/04_notebook.html">Un notebook et la syntaxe de Markdown</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours1_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 1, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1b_terminal/guide.html">TD 1b — Les fichiers du TD 1a en ligne de commande</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1c_programme/guide.html">TD 1c — Écrire et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1d_notebook/guide.html">TD 1d — Un notebook dans JupyterLab</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours2_v2/index.html">Séance 2, version 2 — Éditeur de code, Markdown et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/01_editeur_de_code.html">L’éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/02_markdown.html">Une recette en Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/03_git_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/04_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours2_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/2a_vscode/guide.html">TD 2a — Configurer VS Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/2b_erreurs/guide.html">TD 2b — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/2c_markdown/guide.html">TD 2c — Une recette en Markdown, convertie par pandoc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/2d_depot_recette/guide.html">TD 2d — Un dépôt git pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours3/index.html">Séance 3 — Chemins, fichiers et ligne de commande</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/01_chemins_programmes.html">Chemins et programmes externes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/02_fichiers_encodage.html">Fichiers et encodage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/03_du_notebook_au_programme.html">Du notebook au programme</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours3/notebook/travaux_diriges.html">Travaux dirigés de la séance 3</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours3/notebook/td/3e_markdown/guide.html">TD 3e — Une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours3/notebook/td/3f_cli/guide.html">TD 3f — Une ligne de commande pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../../index.html">Séance 4 — Projet d’application 1</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../../travaux_diriges.html">Travaux dirigés du projet 4</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">TD 4a — Un script Python, pas à pas</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../4b_paquet/guide.html">TD 4b — Un programme installable</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours5/index.html">Séance 5 — Matériel, réseau, mots de passe, clés SSH et secrets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/01_materiel.html">Le matériel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/02_reseau.html">Le réseau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/03_prouver_qui_lon_est.html">Prouver qui l’on est</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/04_secrets.html">Les secrets de vos programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/travaux_diriges.html">Travaux dirigés de la séance 5</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cours6/index.html">Séance 6 — La forge, sur le dépôt du projet 4</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours7/index.html">Séance 7 — Projet d’application 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours7/notebook/td/7a_recette/guide.html">TD 7a — Compléter son projet, par des pull requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours7/notebook/td/7b_train/guide.html">TD 7b — Reprendre et compléter le projet d’un autre</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Annexes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/configuration/index.html">Configuration des postes de la salle</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/anaconda.html">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/jupyterlab.html">JupyterLab</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../annexes/configuration/vscode.html">VS Code</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_python.html">Python et environnement conda</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_notebooks.html">Notebooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_reglages.html">Fichiers de réglages</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/git.html">Git et Git Bash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/spyder.html">Spyder</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/poste_personnel/index.html">Configuration d’un ordinateur personnel</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/conda.html">Python et conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/vscode.html">VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/git_outils.html">Git et éditeurs de texte</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/notions/index.html">Notions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/outils.html">Choisir entre JupyterLab, Spyder et VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/notebooks.html">Les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/terminaux.html">Les terminaux en ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/variables_environnement.html">Variables d’environnement et recherche des programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/environnements.html">Les environnements conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/vscode_environnements.html">Comment VS Code gère les environnements Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/git_bash.html">Git Bash : une fenêtre, bash et des programmes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/faq.html">FAQ</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/reseau.html">Problèmes de réseau et de compte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/bureautique.html">Problèmes avec les logiciels de texte et de bureautique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/anaconda.html">Problèmes avec Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/jupyterlab.html">Problèmes avec JupyterLab et les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/vscode.html">Problèmes avec VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/git.html">Problèmes avec git</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/plus_loin/index.html">Pour aller plus loin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/gestionnaires.html">venv, uv et pixi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/cpp.html">C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/programme_interpreteur.html">Programme, application et interpréteur</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Archive 2026</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours1/index.html">Séance 1, 2026 — Logiciel, programmation et formats de fichier</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/01_logiciels_et_formats.html">Logiciels et formats de fichier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/02_programmation.html">Programmation et éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/03_markdown_notebook.html">Markdown et notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/04_bibliotheques_environnements.html">Bibliothèques et environnements Python</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours1/notebook/travaux_diriges.html">Travaux dirigés de la séance 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1b_archive_odt/guide.html">TD 1b — Un .odt est une archive ZIP (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1c_vscode_python/guide.html">TD 1c — Configurer l’éditeur de code, et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1d_erreurs/guide.html">TD 1d — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1e_hello_cpp/guide.html">TD 1e — Le même programme en C++ (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1f_markdown/guide.html">TD 1f — Mettre en forme une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1g_notebooks/guide.html">TD 1g — Le notebook, ouvert de trois façons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1h_recette/guide.html">TD 1h — Installer un projet Python, et décrire son installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1i_noyaux/guide.html">TD 1i — Le client, le noyau, et où ils sont installés (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1j_trajet/guide.html">TD 1j — Installer un projet en lisant son README (facultatif)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/05_comparer_versions.html">Annexe — Comparer deux versions d’un fichier</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours2/index.html">Séance 2, 2026 — Ligne de commande et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/01_ligne_de_commande.html">La ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/02_depot_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/03_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/04_lire_et_tenir_un_depot.html">Lire et tenir un dépôt</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2a_premier_depot/guide.html">TD 2a — Un premier dépôt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2b_branches/guide.html">TD 2b — Branches et fusions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2c_annuler/guide.html">TD 2c — Annuler et remettre à jour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2d_conflits/guide.html">TD 2d — Créer et résoudre un conflit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2e_livrer/guide.html">TD 2e — Publier une version</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Thème">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Thème" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Clair"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Sombre"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="Paramètres système"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>Paramètres système</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Clair</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Sombre</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>TD 4a — Un script Python, pas à pas</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">TD 4a — Un script Python, pas à pas</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#partie-a-le-dossier-du-projet">Partie A · Le dossier du projet</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a1-le-dossier-du-projet-dans-le-terminal">A1 · Le dossier du projet, dans le terminal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a1-1-recuperer-l-archive">A1.1 Récupérer l’archive</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a1-2-ouvrir-git-bash-dans-le-dossier-du-td">A1.2 Ouvrir Git Bash dans le dossier du TD</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a1-3-regarder-le-contenu">A1.3 Regarder le contenu</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a1-4-creer-le-dossier-du-projet-et-y-copier-les-fichiers">A1.4 Créer le dossier du projet et y copier les fichiers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a2-le-projet-dans-vs-code">A2 · Le projet dans VS Code</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a2-1-ouvrir-le-dossier">A2.1 Ouvrir le dossier</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a2-2-git-bash-comme-terminal">A2.2 Git Bash comme terminal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a2-3-afficher-les-espaces-et-les-tabulations">A2.3 Afficher les espaces et les tabulations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a3-le-depot-git">A3 · Le dépôt git</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#partie-b-le-programme">Partie B · Le programme</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b1-corriger-le-programme-de-depart">B1 · Corriger le programme de départ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b2-multiplier-les-quantites">B2 · Multiplier les quantités</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b3-convertir-les-unites">B3 · Convertir les unités</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b4-lire-les-ingredients-dans-un-fichier-csv">B4 · Lire les ingrédients dans un fichier CSV</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b5-ecrire-le-resultat-dans-un-fichier-csv">B5 · Écrire le résultat dans un fichier CSV</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b6-les-valeurs-sur-la-ligne-de-commande">B6 · Les valeurs sur la ligne de commande</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b7-bonus-un-readme-une-etiquette">B7 (bonus) · Un README, une étiquette</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="td-4a-un-script-python-pas-a-pas">
+<h1>TD 4a — Un script Python, pas à pas<a class="headerlink" href="#td-4a-un-script-python-pas-a-pas" title="Lien vers cette rubrique">#</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Les fichiers des TD de la séance sont dans l’archive <a href="../../../../telechargements/info01-cours4.zip">info01-cours4.zip</a>.</p>
+</div>
+<p>Ce guide détaille les étapes de la feuille du TD 4a. Pour chaque étape, il
+indique le dossier dans lequel se placer, ce qu’il faut écrire ou taper, et
+comment vérifier le résultat.</p>
+<p>Le TD revoit les opérations des cours 1 à 3 sur un petit programme. La
+partie A crée le dossier du projet dans le terminal, l’ouvre dans VS Code
+et crée son dépôt git. La partie B écrit le programme <code class="docutils literal notranslate"><span class="pre">recette.py</span></code> étape
+par étape : il calcule les quantités d’une recette pour un nombre de
+personnes, en unités SI ou en unités américaines. Chaque étape se termine
+par un commit.</p>
+<p>Le code de ce guide se copie depuis <code class="docutils literal notranslate"><span class="pre">guide_4a_recette.html</span></code>, ouvert dans un
+navigateur, ou depuis <code class="docutils literal notranslate"><span class="pre">guide.ipynb</span></code>, ouvert dans JupyterLab. Copié depuis le
+PDF, il perd ses indentations.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Étape</p></th>
+<th class="head"><p>Objectif</p></th>
+<th class="head"><p>Commits à la fin</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#a1-le-dossier-du-projet-dans-le-terminal">A1</a></p></td>
+<td><p>créer le dossier du projet dans le terminal</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#a2-le-projet-dans-vs-code">A2</a></p></td>
+<td><p>ouvrir le projet dans VS Code, avec Git Bash pour terminal</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#a3-le-depot-git">A3</a></p></td>
+<td><p>versionner le programme de départ</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#b1-corriger-le-programme-de-depart">B1</a></p></td>
+<td><p>lire un message d’erreur, corriger le programme</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#b2-multiplier-les-quantites">B2</a></p></td>
+<td><p>adapter les quantités à un nombre de personnes</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#b3-convertir-les-unites">B3</a></p></td>
+<td><p>convertir les unités, dans les deux sens</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#b4-lire-les-ingredients-dans-un-fichier-csv">B4</a></p></td>
+<td><p>lire les ingrédients dans un fichier CSV</p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#b5-ecrire-le-resultat-dans-un-fichier-csv">B5</a></p></td>
+<td><p>écrire le résultat dans un fichier CSV</p></td>
+<td><p>7</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#b6-les-valeurs-sur-la-ligne-de-commande">B6</a></p></td>
+<td><p>lire les valeurs sur la ligne de commande</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#b7-bonus-un-readme-une-etiquette">B7</a> (bonus)</p></td>
+<td><p>un README, une étiquette git</p></td>
+<td><p>9</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Le parcours avancé fait ce TD plus vite, puis le TD 4b dans le même dossier.</p>
+</section>
+<section id="partie-a-le-dossier-du-projet">
+<h1>Partie A · Le dossier du projet<a class="headerlink" href="#partie-a-le-dossier-du-projet" title="Lien vers cette rubrique">#</a></h1>
+<section id="a1-le-dossier-du-projet-dans-le-terminal">
+<h2>A1 · Le dossier du projet, dans le terminal<a class="headerlink" href="#a1-le-dossier-du-projet-dans-le-terminal" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> récupérer l’archive de la séance ; ouvrir Git Bash dans <code class="docutils literal notranslate"><span class="pre">cours4/4a_recette/</span></code> ; créer le dossier <code class="docutils literal notranslate"><span class="pre">travail/recette/</span></code> et y copier le programme et les recettes, par des commandes.</p>
+<p><strong>À obtenir :</strong> <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">travail/recette</span></code> affiche <code class="docutils literal notranslate"><span class="pre">recette.py</span></code> et <code class="docutils literal notranslate"><span class="pre">recettes</span></code> ; <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">travail/recette/recettes</span></code> affiche les quatre fichiers CSV.</p>
+</div></blockquote>
+<section id="a1-1-recuperer-l-archive">
+<h3>A1.1 Récupérer l’archive<a class="headerlink" href="#a1-1-recuperer-l-archive" title="Lien vers cette rubrique">#</a></h3>
+<p>Comme au cours 3 : ouvrir le dossier partagé <code class="docutils literal notranslate"><span class="pre">formationTemp</span></code>, copier
+<code class="docutils literal notranslate"><span class="pre">info01-cours4.zip</span></code> sur le Bureau, puis clic droit sur l’archive, Extraire
+tout. Dans le dossier proposé, effacer la fin, <code class="docutils literal notranslate"><span class="pre">\info01-cours4</span></code>, puis
+Extraire. Le dossier extrait est <code class="docutils literal notranslate"><span class="pre">Desktop\cours4</span></code>.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cours4/
+├── 4a_recette/
+│   ├── depart/
+│   │   ├── recette.py           ← le programme de départ
+│   │   ├── recettes/            ← quatre recettes, pour 4 personnes
+│   │   │   ├── cookies.csv
+│   │   │   ├── crepes.csv
+│   │   │   ├── mousse_chocolat.csv
+│   │   │   └── pate_pizza.csv
+│   │   └── modeles/
+│   │       └── README.md        ← le modèle de l'étape B7
+│   ├── travail/                 (vide)
+│   ├── guide_4a_recette.pdf     ← ce guide
+│   └── td_4a_recette.pdf        ← la feuille du TD
+└── 4b_paquet/                   ← le TD 4b, parcours avancé
+</pre></div>
+</div>
+</section>
+<section id="a1-2-ouvrir-git-bash-dans-le-dossier-du-td">
+<h3>A1.2 Ouvrir Git Bash dans le dossier du TD<a class="headerlink" href="#a1-2-ouvrir-git-bash-dans-le-dossier-du-td" title="Lien vers cette rubrique">#</a></h3>
+<p>Dans l’explorateur de fichiers Windows, ouvrir <code class="docutils literal notranslate"><span class="pre">cours4</span></code>, puis clic droit
+sur le dossier <code class="docutils literal notranslate"><span class="pre">4a_recette</span></code>, « Afficher d’autres options », « Open Git Bash
+here ». Une fenêtre Git Bash s’ouvre dans ce dossier.</p>
+<p>À défaut, ouvrir Git Bash depuis le menu Démarrer, puis :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd ~/Desktop/cours4/4a_recette
+</pre></div>
+</div>
+<p><strong>Vérification</strong> :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>pwd
+</pre></div>
+</div>
+<p>affiche <code class="docutils literal notranslate"><span class="pre">/c/Users/eleve/Desktop/cours4/4a_recette</span></code>. Dans Git Bash, les
+chemins s’écrivent avec des <code class="docutils literal notranslate"><span class="pre">/</span></code>, et <code class="docutils literal notranslate"><span class="pre">C:\Users</span></code> devient <code class="docutils literal notranslate"><span class="pre">/c/Users</span></code>.</p>
+</section>
+<section id="a1-3-regarder-le-contenu">
+<h3>A1.3 Regarder le contenu<a class="headerlink" href="#a1-3-regarder-le-contenu" title="Lien vers cette rubrique">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ls
+ls depart
+ls depart/recettes
+</pre></div>
+</div>
+<p><strong>Vérification</strong> : la première commande liste <code class="docutils literal notranslate"><span class="pre">depart</span></code>, <code class="docutils literal notranslate"><span class="pre">travail</span></code> et les
+deux PDF ; la troisième liste les quatre fichiers CSV.</p>
+</section>
+<section id="a1-4-creer-le-dossier-du-projet-et-y-copier-les-fichiers">
+<h3>A1.4 Créer le dossier du projet et y copier les fichiers<a class="headerlink" href="#a1-4-creer-le-dossier-du-projet-et-y-copier-les-fichiers" title="Lien vers cette rubrique">#</a></h3>
+<p>Le projet est un dossier à part, dans <code class="docutils literal notranslate"><span class="pre">travail/</span></code> : les fichiers de
+<code class="docutils literal notranslate"><span class="pre">depart/</span></code> restent tels qu’ils ont été livrés.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mkdir travail/recette
+cp depart/recette.py travail/recette/
+mkdir travail/recette/recettes
+cp depart/recettes/*.csv travail/recette/recettes/
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">mkdir</span></code> crée un dossier. <code class="docutils literal notranslate"><span class="pre">cp</span></code> copie le fichier nommé en premier dans le
+dossier nommé en second. <code class="docutils literal notranslate"><span class="pre">*.csv</span></code> désigne tous les fichiers dont le nom se
+termine par <code class="docutils literal notranslate"><span class="pre">.csv</span></code>. Une commande qui réussit n’affiche rien.</p>
+<p><strong>Vérification</strong> :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ls travail/recette
+ls travail/recette/recettes
+</pre></div>
+</div>
+<p>La première commande affiche <code class="docutils literal notranslate"><span class="pre">recette.py</span></code> et <code class="docutils literal notranslate"><span class="pre">recettes</span></code>, la seconde les
+quatre fichiers CSV. Si <code class="docutils literal notranslate"><span class="pre">cp</span></code> affiche <code class="docutils literal notranslate"><span class="pre">No</span> <span class="pre">such</span> <span class="pre">file</span> <span class="pre">or</span> <span class="pre">directory</span></code>, relire le
+chemin : la touche <code class="docutils literal notranslate"><span class="pre">Tab</span></code> complète les noms de dossiers et de fichiers.</p>
+</section>
+</section>
+<section id="a2-le-projet-dans-vs-code">
+<h2>A2 · Le projet dans VS Code<a class="headerlink" href="#a2-le-projet-dans-vs-code" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> ouvrir <code class="docutils literal notranslate"><span class="pre">travail/recette/</span></code> dans VS Code ; choisir Git Bash comme terminal ; afficher les espaces et les tabulations.</p>
+<p><strong>À obtenir :</strong> le terminal de VS Code a une invite qui commence par <code class="docutils literal notranslate"><span class="pre">(base)</span></code> et se termine par <code class="docutils literal notranslate"><span class="pre">travail/recette</span></code> ; les espaces du code apparaissent sous forme de points.</p>
+</div></blockquote>
+<section id="a2-1-ouvrir-le-dossier">
+<h3>A2.1 Ouvrir le dossier<a class="headerlink" href="#a2-1-ouvrir-le-dossier" title="Lien vers cette rubrique">#</a></h3>
+<p>Lancer VS Code depuis le menu Démarrer. Menu File, Open Folder… : aller dans
+le Bureau, puis <code class="docutils literal notranslate"><span class="pre">cours4</span></code>, <code class="docutils literal notranslate"><span class="pre">4a_recette</span></code>, <code class="docutils literal notranslate"><span class="pre">travail</span></code>, cliquer une fois sur
+<code class="docutils literal notranslate"><span class="pre">recette</span></code>, et « Sélectionner un dossier ». Si VS Code demande si l’on fait
+confiance aux auteurs des fichiers, répondre « Yes, I trust the authors ».</p>
+<p>Le dossier ouvert est le projet : l’explorateur, à gauche, montre ses
+fichiers, et le terminal s’ouvre dans ce dossier.</p>
+</section>
+<section id="a2-2-git-bash-comme-terminal">
+<h3>A2.2 Git Bash comme terminal<a class="headerlink" href="#a2-2-git-bash-comme-terminal" title="Lien vers cette rubrique">#</a></h3>
+<ol class="arabic simple">
+<li><p>Palette de commandes : <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">P</span></code>.</p></li>
+<li><p>Taper <code class="docutils literal notranslate"><span class="pre">default</span> <span class="pre">profile</span></code>, puis choisir « Terminal: Select Default
+Profile ».</p></li>
+<li><p>Choisir « Git Bash ».</p></li>
+<li><p>Menu Terminal, New Terminal.</p></li>
+</ol>
+<p><strong>Vérification</strong> : l’invite du terminal est</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>(base)
+eleve@POSTE MINGW64 ~/Desktop/cours4/4a_recette/travail/recette
+$
+</pre></div>
+</div>
+<p>Si l’invite commence par <code class="docutils literal notranslate"><span class="pre">PS</span></code>, le terminal est PowerShell : le fermer
+(icône de corbeille), puis en ouvrir un nouveau. S’il n’y a pas de
+<code class="docutils literal notranslate"><span class="pre">(base)</span></code>, conda n’est pas encore réglé dans Git Bash sur ce poste. Le
+régler une fois, puis fermer le terminal et en ouvrir un nouveau :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>source /c/ProgramData/anaconda3/etc/profile.d/conda.sh
+conda init bash
+</pre></div>
+</div>
+</section>
+<section id="a2-3-afficher-les-espaces-et-les-tabulations">
+<h3>A2.3 Afficher les espaces et les tabulations<a class="headerlink" href="#a2-3-afficher-les-espaces-et-les-tabulations" title="Lien vers cette rubrique">#</a></h3>
+<p>Réglages : <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">,</span></code>. Dans la zone de recherche, taper <code class="docutils literal notranslate"><span class="pre">render</span> <span class="pre">whitespace</span></code>, et choisir <code class="docutils literal notranslate"><span class="pre">all</span></code> pour « Editor: Render Whitespace ».</p>
+<p><strong>Vérification</strong> : ouvrir <code class="docutils literal notranslate"><span class="pre">recette.py</span></code> dans l’explorateur. Chaque espace du
+code apparaît comme un point gris, et chaque tabulation comme une flèche.
+L’étape B1 s’en sert.</p>
+<p>Sur un thème sombre, les points et les flèches se voient mal. Un thème clair
+les rend plus visibles : <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">K</span></code>, puis <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">T</span></code>, et choisir « Light
+Modern » (ou « Light+ »). Le même choix se trouve dans le menu File,
+Preferences, Theme, Color Theme.</p>
+</section>
+</section>
+<section id="a3-le-depot-git">
+<h2>A3 · Le dépôt git<a class="headerlink" href="#a3-le-depot-git" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> dans le terminal de VS Code : <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span></code>, votre nom et votre adresse pour ce dépôt, un fichier <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> qui contient <code class="docutils literal notranslate"><span class="pre">sortie/</span></code>, puis le premier commit.</p>
+<p><strong>À obtenir :</strong> <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span> <span class="pre">--oneline</span></code> affiche une ligne.</p>
+</div></blockquote>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git init
+git config user.name "Prénom Nom"
+git config user.email "prenom.nom@exemple.fr"
+</pre></div>
+</div>
+<p>Le poste est partagé : le nom et l’adresse sont réglés pour ce dépôt
+seulement, sans <code class="docutils literal notranslate"><span class="pre">--global</span></code>.</p>
+<p>Le programme écrira ses résultats dans un dossier <code class="docutils literal notranslate"><span class="pre">sortie/</span></code>. Ces fichiers
+ne sont pas versionnés, puisque le programme les refait :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>echo "sortie/" &gt; .gitignore
+git status
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">echo</span></code> affiche le texte qui le suit, et <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> écrit cet affichage dans le
+fichier <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>.</p>
+<p><strong>Vérification</strong> : <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> liste <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>, <code class="docutils literal notranslate"><span class="pre">recette.py</span></code> et
+<code class="docutils literal notranslate"><span class="pre">recettes/</span></code> parmi les fichiers non suivis.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git add .
+git commit -m "Le programme de départ et les recettes"
+git log --oneline
+</pre></div>
+</div>
+<p><strong>Vérification</strong> : <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span> <span class="pre">--oneline</span></code> affiche une ligne.</p>
+</section>
+</section>
+<section id="partie-b-le-programme">
+<h1>Partie B · Le programme<a class="headerlink" href="#partie-b-le-programme" title="Lien vers cette rubrique">#</a></h1>
+<p>Le programme se lance dans le terminal de VS Code, dans
+<code class="docutils literal notranslate"><span class="pre">travail/recette/</span></code> : <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">recette.py</span></code>. Chaque étape modifie
+<code class="docutils literal notranslate"><span class="pre">recette.py</span></code>, le relance, puis enregistre l’état du fichier par un commit.</p>
+<p><strong>Les lignes à modifier.</strong> Le guide donne le programme en entier une
+seule fois, à l’étape B1. Pour les étapes suivantes, il ne donne que les
+lignes qui changent, comme dans cet extrait de l’étape B2 :</p>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>  33 # ---- Le programme -------------------------------------------------------------
+<span class="w"> </span>  34
+<span class="gd">-  35 print("Crêpes pour", PERSONNES_RECETTE, "personnes")</span>
+<span class="gd">-  36 afficher(INGREDIENTS)</span>
+<span class="gi">+     # Les valeurs à changer</span>
+<span class="gi">+     PERSONNES = 6             # le nombre de personnes voulu</span>
+</pre></div>
+</div>
+<p>Une ligne marquée <code class="docutils literal notranslate"><span class="pre">-</span></code> est à supprimer, une ligne marquée <code class="docutils literal notranslate"><span class="pre">+</span></code> est à ajouter.
+Les lignes sans signe ne changent pas et indiquent l’endroit de la
+modification. Le signe <code class="docutils literal notranslate"><span class="pre">…</span></code> remplace des lignes qui ne changent pas.</p>
+<p>Le nombre qui suit le signe est le numéro de la ligne dans VS Code, quand
+les modifications sont faites de haut en bas. Une ligne ajoutée n’a pas de
+numéro. Si le fichier n’a pas les mêmes lignes vides que le guide, les
+numéros diffèrent de quelques lignes, et les lignes sans signe permettent
+de retrouver l’endroit.</p>
+<p>Une ligne ajoutée se copie sans le <code class="docutils literal notranslate"><span class="pre">+</span></code> ni les cinq espaces qui le suivent.
+Pour plusieurs lignes, les coller dans VS Code, sélectionner leurs six
+premiers caractères en rectangle (<code class="docutils literal notranslate"><span class="pre">Maj+Alt</span></code> en faisant glisser la souris),
+puis appuyer sur <code class="docutils literal notranslate"><span class="pre">Suppr</span></code>.</p>
+<p><strong>Si une étape échoue.</strong> <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> montre les fichiers modifiés depuis
+le dernier commit. <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span></code> montre les lignes modifiées (<code class="docutils literal notranslate"><span class="pre">q</span></code> pour
+quitter). <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">restore</span> <span class="pre">recette.py</span></code> remet le fichier dans l’état du dernier
+commit.</p>
+<section id="b1-corriger-le-programme-de-depart">
+<h2>B1 · Corriger le programme de départ<a class="headerlink" href="#b1-corriger-le-programme-de-depart" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> lancer <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">recette.py</span></code>, lire le message d’erreur, corriger la ligne qu’il désigne, puis un commit ; recommencer jusqu’à ce que le programme affiche la recette.</p>
+<p><strong>À obtenir :</strong> la recette des crêpes pour 4 personnes s’affiche ; un commit par erreur corrigée.</p>
+</div></blockquote>
+<p>Le programme de départ a trois parties : les données (la recette des crêpes
+écrite dans une liste), les fonctions, puis le programme, qui appelle les
+fonctions. Chaque ingrédient est un tuple de trois valeurs : le nom, la
+quantité et l’unité.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">"""Une recette à l'échelle : les ingrédients pour un nombre de personnes, en unités SI ou US."""</span>
+
+<span class="c1"># ---- Les données -------------------------------------------------------------</span>
+
+<span class="c1"># La recette des crêpes : (ingrédient, quantité, unité)</span>
+<span class="n">INGREDIENTS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">"Farine"</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="s2">"g"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"Lait"</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="s2">"ml"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"Œufs"</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">""</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"Sel"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"g"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"Beurre fondu"</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="s2">"g"</span><span class="p">),</span>
+<span class="p">]</span>
+<span class="n">PERSONNES_RECETTE</span> <span class="o">=</span> <span class="mi">4</span>     <span class="c1"># les recettes sont écrites pour 4 personnes</span>
+
+
+<span class="c1"># ---- Les fonctions -----------------------------------------------------------</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">afficher</span><span class="p">(</span><span class="n">ingredients</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Affiche une ligne par ingrédient : le nom, la quantité et l'unité."""</span>
+    <span class="k">for</span> <span class="n">nom</span><span class="p">,</span> <span class="n">quantite</span><span class="p">,</span> <span class="n">unite</span> <span class="ow">in</span> <span class="n">ingredients</span>
+	<span class="nb">print</span><span class="p">(</span><span class="n">nom</span><span class="p">,</span> <span class="s2">":"</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">quantite</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">unite</span><span class="p">)</span>
+
+
+<span class="c1"># ---- Le programme -------------------------------------------------------------</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Crêpes pour"</span><span class="p">,</span> <span class="n">PERSONNES_RECETTE</span><span class="p">,</span> <span class="s2">"personnes"</span><span class="p">)</span>
+<span class="n">afficher</span><span class="p">(</span><span class="n">INGREDIENTS</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Lancer le programme :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python recette.py
+</pre></div>
+</div>
+<p>Python s’arrête sur une erreur :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>  File "C:\Users\eleve\Desktop\cours4\4a_recette\travail\recette\recette.py", line 20
+    for nom, quantite, unite in ingredients
+                                           ^
+SyntaxError: expected ':'
+</pre></div>
+</div>
+<p>Le message donne le fichier et le numéro de la ligne, recopie la ligne,
+puis nomme l’erreur. <code class="docutils literal notranslate"><span class="pre">SyntaxError:</span> <span class="pre">expected</span> <span class="pre">':'</span></code> signale un deux-points
+manquant : une ligne <code class="docutils literal notranslate"><span class="pre">for</span></code> se termine par <code class="docutils literal notranslate"><span class="pre">:</span></code>. Corriger la ligne 20 et
+enregistrer (<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">S</span></code>). Chaque correction a son commit :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git diff
+git commit -am "Correction : le deux-points de la boucle"
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span></code> montre la ligne corrigée, en rouge avant et en vert après. <code class="docutils literal notranslate"><span class="pre">-a</span></code>
+ajoute au commit les fichiers déjà suivis et modifiés.</p>
+<p>Relancer le programme. Python s’arrête sur une seconde erreur :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>  File "C:\Users\eleve\Desktop\cours4\4a_recette\travail\recette\recette.py", line 21
+    print(nom, ":", round(quantite, 1), unite)
+TabError: inconsistent use of tabs and spaces in indentation
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">TabError</span></code> signale un mélange d’espaces et de tabulations dans
+l’indentation d’un même bloc. Avec le réglage de l’étape A2, la ligne 21
+commence par une flèche (une tabulation), et les autres lignes par des
+points (des espaces). Effacer la flèche et la remplacer par huit espaces.</p>
+<p><strong>Vérification</strong> : <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">recette.py</span></code> affiche</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Crêpes pour 4 personnes
+Farine : 250 g
+Lait : 500 ml
+Œufs : 4 
+Sel : 2 g
+Beurre fondu : 50 g
+</pre></div>
+</div>
+<p>La barre d’état de VS Code, en bas à droite, indique <code class="docutils literal notranslate"><span class="pre">Spaces:</span> <span class="pre">4</span></code> : la
+touche <code class="docutils literal notranslate"><span class="pre">Tab</span></code> insère quatre espaces dans ce fichier.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git diff
+git commit -am "Correction : l'indentation de la ligne 21"
+git log --oneline
+</pre></div>
+</div>
+<p><strong>Vérification</strong> : <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span> <span class="pre">--oneline</span></code> affiche trois lignes, une par
+commit.</p>
+</section>
+<section id="b2-multiplier-les-quantites">
+<h2>B2 · Multiplier les quantités<a class="headerlink" href="#b2-multiplier-les-quantites" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> écrire la fonction <code class="docutils literal notranslate"><span class="pre">adapter</span></code>, qui reçoit le nombre de personnes de la recette et le nombre voulu, et renvoie les ingrédients pour ce nombre ; l’appeler pour 6 personnes ; un commit.</p>
+<p><strong>À obtenir :</strong> <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">recette.py</span></code> affiche la recette pour 6 personnes, avec <code class="docutils literal notranslate"><span class="pre">Farine</span> <span class="pre">:</span> <span class="pre">375.0</span> <span class="pre">g</span></code> ; un commit.</p>
+</div></blockquote>
+<p>La recette est écrite pour 4 personnes (<code class="docutils literal notranslate"><span class="pre">PERSONNES_RECETTE</span></code>). Pour
+6 personnes, chaque quantité est multipliée par 6 / 4 = 1,5. La fonction
+<code class="docutils literal notranslate"><span class="pre">adapter</span></code> reçoit les deux nombres de personnes, celui de la recette et celui
+voulu, et calcule ce facteur.</p>
+<p>Elle parcourt ensuite la liste des ingrédients avec une boucle <code class="docutils literal notranslate"><span class="pre">for</span></code>, comme
+<code class="docutils literal notranslate"><span class="pre">afficher</span></code>. Elle construit une nouvelle liste, <code class="docutils literal notranslate"><span class="pre">resultat</span></code>, un ingrédient à
+la fois, avec <code class="docutils literal notranslate"><span class="pre">append</span></code>, et la renvoie.</p>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>  22
+<span class="w"> </span>  23
+<span class="gi">+     def adapter(ingredients, personnes_recette, personnes):</span>
+<span class="gi">+         """Les ingrédients pour `personnes` personnes, d'une recette écrite pour `personnes_recette` personnes."""</span>
+<span class="gi">+         facteur = personnes / personnes_recette</span>
+<span class="gi">+         resultat = []</span>
+<span class="gi">+         for nom, quantite, unite in ingredients:</span>
+<span class="gi">+             resultat.append((nom, quantite * facteur, unite))</span>
+<span class="gi">+         return resultat</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="w"> </span>  33 # ---- Le programme -------------------------------------------------------------
+<span class="w"> </span>  34
+<span class="gd">-  35 print("Crêpes pour", PERSONNES_RECETTE, "personnes")</span>
+<span class="gd">-  36 afficher(INGREDIENTS)</span>
+<span class="gi">+     # Les valeurs à changer</span>
+<span class="gi">+     PERSONNES = 6             # le nombre de personnes voulu</span>
+<span class="gi">+</span>
+<span class="gi">+     ingredients = adapter(INGREDIENTS, PERSONNES_RECETTE, PERSONNES)</span>
+<span class="gi">+</span>
+<span class="gi">+     print("Crêpes pour", PERSONNES, "personnes")</span>
+<span class="gi">+     afficher(ingredients)</span>
+</pre></div>
+</div>
+<p><strong>Vérification</strong> : <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">recette.py</span></code> affiche</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Crêpes pour 6 personnes
+Farine : 375.0 g
+Lait : 750.0 ml
+Œufs : 6.0 
+Sel : 3.0 g
+Beurre fondu : 75.0 g
+</pre></div>
+</div>
+<p>Avec <code class="docutils literal notranslate"><span class="pre">PERSONNES</span> <span class="pre">=</span> <span class="pre">4</span></code>, les quantités sont celles de départ ; avec
+<code class="docutils literal notranslate"><span class="pre">PERSONNES</span> <span class="pre">=</span> <span class="pre">2</span></code>, elles sont divisées par deux. Remettre <code class="docutils literal notranslate"><span class="pre">PERSONNES</span> <span class="pre">=</span> <span class="pre">6</span></code>
+avant le commit.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git commit -am "Les quantités pour un nombre de personnes"
+</pre></div>
+</div>
+</section>
+<section id="b3-convertir-les-unites">
+<h2>B3 · Convertir les unités<a class="headerlink" href="#b3-convertir-les-unites" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> écrire les deux tables de conversion et la fonction <code class="docutils literal notranslate"><span class="pre">convertir</span></code> ; convertir la recette en unités américaines ; un commit.</p>
+<p><strong>À obtenir :</strong> <code class="docutils literal notranslate"><span class="pre">Farine</span> <span class="pre">:</span> <span class="pre">13.2</span> <span class="pre">oz</span></code> et <code class="docutils literal notranslate"><span class="pre">Lait</span> <span class="pre">:</span> <span class="pre">3.2</span> <span class="pre">cup</span></code> ; les œufs gardent leur quantité ; un commit.</p>
+</div></blockquote>
+<p>Une recette américaine donne les masses en onces (<code class="docutils literal notranslate"><span class="pre">oz</span></code>) et les volumes en
+tasses (<code class="docutils literal notranslate"><span class="pre">cup</span></code>) : 1 oz = 28,3495 g et 1 cup = 236,588 ml. Deux dictionnaires
+donnent, pour chaque unité, l’unité de l’autre système et le nombre par
+lequel multiplier la quantité. <code class="docutils literal notranslate"><span class="pre">VERS_US[&quot;g&quot;]</span></code> vaut <code class="docutils literal notranslate"><span class="pre">(&quot;oz&quot;,</span> <span class="pre">1</span> <span class="pre">/</span> <span class="pre">28.3495)</span></code>.</p>
+<p>La fonction <code class="docutils literal notranslate"><span class="pre">convertir</span></code> reçoit l’une des deux tables. Une unité absente de
+la table, comme l’unité vide des œufs, ne change pas.</p>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>  12 ]
+<span class="w"> </span>  13 PERSONNES_RECETTE = 4     # les recettes sont écrites pour 4 personnes
+<span class="gi">+</span>
+<span class="gi">+     # Pour chaque unité : l'unité de l'autre système, et le nombre par lequel</span>
+<span class="gi">+     # multiplier la quantité</span>
+<span class="gi">+     VERS_US = {"g": ("oz", 1 / 28.3495), "ml": ("cup", 1 / 236.588)}</span>
+<span class="gi">+     VERS_SI = {"oz": ("g", 28.3495), "cup": ("ml", 236.588)}</span>
+<span class="w"> </span>  19
+<span class="w"> </span>  20
+<span class="w"> </span>   …
+<span class="w"> </span>  36
+<span class="w"> </span>  37
+<span class="gi">+     def convertir(ingredients, table):</span>
+<span class="gi">+         """Les ingrédients, chaque unité présente dans `table` remplacée par celle de l'autre système."""</span>
+<span class="gi">+         resultat = []</span>
+<span class="gi">+         for nom, quantite, unite in ingredients:</span>
+<span class="gi">+             if unite in table:</span>
+<span class="gi">+                 nouvelle_unite, facteur = table[unite]</span>
+<span class="gi">+                 resultat.append((nom, quantite * facteur, nouvelle_unite))</span>
+<span class="gi">+             else:</span>
+<span class="gi">+                 resultat.append((nom, quantite, unite))</span>
+<span class="gi">+         return resultat</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="w"> </span>  50 # ---- Le programme -------------------------------------------------------------
+<span class="w"> </span>  51
+<span class="w"> </span>  52 # Les valeurs à changer
+<span class="w"> </span>  53 PERSONNES = 6             # le nombre de personnes voulu
+<span class="gi">+     UNITES = "US"             # le système d'unités voulu : "SI" ou "US"</span>
+<span class="w"> </span>  55
+<span class="w"> </span>  56 ingredients = adapter(INGREDIENTS, PERSONNES_RECETTE, PERSONNES)
+<span class="w"> </span>  57
+<span class="gd">-  58 print("Crêpes pour", PERSONNES, "personnes")</span>
+<span class="gi">+     if UNITES == "US":</span>
+<span class="gi">+         ingredients = convertir(ingredients, VERS_US)</span>
+<span class="gi">+     else:</span>
+<span class="gi">+         ingredients = convertir(ingredients, VERS_SI)</span>
+<span class="gi">+</span>
+<span class="gi">+     print("Crêpes pour", PERSONNES, "personnes, en unités", UNITES)</span>
+<span class="w"> </span>  64 afficher(ingredients)
+</pre></div>
+</div>
+<p><strong>Vérification</strong> : <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">recette.py</span></code> affiche</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Crêpes pour 6 personnes, en unités US
+Farine : 13.2 oz
+Lait : 3.2 cup
+Œufs : 6.0 
+Sel : 0.1 oz
+Beurre fondu : 2.6 oz
+</pre></div>
+</div>
+<p>Avec <code class="docutils literal notranslate"><span class="pre">UNITES</span> <span class="pre">=</span> <span class="pre">&quot;SI&quot;</span></code>, les quantités sont celles de l’étape B2 : la recette
+est déjà en grammes et en millilitres, et <code class="docutils literal notranslate"><span class="pre">VERS_SI</span></code> ne contient ni <code class="docutils literal notranslate"><span class="pre">g</span></code> ni
+<code class="docutils literal notranslate"><span class="pre">ml</span></code>. La conversion des unités américaines vers le SI sert à l’étape B4,
+avec la recette des cookies. Remettre <code class="docutils literal notranslate"><span class="pre">UNITES</span> <span class="pre">=</span> <span class="pre">&quot;US&quot;</span></code> avant le commit.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git commit -am "La conversion des unités"
+</pre></div>
+</div>
+</section>
+<section id="b4-lire-les-ingredients-dans-un-fichier-csv">
+<h2>B4 · Lire les ingrédients dans un fichier CSV<a class="headerlink" href="#b4-lire-les-ingredients-dans-un-fichier-csv" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> écrire la fonction <code class="docutils literal notranslate"><span class="pre">lire_ingredients</span></code>, qui lit un fichier de <code class="docutils literal notranslate"><span class="pre">recettes/</span></code> ; supprimer la liste initiale des ingrédients, <code class="docutils literal notranslate"><span class="pre">INGREDIENTS</span></code> ; un commit.</p>
+<p><strong>À obtenir :</strong> la même sortie qu’à l’étape B3, lue dans <code class="docutils literal notranslate"><span class="pre">recettes/crepes.csv</span></code> ; <code class="docutils literal notranslate"><span class="pre">NOM</span> <span class="pre">=</span> <span class="pre">&quot;cookies&quot;</span></code> et <code class="docutils literal notranslate"><span class="pre">UNITES</span> <span class="pre">=</span> <span class="pre">&quot;SI&quot;</span></code> donnent des grammes et des millilitres ; un commit.</p>
+</div></blockquote>
+<p>Ouvrir <code class="docutils literal notranslate"><span class="pre">recettes/crepes.csv</span></code> dans VS Code :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ingredient,quantite,unite
+Farine,250,g
+Lait,500,ml
+Œufs,4,
+Sel,2,g
+Beurre fondu,50,g
+</pre></div>
+</div>
+<p>La première ligne nomme les colonnes, les suivantes donnent un ingrédient
+chacune. La bibliothèque <code class="docutils literal notranslate"><span class="pre">csv</span></code> découpe chaque ligne en une liste de chaînes
+(notebook <code class="docutils literal notranslate"><span class="pre">fichiers.ipynb</span></code> du cours 3, section 10 ; documentation
+officielle : <a class="reference external" href="https://docs.python.org/fr/3/library/csv.html">https://docs.python.org/fr/3/library/csv.html</a>). <code class="docutils literal notranslate"><span class="pre">next(lecteur)</span></code> lit la
+première ligne et la laisse de côté. <code class="docutils literal notranslate"><span class="pre">float</span></code> convertit la quantité, lue
+comme une chaîne, en nombre.</p>
+<p>Les chemins se construisent avec <code class="docutils literal notranslate"><span class="pre">pathlib</span></code>, à partir du dossier du script.
+<code class="docutils literal notranslate"><span class="pre">__file__</span></code> est le chemin du fichier <code class="docutils literal notranslate"><span class="pre">recette.py</span></code> en cours d’exécution, et
+<code class="docutils literal notranslate"><span class="pre">.parent</span></code> le dossier qui le contient, <code class="docutils literal notranslate"><span class="pre">travail/recette/</span></code>. <code class="docutils literal notranslate"><span class="pre">/</span></code> ajoute un nom
+au chemin. Construits ainsi, les chemins ne dépendent pas du dossier du
+terminal, et le programme trouve <code class="docutils literal notranslate"><span class="pre">recettes/</span></code> d’où qu’on le lance.</p>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>   1 """Une recette à l'échelle : les ingrédients pour un nombre de personnes, en unités SI ou US."""
+<span class="gi">+</span>
+<span class="gi">+     import csv</span>
+<span class="gi">+     from pathlib import Path</span>
+<span class="w"> </span>   5
+<span class="w"> </span>   6 # ---- Les données -------------------------------------------------------------
+<span class="w"> </span>   7
+<span class="gd">-   8 # La recette des crêpes : (ingrédient, quantité, unité)</span>
+<span class="gd">-   9 INGREDIENTS = [</span>
+<span class="gd">-  10     ("Farine", 250, "g"),</span>
+<span class="gd">-  11     ("Lait", 500, "ml"),</span>
+<span class="gd">-  12     ("Œufs", 4, ""),</span>
+<span class="gd">-  13     ("Sel", 2, "g"),</span>
+<span class="gd">-  14     ("Beurre fondu", 50, "g"),</span>
+<span class="gd">-  15 ]</span>
+<span class="w"> </span>   8 PERSONNES_RECETTE = 4     # les recettes sont écrites pour 4 personnes
+<span class="w"> </span>   9
+<span class="w"> </span>   …
+<span class="w"> </span>  13 VERS_SI = {"oz": ("g", 28.3495), "cup": ("ml", 236.588)}
+<span class="w"> </span>  14
+<span class="gi">+     # Les chemins partent du dossier du script : __file__ est le chemin de ce fichier</span>
+<span class="gi">+     RACINE = Path(__file__).parent</span>
+<span class="gi">+     DONNEES = RACINE / "recettes"</span>
+<span class="gi">+</span>
+<span class="w"> </span>  19
+<span class="w"> </span>  20 # ---- Les fonctions -----------------------------------------------------------
+<span class="gi">+</span>
+<span class="gi">+     def lire_ingredients(chemin):</span>
+<span class="gi">+         """Les ingrédients du fichier CSV : une liste de (ingrédient, quantité, unité)."""</span>
+<span class="gi">+         ingredients = []</span>
+<span class="gi">+         with open(chemin, encoding="utf-8", newline="") as fichier:</span>
+<span class="gi">+             lecteur = csv.reader(fichier)</span>
+<span class="gi">+             next(lecteur)             # la première ligne nomme les colonnes</span>
+<span class="gi">+             for nom, quantite, unite in lecteur:</span>
+<span class="gi">+                 ingredients.append((nom, float(quantite), unite))</span>
+<span class="gi">+         return ingredients</span>
+<span class="gi">+</span>
+<span class="w"> </span>  32
+<span class="w"> </span>  33 def afficher(ingredients):
+<span class="w"> </span>   …
+<span class="w"> </span>  61
+<span class="w"> </span>  62 # Les valeurs à changer
+<span class="gi">+     NOM = "crepes"            # la recette : un fichier de recettes/, sans .csv</span>
+<span class="w"> </span>  64 PERSONNES = 6             # le nombre de personnes voulu
+<span class="w"> </span>  65 UNITES = "US"             # le système d'unités voulu : "SI" ou "US"
+<span class="w"> </span>  66
+<span class="gd">-  67 ingredients = adapter(INGREDIENTS, PERSONNES_RECETTE, PERSONNES)</span>
+<span class="gi">+     ingredients = lire_ingredients(DONNEES / (NOM + ".csv"))</span>
+<span class="gi">+     ingredients = adapter(ingredients, PERSONNES_RECETTE, PERSONNES)</span>
+<span class="w"> </span>  69
+<span class="w"> </span>  70 if UNITES == "US":
+<span class="w"> </span>   …
+<span class="w"> </span>  73     ingredients = convertir(ingredients, VERS_SI)
+<span class="w"> </span>  74
+<span class="gd">-  75 print("Crêpes pour", PERSONNES, "personnes, en unités", UNITES)</span>
+<span class="gi">+     print(NOM, "pour", PERSONNES, "personnes, en unités", UNITES)</span>
+<span class="w"> </span>  76 afficher(ingredients)
+</pre></div>
+</div>
+<p><strong>Vérification</strong> : <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">recette.py</span></code> affiche la même recette qu’à l’étape
+B3, lue cette fois dans le fichier :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>crepes pour 6 personnes, en unités US
+Farine : 13.2 oz
+Lait : 3.2 cup
+Œufs : 6.0 
+Sel : 0.1 oz
+Beurre fondu : 2.6 oz
+</pre></div>
+</div>
+<p>Avec <code class="docutils literal notranslate"><span class="pre">NOM</span> <span class="pre">=</span> <span class="pre">&quot;cookies&quot;</span></code> et <code class="docutils literal notranslate"><span class="pre">UNITES</span> <span class="pre">=</span> <span class="pre">&quot;SI&quot;</span></code>, la recette américaine est
+convertie en grammes et en millilitres :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cookies pour 6 personnes, en unités SI
+Farine : 532.3 ml
+Beurre mou : 170.1 g
+Sucre roux : 148.8 g
+Œufs : 1.5 
+Pépites de chocolat : 212.6 g
+Pincée de sel : 1.5 
+</pre></div>
+</div>
+<p>Remettre <code class="docutils literal notranslate"><span class="pre">NOM</span> <span class="pre">=</span> <span class="pre">&quot;crepes&quot;</span></code> et <code class="docutils literal notranslate"><span class="pre">UNITES</span> <span class="pre">=</span> <span class="pre">&quot;US&quot;</span></code> avant le commit.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git commit -am "Les ingrédients lus dans un fichier CSV"
+</pre></div>
+</div>
+</section>
+<section id="b5-ecrire-le-resultat-dans-un-fichier-csv">
+<h2>B5 · Écrire le résultat dans un fichier CSV<a class="headerlink" href="#b5-ecrire-le-resultat-dans-un-fichier-csv" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> écrire la fonction <code class="docutils literal notranslate"><span class="pre">ecrire_ingredients</span></code> ; écrire la recette calculée dans <code class="docutils literal notranslate"><span class="pre">sortie/</span></code> ; un commit.</p>
+<p><strong>À obtenir :</strong> <code class="docutils literal notranslate"><span class="pre">sortie/crepes_6_US.csv</span></code>, avec les mêmes colonnes que les fichiers de <code class="docutils literal notranslate"><span class="pre">recettes/</span></code> ; <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> ne liste pas <code class="docutils literal notranslate"><span class="pre">sortie/</span></code> ; un commit.</p>
+</div></blockquote>
+<p><code class="docutils literal notranslate"><span class="pre">open(chemin,</span> <span class="pre">&quot;w&quot;,</span> <span class="pre">…)</span></code> ouvre le fichier en écriture : il est créé, ou vidé
+s’il existe (notebook <code class="docutils literal notranslate"><span class="pre">fichiers.ipynb</span></code>, section 9). <code class="docutils literal notranslate"><span class="pre">csv.writer</span></code> écrit
+chaque liste passée à <code class="docutils literal notranslate"><span class="pre">writerow</span></code> sur une ligne (documentation officielle du
+module <code class="docutils literal notranslate"><span class="pre">csv</span></code> : <a class="reference external" href="https://docs.python.org/fr/3/library/csv.html">https://docs.python.org/fr/3/library/csv.html</a>), les valeurs séparées par
+des virgules. <code class="docutils literal notranslate"><span class="pre">SORTIE.mkdir(exist_ok=True)</span></code> crée le dossier <code class="docutils literal notranslate"><span class="pre">sortie/</span></code> s’il
+n’existe pas encore.</p>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>  16 RACINE = Path(__file__).parent
+<span class="w"> </span>  17 DONNEES = RACINE / "recettes"
+<span class="gi">+     SORTIE = RACINE / "sortie"</span>
+<span class="w"> </span>  19
+<span class="w"> </span>  20
+<span class="w"> </span>   …
+<span class="w"> </span>  30             ingredients.append((nom, float(quantite), unite))
+<span class="w"> </span>  31     return ingredients
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="gi">+     def ecrire_ingredients(chemin, ingredients):</span>
+<span class="gi">+         """Écrit les ingrédients dans un fichier CSV, avec les mêmes colonnes que les fichiers lus."""</span>
+<span class="gi">+         with open(chemin, "w", encoding="utf-8", newline="") as fichier:</span>
+<span class="gi">+             ecrivain = csv.writer(fichier)</span>
+<span class="gi">+             ecrivain.writerow(["ingredient", "quantite", "unite"])</span>
+<span class="gi">+             for nom, quantite, unite in ingredients:</span>
+<span class="gi">+                 ecrivain.writerow([nom, round(quantite, 1), unite])</span>
+<span class="w"> </span>  41
+<span class="w"> </span>  42
+<span class="w"> </span>   …
+<span class="w"> </span>  85 print(NOM, "pour", PERSONNES, "personnes, en unités", UNITES)
+<span class="w"> </span>  86 afficher(ingredients)
+<span class="gi">+</span>
+<span class="gi">+     # Le résultat, dans sortie/</span>
+<span class="gi">+     SORTIE.mkdir(exist_ok=True)</span>
+<span class="gi">+     fichier = SORTIE / (NOM + "_" + str(PERSONNES) + "_" + UNITES + ".csv")</span>
+<span class="gi">+     ecrire_ingredients(fichier, ingredients)</span>
+<span class="gi">+     print("écrit :", fichier)</span>
+</pre></div>
+</div>
+<p><strong>Vérification</strong> : <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">recette.py</span></code> affiche la recette, puis</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>écrit : C:\Users\eleve\Desktop\cours4\4a_recette\travail\recette\sortie\crepes_6_US.csv
+</pre></div>
+</div>
+<p>Ouvrir <code class="docutils literal notranslate"><span class="pre">sortie/crepes_6_US.csv</span></code> dans VS Code :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ingredient,quantite,unite
+Farine,13.2,oz
+Lait,3.2,cup
+Œufs,6.0,
+Sel,0.1,oz
+Beurre fondu,2.6,oz
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> ne liste pas <code class="docutils literal notranslate"><span class="pre">sortie/</span></code>, écarté par <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git commit -am "Le résultat écrit dans un fichier CSV"
+</pre></div>
+</div>
+</section>
+<section id="b6-les-valeurs-sur-la-ligne-de-commande">
+<h2>B6 · Les valeurs sur la ligne de commande<a class="headerlink" href="#b6-les-valeurs-sur-la-ligne-de-commande" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> remplacer les trois valeurs écrites dans le programme par trois arguments lus par <code class="docutils literal notranslate"><span class="pre">argparse</span></code> ; un commit.</p>
+<p><strong>À obtenir :</strong> <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">recette.py</span> <span class="pre">cookies</span> <span class="pre">-p</span> <span class="pre">8</span> <span class="pre">-u</span> <span class="pre">SI</span></code> écrit <code class="docutils literal notranslate"><span class="pre">sortie/cookies_8_SI.csv</span></code> ; <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">recette.py</span> <span class="pre">--help</span></code> décrit les trois arguments ; un commit.</p>
+</div></blockquote>
+<p>Pour changer de recette, de nombre de personnes ou d’unités, il faut
+jusqu’ici modifier les trois valeurs dans le code. <code class="docutils literal notranslate"><span class="pre">argparse</span></code> (cours 3) les
+lit sur la ligne de commande, au lancement. Les fonctions et le calcul ne
+changent pas. <code class="docutils literal notranslate"><span class="pre">nom</span></code> est un argument obligatoire. <code class="docutils literal notranslate"><span class="pre">-p</span></code> et <code class="docutils literal notranslate"><span class="pre">-u</span></code> sont des
+options, avec une valeur par défaut. <code class="docutils literal notranslate"><span class="pre">choices</span></code> limite les valeurs
+possibles, et <code class="docutils literal notranslate"><span class="pre">type=int</span></code> convertit la valeur lue en nombre entier.</p>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>   1 """Une recette à l'échelle : les ingrédients pour un nombre de personnes, en unités SI ou US."""
+<span class="w"> </span>   2
+<span class="gi">+     import argparse</span>
+<span class="w"> </span>   4 import csv
+<span class="w"> </span>   5 from pathlib import Path
+<span class="w"> </span>   …
+<span class="w"> </span>  71 # ---- Le programme -------------------------------------------------------------
+<span class="w"> </span>  72
+<span class="gd">-  73 # Les valeurs à changer</span>
+<span class="gd">-  74 NOM = "crepes"            # la recette : un fichier de recettes/, sans .csv</span>
+<span class="gd">-  75 PERSONNES = 6             # le nombre de personnes voulu</span>
+<span class="gd">-  76 UNITES = "US"             # le système d'unités voulu : "SI" ou "US"</span>
+<span class="gi">+     # Les valeurs viennent de la ligne de commande</span>
+<span class="gi">+     analyseur = argparse.ArgumentParser(description="Les ingrédients d'une recette pour un nombre de personnes, en unités SI ou US.")</span>
+<span class="gi">+     analyseur.add_argument("nom", help="la recette : un fichier de recettes/, sans .csv")</span>
+<span class="gi">+     analyseur.add_argument("-p", "--personnes", type=int, default=4, help="nombre de personnes (défaut : 4)")</span>
+<span class="gi">+     analyseur.add_argument("-u", "--unites", choices=("SI", "US"), default="SI", help="système d'unités (défaut : SI)")</span>
+<span class="gi">+     options = analyseur.parse_args()</span>
+<span class="gi">+     NOM = options.nom</span>
+<span class="gi">+     PERSONNES = options.personnes</span>
+<span class="gi">+     UNITES = options.unites</span>
+<span class="w"> </span>  82
+<span class="w"> </span>  83 ingredients = lire_ingredients(DONNEES / (NOM + ".csv"))
+</pre></div>
+</div>
+<p><strong>Vérifications</strong> :</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Commande</p></th>
+<th class="head"><p>Ce qui doit s’afficher</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">recette.py</span> <span class="pre">cookies</span> <span class="pre">-p</span> <span class="pre">8</span> <span class="pre">-u</span> <span class="pre">SI</span></code></p></td>
+<td><p>la recette des cookies pour 8 personnes, en grammes et en millilitres, puis <code class="docutils literal notranslate"><span class="pre">écrit</span> <span class="pre">:</span> <span class="pre">…\sortie\cookies_8_SI.csv</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">recette.py</span> <span class="pre">crepes</span></code></p></td>
+<td><p>la recette pour 4 personnes en SI, les valeurs par défaut</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">recette.py</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">error:</span> <span class="pre">the</span> <span class="pre">following</span> <span class="pre">arguments</span> <span class="pre">are</span> <span class="pre">required:</span> <span class="pre">nom</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">recette.py</span> <span class="pre">crepes</span> <span class="pre">-u</span> <span class="pre">FR</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">error:</span> <span class="pre">argument</span> <span class="pre">-u/--unites:</span> <span class="pre">invalid</span> <span class="pre">choice:</span> <span class="pre">'FR'</span> <span class="pre">(choose</span> <span class="pre">from</span> <span class="pre">'SI',</span> <span class="pre">'US')</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">recette.py</span> <span class="pre">--help</span></code></p></td>
+<td><p>l’aide : les trois arguments et leur texte</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Un nom de recette inconnu arrête le programme sur une erreur, dont la
+dernière ligne donne la cause :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python recette.py gaufres
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\eleve\\Desktop\\cours4\\4a_recette\\travail\\recette\\recettes\\gaufres.csv'
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git commit -am "Les valeurs lues sur la ligne de commande"
+</pre></div>
+</div>
+</section>
+<section id="b7-bonus-un-readme-une-etiquette">
+<h2>B7 (bonus) · Un README, une étiquette<a class="headerlink" href="#b7-bonus-un-readme-une-etiquette" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> compléter un README à partir du modèle ; poser l’étiquette <code class="docutils literal notranslate"><span class="pre">v1.0</span></code> sur le dernier commit.</p>
+<p><strong>À obtenir :</strong> <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span> <span class="pre">--oneline</span></code> affiche neuf lignes, la première marquée <code class="docutils literal notranslate"><span class="pre">tag:</span> <span class="pre">v1.0</span></code>.</p>
+</div></blockquote>
+<p>Copier le modèle dans le projet, depuis <code class="docutils literal notranslate"><span class="pre">travail/recette/</span></code> :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cp ../../depart/modeles/README.md .
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">..</span></code> désigne le dossier parent : <code class="docutils literal notranslate"><span class="pre">../../</span></code> remonte de <code class="docutils literal notranslate"><span class="pre">travail/recette/</span></code> à
+<code class="docutils literal notranslate"><span class="pre">4a_recette/</span></code>. Le <code class="docutils literal notranslate"><span class="pre">.</span></code> final désigne le dossier courant.</p>
+<p>Ouvrir <code class="docutils literal notranslate"><span class="pre">README.md</span></code> dans VS Code et remplacer chaque passage « (À compléter
+…) ». <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">V</span></code> affiche l’aperçu. Chaque commande écrite dans le
+README doit fonctionner quand on la colle dans le terminal.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git add README.md
+git commit -m "Un README"
+git tag -a v1.0 -m "Première version"
+git log --oneline
+</pre></div>
+</div>
+<p>Une étiquette git, un <em>tag</em>, nomme un commit : <code class="docutils literal notranslate"><span class="pre">v1.0</span></code> désigne la version
+finale sans chercher son identifiant.</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../../travaux_diriges.html"
+       title="page précédente">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">précédent</p>
+        <p class="prev-next-title">Travaux dirigés du projet 4</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../4b_paquet/guide.html"
+       title="page suivante">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">suivant</p>
+        <p class="prev-next-title">TD 4b — Un programme installable</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">TD 4a — Un script Python, pas à pas</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#partie-a-le-dossier-du-projet">Partie A · Le dossier du projet</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a1-le-dossier-du-projet-dans-le-terminal">A1 · Le dossier du projet, dans le terminal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a1-1-recuperer-l-archive">A1.1 Récupérer l’archive</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a1-2-ouvrir-git-bash-dans-le-dossier-du-td">A1.2 Ouvrir Git Bash dans le dossier du TD</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a1-3-regarder-le-contenu">A1.3 Regarder le contenu</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a1-4-creer-le-dossier-du-projet-et-y-copier-les-fichiers">A1.4 Créer le dossier du projet et y copier les fichiers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a2-le-projet-dans-vs-code">A2 · Le projet dans VS Code</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a2-1-ouvrir-le-dossier">A2.1 Ouvrir le dossier</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a2-2-git-bash-comme-terminal">A2.2 Git Bash comme terminal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a2-3-afficher-les-espaces-et-les-tabulations">A2.3 Afficher les espaces et les tabulations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a3-le-depot-git">A3 · Le dépôt git</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#partie-b-le-programme">Partie B · Le programme</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b1-corriger-le-programme-de-depart">B1 · Corriger le programme de départ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b2-multiplier-les-quantites">B2 · Multiplier les quantités</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b3-convertir-les-unites">B3 · Convertir les unités</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b4-lire-les-ingredients-dans-un-fichier-csv">B4 · Lire les ingrédients dans un fichier CSV</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b5-ecrire-le-resultat-dans-un-fichier-csv">B5 · Écrire le résultat dans un fichier CSV</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b6-les-valeurs-sur-la-ligne-de-commande">B6 · Les valeurs sur la ligne de commande</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b7-bonus-un-readme-une-etiquette">B7 (bonus) · Un README, une étiquette</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par 1re année géomatique
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, module info01 — CC-BY-4.0.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

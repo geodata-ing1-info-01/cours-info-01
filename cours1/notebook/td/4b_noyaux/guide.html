@@ -1,0 +1,1202 @@
+
+<!DOCTYPE html>
+
+
+<html lang="fr" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>TD 4b — Le client, le noyau, et où ils sont installés (facultatif) &#8212; Introduction à l&#39;informatique</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../../../_static/documentation_options.js?v=72dce1d2"></script>
+    <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../../../../_static/translations.js?v=e6b791cb"></script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cours1/notebook/td/4b_noyaux/guide';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="../../../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Recherche" href="../../../../search.html" />
+    <link rel="next" title="TD 4c — Installer un projet en lisant son README (facultatif)" href="../4c_trajet/guide.html" />
+    <link rel="prev" title="TD 4a — Installer un projet Python, et décrire son installation" href="../4a_recette/guide.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="fr"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../../../_static/searchtools.js"></script>
+    <script src="../../../../_static/language_data.js"></script>
+    <script src="../../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Passer au contenu principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Haut de page</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Alerte de version"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navigation dans le site">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="Sur cette page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction à l'informatique</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../index.html">
+                    Introduction à l’informatique
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Avant les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/poste.html">Premiers tests du poste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/donnees.html">Récupérer les fichiers d’une séance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/python.html">Anaconda et JupyterLab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/vscode.html">VS Code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Après les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../apres/sauvegarder.html">Sauvegarder son travail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../apres/s_entrainer.html">S’entraîner : jeux et exercices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours1_v2/index.html">Séance 1, version 2 — Logiciels, fichiers, terminal et premier programme</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/01_logiciels_stockage.html">Logiciels, fichiers et stockage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/02_terminal.html">Le terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/03_premier_programme.html">Premier programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/04_notebook.html">Un notebook et la syntaxe de Markdown</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours1_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 1, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/2a_terminal/guide.html">TD 2a — Les fichiers du TD 1a en ligne de commande</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/2b_programme/guide.html">TD 2b — Écrire et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/3a_notebook/guide.html">TD 3a — Un notebook dans JupyterLab</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours2_v2/index.html">Séance 2, version 2 — Éditeur de code, Markdown et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/01_editeur_de_code.html">L’éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/02_markdown.html">Une recette en Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/03_git_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/04_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours2_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/1a_vscode/guide.html">TD 1a — Configurer VS Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/1b_erreurs/guide.html">TD 1b — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/2a_markdown/guide.html">TD 2a — Une recette en Markdown, convertie par pandoc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/3a_depot_recette/guide.html">TD 3a — Un dépôt git pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours3/index.html">Séance 3 — Chemins, fichiers et ligne de commande</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/01_chemins_programmes.html">Chemins et programmes externes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/02_fichiers_encodage.html">Fichiers et encodage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/03_du_notebook_au_programme.html">Du notebook au programme</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours3/notebook/travaux_diriges.html">Travaux dirigés de la séance 3</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours3/notebook/td/3a_cli/guide.html">TD 3a — Une ligne de commande pour la recette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours3/notebook/td/3b_markdown/guide.html">TD 3b — Une recette en Markdown</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours4/index.html">Séance 4 — Du notebook au programme, en deux parcours</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours4/notebook/01_client_noyau.html">Le client et le noyau d’un notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours4/notebook/02_animation.html">Une animation en ligne de commande</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours4/notebook/travaux_diriges.html">Travaux dirigés du projet 4</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours4/notebook/td/4b_cli/guide.html">TD 4b — Une ligne de commande pour la recette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours4/notebook/td/4c_train/guide.html">TD 4c — La fenêtre du train</a></li>
+
+
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours5/index.html">Séance 5 — Matériel, réseau, mots de passe, clés SSH et secrets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/01_materiel.html">Le matériel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/02_reseau.html">Le réseau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/03_prouver_qui_lon_est.html">Prouver qui l’on est</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/04_secrets.html">Les secrets de vos programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/travaux_diriges.html">Travaux dirigés de la séance 5</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cours6/index.html">Séance 6 — La forge, sur le dépôt du projet 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cours7/index.html">Séance 7 — Une fonctionnalité de plus, par une pull request</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Annexes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/configuration/index.html">Configuration des postes de la salle</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/anaconda.html">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/jupyterlab.html">JupyterLab</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../annexes/configuration/vscode.html">VS Code</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_python.html">Python et environnement conda</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_notebooks.html">Notebooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_reglages.html">Fichiers de réglages</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/git.html">Git et Git Bash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/spyder.html">Spyder</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/poste_personnel/index.html">Configuration d’un ordinateur personnel</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/conda.html">Python et conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/vscode.html">VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/git_outils.html">Git et éditeurs de texte</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/notions/index.html">Notions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/outils.html">Choisir entre JupyterLab, Spyder et VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/notebooks.html">Les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/terminaux.html">Les terminaux en ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/variables_environnement.html">Variables d’environnement et recherche des programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/environnements.html">Les environnements conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/vscode_environnements.html">Comment VS Code gère les environnements Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/git_bash.html">Git Bash : une fenêtre, bash et des programmes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/faq.html">FAQ</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/reseau.html">Problèmes de réseau et de compte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/bureautique.html">Problèmes avec les logiciels de texte et de bureautique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/anaconda.html">Problèmes avec Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/jupyterlab.html">Problèmes avec JupyterLab et les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/vscode.html">Problèmes avec VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/git.html">Problèmes avec git</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/plus_loin/index.html">Pour aller plus loin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/gestionnaires.html">venv, uv et pixi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/cpp.html">C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/programme_interpreteur.html">Programme, application et interpréteur</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Archive 2026</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../../index.html">Séance 1, 2026 — Logiciel, programmation et formats de fichier</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../01_logiciels_et_formats.html">Logiciels et formats de fichier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../02_programmation.html">Programmation et éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../03_markdown_notebook.html">Markdown et notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_bibliotheques_environnements.html">Bibliothèques et environnements Python</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../../travaux_diriges.html">Travaux dirigés de la séance 1</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1b_archive_odt/guide.html">TD 1b — Un .odt est une archive ZIP (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../2a_vscode_python/guide.html">TD 2a — Configurer l’éditeur de code, et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../2b_erreurs/guide.html">TD 2b — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../2c_hello_cpp/guide.html">TD 2c — Le même programme en C++ (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../3a_markdown/guide.html">TD 3a — Mettre en forme une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../3b_notebooks/guide.html">TD 3b — Le notebook, ouvert de trois façons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../4a_recette/guide.html">TD 4a — Installer un projet Python, et décrire son installation</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">TD 4b — Le client, le noyau, et où ils sont installés (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../4c_trajet/guide.html">TD 4c — Installer un projet en lisant son README (facultatif)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../05_comparer_versions.html">Annexe — Comparer deux versions d’un fichier</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours2/index.html">Séance 2, 2026 — Ligne de commande et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/01_ligne_de_commande.html">La ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/02_depot_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/03_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/04_lire_et_tenir_un_depot.html">Lire et tenir un dépôt</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/3a_premier_depot/guide.html">TD 3a — Un premier dépôt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/4a_branches/guide.html">TD 4a — Branches et fusions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/4b_annuler/guide.html">TD 4b — Annuler et remettre à jour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/4c_conflits/guide.html">TD 4c — Créer et résoudre un conflit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/6a_livrer/guide.html">TD 6a — Publier une version</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Thème">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Thème" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Clair"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Sombre"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="Paramètres système"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>Paramètres système</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Clair</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Sombre</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>TD 4b — Le client, le noyau, et où ils sont installés (facultatif)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-l-environnement-contient-et-ce-qui-manque">1 · Ce que l’environnement contient, et ce qui manque</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-fichiers-du-td">Les fichiers du TD</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#l-invite-de-commandes-d-anaconda-et-l-environnement-recette">L’invite de commandes d’Anaconda et l’environnement <code class="docutils literal notranslate"><span class="pre">recette</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-base-contient">(1) Ce que <code class="docutils literal notranslate"><span class="pre">base</span></code> contient</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lancer-jupyterlab-dans-recette">(2) Lancer JupyterLab dans <code class="docutils literal notranslate"><span class="pre">recette</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choisir-recette-comme-noyau-dans-vscode">(3) Choisir <code class="docutils literal notranslate"><span class="pre">recette</span></code> comme noyau dans VSCode</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tout-dans-le-meme-environnement">2 · Tout dans le même environnement</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installer-jupyterlab-dans-recette">(4) Installer JupyterLab dans <code class="docutils literal notranslate"><span class="pre">recette</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lancer-jupyterlab">(5) Lancer JupyterLab</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ouvrir-altitudes-ipynb">(6) Ouvrir <code class="docutils literal notranslate"><span class="pre">altitudes.ipynb</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arreter-jupyterlab">(7) Arrêter JupyterLab</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#le-client-d-un-cote-le-noyau-de-l-autre">3 · Le client d’un côté, le noyau de l’autre</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creer-l-environnement-altitudes">(8) Créer l’environnement <code class="docutils literal notranslate"><span class="pre">altitudes</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#declarer-le-noyau">(9) Déclarer le noyau</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lister-les-noyaux-declares">(10) Lister les noyaux déclarés</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#employer-le-noyau-altitudes">(11) Employer le noyau <code class="docutils literal notranslate"><span class="pre">altitudes</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#le-notebook-du-projet-recette">4 · Le notebook du projet recette</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ouvrir-le-notebook-et-lire-la-premiere-cellule">(12) Ouvrir le notebook et lire la première cellule</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#commenter-la-premiere-cellule">(13) Commenter la première cellule</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#redemarrer-et-tout-executer">(14) Redémarrer et tout exécuter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#changer-le-nombre-de-personnes">(15) Changer le nombre de personnes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rendre-la-main">Rendre la main</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#en-cas-d-erreur">En cas d’erreur</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-le-td-fait-constater">Ce que le TD fait constater</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-1-ce-qui-manque-a-recette">Étape 1 : ce qui manque à <code class="docutils literal notranslate"><span class="pre">recette</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-2-le-client-et-le-noyau-au-meme-endroit">Étape 2 : le client et le noyau au même endroit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-3-le-client-dans-un-environnement-le-noyau-dans-un-autre">Étape 3 : le client dans un environnement, le noyau dans un autre</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-4-le-notebook-du-projet-recette">Étape 4 : le notebook du projet recette</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="td-4b-le-client-le-noyau-et-ou-ils-sont-installes-facultatif">
+<h1>TD 4b — Le client, le noyau, et où ils sont installés (facultatif)<a class="headerlink" href="#td-4b-le-client-le-noyau-et-ou-ils-sont-installes-facultatif" title="Lien vers cette rubrique">#</a></h1>
+<p>L’exécution d’un notebook fait intervenir deux programmes : un client, qui
+affiche la page, et un noyau, qui exécute les cellules. Le TD vérifie ce que contiennent deux
+environnements conda, constate ce qui manque à l’environnement <code class="docutils literal notranslate"><span class="pre">recette</span></code> du
+TD 4a pour ouvrir un notebook, puis installe les programmes qui manquent, de
+deux façons : le client et le noyau dans le même environnement, ou le client
+dans un environnement et le noyau dans un autre. Le TD se termine par le
+notebook <code class="docutils literal notranslate"><span class="pre">recette.ipynb</span></code>, qui reprend le programme du TD 4a. Il dure une
+vingtaine de minutes, et il est facultatif : il se fait en séance si le temps le permet, ou
+seul ensuite.</p>
+<p>Le TD nécessite l’invite de commandes d’Anaconda, où se tapent toutes les commandes, un
+navigateur pour JupyterLab, et VSCode avec l’extension Jupyter du TD 3b. Il
+suppose que le TD 4a a été fait : l’environnement <code class="docutils literal notranslate"><span class="pre">recette</span></code> doit exister. Les
+commandes <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span></code> et <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span></code> téléchargent des paquets, et
+nécessitent une session réseau ouverte.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Étape</p></th>
+<th class="head"><p>Ce qu’on fait</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>constater ce que les environnements contiennent, et ce qui manque</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>installer le client et le noyau dans le même environnement</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>installer un noyau dans un autre environnement que le client</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>exécuter le notebook du projet recette</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Chaque étape commence par un encadré qui la résume. Les numéros entre
+parenthèses, (1) à (15), sont ceux de la feuille du TD. Ce que chaque étape
+fait constater est expliqué à la fin du guide, dans « Ce que le TD fait
+constater » : faire l’étape d’abord, et noter ce qu’on observe, avant de lire
+l’explication.</p>
+<section id="ce-que-l-environnement-contient-et-ce-qui-manque">
+<h2>1 · Ce que l’environnement contient, et ce qui manque<a class="headerlink" href="#ce-que-l-environnement-contient-et-ce-qui-manque" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> lister JupyterLab et <code class="docutils literal notranslate"><span class="pre">ipykernel</span></code> dans <code class="docutils literal notranslate"><span class="pre">base</span></code> ; lancer
+<code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">lab</span></code> dans <code class="docutils literal notranslate"><span class="pre">recette</span></code> ; choisir <code class="docutils literal notranslate"><span class="pre">recette</span></code> comme noyau dans VSCode.</p>
+<p><strong>À obtenir :</strong> la réponse de <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">list</span></code> pour <code class="docutils literal notranslate"><span class="pre">base</span></code>, le message de
+l’invite de commandes d’Anaconda pour <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">lab</span></code>, et la proposition de VSCode.</p>
+</div></blockquote>
+<section id="les-fichiers-du-td">
+<h3>Les fichiers du TD<a class="headerlink" href="#les-fichiers-du-td" title="Lien vers cette rubrique">#</a></h3>
+<p>Ouvrir <code class="docutils literal notranslate"><span class="pre">info01\cours1\4b_noyaux\</span></code>. Le TD ne fournit qu’un fichier, et
+emploie un notebook du TD 3b :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cours1\
+├── 3b_notebooks\
+│   └── altitudes.ipynb       le notebook du TD 3b, employé aux étapes 1 à 3
+├── 4a_recette\
+│   └── depart\recette\data\  les données du projet recette, lues à l'étape 4
+└── 4b_noyaux\
+    ├── recette.ipynb         le programme du TD 4a, une fonction par cellule
+    ├── td_4b_noyaux.pdf      la feuille du TD
+    └── README.md
+</pre></div>
+</div>
+<p>Le TD n’a pas de dossier <code class="docutils literal notranslate"><span class="pre">depart\</span></code> ni <code class="docutils literal notranslate"><span class="pre">travail\</span></code> : il installe des paquets
+dans des environnements conda, et ne modifie que <code class="docutils literal notranslate"><span class="pre">recette.ipynb</span></code>.</p>
+</section>
+<section id="l-invite-de-commandes-d-anaconda-et-l-environnement-recette">
+<h3>L’invite de commandes d’Anaconda et l’environnement <code class="docutils literal notranslate"><span class="pre">recette</span></code><a class="headerlink" href="#l-invite-de-commandes-d-anaconda-et-l-environnement-recette" title="Lien vers cette rubrique">#</a></h3>
+<p>Menu Démarrer, taper <code class="docutils literal notranslate"><span class="pre">anaconda</span></code>, choisir « Anaconda Prompt ». L’invite
+commence par <code class="docutils literal notranslate"><span class="pre">(base)</span></code>. Taper :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>conda env list
+</pre></div>
+</div>
+<p>La liste doit contenir <code class="docutils literal notranslate"><span class="pre">recette</span></code>, avec un dossier du type
+<code class="docutils literal notranslate"><span class="pre">C:\Users\&lt;nom&gt;\.conda\envs\recette</span></code>. Si elle ne le contient pas, refaire
+les étapes 1 et 4 du TD 4a : <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">-n</span> <span class="pre">recette</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">python=3.12</span></code>, puis <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-n</span> <span class="pre">recette</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">markdown</span> <span class="pre">tabulate</span></code>.</p>
+</section>
+<section id="ce-que-base-contient">
+<h3>(1) Ce que <code class="docutils literal notranslate"><span class="pre">base</span></code> contient<a class="headerlink" href="#ce-que-base-contient" title="Lien vers cette rubrique">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>conda list -n base "jupyterlab|ipykernel"
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">-n</span> <span class="pre">base</span></code> désigne l’environnement à lister. Ce qui suit est un motif :
+<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">list</span></code> n’affiche que les paquets dont le nom contient <code class="docutils literal notranslate"><span class="pre">jupyterlab</span></code> ou
+<code class="docutils literal notranslate"><span class="pre">ipykernel</span></code>, la barre verticale signifiant « ou ». Les guillemets sont
+nécessaires : sans eux, l’invite de commandes d’Anaconda lirait la barre verticale comme une
+commande à part. La feuille du TD écrit <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">list</span> <span class="pre">-n</span> <span class="pre">base</span> <span class="pre">jupyterlab</span> <span class="pre">ipykernel</span></code>, que conda refuse (<code class="docutils literal notranslate"><span class="pre">unrecognized</span> <span class="pre">arguments:</span> <span class="pre">ipykernel</span></code>) : il
+n’accepte qu’un motif.</p>
+<p>La commande affiche un tableau, une ligne par paquet trouvé : nom, version,
+et canal d’origine. Des paquets voisins, comme <code class="docutils literal notranslate"><span class="pre">jupyterlab_server</span></code>, y
+apparaissent aussi, puisque leur nom contient <code class="docutils literal notranslate"><span class="pre">jupyterlab</span></code>.</p>
+<p><strong>À noter</strong> : les paquets que le tableau contient. La réponse dépend de la
+façon dont conda a été installé sur la machine : si le TD se fait aussi sur un
+portable personnel, y taper la même commande et comparer.</p>
+</section>
+<section id="lancer-jupyterlab-dans-recette">
+<h3>(2) Lancer JupyterLab dans <code class="docutils literal notranslate"><span class="pre">recette</span></code><a class="headerlink" href="#lancer-jupyterlab-dans-recette" title="Lien vers cette rubrique">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>conda activate recette
+jupyter lab
+</pre></div>
+</div>
+<p>L’invite passe de <code class="docutils literal notranslate"><span class="pre">(base)</span></code> à <code class="docutils literal notranslate"><span class="pre">(recette)</span></code> après la première commande.</p>
+<p><strong>À noter</strong> : la réponse à <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">lab</span></code>.</p>
+</section>
+<section id="choisir-recette-comme-noyau-dans-vscode">
+<h3>(3) Choisir <code class="docutils literal notranslate"><span class="pre">recette</span></code> comme noyau dans VSCode<a class="headerlink" href="#choisir-recette-comme-noyau-dans-vscode" title="Lien vers cette rubrique">#</a></h3>
+<ol class="arabic simple">
+<li><p>Ouvrir VSCode, puis le fichier <code class="docutils literal notranslate"><span class="pre">cours1\3b_notebooks\altitudes.ipynb</span></code>
+(menu File, Open File…).</p></li>
+<li><p>En haut à droite du notebook, cliquer sur le nom du noyau, ou sur
+« Select Kernel » si aucun n’est choisi.</p></li>
+<li><p>Choisir « Python Environments… », puis <code class="docutils literal notranslate"><span class="pre">recette</span></code> dans la liste. Si
+<code class="docutils literal notranslate"><span class="pre">recette</span></code> n’y est pas, taper dans la palette (<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">P</span></code>)
+« Python: Clear Cache and Reload Window », puis recommencer.</p></li>
+<li><p>Exécuter la première cellule (<code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">Entrée</span></code>).</p></li>
+</ol>
+<p>VSCode affiche alors un message qui propose d’installer un paquet, avec un
+bouton « Install ». Ne pas l’accepter : fermer le message. L’étape 2 fait la
+même installation à la main.</p>
+<p><strong>À noter</strong> : le nom du paquet que VSCode propose d’installer.</p>
+</section>
+</section>
+<section id="tout-dans-le-meme-environnement">
+<h2>2 · Tout dans le même environnement<a class="headerlink" href="#tout-dans-le-meme-environnement" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> installer JupyterLab dans <code class="docutils literal notranslate"><span class="pre">recette</span></code> ; le lancer ; y ouvrir
+<code class="docutils literal notranslate"><span class="pre">altitudes.ipynb</span></code> ; l’arrêter.</p>
+<p><strong>À obtenir :</strong> JupyterLab ouvert dans le navigateur, puis arrêté par
+<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">C</span></code> dans l’invite de commandes d’Anaconda.</p>
+</div></blockquote>
+<section id="installer-jupyterlab-dans-recette">
+<h3>(4) Installer JupyterLab dans <code class="docutils literal notranslate"><span class="pre">recette</span></code><a class="headerlink" href="#installer-jupyterlab-dans-recette" title="Lien vers cette rubrique">#</a></h3>
+<p>Dans l’invite de commandes d’Anaconda :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>conda install -n recette -c conda-forge jupyterlab
+</pre></div>
+</div>
+<p>conda calcule ce qu’il faut installer, puis affiche la liste des paquets et
+demande <code class="docutils literal notranslate"><span class="pre">Proceed</span> <span class="pre">([y]/n)?</span></code>. Répondre <code class="docutils literal notranslate"><span class="pre">y</span></code> puis Entrée. Le téléchargement et
+l’installation prennent une à plusieurs minutes.</p>
+<p><strong>À noter</strong> : le nombre de paquets de la liste, et si <code class="docutils literal notranslate"><span class="pre">ipykernel</span></code> en fait
+partie, alors que la commande ne le nomme pas.</p>
+</section>
+<section id="lancer-jupyterlab">
+<h3>(5) Lancer JupyterLab<a class="headerlink" href="#lancer-jupyterlab" title="Lien vers cette rubrique">#</a></h3>
+<p>JupyterLab montre les fichiers du dossier d’où il est lancé. Se placer
+d’abord dans <code class="docutils literal notranslate"><span class="pre">cours1</span></code>, pour qu’il montre les dossiers des TD 3b et 4b :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>conda activate recette
+cd C:\Users\eleve\Desktop\info01\cours1
+jupyter lab
+</pre></div>
+</div>
+<p>L’invite de commandes d’Anaconda affiche plusieurs lignes, dont une adresse, puis le
+navigateur s’ouvre sur JupyterLab. Si le navigateur ne s’ouvre pas, copier
+l’adresse qui commence par <code class="docutils literal notranslate"><span class="pre">http://localhost</span></code> et la coller dans sa barre
+d’adresse. L’invite de commandes d’Anaconda reste occupée tant que JupyterLab s’exécute : ne
+pas le fermer.</p>
+<p><strong>À noter</strong> : l’adresse affichée, et ce que désigne <code class="docutils literal notranslate"><span class="pre">localhost</span></code>.</p>
+</section>
+<section id="ouvrir-altitudes-ipynb">
+<h3>(6) Ouvrir <code class="docutils literal notranslate"><span class="pre">altitudes.ipynb</span></code><a class="headerlink" href="#ouvrir-altitudes-ipynb" title="Lien vers cette rubrique">#</a></h3>
+<p>Dans le panneau de gauche de JupyterLab, double-cliquer sur <code class="docutils literal notranslate"><span class="pre">3b_notebooks</span></code>,
+puis sur <code class="docutils literal notranslate"><span class="pre">altitudes.ipynb</span></code>. Exécuter les cellules (<code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">Entrée</span></code>).</p>
+<p><strong>À noter</strong> : le nom du noyau, affiché en haut à droite du notebook.</p>
+</section>
+<section id="arreter-jupyterlab">
+<h3>(7) Arrêter JupyterLab<a class="headerlink" href="#arreter-jupyterlab" title="Lien vers cette rubrique">#</a></h3>
+<ol class="arabic simple">
+<li><p>Fermer l’onglet de JupyterLab dans le navigateur.</p></li>
+<li><p>Revenir à l’invite de commandes d’Anaconda, et taper <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">C</span></code>. JupyterLab demande
+s’il doit s’arrêter ; taper <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">C</span></code> une seconde fois, ou <code class="docutils literal notranslate"><span class="pre">y</span></code> puis
+Entrée.</p></li>
+<li><p>Revenir au navigateur, rouvrir l’adresse de l’étape 5.</p></li>
+</ol>
+<p><strong>Vérification</strong> : <code class="docutils literal notranslate"><span class="pre">(recette)</span></code> est de nouveau affiché en début de ligne, dans l’invite de commandes d’Anaconda.</p>
+<p><strong>À noter</strong> : ce qu’affiche le navigateur quand on rouvre l’adresse, et ce
+qui continuerait de s’exécuter si on s’était contenté de fermer l’onglet.</p>
+</section>
+</section>
+<section id="le-client-d-un-cote-le-noyau-de-l-autre">
+<h2>3 · Le client d’un côté, le noyau de l’autre<a class="headerlink" href="#le-client-d-un-cote-le-noyau-de-l-autre" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> créer un environnement <code class="docutils literal notranslate"><span class="pre">altitudes</span></code> qui a un noyau mais pas
+de client ; le déclarer ; l’employer depuis le JupyterLab de <code class="docutils literal notranslate"><span class="pre">recette</span></code>.</p>
+<p><strong>À obtenir :</strong> <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">numpy</span></code> s’exécute dans <code class="docutils literal notranslate"><span class="pre">altitudes.ipynb</span></code>, ouvert
+dans le JupyterLab de <code class="docutils literal notranslate"><span class="pre">recette</span></code>, avec le noyau <code class="docutils literal notranslate"><span class="pre">altitudes</span></code>.</p>
+</div></blockquote>
+<section id="creer-l-environnement-altitudes">
+<h3>(8) Créer l’environnement <code class="docutils literal notranslate"><span class="pre">altitudes</span></code><a class="headerlink" href="#creer-l-environnement-altitudes" title="Lien vers cette rubrique">#</a></h3>
+<p>Dans l’invite de commandes d’Anaconda :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>conda create -n altitudes -c conda-forge python=3.12 ipykernel numpy
+</pre></div>
+</div>
+<p>Répondre <code class="docutils literal notranslate"><span class="pre">y</span></code> à <code class="docutils literal notranslate"><span class="pre">Proceed</span> <span class="pre">([y]/n)?</span></code>. L’environnement contient Python, le noyau
+(<code class="docutils literal notranslate"><span class="pre">ipykernel</span></code>) et <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, et pas JupyterLab.</p>
+</section>
+<section id="declarer-le-noyau">
+<h3>(9) Déclarer le noyau<a class="headerlink" href="#declarer-le-noyau" title="Lien vers cette rubrique">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>conda run -n altitudes python -m ipykernel install --user --name altitudes
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">run</span> <span class="pre">-n</span> <span class="pre">altitudes</span></code> lance la commande qui suit avec le Python
+d”<code class="docutils literal notranslate"><span class="pre">altitudes</span></code>, sans activer l’environnement. <code class="docutils literal notranslate"><span class="pre">ipykernel</span> <span class="pre">install</span></code> écrit une
+déclaration de noyau, sous le nom donné par <code class="docutils literal notranslate"><span class="pre">--name</span></code>, dans un dossier propre
+au compte (<code class="docutils literal notranslate"><span class="pre">--user</span></code>), que tous les clients Jupyter lisent.</p>
+<p><strong>À noter</strong> : la dernière ligne affichée, et le dossier qu’elle nomme.</p>
+</section>
+<section id="lister-les-noyaux-declares">
+<h3>(10) Lister les noyaux déclarés<a class="headerlink" href="#lister-les-noyaux-declares" title="Lien vers cette rubrique">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>conda activate recette
+jupyter kernelspec list
+</pre></div>
+</div>
+<p>La commande <code class="docutils literal notranslate"><span class="pre">jupyter</span></code> est ici celle de l’environnement <code class="docutils literal notranslate"><span class="pre">recette</span></code>, installée
+à l’étape 4. <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">kernelspec</span> <span class="pre">list</span></code> affiche un nom de noyau par ligne,
+suivi du dossier de sa déclaration.</p>
+<p>Ouvrir ce dossier pour le noyau <code class="docutils literal notranslate"><span class="pre">altitudes</span></code>, dans l’explorateur de fichiers
+(coller le chemin dans la barre d’adresse), puis ouvrir <code class="docutils literal notranslate"><span class="pre">kernel.json</span></code> dans
+Notepad++ ou le Bloc-notes. Ne rien modifier.</p>
+<p><strong>À noter</strong> : le nombre de noyaux listés ; ce que contient <code class="docutils literal notranslate"><span class="pre">kernel.json</span></code>, et
+en particulier le premier chemin de la liste <code class="docutils literal notranslate"><span class="pre">argv</span></code>.</p>
+</section>
+<section id="employer-le-noyau-altitudes">
+<h3>(11) Employer le noyau <code class="docutils literal notranslate"><span class="pre">altitudes</span></code><a class="headerlink" href="#employer-le-noyau-altitudes" title="Lien vers cette rubrique">#</a></h3>
+<ol class="arabic simple">
+<li><p>Relancer JupyterLab depuis <code class="docutils literal notranslate"><span class="pre">cours1</span></code>, comme à l’étape 5 (<code class="docutils literal notranslate"><span class="pre">cd</span></code> puis
+<code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">lab</span></code>, dans <code class="docutils literal notranslate"><span class="pre">recette</span></code>).</p></li>
+<li><p>Ouvrir <code class="docutils literal notranslate"><span class="pre">3b_notebooks\altitudes.ipynb</span></code>.</p></li>
+<li><p>Menu Kernel, Change Kernel…, choisir <code class="docutils literal notranslate"><span class="pre">altitudes</span></code>, puis Select. Le nom
+affiché en haut à droite devient <code class="docutils literal notranslate"><span class="pre">altitudes</span></code>.</p></li>
+<li><p>Ajouter une cellule à la fin (bouton <code class="docutils literal notranslate"><span class="pre">+</span></code> de la barre du notebook), y
+taper <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">numpy</span></code>, et l’exécuter (<code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">Entrée</span></code>).</p></li>
+</ol>
+<p>Pour voir quel interpréteur exécute les cellules, ajouter une cellule avec :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">executable</span>
+</pre></div>
+</div>
+<p><strong>À noter</strong> : si l’import de <code class="docutils literal notranslate"><span class="pre">numpy</span></code> réussit, sachant que <code class="docutils literal notranslate"><span class="pre">recette</span></code> n’a pas
+<code class="docutils literal notranslate"><span class="pre">numpy</span></code> ; l’interpréteur affiché par <code class="docutils literal notranslate"><span class="pre">sys.executable</span></code>.</p>
+<p>VSCode lit la même liste de noyaux : dans VSCode, « Select Kernel », puis
+« Jupyter Kernel… », propose <code class="docutils literal notranslate"><span class="pre">altitudes</span></code>.</p>
+<p>Supprimer ensuite les cellules ajoutées (clic dans la cellule, puis menu
+Edit, Delete Cells) : JupyterLab enregistre le notebook de lui-même à
+intervalles réguliers. Laisser JupyterLab ouvert pour l’étape 4.</p>
+</section>
+</section>
+<section id="le-notebook-du-projet-recette">
+<h2>4 · Le notebook du projet recette<a class="headerlink" href="#le-notebook-du-projet-recette" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> ouvrir <code class="docutils literal notranslate"><span class="pre">4b_noyaux\recette.ipynb</span></code> avec le noyau de
+<code class="docutils literal notranslate"><span class="pre">recette</span></code> ; commenter la première cellule ; tout exécuter ; changer le
+nombre de personnes.</p>
+<p><strong>À obtenir :</strong> la recette des crêpes affichée, mise en forme, avec son
+tableau d’ingrédients, pour le nombre de personnes choisi.</p>
+</div></blockquote>
+<section id="ouvrir-le-notebook-et-lire-la-premiere-cellule">
+<h3>(12) Ouvrir le notebook et lire la première cellule<a class="headerlink" href="#ouvrir-le-notebook-et-lire-la-premiere-cellule" title="Lien vers cette rubrique">#</a></h3>
+<p>Dans le panneau de gauche de JupyterLab, revenir à <code class="docutils literal notranslate"><span class="pre">cours1</span></code> (clic sur le
+dossier dans le chemin affiché au-dessus de la liste), puis ouvrir
+<code class="docutils literal notranslate"><span class="pre">4b_noyaux\recette.ipynb</span></code>. Menu Kernel, Change Kernel…, choisir le noyau de
+<code class="docutils literal notranslate"><span class="pre">recette</span></code>, « Python 3 (ipykernel) ».</p>
+<p>La première cellule de code est :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="n">DONNEES</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"../4a_recette/depart/recette/data"</span><span class="p">)</span>
+
+<span class="n">PERSONNES</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">UNITES</span> <span class="o">=</span> <span class="s2">"SI"</span>      <span class="c1"># "SI" ou "US"</span>
+
+<span class="k">assert</span> <span class="n">DONNEES</span><span class="o">.</span><span class="n">is_dir</span><span class="p">(),</span> <span class="sa">f</span><span class="s2">"dossier introuvable : </span><span class="si">{</span><span class="n">DONNEES</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span>
+<span class="nb">sorted</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">DONNEES</span><span class="o">.</span><span class="n">iterdir</span><span class="p">())</span>
+</pre></div>
+</div>
+<p><strong>À noter</strong> : d’où part le chemin de <code class="docutils literal notranslate"><span class="pre">DONNEES</span></code>, et le dossier qu’il
+désigne sur le disque.</p>
+</section>
+<section id="commenter-la-premiere-cellule">
+<h3>(13) Commenter la première cellule<a class="headerlink" href="#commenter-la-premiere-cellule" title="Lien vers cette rubrique">#</a></h3>
+<p>En Python, un commentaire commence par <code class="docutils literal notranslate"><span class="pre">#</span></code> et va jusqu’à la fin de la ligne.
+Ajouter un commentaire à chaque ligne de la cellule, au-dessus d’elle ou à
+sa suite, qui explique à quoi la ligne sert dans ce notebook. « On importe
+Path » répète la ligne ; le commentaire attendu explique pourquoi le
+notebook a besoin de <code class="docutils literal notranslate"><span class="pre">Path</span></code>.</p>
+<p>Le texte du notebook demande aussi d’adapter le chemin à l’emplacement des
+données. Le chemin écrit désigne le projet fourni au TD 4a, dans
+<code class="docutils literal notranslate"><span class="pre">depart\</span></code>. Pour lire la copie de <code class="docutils literal notranslate"><span class="pre">travail\</span></code>, le chemin devient
+<code class="docutils literal notranslate"><span class="pre">Path(&quot;../4a_recette/travail/recette/data&quot;)</span></code>. Le chemin s’écrit avec des
+<code class="docutils literal notranslate"><span class="pre">/</span></code>, qui fonctionnent aussi sous Windows.</p>
+<p>Exécuter la cellule (<code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">Entrée</span></code>).</p>
+<p><strong>À noter</strong> : ce que la cellule affiche. Si elle affiche une
+<code class="docutils literal notranslate"><span class="pre">AssertionError</span></code> avec <code class="docutils literal notranslate"><span class="pre">dossier</span> <span class="pre">introuvable</span></code>, lire le chemin complet que le
+message donne, et corriger <code class="docutils literal notranslate"><span class="pre">DONNEES</span></code>.</p>
+</section>
+<section id="redemarrer-et-tout-executer">
+<h3>(14) Redémarrer et tout exécuter<a class="headerlink" href="#redemarrer-et-tout-executer" title="Lien vers cette rubrique">#</a></h3>
+<p>Menu Kernel, « Restart Kernel and Run All Cells… » (la feuille l’appelle
+« Noyau, Redémarrer et tout exécuter »), puis confirmer par Restart.</p>
+<p><strong>À noter</strong> : ce qu’affichent les deux dernières cellules, et la différence
+entre elles.</p>
+</section>
+<section id="changer-le-nombre-de-personnes">
+<h3>(15) Changer le nombre de personnes<a class="headerlink" href="#changer-le-nombre-de-personnes" title="Lien vers cette rubrique">#</a></h3>
+<p>Dans la première cellule, remplacer <code class="docutils literal notranslate"><span class="pre">PERSONNES</span> <span class="pre">=</span> <span class="pre">4</span></code> par une autre valeur,
+puis refaire l’étape 14. Essayer aussi <code class="docutils literal notranslate"><span class="pre">UNITES</span> <span class="pre">=</span> <span class="pre">&quot;US&quot;</span></code>.</p>
+<p><strong>À noter</strong> : ce qui change dans la recette affichée, et ce qui ne change
+pas.</p>
+</section>
+<section id="rendre-la-main">
+<h3>Rendre la main<a class="headerlink" href="#rendre-la-main" title="Lien vers cette rubrique">#</a></h3>
+<p>Arrêter JupyterLab (<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">C</span></code> deux fois dans l’invite de commandes d’Anaconda), puis
+retirer la déclaration du noyau et l’environnement <code class="docutils literal notranslate"><span class="pre">altitudes</span></code> :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>jupyter kernelspec remove altitudes
+conda activate base
+conda env remove -n altitudes
+</pre></div>
+</div>
+<p>La première commande demande confirmation : répondre <code class="docutils literal notranslate"><span class="pre">y</span></code>. conda refuse de
+supprimer l’environnement actif, d’où le <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">base</span></code> avant la
+suppression.</p>
+</section>
+<section id="en-cas-d-erreur">
+<h3>En cas d’erreur<a class="headerlink" href="#en-cas-d-erreur" title="Lien vers cette rubrique">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">'conda'</span> <span class="pre">n'est</span> <span class="pre">pas</span> <span class="pre">reconnu</span> <span class="pre">en</span> <span class="pre">tant</span> <span class="pre">que</span> <span class="pre">commande</span> <span class="pre">interne</span> <span class="pre">ou</span> <span class="pre">externe</span></code> : la
+commande a été tapée dans un <code class="docutils literal notranslate"><span class="pre">cmd</span></code> ou un PowerShell ordinaire. La taper
+dans l’invite de commandes d’Anaconda.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EnvironmentNotWritableError</span></code> à <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span></code> : la commande s’appliquait
+à <code class="docutils literal notranslate"><span class="pre">base</span></code>, que le compte élève ne peut pas modifier. Vérifier que la
+commande contient <code class="docutils literal notranslate"><span class="pre">-n</span> <span class="pre">recette</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CondaToSNonInteractiveError:</span> <span class="pre">Terms</span> <span class="pre">of</span> <span class="pre">Service</span> <span class="pre">have</span> <span class="pre">not</span> <span class="pre">been</span> <span class="pre">accepted</span></code>,
+ou une question <code class="docutils literal notranslate"><span class="pre">Do</span> <span class="pre">you</span> <span class="pre">accept</span> <span class="pre">the</span> <span class="pre">Terms</span> <span class="pre">of</span> <span class="pre">Service</span> <span class="pre">(ToS)</span> <span class="pre">…</span> <span class="pre">[(a)ccept/(r)eject/(v)iew]</span></code> : répondre <code class="docutils literal notranslate"><span class="pre">a</span></code>, ou relancer la commande en
+ajoutant <code class="docutils literal notranslate"><span class="pre">--override-channels</span></code> avant <code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">conda-forge</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CondaHTTPError:</span> <span class="pre">HTTP</span> <span class="pre">000</span> <span class="pre">CONNECTION</span> <span class="pre">FAILED</span></code> : la session réseau n’est pas
+ouverte. L’ouvrir, et relancer la commande.</p></li>
+<li><p>« Solving environment » qui dure plusieurs minutes : la première commande
+qui emploie <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> télécharge la liste de ses paquets. Attendre.</p></li>
+<li><p>VSCode ne propose pas <code class="docutils literal notranslate"><span class="pre">recette</span></code> ou <code class="docutils literal notranslate"><span class="pre">altitudes</span></code> : palette, « Python: Clear
+Cache and Reload Window ».</p></li>
+</ul>
+</section>
+</section>
+<section id="ce-que-le-td-fait-constater">
+<h2>Ce que le TD fait constater<a class="headerlink" href="#ce-que-le-td-fait-constater" title="Lien vers cette rubrique">#</a></h2>
+<p>Cette section se lit après avoir fait les étapes.</p>
+<section id="etape-1-ce-qui-manque-a-recette">
+<h3>Étape 1 : ce qui manque à <code class="docutils literal notranslate"><span class="pre">recette</span></code><a class="headerlink" href="#etape-1-ce-qui-manque-a-recette" title="Lien vers cette rubrique">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Ce qu’on fait</p></th>
+<th class="head"><p>Ce qu’on constate</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">list</span> <span class="pre">-n</span> <span class="pre">base</span></code>, limité à <code class="docutils literal notranslate"><span class="pre">jupyterlab</span></code> et <code class="docutils literal notranslate"><span class="pre">ipykernel</span></code></p></td>
+<td><p>les deux avec Anaconda, aucun des deux avec Miniforge</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">recette</span></code>, puis <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">lab</span></code></p></td>
+<td><p>commande introuvable : pas de client dans cet environnement</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>dans VSCode, choisir <code class="docutils literal notranslate"><span class="pre">recette</span></code> comme noyau</p></td>
+<td><p>l’éditeur propose d’installer <code class="docutils literal notranslate"><span class="pre">ipykernel</span></code> : pas de noyau non plus</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La distribution Anaconda installe plus de six cents paquets dans <code class="docutils literal notranslate"><span class="pre">base</span></code>,
+JupyterLab et <code class="docutils literal notranslate"><span class="pre">ipykernel</span></code> compris. Miniconda et Miniforge n’y installent que
+conda, Python et leurs dépendances. Les postes de la salle ont Anaconda, et
+c’est pour cette raison que le TD 3b ouvrait un notebook sans rien
+installer. Sur un portable installé avec Miniforge, <code class="docutils literal notranslate"><span class="pre">base</span></code> ne contient ni
+JupyterLab ni <code class="docutils literal notranslate"><span class="pre">ipykernel</span></code>, et le TD 3b ne s’y fait pas sans installer
+d’abord ces paquets. Le contenu d’un environnement se vérifie par
+<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">list</span></code>, plutôt que d’être supposé. <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">list</span></code> accepte un motif, ce qui dispense de filtrer sa sortie
+avec un autre outil.</p>
+<p><code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">lab</span></code> n’est pas une commande du système : c’est un programme installé
+dans un environnement, que l’invite de commandes d’Anaconda ne trouve que si cet
+environnement est actif. <code class="docutils literal notranslate"><span class="pre">recette</span></code> ne contient que ce que le TD 4a y a mis,
+Python, <code class="docutils literal notranslate"><span class="pre">markdown</span></code> et <code class="docutils literal notranslate"><span class="pre">tabulate</span></code>, et le projet lui-même.</p>
+<p>VSCode est un client, installé une fois pour toutes sur le poste. Pour
+exécuter un notebook avec <code class="docutils literal notranslate"><span class="pre">recette</span></code>, il manque à cet environnement le noyau,
+<code class="docutils literal notranslate"><span class="pre">ipykernel</span></code>.</p>
+</section>
+<section id="etape-2-le-client-et-le-noyau-au-meme-endroit">
+<h3>Étape 2 : le client et le noyau au même endroit<a class="headerlink" href="#etape-2-le-client-et-le-noyau-au-meme-endroit" title="Lien vers cette rubrique">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Ce qu’on fait</p></th>
+<th class="head"><p>Ce qu’on constate</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>4</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-n</span> <span class="pre">recette</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">jupyterlab</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ipykernel</span></code> s’installe avec JupyterLab, sans avoir été demandé</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">recette</span></code>, puis <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">lab</span></code></p></td>
+<td><p>une adresse <code class="docutils literal notranslate"><span class="pre">localhost</span></code> s’affiche, et le client démarre</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>ouvrir <code class="docutils literal notranslate"><span class="pre">altitudes.ipynb</span></code>, lire le noyau en haut à droite</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">3</span> <span class="pre">(ipykernel)</span></code>, celui de <code class="docutils literal notranslate"><span class="pre">recette</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>7</p></td>
+<td><p>fermer l’onglet, puis <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">C</span></code> deux fois</p></td>
+<td><p>le serveur s’arrête, et la page ne répond plus</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Le paquet <code class="docutils literal notranslate"><span class="pre">jupyterlab</span></code> déclare <code class="docutils literal notranslate"><span class="pre">ipykernel</span></code> parmi ses dépendances : en
+installer un installe l’autre, avec plusieurs dizaines de paquets. C’est une
+dépendance transitive, comme au TD 4a, et l’environnement obtenu reproduit à
+la main la configuration du <code class="docutils literal notranslate"><span class="pre">base</span></code> d’Anaconda.</p>
+<p><code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">lab</span></code> lance un serveur sur la machine elle-même, que <code class="docutils literal notranslate"><span class="pre">localhost</span></code>
+désigne, et le navigateur s’y connecte. Anaconda Navigator effectuait ces deux
+étapes, activer l’environnement et lancer JupyterLab, pour l’environnement
+choisi en haut de sa page d’accueil.</p>
+<p>Le serveur s’exécute tant que l’invite de commandes d’Anaconda qui l’a lancé est ouverte.
+Fermer l’onglet du navigateur ne l’arrête pas : un serveur resté actif
+conserve son port, et le JupyterLab lancé ensuite en prend un autre, ou
+échoue.</p>
+<p>Cette façon de faire est la plus simple, et elle suffit sur un poste de TP.
+Elle installe un client par projet : cinq projets nécessitent cinq
+installations de JupyterLab, et autant de mises à jour.</p>
+</section>
+<section id="etape-3-le-client-dans-un-environnement-le-noyau-dans-un-autre">
+<h3>Étape 3 : le client dans un environnement, le noyau dans un autre<a class="headerlink" href="#etape-3-le-client-dans-un-environnement-le-noyau-dans-un-autre" title="Lien vers cette rubrique">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Ce qu’on fait</p></th>
+<th class="head"><p>Ce qu’on constate</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>8</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">-n</span> <span class="pre">altitudes</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">python=3.12</span> <span class="pre">ipykernel</span> <span class="pre">numpy</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>9</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">run</span> <span class="pre">-n</span> <span class="pre">altitudes</span> <span class="pre">python</span> <span class="pre">-m</span> <span class="pre">ipykernel</span> <span class="pre">install</span> <span class="pre">--user</span> <span class="pre">--name</span> <span class="pre">altitudes</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Installed</span> <span class="pre">kernelspec</span> <span class="pre">altitudes</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>10</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">recette</span></code>, puis <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">kernelspec</span> <span class="pre">list</span></code></p></td>
+<td><p>deux noyaux, dont <code class="docutils literal notranslate"><span class="pre">altitudes</span></code>, qui n’est pas dans <code class="docutils literal notranslate"><span class="pre">recette</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>11</p></td>
+<td><p>choisir le noyau <code class="docutils literal notranslate"><span class="pre">altitudes</span></code>, taper <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">numpy</span></code></p></td>
+<td><p>l’import passe, alors que <code class="docutils literal notranslate"><span class="pre">recette</span></code> n’a pas <code class="docutils literal notranslate"><span class="pre">numpy</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Le client ne cherche pas les environnements conda : il lit un dossier de
+déclarations de noyaux. <code class="docutils literal notranslate"><span class="pre">ipykernel</span> <span class="pre">install</span></code> y a écrit un <code class="docutils literal notranslate"><span class="pre">kernel.json</span></code>, dont
+l’information utile est un chemin, celui de l’interpréteur d”<code class="docutils literal notranslate"><span class="pre">altitudes</span></code>,
+qui se termine par <code class="docutils literal notranslate"><span class="pre">envs\altitudes\python.exe</span></code>. <code class="docutils literal notranslate"><span class="pre">altitudes</span></code> n’a pas
+JupyterLab, et n’en a pas besoin.</p>
+<p>À l’étape 11, le client s’exécute dans <code class="docutils literal notranslate"><span class="pre">recette</span></code> et le code s’exécute dans
+<code class="docutils literal notranslate"><span class="pre">altitudes</span></code> : <code class="docutils literal notranslate"><span class="pre">sys.executable</span></code> affiche l’interpréteur d”<code class="docutils literal notranslate"><span class="pre">altitudes</span></code>. Les deux
+programmes sont dans deux environnements différents. VSCode, qui est aussi un
+client, lit la même liste de déclarations : c’est pour cette raison qu’il
+demande de choisir un noyau à l’ouverture d’un notebook. Cette façon de
+faire, un client installé une fois et un noyau par projet, est courante en
+entreprise.</p>
+<p>Une bibliothèque qui manque à un notebook s’installe dans l’environnement du
+noyau, jamais dans celui du client. Le <code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError</span></code> du TD 4a se
+retrouve dans un notebook quand cette règle n’est pas suivie.</p>
+</section>
+<section id="etape-4-le-notebook-du-projet-recette">
+<h3>Étape 4 : le notebook du projet recette<a class="headerlink" href="#etape-4-le-notebook-du-projet-recette" title="Lien vers cette rubrique">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Ce qu’on fait</p></th>
+<th class="head"><p>Ce qu’on constate</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>12</p></td>
+<td><p>lire la première cellule</p></td>
+<td><p>un chemin relatif, qui remonte d’un dossier puis descend dans celui du TD 4a</p></td>
+</tr>
+<tr class="row-odd"><td><p>13</p></td>
+<td><p>commenter chaque ligne, puis exécuter</p></td>
+<td><p>les fichiers du dossier de données sont listés</p></td>
+</tr>
+<tr class="row-even"><td><p>14</p></td>
+<td><p>redémarrer le noyau et tout exécuter</p></td>
+<td><p>la recette s’affiche mise en forme, tableau compris</p></td>
+</tr>
+<tr class="row-odd"><td><p>15</p></td>
+<td><p>changer <code class="docutils literal notranslate"><span class="pre">PERSONNES</span></code>, puis tout réexécuter</p></td>
+<td><p>les quantités changent, la recette non</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Le chemin <code class="docutils literal notranslate"><span class="pre">../4a_recette/depart/recette/data</span></code> part du dossier du notebook,
+<code class="docutils literal notranslate"><span class="pre">4b_noyaux</span></code>, remonte d’un dossier par <code class="docutils literal notranslate"><span class="pre">..</span></code>, jusqu’à <code class="docutils literal notranslate"><span class="pre">cours1</span></code>, puis descend
+dans les données du TD 4a. C’est un chemin relatif, au sens de la partie 1
+et du TD 2b. Il ne fonctionne que si l’arborescence de l’archive n’a pas été
+modifiée. La cellule affiche
+<code class="docutils literal notranslate"><span class="pre">['ingredients.csv',</span> <span class="pre">'recette.md',</span> <span class="pre">'style.css']</span></code> : le notebook lit les deux
+premiers, et <code class="docutils literal notranslate"><span class="pre">style.css</span></code> sert au programme du TD 4a pour sa page HTML.</p>
+<p>L”<code class="docutils literal notranslate"><span class="pre">assert</span></code> arrête le notebook dès la première cellule si le dossier n’existe
+pas, avec un message qui donne le chemin complet cherché. Sans lui, l’erreur
+serait un <code class="docutils literal notranslate"><span class="pre">FileNotFoundError</span></code> deux cellules plus bas, à la lecture du premier
+fichier, loin de sa cause.</p>
+<p>Redémarrer le noyau efface tout ce qu’il gardait en mémoire : les variables
+et les fonctions définies. Tout réexécuter depuis la première cellule vérifie que le notebook
+fonctionne dans l’ordre où il est écrit, et pas seulement dans l’ordre où on
+a exécuté ses cellules. La dernière cellule emploie <code class="docutils literal notranslate"><span class="pre">ingredients</span></code> et
+<code class="docutils literal notranslate"><span class="pre">source</span></code>, calculés plus haut : la relancer seule, après avoir changé
+<code class="docutils literal notranslate"><span class="pre">PERSONNES</span></code>, afficherait l’ancienne recette.</p>
+<p>L’avant-dernière cellule affiche le texte Markdown, barres verticales
+comprises ; la dernière le fait afficher mis en forme par le notebook, avec
+<code class="docutils literal notranslate"><span class="pre">Markdown</span></code>, importé d”<code class="docutils literal notranslate"><span class="pre">IPython.display</span></code>. Pour quatre personnes, le tableau donne
+240 g de farine, 500 ml de lait, 4 œufs, 4 g de sel et 48 g de beurre fondu.
+Le fichier <code class="docutils literal notranslate"><span class="pre">ingredients.csv</span></code> donne les quantités pour une personne, et le
+notebook les multiplie ; le texte de la préparation, lu dans <code class="docutils literal notranslate"><span class="pre">recette.md</span></code>,
+ne change pas.</p>
+<p>Le noyau à choisir est celui de <code class="docutils literal notranslate"><span class="pre">recette</span></code>, l’environnement du projet. Ce
+notebook réécrit ses fonctions au lieu de les importer, y compris une
+version réduite de <code class="docutils literal notranslate"><span class="pre">tabulate</span></code>, et n’emploie que la bibliothèque standard et
+IPython. Il s’exécute donc aussi dans le navigateur, avec JupyterLite, en y
+déposant <code class="docutils literal notranslate"><span class="pre">ingredients.csv</span></code> et <code class="docutils literal notranslate"><span class="pre">recette.md</span></code> et en remplaçant le chemin par
+<code class="docutils literal notranslate"><span class="pre">Path(&quot;.&quot;)</span></code>.</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../4a_recette/guide.html"
+       title="page précédente">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">précédent</p>
+        <p class="prev-next-title">TD 4a — Installer un projet Python, et décrire son installation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../4c_trajet/guide.html"
+       title="page suivante">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">suivant</p>
+        <p class="prev-next-title">TD 4c — Installer un projet en lisant son README (facultatif)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-l-environnement-contient-et-ce-qui-manque">1 · Ce que l’environnement contient, et ce qui manque</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-fichiers-du-td">Les fichiers du TD</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#l-invite-de-commandes-d-anaconda-et-l-environnement-recette">L’invite de commandes d’Anaconda et l’environnement <code class="docutils literal notranslate"><span class="pre">recette</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-base-contient">(1) Ce que <code class="docutils literal notranslate"><span class="pre">base</span></code> contient</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lancer-jupyterlab-dans-recette">(2) Lancer JupyterLab dans <code class="docutils literal notranslate"><span class="pre">recette</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choisir-recette-comme-noyau-dans-vscode">(3) Choisir <code class="docutils literal notranslate"><span class="pre">recette</span></code> comme noyau dans VSCode</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tout-dans-le-meme-environnement">2 · Tout dans le même environnement</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installer-jupyterlab-dans-recette">(4) Installer JupyterLab dans <code class="docutils literal notranslate"><span class="pre">recette</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lancer-jupyterlab">(5) Lancer JupyterLab</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ouvrir-altitudes-ipynb">(6) Ouvrir <code class="docutils literal notranslate"><span class="pre">altitudes.ipynb</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arreter-jupyterlab">(7) Arrêter JupyterLab</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#le-client-d-un-cote-le-noyau-de-l-autre">3 · Le client d’un côté, le noyau de l’autre</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creer-l-environnement-altitudes">(8) Créer l’environnement <code class="docutils literal notranslate"><span class="pre">altitudes</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#declarer-le-noyau">(9) Déclarer le noyau</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lister-les-noyaux-declares">(10) Lister les noyaux déclarés</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#employer-le-noyau-altitudes">(11) Employer le noyau <code class="docutils literal notranslate"><span class="pre">altitudes</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#le-notebook-du-projet-recette">4 · Le notebook du projet recette</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ouvrir-le-notebook-et-lire-la-premiere-cellule">(12) Ouvrir le notebook et lire la première cellule</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#commenter-la-premiere-cellule">(13) Commenter la première cellule</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#redemarrer-et-tout-executer">(14) Redémarrer et tout exécuter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#changer-le-nombre-de-personnes">(15) Changer le nombre de personnes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rendre-la-main">Rendre la main</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#en-cas-d-erreur">En cas d’erreur</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-le-td-fait-constater">Ce que le TD fait constater</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-1-ce-qui-manque-a-recette">Étape 1 : ce qui manque à <code class="docutils literal notranslate"><span class="pre">recette</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-2-le-client-et-le-noyau-au-meme-endroit">Étape 2 : le client et le noyau au même endroit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-3-le-client-dans-un-environnement-le-noyau-dans-un-autre">Étape 3 : le client dans un environnement, le noyau dans un autre</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-4-le-notebook-du-projet-recette">Étape 4 : le notebook du projet recette</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par 1re année géomatique
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, module info01 — CC-BY-4.0.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

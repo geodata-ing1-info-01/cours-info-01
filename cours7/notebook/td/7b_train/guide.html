@@ -1,0 +1,1044 @@
+
+<!DOCTYPE html>
+
+
+<html lang="fr" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>TD 7b — Reprendre et compléter le projet d’un autre &#8212; Introduction à l&#39;informatique</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../../../_static/documentation_options.js?v=72dce1d2"></script>
+    <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../../../../_static/translations.js?v=e6b791cb"></script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cours7/notebook/td/7b_train/guide';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="../../../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Recherche" href="../../../../search.html" />
+    <link rel="next" title="Configuration des postes de la salle" href="../../../../annexes/configuration/index.html" />
+    <link rel="prev" title="TD 7a — Compléter son projet, par des pull requests" href="../7a_recette/guide.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="fr"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../../../_static/searchtools.js"></script>
+    <script src="../../../../_static/language_data.js"></script>
+    <script src="../../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Passer au contenu principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Haut de page</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Alerte de version"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navigation dans le site">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="Sur cette page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction à l'informatique</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../index.html">
+                    Introduction à l’informatique
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Avant les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/poste.html">Premiers tests du poste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/donnees.html">Récupérer les fichiers d’une séance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/python.html">Anaconda et JupyterLab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/vscode.html">VS Code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Après les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../apres/sauvegarder.html">Sauvegarder son travail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../apres/s_entrainer.html">S’entraîner : jeux et exercices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Séances</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours1_v2/index.html">Séance 1, version 2 — Logiciels, fichiers, terminal et premier programme</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/01_logiciels_stockage.html">Logiciels, fichiers et stockage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/02_terminal.html">Le terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/03_premier_programme.html">Premier programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/04_notebook.html">Un notebook et la syntaxe de Markdown</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours1_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 1, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1b_terminal/guide.html">TD 1b — Les fichiers du TD 1a en ligne de commande</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1c_programme/guide.html">TD 1c — Écrire et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1d_notebook/guide.html">TD 1d — Un notebook dans JupyterLab</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours2_v2/index.html">Séance 2, version 2 — Éditeur de code, Markdown et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/01_editeur_de_code.html">L’éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/02_markdown.html">Une recette en Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/03_git_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/04_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours2_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/2a_vscode/guide.html">TD 2a — Configurer VS Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/2b_erreurs/guide.html">TD 2b — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/2c_markdown/guide.html">TD 2c — Une recette en Markdown, convertie par pandoc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/2d_depot_recette/guide.html">TD 2d — Un dépôt git pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours3/index.html">Séance 3 — Chemins, fichiers et ligne de commande</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/01_chemins_programmes.html">Chemins et programmes externes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/02_fichiers_encodage.html">Fichiers et encodage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/03_du_notebook_au_programme.html">Du notebook au programme</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours3/notebook/travaux_diriges.html">Travaux dirigés de la séance 3</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours3/notebook/td/3e_markdown/guide.html">TD 3e — Une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours3/notebook/td/3f_cli/guide.html">TD 3f — Une ligne de commande pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours4/index.html">Séance 4 — Projet d’application 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours4/notebook/travaux_diriges.html">Travaux dirigés du projet 4</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours4/notebook/td/4a_recette/guide.html">TD 4a — Un script Python, pas à pas</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours4/notebook/td/4b_paquet/guide.html">TD 4b — Un programme installable</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours5/index.html">Séance 5 — Matériel, réseau, mots de passe, clés SSH et secrets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/01_materiel.html">Le matériel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/02_reseau.html">Le réseau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/03_prouver_qui_lon_est.html">Prouver qui l’on est</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/04_secrets.html">Les secrets de vos programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/travaux_diriges.html">Travaux dirigés de la séance 5</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cours6/index.html">Séance 6 — La forge, sur le dépôt du projet 4</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../../index.html">Séance 7 — Projet d’application 2</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../7a_recette/guide.html">TD 7a — Compléter son projet, par des pull requests</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">TD 7b — Reprendre et compléter le projet d’un autre</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Annexes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/configuration/index.html">Configuration des postes de la salle</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/anaconda.html">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/jupyterlab.html">JupyterLab</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../annexes/configuration/vscode.html">VS Code</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_python.html">Python et environnement conda</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_notebooks.html">Notebooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_reglages.html">Fichiers de réglages</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/git.html">Git et Git Bash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/spyder.html">Spyder</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/poste_personnel/index.html">Configuration d’un ordinateur personnel</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/conda.html">Python et conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/vscode.html">VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/git_outils.html">Git et éditeurs de texte</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/notions/index.html">Notions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/outils.html">Choisir entre JupyterLab, Spyder et VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/notebooks.html">Les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/terminaux.html">Les terminaux en ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/variables_environnement.html">Variables d’environnement et recherche des programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/environnements.html">Les environnements conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/vscode_environnements.html">Comment VS Code gère les environnements Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/git_bash.html">Git Bash : une fenêtre, bash et des programmes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/faq.html">FAQ</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/reseau.html">Problèmes de réseau et de compte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/bureautique.html">Problèmes avec les logiciels de texte et de bureautique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/anaconda.html">Problèmes avec Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/jupyterlab.html">Problèmes avec JupyterLab et les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/vscode.html">Problèmes avec VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/git.html">Problèmes avec git</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/plus_loin/index.html">Pour aller plus loin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/gestionnaires.html">venv, uv et pixi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/cpp.html">C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/programme_interpreteur.html">Programme, application et interpréteur</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Archive 2026</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours1/index.html">Séance 1, 2026 — Logiciel, programmation et formats de fichier</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/01_logiciels_et_formats.html">Logiciels et formats de fichier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/02_programmation.html">Programmation et éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/03_markdown_notebook.html">Markdown et notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/04_bibliotheques_environnements.html">Bibliothèques et environnements Python</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours1/notebook/travaux_diriges.html">Travaux dirigés de la séance 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1b_archive_odt/guide.html">TD 1b — Un .odt est une archive ZIP (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1c_vscode_python/guide.html">TD 1c — Configurer l’éditeur de code, et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1d_erreurs/guide.html">TD 1d — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1e_hello_cpp/guide.html">TD 1e — Le même programme en C++ (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1f_markdown/guide.html">TD 1f — Mettre en forme une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1g_notebooks/guide.html">TD 1g — Le notebook, ouvert de trois façons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1h_recette/guide.html">TD 1h — Installer un projet Python, et décrire son installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1i_noyaux/guide.html">TD 1i — Le client, le noyau, et où ils sont installés (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1j_trajet/guide.html">TD 1j — Installer un projet en lisant son README (facultatif)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/05_comparer_versions.html">Annexe — Comparer deux versions d’un fichier</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours2/index.html">Séance 2, 2026 — Ligne de commande et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/01_ligne_de_commande.html">La ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/02_depot_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/03_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/04_lire_et_tenir_un_depot.html">Lire et tenir un dépôt</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2a_premier_depot/guide.html">TD 2a — Un premier dépôt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2b_branches/guide.html">TD 2b — Branches et fusions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2c_annuler/guide.html">TD 2c — Annuler et remettre à jour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2d_conflits/guide.html">TD 2d — Créer et résoudre un conflit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2e_livrer/guide.html">TD 2e — Publier une version</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Thème">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Thème" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Clair"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Sombre"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="Paramètres système"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>Paramètres système</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Clair</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Sombre</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>TD 7b — Reprendre et compléter le projet d’un autre</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-le-td-ajoute-au-programme">Ce que le TD ajoute au programme</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#au-debut-de-la-seance">Au début de la séance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#e0-recuperer-le-projet-et-son-environnement">E0 · Récupérer le projet et son environnement</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e0-1-le-depot">E0.1 Le dépôt</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e0-2-l-environnement">E0.2 L’environnement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e0-3-faire-tourner-le-programme">E0.3 Faire tourner le programme</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#e1-lire-le-code">E1 · Lire le code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#e2-effet-1-la-fenetre-du-train">E2 · Effet 1, la fenêtre du train</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e2-1-deux-branches">E2.1 Deux branches</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e2-2-la-fenetre">E2.2 La fenêtre</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e2-3-la-pull-request">E2.3 La pull request</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#e3-effet-2-les-ombres-des-poteaux">E3 · Effet 2, les ombres des poteaux</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e3-1-le-calque-des-poteaux">E3.1 Le calque des poteaux</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e3-2-la-pull-request-et-le-conflit">E3.2 La pull request, et le conflit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e3-3-resoudre">E3.3 Résoudre</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#e4-bonus-un-troisieme-plan">E4 (bonus) · Un troisième plan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reponses-de-l-etape-e1">Réponses de l’étape E1</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="td-7b-reprendre-et-completer-le-projet-d-un-autre">
+<h1>TD 7b — Reprendre et compléter le projet d’un autre<a class="headerlink" href="#td-7b-reprendre-et-completer-le-projet-d-un-autre" title="Lien vers cette rubrique">#</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Les fichiers des TD de la séance sont dans l’archive <a href="../../../../telechargements/info01-cours7.zip">info01-cours7.zip</a>.</p>
+</div>
+<p>Le TD part d’un projet déjà commencé par quelqu’un d’autre : le dépôt
+<code class="docutils literal notranslate"><span class="pre">train</span></code>, publié sur GitHub par le module. Son programme fabrique une courte
+vidéo d’après la scène de la mer du clip « Moon » de Kid Francescoli
+(Cauboyz, 2017). Dans ce clip, la caméra filme la mer depuis un train : le
+paysage défile derrière la vitre, les plans proches plus vite que les plans
+lointains, et les ombres des poteaux le long de la voie passent très vite.</p>
+<section id="ce-que-le-td-ajoute-au-programme">
+<h2>Ce que le TD ajoute au programme<a class="headerlink" href="#ce-que-le-td-ajoute-au-programme" title="Lien vers cette rubrique">#</a></h2>
+<p>Le programme du dépôt ne fait défiler que le paysage : deux plans, les
+voiles et la plage, sur un fond fixe. Le TD lui ajoute les deux autres
+éléments du clip, deux effets :</p>
+<ul class="simple">
+<li><p><strong>effet 1, la fenêtre du train</strong> : le cadre de la vitre, posé par-dessus
+le paysage ;</p></li>
+<li><p><strong>effet 2, les ombres des poteaux</strong> : des bandes sombres qui traversent
+l’image très vite, calculées avec numpy.</p></li>
+</ul>
+<p><img alt="Au départ, chaque effet seul, puis les deux : l'image numéro 3 de la vidéo" src="../../../../_images/effets.png" /></p>
+<p>Les deux effets se développent sur deux branches parties du même commit,
+<code class="docutils literal notranslate"><span class="pre">fenetre</span></code> et <code class="docutils literal notranslate"><span class="pre">poteaux</span></code>, comme le feraient deux personnes en même temps.
+Chacune arrive sur <code class="docutils literal notranslate"><span class="pre">master</span></code> par une pull request. Les deux modifient le
+même endroit de la fonction <code class="docutils literal notranslate"><span class="pre">image</span></code> : la seconde pull request s’arrête sur
+un conflit, que l’on résout sur le poste.</p>
+<p>Le guide donne les lignes à modifier comme ceux du projet 4. Une ligne
+marquée <code class="docutils literal notranslate"><span class="pre">-</span></code> est à supprimer, une ligne marquée <code class="docutils literal notranslate"><span class="pre">+</span></code> est à ajouter, sans le
+<code class="docutils literal notranslate"><span class="pre">+</span></code> ni les cinq espaces qui le suivent. Les lignes sans signe ne changent
+pas et indiquent l’endroit. Le nombre qui suit le signe est le numéro de la
+ligne dans VS Code, quand les modifications sont faites de haut en bas.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Étape</p></th>
+<th class="head"><p>Objectif</p></th>
+<th class="head"><p>Durée</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#e0-recuperer-le-projet-et-son-environnement">E0</a></p></td>
+<td><p>récupérer un projet et son environnement, le faire tourner</p></td>
+<td><p>20′</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#e1-lire-le-code">E1</a></p></td>
+<td><p>lire le code d’un autre : comment une image est composée</p></td>
+<td><p>10′</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#e2-effet-1-la-fenetre-du-train">E2</a></p></td>
+<td><p>effet 1, la fenêtre du train, sur une branche ; une pull request</p></td>
+<td><p>20′</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#e3-effet-2-les-ombres-des-poteaux">E3</a></p></td>
+<td><p>effet 2, les ombres des poteaux avec numpy, sur une autre branche ; un conflit</p></td>
+<td><p>40′</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#e4-bonus-un-troisieme-plan">E4</a> (bonus)</p></td>
+<td><p>un troisième plan, sans modifier le code</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="au-debut-de-la-seance">
+<h2>Au début de la séance<a class="headerlink" href="#au-debut-de-la-seance" title="Lien vers cette rubrique">#</a></h2>
+<ul class="simple">
+<li><p>Le compte GitHub du cours 6, avec la clé SSH du cours 6 enregistrée.</p></li>
+<li><p>L’archive <code class="docutils literal notranslate"><span class="pre">info01-cours7.zip</span></code>, copiée depuis <code class="docutils literal notranslate"><span class="pre">formationTemp</span></code> sur le
+Bureau, puis extraite : clic droit, Extraire tout, en effaçant la fin du
+dossier proposé, <code class="docutils literal notranslate"><span class="pre">\info01-cours7</span></code>. Le dossier extrait est
+<code class="docutils literal notranslate"><span class="pre">Desktop\cours7</span></code>.</p></li>
+</ul>
+<p>Ouvrir le dossier <code class="docutils literal notranslate"><span class="pre">cours7/7b_train/</span></code> dans VS Code, puis un terminal Git Bash
+(menu Terminal, New Terminal ; flèche à côté du <code class="docutils literal notranslate"><span class="pre">+</span></code>, Git Bash).</p>
+</section>
+<section id="e0-recuperer-le-projet-et-son-environnement">
+<h2>E0 · Récupérer le projet et son environnement<a class="headerlink" href="#e0-recuperer-le-projet-et-son-environnement" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> le dépôt <code class="docutils literal notranslate"><span class="pre">train</span></code> cloné depuis le compte du module, puis poussé vers un dépôt vide de votre compte ; l’environnement <code class="docutils literal notranslate"><span class="pre">train</span></code> créé depuis <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>.</p>
+<p><strong>À obtenir :</strong> <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">train.py</span> <span class="pre">--images</span> <span class="pre">48</span> <span class="pre">--video</span></code> écrit <code class="docutils literal notranslate"><span class="pre">sortie/train.mp4</span></code>, où deux plans défilent sur le fond.</p>
+</div></blockquote>
+<section id="e0-1-le-depot">
+<h3>E0.1 Le dépôt<a class="headerlink" href="#e0-1-le-depot" title="Lien vers cette rubrique">#</a></h3>
+<p>Sur votre compte GitHub, créer un dépôt vide nommé <code class="docutils literal notranslate"><span class="pre">train</span></code> (New
+repository, sans README). Le compte du module est <code class="docutils literal notranslate"><span class="pre">geodata-ing1-info-01</span></code>.
+Puis :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd travail
+git clone git@github.com:geodata-ing1-info-01/td7b-train.git train
+cd train
+git remote set-url origin git@github.com:&lt;compte&gt;/train.git
+git push -u origin master
+</pre></div>
+</div>
+<p>Le dernier argument de <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code> nomme le dossier local <code class="docutils literal notranslate"><span class="pre">train</span></code>.
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">set-url</span></code> change l’adresse du dépôt distant <code class="docutils literal notranslate"><span class="pre">origin</span></code> : les
+<code class="docutils literal notranslate"><span class="pre">push</span></code> suivants vont à votre dépôt. Régler ensuite votre nom, votre
+adresse, et la façon dont <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code> réunit deux historiques (par une
+fusion, étape E3) :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git config user.name "Prénom Nom"
+git config user.email "prenom.nom@exemple.fr"
+git config pull.rebase false
+</pre></div>
+</div>
+<p><strong>Vérification</strong> : <code class="docutils literal notranslate"><span class="pre">ls</span></code> liste <code class="docutils literal notranslate"><span class="pre">README.md</span></code>, <code class="docutils literal notranslate"><span class="pre">decor</span></code>, <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> et
+<code class="docutils literal notranslate"><span class="pre">train.py</span></code> ; <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span> <span class="pre">--oneline</span></code> affiche trois commits.</p>
+</section>
+<section id="e0-2-l-environnement">
+<h3>E0.2 L’environnement<a class="headerlink" href="#e0-2-l-environnement" title="Lien vers cette rubrique">#</a></h3>
+<p>Le programme lance ImageMagick (<code class="docutils literal notranslate"><span class="pre">magick</span></code>) et ffmpeg, deux programmes en
+ligne de commande. Le fichier <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> du dépôt décrit
+l’environnement du projet :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cat environment.yml
+conda env create -f environment.yml
+conda activate train
+</pre></div>
+</div>
+<p>La création télécharge les paquets : plusieurs minutes. Pendant ce temps,
+lire le README du dépôt.</p>
+<p><strong>Vérification</strong> : l’invite commence par <code class="docutils literal notranslate"><span class="pre">(train)</span></code> ; <code class="docutils literal notranslate"><span class="pre">magick</span> <span class="pre">-version</span></code>
+affiche la version d’ImageMagick.</p>
+</section>
+<section id="e0-3-faire-tourner-le-programme">
+<h3>E0.3 Faire tourner le programme<a class="headerlink" href="#e0-3-faire-tourner-le-programme" title="Lien vers cette rubrique">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python train.py --help
+python train.py --numero 40
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>écrit : C:\Users\eleve\Desktop\cours7\7b_train\travail\train\sortie\train_0040.png
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python train.py --images 48 --video
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>48 images dans C:\Users\eleve\Desktop\cours7\7b_train\travail\train\sortie\images
+écrit : C:\Users\eleve\Desktop\cours7\7b_train\travail\train\sortie\train.mp4
+</pre></div>
+</div>
+<p><strong>Vérification</strong> : <code class="docutils literal notranslate"><span class="pre">start</span> <span class="pre">sortie/train.mp4</span></code> montre les voiles et la plage
+jaune qui défilent vers la gauche, la plage plus vite que les voiles.</p>
+</section>
+</section>
+<section id="e1-lire-le-code">
+<h2>E1 · Lire le code<a class="headerlink" href="#e1-lire-le-code" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> lire <code class="docutils literal notranslate"><span class="pre">decor/plans.csv</span></code> et la fonction <code class="docutils literal notranslate"><span class="pre">image</span></code> ; répondre aux trois questions.</p>
+<p><strong>À obtenir :</strong> les réponses, vérifiées en lançant le programme.</p>
+</div></blockquote>
+<p><img alt="L'image de départ, couche par couche" src="../../../../_images/couches.png" /></p>
+<p>Chaque image de la vidéo superpose des couches : le fond, puis chaque plan,
+découpé dans une bande qui tourne. Le damier marque les pixels
+transparents : là, la couche laisse voir celle du dessous. Les plans sont décrits dans
+<code class="docutils literal notranslate"><span class="pre">decor/plans.csv</span></code>, du plus lointain au plus proche :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>fichier,vitesse
+voiles.png,4
+plage_jaune.png,8
+</pre></div>
+</div>
+<p>La fonction <code class="docutils literal notranslate"><span class="pre">image</span></code> construit la commande de <code class="docutils literal notranslate"><span class="pre">magick</span></code>, couche par couche :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">image</span><span class="p">(</span><span class="n">fichier</span><span class="p">,</span> <span class="n">plans</span><span class="p">,</span> <span class="n">numero</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""L'image numéro `numero` : le fond, puis chaque plan décalé de numero × sa vitesse."""</span>
+    <span class="n">commande</span> <span class="o">=</span> <span class="p">[</span><span class="n">MAGICK</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">DECOR</span> <span class="o">/</span> <span class="s2">"fond.png"</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">nom</span><span class="p">,</span> <span class="n">vitesse</span> <span class="ow">in</span> <span class="n">plans</span><span class="p">:</span>
+        <span class="n">commande</span> <span class="o">=</span> <span class="n">commande</span> <span class="o">+</span> <span class="n">arguments_plan</span><span class="p">(</span><span class="n">nom</span><span class="p">,</span> <span class="n">numero</span> <span class="o">*</span> <span class="n">vitesse</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="s2">"-composite"</span><span class="p">]</span>
+    <span class="n">commande</span> <span class="o">=</span> <span class="n">commande</span> <span class="o">+</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">fichier</span><span class="p">)]</span>
+    <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">commande</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Quelle ligne de <code class="docutils literal notranslate"><span class="pre">image</span></code> ajoute un plan à la commande, et combien de
+fois s’exécute-t-elle pour une image ?</p></li>
+<li><p>De combien de colonnes la bande des voiles est-elle décalée à l’image
+numéro 10 ?</p></li>
+<li><p>Que devient l’image si l’on échange les deux dernières lignes de
+<code class="docutils literal notranslate"><span class="pre">decor/plans.csv</span></code> ? L’essayer avec <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">train.py</span> <span class="pre">--numero</span> <span class="pre">40</span></code>, puis
+remettre le fichier dans son état : <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">restore</span> <span class="pre">decor/plans.csv</span></code>.</p></li>
+</ol>
+<p>Les réponses sont à la fin du guide.</p>
+</section>
+<section id="e2-effet-1-la-fenetre-du-train">
+<h2>E2 · Effet 1, la fenêtre du train<a class="headerlink" href="#e2-effet-1-la-fenetre-du-train" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> créer deux branches, <code class="docutils literal notranslate"><span class="pre">fenetre</span></code> et <code class="docutils literal notranslate"><span class="pre">poteaux</span></code>, depuis <code class="docutils literal notranslate"><span class="pre">master</span></code> ; sur <code class="docutils literal notranslate"><span class="pre">fenetre</span></code>, poser l’image de la fenêtre sur chaque image de la vidéo ; un commit ; la pull request, fusionnée sur GitHub.</p>
+<p><strong>À obtenir :</strong> <code class="docutils literal notranslate"><span class="pre">sortie/train_0040.png</span></code> montre le paysage derrière la vitre, dans le cadre noir ; sur GitHub, <code class="docutils literal notranslate"><span class="pre">master</span></code> contient la fenêtre.</p>
+</div></blockquote>
+<p><img alt="Effet 1 : l'image de la fenêtre, dont la vitre est transparente, posée sur l'image de départ" src="../../../../_images/fenetre.png" /></p>
+<section id="e2-1-deux-branches">
+<h3>E2.1 Deux branches<a class="headerlink" href="#e2-1-deux-branches" title="Lien vers cette rubrique">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git branch fenetre
+git branch poteaux
+git branch
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">&lt;nom&gt;</span></code> crée une branche sur le commit courant, sans s’y placer.
+Les deux branches partent du même commit, comme deux personnes qui
+commencent chacune une fonctionnalité à partir de la même version.</p>
+</section>
+<section id="e2-2-la-fenetre">
+<h3>E2.2 La fenêtre<a class="headerlink" href="#e2-2-la-fenetre" title="Lien vers cette rubrique">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git checkout fenetre
+</pre></div>
+</div>
+<p>La fenêtre, <code class="docutils literal notranslate"><span class="pre">decor/fenetre.png</span></code>, est déjà dans le dépôt : une image de
+640 × 480 pixels, noire sur le cadre, transparente sur la vitre. Posée en
+dernier sur l’image, elle cache les bords du paysage et le laisse voir par
+la vitre. Dans la fonction <code class="docutils literal notranslate"><span class="pre">image</span></code>, une ligne de plus l’ajoute à la commande
+de <code class="docutils literal notranslate"><span class="pre">magick</span></code>, après la boucle des plans, avec <code class="docutils literal notranslate"><span class="pre">-composite</span></code>, comme chaque
+plan.</p>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>  53     for nom, vitesse in plans:
+<span class="w"> </span>  54         commande = commande + arguments_plan(nom, numero * vitesse) + ["-composite"]
+<span class="gi">+         commande = commande + [str(DECOR / "fenetre.png"), "-composite"]</span>
+<span class="w"> </span>  56     commande = commande + [str(fichier)]
+<span class="w"> </span>  57     subprocess.run(commande, check=True)
+</pre></div>
+</div>
+<p><strong>Vérification</strong> : <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">train.py</span> <span class="pre">--numero</span> <span class="pre">40</span></code>, puis ouvrir
+<code class="docutils literal notranslate"><span class="pre">sortie/train_0040.png</span></code> : le paysage derrière la vitre, et le cadre noir
+autour.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git commit -am "La fenêtre posée sur chaque image"
+git push -u origin fenetre
+</pre></div>
+</div>
+</section>
+<section id="e2-3-la-pull-request">
+<h3>E2.3 La pull request<a class="headerlink" href="#e2-3-la-pull-request" title="Lien vers cette rubrique">#</a></h3>
+<p>Sur GitHub : Compare &amp; pull request, Create pull request, Merge pull
+request, Confirm merge.</p>
+<p><strong>Vérification</strong> : sur la page du dépôt, <code class="docutils literal notranslate"><span class="pre">train.py</span></code> contient la ligne de la
+fenêtre.</p>
+</section>
+</section>
+<section id="e3-effet-2-les-ombres-des-poteaux">
+<h2>E3 · Effet 2, les ombres des poteaux<a class="headerlink" href="#e3-effet-2-les-ombres-des-poteaux" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> sur la branche <code class="docutils literal notranslate"><span class="pre">poteaux</span></code> : calculer avec numpy un calque des ombres, et le poser sur chaque image (E3.1) ; la pull request, qui s’arrête sur un conflit (E3.2) ; résoudre le conflit sur le poste (E3.3).</p>
+<p><strong>À obtenir :</strong> la vidéo montre des bandes sombres qui passent vite sur le paysage, derrière la vitre ; les deux branches sont fusionnées dans <code class="docutils literal notranslate"><span class="pre">master</span></code>.</p>
+</div></blockquote>
+<p><img alt="Effet 2 : le calque des poteaux, sombre sur des bandes et transparent ailleurs, posé sur l'image de départ" src="../../../../_images/poteaux.png" /></p>
+<section id="e3-1-le-calque-des-poteaux">
+<h3>E3.1 Le calque des poteaux<a class="headerlink" href="#e3-1-le-calque-des-poteaux" title="Lien vers cette rubrique">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git checkout poteaux
+</pre></div>
+</div>
+<p><strong>Vérification</strong> : <code class="docutils literal notranslate"><span class="pre">train.py</span></code> n’a pas la ligne de la fenêtre. La branche
+<code class="docutils literal notranslate"><span class="pre">poteaux</span></code> est restée au commit de départ.</p>
+<p>Dans le clip, les ombres des poteaux passent très vite devant la vitre. Le
+programme les dessine sur un calque : une image de 640 × 480 pixels,
+transparente sauf sur des bandes verticales sombres. Pour chaque image de
+la vidéo, la fonction <code class="docutils literal notranslate"><span class="pre">ecrire_poteaux</span></code> calcule ce calque et l’écrit dans
+<code class="docutils literal notranslate"><span class="pre">sortie/poteaux.png</span></code>, et <code class="docutils literal notranslate"><span class="pre">image</span></code> le pose sur le paysage, comme un plan. Les
+bandes se décalent de 90 pixels d’une image à la suivante : dix fois plus
+vite que la plage.</p>
+<p>numpy représente une image comme un tableau de nombres. Le calque est un
+tableau de 480 lignes, 640 colonnes et 4 valeurs par pixel : rouge, vert,
+bleu et opacité, chacune de 0 à 255. <code class="docutils literal notranslate"><span class="pre">np.zeros(…)</span></code> crée ce tableau rempli
+de zéros : un pixel noir et transparent partout.</p>
+<p><code class="docutils literal notranslate"><span class="pre">np.arange(640)</span></code> est le tableau des numéros de colonnes, de 0 à 639. Les
+opérations sur ce tableau se font sur chaque valeur à la fois :
+<code class="docutils literal notranslate"><span class="pre">(np.arange(640)</span> <span class="pre">+</span> <span class="pre">90</span> <span class="pre">*</span> <span class="pre">numero)</span> <span class="pre">%</span> <span class="pre">400</span> <span class="pre">&lt;</span> <span class="pre">24</span></code> donne, pour chaque colonne,
+<code class="docutils literal notranslate"><span class="pre">True</span></code> si elle tombe dans une bande et <code class="docutils literal notranslate"><span class="pre">False</span></code> sinon. Ce tableau de
+booléens choisit des colonnes : <code class="docutils literal notranslate"><span class="pre">calque[:,</span> <span class="pre">colonnes,</span> <span class="pre">3]</span> <span class="pre">=</span> <span class="pre">110</span></code> règle
+l’opacité de ces colonnes, sur toutes les lignes (<code class="docutils literal notranslate"><span class="pre">:</span></code>), à 110 sur 255.</p>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>  18 from pathlib import Path
+<span class="w"> </span>  19
+<span class="gi">+     import numpy as np</span>
+<span class="gi">+     from PIL import Image</span>
+<span class="gi">+</span>
+<span class="w"> </span>  23 # Les programmes
+<span class="w"> </span>  24 MAGICK = "magick"
+<span class="w"> </span>   …
+<span class="w"> </span>  29 SORTIE = Path.cwd() / "sortie"
+<span class="w"> </span>  30 IMAGES = SORTIE / "images"
+<span class="gi">+</span>
+<span class="gi">+     # Les ombres des poteaux : des bandes sombres qui passent très vite vers la gauche</span>
+<span class="gi">+     POTEAUX = SORTIE / "poteaux.png"     # le calque des poteaux, refait pour chaque image</span>
+<span class="gi">+     ECART_POTEAUX = 400                  # pixels entre deux bandes</span>
+<span class="gi">+     LARGEUR_POTEAU = 24                  # largeur d'une bande, en pixels</span>
+<span class="gi">+     VITESSE_POTEAUX = 90                 # pixels par image</span>
+<span class="w"> </span>  37
+<span class="w"> </span>  38
+<span class="w"> </span>   …
+<span class="w"> </span>  57
+<span class="w"> </span>  58
+<span class="gi">+     def ecrire_poteaux(fichier, numero):</span>
+<span class="gi">+         """Le calque des poteaux de l'image `numero`, 640 × 480 pixels : des bandes sombres, transparent ailleurs."""</span>
+<span class="gi">+         # Un tableau hauteur × largeur × 4 (rouge, vert, bleu, opacité), à zéro : noir et transparent</span>
+<span class="gi">+         calque = np.zeros((480, 640, 4), dtype=np.uint8)</span>
+<span class="gi">+         # Pour chaque colonne, vrai si elle tombe dans une bande</span>
+<span class="gi">+         colonnes = (np.arange(640) + VITESSE_POTEAUX * numero) % ECART_POTEAUX &lt; LARGEUR_POTEAU</span>
+<span class="gi">+         calque[:, colonnes, 3] = 110     # l'opacité de ces colonnes, sur toute la hauteur</span>
+<span class="gi">+         Image.fromarray(calque).save(fichier)</span>
+<span class="gi">+</span>
+<span class="gi">+</span>
+<span class="w"> </span>  69 def image(fichier, plans, numero):
+<span class="w"> </span>  70     """L'image numéro `numero` : le fond, puis chaque plan décalé de numero × sa vitesse."""
+<span class="w"> </span>   …
+<span class="w"> </span>  72     for nom, vitesse in plans:
+<span class="w"> </span>  73         commande = commande + arguments_plan(nom, numero * vitesse) + ["-composite"]
+<span class="gi">+         ecrire_poteaux(POTEAUX, numero)</span>
+<span class="gi">+         commande = commande + [str(POTEAUX), "-composite"]</span>
+<span class="w"> </span>  76     commande = commande + [str(fichier)]
+<span class="w"> </span>  77     subprocess.run(commande, check=True)
+</pre></div>
+</div>
+<p><strong>Vérification</strong> : <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">train.py</span> <span class="pre">--numero</span> <span class="pre">3</span></code>, puis ouvrir
+<code class="docutils literal notranslate"><span class="pre">sortie/train_0003.png</span></code> : deux bandes sombres sur le paysage. Puis
+<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">train.py</span> <span class="pre">--images</span> <span class="pre">48</span> <span class="pre">--video</span></code> : les bandes passent vite vers la
+gauche.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git commit -am "Les ombres des poteaux"
+git push -u origin poteaux
+</pre></div>
+</div>
+</section>
+<section id="e3-2-la-pull-request-et-le-conflit">
+<h3>E3.2 La pull request, et le conflit<a class="headerlink" href="#e3-2-la-pull-request-et-le-conflit" title="Lien vers cette rubrique">#</a></h3>
+<p>Sur GitHub, ouvrir la pull request de <code class="docutils literal notranslate"><span class="pre">poteaux</span></code>. La page affiche « This
+branch has conflicts that must be resolved » : <code class="docutils literal notranslate"><span class="pre">master</span></code> a changé depuis le
+départ de la branche, et les deux branches ont modifié le même endroit de
+<code class="docutils literal notranslate"><span class="pre">train.py</span></code>. Le conflit se résout sur le poste, en ramenant <code class="docutils literal notranslate"><span class="pre">master</span></code> dans la
+branche :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git pull origin master
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Auto-merging train.py
+CONFLICT (content): Merge conflict in train.py
+Automatic merge failed; fix conflicts and then commit the result.
+</pre></div>
+</div>
+<p>Dans <code class="docutils literal notranslate"><span class="pre">train.py</span></code>, la fonction <code class="docutils literal notranslate"><span class="pre">image</span></code> contient les deux versions :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span> <span class="n">HEAD</span>
+    <span class="n">ecrire_poteaux</span><span class="p">(</span><span class="n">POTEAUX</span><span class="p">,</span> <span class="n">numero</span><span class="p">)</span>
+    <span class="n">commande</span> <span class="o">=</span> <span class="n">commande</span> <span class="o">+</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">POTEAUX</span><span class="p">),</span> <span class="s2">"-composite"</span><span class="p">]</span>
+<span class="o">=======</span>
+    <span class="n">commande</span> <span class="o">=</span> <span class="n">commande</span> <span class="o">+</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">DECOR</span> <span class="o">/</span> <span class="s2">"fenetre.png"</span><span class="p">),</span> <span class="s2">"-composite"</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="mi">586</span><span class="n">b3cb3f7a1a4e1391c836ac75e57fc5c3f18b5</span>
+</pre></div>
+</div>
+<p>Entre <code class="docutils literal notranslate"><span class="pre">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span> <span class="pre">HEAD</span></code> et <code class="docutils literal notranslate"><span class="pre">=======</span></code> : la version de la branche <code class="docutils literal notranslate"><span class="pre">poteaux</span></code>.
+Entre <code class="docutils literal notranslate"><span class="pre">=======</span></code> et <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></code> : la version de <code class="docutils literal notranslate"><span class="pre">master</span></code>, avec la fenêtre. La
+ligne <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></code> se termine par l’identifiant du dernier commit de <code class="docutils literal notranslate"><span class="pre">master</span></code>,
+différent dans chaque dépôt.</p>
+</section>
+<section id="e3-3-resoudre">
+<h3>E3.3 Résoudre<a class="headerlink" href="#e3-3-resoudre" title="Lien vers cette rubrique">#</a></h3>
+<p>L’image finale demande les deux effets : les lignes des deux versions
+restent. Les couches se posent de la plus lointaine à la plus proche : le
+paysage, les poteaux, qui sont dehors, puis la fenêtre. Remplacer toutes
+les lignes, de <code class="docutils literal notranslate"><span class="pre">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span> <span class="pre">HEAD</span></code> jusqu’à <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></code> compris, par :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">ecrire_poteaux</span><span class="p">(</span><span class="n">POTEAUX</span><span class="p">,</span> <span class="n">numero</span><span class="p">)</span>
+    <span class="n">commande</span> <span class="o">=</span> <span class="n">commande</span> <span class="o">+</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">POTEAUX</span><span class="p">),</span> <span class="s2">"-composite"</span><span class="p">]</span>
+    <span class="n">commande</span> <span class="o">=</span> <span class="n">commande</span> <span class="o">+</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">DECOR</span> <span class="o">/</span> <span class="s2">"fenetre.png"</span><span class="p">),</span> <span class="s2">"-composite"</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Vérification</strong> : <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">train.py</span> <span class="pre">--images</span> <span class="pre">48</span> <span class="pre">--video</span></code> : la vidéo de la
+dernière image de la figure du début du guide. Ici, le cadre de la fenêtre
+est noir, et l’autre ordre des deux lignes donne presque la même image : les
+ombres, noires, ne se voient pas sur le cadre noir.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git add train.py
+git commit --no-edit
+git push
+</pre></div>
+</div>
+<p>Sur GitHub, la pull request n’a plus de conflit : Merge pull request,
+Confirm merge. Puis, sur le poste :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git checkout master
+git pull
+git log --oneline --graph
+</pre></div>
+</div>
+<p><strong>Vérification</strong> : le graphe dessine les deux branches, réunies dans
+<code class="docutils literal notranslate"><span class="pre">master</span></code>.</p>
+</section>
+</section>
+<section id="e4-bonus-un-troisieme-plan">
+<h2>E4 (bonus) · Un troisième plan<a class="headerlink" href="#e4-bonus-un-troisieme-plan" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> ajouter la plage orange à <code class="docutils literal notranslate"><span class="pre">decor/plans.csv</span></code>, sans modifier le code ; une branche, une pull request.</p>
+<p><strong>À obtenir :</strong> la vidéo montre trois plans, la plage orange devant, deux fois plus rapide que la plage jaune.</p>
+</div></blockquote>
+<p><code class="docutils literal notranslate"><span class="pre">decor/plage.png</span></code> est une troisième bande, déjà dans le dépôt. Le programme
+lit ses plans dans <code class="docutils literal notranslate"><span class="pre">decor/plans.csv</span></code> : un plan de plus est une ligne de
+plus.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git checkout -b plage
+echo "plage.png,16" &gt;&gt; decor/plans.csv
+python train.py --images 48 --video
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> ajoute la ligne à la fin du fichier, sans effacer les autres.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git commit -am "Un troisième plan : la plage orange"
+git push -u origin plage
+</pre></div>
+</div>
+<p>Puis la pull request, fusionnée sur GitHub, et <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">master</span></code>,
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code> sur le poste.</p>
+</section>
+<section id="reponses-de-l-etape-e1">
+<h2>Réponses de l’étape E1<a class="headerlink" href="#reponses-de-l-etape-e1" title="Lien vers cette rubrique">#</a></h2>
+<ol class="arabic simple">
+<li><p>La ligne `commande = commande + arguments_plan(nom, numero * vitesse)</p>
+<ul class="simple">
+<li><p>[« -composite »]<code class="docutils literal notranslate"><span class="pre">,</span> <span class="pre">dans</span> <span class="pre">la</span> <span class="pre">boucle</span> </code>for<code class="docutils literal notranslate"><span class="pre">:</span> <span class="pre">une</span> <span class="pre">fois</span> <span class="pre">par</span> <span class="pre">ligne</span> <span class="pre">de</span></code>plans.csv`, soit deux fois.</p></li>
+</ul>
+</li>
+<li><p>De 40 colonnes : le numéro de l’image, 10, fois la vitesse des voiles, 4.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">magick</span></code> pose les couches dans l’ordre de la commande. Les voiles,
+posées en dernier, passent devant la plage.</p></li>
+</ol>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../7a_recette/guide.html"
+       title="page précédente">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">précédent</p>
+        <p class="prev-next-title">TD 7a — Compléter son projet, par des pull requests</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../../../annexes/configuration/index.html"
+       title="page suivante">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">suivant</p>
+        <p class="prev-next-title">Configuration des postes de la salle</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-le-td-ajoute-au-programme">Ce que le TD ajoute au programme</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#au-debut-de-la-seance">Au début de la séance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#e0-recuperer-le-projet-et-son-environnement">E0 · Récupérer le projet et son environnement</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e0-1-le-depot">E0.1 Le dépôt</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e0-2-l-environnement">E0.2 L’environnement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e0-3-faire-tourner-le-programme">E0.3 Faire tourner le programme</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#e1-lire-le-code">E1 · Lire le code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#e2-effet-1-la-fenetre-du-train">E2 · Effet 1, la fenêtre du train</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e2-1-deux-branches">E2.1 Deux branches</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e2-2-la-fenetre">E2.2 La fenêtre</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e2-3-la-pull-request">E2.3 La pull request</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#e3-effet-2-les-ombres-des-poteaux">E3 · Effet 2, les ombres des poteaux</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e3-1-le-calque-des-poteaux">E3.1 Le calque des poteaux</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e3-2-la-pull-request-et-le-conflit">E3.2 La pull request, et le conflit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e3-3-resoudre">E3.3 Résoudre</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#e4-bonus-un-troisieme-plan">E4 (bonus) · Un troisième plan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reponses-de-l-etape-e1">Réponses de l’étape E1</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par 1re année géomatique
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, module info01 — CC-BY-4.0.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
