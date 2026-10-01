@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Construit le book et le publie sur GitHub Pages, avec des fichiers à télécharger.
+"""Construit le book et le publie sur GitHub Pages et GitLab Pages, avec des fichiers à télécharger.
 
     python outils/publier_book.py                                # construit, publie
     python outils/publier_book.py livraison/*.zip                # + ces fichiers dans telechargements/
@@ -13,7 +13,11 @@ Trois étapes, depuis la racine du dépôt :
        vidé au préalable, avec un `index.html` qui les liste — GitHub Pages
        n'affiche pas le contenu d'un dossier ;
     3. `ghp-import -n -p -f -o _build/html` pousse le tout sur la branche
-       `gh-pages` du remote GitHub, que GitHub Pages sert.
+       `gh-pages` du remote GitHub, que GitHub Pages sert ;
+    4. la même branche part vers le remote GitLab, quand il y en a un : les
+       intervenants des autres cours d'informatique travaillent sur
+       gitlab.ign.fr. Le `.gitlab-ci.yml` que la branche contient y lance le
+       job `pages`, qui sert le site sans le reconstruire.
 
 `-n` ajoute le `.nojekyll` sans lequel GitHub ignore `_static/` ; `-o` refait
 la branche à partir d'un seul commit, sans quoi chaque publication ajoute à
@@ -107,25 +111,44 @@ ouvrir le dossier obtenu dans JupyterLab ou VS Code.</p>
     return deposes
 
 
-def remote_github() -> str:
-    """Le remote qui pointe vers GitHub : `origin` sur un clone, mais un poste
-    qui a aussi la clé USB et GitLab le nomme souvent autrement."""
+def remote_vers(hote: str) -> str | None:
+    """Le remote dont l'adresse contient `hote` : `origin` sur un clone, mais
+    un poste qui a aussi la clé USB et l'autre forge le nomme autrement."""
     sortie = subprocess.run(["git", "remote", "-v"], cwd=RACINE,
                             capture_output=True, text=True, check=True).stdout
     for ligne in sortie.splitlines():
         nom, url, *_ = ligne.split()
-        if "github.com" in url:
+        if hote in url:
             return nom
-    return "origin"
+    return None
+
+
+# GitLab Pages sert le dossier `public/` des artefacts du job `pages`. Le job
+# ne fait que déplacer le site déjà construit : les runners n'ont ni conda ni
+# les données des cours.
+GITLAB_CI = """\
+pages:
+  rules:
+    - if: $CI_COMMIT_BRANCH == "gh-pages"
+  script:
+    - mkdir .public && mv * .public/ && mv .public public
+  artifacts:
+    paths:
+      - public
+"""
 
 
 def publier() -> None:
+    (SORTIE / ".gitlab-ci.yml").write_text(GITLAB_CI, encoding="utf-8")
     subprocess.run(
-        ["ghp-import", "-n", "-p", "-f", "-o", "-r", remote_github(),
+        ["ghp-import", "-n", "-p", "-f", "-o", "-r", remote_vers("github.com") or "origin",
          "-m", f"Publie le book ({datetime.now():%Y-%m-%d %H:%M})",
          str(SORTIE.relative_to(RACINE))],
         cwd=RACINE, check=True,
     )
+    gitlab = remote_vers("gitlab")
+    if gitlab:
+        subprocess.run(["git", "push", "-f", gitlab, "gh-pages"], cwd=RACINE, check=True)
 
 
 def main() -> None:
@@ -145,6 +168,8 @@ def main() -> None:
         return
     publier()
     print("\nPublié : https://geodata-ing1-info-01.github.io/cours-info-01/")
+    if remote_vers("gitlab"):
+        print("et, après le job pages : https://ecue-info-01-de820c.gitlab-pages.ign.fr/")
 
 
 if __name__ == "__main__":

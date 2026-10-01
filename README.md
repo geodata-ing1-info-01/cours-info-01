@@ -3,7 +3,9 @@
 École d'ingénieurs (géomatique), 1re année, profils variés (prépa littéraire ou scientifique).
 Module d'**infrastructure de travail** (outils + concepts génériques) complémentaire du cours d'algo/programmation parallèle.
 
-Le book est en ligne : **<https://geodata-ing1-info-01.github.io/cours-info-01/>**.
+Le book est en ligne : **<https://geodata-ing1-info-01.github.io/cours-info-01/>**,
+pour les étudiants. Le même site est servi par GitLab Pages, pour les intervenants
+qui travaillent sur gitlab.ign.fr : <https://ecue-info-01-de820c.gitlab-pages.ign.fr/>.
 
 ## Structure du dépôt
 
@@ -49,6 +51,8 @@ La dernière ligne reconstruit le book, dépose les fichiers donnés dans
 `telechargements/` (avec une page qui les liste, liée depuis l'accueil du book)
 et publie `_build/html/` sur la branche `gh-pages`, que GitHub Pages sert ; la
 branche est refaite à chaque publication et n'a pas de lien avec `main`.
+Elle part aussi vers le remote GitLab, où son `.gitlab-ci.yml` lance le job
+`pages` qui sert le site, sans le reconstruire.
 `ghp-import` s'installe par `pip install ghp-import`.
 
 Détail, vérifications et pannes connues : **[`INSTALLATION.md`](INSTALLATION.md)**.
