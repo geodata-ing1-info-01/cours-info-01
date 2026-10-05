@@ -1,0 +1,976 @@
+
+<!DOCTYPE html>
+
+
+<html lang="fr" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>TD 1a — Configurer VS Code &#8212; Introduction à l&#39;informatique</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../../../_static/documentation_options.js?v=72dce1d2"></script>
+    <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../../../../_static/translations.js?v=e6b791cb"></script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cours2_v2/notebook/td/1a_vscode/guide';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="../../../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Recherche" href="../../../../search.html" />
+    <link rel="next" title="TD 1b — Trois programmes fautifs" href="../1b_erreurs/guide.html" />
+    <link rel="prev" title="Travaux dirigés de la séance 2, version 2" href="../../travaux_diriges.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="fr"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../../../_static/searchtools.js"></script>
+    <script src="../../../../_static/language_data.js"></script>
+    <script src="../../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Passer au contenu principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Haut de page</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Alerte de version"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navigation dans le site">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="Sur cette page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction à l'informatique</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../index.html">
+                    Introduction à l’informatique
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Avant les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/poste.html">Premiers tests du poste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/donnees.html">Récupérer les fichiers d’une séance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/python.html">Anaconda et JupyterLab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/vscode.html">VS Code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Après les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../apres/sauvegarder.html">Sauvegarder son travail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../apres/s_entrainer.html">S’entraîner : jeux et exercices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Séances</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours1_v2/index.html">Séance 1, version 2 — Logiciels, fichiers, terminal et premier programme</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/01_logiciels_stockage.html">Logiciels, fichiers et stockage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/02_terminal.html">Le terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/03_premier_programme.html">Premier programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/04_notebook.html">Un notebook et la syntaxe de Markdown</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours1_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 1, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/2a_terminal/guide.html">TD 2a — Les fichiers du TD 1a en ligne de commande</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/2b_programme/guide.html">TD 2b — Écrire et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/3a_notebook/guide.html">TD 3a — Un notebook dans JupyterLab</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../../index.html">Séance 2, version 2 — Éditeur de code, Markdown et git local</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../01_editeur_de_code.html">L’éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../02_markdown.html">Une recette en Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../03_git_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../../travaux_diriges.html">Travaux dirigés de la séance 2, version 2</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">TD 1a — Configurer VS Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1b_erreurs/guide.html">TD 1b — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../2a_markdown/guide.html">TD 2a — Une recette en Markdown, convertie par pandoc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../3a_depot_recette/guide.html">TD 3a — Un dépôt git pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours3/index.html">Séance 3 — Chemins, fichiers et ligne de commande</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/01_chemins_programmes.html">Chemins et programmes externes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/02_fichiers_encodage.html">Fichiers et encodage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/03_du_notebook_au_programme.html">Du notebook au programme</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours3/notebook/travaux_diriges.html">Travaux dirigés de la séance 3</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours3/notebook/td/3a_markdown/guide.html">TD 3a — Une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours3/notebook/td/3b_cli/guide.html">TD 3b — Une ligne de commande pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours4/index.html">Séance 4 — Du notebook au programme, en deux parcours</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours4/notebook/01_client_noyau.html">Le client et le noyau d’un notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours4/notebook/02_animation.html">Une animation en ligne de commande</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours4/notebook/travaux_diriges.html">Travaux dirigés du projet 4</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours4/notebook/td/4b_cli/guide.html">TD 4b — Une ligne de commande pour la recette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours4/notebook/td/4c_train/guide.html">TD 4c — La fenêtre du train</a></li>
+
+
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours5/index.html">Séance 5 — Matériel, réseau, mots de passe, clés SSH et secrets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/01_materiel.html">Le matériel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/02_reseau.html">Le réseau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/03_prouver_qui_lon_est.html">Prouver qui l’on est</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/04_secrets.html">Les secrets de vos programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/travaux_diriges.html">Travaux dirigés de la séance 5</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cours6/index.html">Séance 6 — La forge, sur le dépôt du projet 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cours7/index.html">Séance 7 — Une fonctionnalité de plus, par une pull request</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Annexes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/configuration/index.html">Configuration des postes de la salle</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/anaconda.html">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/jupyterlab.html">JupyterLab</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../annexes/configuration/vscode.html">VS Code</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_python.html">Python et environnement conda</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_notebooks.html">Notebooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_reglages.html">Fichiers de réglages</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/git.html">Git et Git Bash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/spyder.html">Spyder</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/poste_personnel/index.html">Configuration d’un ordinateur personnel</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/conda.html">Python et conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/vscode.html">VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/git_outils.html">Git et éditeurs de texte</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/notions/index.html">Notions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/outils.html">Choisir entre JupyterLab, Spyder et VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/notebooks.html">Les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/terminaux.html">Les terminaux en ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/variables_environnement.html">Variables d’environnement et recherche des programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/environnements.html">Les environnements conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/vscode_environnements.html">Comment VS Code gère les environnements Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/git_bash.html">Git Bash : une fenêtre, bash et des programmes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/faq.html">FAQ</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/reseau.html">Problèmes de réseau et de compte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/bureautique.html">Problèmes avec les logiciels de texte et de bureautique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/anaconda.html">Problèmes avec Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/jupyterlab.html">Problèmes avec JupyterLab et les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/vscode.html">Problèmes avec VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/git.html">Problèmes avec git</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/plus_loin/index.html">Pour aller plus loin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/gestionnaires.html">venv, uv et pixi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/cpp.html">C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/programme_interpreteur.html">Programme, application et interpréteur</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Archive 2026</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours1/index.html">Séance 1, 2026 — Logiciel, programmation et formats de fichier</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/01_logiciels_et_formats.html">Logiciels et formats de fichier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/02_programmation.html">Programmation et éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/03_markdown_notebook.html">Markdown et notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/04_bibliotheques_environnements.html">Bibliothèques et environnements Python</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours1/notebook/travaux_diriges.html">Travaux dirigés de la séance 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1b_archive_odt/guide.html">TD 1b — Un .odt est une archive ZIP (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/2a_vscode_python/guide.html">TD 2a — Configurer l’éditeur de code, et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/2b_erreurs/guide.html">TD 2b — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/2c_hello_cpp/guide.html">TD 2c — Le même programme en C++ (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/3a_markdown/guide.html">TD 3a — Mettre en forme une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/3b_notebooks/guide.html">TD 3b — Le notebook, ouvert de trois façons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/4a_recette/guide.html">TD 4a — Installer un projet Python, et décrire son installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/4b_noyaux/guide.html">TD 4b — Le client, le noyau, et où ils sont installés (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/4c_trajet/guide.html">TD 4c — Installer un projet en lisant son README (facultatif)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/05_comparer_versions.html">Annexe — Comparer deux versions d’un fichier</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours2/index.html">Séance 2, 2026 — Ligne de commande et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/01_ligne_de_commande.html">La ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/02_depot_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/03_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/04_lire_et_tenir_un_depot.html">Lire et tenir un dépôt</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/3a_premier_depot/guide.html">TD 3a — Un premier dépôt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/4a_branches/guide.html">TD 4a — Branches et fusions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/4b_annuler/guide.html">TD 4b — Annuler et remettre à jour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/4c_conflits/guide.html">TD 4c — Créer et résoudre un conflit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/6a_livrer/guide.html">TD 6a — Publier une version</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Thème">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Thème" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Clair"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Sombre"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="Paramètres système"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>Paramètres système</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Clair</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Sombre</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>TD 1a — Configurer VS Code</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#copier-et-decompresser-les-fichiers-de-la-seance">1 · Copier et décompresser les fichiers de la séance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#copier-l-archive">Copier l’archive</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decompresser-dans-git-bash">Décompresser dans Git Bash</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lancer-vs-code-et-ouvrir-le-dossier-de-la-seance">2 · Lancer VS Code et ouvrir le dossier de la séance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installer-l-extension-python">3 · Installer l’extension Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-programme-avant-l-installation">Un programme avant l’installation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installer-l-extension">Installer l’extension</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#git-bash-terminal-de-vs-code">4 · Git Bash, terminal de VS Code</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choisir-le-terminal-par-defaut">Choisir le terminal par défaut</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ouvrir-un-terminal">Ouvrir un terminal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#si-ca-bloque">Si ça bloque</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choisir-l-interpreteur-python-et-lancer-un-programme">5 · Choisir l’interpréteur Python, et lancer un programme</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choisir-l-interpreteur">Choisir l’interpréteur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lancer-le-programme">Lancer le programme</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deux-reglages-puis-leur-fichier">6 · Deux réglages, puis leur fichier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deux-niveaux-de-reglages">Deux niveaux de réglages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-deux-reglages">Les deux réglages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-fichier-des-reglages">Le fichier des réglages</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-le-td-fait-constater">Ce que le TD fait constater</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="td-1a-configurer-vs-code">
+<h1>TD 1a — Configurer VS Code<a class="headerlink" href="#td-1a-configurer-vs-code" title="Lien vers cette rubrique">#</a></h1>
+<p><em>Version 2 du cours 2 : proposition de travail pour 2027-2028. Ce guide
+reprend des parties du guide du TD 2a du cours 1 de 2026 ; VS Code y est
+lancé depuis le menu Démarrer, et son terminal est Git Bash.</em></p>
+<p>Le TD configure l’éditeur de code du module, VS Code, pour le reste de
+l’année. Il se fait en classe entière : l’enseignant projette chaque étape,
+chacun la fait sur son poste, et la salle passe à l’étape suivante quand
+tout le monde a fini. Il dure vingt-cinq minutes. Le guide peut se lire
+avant la séance, et le TD se commencer seul.</p>
+<p>La configuration se fait une fois par poste. Elle reste pour les séances
+suivantes : les postes de la salle gardent les réglages d’une séance à
+l’autre.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Étape</p></th>
+<th class="head"><p>Ce qu’on fait</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>copier et décompresser les fichiers de la séance, dans Git Bash</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>lancer VS Code et ouvrir le dossier <code class="docutils literal notranslate"><span class="pre">cours2</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>installer l’extension Python</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>faire de Git Bash le terminal de VS Code</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>choisir l’interpréteur Python, et lancer un programme</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>deux réglages, puis leur fichier <code class="docutils literal notranslate"><span class="pre">settings.json</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Chaque étape se termine par une vérification. Une étape dont la
+vérification échoue se reprend avant de passer à la suivante ; la fin de
+chaque étape donne la marche à suivre dans les cas rencontrés en 2026.</p>
+<section id="copier-et-decompresser-les-fichiers-de-la-seance">
+<h2>1 · Copier et décompresser les fichiers de la séance<a class="headerlink" href="#copier-et-decompresser-les-fichiers-de-la-seance" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> copier l’archive de la séance dans <code class="docutils literal notranslate"><span class="pre">Desktop\info01</span></code> ; la décompresser dans Git Bash.</p>
+<p><strong>À obtenir :</strong> <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">cours2</span></code> affiche les quatre dossiers des TD.</p>
+</div></blockquote>
+<section id="copier-l-archive">
+<h3>Copier l’archive<a class="headerlink" href="#copier-l-archive" title="Lien vers cette rubrique">#</a></h3>
+<p>Comme au cours 1 : sur le Bureau, ouvrir le raccourci <code class="docutils literal notranslate"><span class="pre">formationTemp</span></code>,
+copier <code class="docutils literal notranslate"><span class="pre">info01-cours2.zip</span></code>, et le coller dans le dossier <code class="docutils literal notranslate"><span class="pre">info01</span></code> du
+Bureau, à côté de <code class="docutils literal notranslate"><span class="pre">cours1</span></code>. Ne pas travailler dans <code class="docutils literal notranslate"><span class="pre">formationTemp</span></code>, dossier
+du serveur commun à toute la promotion.</p>
+</section>
+<section id="decompresser-dans-git-bash">
+<h3>Décompresser dans Git Bash<a class="headerlink" href="#decompresser-dans-git-bash" title="Lien vers cette rubrique">#</a></h3>
+<p>Ouvrir Git Bash (menu Démarrer, « Git Bash »), puis :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd ~/Desktop/info01
+ls
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">ls</span></code> affiche <code class="docutils literal notranslate"><span class="pre">cours1/</span></code> et <code class="docutils literal notranslate"><span class="pre">info01-cours2.zip</span></code>. Puis :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>unzip info01-cours2.zip
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">unzip</span></code> affiche une ligne par fichier extrait (<code class="docutils literal notranslate"><span class="pre">creating:</span></code> pour un dossier,
+<code class="docutils literal notranslate"><span class="pre">inflating:</span></code> pour un fichier).</p>
+<p><strong>Vérification</strong> :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ls cours2
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>1a_vscode/  1b_erreurs/  2a_markdown/  3a_depot_recette/
+</pre></div>
+</div>
+<p>Si <code class="docutils literal notranslate"><span class="pre">unzip</span></code> affiche <code class="docutils literal notranslate"><span class="pre">command</span> <span class="pre">not</span> <span class="pre">found</span></code>, décompresser à la souris : clic
+droit sur l’archive, « Extraire tout… », en effaçant la fin du dossier
+proposé pour garder <code class="docutils literal notranslate"><span class="pre">Desktop\info01</span></code>.</p>
+<p>Si l’invite de Git Bash ne commence pas par <code class="docutils literal notranslate"><span class="pre">(base)</span></code>, la configuration de
+conda dans Git Bash, faite au TD 2b du cours 1, manque sur ce poste. La
+faire maintenant, avant l’étape 4 :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>source /c/ProgramData/anaconda3/etc/profile.d/conda.sh
+conda init bash
+</pre></div>
+</div>
+<p>puis fermer Git Bash et le rouvrir.</p>
+</section>
+</section>
+<section id="lancer-vs-code-et-ouvrir-le-dossier-de-la-seance">
+<h2>2 · Lancer VS Code et ouvrir le dossier de la séance<a class="headerlink" href="#lancer-vs-code-et-ouvrir-le-dossier-de-la-seance" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> lancer VS Code depuis le menu Démarrer ; ouvrir le dossier <code class="docutils literal notranslate"><span class="pre">Desktop\info01\cours2</span></code>.</p>
+<p><strong>À obtenir :</strong> l’explorateur de VS Code affiche les quatre dossiers des TD.</p>
+</div></blockquote>
+<ol class="arabic simple">
+<li><p>Menu Démarrer, taper « Visual Studio Code », Entrée. La page d’accueil
+de VS Code s’ouvre.</p></li>
+<li><p>Menu File, Open Folder… Dans la fenêtre, aller dans le Bureau, puis
+<code class="docutils literal notranslate"><span class="pre">info01</span></code>, cliquer une fois sur <code class="docutils literal notranslate"><span class="pre">cours2</span></code>, et « Sélectionner un dossier ».</p></li>
+<li><p>Une fenêtre demande si l’on fait confiance aux auteurs des fichiers du
+dossier : répondre « Yes, I trust the authors ». Sans cette réponse,
+VS Code ouvre le dossier en mode restreint, et les extensions n’y
+fonctionnent pas.</p></li>
+</ol>
+<p>La fenêtre a trois zones : l’explorateur à gauche (<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">E</span></code>),
+le fichier ouvert au centre, le terminal en bas (menu Terminal, New
+Terminal). Le dossier ouvert est le projet : l’explorateur montre ses
+fichiers, la recherche s’y fait, et le terminal s’y ouvre.</p>
+<p>VS Code s’affiche en anglais. Le guide donne les intitulés anglais.</p>
+<p><strong>Vérification</strong> : l’explorateur affiche <code class="docutils literal notranslate"><span class="pre">1A_VSCODE</span></code>, <code class="docutils literal notranslate"><span class="pre">2A_MARKDOWN</span></code> et
+<code class="docutils literal notranslate"><span class="pre">3A_DEPOT_RECETTE</span></code> sous le titre <code class="docutils literal notranslate"><span class="pre">COURS2</span></code>.</p>
+</section>
+<section id="installer-l-extension-python">
+<h2>3 · Installer l’extension Python<a class="headerlink" href="#installer-l-extension-python" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> ouvrir un programme Python ; installer l’extension <code class="docutils literal notranslate"><span class="pre">ms-python.python</span></code>.</p>
+<p><strong>À obtenir :</strong> l’extension « Python » de Microsoft dans la liste des extensions installées.</p>
+</div></blockquote>
+<section id="un-programme-avant-l-installation">
+<h3>Un programme avant l’installation<a class="headerlink" href="#un-programme-avant-l-installation" title="Lien vers cette rubrique">#</a></h3>
+<p>Dans l’explorateur, ouvrir <code class="docutils literal notranslate"><span class="pre">1a_vscode</span></code>, puis cliquer sur <code class="docutils literal notranslate"><span class="pre">altitudes.py</span></code>.
+Le programme du cours 1 s’ouvre au centre.</p>
+<p><strong>À noter</strong> : si le texte est coloré, alors qu’aucune extension Python
+n’est encore installée.</p>
+</section>
+<section id="installer-l-extension">
+<h3>Installer l’extension<a class="headerlink" href="#installer-l-extension" title="Lien vers cette rubrique">#</a></h3>
+<ol class="arabic simple">
+<li><p>Ouvrir le panneau Extensions : <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">X</span></code>, ou l’icône des
+quatre carrés dans la barre de gauche.</p></li>
+<li><p>Dans la zone de recherche en haut du panneau, taper l’identifiant de
+l’extension, <code class="docutils literal notranslate"><span class="pre">ms-python.python</span></code>.</p></li>
+<li><p>L’extension « Python », publiée par Microsoft (le nom de l’éditeur est
+écrit sous celui de l’extension, avec une coche bleue), vient en tête de
+la liste. Cliquer dessus : sa page s’ouvre à droite.</p></li>
+<li><p>Vérifier son identifiant : à droite de la page, en bas de la colonne
+« Marketplace Info », la ligne « Identifier » doit indiquer
+<code class="docutils literal notranslate"><span class="pre">ms-python.python</span></code>.</p></li>
+<li><p>Cliquer sur Install, et attendre la fin de l’installation.</p></li>
+</ol>
+<p>Plusieurs extensions s’appellent « Python », et certaines ne viennent pas de
+Microsoft. Seul l’identifiant désigne sans ambiguïté la bonne, d’où la
+recherche par identifiant plutôt que par nom.</p>
+<p>L’installation télécharge l’extension depuis un serveur. Sans réseau, le
+panneau reste vide ou l’installation ne finit pas : vérifier que la session
+réseau est ouverte, puis recommencer. Une extension installée le reste pour
+les séances suivantes.</p>
+<p><strong>Vérification</strong> : l’extension « Python » est dans la section
+« Installed » du panneau, avec « Pylance » et « Python Debugger »,
+installées avec elle.</p>
+</section>
+</section>
+<section id="git-bash-terminal-de-vs-code">
+<h2>4 · Git Bash, terminal de VS Code<a class="headerlink" href="#git-bash-terminal-de-vs-code" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> choisir Git Bash comme terminal par défaut ; ouvrir un nouveau terminal.</p>
+<p><strong>À obtenir :</strong> un terminal Git Bash, dont l’invite commence par <code class="docutils literal notranslate"><span class="pre">(base)</span></code>.</p>
+</div></blockquote>
+<section id="choisir-le-terminal-par-defaut">
+<h3>Choisir le terminal par défaut<a class="headerlink" href="#choisir-le-terminal-par-defaut" title="Lien vers cette rubrique">#</a></h3>
+<ol class="arabic simple">
+<li><p>Palette de commandes : <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">P</span></code>. Une zone de saisie s’ouvre
+en haut de la fenêtre.</p></li>
+<li><p>Taper <code class="docutils literal notranslate"><span class="pre">default</span> <span class="pre">profile</span></code>, puis choisir « Terminal: Select Default
+Profile ».</p></li>
+<li><p>Dans la liste (Command Prompt, Git Bash, PowerShell…), choisir « Git
+Bash ».</p></li>
+</ol>
+<p>La palette de commandes donne accès à toutes les commandes de VS Code par
+leur nom, sans passer par les menus. Le module s’en sert souvent.</p>
+</section>
+<section id="ouvrir-un-terminal">
+<h3>Ouvrir un terminal<a class="headerlink" href="#ouvrir-un-terminal" title="Lien vers cette rubrique">#</a></h3>
+<p>Menu Terminal, New Terminal. Le terminal s’ouvre en bas, dans le dossier
+<code class="docutils literal notranslate"><span class="pre">cours2</span></code>.</p>
+<p><img alt="Le terminal Git Bash dans VS Code, et le menu qui le choisit" src="../../../../_images/terminal.png" /></p>
+<p><strong>Vérification</strong> : l’invite du terminal est</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>(base)
+eleve@POSTE MINGW64 ~/Desktop/info01/cours2
+$
+</pre></div>
+</div>
+<p>(le nom du poste change d’une machine à l’autre). Puis :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python --version
+</pre></div>
+</div>
+<p>affiche <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">3.</span></code> suivi de la version installée par Anaconda.</p>
+</section>
+<section id="si-ca-bloque">
+<h3>Si ça bloque<a class="headerlink" href="#si-ca-bloque" title="Lien vers cette rubrique">#</a></h3>
+<ul class="simple">
+<li><p><strong>« Git Bash » n’est pas dans la liste.</strong> Fermer VS Code et le relancer ;
+VS Code cherche les terminaux au démarrage. S’il reste absent, git n’est
+pas installé à l’emplacement habituel (<code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\Git</span></code>) :
+prévenir l’enseignant.</p></li>
+<li><p><strong>Le terminal ouvert est PowerShell</strong> (l’invite commence par <code class="docutils literal notranslate"><span class="pre">PS</span></code>). Le
+terminal a été ouvert avant le réglage : le fermer (icône de corbeille, en
+haut à droite du panneau), puis en ouvrir un nouveau. La flèche à côté du
+<code class="docutils literal notranslate"><span class="pre">+</span></code>, en haut à droite du panneau, ouvre aussi un terminal Git Bash.</p></li>
+<li><p><strong>Le message <code class="docutils literal notranslate"><span class="pre">activate.ps1</span> <span class="pre">cannot</span> <span class="pre">be</span> <span class="pre">loaded</span> <span class="pre">because</span> <span class="pre">running</span> <span class="pre">scripts</span> <span class="pre">is</span> <span class="pre">disabled</span> <span class="pre">on</span> <span class="pre">this</span> <span class="pre">system</span></code>.</strong> Même cause : le terminal est PowerShell.</p></li>
+<li><p><strong>Pas de <code class="docutils literal notranslate"><span class="pre">(base)</span></code> dans l’invite, et <code class="docutils literal notranslate"><span class="pre">python</span></code> introuvable.</strong> conda n’est
+pas configuré dans Git Bash sur ce poste : voir la fin de l’étape 1.</p></li>
+</ul>
+</section>
+</section>
+<section id="choisir-l-interpreteur-python-et-lancer-un-programme">
+<h2>5 · Choisir l’interpréteur Python, et lancer un programme<a class="headerlink" href="#choisir-l-interpreteur-python-et-lancer-un-programme" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> choisir l’interpréteur <code class="docutils literal notranslate"><span class="pre">base</span></code> d’Anaconda ; lancer <code class="docutils literal notranslate"><span class="pre">altitudes.py</span></code> par le bouton d’exécution.</p>
+<p><strong>À obtenir :</strong> <code class="docutils literal notranslate"><span class="pre">moyenne</span> <span class="pre">:</span> <span class="pre">129.0</span> <span class="pre">m</span></code> dans le terminal.</p>
+</div></blockquote>
+<section id="choisir-l-interpreteur">
+<h3>Choisir l’interpréteur<a class="headerlink" href="#choisir-l-interpreteur" title="Lien vers cette rubrique">#</a></h3>
+<ol class="arabic simple">
+<li><p>Garder <code class="docutils literal notranslate"><span class="pre">altitudes.py</span></code> ouvert au centre.</p></li>
+<li><p>Palette (<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">P</span></code>), taper « Python: Select Interpreter »,
+puis Entrée.</p></li>
+<li><p>Une liste apparaît, avec pour chaque Python trouvé sur le poste son nom,
+son chemin et son type. Choisir la ligne <code class="docutils literal notranslate"><span class="pre">base</span></code>, de type Conda, dont le
+chemin contient <code class="docutils literal notranslate"><span class="pre">anaconda3</span></code> : sur les postes de la salle,
+<code class="docutils literal notranslate"><span class="pre">C:\ProgramData\anaconda3\python.exe</span></code>. Lire le chemin, et pas seulement
+le nom.</p></li>
+</ol>
+<p>Le nom de l’interpréteur choisi s’affiche en bas à droite de la fenêtre, et
+VS Code le retient pour ce dossier.</p>
+<p>Si la liste ne contient ni <code class="docutils literal notranslate"><span class="pre">base</span></code> ni aucun chemin avec <code class="docutils literal notranslate"><span class="pre">anaconda3</span></code>, choisir
+« Enter interpreter path… », puis « Find… », et désigner le fichier
+<code class="docutils literal notranslate"><span class="pre">C:\ProgramData\anaconda3\python.exe</span></code>.</p>
+</section>
+<section id="lancer-le-programme">
+<h3>Lancer le programme<a class="headerlink" href="#lancer-le-programme" title="Lien vers cette rubrique">#</a></h3>
+<p>En haut à droite de la zone du code, cliquer sur le triangle « Run Python
+File ».</p>
+<p><strong>Vérification</strong> : le terminal affiche la commande que le bouton a tapée,
+puis le résultat :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>moyenne : 129.0 m
+</pre></div>
+</div>
+<p>La commande tapée par le bouton est <code class="docutils literal notranslate"><span class="pre">python</span></code>, précédé du chemin complet de
+l’interpréteur choisi, suivi du chemin du fichier : la même commande que
+celle tapée à la main au cours 1, avec des chemins absolus.</p>
+</section>
+</section>
+<section id="deux-reglages-puis-leur-fichier">
+<h2>6 · Deux réglages, puis leur fichier<a class="headerlink" href="#deux-reglages-puis-leur-fichier" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> régler, au niveau User, l’affichage des espaces et l’enregistrement automatique ; ouvrir le fichier <code class="docutils literal notranslate"><span class="pre">settings.json</span></code>.</p>
+<p><strong>À obtenir :</strong> <code class="docutils literal notranslate"><span class="pre">settings.json</span></code> contient les deux réglages et celui du terminal.</p>
+</div></blockquote>
+<section id="deux-niveaux-de-reglages">
+<h3>Deux niveaux de réglages<a class="headerlink" href="#deux-niveaux-de-reglages" title="Lien vers cette rubrique">#</a></h3>
+<p>Les réglages de VS Code s’ouvrent par <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">,</span></code>. En haut de la page,
+deux onglets :</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Onglet</p></th>
+<th class="head"><p>S’applique à</p></th>
+<th class="head"><p>Fichier</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>User</p></td>
+<td><p>tous les dossiers ouverts avec ce compte, sur ce poste</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">settings.json</span></code> du compte, dans <code class="docutils literal notranslate"><span class="pre">C:\Users\eleve\AppData\Roaming\Code\User\</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Workspace</p></td>
+<td><p>le dossier ouvert seulement</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.vscode/settings.json</span></code>, dans le dossier ouvert</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Un réglage du dossier (Workspace) l’emporte sur celui du compte (User).
+Le premier voyage avec le projet, et se versionne avec lui ; le second
+reste sur le poste.</p>
+</section>
+<section id="les-deux-reglages">
+<h3>Les deux réglages<a class="headerlink" href="#les-deux-reglages" title="Lien vers cette rubrique">#</a></h3>
+<p>Dans l’onglet User :</p>
+<ol class="arabic simple">
+<li><p>Taper <code class="docutils literal notranslate"><span class="pre">render</span> <span class="pre">whitespace</span></code> dans la zone de recherche. Le réglage « Editor:
+Render Whitespace » s’affiche ; choisir <code class="docutils literal notranslate"><span class="pre">all</span></code> dans sa liste.</p></li>
+<li><p>Taper <code class="docutils literal notranslate"><span class="pre">auto</span> <span class="pre">save</span></code>. Pour « Files: Auto Save », choisir <code class="docutils literal notranslate"><span class="pre">afterDelay</span></code>.</p></li>
+</ol>
+<p><strong>Vérification</strong> : dans <code class="docutils literal notranslate"><span class="pre">altitudes.py</span></code>, un point gris marque chaque espace
+d’indentation, comme dans Notepad++ au cours 1 ; en modifiant le fichier, le
+point blanc de l’onglet (fichier non enregistré) disparaît après une
+seconde.</p>
+</section>
+<section id="le-fichier-des-reglages">
+<h3>Le fichier des réglages<a class="headerlink" href="#le-fichier-des-reglages" title="Lien vers cette rubrique">#</a></h3>
+<p>Palette (<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">P</span></code>), « Preferences: Open User Settings (JSON) ».
+Le fichier du compte s’ouvre au centre. Il contient au moins :</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"terminal.integrated.defaultProfile.windows"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Git Bash"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"editor.renderWhitespace"</span><span class="p">:</span><span class="w"> </span><span class="s2">"all"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"files.autoSave"</span><span class="p">:</span><span class="w"> </span><span class="s2">"afterDelay"</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>L’ordre des lignes peut différer, et d’autres lignes peuvent y être,
+écrites par les extensions. Ne rien modifier, et fermer le fichier.</p>
+<p>Chaque réglage a un nom en plusieurs parties séparées par des points,
+<code class="docutils literal notranslate"><span class="pre">editor.renderWhitespace</span></code>, et une valeur. L’onglet des réglages et ce
+fichier montrent les mêmes réglages : l’onglet écrit dans le fichier.</p>
+</section>
+</section>
+<section id="ce-que-le-td-fait-constater">
+<h2>Ce que le TD fait constater<a class="headerlink" href="#ce-que-le-td-fait-constater" title="Lien vers cette rubrique">#</a></h2>
+<p>À lire après avoir fait les étapes.</p>
+<p><strong>L’éditeur, le langage, l’interpréteur.</strong> Le texte de <code class="docutils literal notranslate"><span class="pre">altitudes.py</span></code> est
+coloré avant toute installation : la coloration des langages courants est
+livrée avec VS Code. L’extension Python apporte le reste : le choix de
+l’interpréteur, l’exécution, la vérification du code pendant la frappe.
+L’interpréteur n’est pas dans VS Code : l’éditeur appelle celui
+d’Anaconda, installé à part.</p>
+<p><strong>Le terminal de VS Code est Git Bash.</strong> Le terminal du cours 1 s’ouvre
+dans la fenêtre de l’éditeur. Il lit au démarrage le fichier <code class="docutils literal notranslate"><span class="pre">~/.bash_profile</span></code>
+écrit par <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">init</span> <span class="pre">bash</span></code>, d’où le <code class="docutils literal notranslate"><span class="pre">(base)</span></code> et le <code class="docutils literal notranslate"><span class="pre">python</span></code> d’Anaconda.
+En 2026, VS Code ouvrait un terminal PowerShell, qui n’exécutait pas le
+script d’activation de conda sur les postes de la salle.</p>
+<p><strong>Le bouton d’exécution tape une commande.</strong> Le bouton écrit dans le
+terminal la commande <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">…</span> <span class="pre">altitudes.py</span></code>, avec l’interpréteur choisi à
+l’étape 5. Si cet interpréteur et le <code class="docutils literal notranslate"><span class="pre">python</span></code> du terminal diffèrent, un
+programme peut marcher par le bouton et échouer au terminal : le cours 3 y
+revient, avec les environnements.</p>
+<p><strong>Les réglages sont du texte.</strong> L’onglet des réglages écrit dans
+<code class="docutils literal notranslate"><span class="pre">settings.json</span></code>. Un réglage de dossier, dans <code class="docutils literal notranslate"><span class="pre">.vscode/settings.json</span></code>,
+accompagne le projet quand il est copié ou versionné.</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../../travaux_diriges.html"
+       title="page précédente">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">précédent</p>
+        <p class="prev-next-title">Travaux dirigés de la séance 2, version 2</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../1b_erreurs/guide.html"
+       title="page suivante">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">suivant</p>
+        <p class="prev-next-title">TD 1b — Trois programmes fautifs</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#copier-et-decompresser-les-fichiers-de-la-seance">1 · Copier et décompresser les fichiers de la séance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#copier-l-archive">Copier l’archive</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decompresser-dans-git-bash">Décompresser dans Git Bash</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lancer-vs-code-et-ouvrir-le-dossier-de-la-seance">2 · Lancer VS Code et ouvrir le dossier de la séance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installer-l-extension-python">3 · Installer l’extension Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-programme-avant-l-installation">Un programme avant l’installation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installer-l-extension">Installer l’extension</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#git-bash-terminal-de-vs-code">4 · Git Bash, terminal de VS Code</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choisir-le-terminal-par-defaut">Choisir le terminal par défaut</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ouvrir-un-terminal">Ouvrir un terminal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#si-ca-bloque">Si ça bloque</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choisir-l-interpreteur-python-et-lancer-un-programme">5 · Choisir l’interpréteur Python, et lancer un programme</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choisir-l-interpreteur">Choisir l’interpréteur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lancer-le-programme">Lancer le programme</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deux-reglages-puis-leur-fichier">6 · Deux réglages, puis leur fichier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deux-niveaux-de-reglages">Deux niveaux de réglages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-deux-reglages">Les deux réglages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-fichier-des-reglages">Le fichier des réglages</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-le-td-fait-constater">Ce que le TD fait constater</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par 1re année géomatique
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, module info01 — CC-BY-4.0.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

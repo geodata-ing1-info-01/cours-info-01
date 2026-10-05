@@ -1,0 +1,1238 @@
+
+<!DOCTYPE html>
+
+
+<html lang="fr" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>TD 1a — Fichiers, formats et extensions &#8212; Introduction à l&#39;informatique</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../../../_static/documentation_options.js?v=72dce1d2"></script>
+    <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../../../../_static/translations.js?v=e6b791cb"></script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cours1/notebook/td/1a_formats/guide';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="../../../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Recherche" href="../../../../search.html" />
+    <link rel="next" title="TD 1b — Un .odt est une archive ZIP (facultatif)" href="../1b_archive_odt/guide.html" />
+    <link rel="prev" title="Travaux dirigés de la séance 1" href="../../travaux_diriges.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="fr"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../../../_static/searchtools.js"></script>
+    <script src="../../../../_static/language_data.js"></script>
+    <script src="../../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Passer au contenu principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Haut de page</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Alerte de version"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navigation dans le site">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="Sur cette page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction à l'informatique</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../index.html">
+                    Introduction à l’informatique
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Avant les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/poste.html">Premiers tests du poste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/donnees.html">Récupérer les fichiers d’une séance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/python.html">Anaconda et JupyterLab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/vscode.html">VS Code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Après les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../apres/sauvegarder.html">Sauvegarder son travail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../apres/s_entrainer.html">S’entraîner : jeux et exercices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours1_v2/index.html">Séance 1, version 2 — Logiciels, fichiers, terminal et premier programme</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/01_logiciels_stockage.html">Logiciels, fichiers et stockage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/02_terminal.html">Le terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/03_premier_programme.html">Premier programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/04_notebook.html">Un notebook et la syntaxe de Markdown</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours1_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 1, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1b_terminal/guide.html">TD 1b — Les fichiers du TD 1a en ligne de commande</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1c_programme/guide.html">TD 1c — Écrire et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1d_notebook/guide.html">TD 1d — Un notebook dans JupyterLab</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours2_v2/index.html">Séance 2, version 2 — Éditeur de code, Markdown et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/01_editeur_de_code.html">L’éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/02_markdown.html">Une recette en Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/03_git_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/04_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours2_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/2a_vscode/guide.html">TD 2a — Configurer VS Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/2b_erreurs/guide.html">TD 2b — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/2c_markdown/guide.html">TD 2c — Une recette en Markdown, convertie par pandoc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/2d_depot_recette/guide.html">TD 2d — Un dépôt git pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours3/index.html">Séance 3 — Chemins, fichiers et ligne de commande</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/01_chemins_programmes.html">Chemins et programmes externes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/02_fichiers_encodage.html">Fichiers et encodage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/03_du_notebook_au_programme.html">Du notebook au programme</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours3/notebook/travaux_diriges.html">Travaux dirigés de la séance 3</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours3/notebook/td/3e_markdown/guide.html">TD 3e — Une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours3/notebook/td/3f_cli/guide.html">TD 3f — Une ligne de commande pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours4/index.html">Séance 4 — Projet d’application 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours4/notebook/travaux_diriges.html">Travaux dirigés du projet 4</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours4/notebook/td/4a_recette/guide.html">TD 4a — Un script Python, pas à pas</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours4/notebook/td/4b_paquet/guide.html">TD 4b — Un programme installable</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours5/index.html">Séance 5 — Matériel, réseau, mots de passe, clés SSH et secrets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/01_materiel.html">Le matériel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/02_reseau.html">Le réseau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/03_prouver_qui_lon_est.html">Prouver qui l’on est</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/04_secrets.html">Les secrets de vos programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/travaux_diriges.html">Travaux dirigés de la séance 5</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cours6/index.html">Séance 6 — La forge, sur le dépôt du projet 4</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours7/index.html">Séance 7 — Projet d’application 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours7/notebook/td/7a_recette/guide.html">TD 7a — Compléter son projet, par des pull requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours7/notebook/td/7b_train/guide.html">TD 7b — Reprendre et compléter le projet d’un autre</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Annexes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/configuration/index.html">Configuration des postes de la salle</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/anaconda.html">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/jupyterlab.html">JupyterLab</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../annexes/configuration/vscode.html">VS Code</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_python.html">Python et environnement conda</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_notebooks.html">Notebooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_reglages.html">Fichiers de réglages</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/git.html">Git et Git Bash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/spyder.html">Spyder</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/poste_personnel/index.html">Configuration d’un ordinateur personnel</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/conda.html">Python et conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/vscode.html">VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/git_outils.html">Git et éditeurs de texte</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/notions/index.html">Notions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/outils.html">Choisir entre JupyterLab, Spyder et VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/notebooks.html">Les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/terminaux.html">Les terminaux en ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/variables_environnement.html">Variables d’environnement et recherche des programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/environnements.html">Les environnements conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/vscode_environnements.html">Comment VS Code gère les environnements Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/git_bash.html">Git Bash : une fenêtre, bash et des programmes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/faq.html">FAQ</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/reseau.html">Problèmes de réseau et de compte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/bureautique.html">Problèmes avec les logiciels de texte et de bureautique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/anaconda.html">Problèmes avec Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/jupyterlab.html">Problèmes avec JupyterLab et les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/vscode.html">Problèmes avec VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/git.html">Problèmes avec git</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/plus_loin/index.html">Pour aller plus loin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/gestionnaires.html">venv, uv et pixi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/cpp.html">C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/programme_interpreteur.html">Programme, application et interpréteur</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Archive 2026</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../../index.html">Séance 1, 2026 — Logiciel, programmation et formats de fichier</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../01_logiciels_et_formats.html">Logiciels et formats de fichier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../02_programmation.html">Programmation et éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../03_markdown_notebook.html">Markdown et notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_bibliotheques_environnements.html">Bibliothèques et environnements Python</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../../travaux_diriges.html">Travaux dirigés de la séance 1</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1b_archive_odt/guide.html">TD 1b — Un .odt est une archive ZIP (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1c_vscode_python/guide.html">TD 1c — Configurer l’éditeur de code, et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1d_erreurs/guide.html">TD 1d — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1e_hello_cpp/guide.html">TD 1e — Le même programme en C++ (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1f_markdown/guide.html">TD 1f — Mettre en forme une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1g_notebooks/guide.html">TD 1g — Le notebook, ouvert de trois façons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1h_recette/guide.html">TD 1h — Installer un projet Python, et décrire son installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1i_noyaux/guide.html">TD 1i — Le client, le noyau, et où ils sont installés (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1j_trajet/guide.html">TD 1j — Installer un projet en lisant son README (facultatif)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../05_comparer_versions.html">Annexe — Comparer deux versions d’un fichier</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours2/index.html">Séance 2, 2026 — Ligne de commande et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/01_ligne_de_commande.html">La ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/02_depot_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/03_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/04_lire_et_tenir_un_depot.html">Lire et tenir un dépôt</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2a_premier_depot/guide.html">TD 2a — Un premier dépôt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2b_branches/guide.html">TD 2b — Branches et fusions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2c_annuler/guide.html">TD 2c — Annuler et remettre à jour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2d_conflits/guide.html">TD 2d — Créer et résoudre un conflit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2e_livrer/guide.html">TD 2e — Publier une version</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Thème">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Thème" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Clair"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Sombre"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="Paramètres système"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>Paramètres système</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Clair</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Sombre</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>TD 1a — Fichiers, formats et extensions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparer-le-dossier-du-td">1 · Préparer le dossier du TD</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recuperer-les-fichiers">Récupérer les fichiers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afficher-les-extensions">Afficher les extensions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-deux-dossiers-du-td">Les deux dossiers du TD</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exporter-un-meme-document-en-trois-formats">2 · Exporter un même document en trois formats</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#changer-l-extension-de-copies-du-document">3 · Changer l’extension de copies du document</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#copier-et-renommer">Copier et renommer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-quatre-copies">Les quatre copies</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ouvrir-une-page-web-depuis-son-disque">4 · Ouvrir une page web depuis son disque</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deux-pages-une-feuille-de-style">Deux pages, une feuille de style</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#l-adresse-de-la-page">L’adresse de la page</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-espace-dans-le-nom-d-un-fichier">Un espace dans le nom d’un fichier</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lire-les-fichiers-avec-deux-editeurs-de-texte">5 · Lire les fichiers avec deux éditeurs de texte</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-table-ascii">La table ASCII</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deux-editeurs-les-memes-fichiers">Deux éditeurs, les mêmes fichiers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-le-td-fait-constater">Ce que le TD fait constater</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-2-trois-formats-d-un-meme-document">Étape 2 : trois formats d’un même document</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-3-l-extension-decide-du-logiciel-pas-du-contenu">Étape 3 : l’extension décide du logiciel, pas du contenu</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-4-une-page-web-son-style-son-adresse">Étape 4 : une page web, son style, son adresse</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-5-ce-qu-un-editeur-de-texte-affiche">Étape 5 : ce qu’un éditeur de texte affiche</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="td-1a-fichiers-formats-et-extensions">
+<h1>TD 1a — Fichiers, formats et extensions<a class="headerlink" href="#td-1a-fichiers-formats-et-extensions" title="Lien vers cette rubrique">#</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Les fichiers des TD de la séance sont dans l’archive <a href="../../../../telechargements/info01-cours1.zip">info01-cours1.zip</a>.</p>
+</div>
+<p>Le TD manipule les fichiers d’un même texte, le poème <em>The Raven</em> d’Edgar
+Allan Poe (1845), sous plusieurs formes : un document LibreOffice, un fichier
+texte, deux pages web. On les exporte, on les copie, on change leur extension
+et on les ouvre avec différents logiciels, pour comparer ce que décide
+l’extension et ce que contient le fichier. Il dure une vingtaine de minutes.</p>
+<p>Tout se fait avec l’explorateur de fichiers, LibreOffice, un navigateur et
+deux éditeurs de texte, le Bloc-notes et Notepad++. Aucune commande n’est
+nécessaire.</p>
+<p>Le dossier <code class="docutils literal notranslate"><span class="pre">depart\</span></code> contient aussi les mêmes fichiers pour un second texte,
+<em>Auld Lang Syne</em> de Robert Burns (1788). Qui a fini en avance peut refaire
+les étapes avec lui.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Étape</p></th>
+<th class="head"><p>Objectif</p></th>
+<th class="head"><p>Ce qu’on fait</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>travailler sur des copies, à côté des fichiers livrés</p></td>
+<td><p>préparer le dossier du TD</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>produire un même texte dans plusieurs formats</p></td>
+<td><p>exporter un même document en trois formats</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>tester ce que l’extension change à l’ouverture</p></td>
+<td><p>changer l’extension de copies du document</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>lire l’adresse d’une page ouverte depuis le disque</p></td>
+<td><p>ouvrir une page web depuis son disque</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>comparer fichiers texte et fichiers binaires dans un éditeur</p></td>
+<td><p>lire les fichiers avec deux éditeurs de texte</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Chaque étape commence par un encadré qui la résume. Ce que chaque étape fait
+constater est expliqué à la fin du guide, dans « Ce que le TD fait
+constater » : faire l’étape d’abord, et noter ce qu’on observe, avant de lire
+l’explication.</p>
+<section id="preparer-le-dossier-du-td">
+<h2>1 · Préparer le dossier du TD<a class="headerlink" href="#preparer-le-dossier-du-td" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> récupérer l’archive de la séance ; afficher les extensions
+dans l’explorateur ; ouvrir le dossier <code class="docutils literal notranslate"><span class="pre">cours1\1a_formats\</span></code>.</p>
+<p><strong>À obtenir :</strong> l’explorateur montre <code class="docutils literal notranslate"><span class="pre">depart\</span></code> et <code class="docutils literal notranslate"><span class="pre">travail\</span></code>, et les noms
+de fichiers se terminent par leur extension (<code class="docutils literal notranslate"><span class="pre">raven.odt</span></code>, pas <code class="docutils literal notranslate"><span class="pre">raven</span></code>).</p>
+</div></blockquote>
+<section id="recuperer-les-fichiers">
+<h3>Récupérer les fichiers<a class="headerlink" href="#recuperer-les-fichiers" title="Lien vers cette rubrique">#</a></h3>
+<p>Copier l’archive <code class="docutils literal notranslate"><span class="pre">info01-cours1.zip</span></code> depuis le dossier partagé
+<code class="docutils literal notranslate"><span class="pre">formationTemp</span></code> dans le dossier <code class="docutils literal notranslate"><span class="pre">info01</span></code> du Bureau, puis l’extraire dans ce
+même dossier (clic droit, « Extraire tout… », en effaçant la fin du dossier
+proposé). La page « Récupérer les fichiers d’une séance » du site du cours
+détaille ces deux opérations. Ne pas travailler dans le dossier partagé.</p>
+</section>
+<section id="afficher-les-extensions">
+<h3>Afficher les extensions<a class="headerlink" href="#afficher-les-extensions" title="Lien vers cette rubrique">#</a></h3>
+<p>Windows masque par défaut les extensions des types de fichiers qu’il connaît.
+Dans l’explorateur : menu Affichage, Afficher, cocher « Extensions de noms de
+fichiers ». Sous macOS : Finder, Réglages, Avancé, « Afficher tous les
+suffixes de fichiers ». Le réglage se fait une fois, et sert tout le
+semestre.</p>
+</section>
+<section id="les-deux-dossiers-du-td">
+<h3>Les deux dossiers du TD<a class="headerlink" href="#les-deux-dossiers-du-td" title="Lien vers cette rubrique">#</a></h3>
+<p>Ouvrir <code class="docutils literal notranslate"><span class="pre">info01\cours1\1a_formats\</span></code>. Le dossier contient :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>1a_formats\
+├── depart\
+│   ├── raven.odt                  le poème, document LibreOffice
+│   ├── raven_une_ligne.txt        le poème, en texte sur une seule ligne
+│   ├── raven_une_ligne.donnees    le même fichier, avec une autre extension
+│   ├── raven_brut.html            le poème, en page web sans mise en forme
+│   ├── raven_style.html           la même page, avec une feuille de style
+│   ├── style.css                  la feuille de style
+│   └── auld_lang_syne…            les mêmes fichiers pour le second texte
+├── travail\                       vide
+├── td_1a_formats.pdf              la feuille du TD
+└── README.md
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">depart\</span></code> contient les fichiers fournis, et ne se modifie pas. <code class="docutils literal notranslate"><span class="pre">travail\</span></code>
+reçoit les copies et ce que le TD fabrique. Si une copie est abîmée, on en
+refait une à partir de <code class="docutils literal notranslate"><span class="pre">depart\</span></code>.</p>
+<p>Le chemin complet d’un fichier de départ, et celui d’une copie, sont :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>C:\Users\eleve\Desktop\info01\cours1\1a_formats\depart\raven.odt
+C:\Users\eleve\Desktop\info01\cours1\1a_formats\travail\raven_odt.pdf
+</pre></div>
+</div>
+<p>La suite du guide écrit les chemins à partir de <code class="docutils literal notranslate"><span class="pre">1a_formats\</span></code>.</p>
+<p><strong>Vérification</strong> : la barre d’adresse de l’explorateur se termine par
+<code class="docutils literal notranslate"><span class="pre">cours1\1a_formats</span></code> (ou « Bureau &gt; info01 &gt; cours1 &gt; 1a_formats »), et
+<code class="docutils literal notranslate"><span class="pre">depart\</span></code> montre <code class="docutils literal notranslate"><span class="pre">raven.odt</span></code> avec son extension.</p>
+</section>
+</section>
+<section id="exporter-un-meme-document-en-trois-formats">
+<h2>2 · Exporter un même document en trois formats<a class="headerlink" href="#exporter-un-meme-document-en-trois-formats" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> ouvrir <code class="docutils literal notranslate"><span class="pre">depart\raven.odt</span></code> dans LibreOffice Writer ;
+l’exporter en PDF puis en PNG dans <code class="docutils literal notranslate"><span class="pre">travail\</span></code> ; rouvrir les trois fichiers.</p>
+<p><strong>À obtenir :</strong> <code class="docutils literal notranslate"><span class="pre">travail\</span></code> contient <code class="docutils literal notranslate"><span class="pre">raven.pdf</span></code> et <code class="docutils literal notranslate"><span class="pre">raven.png</span></code>.</p>
+</div></blockquote>
+<p>Double-cliquer sur <code class="docutils literal notranslate"><span class="pre">depart\raven.odt</span></code> : LibreOffice Writer l’ouvre.</p>
+<ol class="arabic simple">
+<li><p>Menu Fichier, Exporter au format PDF, puis Exporter. Enregistrer dans
+<code class="docutils literal notranslate"><span class="pre">travail\</span></code> sous le nom <code class="docutils literal notranslate"><span class="pre">raven.pdf</span></code>.</p></li>
+<li><p>Menu Fichier, Exporter…, choisir le type PNG. Enregistrer dans <code class="docutils literal notranslate"><span class="pre">travail\</span></code>
+sous le nom <code class="docutils literal notranslate"><span class="pre">raven.png</span></code>. L’export en image est dans « Exporter », pas dans
+« Enregistrer sous ».</p></li>
+<li><p>Fermer LibreOffice sans enregistrer le <code class="docutils literal notranslate"><span class="pre">.odt</span></code>.</p></li>
+</ol>
+<p>Rouvrir ensuite les trois fichiers, et essayer dans chacun de sélectionner
+une ligne du poème, puis de chercher un mot avec <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">F</span></code>. Le <code class="docutils literal notranslate"><span class="pre">.png</span></code>
+s’ouvre dans une visionneuse d’images ; ouvert depuis LibreOffice, il
+s’affiche dans Draw, comme une image posée sur une page.</p>
+<p><strong>À noter</strong> : pour chacun des trois fichiers, si le texte est encore du texte
+(il se sélectionne, se cherche, se modifie).</p>
+</section>
+<section id="changer-l-extension-de-copies-du-document">
+<h2>3 · Changer l’extension de copies du document<a class="headerlink" href="#changer-l-extension-de-copies-du-document" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> faire quatre copies de <code class="docutils literal notranslate"><span class="pre">depart\raven.odt</span></code> dans <code class="docutils literal notranslate"><span class="pre">travail\</span></code>,
+sous quatre noms différents ; les ouvrir par double-clic.</p>
+<p><strong>À obtenir :</strong> <code class="docutils literal notranslate"><span class="pre">travail\</span></code> contient <code class="docutils literal notranslate"><span class="pre">raven_odt.pdf</span></code>, <code class="docutils literal notranslate"><span class="pre">raven_odt.jpg</span></code>,
+<code class="docutils literal notranslate"><span class="pre">riri.fifi.loulou.odt</span></code> et <code class="docutils literal notranslate"><span class="pre">raven.loulou</span></code>.</p>
+</div></blockquote>
+<section id="copier-et-renommer">
+<h3>Copier et renommer<a class="headerlink" href="#copier-et-renommer" title="Lien vers cette rubrique">#</a></h3>
+<p>Dans l’explorateur :</p>
+<ol class="arabic simple">
+<li><p>sélectionner <code class="docutils literal notranslate"><span class="pre">depart\raven.odt</span></code>, puis <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">C</span></code> ;</p></li>
+<li><p>ouvrir <code class="docutils literal notranslate"><span class="pre">travail\</span></code>, puis <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">V</span></code> ;</p></li>
+<li><p>sélectionner la copie, <code class="docutils literal notranslate"><span class="pre">F2</span></code>, taper le nouveau nom, puis Entrée ;</p></li>
+<li><p>Windows demande de confirmer le changement d’extension : répondre Oui.</p></li>
+</ol>
+<p>Qui connaît déjà le terminal peut faire la même chose au clavier. Dans
+l’explorateur, clic droit sur le dossier <code class="docutils literal notranslate"><span class="pre">1a_formats</span></code>, « Ouvrir dans le
+terminal », puis, dans un terminal <code class="docutils literal notranslate"><span class="pre">cmd</span></code> :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>copy depart\raven.odt travail\raven_odt.pdf
+copy depart\raven.odt travail\raven.loulou
+</pre></div>
+</div>
+<p>Sous macOS et Linux, la commande est <code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">depart/raven.odt</span> <span class="pre">travail/raven_odt.pdf</span></code>. Le terminal n’est pas nécessaire au TD ; le cours 2
+lui consacre une partie.</p>
+</section>
+<section id="les-quatre-copies">
+<h3>Les quatre copies<a class="headerlink" href="#les-quatre-copies" title="Lien vers cette rubrique">#</a></h3>
+<p>Faire les quatre copies, puis double-cliquer sur chacune :</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Nom de la copie</p></th>
+<th class="head"><p>Ce que le système lance</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">raven_odt.pdf</span></code></p></td>
+<td><p>un lecteur PDF</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">raven_odt.jpg</span></code></p></td>
+<td><p>une visionneuse d’images</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">riri.fifi.loulou.odt</span></code></p></td>
+<td><p>LibreOffice Writer</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">raven.loulou</span></code></p></td>
+<td><p>rien : Windows demande quel logiciel choisir ; choisir LibreOffice Writer</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>À noter</strong> : pour chaque copie, si elle s’ouvre, et le message affiché
+quand elle ne s’ouvre pas. La visionneuse d’images en donne un précis.</p>
+</section>
+</section>
+<section id="ouvrir-une-page-web-depuis-son-disque">
+<h2>4 · Ouvrir une page web depuis son disque<a class="headerlink" href="#ouvrir-une-page-web-depuis-son-disque" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> ouvrir <code class="docutils literal notranslate"><span class="pre">depart\raven_brut.html</span></code> puis <code class="docutils literal notranslate"><span class="pre">depart\raven_style.html</span></code>
+dans le navigateur ; modifier une couleur dans <code class="docutils literal notranslate"><span class="pre">style.css</span></code> ; lire
+l’adresse de la page ; ouvrir une copie dont le nom contient un espace.</p>
+<p><strong>À obtenir :</strong> la page mise en forme change de couleur après <code class="docutils literal notranslate"><span class="pre">F5</span></code> ;
+<code class="docutils literal notranslate"><span class="pre">travail\</span></code> contient <code class="docutils literal notranslate"><span class="pre">raven</span> <span class="pre">style.html</span></code>.</p>
+</div></blockquote>
+<section id="deux-pages-une-feuille-de-style">
+<h3>Deux pages, une feuille de style<a class="headerlink" href="#deux-pages-une-feuille-de-style" title="Lien vers cette rubrique">#</a></h3>
+<ol class="arabic simple">
+<li><p>Double-cliquer sur <code class="docutils literal notranslate"><span class="pre">depart\raven_brut.html</span></code>. Le navigateur l’ouvre, sans
+réseau.</p></li>
+<li><p>Double-cliquer sur <code class="docutils literal notranslate"><span class="pre">depart\raven_style.html</span></code> : le même texte, mis en
+forme.</p></li>
+<li><p>Ouvrir les deux fichiers dans le Bloc-notes (clic droit, Ouvrir avec,
+Bloc-notes) et comparer leur en-tête, entre <code class="docutils literal notranslate"><span class="pre">&lt;head&gt;</span></code> et <code class="docutils literal notranslate"><span class="pre">&lt;/head&gt;</span></code>, puis
+la façon dont le poème est écrit.</p></li>
+<li><p>Ouvrir <code class="docutils literal notranslate"><span class="pre">depart\style.css</span></code> dans le Bloc-notes. Remplacer la valeur d’une
+ligne <code class="docutils literal notranslate"><span class="pre">color:</span></code> par <code class="docutils literal notranslate"><span class="pre">crimson</span></code>, ou par un code comme <code class="docutils literal notranslate"><span class="pre">#c0392b</span></code>, et
+enregistrer.</p></li>
+<li><p>Revenir au navigateur sur <code class="docutils literal notranslate"><span class="pre">raven_style.html</span></code>, et recharger la page avec
+<code class="docutils literal notranslate"><span class="pre">F5</span></code>.</p></li>
+</ol>
+<p><code class="docutils literal notranslate"><span class="pre">style.css</span></code> est le seul fichier de <code class="docutils literal notranslate"><span class="pre">depart\</span></code> que le TD modifie : remettre
+sa couleur d’origine à la fin de l’étape.</p>
+</section>
+<section id="l-adresse-de-la-page">
+<h3>L’adresse de la page<a class="headerlink" href="#l-adresse-de-la-page" title="Lien vers cette rubrique">#</a></h3>
+<p>Lire l’adresse que le navigateur affiche pour <code class="docutils literal notranslate"><span class="pre">raven_style.html</span></code>. Elle a la
+forme :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>file:///C:/Users/eleve/Desktop/info01/cours1/1a_formats/depart/raven_style.html
+</pre></div>
+</div>
+<p><strong>À noter</strong> : ce qui ressemble à un chemin de fichier dans cette adresse, et
+ce qui en diffère. Noter aussi ce qui distingue les deux fichiers HTML dans
+le Bloc-notes.</p>
+</section>
+<section id="un-espace-dans-le-nom-d-un-fichier">
+<h3>Un espace dans le nom d’un fichier<a class="headerlink" href="#un-espace-dans-le-nom-d-un-fichier" title="Lien vers cette rubrique">#</a></h3>
+<ol class="arabic simple">
+<li><p>Copier <code class="docutils literal notranslate"><span class="pre">depart\raven_style.html</span></code> dans <code class="docutils literal notranslate"><span class="pre">travail\</span></code>, et renommer la copie
+<code class="docutils literal notranslate"><span class="pre">raven</span> <span class="pre">style.html</span></code>, avec un espace.</p></li>
+<li><p>L’ouvrir par double-clic, et lire l’adresse affichée.</p></li>
+<li><p>Copier l’adresse (clic dans la barre, <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">A</span></code>, <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">C</span></code>), et la
+coller dans le Bloc-notes.</p></li>
+</ol>
+<p><strong>À noter</strong> : l’apparence de la page, comparée à <code class="docutils literal notranslate"><span class="pre">depart\raven_style.html</span></code> ;
+comment l’espace apparaît dans la barre d’adresse, puis dans l’adresse
+collée. Le résultat dépend du navigateur.</p>
+</section>
+</section>
+<section id="lire-les-fichiers-avec-deux-editeurs-de-texte">
+<h2>5 · Lire les fichiers avec deux éditeurs de texte<a class="headerlink" href="#lire-les-fichiers-avec-deux-editeurs-de-texte" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> ouvrir quatre fichiers de <code class="docutils literal notranslate"><span class="pre">depart\</span></code> dans le Bloc-notes, puis
+dans Notepad++ ; retrouver des caractères dans la table ASCII.</p>
+<p><strong>À obtenir :</strong> les quatre fichiers ouverts dans chaque éditeur, puis
+fermés sans enregistrer.</p>
+</div></blockquote>
+<section id="la-table-ascii">
+<h3>La table ASCII<a class="headerlink" href="#la-table-ascii" title="Lien vers cette rubrique">#</a></h3>
+<p>Un fichier texte range chaque caractère dans un octet, selon une table. La
+table ASCII en donne 95, avec leur valeur en hexadécimal : la ligne donne le
+premier chiffre, la colonne le second. <code class="docutils literal notranslate"><span class="pre">R</span></code> est à la ligne <code class="docutils literal notranslate"><span class="pre">5_</span></code> et dans la
+colonne <code class="docutils literal notranslate"><span class="pre">2</span></code> : il vaut <code class="docutils literal notranslate"><span class="pre">52</span></code>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>0</p></th>
+<th class="head"><p>1</p></th>
+<th class="head"><p>2</p></th>
+<th class="head"><p>3</p></th>
+<th class="head"><p>4</p></th>
+<th class="head"><p>5</p></th>
+<th class="head"><p>6</p></th>
+<th class="head"><p>7</p></th>
+<th class="head"><p>8</p></th>
+<th class="head"><p>9</p></th>
+<th class="head"><p>A</p></th>
+<th class="head"><p>B</p></th>
+<th class="head"><p>C</p></th>
+<th class="head"><p>D</p></th>
+<th class="head"><p>E</p></th>
+<th class="head"><p>F</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2_</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">␣</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">!</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">#</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">$</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">%</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">'</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">(</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">*</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">+</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">,</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>3_</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">3</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">4</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">5</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">6</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">7</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">9</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">:</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">=</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">?</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>4_</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&#64;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">A</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">B</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">C</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">D</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">E</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">F</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">G</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">H</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">I</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">J</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">K</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">L</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">M</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">N</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">O</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>5_</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">P</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Q</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">R</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">S</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">T</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">U</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">V</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">W</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">X</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Y</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Z</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">\</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">]</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">^</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">_</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>6_</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">`</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">b</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">c</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">d</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">e</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">f</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">g</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">h</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">i</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">j</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">k</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">l</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">m</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">n</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">o</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>7_</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">p</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">q</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">r</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">s</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">t</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">u</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">v</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">w</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">y</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">z</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{</span></code></p></td>
+<td><p>|</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">}</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">~</span></code></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">␣</span></code> représente l’espace. Les valeurs de <code class="docutils literal notranslate"><span class="pre">00</span></code> à <code class="docutils literal notranslate"><span class="pre">1F</span></code> ne sont pas des
+caractères affichables mais des commandes, dont le saut de ligne, <code class="docutils literal notranslate"><span class="pre">0A</span></code>. <code class="docutils literal notranslate"><span class="pre">7F</span></code> non plus.</p>
+<p>Retrouver dans la table la valeur de l’espace, puis celle de <code class="docutils literal notranslate"><span class="pre">A</span></code> et celle de
+<code class="docutils literal notranslate"><span class="pre">a</span></code>.</p>
+<p><strong>À noter</strong> : l’écart entre la valeur d’une majuscule et celle de la
+minuscule correspondante.</p>
+</section>
+<section id="deux-editeurs-les-memes-fichiers">
+<h3>Deux éditeurs, les mêmes fichiers<a class="headerlink" href="#deux-editeurs-les-memes-fichiers" title="Lien vers cette rubrique">#</a></h3>
+<p>Ouvrir chacun des quatre fichiers suivants dans le Bloc-notes (clic droit,
+Ouvrir avec, Bloc-notes), puis dans Notepad++ (clic droit, Ouvrir avec,
+Notepad++, ou par le menu Fichier de Notepad++) :</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fichier, dans <code class="docutils literal notranslate"><span class="pre">depart\</span></code></p></th>
+<th class="head"><p>Dans le Bloc-notes</p></th>
+<th class="head"><p>Dans Notepad++</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">raven_une_ligne.txt</span></code></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">style.css</span></code></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">raven_brut.html</span></code></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">raven.odt</span></code></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Attention</strong> : ne rien enregistrer, et fermer sans sauver. Un <code class="docutils literal notranslate"><span class="pre">.odt</span></code>
+réenregistré par un éditeur de texte est détruit.</p>
+<p><strong>À noter</strong> : pour chaque fichier et chaque éditeur, si le contenu est
+lisible, et ce que Notepad++ ajoute à l’affichage.</p>
+</section>
+</section>
+<section id="ce-que-le-td-fait-constater">
+<h2>Ce que le TD fait constater<a class="headerlink" href="#ce-que-le-td-fait-constater" title="Lien vers cette rubrique">#</a></h2>
+<p>Cette section se lit après avoir fait les étapes.</p>
+<section id="etape-2-trois-formats-d-un-meme-document">
+<h3>Étape 2 : trois formats d’un même document<a class="headerlink" href="#etape-2-trois-formats-d-un-meme-document" title="Lien vers cette rubrique">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fichier</p></th>
+<th class="head"><p>Le texte est-il encore du texte ?</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">raven.odt</span></code></p></td>
+<td><p>oui, et il reste modifiable dans LibreOffice</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">raven.pdf</span></code></p></td>
+<td><p>oui : il se sélectionne et se cherche, mais la mise en page est figée</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">raven.png</span></code></p></td>
+<td><p>non : ce sont des pixels, et seule la première page est exportée</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Un PDF décrit la page : les caractères y sont rangés avec leur position. Une
+image PNG ou JPEG photographie la page : elle ne garde que l’apparence, et
+le texte n’y est plus que des points de couleur.</p>
+</section>
+<section id="etape-3-l-extension-decide-du-logiciel-pas-du-contenu">
+<h3>Étape 3 : l’extension décide du logiciel, pas du contenu<a class="headerlink" href="#etape-3-l-extension-decide-du-logiciel-pas-du-contenu" title="Lien vers cette rubrique">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Nom de la copie</p></th>
+<th class="head"><p>Ce qui se passe</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">raven_odt.pdf</span></code></p></td>
+<td><p>refus : le lecteur PDF ne reconnaît pas le fichier</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">raven_odt.jpg</span></code></p></td>
+<td><p>refus : <em>Not a JPEG file: starts with 0x50 0x4b</em></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">riri.fifi.loulou.odt</span></code></p></td>
+<td><p>s’ouvre : seule la fin du nom, après le dernier point, compte</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">raven.loulou</span></code></p></td>
+<td><p>s’ouvre une fois LibreOffice choisi : le contenu n’a pas changé</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Le système ne regarde que le nom. Avec une extension qu’il connaît, il lance
+le logiciel associé, qui refuse le fichier s’il n’est pas du format attendu.
+Avec une extension inconnue, Windows et macOS demandent quel logiciel
+employer, et retiennent ce choix si on coche « Toujours ». Linux, lui,
+regarde les premiers octets du fichier et propose LibreOffice de lui-même.</p>
+<p><code class="docutils literal notranslate"><span class="pre">0x50</span> <span class="pre">0x4b</span></code> sont les deux premiers octets du fichier, écrits en hexadécimal.
+Dans la table ASCII, ce sont les caractères <code class="docutils literal notranslate"><span class="pre">P</span></code> et <code class="docutils literal notranslate"><span class="pre">K</span></code> : la signature d’une
+archive ZIP, dont un <code class="docutils literal notranslate"><span class="pre">.odt</span></code> est une forme (TD 1b).</p>
+</section>
+<section id="etape-4-une-page-web-son-style-son-adresse">
+<h3>Étape 4 : une page web, son style, son adresse<a class="headerlink" href="#etape-4-une-page-web-son-style-son-adresse" title="Lien vers cette rubrique">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">raven_brut.html</span></code> et <code class="docutils literal notranslate"><span class="pre">raven_style.html</span></code> contiennent le même poème. Dans
+<code class="docutils literal notranslate"><span class="pre">raven_brut.html</span></code>, il tient dans un seul paragraphe, <code class="docutils literal notranslate"><span class="pre">&lt;p&gt;</span></code>, et le navigateur
+l’affiche en un bloc : les sauts de ligne du fichier ne sont pas rendus, la
+structure d’une page HTML se déclare par des balises. <code class="docutils literal notranslate"><span class="pre">raven_style.html</span></code>
+écrit un paragraphe par vers, et son en-tête contient une ligne de plus,
+<code class="docutils literal notranslate"><span class="pre">&lt;link</span> <span class="pre">rel=&quot;stylesheet&quot;</span> <span class="pre">href=&quot;style.css&quot;&gt;</span></code>, qui appelle la feuille de style.
+<code class="docutils literal notranslate"><span class="pre">style.css</span></code> décrit la présentation : couleurs, polices, largeur. Modifier <code class="docutils literal notranslate"><span class="pre">style.css</span></code> change l’apparence de la page sans
+toucher au texte. Le contenu est dans un fichier, la présentation dans un
+autre, et l’un change sans l’autre. CSS accepte les couleurs par leur nom
+(<code class="docutils literal notranslate"><span class="pre">crimson</span></code>) comme par leur code hexadécimal (<code class="docutils literal notranslate"><span class="pre">#c0392b</span></code>), deux chiffres par
+composante, rouge, vert, bleu.</p>
+<p>Une adresse web, ou <strong>URL</strong>, est un chemin de fichier précédé de la machine
+où aller le chercher :</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Partie</p></th>
+<th class="head"><p>Dans <code class="docutils literal notranslate"><span class="pre">https://www.ensg.eu/cours/info01/raven.html</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>le protocole, la façon convenue de demander le fichier</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">https://</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>la machine</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">www.ensg.eu</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>le chemin sur cette machine</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/cours/info01/</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>le fichier</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">raven.html</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>L’adresse d’une page ouverte depuis le disque a la même forme, avec le
+protocole <code class="docutils literal notranslate"><span class="pre">file</span></code>. Entre <code class="docutils literal notranslate"><span class="pre">file://</span></code> et le chemin, la place de la machine est
+vide, puisque c’est la vôtre ; la troisième barre est le début du chemin,
+<code class="docutils literal notranslate"><span class="pre">/C:/</span></code>. Le navigateur écrit tous les chemins avec des <code class="docutils literal notranslate"><span class="pre">/</span></code>, même sous Windows.</p>
+<p>Une adresse ne peut pas contenir d’espace : il y est écrit <code class="docutils literal notranslate"><span class="pre">%20</span></code>, <code class="docutils literal notranslate"><span class="pre">20</span></code> étant
+la valeur hexadécimale de l’espace dans la table ASCII. Chrome et Edge
+affichent <code class="docutils literal notranslate"><span class="pre">raven%20style.html</span></code> dans la barre ; Firefox affiche l’espace, mais
+l’adresse copiée contient <code class="docutils literal notranslate"><span class="pre">%20</span></code> dans tous les cas. Ce que la barre affiche est
+une présentation, ce qui se copie est l’adresse réelle.</p>
+<p>La copie <code class="docutils literal notranslate"><span class="pre">raven</span> <span class="pre">style.html</span></code> s’affiche sans mise en forme, alors que
+l’original de <code class="docutils literal notranslate"><span class="pre">depart\</span></code> en a une. <code class="docutils literal notranslate"><span class="pre">href=&quot;style.css&quot;</span></code> est un chemin relatif :
+il désigne <code class="docutils literal notranslate"><span class="pre">style.css</span></code> dans le dossier de la page. La copie est dans
+<code class="docutils literal notranslate"><span class="pre">travail\</span></code>, où il n’y a pas de <code class="docutils literal notranslate"><span class="pre">style.css</span></code>, et le navigateur ne trouve pas la
+feuille de style.</p>
+<p>Un espace dans un nom de fichier passe dans l’explorateur et dans le
+navigateur, mais il demande des guillemets en ligne de commande, au cours 3.</p>
+</section>
+<section id="etape-5-ce-qu-un-editeur-de-texte-affiche">
+<h3>Étape 5 : ce qu’un éditeur de texte affiche<a class="headerlink" href="#etape-5-ce-qu-un-editeur-de-texte-affiche" title="Lien vers cette rubrique">#</a></h3>
+<p>La table ASCII donne <code class="docutils literal notranslate"><span class="pre">20</span></code> pour l’espace, <code class="docutils literal notranslate"><span class="pre">41</span></code> pour <code class="docutils literal notranslate"><span class="pre">A</span></code> et <code class="docutils literal notranslate"><span class="pre">61</span></code> pour <code class="docutils literal notranslate"><span class="pre">a</span></code> : une
+minuscule vaut sa majuscule plus <code class="docutils literal notranslate"><span class="pre">20</span></code>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fichier</p></th>
+<th class="head"><p>Dans le Bloc-notes</p></th>
+<th class="head"><p>Dans Notepad++</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">raven_une_ligne.txt</span></code></p></td>
+<td><p>le poème, lisible en entier</p></td>
+<td><p>le même, sans couleur</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">style.css</span></code></p></td>
+<td><p>des règles, lisibles</p></td>
+<td><p>sélecteurs et propriétés en couleur</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">raven_brut.html</span></code></p></td>
+<td><p>le texte et ses balises</p></td>
+<td><p>les balises en couleur, repliables</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">raven.odt</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">PK</span></code>, puis des caractères sans suite : du binaire</p></td>
+<td><p>les mêmes, et des <code class="docutils literal notranslate"><span class="pre">NUL</span></code> en surbrillance</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Un éditeur de texte affiche un caractère par octet, selon la table
+d’encodage, et n’interprète rien d’autre : ni image, ni mise en forme. Ce qui
+n’a pas de caractère correspondant apparaît en carré ou en signe étrange ;
+Notepad++ marque <code class="docutils literal notranslate"><span class="pre">NUL</span></code> les octets de valeur <code class="docutils literal notranslate"><span class="pre">00</span></code>.</p>
+<p>Les couleurs de Notepad++ ne viennent pas du fichier : l’éditeur les ajoute
+d’après l’extension, qu’il associe à un langage. Renommer <code class="docutils literal notranslate"><span class="pre">style.css</span></code> en
+<code class="docutils literal notranslate"><span class="pre">style.txt</span></code> les fait disparaître. L’éditeur de code de la partie 2 fait la
+même chose pour Python.</p>
+<p><code class="docutils literal notranslate"><span class="pre">raven_brut.html</span></code> est du texte, <code class="docutils literal notranslate"><span class="pre">raven.odt</span></code> n’en est pas, et leur nom ne le
+disait pas : seule l’ouverture dans un éditeur de texte le montre. Les
+<code class="docutils literal notranslate"><span class="pre">PK</span></code> du début sont la signature ZIP rencontrée à l’étape 3.</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../../travaux_diriges.html"
+       title="page précédente">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">précédent</p>
+        <p class="prev-next-title">Travaux dirigés de la séance 1</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../1b_archive_odt/guide.html"
+       title="page suivante">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">suivant</p>
+        <p class="prev-next-title">TD 1b — Un .odt est une archive ZIP (facultatif)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparer-le-dossier-du-td">1 · Préparer le dossier du TD</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recuperer-les-fichiers">Récupérer les fichiers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afficher-les-extensions">Afficher les extensions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-deux-dossiers-du-td">Les deux dossiers du TD</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exporter-un-meme-document-en-trois-formats">2 · Exporter un même document en trois formats</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#changer-l-extension-de-copies-du-document">3 · Changer l’extension de copies du document</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#copier-et-renommer">Copier et renommer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-quatre-copies">Les quatre copies</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ouvrir-une-page-web-depuis-son-disque">4 · Ouvrir une page web depuis son disque</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deux-pages-une-feuille-de-style">Deux pages, une feuille de style</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#l-adresse-de-la-page">L’adresse de la page</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-espace-dans-le-nom-d-un-fichier">Un espace dans le nom d’un fichier</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lire-les-fichiers-avec-deux-editeurs-de-texte">5 · Lire les fichiers avec deux éditeurs de texte</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-table-ascii">La table ASCII</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deux-editeurs-les-memes-fichiers">Deux éditeurs, les mêmes fichiers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-le-td-fait-constater">Ce que le TD fait constater</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-2-trois-formats-d-un-meme-document">Étape 2 : trois formats d’un même document</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-3-l-extension-decide-du-logiciel-pas-du-contenu">Étape 3 : l’extension décide du logiciel, pas du contenu</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-4-une-page-web-son-style-son-adresse">Étape 4 : une page web, son style, son adresse</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-5-ce-qu-un-editeur-de-texte-affiche">Étape 5 : ce qu’un éditeur de texte affiche</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par 1re année géomatique
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, module info01 — CC-BY-4.0.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

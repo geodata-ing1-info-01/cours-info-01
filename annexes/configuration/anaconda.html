@@ -1,0 +1,923 @@
+
+<!DOCTYPE html>
+
+
+<html lang="fr" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Anaconda &#8212; Introduction à l&#39;informatique</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../_static/documentation_options.js?v=72dce1d2"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../../_static/translations.js?v=e6b791cb"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'annexes/configuration/anaconda';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Recherche" href="../../search.html" />
+    <link rel="next" title="JupyterLab" href="jupyterlab.html" />
+    <link rel="prev" title="Configuration des postes de la salle" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="fr"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Passer au contenu principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Haut de page</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Alerte de version"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navigation dans le site">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="Sur cette page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction à l'informatique</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Introduction à l’informatique
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Avant les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../avant/poste.html">Premiers tests du poste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../avant/donnees.html">Récupérer les fichiers d’une séance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../avant/python.html">Anaconda et JupyterLab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../avant/vscode.html">VS Code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Après les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../apres/sauvegarder.html">Sauvegarder son travail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../apres/s_entrainer.html">S’entraîner : jeux et exercices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours1_v2/index.html">Séance 1, version 2 — Logiciels, fichiers, terminal et premier programme</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1_v2/notebook/01_logiciels_stockage.html">Logiciels, fichiers et stockage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1_v2/notebook/02_terminal.html">Le terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1_v2/notebook/03_premier_programme.html">Premier programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1_v2/notebook/04_notebook.html">Un notebook et la syntaxe de Markdown</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours1_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 1, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1_v2/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1_v2/notebook/td/1b_terminal/guide.html">TD 1b — Les fichiers du TD 1a en ligne de commande</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1_v2/notebook/td/1c_programme/guide.html">TD 1c — Écrire et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1_v2/notebook/td/1d_notebook/guide.html">TD 1d — Un notebook dans JupyterLab</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours2_v2/index.html">Séance 2, version 2 — Éditeur de code, Markdown et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2_v2/notebook/01_editeur_de_code.html">L’éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2_v2/notebook/02_markdown.html">Une recette en Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2_v2/notebook/03_git_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2_v2/notebook/04_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours2_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2_v2/notebook/td/2a_vscode/guide.html">TD 2a — Configurer VS Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2_v2/notebook/td/2b_erreurs/guide.html">TD 2b — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2_v2/notebook/td/2c_markdown/guide.html">TD 2c — Une recette en Markdown, convertie par pandoc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2_v2/notebook/td/2d_depot_recette/guide.html">TD 2d — Un dépôt git pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours3/index.html">Séance 3 — Chemins, fichiers et ligne de commande</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours3/notebook/01_chemins_programmes.html">Chemins et programmes externes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours3/notebook/02_fichiers_encodage.html">Fichiers et encodage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours3/notebook/03_du_notebook_au_programme.html">Du notebook au programme</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours3/notebook/travaux_diriges.html">Travaux dirigés de la séance 3</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours3/notebook/td/3e_markdown/guide.html">TD 3e — Une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours3/notebook/td/3f_cli/guide.html">TD 3f — Une ligne de commande pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours4/index.html">Séance 4 — Projet d’application 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours4/notebook/travaux_diriges.html">Travaux dirigés du projet 4</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours4/notebook/td/4a_recette/guide.html">TD 4a — Un script Python, pas à pas</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../cours4/notebook/td/4b_paquet/guide.html">TD 4b — Un programme installable</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours5/index.html">Séance 5 — Matériel, réseau, mots de passe, clés SSH et secrets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours5/notebook/01_materiel.html">Le matériel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours5/notebook/02_reseau.html">Le réseau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours5/notebook/03_prouver_qui_lon_est.html">Prouver qui l’on est</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours5/notebook/04_secrets.html">Les secrets de vos programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours5/notebook/travaux_diriges.html">Travaux dirigés de la séance 5</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cours6/index.html">Séance 6 — La forge, sur le dépôt du projet 4</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours7/index.html">Séance 7 — Projet d’application 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours7/notebook/td/7a_recette/guide.html">TD 7a — Compléter son projet, par des pull requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours7/notebook/td/7b_train/guide.html">TD 7b — Reprendre et compléter le projet d’un autre</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Annexes</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Configuration des postes de la salle</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jupyterlab.html">JupyterLab</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="vscode.html">VS Code</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="vscode_python.html">Python et environnement conda</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vscode_notebooks.html">Notebooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vscode_reglages.html">Fichiers de réglages</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="git.html">Git et Git Bash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spyder.html">Spyder</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../poste_personnel/index.html">Configuration d’un ordinateur personnel</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../poste_personnel/conda.html">Python et conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../poste_personnel/vscode.html">VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../poste_personnel/git_outils.html">Git et éditeurs de texte</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../notions/index.html">Notions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notions/outils.html">Choisir entre JupyterLab, Spyder et VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notions/notebooks.html">Les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notions/terminaux.html">Les terminaux en ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notions/variables_environnement.html">Variables d’environnement et recherche des programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notions/environnements.html">Les environnements conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notions/vscode_environnements.html">Comment VS Code gère les environnements Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notions/git_bash.html">Git Bash : une fenêtre, bash et des programmes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../faq.html">FAQ</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../problemes/reseau.html">Problèmes de réseau et de compte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../problemes/bureautique.html">Problèmes avec les logiciels de texte et de bureautique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../problemes/anaconda.html">Problèmes avec Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../problemes/jupyterlab.html">Problèmes avec JupyterLab et les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../problemes/vscode.html">Problèmes avec VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../problemes/git.html">Problèmes avec git</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../plus_loin/index.html">Pour aller plus loin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../plus_loin/gestionnaires.html">venv, uv et pixi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plus_loin/cpp.html">C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plus_loin/programme_interpreteur.html">Programme, application et interpréteur</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Archive 2026</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours1/index.html">Séance 1, 2026 — Logiciel, programmation et formats de fichier</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1/notebook/01_logiciels_et_formats.html">Logiciels et formats de fichier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1/notebook/02_programmation.html">Programmation et éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1/notebook/03_markdown_notebook.html">Markdown et notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1/notebook/04_bibliotheques_environnements.html">Bibliothèques et environnements Python</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours1/notebook/travaux_diriges.html">Travaux dirigés de la séance 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1b_archive_odt/guide.html">TD 1b — Un .odt est une archive ZIP (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1c_vscode_python/guide.html">TD 1c — Configurer l’éditeur de code, et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1d_erreurs/guide.html">TD 1d — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1e_hello_cpp/guide.html">TD 1e — Le même programme en C++ (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1f_markdown/guide.html">TD 1f — Mettre en forme une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1g_notebooks/guide.html">TD 1g — Le notebook, ouvert de trois façons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1h_recette/guide.html">TD 1h — Installer un projet Python, et décrire son installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1i_noyaux/guide.html">TD 1i — Le client, le noyau, et où ils sont installés (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1j_trajet/guide.html">TD 1j — Installer un projet en lisant son README (facultatif)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1/notebook/05_comparer_versions.html">Annexe — Comparer deux versions d’un fichier</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours2/index.html">Séance 2, 2026 — Ligne de commande et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2/notebook/01_ligne_de_commande.html">La ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2/notebook/02_depot_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2/notebook/03_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2/notebook/04_lire_et_tenir_un_depot.html">Lire et tenir un dépôt</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2/notebook/td/2a_premier_depot/guide.html">TD 2a — Un premier dépôt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2/notebook/td/2b_branches/guide.html">TD 2b — Branches et fusions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2/notebook/td/2c_annuler/guide.html">TD 2c — Annuler et remettre à jour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2/notebook/td/2d_conflits/guide.html">TD 2d — Créer et résoudre un conflit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2/notebook/td/2e_livrer/guide.html">TD 2e — Publier une version</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Thème">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Thème" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Clair"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Sombre"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="Paramètres système"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>Paramètres système</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Clair</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Sombre</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Anaconda</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conda-dans-un-terminal">conda dans un terminal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#l-invite-de-commandes-d-anaconda">L’invite de commandes d’Anaconda</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#git-bash">Git Bash</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#les-environnements">Les environnements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration-des-depots">Configuration des dépôts</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#canal-conda-forge-par-defaut">Canal conda-forge par défaut</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conditions-d-utilisation-des-canaux-d-anaconda">Conditions d’utilisation des canaux d’Anaconda</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anaconda-navigator">Anaconda Navigator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation-officielle">Documentation officielle</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fichiers-utiles">Fichiers utiles</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="anaconda">
+<h1>Anaconda<a class="headerlink" href="#anaconda" title="Lien vers cette rubrique">#</a></h1>
+<p>Anaconda est une distribution Python : un ensemble qui réunit Python, des
+centaines de bibliothèques déjà installées, l’outil <code class="docutils literal notranslate"><span class="pre">conda</span></code> qui gère les
+environnements, et des applications (Anaconda Navigator, Spyder,
+JupyterLab). Sur les postes de la salle, il est installé pour tous les
+utilisateurs, dans <code class="docutils literal notranslate"><span class="pre">C:\ProgramData\anaconda3</span></code>.</p>
+<p>On se sert d’Anaconda de deux façons : en ligne de commande, avec la
+commande <code class="docutils literal notranslate"><span class="pre">conda</span></code> et le Python de la distribution tapés dans un terminal, ou
+par Anaconda Navigator, une interface graphique qui lance les
+applications. Le module emploie surtout la ligne de commande, et se sert de
+Navigator en secours. Le test des deux est dans <a class="reference internal" href="../../avant/python.html"><span class="std std-doc">Anaconda et
+JupyterLab</span></a>.</p>
+<section id="conda-dans-un-terminal">
+<span id="conda-terminal"></span><h2>conda dans un terminal<a class="headerlink" href="#conda-dans-un-terminal" title="Lien vers cette rubrique">#</a></h2>
+<p>Un terminal ordinaire ne connaît ni la commande <code class="docutils literal notranslate"><span class="pre">conda</span></code> ni le Python
+d’Anaconda. Dans un <code class="docutils literal notranslate"><span class="pre">cmd</span></code> ouvert depuis le menu Démarrer, ou dans un Git
+Bash qui n’a pas été configuré, <code class="docutils literal notranslate"><span class="pre">conda</span></code> n’est pas reconnu
+(<a class="reference internal" href="../problemes/anaconda.html#dep-a2"><span class="std std-ref">A2</span></a>), et <code class="docutils literal notranslate"><span class="pre">python</span></code> désigne un autre Python, ou aucun.</p>
+<p>Il faut d’abord activer un environnement dans le terminal. Un script
+d’Anaconda ajoute les dossiers de l’environnement en tête de la variable
+<code class="docutils literal notranslate"><span class="pre">PATH</span></code>, et le terminal y trouve ensuite <code class="docutils literal notranslate"><span class="pre">conda</span></code>, <code class="docutils literal notranslate"><span class="pre">python</span></code> et les autres
+programmes de l’environnement. La variable <code class="docutils literal notranslate"><span class="pre">PATH</span></code> est expliquée dans
+<a class="reference internal" href="../notions/variables_environnement.html"><span class="std std-doc">Variables d’environnement et recherche des
+programmes</span></a>, et le contenu des
+scripts d’activation dans <a class="reference internal" href="../notions/environnements.html"><span class="std std-doc">Les environnements
+conda</span></a>.</p>
+<p>Chaque interpréteur de commandes a son script d’activation, dans le dossier
+d’Anaconda :</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Terminal</p></th>
+<th class="head"><p>Script d’activation</p></th>
+<th class="head"><p>Mise en place</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Invite de commandes d’Anaconda (<code class="docutils literal notranslate"><span class="pre">cmd</span></code>)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Scripts\activate.bat</span></code></p></td>
+<td><p>faite par le raccourci du menu Démarrer</p></td>
+</tr>
+<tr class="row-odd"><td><p>Git Bash (<code class="docutils literal notranslate"><span class="pre">bash</span></code>)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">etc/profile.d/conda.sh</span></code></p></td>
+<td><p>par <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">init</span> <span class="pre">bash</span></code>, une fois sur le poste</p></td>
+</tr>
+<tr class="row-even"><td><p>PowerShell</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">shell\condabin\conda-hook.ps1</span></code></p></td>
+<td><p>bloquée sur les postes de la salle (<a class="reference internal" href="../problemes/anaconda.html#dep-a7"><span class="std std-ref">A7</span></a>)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="l-invite-de-commandes-d-anaconda">
+<h3>L’invite de commandes d’Anaconda<a class="headerlink" href="#l-invite-de-commandes-d-anaconda" title="Lien vers cette rubrique">#</a></h3>
+<p>Menu Démarrer, taper <code class="docutils literal notranslate"><span class="pre">anaconda</span></code>, choisir « Anaconda Prompt », le nom
+anglais de l’invite de commandes d’Anaconda. Une fenêtre noire s’ouvre tout
+de suite. La ligne qui attend une commande s’appelle
+l’invite ; elle commence par <code class="docutils literal notranslate"><span class="pre">(base)</span></code>, le nom de l’environnement actif, puis
+le dossier courant.</p>
+<figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="../../_images/menu_demarrer_anaconda.svg"><img alt="Le menu Démarrer après avoir tapé anaconda, avec Navigator, Prompt et Spyder dans la liste" src="../../_images/menu_demarrer_anaconda.svg" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Le menu Démarrer, après avoir tapé <code class="docutils literal notranslate"><span class="pre">anaconda</span></code>.</span><a class="headerlink" href="#id1" title="Lien vers cette image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id2">
+<a class="reference internal image-reference" href="../../_images/anaconda_prompt.svg"><img alt="La fenêtre de l'invite de commandes d'Anaconda, avec une commande tapée et sa réponse" src="../../_images/anaconda_prompt.svg" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Une commande tapée dans l’invite de commandes d’Anaconda, et sa réponse.</span><a class="headerlink" href="#id2" title="Lien vers cette image">#</a></p>
+</figcaption>
+</figure>
+<p>Le raccourci ouvre un <code class="docutils literal notranslate"><span class="pre">cmd</span></code> et y exécute <code class="docutils literal notranslate"><span class="pre">activate.bat</span></code>
+(<a class="reference internal" href="../notions/terminaux.html"><span class="std std-doc">Les terminaux en ligne de commande</span></a>). L’invite
+de commandes d’Anaconda fonctionne donc sans réglage.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Ce qu’on tape</p></th>
+<th class="head"><p>Ce qu’on doit voir</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">--version</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">25.x</span></code> ou <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">24.x</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">where</span> <span class="pre">python</span></code></p></td>
+<td><p>en première ligne, <code class="docutils literal notranslate"><span class="pre">C:\ProgramData\anaconda3\python.exe</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="git-bash">
+<span id="conda-git-bash"></span><h3>Git Bash<a class="headerlink" href="#git-bash" title="Lien vers cette rubrique">#</a></h3>
+<p>Git Bash est le terminal du module à partir du <a class="reference internal" href="../../cours1_v2/notebook/td/1b_terminal/guide.html"><span class="std std-doc">TD 1c</span></a>, qui fait cette
+configuration. À son ouverture, Git Bash ne connaît pas conda. Deux
+commandes, tapées une fois dans Git Bash, le configurent :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>source /c/ProgramData/anaconda3/etc/profile.d/conda.sh
+conda init bash
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">source</span></code> exécute le script <code class="docutils literal notranslate"><span class="pre">conda.sh</span></code> dans le terminal ouvert, ce qui y
+définit la commande <code class="docutils literal notranslate"><span class="pre">conda</span></code>. <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">init</span> <span class="pre">bash</span></code> écrit une instruction
+équivalente dans le fichier <code class="docutils literal notranslate"><span class="pre">~/.bash_profile</span></code>, que Git Bash lit à chaque
+ouverture. Il affiche une ligne par fichier examiné, <code class="docutils literal notranslate"><span class="pre">no</span> <span class="pre">change</span></code> ou
+<code class="docutils literal notranslate"><span class="pre">modified</span></code>. Fermer ensuite Git Bash, puis le rouvrir.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Ce qu’on fait</p></th>
+<th class="head"><p>Ce qu’on doit voir</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Ouvrir Git Bash</p></td>
+<td><p>l’invite commence par <code class="docutils literal notranslate"><span class="pre">(base)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Taper <code class="docutils literal notranslate"><span class="pre">which</span> <span class="pre">python</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/c/ProgramData/anaconda3/python</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Taper <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">--version</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">25.x</span></code> ou <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">24.x</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Le réglage est écrit dans le dossier personnel du compte. Il reste d’une
+séance à l’autre sur le même poste, et se refait sur un autre poste. Il
+vaut aussi pour le Git Bash ouvert dans VS Code, qui lit le même fichier
+(<a class="reference internal" href="git.html"><span class="std std-doc">Git et Git Bash</span></a>).</p>
+<p>Quand la configuration échoue :</p>
+<dl class="simple myst">
+<dt><code class="docutils literal notranslate"><span class="pre">source</span></code> affiche <code class="docutils literal notranslate"><span class="pre">No</span> <span class="pre">such</span> <span class="pre">file</span> <span class="pre">or</span> <span class="pre">directory</span></code></dt><dd><p>Anaconda est installé dans un autre dossier. Sur un ordinateur
+personnel, essayer <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/c/Users/$USERNAME/anaconda3/etc/profile.d/conda.sh</span></code>,
+ou <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">~/miniforge3/etc/profile.d/conda.sh</span></code> avec Miniforge
+(<a class="reference internal" href="../poste_personnel/conda.html"><span class="std std-doc">Python et conda</span></a>).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">init</span> <span class="pre">bash</span></code> écrit <code class="docutils literal notranslate"><span class="pre">needs</span> <span class="pre">sudo</span></code>, ou Windows demande des droits d’administrateur</dt><dd><p>Refuser, puis écrire la ligne à la main dans <code class="docutils literal notranslate"><span class="pre">~/.bash_profile</span></code>, et
+rouvrir Git Bash :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>echo 'eval "$(/c/ProgramData/anaconda3/Scripts/conda.exe shell.bash hook)"' &gt;&gt; ~/.bash_profile
+</pre></div>
+</div>
+</dd>
+<dt>Chaque nouveau Git Bash affiche l’aide de <code class="docutils literal notranslate"><span class="pre">cygpath</span></code> (<code class="docutils literal notranslate"><span class="pre">Usage:</span> <span class="pre">cygpath</span> <span class="pre">…</span></code>), puis <code class="docutils literal notranslate"><span class="pre">bash:</span> <span class="pre">:</span> <span class="pre">No</span> <span class="pre">such</span> <span class="pre">file</span> <span class="pre">or</span> <span class="pre">directory</span></code></dt><dd><p>Anaconda fournit son propre <code class="docutils literal notranslate"><span class="pre">cygpath</span></code>, dans
+<code class="docutils literal notranslate"><span class="pre">C:\ProgramData\anaconda3\Library\usr\bin</span></code>, qui échoue sous Git Bash ;
+une fois <code class="docutils literal notranslate"><span class="pre">base</span></code> activé, ce dossier passe avant ceux de Git dans le <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.
+L’environnement est activé, mais le script d’OpenSSL d’Anaconda n’est pas
+chargé, et <code class="docutils literal notranslate"><span class="pre">SSL_CERT_FILE</span></code> n’est pas posée. Taper une fois la commande
+suivante, puis rouvrir Git Bash :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sed -i '1i cygpath() { /usr/bin/cygpath "$@"; }' ~/.bash_profile
+</pre></div>
+</div>
+<p>Elle ajoute en tête de <code class="docutils literal notranslate"><span class="pre">~/.bash_profile</span></code> une fonction <code class="docutils literal notranslate"><span class="pre">cygpath</span></code>, qui passe
+avant le <code class="docutils literal notranslate"><span class="pre">PATH</span></code> et appelle toujours celui de Git.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="les-environnements">
+<h2>Les environnements<a class="headerlink" href="#les-environnements" title="Lien vers cette rubrique">#</a></h2>
+<p>Un environnement est un dossier qui contient un Python et les paquets
+installés avec lui. <code class="docutils literal notranslate"><span class="pre">base</span></code> est celui d’Anaconda. Sur les postes de la
+salle, son dossier n’est pas modifiable par un compte élève : on n’y
+installe rien. Chaque TD qui a besoin d’un paquet crée son propre
+environnement, qui va dans <code class="docutils literal notranslate"><span class="pre">C:\Users\&lt;nom&gt;\.conda\envs</span></code>. Le TD 1h fait
+créer le premier ; les commandes, dans l’invite de commandes d’Anaconda :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">recette</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">python</span> <span class="n">pandoc</span>
+<span class="n">conda</span> <span class="n">activate</span> <span class="n">recette</span>
+<span class="n">conda</span> <span class="n">env</span> <span class="nb">list</span>
+<span class="n">conda</span> <span class="nb">list</span> <span class="o">-</span><span class="n">n</span> <span class="n">recette</span>
+</pre></div>
+</div>
+<p>Dans l’ordre : créer l’environnement <code class="docutils literal notranslate"><span class="pre">recette</span></code> avec Python et pandoc, pris
+sur le canal conda-forge ; l’activer (l’invite passe à <code class="docutils literal notranslate"><span class="pre">(recette)</span></code>) ; lister
+les environnements connus ; lister les paquets de <code class="docutils literal notranslate"><span class="pre">recette</span></code>. Ce que
+change l’activation est expliqué dans
+<a class="reference internal" href="../notions/environnements.html"><span class="std std-doc">Les environnements conda</span></a>.</p>
+<p>Une application lancée depuis un terminal est cherchée dans
+l’environnement actif, et démarre avec lui. Navigator fait de même avec
+l’environnement choisi en haut de sa page. Le lancement de chaque
+application est décrit dans sa page : <a class="reference internal" href="jupyterlab.html"><span class="std std-doc">JupyterLab</span></a>,
+<a class="reference internal" href="spyder.html"><span class="std std-doc">Spyder</span></a>, <a class="reference internal" href="vscode.html"><span class="std std-doc">VS Code</span></a>.</p>
+</section>
+<section id="configuration-des-depots">
+<span id="config-depots"></span><h2>Configuration des dépôts<a class="headerlink" href="#configuration-des-depots" title="Lien vers cette rubrique">#</a></h2>
+<p>Un paquet installé par conda vient d’un dépôt, un serveur qui en tient
+des milliers à disposition. conda appelle ces dépôts des canaux
+(<em>channels</em>). Il en existe plusieurs : <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code>, tenu par une
+communauté, où chaque paquet entre après relecture d’une recette ; les
+canaux d’Anaconda (<code class="docutils literal notranslate"><span class="pre">defaults</span></code>, c’est-à-dire <code class="docutils literal notranslate"><span class="pre">pkgs/main</span></code> et <code class="docutils literal notranslate"><span class="pre">pkgs/r</span></code>),
+tenus par l’entreprise, avec des conditions d’utilisation ; et PyPI, le
+dépôt de <code class="docutils literal notranslate"><span class="pre">pip</span></code>, que conda n’emploie pas. Le réglage des canaux dit à conda
+où chercher, et dans quel ordre.</p>
+<figure class="align-default" id="id3">
+<a class="reference internal image-reference" href="../../_images/depots.svg"><img alt="Un environnement conda sur la machine, et deux dépôts à distance, PyPI et conda-forge ; une flèche va de conda-forge vers l'environnement" src="../../_images/depots.svg" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Un environnement, et les dépôts d’où viennent ses paquets (schéma du
+cours 1).</span><a class="headerlink" href="#id3" title="Lien vers cette image">#</a></p>
+</figcaption>
+</figure>
+<p>Le module prend ses paquets sur conda-forge, d’où le <code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">conda-forge</span></code> des
+commandes. Deux réglages, à faire une fois par compte dans l’Anaconda
+Prompt, rendent ce choix permanent et évitent les questions que conda
+pose sinon.</p>
+<section id="canal-conda-forge-par-defaut">
+<h3>Canal conda-forge par défaut<a class="headerlink" href="#canal-conda-forge-par-defaut" title="Lien vers cette rubrique">#</a></h3>
+<p>Écrire dans le fichier <code class="docutils literal notranslate"><span class="pre">C:\Users\&lt;nom&gt;\.condarc</span></code> (le créer avec le
+Bloc-notes s’il n’existe pas ; le nom commence par un point et n’a pas
+d’extension) :</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channels</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span>
+<span class="nt">channel_priority</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">strict</span>
+</pre></div>
+</div>
+<p>Avec ce fichier, <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">-n</span> <span class="pre">recette</span> <span class="pre">python</span> <span class="pre">pandoc</span></code> prend tout sur
+conda-forge, sans <code class="docutils literal notranslate"><span class="pre">-c</span></code>, et les canaux d’Anaconda ne sont plus consultés,
+y compris quand c’est VS Code qui lance <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span></code>
+(<a class="reference internal" href="../notions/vscode_environnements.html"><span class="std std-doc">Comment VS Code gère les environnements</span></a>).
+Vérifier : <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">config</span> <span class="pre">--show</span> <span class="pre">channels</span></code> affiche <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> seul.</p>
+</section>
+<section id="conditions-d-utilisation-des-canaux-d-anaconda">
+<h3>Conditions d’utilisation des canaux d’Anaconda<a class="headerlink" href="#conditions-d-utilisation-des-canaux-d-anaconda" title="Lien vers cette rubrique">#</a></h3>
+<p>Depuis Anaconda 2025.06, conda demande une fois par compte d’accepter
+les conditions d’utilisation des canaux d’Anaconda avant de s’en servir
+(<a class="reference internal" href="../problemes/anaconda.html#dep-a10"><span class="std std-ref">A10</span></a>). La question n’est posée que dans un terminal ;
+lancé par VS Code, conda ne peut pas la poser et échoue. Faire le test une
+fois, dans l’invite de commandes d’Anaconda :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">tos</span>
+</pre></div>
+</div>
+<p>La réponse est un tableau des canaux avec, pour chacun, accepté ou non.
+S’il reste des canaux non acceptés et qu’on compte s’en servir :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">tos</span> <span class="n">accept</span>
+</pre></div>
+</div>
+<p>Avec le fichier <code class="docutils literal notranslate"><span class="pre">.condarc</span></code> ci-dessus, les canaux d’Anaconda ne sont plus
+consultés et la question ne se pose plus.</p>
+</section>
+</section>
+<section id="anaconda-navigator">
+<h2>Anaconda Navigator<a class="headerlink" href="#anaconda-navigator" title="Lien vers cette rubrique">#</a></h2>
+<p>Anaconda Navigator est une interface graphique qui lance les applications
+d’Anaconda. Menu Démarrer, taper <code class="docutils literal notranslate"><span class="pre">anaconda</span></code>, choisir « Anaconda
+Navigator ».</p>
+<p>Après le chargement (jusqu’à deux minutes la première fois), la page
+d’accueil affiche une fiche par application. En haut, une liste déroulante
+indique l’environnement actif, <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">(root)</span></code>.</p>
+<figure class="align-default" id="id4">
+<a class="reference internal image-reference" href="../../_images/navigator_accueil.svg"><img alt="La page d'accueil d'Anaconda Navigator, avec la liste des environnements et une fiche par application" src="../../_images/navigator_accueil.svg" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">La page d’accueil d’Anaconda Navigator.</span><a class="headerlink" href="#id4" title="Lien vers cette image">#</a></p>
+</figcaption>
+</figure>
+<p>Le bouton Launch d’une fiche lance l’application dans l’environnement
+affiché en haut. Quand Navigator est lent ou ne s’ouvre pas
+(<a class="reference internal" href="../problemes/anaconda.html#dep-a4"><span class="std std-ref">A4</span></a>, <a class="reference internal" href="../problemes/anaconda.html#dep-a5"><span class="std std-ref">A5</span></a>), chaque application se lance
+aussi depuis un terminal, comme l’indique sa page. Un Navigator bloqué au
+démarrage, dont l’icône reste à l’écran, s’arrête depuis le Gestionnaire
+des tâches (<a class="reference internal" href="../problemes/anaconda.html#dep-a13"><span class="std std-ref">A13</span></a>).</p>
+</section>
+<section id="documentation-officielle">
+<h2>Documentation officielle<a class="headerlink" href="#documentation-officielle" title="Lien vers cette rubrique">#</a></h2>
+<ul class="simple">
+<li><p>Anaconda Navigator : <a class="reference external" href="https://www.anaconda.com/docs/tools/anaconda-navigator/getting-started">Getting started with Navigator</a>
+(en anglais).</p></li>
+<li><p>Invite de commandes d’Anaconda et conda : <a class="reference external" href="https://docs.conda.io/projects/conda/en/stable/user-guide/getting-started.html">Getting started with conda</a>
+(en anglais).</p></li>
+</ul>
+</section>
+<section id="fichiers-utiles">
+<h2>Fichiers utiles<a class="headerlink" href="#fichiers-utiles" title="Lien vers cette rubrique">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Quoi</p></th>
+<th class="head"><p>Où</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Installation</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">C:\ProgramData\anaconda3</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Python de <code class="docutils literal notranslate"><span class="pre">base</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">C:\ProgramData\anaconda3\python.exe</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Script qu’exécute l’invite de commandes d’Anaconda</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">C:\ProgramData\anaconda3\Scripts\activate.bat</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Environnements créés par le compte</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">C:\Users\&lt;nom&gt;\.conda\envs</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Liste des environnements connus</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">C:\Users\&lt;nom&gt;\.conda\environments.txt</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Réglages de conda pour le compte (canaux)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">C:\Users\&lt;nom&gt;\.condarc</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Réglages et journaux de Navigator</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">C:\Users\&lt;nom&gt;\.anaconda\navigator</span></code> et <code class="docutils literal notranslate"><span class="pre">C:\Users\&lt;nom&gt;\AppData\Roaming\.anaconda\navigator</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">info</span></code>, dans l’invite de commandes d’Anaconda, affiche ces chemins tels que conda
+les voit.</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="page précédente">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">précédent</p>
+        <p class="prev-next-title">Configuration des postes de la salle</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="jupyterlab.html"
+       title="page suivante">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">suivant</p>
+        <p class="prev-next-title">JupyterLab</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conda-dans-un-terminal">conda dans un terminal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#l-invite-de-commandes-d-anaconda">L’invite de commandes d’Anaconda</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#git-bash">Git Bash</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#les-environnements">Les environnements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration-des-depots">Configuration des dépôts</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#canal-conda-forge-par-defaut">Canal conda-forge par défaut</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conditions-d-utilisation-des-canaux-d-anaconda">Conditions d’utilisation des canaux d’Anaconda</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anaconda-navigator">Anaconda Navigator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation-officielle">Documentation officielle</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fichiers-utiles">Fichiers utiles</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par 1re année géomatique
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, module info01 — CC-BY-4.0.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

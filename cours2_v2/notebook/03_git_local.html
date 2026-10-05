@@ -1,0 +1,1090 @@
+
+<!DOCTYPE html>
+
+
+<html lang="fr" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Git et le dépôt local &#8212; Introduction à l&#39;informatique</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../_static/documentation_options.js?v=72dce1d2"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../../_static/translations.js?v=e6b791cb"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cours2_v2/notebook/03_git_local';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Recherche" href="../../search.html" />
+    <link rel="next" title="Branches, fusion et conflits" href="04_branches.html" />
+    <link rel="prev" title="Une recette en Markdown" href="02_markdown.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="fr"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Passer au contenu principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Haut de page</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Alerte de version"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navigation dans le site">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="Sur cette page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction à l'informatique</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Introduction à l’informatique
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Avant les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../avant/poste.html">Premiers tests du poste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../avant/donnees.html">Récupérer les fichiers d’une séance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../avant/python.html">Anaconda et JupyterLab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../avant/vscode.html">VS Code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Après les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../apres/sauvegarder.html">Sauvegarder son travail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../apres/s_entrainer.html">S’entraîner : jeux et exercices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Séances</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours1_v2/index.html">Séance 1, version 2 — Logiciels, fichiers, terminal et premier programme</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1_v2/notebook/01_logiciels_stockage.html">Logiciels, fichiers et stockage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1_v2/notebook/02_terminal.html">Le terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1_v2/notebook/03_premier_programme.html">Premier programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1_v2/notebook/04_notebook.html">Un notebook et la syntaxe de Markdown</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours1_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 1, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1_v2/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1_v2/notebook/td/1b_terminal/guide.html">TD 1b — Les fichiers du TD 1a en ligne de commande</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1_v2/notebook/td/1c_programme/guide.html">TD 1c — Écrire et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1_v2/notebook/td/1d_notebook/guide.html">TD 1d — Un notebook dans JupyterLab</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Séance 2, version 2 — Éditeur de code, Markdown et git local</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_editeur_de_code.html">L’éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_markdown.html">Une recette en Markdown</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="travaux_diriges.html">Travaux dirigés de la séance 2, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="td/2a_vscode/guide.html">TD 2a — Configurer VS Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="td/2b_erreurs/guide.html">TD 2b — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="td/2c_markdown/guide.html">TD 2c — Une recette en Markdown, convertie par pandoc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="td/2d_depot_recette/guide.html">TD 2d — Un dépôt git pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours3/index.html">Séance 3 — Chemins, fichiers et ligne de commande</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours3/notebook/01_chemins_programmes.html">Chemins et programmes externes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours3/notebook/02_fichiers_encodage.html">Fichiers et encodage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours3/notebook/03_du_notebook_au_programme.html">Du notebook au programme</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours3/notebook/travaux_diriges.html">Travaux dirigés de la séance 3</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours3/notebook/td/3e_markdown/guide.html">TD 3e — Une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours3/notebook/td/3f_cli/guide.html">TD 3f — Une ligne de commande pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours4/index.html">Séance 4 — Projet d’application 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours4/notebook/travaux_diriges.html">Travaux dirigés du projet 4</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours4/notebook/td/4a_recette/guide.html">TD 4a — Un script Python, pas à pas</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../cours4/notebook/td/4b_paquet/guide.html">TD 4b — Un programme installable</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours5/index.html">Séance 5 — Matériel, réseau, mots de passe, clés SSH et secrets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours5/notebook/01_materiel.html">Le matériel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours5/notebook/02_reseau.html">Le réseau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours5/notebook/03_prouver_qui_lon_est.html">Prouver qui l’on est</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours5/notebook/04_secrets.html">Les secrets de vos programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours5/notebook/travaux_diriges.html">Travaux dirigés de la séance 5</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cours6/index.html">Séance 6 — La forge, sur le dépôt du projet 4</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours7/index.html">Séance 7 — Projet d’application 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours7/notebook/td/7a_recette/guide.html">TD 7a — Compléter son projet, par des pull requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours7/notebook/td/7b_train/guide.html">TD 7b — Reprendre et compléter le projet d’un autre</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Annexes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../annexes/configuration/index.html">Configuration des postes de la salle</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/configuration/anaconda.html">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/configuration/jupyterlab.html">JupyterLab</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../annexes/configuration/vscode.html">VS Code</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../annexes/configuration/vscode_python.html">Python et environnement conda</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../annexes/configuration/vscode_notebooks.html">Notebooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../annexes/configuration/vscode_reglages.html">Fichiers de réglages</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/configuration/git.html">Git et Git Bash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/configuration/spyder.html">Spyder</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../annexes/poste_personnel/index.html">Configuration d’un ordinateur personnel</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/poste_personnel/conda.html">Python et conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/poste_personnel/vscode.html">VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/poste_personnel/git_outils.html">Git et éditeurs de texte</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../annexes/notions/index.html">Notions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/notions/outils.html">Choisir entre JupyterLab, Spyder et VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/notions/notebooks.html">Les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/notions/terminaux.html">Les terminaux en ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/notions/variables_environnement.html">Variables d’environnement et recherche des programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/notions/environnements.html">Les environnements conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/notions/vscode_environnements.html">Comment VS Code gère les environnements Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/notions/git_bash.html">Git Bash : une fenêtre, bash et des programmes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../annexes/faq.html">FAQ</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/problemes/reseau.html">Problèmes de réseau et de compte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/problemes/bureautique.html">Problèmes avec les logiciels de texte et de bureautique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/problemes/anaconda.html">Problèmes avec Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/problemes/jupyterlab.html">Problèmes avec JupyterLab et les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/problemes/vscode.html">Problèmes avec VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/problemes/git.html">Problèmes avec git</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../annexes/plus_loin/index.html">Pour aller plus loin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/plus_loin/gestionnaires.html">venv, uv et pixi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/plus_loin/cpp.html">C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/plus_loin/programme_interpreteur.html">Programme, application et interpréteur</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Archive 2026</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours1/index.html">Séance 1, 2026 — Logiciel, programmation et formats de fichier</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1/notebook/01_logiciels_et_formats.html">Logiciels et formats de fichier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1/notebook/02_programmation.html">Programmation et éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1/notebook/03_markdown_notebook.html">Markdown et notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1/notebook/04_bibliotheques_environnements.html">Bibliothèques et environnements Python</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours1/notebook/travaux_diriges.html">Travaux dirigés de la séance 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1b_archive_odt/guide.html">TD 1b — Un .odt est une archive ZIP (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1c_vscode_python/guide.html">TD 1c — Configurer l’éditeur de code, et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1d_erreurs/guide.html">TD 1d — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1e_hello_cpp/guide.html">TD 1e — Le même programme en C++ (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1f_markdown/guide.html">TD 1f — Mettre en forme une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1g_notebooks/guide.html">TD 1g — Le notebook, ouvert de trois façons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1h_recette/guide.html">TD 1h — Installer un projet Python, et décrire son installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1i_noyaux/guide.html">TD 1i — Le client, le noyau, et où ils sont installés (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1j_trajet/guide.html">TD 1j — Installer un projet en lisant son README (facultatif)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1/notebook/05_comparer_versions.html">Annexe — Comparer deux versions d’un fichier</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours2/index.html">Séance 2, 2026 — Ligne de commande et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2/notebook/01_ligne_de_commande.html">La ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2/notebook/02_depot_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2/notebook/03_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2/notebook/04_lire_et_tenir_un_depot.html">Lire et tenir un dépôt</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2/notebook/td/2a_premier_depot/guide.html">TD 2a — Un premier dépôt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2/notebook/td/2b_branches/guide.html">TD 2b — Branches et fusions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2/notebook/td/2c_annuler/guide.html">TD 2c — Annuler et remettre à jour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2/notebook/td/2d_conflits/guide.html">TD 2d — Créer et résoudre un conflit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2/notebook/td/2e_livrer/guide.html">TD 2e — Publier une version</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Thème">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Thème" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Clair"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Sombre"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="Paramètres système"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>Paramètres système</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Clair</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Sombre</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Git et le dépôt local</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-quoi-sert-git">À quoi sert git</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#les-systemes-de-version">Les systèmes de version</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#les-copies-d-un-depot">Les copies d’un dépôt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-commande-git-et-ses-sous-commandes">La commande git et ses sous-commandes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creer-un-depot">Créer un dépôt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trois-zones-dossier-index-depot">Trois zones : dossier, index, dépôt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enregistrer-une-version-add-puis-commit">Enregistrer une version : add, puis commit</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-message-de-commit">Le message de commit</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-qui-a-change-git-diff">Ce qui a changé : git diff</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#annuler-une-modification-non-validee-git-restore">Annuler une modification non validée : git restore</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ignorer-des-fichiers-gitignore">Ignorer des fichiers : .gitignore</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#td-de-la-partie">TD de la partie</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="git-et-le-depot-local">
+<h1>Git et le dépôt local<a class="headerlink" href="#git-et-le-depot-local" title="Lien vers cette rubrique">#</a></h1>
+<p>Cette partie présente git, un logiciel qui enregistre les versions
+successives d’un projet, et sa place parmi les systèmes de version. Elle
+décrit ensuite la commande <code class="docutils literal notranslate"><span class="pre">git</span></code> et ses sous-commandes, puis celles qui
+créent un dépôt, enregistrent une version, comparent et annulent une
+modification, et ignorent des fichiers. Les exemples sont ceux du <a class="reference internal" href="td/2d_depot_recette/guide.html"><span class="std std-doc">TD
+2d</span></a>, qui versionne la recette du TD 2c ; il
+est présenté en fin de page.</p>
+<section id="a-quoi-sert-git">
+<h2>À quoi sert git<a class="headerlink" href="#a-quoi-sert-git" title="Lien vers cette rubrique">#</a></h2>
+<p>Sans outil, on garde les versions d’un travail en copiant le fichier sous
+un autre nom :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>recette.md
+recette_v2.md
+recette_v2_corrigee.md
+recette_finale.md
+recette_finale_OK.md
+</pre></div>
+</div>
+<p>Rien n’indique ce qui distingue deux copies, ni laquelle est la bonne.</p>
+<div class="admonition-gestion-de-versions admonition">
+<p class="admonition-title">Gestion de versions</p>
+<p>Enregistrement des états successifs des fichiers d’un projet, chacun avec
+son auteur, sa date et une description, pour les relire, les comparer et y
+revenir.</p>
+</div>
+<p><strong>Git</strong> est un logiciel de gestion de versions. Le dossier ne garde qu’un
+<code class="docutils literal notranslate"><span class="pre">recette.md</span></code>, et git garde la liste de ses versions :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ git log --oneline
+28cbb91 Ignore les fichiers produits par pandoc
+fe4fe8b Réduit les œufs à trois
+a16d497 Ajoute la recette des crêpes
+</pre></div>
+</div>
+<p>Chaque ligne est un <strong>commit</strong> : une version enregistrée, avec son
+identifiant et un message qui décrit ce qui a changé.</p>
+<p>Git sert dès qu’un projet est fait de fichiers texte qui évoluent : du code,
+sa documentation, ses réglages.</p>
+<ul class="simple">
+<li><p><strong>Seul</strong>, il permet de revenir à la version qui fonctionnait, et de voir
+ce qui a changé depuis.</p></li>
+<li><p><strong>À plusieurs</strong>, chacun travaille dans sa copie, et les modifications se
+fusionnent (cours 6).</p></li>
+<li><p>Pour un <strong>rendu</strong>, l’historique montre comment le travail a avancé.</p></li>
+</ul>
+</section>
+<section id="les-systemes-de-version">
+<h2>Les systèmes de version<a class="headerlink" href="#les-systemes-de-version" title="Lien vers cette rubrique">#</a></h2>
+<p>Les systèmes de version se rangent en deux familles.</p>
+<figure class="align-default" id="id1">
+<img alt="Deux panneaux. En haut, centralisé, CVS 1986 et Subversion 2000 : un serveur contient l'historique de trois commits c1, c2, c3 ; trois postes, reliés au serveur par des flèches, ne contiennent que le commit c3. En bas, distribué, git et Mercurial 2005 : deux postes et une clé USB, reliés par des flèches, contiennent chacun les trois commits." src="../../_images/3_systemes.svg" />
+<figcaption>
+<p><span class="caption-text">Un système centralisé et un système distribué.</span><a class="headerlink" href="#id1" title="Lien vers cette image">#</a></p>
+</figcaption>
+</figure>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p>Centralisé : CVS, Subversion</p></th>
+<th class="head"><p>Distribué : git, Mercurial</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>L’historique</p></td>
+<td><p>sur le serveur seulement</p></td>
+<td><p>dans chaque copie du projet</p></td>
+</tr>
+<tr class="row-odd"><td><p>Un poste contient</p></td>
+<td><p>la dernière version</p></td>
+<td><p>tous les commits</p></td>
+</tr>
+<tr class="row-even"><td><p>Un commit</p></td>
+<td><p>demande le serveur</p></td>
+<td><p>se fait sans réseau</p></td>
+</tr>
+<tr class="row-odd"><td><p>Si le serveur est perdu</p></td>
+<td><p>l’historique n’est plus accessible</p></td>
+<td><p>chaque copie a tout l’historique</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>git a été écrit par Linus Torvalds en avril 2005, pour le noyau Linux. Le
+livre <em>Pro Git</em> (git-scm.com/book/fr) décrit ces deux familles dans son
+premier chapitre. Presque toutes les commandes de la séance s’exécutent sur
+le dépôt local, sans réseau.</p>
+</div>
+</section>
+<section id="les-copies-d-un-depot">
+<h2>Les copies d’un dépôt<a class="headerlink" href="#les-copies-d-un-depot" title="Lien vers cette rubrique">#</a></h2>
+<p>Une copie d’un dépôt git a <strong>tous ses commits</strong>. Deux copies échangent
+ensuite leurs nouveaux commits, sur un même poste, par une clé USB ou par un
+serveur.</p>
+<figure class="align-default" id="id2">
+<img alt="Cinq dépôts, chacun avec trois commits c1, c2, c3. Au centre, le poste de la salle. Il est relié à la forge (cours 6), au-dessus, au dépôt d'un camarade, à gauche, et à une clé USB, à droite. L'ordinateur personnel est relié à la forge et à la clé USB." src="../../_images/3_copies.svg" />
+<figcaption>
+<p><span class="caption-text">Les copies d’un même dépôt, et les échanges entre elles.</span><a class="headerlink" href="#id2" title="Lien vers cette image">#</a></p>
+</figcaption>
+</figure>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Commande</p></th>
+<th class="head"><p>Ce qu’elle fait</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">&lt;dépôt&gt;</span> <span class="pre">&lt;dossier&gt;</span></code></p></td>
+<td><p>crée une copie complète du dépôt dans un nouveau dossier</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">&lt;dépôt&gt;</span> <span class="pre">&lt;branche&gt;</span></code></p></td>
+<td><p>récupère les nouveaux commits d’une autre copie, et les fusionne</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code></p></td>
+<td><p>envoie ses nouveaux commits à une autre copie</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Comme le réseau de l’école n’est pas accessible depuis chez soi, les
+commits passent du poste de la salle à l’ordinateur personnel par une clé
+USB ou par la forge. La séance travaille sur une seule copie ; le cours 6 pratique
+ces échanges, et l’étape 7 du TD 2d fait une seconde copie pour ceux qui
+ont fini.</p>
+</section>
+<section id="la-commande-git-et-ses-sous-commandes">
+<h2>La commande git et ses sous-commandes<a class="headerlink" href="#la-commande-git-et-ses-sous-commandes" title="Lien vers cette rubrique">#</a></h2>
+<p>git est un programme en ligne de commande. Le mot qui suit <code class="docutils literal notranslate"><span class="pre">git</span></code> est une
+<strong>sous-commande</strong>, qui a ses propres options et ses propres arguments :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git &lt;sous-commande&gt; [options] &lt;arguments&gt;
+</pre></div>
+</div>
+<p>La forme est celle des commandes du cours 1, avec un mot de plus.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Commande tapée</p></th>
+<th class="head"><p>Sous-commande</p></th>
+<th class="head"><p>Options</p></th>
+<th class="head"><p>Arguments</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">init</span></code></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">recette.md</span> <span class="pre">crepes.jpg</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">add</span></code></p></td>
+<td></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">recette.md</span></code>, <code class="docutils literal notranslate"><span class="pre">crepes.jpg</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&quot;Ajoute</span> <span class="pre">la</span> <span class="pre">recette&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">commit</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-m</span> <span class="pre">&quot;Ajoute</span> <span class="pre">la</span> <span class="pre">recette&quot;</span></code></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span> <span class="pre">--oneline</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">log</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">--oneline</span></code></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>L’aide existe à trois niveaux :</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">--help</span></code> liste les sous-commandes courantes, par situation ;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">-h</span></code> affiche dans le terminal les options de <code class="docutils literal notranslate"><span class="pre">add</span></code> ;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">--help</span></code> ouvre la page complète du manuel, dans le navigateur
+sous Windows.</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ git add -h
+usage : git add [&lt;options&gt;] [--] &lt;chemin&gt;...
+
+    -n, --[no-]dry-run    simuler l'action
+    -v, --[no-]verbose    mode verbeux
+</pre></div>
+</div>
+<p>Sortie réduite à ses premières lignes, relevée avec git 2.43 en français.</p>
+<div class="admonition warning">
+<p class="admonition-title">Avertissement</p>
+<p>Une commande du terminal tapée après <code class="docutils literal notranslate"><span class="pre">git</span></code>, comme <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">cd</span></code>, n’est pas une
+sous-commande : git affiche un message d’erreur. Une branche n’est pas non
+plus un dossier : on ne s’y place pas par <code class="docutils literal notranslate"><span class="pre">cd</span></code>.</p>
+</div>
+</section>
+<section id="creer-un-depot">
+<h2>Créer un dépôt<a class="headerlink" href="#creer-un-depot" title="Lien vers cette rubrique">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span></code> fait du <strong>dossier courant</strong> un <strong>dépôt</strong> : il y crée un dossier
+caché, <code class="docutils literal notranslate"><span class="pre">.git</span></code>, qui contiendra l’historique. Le dossier courant se vérifie
+avant, par <code class="docutils literal notranslate"><span class="pre">pwd</span></code> ou dans l’invite de Git Bash.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ cd ~/Desktop/info01/cours2/2d_depot_recette/travail
+$ pwd
+/c/Users/eleve/Desktop/info01/cours2/2d_depot_recette/travail
+$ git init
+Dépôt Git vide initialisé dans …/2d_depot_recette/travail/.git/
+$ ls -a
+.
+..
+crepes.jpg
+.git
+recette.md
+</pre></div>
+</div>
+<p>Les fichiers du dossier ne changent pas. Supprimer <code class="docutils literal notranslate"><span class="pre">.git</span></code> supprime
+l’historique, et laisse les fichiers.</p>
+<div class="admonition warning">
+<p class="admonition-title">Avertissement</p>
+<p>Un <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span></code> tapé dans le mauvais dossier transforme ce dossier en dépôt. Dans le
+dossier personnel <code class="docutils literal notranslate"><span class="pre">~</span></code>, il fait de tout le dossier personnel un dépôt. On
+supprime alors le <code class="docutils literal notranslate"><span class="pre">.git</span></code> créé par erreur, dans ce dossier : <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">-rf</span> <span class="pre">.git</span></code>.</p>
+</div>
+<p>Chaque commit porte le nom et l’adresse de son auteur. Les postes de la
+salle sont partagés : le réglage se fait dans le dépôt, sans <code class="docutils literal notranslate"><span class="pre">--global</span></code>.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git config user.name "Prénom Nom"
+git config user.email "prenom.nom@ensg.eu"
+</pre></div>
+</div>
+</section>
+<section id="trois-zones-dossier-index-depot">
+<h2>Trois zones : dossier, index, dépôt<a class="headerlink" href="#trois-zones-dossier-index-depot" title="Lien vers cette rubrique">#</a></h2>
+<p>Un fichier modifié passe par trois zones avant d’être enregistré.</p>
+<figure class="align-default" id="id3">
+<img alt="Trois boîtes de gauche à droite. Dossier de travail, les fichiers tels qu'on les modifie. Une flèche marquée git add. Index, ce qui entrera dans le prochain commit. Une flèche marquée git commit. Dépôt, l'historique des commits, dans .git." src="../../_images/3_zones.svg" />
+<figcaption>
+<p><span class="caption-text">Les trois zones, et les deux commandes qui font passer un fichier de l’une
+à l’autre.</span><a class="headerlink" href="#id3" title="Lien vers cette image">#</a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>Le <strong>dossier de travail</strong> contient les fichiers tels qu’on les modifie.</p></li>
+<li><p>L’<strong>index</strong>, ou <strong>zone de préparation</strong> (en anglais <em>staging area</em>),
+contient ce qui entrera dans le prochain commit. Les trois noms désignent
+la même chose.</p></li>
+<li><p>Le <strong>dépôt</strong>, dans <code class="docutils literal notranslate"><span class="pre">.git</span></code>, contient l’historique des commits.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> place un fichier dans l’index ; <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code> enregistre l’index
+comme une nouvelle version. Un commit contient donc ce que <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> a
+placé dans l’index, et rien d’autre : deux modifications sans rapport font
+deux commits.</p>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> affiche la zone de chaque fichier modifié, et les commandes
+qui s’appliquent.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Ce qu’affiche <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code></p></th>
+<th class="head"><p>Zone</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>« Fichiers non suivis », « Modifications qui ne seront pas validées »</p></td>
+<td><p>dossier de travail</p></td>
+</tr>
+<tr class="row-odd"><td><p>« Modifications qui seront validées »</p></td>
+<td><p>index</p></td>
+</tr>
+<tr class="row-even"><td><p>« rien à valider, la copie de travail est propre »</p></td>
+<td><p>tout est dans le dépôt</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition-a-faire admonition">
+<p class="admonition-title">À faire</p>
+<p>Taper <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> <strong>avant toute autre commande</strong>, et avant de demander de
+l’aide.</p>
+</div>
+</section>
+<section id="enregistrer-une-version-add-puis-commit">
+<h2>Enregistrer une version : add, puis commit<a class="headerlink" href="#enregistrer-une-version-add-puis-commit" title="Lien vers cette rubrique">#</a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ git add recette.md crepes.jpg
+$ git commit -m "Ajoute la recette des crêpes"
+[master (commit racine) a16d497] Ajoute la recette des crêpes
+ 2 files changed, 24 insertions(+)
+ create mode 100644 crepes.jpg
+ create mode 100644 recette.md
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">a16d497</span></code> est le début de l’<strong>identifiant</strong> du commit, une empreinte de 40
+caractères calculée à partir de son contenu (l’empreinte est présentée au
+cours 5). Les sept premiers suffisent à désigner un commit dans un dépôt.
+L’identifiant diffère sur chaque poste.</p>
+<p>Chaque commit désigne son <strong>parent</strong>, le commit qui le précède. Après un
+second commit, l’historique forme une chaîne :</p>
+<figure class="align-default" id="id4">
+<img alt="Deux commits, a16 puis fe4, reliés par une flèche de fe4 vers a16. Sous fe4, le cartouche master ; au-dessus, HEAD, qui désigne fe4." src="../../_images/3_chaine.svg" />
+<figcaption>
+<p><span class="caption-text">Les deux premiers commits du TD 2d. La flèche va de chaque commit vers son
+parent.</span><a class="headerlink" href="#id4" title="Lien vers cette image">#</a></p>
+</figcaption>
+</figure>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ git log --oneline
+fe4fe8b Réduit les œufs à trois
+a16d497 Ajoute la recette des crêpes
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">master</span></code> est le nom de la <strong>branche</strong> ; il désigne le dernier commit, et
+avance à chaque commit.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HEAD</span></code> désigne la branche courante.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code> affiche le plus récent en haut ; sans <code class="docutils literal notranslate"><span class="pre">--oneline</span></code>, il donne
+aussi l’identifiant complet, l’auteur et la date. <code class="docutils literal notranslate"><span class="pre">q</span></code> quitte l’affichage
+quand il ne tient pas dans le terminal.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Sans <code class="docutils literal notranslate"><span class="pre">-m</span></code>, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code> ouvre l’éditeur vim dans le terminal, pour écrire
+le message. <code class="docutils literal notranslate"><span class="pre">Échap</span></code>, puis <code class="docutils literal notranslate"><span class="pre">:q!</span></code> et <code class="docutils literal notranslate"><span class="pre">Entrée</span></code>, en sortent sans enregistrer.</p>
+</div>
+<section id="le-message-de-commit">
+<h3>Le message de commit<a class="headerlink" href="#le-message-de-commit" title="Lien vers cette rubrique">#</a></h3>
+<p>Le message décrit ce que le commit change, <strong>en une ligne, avec un verbe au
+présent</strong>. Le verbe complète « Ce commit… » : ajoute, corrige, remplace,
+ignore.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Message</p></th>
+<th class="head"><p>Ce qu’on en apprend dans six mois</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">modif</span></code></p></td>
+<td><p>rien</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">corrections</span></code></p></td>
+<td><p>rien, sans savoir lesquelles</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Réduit</span> <span class="pre">les</span> <span class="pre">œufs</span> <span class="pre">à</span> <span class="pre">trois</span></code></p></td>
+<td><p>la quantité d’œufs a changé</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Ignore</span> <span class="pre">les</span> <span class="pre">fichiers</span> <span class="pre">produits</span> <span class="pre">par</span> <span class="pre">pandoc</span></code></p></td>
+<td><p>d’où vient le <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Un commit porte <strong>une seule modification</strong>, et un <strong>état qui fonctionne</strong> :
+on peut alors revenir à n’importe quel commit et obtenir un projet
+utilisable.</p>
+</section>
+</section>
+<section id="ce-qui-a-change-git-diff">
+<h2>Ce qui a changé : git diff<a class="headerlink" href="#ce-qui-a-change-git-diff" title="Lien vers cette rubrique">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span></code> montre les lignes modifiées depuis le dernier commit. Après le
+passage des œufs de 4 à 3 :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ git diff
+diff --git a/recette.md b/recette.md
+index aae4747..45bc5f0 100644
+--- a/recette.md
++++ b/recette.md
+@@ -9,7 +9,7 @@
+ | Ingrédient | Quantité |
+ |---|---|
+ | Farine | 250 g |
+-| Œufs | 4 |
++| Œufs | 3 |
+ | Lait | 500 ml |
+ | Sel | 1 pincée |
+ | Beurre fondu | 50 g |
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">a/</span></code> est la version du dernier commit, <code class="docutils literal notranslate"><span class="pre">b/</span></code> celle du disque.</p></li>
+<li><p>La ligne qui commence par <code class="docutils literal notranslate"><span class="pre">-</span></code> est l’ancienne, celle qui commence par <code class="docutils literal notranslate"><span class="pre">+</span></code>
+la nouvelle. Une ligne modifiée compte pour une ligne retirée et une ligne
+ajoutée.</p></li>
+<li><p>Les autres lignes sont le contexte, trois de chaque côté.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;&#64;</span> <span class="pre">-9,7</span> <span class="pre">+9,7</span> <span class="pre">&#64;&#64;</span></code> : le passage commence à la ligne 9, et fait 7 lignes
+avant comme après.</p></li>
+</ul>
+<p>Dans Git Bash, les lignes <code class="docutils literal notranslate"><span class="pre">-</span></code> sont en rouge et les <code class="docutils literal notranslate"><span class="pre">+</span></code> en vert. VS Code
+montre le même écart côte à côte, dans le panneau du contrôle de code
+source (<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">G</span></code>).</p>
+</section>
+<section id="annuler-une-modification-non-validee-git-restore">
+<h2>Annuler une modification non validée : git restore<a class="headerlink" href="#annuler-une-modification-non-validee-git-restore" title="Lien vers cette rubrique">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">restore</span></code> remet un fichier dans l’état du dernier commit.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ git diff
+@@ -21,4 +21,4 @@
+ 5. Laisser reposer une heure.
+-6. Cuire dans une poêle chaude, une minute par face.
++6. Cuire.
+$ git restore recette.md
+$ git status
+Sur la branche master
+rien à valider, la copie de travail est propre
+</pre></div>
+</div>
+<p>Sortie de <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span></code> réduite à la ligne <code class="docutils literal notranslate"><span class="pre">&#64;&#64;</span></code> et aux lignes modifiées.</p>
+<div class="admonition warning">
+<p class="admonition-title">Avertissement</p>
+<p>La modification annulée est <strong>perdue</strong>, et aucune commande ne la retrouve.
+git ne restaure que ce qui a été enregistré par un commit : une raison de
+faire des commits souvent.</p>
+</div>
+</section>
+<section id="ignorer-des-fichiers-gitignore">
+<h2>Ignorer des fichiers : .gitignore<a class="headerlink" href="#ignorer-des-fichiers-gitignore" title="Lien vers cette rubrique">#</a></h2>
+<p>Certains fichiers du dossier n’ont pas leur place dans le dépôt.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Ce qu’on ne versionne pas</p></th>
+<th class="head"><p>Pourquoi</p></th>
+<th class="head"><p>Motif</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>les fichiers produits par une commande</p></td>
+<td><p>ils se refont depuis leur source</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">*.html</span></code>, <code class="docutils literal notranslate"><span class="pre">__pycache__/</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>les données de travail</p></td>
+<td><p>chaque version resterait dans l’historique ; le projet n’en garde
+qu’un petit jeu d’essai</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">donnees/</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>les mots de passe et les clés</p></td>
+<td><p>toute copie du dépôt les contiendrait (cours 5)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.env</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Un fichier <strong><code class="docutils literal notranslate"><span class="pre">.gitignore</span></code></strong>, à la racine du dépôt, liste des motifs de
+noms, un par ligne. <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> n’affiche plus les fichiers qui y
+correspondent, et <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> ne les ajoute pas. Au TD 2d, pandoc a produit
+<code class="docutils literal notranslate"><span class="pre">recette.html</span></code> et <code class="docutils literal notranslate"><span class="pre">recette.odt</span></code> :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ git status
+Sur la branche master
+Fichiers non suivis:
+  (utilisez "git add &lt;fichier&gt;..." pour inclure dans ce qui sera validé)
+	recette.html
+	recette.odt
+
+aucune modification ajoutée à la validation mais des fichiers non suivis sont présents (utilisez "git add" pour les suivre)
+</pre></div>
+</div>
+<p>Le fichier <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> contient deux lignes :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>*.html
+*.odt
+</pre></div>
+</div>
+<p>Après le commit du <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>, les deux fichiers sont toujours dans le
+dossier, et absents de <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ git status
+Sur la branche master
+rien à valider, la copie de travail est propre
+</pre></div>
+</div>
+<p>Le <code class="docutils literal notranslate"><span class="pre">*</span></code> remplace n’importe quelle suite de caractères, comme dans Git Bash au
+cours 1. Le <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> se versionne avec le projet, pour que la règle
+vaille dans toutes les copies.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Un fichier déjà suivi le reste, même s’il correspond à un motif :
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">rm</span> <span class="pre">--cached</span> <span class="pre">&lt;fichier&gt;</span></code> le retire du dépôt et le laisse sur le disque.</p>
+</div>
+</section>
+<section id="td-de-la-partie">
+<h2>TD de la partie<a class="headerlink" href="#td-de-la-partie" title="Lien vers cette rubrique">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="td/2d_depot_recette/guide.html"><span class="std std-doc">TD 2d — Un dépôt git pour la recette</span></a>,
+40 minutes. Les étapes 0 à 4 appliquent cette page : le dépôt et le
+premier commit, modifier, comparer et restaurer, ignorer les fichiers
+produits par pandoc. Les étapes 5 à 7 appliquent la page suivante.</p></li>
+</ul>
+<p>Pour s’entraîner à git après la séance, des jeux et des exercices sont
+réunis dans <a class="reference internal" href="../../apres/s_entrainer.html"><span class="std std-doc">S’entraîner : jeux et exercices</span></a>,
+dont Learn Git Branching, en français.</p>
+<p>Les TD des autres parties sont dans <a class="reference internal" href="travaux_diriges.html"><span class="std std-doc">Travaux dirigés de la séance 2,
+version 2</span></a>.</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="02_markdown.html"
+       title="page précédente">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">précédent</p>
+        <p class="prev-next-title">Une recette en Markdown</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="04_branches.html"
+       title="page suivante">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">suivant</p>
+        <p class="prev-next-title">Branches, fusion et conflits</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-quoi-sert-git">À quoi sert git</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#les-systemes-de-version">Les systèmes de version</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#les-copies-d-un-depot">Les copies d’un dépôt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-commande-git-et-ses-sous-commandes">La commande git et ses sous-commandes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creer-un-depot">Créer un dépôt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trois-zones-dossier-index-depot">Trois zones : dossier, index, dépôt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enregistrer-une-version-add-puis-commit">Enregistrer une version : add, puis commit</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-message-de-commit">Le message de commit</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-qui-a-change-git-diff">Ce qui a changé : git diff</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#annuler-une-modification-non-validee-git-restore">Annuler une modification non validée : git restore</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ignorer-des-fichiers-gitignore">Ignorer des fichiers : .gitignore</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#td-de-la-partie">TD de la partie</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par 1re année géomatique
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, module info01 — CC-BY-4.0.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,971 @@
+
+<!DOCTYPE html>
+
+
+<html lang="fr" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>TD 3b — Une recette en Markdown &#8212; Introduction à l&#39;informatique</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../../../_static/documentation_options.js?v=72dce1d2"></script>
+    <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../../../../_static/translations.js?v=e6b791cb"></script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cours3/notebook/td/3b_markdown/guide';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="../../../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Recherche" href="../../../../search.html" />
+    <link rel="next" title="Séance 4 — Du notebook au programme, en deux parcours" href="../../../../cours4/index.html" />
+    <link rel="prev" title="TD 3a — Une ligne de commande pour la recette" href="../3a_cli/guide.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="fr"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../../../_static/searchtools.js"></script>
+    <script src="../../../../_static/language_data.js"></script>
+    <script src="../../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Passer au contenu principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Haut de page</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Alerte de version"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navigation dans le site">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="Sur cette page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction à l'informatique</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../index.html">
+                    Introduction à l’informatique
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Avant les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/poste.html">Premiers tests du poste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/donnees.html">Récupérer les fichiers d’une séance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/python.html">Anaconda et JupyterLab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/vscode.html">VS Code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Après les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../apres/sauvegarder.html">Sauvegarder son travail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../apres/s_entrainer.html">S’entraîner : jeux et exercices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Séances</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours1_v2/index.html">Séance 1, version 2 — Logiciels, fichiers, terminal et premier programme</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/01_logiciels_stockage.html">Logiciels, fichiers et stockage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/02_terminal.html">Le terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/03_premier_programme.html">Premier programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/04_notebook.html">Un notebook et la syntaxe de Markdown</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours1_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 1, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/2a_terminal/guide.html">TD 2a — Les fichiers du TD 1a en ligne de commande</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/2b_programme/guide.html">TD 2b — Écrire et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/3a_notebook/guide.html">TD 3a — Un notebook dans JupyterLab</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours2_v2/index.html">Séance 2, version 2 — Éditeur de code, Markdown et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/01_editeur_de_code.html">L’éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/02_markdown.html">Une recette en Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/03_git_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/04_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours2_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/1a_vscode/guide.html">TD 1a — Configurer VS Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/1b_erreurs/guide.html">TD 1b — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/2a_markdown/guide.html">TD 2a — Une recette en Markdown, convertie par pandoc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/3a_depot_recette/guide.html">TD 3a — Un dépôt git pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../../index.html">Séance 3 — Chemins, fichiers et ligne de commande</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../01_chemins_programmes.html">Chemins et programmes externes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../02_fichiers_encodage.html">Fichiers et encodage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../03_du_notebook_au_programme.html">Du notebook au programme</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../../travaux_diriges.html">Travaux dirigés de la séance 3</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../3a_cli/guide.html">TD 3a — Une ligne de commande pour la recette</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">TD 3b — Une recette en Markdown</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours4/index.html">Séance 4 — Du notebook au programme, en deux parcours</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours4/notebook/01_client_noyau.html">Le client et le noyau d’un notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours4/notebook/02_animation.html">Une animation en ligne de commande</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours4/notebook/travaux_diriges.html">Travaux dirigés du projet 4</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours4/notebook/td/4b_cli/guide.html">TD 4b — Une ligne de commande pour la recette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours4/notebook/td/4c_train/guide.html">TD 4c — La fenêtre du train</a></li>
+
+
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours5/index.html">Séance 5 — Matériel, réseau, mots de passe, clés SSH et secrets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/01_materiel.html">Le matériel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/02_reseau.html">Le réseau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/03_prouver_qui_lon_est.html">Prouver qui l’on est</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/04_secrets.html">Les secrets de vos programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/travaux_diriges.html">Travaux dirigés de la séance 5</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cours6/index.html">Séance 6 — La forge, sur le dépôt du projet 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cours7/index.html">Séance 7 — Une fonctionnalité de plus, par une pull request</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Annexes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/configuration/index.html">Configuration des postes de la salle</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/anaconda.html">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/jupyterlab.html">JupyterLab</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../annexes/configuration/vscode.html">VS Code</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_python.html">Python et environnement conda</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_notebooks.html">Notebooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_reglages.html">Fichiers de réglages</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/git.html">Git et Git Bash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/spyder.html">Spyder</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/poste_personnel/index.html">Configuration d’un ordinateur personnel</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/conda.html">Python et conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/vscode.html">VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/git_outils.html">Git et éditeurs de texte</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/notions/index.html">Notions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/outils.html">Choisir entre JupyterLab, Spyder et VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/notebooks.html">Les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/terminaux.html">Les terminaux en ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/variables_environnement.html">Variables d’environnement et recherche des programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/environnements.html">Les environnements conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/vscode_environnements.html">Comment VS Code gère les environnements Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/git_bash.html">Git Bash : une fenêtre, bash et des programmes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/faq.html">FAQ</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/reseau.html">Problèmes de réseau et de compte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/bureautique.html">Problèmes avec les logiciels de texte et de bureautique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/anaconda.html">Problèmes avec Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/jupyterlab.html">Problèmes avec JupyterLab et les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/vscode.html">Problèmes avec VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/git.html">Problèmes avec git</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/plus_loin/index.html">Pour aller plus loin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/gestionnaires.html">venv, uv et pixi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/cpp.html">C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/programme_interpreteur.html">Programme, application et interpréteur</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Archive 2026</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours1/index.html">Séance 1, 2026 — Logiciel, programmation et formats de fichier</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/01_logiciels_et_formats.html">Logiciels et formats de fichier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/02_programmation.html">Programmation et éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/03_markdown_notebook.html">Markdown et notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/04_bibliotheques_environnements.html">Bibliothèques et environnements Python</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours1/notebook/travaux_diriges.html">Travaux dirigés de la séance 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1b_archive_odt/guide.html">TD 1b — Un .odt est une archive ZIP (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/2a_vscode_python/guide.html">TD 2a — Configurer l’éditeur de code, et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/2b_erreurs/guide.html">TD 2b — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/2c_hello_cpp/guide.html">TD 2c — Le même programme en C++ (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/3a_markdown/guide.html">TD 3a — Mettre en forme une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/3b_notebooks/guide.html">TD 3b — Le notebook, ouvert de trois façons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/4a_recette/guide.html">TD 4a — Installer un projet Python, et décrire son installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/4b_noyaux/guide.html">TD 4b — Le client, le noyau, et où ils sont installés (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/4c_trajet/guide.html">TD 4c — Installer un projet en lisant son README (facultatif)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/05_comparer_versions.html">Annexe — Comparer deux versions d’un fichier</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours2/index.html">Séance 2, 2026 — Ligne de commande et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/01_ligne_de_commande.html">La ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/02_depot_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/03_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/04_lire_et_tenir_un_depot.html">Lire et tenir un dépôt</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/3a_premier_depot/guide.html">TD 3a — Un premier dépôt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/4a_branches/guide.html">TD 4a — Branches et fusions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/4b_annuler/guide.html">TD 4b — Annuler et remettre à jour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/4c_conflits/guide.html">TD 4c — Créer et résoudre un conflit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/6a_livrer/guide.html">TD 6a — Publier une version</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Thème">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Thème" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Clair"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Sombre"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="Paramètres système"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>Paramètres système</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Clair</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Sombre</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>TD 3b — Une recette en Markdown</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-0-preparer-le-dossier-de-la-recette">Étape 0 · Préparer le dossier de la recette</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-1-ecrire-la-recette-en-markdown">Étape 1 · Écrire la recette en Markdown</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creer-le-fichier-et-ouvrir-l-apercu">1.1 Créer le fichier et ouvrir l’aperçu</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mettre-le-texte-en-forme">1.2 Mettre le texte en forme</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-2-produire-la-page-avec-le-programme-du-td-1a">Étape 2 · Produire la page avec le programme du TD 1a</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-3-le-depot-de-la-recette">Étape 3 · Le dépôt de la recette</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creer-le-depot">3.1 Créer le dépôt</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-fichier-gitignore">3.2 Le fichier <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-premier-commit">3.3 Le premier commit</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-4-un-diagramme-mermaid">Étape 4 · Un diagramme Mermaid</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ajouter-le-diagramme">4.1 Ajouter le diagramme</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relire-la-modification">4.2 Relire la modification</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-second-commit">4.3 Le second commit</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-le-td-fait-constater">Ce que le TD fait constater</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="td-3b-une-recette-en-markdown">
+<h1>TD 3b — Une recette en Markdown<a class="headerlink" href="#td-3b-une-recette-en-markdown" title="Lien vers cette rubrique">#</a></h1>
+<p>Ce guide détaille les étapes de la feuille du TD 3b, le TD du parcours
+standard. Pour chaque étape, il indique le dossier dans lequel se placer, ce
+qu’il faut écrire ou taper, et comment vérifier le résultat.</p>
+<p>Le TD reprend la mise en forme en Markdown du TD 3a du cours 1, sur une
+nouvelle recette, les gaufres. Le texte de la recette est livré sans
+structure. Il devient un fichier Markdown, <code class="docutils literal notranslate"><span class="pre">recette.md</span></code>, que le programme du
+notebook <code class="docutils literal notranslate"><span class="pre">recette.ipynb</span></code> (TD 1a) complète par le tableau des ingrédients et
+convertit en page HTML. Le dossier de la recette devient ensuite un dépôt
+git, avec un commit par étape.</p>
+<p>Le code de ce guide se copie depuis <code class="docutils literal notranslate"><span class="pre">guide_3b_markdown.html</span></code>, ouvert dans un
+navigateur, ou depuis <code class="docutils literal notranslate"><span class="pre">guide.ipynb</span></code>, ouvert dans JupyterLab. Copié depuis le
+PDF, il perd ses indentations.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Étape</p></th>
+<th class="head"><p>Ce qu’on fait</p></th>
+<th class="head"><p>Commits à la fin</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#etape-0-preparer-le-dossier-de-la-recette">0</a></p></td>
+<td><p>copier le dossier de la recette dans <code class="docutils literal notranslate"><span class="pre">travail/</span></code> et l’ouvrir dans VS Code</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#etape-1-ecrire-la-recette-en-markdown">1</a></p></td>
+<td><p>écrire <code class="docutils literal notranslate"><span class="pre">recette.md</span></code>, avec l’aperçu ouvert à côté</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#etape-2-produire-la-page-avec-le-programme-du-td-1a">2</a></p></td>
+<td><p>produire la page HTML avec le programme du TD 1a</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#etape-3-le-depot-de-la-recette">3</a></p></td>
+<td><p>créer le dépôt de la recette et faire le premier commit</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#etape-4-un-diagramme-mermaid">4</a></p></td>
+<td><p>ajouter un diagramme de la préparation, relire la modification, committer</p></td>
+<td><p>2</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="etape-0-preparer-le-dossier-de-la-recette">
+<h2>Étape 0 · Préparer le dossier de la recette<a class="headerlink" href="#etape-0-preparer-le-dossier-de-la-recette" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> copier <code class="docutils literal notranslate"><span class="pre">depart/gaufres/</span></code> dans <code class="docutils literal notranslate"><span class="pre">travail/</span></code> ; ouvrir <code class="docutils literal notranslate"><span class="pre">travail/gaufres/</span></code> dans VS Code, avec un terminal Git Bash.</p>
+<p><strong>À obtenir :</strong> l’explorateur de VS Code affiche <code class="docutils literal notranslate"><span class="pre">ingredients.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">photo.jpg</span></code>, <code class="docutils literal notranslate"><span class="pre">recette_a_formater.txt</span></code> et <code class="docutils literal notranslate"><span class="pre">style.css</span></code>.</p>
+</div></blockquote>
+<p><strong>Dossier de départ</strong> : <code class="docutils literal notranslate"><span class="pre">cours3/3b_markdown/</span></code>, tel que décompressé depuis
+l’archive.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>3b_markdown/
+├── depart/
+│   ├── gaufres/
+│   │   ├── ingredients.csv          ← les quantités pour une personne
+│   │   ├── photo.jpg                ← la photo de la recette
+│   │   ├── recette_a_formater.txt   ← le texte de la recette, sans structure
+│   │   └── style.css                ← la feuille de style de la page
+│   ├── recette_attendue.md          ← le résultat attendu, à ouvrir après avoir essayé
+│   └── CREDITS.md
+└── travail/                         (vide)
+</pre></div>
+</div>
+<p>Dans l’explorateur de fichiers Windows, copier le dossier <code class="docutils literal notranslate"><span class="pre">depart/gaufres/</span></code>
+dans <code class="docutils literal notranslate"><span class="pre">travail/</span></code>. Dans VS Code : Fichier → Ouvrir le dossier… → choisir
+<code class="docutils literal notranslate"><span class="pre">3b_markdown/travail/gaufres/</span></code>. Ouvrir ensuite un terminal Git Bash : menu
+Terminal → Nouveau terminal ; si le terminal ouvert n’est pas Git Bash,
+cliquer sur la flèche à côté du <code class="docutils literal notranslate"><span class="pre">+</span></code>, en haut à droite du panneau du terminal,
+puis choisir « Git Bash ».</p>
+<p><strong>Vérification</strong> : dans le terminal, <code class="docutils literal notranslate"><span class="pre">pwd</span></code> affiche un chemin qui se termine
+par <code class="docutils literal notranslate"><span class="pre">3b_markdown/travail/gaufres</span></code>.</p>
+</section>
+<section id="etape-1-ecrire-la-recette-en-markdown">
+<h2>Étape 1 · Écrire la recette en Markdown<a class="headerlink" href="#etape-1-ecrire-la-recette-en-markdown" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> créer <code class="docutils literal notranslate"><span class="pre">recette.md</span></code> avec le texte de <code class="docutils literal notranslate"><span class="pre">recette_a_formater.txt</span></code>, ouvrir l’aperçu à côté, puis mettre le texte en forme.</p>
+<p><strong>À obtenir :</strong> dans l’aperçu, un grand titre, une ligne en italique, la photo, deux sous-titres, une liste numérotée de six étapes et une citation.</p>
+</div></blockquote>
+<section id="creer-le-fichier-et-ouvrir-l-apercu">
+<h3>1.1 Créer le fichier et ouvrir l’aperçu<a class="headerlink" href="#creer-le-fichier-et-ouvrir-l-apercu" title="Lien vers cette rubrique">#</a></h3>
+<p>Dans l’explorateur de VS Code, ouvrir <code class="docutils literal notranslate"><span class="pre">recette_a_formater.txt</span></code>, tout
+sélectionner (<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">A</span></code>) et copier (<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">C</span></code>). Créer ensuite un
+nouveau fichier : clic droit dans l’explorateur, « New File… » (« Nouveau
+fichier… »), nom <code class="docutils literal notranslate"><span class="pre">recette.md</span></code>. Y coller le texte (<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">V</span></code>) et
+enregistrer (<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">S</span></code>).</p>
+<p>Ouvrir l’aperçu à côté de l’éditeur : <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">K</span></code> puis <code class="docutils literal notranslate"><span class="pre">V</span></code>, ou l’icône en
+haut à droite de l’éditeur. L’aperçu se met à jour pendant la frappe.</p>
+<p><img alt="VS Code : recette.md à gauche, son aperçu à droite" src="../../../../_images/apercu1.png" /></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Raccourci</p></th>
+<th class="head"><p>Ce qu’il ouvre</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">K</span></code> puis <code class="docutils literal notranslate"><span class="pre">V</span></code></p></td>
+<td><p>l’aperçu à droite ; l’éditeur reste à gauche</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">V</span></code></p></td>
+<td><p>l’aperçu seul, dans un onglet</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Sur un ordinateur personnel, d’autres éditeurs affichent aussi le Markdown
+mis en forme, par exemple Zettlr, logiciel libre, ou Obsidian, gratuit. Sur
+les postes de la salle, le TD se fait dans VS Code.</p>
+</section>
+<section id="mettre-le-texte-en-forme">
+<h3>1.2 Mettre le texte en forme<a class="headerlink" href="#mettre-le-texte-en-forme" title="Lien vers cette rubrique">#</a></h3>
+<p>Chaque élément du texte reçoit sa marque Markdown. Regarder l’aperçu après
+chaque ligne modifiée.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Élément</p></th>
+<th class="head"><p>Ce qu’on écrit</p></th>
+<th class="head"><p>Exemple</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>le titre</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">#</span> </code> en début de ligne</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">Gaufres</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>la ligne sous le titre</p></td>
+<td><p>entre deux <code class="docutils literal notranslate"><span class="pre">*</span></code>, en italique</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">*Pour</span> <span class="pre">8</span> <span class="pre">gaufres,</span> <span class="pre">…*</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>les sections</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">##</span> </code> en début de ligne</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">##</span> <span class="pre">Ingrédients</span></code>, <code class="docutils literal notranslate"><span class="pre">##</span> <span class="pre">Préparation</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>les étapes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.</span> </code>, <code class="docutils literal notranslate"><span class="pre">2.</span> </code>… en début de ligne</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.</span> <span class="pre">Mélanger</span> <span class="pre">la</span> <span class="pre">farine…</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>les mots importants</p></td>
+<td><p>entre deux <code class="docutils literal notranslate"><span class="pre">**</span></code>, en gras</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">**peu</span> <span class="pre">à</span> <span class="pre">peu**</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>la remarque</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&gt;</span> </code> en début de ligne, une citation</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">Les</span> <span class="pre">gaufres</span> <span class="pre">se</span> <span class="pre">servent</span> <span class="pre">chaudes…</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Deux points propres à cette recette :</p>
+<ul>
+<li><p><strong>La section <code class="docutils literal notranslate"><span class="pre">##</span> <span class="pre">Ingrédients</span></code> reste vide.</strong> Supprimer les lignes des
+ingrédients qui la suivent dans le texte brut. Le programme du TD 1a écrit
+à cet endroit le tableau des quantités, qu’il lit dans <code class="docutils literal notranslate"><span class="pre">ingredients.csv</span></code>
+et adapte au nombre de personnes.</p></li>
+<li><p><strong>La photo</strong> s’insère sous la ligne en italique, séparée par des lignes
+vides :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>![Une gaufre, sortie du gaufrier.](photo.jpg)
+</pre></div>
+</div>
+<p>Entre crochets, une légende qui décrit l’image ; entre parenthèses, le
+chemin du fichier. Le chemin est relatif : il part du dossier de
+<code class="docutils literal notranslate"><span class="pre">recette.md</span></code>, où est <code class="docutils literal notranslate"><span class="pre">photo.jpg</span></code>.</p>
+</li>
+</ul>
+<p>Enregistrer (<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">S</span></code>).</p>
+<p><strong>Vérification</strong> : l’aperçu affiche la photo, et les deux sections sont des
+sous-titres, soulignés. <code class="docutils literal notranslate"><span class="pre">recette_attendue.md</span></code>, dans <code class="docutils literal notranslate"><span class="pre">depart/</span></code>, donne le
+résultat : l’ouvrir pour comparer, une fois le fichier écrit.</p>
+</section>
+</section>
+<section id="etape-2-produire-la-page-avec-le-programme-du-td-1a">
+<h2>Étape 2 · Produire la page avec le programme du TD 1a<a class="headerlink" href="#etape-2-produire-la-page-avec-le-programme-du-td-1a" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> à la fin de <code class="docutils literal notranslate"><span class="pre">recette.ipynb</span></code> (TD 1a), ajouter une cellule qui appelle <code class="docutils literal notranslate"><span class="pre">generer_page</span></code> sur la recette des gaufres.</p>
+<p><strong>À obtenir :</strong> <code class="docutils literal notranslate"><span class="pre">gaufres.md</span></code> et <code class="docutils literal notranslate"><span class="pre">gaufres.html</span></code> dans <code class="docutils literal notranslate"><span class="pre">travail/gaufres/</span></code> ; la page affiche le tableau des ingrédients pour quatre personnes.</p>
+</div></blockquote>
+<p>Dans JupyterLab, ouvrir le notebook du TD 1a,
+<code class="docutils literal notranslate"><span class="pre">1a_recette/travail/recette.ipynb</span></code>. Si le noyau a redémarré depuis le TD 1a,
+exécuter de nouveau, dans l’ordre, la cellule des fonctions utiles
+(section 1), celle de <code class="docutils literal notranslate"><span class="pre">generer</span></code> (section 3.1), celle de <code class="docutils literal notranslate"><span class="pre">RACINE</span></code>
+(section 3.3) et celle de <code class="docutils literal notranslate"><span class="pre">generer_page</span></code> (section 4.3).</p>
+<p>Ajouter une cellule à la fin du notebook, et l’exécuter :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># le dossier de la recette des gaufres, dans le TD 3b</span>
+<span class="n">GAUFRES</span> <span class="o">=</span> <span class="n">RACINE</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">"3b_markdown"</span> <span class="o">/</span> <span class="s2">"travail"</span> <span class="o">/</span> <span class="s2">"gaufres"</span>
+
+<span class="n">generer_page</span><span class="p">(</span><span class="n">GAUFRES</span> <span class="o">/</span> <span class="s2">"ingredients.csv"</span><span class="p">,</span> <span class="n">GAUFRES</span> <span class="o">/</span> <span class="s2">"recette.md"</span><span class="p">,</span> <span class="n">GAUFRES</span> <span class="o">/</span> <span class="s2">"gaufres.md"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">RACINE</span></code> est le dossier <code class="docutils literal notranslate"><span class="pre">1a_recette/</span></code> ; son parent est <code class="docutils literal notranslate"><span class="pre">cours3/</span></code>, qui
+contient <code class="docutils literal notranslate"><span class="pre">3b_markdown/</span></code>. <code class="docutils literal notranslate"><span class="pre">generer_page</span></code> écrit la recette complétée,
+<code class="docutils literal notranslate"><span class="pre">gaufres.md</span></code>, puis la page, <code class="docutils literal notranslate"><span class="pre">gaufres.html</span></code>, dans le dossier de la recette, à
+côté de <code class="docutils literal notranslate"><span class="pre">photo.jpg</span></code> et de <code class="docutils literal notranslate"><span class="pre">style.css</span></code>.</p>
+<p><strong>Vérification</strong> : la cellule affiche les chemins de <code class="docutils literal notranslate"><span class="pre">gaufres.md</span></code> et de
+<code class="docutils literal notranslate"><span class="pre">gaufres.html</span></code>. Ouvrir <code class="docutils literal notranslate"><span class="pre">gaufres.html</span></code> par un double-clic dans l’explorateur
+de fichiers : la page affiche la photo, le titre « Ingrédients pour 4
+personnes en SI » et le tableau des quantités.</p>
+<p>Pour une autre quantité, ajouter <code class="docutils literal notranslate"><span class="pre">personnes=</span></code> et <code class="docutils literal notranslate"><span class="pre">unites=</span></code> à l’appel, par
+exemple <code class="docutils literal notranslate"><span class="pre">generer_page(…,</span> <span class="pre">personnes=8,</span> <span class="pre">unites=&quot;US&quot;)</span></code>, puis recharger la page
+dans le navigateur.</p>
+</section>
+<section id="etape-3-le-depot-de-la-recette">
+<h2>Étape 3 · Le dépôt de la recette<a class="headerlink" href="#etape-3-le-depot-de-la-recette" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> dans <code class="docutils literal notranslate"><span class="pre">travail/gaufres/</span></code>, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span></code>, le nom et l’adresse pour ce dépôt, un fichier <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>, puis le premier commit.</p>
+<p><strong>À obtenir :</strong> <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span> <span class="pre">--oneline</span></code> affiche une ligne ; <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> n’affiche ni <code class="docutils literal notranslate"><span class="pre">gaufres.md</span></code> ni <code class="docutils literal notranslate"><span class="pre">gaufres.html</span></code>.</p>
+</div></blockquote>
+<p>Le dépôt ne contient que la recette : <code class="docutils literal notranslate"><span class="pre">recette.md</span></code>, <code class="docutils literal notranslate"><span class="pre">ingredients.csv</span></code>, la
+photo et la feuille de style. Le notebook n’y entre pas : son fichier
+<code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> contient aussi les sorties des cellules, et ses modifications se
+lisent mal. Les pages produites par le programme n’y entrent pas non plus :
+le programme les refait à chaque appel.</p>
+<section id="creer-le-depot">
+<h3>3.1 Créer le dépôt<a class="headerlink" href="#creer-le-depot" title="Lien vers cette rubrique">#</a></h3>
+<p>Dans le terminal Git Bash de VS Code, dans <code class="docutils literal notranslate"><span class="pre">travail/gaufres/</span></code> :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git init
+</pre></div>
+</div>
+<p>Régler ensuite votre nom et votre adresse pour ce dépôt. Le poste est
+partagé : le réglage se fait dans le dépôt, sans <code class="docutils literal notranslate"><span class="pre">--global</span></code>, et ne vaut que
+pour lui.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git config user.name "Prénom Nom"
+git config user.email "prenom.nom@exemple.fr"
+</pre></div>
+</div>
+</section>
+<section id="le-fichier-gitignore">
+<h3>3.2 Le fichier <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code><a class="headerlink" href="#le-fichier-gitignore" title="Lien vers cette rubrique">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> est un fichier texte, placé dans le dossier du dépôt. Chaque
+ligne de ce fichier nomme un fichier ou un dossier que git ne suit pas. Son
+nom commence par un point et n’a pas d’autre extension.</p>
+<ol class="arabic">
+<li><p>Créer le fichier vide. Dans le terminal :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>touch .gitignore
+</pre></div>
+</div>
+</li>
+<li><p>Ouvrir <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> dans VS Code, y écrire deux lignes, puis enregistrer.
+Le fichier contient alors exactement :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>gaufres.md
+gaufres.html
+</pre></div>
+</div>
+</li>
+</ol>
+<p><strong>Vérification</strong> :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git status
+</pre></div>
+</div>
+<p>liste <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>, <code class="docutils literal notranslate"><span class="pre">ingredients.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">photo.jpg</span></code>, <code class="docutils literal notranslate"><span class="pre">recette.md</span></code>,
+<code class="docutils literal notranslate"><span class="pre">recette_a_formater.txt</span></code> et <code class="docutils literal notranslate"><span class="pre">style.css</span></code> parmi les fichiers non suivis, mais
+ni <code class="docutils literal notranslate"><span class="pre">gaufres.md</span></code> ni <code class="docutils literal notranslate"><span class="pre">gaufres.html</span></code>.</p>
+</section>
+<section id="le-premier-commit">
+<h3>3.3 Le premier commit<a class="headerlink" href="#le-premier-commit" title="Lien vers cette rubrique">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git add .
+git commit -m "La recette des gaufres en Markdown"
+git log --oneline
+</pre></div>
+</div>
+<p><strong>Vérification</strong> : <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span> <span class="pre">--oneline</span></code> affiche une ligne, avec le message du
+commit.</p>
+</section>
+</section>
+<section id="etape-4-un-diagramme-mermaid">
+<h2>Étape 4 · Un diagramme Mermaid<a class="headerlink" href="#etape-4-un-diagramme-mermaid" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> ajouter à <code class="docutils literal notranslate"><span class="pre">recette.md</span></code> un diagramme de la préparation, écrit en Mermaid ; relire la modification ; la committer.</p>
+<p><strong>À obtenir :</strong> le diagramme dessiné dans l’aperçu ; <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span> <span class="pre">--oneline</span></code> affiche deux lignes.</p>
+</div></blockquote>
+<p>Mermaid décrit un diagramme en texte : chaque ligne relie deux étapes par une
+flèche, <code class="docutils literal notranslate"><span class="pre">--&gt;</span></code>, et le dessin est calculé à l’affichage. Documentation :
+<a class="reference external" href="https://mermaid.js.org/syntax/flowchart.html">mermaid.js.org/syntax/flowchart.html</a>.</p>
+<section id="ajouter-le-diagramme">
+<h3>4.1 Ajouter le diagramme<a class="headerlink" href="#ajouter-le-diagramme" title="Lien vers cette rubrique">#</a></h3>
+<p>Dans <code class="docutils literal notranslate"><span class="pre">recette.md</span></code>, après la sixième étape de la préparation et avant la
+citation, coller le bloc suivant, séparé par une ligne vide avant et après :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>```mermaid
+flowchart LR
+  A[Farine, sucre, levure, sel] --&gt; C[Pâte]
+  B[Œufs] --&gt; C
+  C --&gt; D[Lait, peu à peu]
+  D --&gt; E[Beurre fondu]
+  E --&gt; F[Repos, 30 min]
+  F --&gt; G[Cuisson]
+```
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">flowchart</span> <span class="pre">LR</span></code> dessine le diagramme de gauche à droite ; chaque étape a une
+lettre, et son texte entre crochets. Enregistrer.</p>
+<p><strong>Vérification</strong> : l’aperçu de VS Code dessine le diagramme. La page produite
+par pandoc, si on relance la cellule de l’étape 2, affiche en revanche le
+texte du bloc : pandoc ne dessine pas les diagrammes Mermaid.</p>
+</section>
+<section id="relire-la-modification">
+<h3>4.2 Relire la modification<a class="headerlink" href="#relire-la-modification" title="Lien vers cette rubrique">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git diff
+</pre></div>
+</div>
+<p><strong>Vérification</strong> : les lignes du bloc apparaissent en vert, précédées d’un
+<code class="docutils literal notranslate"><span class="pre">+</span></code>. Taper <code class="docutils literal notranslate"><span class="pre">q</span></code> pour quitter l’affichage.</p>
+<p>La même comparaison s’affiche dans VS Code. Cliquer sur l’icône du contrôle
+de code source, dans la barre de gauche (raccourci Ctrl+Maj+G) : le panneau
+liste sous « Modifications » les fichiers modifiés depuis le dernier commit,
+marqués <code class="docutils literal notranslate"><span class="pre">M</span></code>. Un clic sur <code class="docutils literal notranslate"><span class="pre">recette.md</span></code> ouvre l’éditeur de comparaison : à
+gauche le fichier du dernier commit, à droite le fichier modifié. Les lignes
+ajoutées sont sur fond vert.</p>
+<p><img alt="Le panneau du contrôle de code source et la comparaison de recette.md" src="../../../../_images/diff_mermaid.png" /></p>
+</section>
+<section id="le-second-commit">
+<h3>4.3 Le second commit<a class="headerlink" href="#le-second-commit" title="Lien vers cette rubrique">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git commit -am "Le diagramme de la préparation"
+git log --oneline
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">-a</span></code> ajoute les fichiers déjà suivis qui ont été modifiés : pas besoin de
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">recette.md</span></code>.</p>
+<p><strong>Vérification</strong> : <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span> <span class="pre">--oneline</span></code> affiche deux lignes.</p>
+<p><strong>Dossier à la fin du TD</strong> :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>travail/gaufres/
+├── .git/                    (caché : le dépôt)
+├── .gitignore
+├── gaufres.html             (produit, ignoré)
+├── gaufres.md               (produit, ignoré)
+├── ingredients.csv
+├── photo.jpg
+├── recette.md
+├── recette_a_formater.txt
+└── style.css
+</pre></div>
+</div>
+</section>
+</section>
+<section id="ce-que-le-td-fait-constater">
+<h2>Ce que le TD fait constater<a class="headerlink" href="#ce-que-le-td-fait-constater" title="Lien vers cette rubrique">#</a></h2>
+<ul class="simple">
+<li><p>Un fichier Markdown est du texte : ses marques se lisent dans l’éditeur, et
+l’aperçu ou pandoc en font un document mis en forme.</p></li>
+<li><p>Le programme du TD 1a fonctionne sur une recette qu’il n’a jamais vue,
+pourvu qu’elle suive la même organisation : un dossier, <code class="docutils literal notranslate"><span class="pre">recette.md</span></code> avec
+une section <code class="docutils literal notranslate"><span class="pre">##</span> <span class="pre">Ingrédients</span></code>, et <code class="docutils literal notranslate"><span class="pre">ingredients.csv</span></code>.</p></li>
+<li><p>Un dépôt git ne contient que les sources, ici le texte de la recette et
+ses données. <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> en écarte ce que le programme produit.</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../3a_cli/guide.html"
+       title="page précédente">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">précédent</p>
+        <p class="prev-next-title">TD 3a — Une ligne de commande pour la recette</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../../../cours4/index.html"
+       title="page suivante">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">suivant</p>
+        <p class="prev-next-title">Séance 4 — Du notebook au programme, en deux parcours</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-0-preparer-le-dossier-de-la-recette">Étape 0 · Préparer le dossier de la recette</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-1-ecrire-la-recette-en-markdown">Étape 1 · Écrire la recette en Markdown</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creer-le-fichier-et-ouvrir-l-apercu">1.1 Créer le fichier et ouvrir l’aperçu</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mettre-le-texte-en-forme">1.2 Mettre le texte en forme</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-2-produire-la-page-avec-le-programme-du-td-1a">Étape 2 · Produire la page avec le programme du TD 1a</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-3-le-depot-de-la-recette">Étape 3 · Le dépôt de la recette</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creer-le-depot">3.1 Créer le dépôt</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-fichier-gitignore">3.2 Le fichier <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-premier-commit">3.3 Le premier commit</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-4-un-diagramme-mermaid">Étape 4 · Un diagramme Mermaid</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ajouter-le-diagramme">4.1 Ajouter le diagramme</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relire-la-modification">4.2 Relire la modification</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-second-commit">4.3 Le second commit</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-le-td-fait-constater">Ce que le TD fait constater</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par 1re année géomatique
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, module info01 — CC-BY-4.0.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

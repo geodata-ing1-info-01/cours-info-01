@@ -1,0 +1,1422 @@
+
+<!DOCTYPE html>
+
+
+<html lang="fr" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>TD 4a — Installer un projet Python, et décrire son installation &#8212; Introduction à l&#39;informatique</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../../../_static/documentation_options.js?v=72dce1d2"></script>
+    <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../../../../_static/translations.js?v=e6b791cb"></script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cours1/notebook/td/4a_recette/guide';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="../../../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Recherche" href="../../../../search.html" />
+    <link rel="next" title="TD 4b — Le client, le noyau, et où ils sont installés (facultatif)" href="../4b_noyaux/guide.html" />
+    <link rel="prev" title="TD 3b — Le notebook, ouvert de trois façons" href="../3b_notebooks/guide.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="fr"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../../../_static/searchtools.js"></script>
+    <script src="../../../../_static/language_data.js"></script>
+    <script src="../../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Passer au contenu principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Haut de page</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Alerte de version"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navigation dans le site">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="Sur cette page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction à l'informatique</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../index.html">
+                    Introduction à l’informatique
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Avant les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/poste.html">Premiers tests du poste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/donnees.html">Récupérer les fichiers d’une séance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/python.html">Anaconda et JupyterLab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/vscode.html">VS Code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Après les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../apres/sauvegarder.html">Sauvegarder son travail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../apres/s_entrainer.html">S’entraîner : jeux et exercices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours1_v2/index.html">Séance 1, version 2 — Logiciels, fichiers, terminal et premier programme</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/01_logiciels_stockage.html">Logiciels, fichiers et stockage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/02_terminal.html">Le terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/03_premier_programme.html">Premier programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/04_notebook.html">Un notebook et la syntaxe de Markdown</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours1_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 1, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/2a_terminal/guide.html">TD 2a — Les fichiers du TD 1a en ligne de commande</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/2b_programme/guide.html">TD 2b — Écrire et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/3a_notebook/guide.html">TD 3a — Un notebook dans JupyterLab</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours2_v2/index.html">Séance 2, version 2 — Éditeur de code, Markdown et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/01_editeur_de_code.html">L’éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/02_markdown.html">Une recette en Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/03_git_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/04_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours2_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/1a_vscode/guide.html">TD 1a — Configurer VS Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/1b_erreurs/guide.html">TD 1b — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/2a_markdown/guide.html">TD 2a — Une recette en Markdown, convertie par pandoc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/3a_depot_recette/guide.html">TD 3a — Un dépôt git pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours3/index.html">Séance 3 — Chemins, fichiers et ligne de commande</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/01_chemins_programmes.html">Chemins et programmes externes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/02_fichiers_encodage.html">Fichiers et encodage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/03_du_notebook_au_programme.html">Du notebook au programme</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours3/notebook/travaux_diriges.html">Travaux dirigés de la séance 3</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours3/notebook/td/3a_markdown/guide.html">TD 3a — Une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours3/notebook/td/3b_cli/guide.html">TD 3b — Une ligne de commande pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours4/index.html">Séance 4 — Du notebook au programme, en deux parcours</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours4/notebook/01_client_noyau.html">Le client et le noyau d’un notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours4/notebook/02_animation.html">Une animation en ligne de commande</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours4/notebook/travaux_diriges.html">Travaux dirigés du projet 4</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours4/notebook/td/4b_cli/guide.html">TD 4b — Une ligne de commande pour la recette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours4/notebook/td/4c_train/guide.html">TD 4c — La fenêtre du train</a></li>
+
+
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours5/index.html">Séance 5 — Matériel, réseau, mots de passe, clés SSH et secrets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/01_materiel.html">Le matériel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/02_reseau.html">Le réseau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/03_prouver_qui_lon_est.html">Prouver qui l’on est</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/04_secrets.html">Les secrets de vos programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/travaux_diriges.html">Travaux dirigés de la séance 5</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cours6/index.html">Séance 6 — La forge, sur le dépôt du projet 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cours7/index.html">Séance 7 — Une fonctionnalité de plus, par une pull request</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Annexes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/configuration/index.html">Configuration des postes de la salle</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/anaconda.html">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/jupyterlab.html">JupyterLab</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../annexes/configuration/vscode.html">VS Code</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_python.html">Python et environnement conda</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_notebooks.html">Notebooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_reglages.html">Fichiers de réglages</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/git.html">Git et Git Bash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/spyder.html">Spyder</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/poste_personnel/index.html">Configuration d’un ordinateur personnel</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/conda.html">Python et conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/vscode.html">VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/git_outils.html">Git et éditeurs de texte</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/notions/index.html">Notions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/outils.html">Choisir entre JupyterLab, Spyder et VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/notebooks.html">Les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/terminaux.html">Les terminaux en ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/variables_environnement.html">Variables d’environnement et recherche des programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/environnements.html">Les environnements conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/vscode_environnements.html">Comment VS Code gère les environnements Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/git_bash.html">Git Bash : une fenêtre, bash et des programmes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/faq.html">FAQ</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/reseau.html">Problèmes de réseau et de compte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/bureautique.html">Problèmes avec les logiciels de texte et de bureautique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/anaconda.html">Problèmes avec Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/jupyterlab.html">Problèmes avec JupyterLab et les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/vscode.html">Problèmes avec VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/git.html">Problèmes avec git</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/plus_loin/index.html">Pour aller plus loin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/gestionnaires.html">venv, uv et pixi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/cpp.html">C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/programme_interpreteur.html">Programme, application et interpréteur</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Archive 2026</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../../index.html">Séance 1, 2026 — Logiciel, programmation et formats de fichier</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../01_logiciels_et_formats.html">Logiciels et formats de fichier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../02_programmation.html">Programmation et éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../03_markdown_notebook.html">Markdown et notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_bibliotheques_environnements.html">Bibliothèques et environnements Python</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../../travaux_diriges.html">Travaux dirigés de la séance 1</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1b_archive_odt/guide.html">TD 1b — Un .odt est une archive ZIP (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../2a_vscode_python/guide.html">TD 2a — Configurer l’éditeur de code, et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../2b_erreurs/guide.html">TD 2b — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../2c_hello_cpp/guide.html">TD 2c — Le même programme en C++ (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../3a_markdown/guide.html">TD 3a — Mettre en forme une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../3b_notebooks/guide.html">TD 3b — Le notebook, ouvert de trois façons</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">TD 4a — Installer un projet Python, et décrire son installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../4b_noyaux/guide.html">TD 4b — Le client, le noyau, et où ils sont installés (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../4c_trajet/guide.html">TD 4c — Installer un projet en lisant son README (facultatif)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../05_comparer_versions.html">Annexe — Comparer deux versions d’un fichier</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours2/index.html">Séance 2, 2026 — Ligne de commande et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/01_ligne_de_commande.html">La ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/02_depot_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/03_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/04_lire_et_tenir_un_depot.html">Lire et tenir un dépôt</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/3a_premier_depot/guide.html">TD 3a — Un premier dépôt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/4a_branches/guide.html">TD 4a — Branches et fusions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/4b_annuler/guide.html">TD 4b — Annuler et remettre à jour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/4c_conflits/guide.html">TD 4c — Créer et résoudre un conflit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/6a_livrer/guide.html">TD 6a — Publier une version</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Thème">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Thème" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Clair"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Sombre"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="Paramètres système"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>Paramètres système</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Clair</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Sombre</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>TD 4a — Installer un projet Python, et décrire son installation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#copier-le-projet-l-ouvrir-et-le-lire">1 · Copier le projet, l’ouvrir, et le lire</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-dossier-du-td">Le dossier du TD</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ouvrir-le-projet-dans-vs-code">Ouvrir le projet dans VS Code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-le-projet-contient">Ce que le projet contient</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-noms-importes">Les noms importés</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creer-un-environnement-d-essai">2 · Créer un environnement d’essai</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creer-et-activer-l-environnement">Créer et activer l’environnement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#voir-l-environnement-dans-vs-code">Voir l’environnement dans VS Code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lancer-le-programme">Lancer le programme</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erreurs-frequentes">Erreurs fréquentes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resoudre-les-deux-dependances">3 · Résoudre les deux dépendances</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-bibliotheques-publiees">Les bibliothèques publiées</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-projet-lui-meme">Le projet lui-même</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-programme-et-la-page-produite">Le programme, et la page produite</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ecrire-ce-qui-manque">4 · Écrire ce qui manque</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-fichier-environment-yml">Le fichier <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-section-installation-du-readme">La section « Installation » du <code class="docutils literal notranslate"><span class="pre">README</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#refaire-l-environnement-a-partir-du-fichier">5 · Refaire l’environnement à partir du fichier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#effacer-l-environnement-d-essai">Effacer l’environnement d’essai</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-refaire-en-suivant-le-readme">Le refaire en suivant le <code class="docutils literal notranslate"><span class="pre">README</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pour-aller-plus-loin">Pour aller plus loin</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-le-td-fait-constater">Ce que le TD fait constater</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-1-le-contenu-d-un-projet-python">Étape 1 : le contenu d’un projet Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deux-sortes-de-dependances">Deux sortes de dépendances</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etapes-2-et-3-un-environnement-python-seul">Étapes 2 et 3 : un environnement « Python seul »</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-3-les-deux-dependances-resolues">Étape 3 : les deux dépendances résolues</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-4-deux-fichiers-deux-roles">Étape 4 : deux fichiers, deux rôles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-5-la-documentation-verifiee">Étape 5 : la documentation vérifiée</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pour-aller-plus-loin-la-commande-recette">Pour aller plus loin : la commande <code class="docutils literal notranslate"><span class="pre">recette</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="td-4a-installer-un-projet-python-et-decrire-son-installation">
+<h1>TD 4a — Installer un projet Python, et décrire son installation<a class="headerlink" href="#td-4a-installer-un-projet-python-et-decrire-son-installation" title="Lien vers cette rubrique">#</a></h1>
+<p>Le TD part d’un petit projet Python, <code class="docutils literal notranslate"><span class="pre">recette</span></code>, qui lit une recette écrite en
+Markdown et un tableau d’ingrédients, adapte les quantités au nombre de
+convives et écrit une page HTML. Le projet est complet, à une exception
+près : aucun de ses fichiers n’indique comment l’installer. On l’installe
+d’abord à la main dans un
+environnement conda neuf, en observant ce qui manque à chaque étape, puis on
+écrit les deux fichiers qui décrivent cette installation, et on les vérifie
+en refaisant l’environnement à partir d’eux. Le TD dure une vingtaine de
+minutes.</p>
+<p>Le TD nécessite VS Code, avec le terminal réglé au TD 2a pour fonctionner
+comme une invite de commandes d’Anaconda, et un navigateur. Les étapes 2, 3 et 5 téléchargent des paquets : la
+session réseau doit être ouverte.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Étape</p></th>
+<th class="head"><p>Ce qu’on fait</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>copier le projet, l’ouvrir dans VS Code, et le lire</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>créer un environnement d’essai qui ne contient que Python</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>installer les deux sortes de dépendances, et lancer le programme</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>écrire <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> et la section « Installation » du <code class="docutils literal notranslate"><span class="pre">README</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>effacer l’environnement, et le refaire en suivant ces deux fichiers</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La feuille du TD numérote ses opérations de 1 à 11 ; le guide reprend ces
+numéros. Chaque étape commence par un encadré qui la résume. Ce que chaque
+étape fait constater est expliqué à la fin du guide, dans « Ce que le TD
+fait constater » : faire l’étape d’abord, et noter ce qu’on observe, avant
+de lire l’explication.</p>
+<section id="copier-le-projet-l-ouvrir-et-le-lire">
+<h2>1 · Copier le projet, l’ouvrir, et le lire<a class="headerlink" href="#copier-le-projet-l-ouvrir-et-le-lire" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> copier <code class="docutils literal notranslate"><span class="pre">depart\recette\</span></code> dans <code class="docutils literal notranslate"><span class="pre">travail\</span></code> ; ouvrir
+<code class="docutils literal notranslate"><span class="pre">travail\recette\</span></code> dans VS Code ; ouvrir un terminal ; dire à quoi sert
+chaque fichier du projet avant d’en lancer un.</p>
+<p><strong>À obtenir :</strong> l’explorateur de VS Code montre <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>,
+<code class="docutils literal notranslate"><span class="pre">README.md</span></code>, <code class="docutils literal notranslate"><span class="pre">data</span></code>, <code class="docutils literal notranslate"><span class="pre">src</span></code> et les deux programmes ; l’invite du terminal
+commence par <code class="docutils literal notranslate"><span class="pre">(base)</span></code> et se termine par <code class="docutils literal notranslate"><span class="pre">travail\recette&gt;</span></code>.</p>
+</div></blockquote>
+<section id="le-dossier-du-td">
+<h3>Le dossier du TD<a class="headerlink" href="#le-dossier-du-td" title="Lien vers cette rubrique">#</a></h3>
+<p>Ouvrir <code class="docutils literal notranslate"><span class="pre">info01\cours1\4a_recette\</span></code> dans l’explorateur de fichiers. Le
+dossier contient :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>4a_recette\
+├── depart\
+│   └── recette\          le projet, tel qu'il est fourni
+├── travail\              vide
+├── td_4a_recette.pdf     la feuille du TD
+└── README.md
+</pre></div>
+</div>
+<p>Comme dans les TD précédents, <code class="docutils literal notranslate"><span class="pre">depart\</span></code> contient les fichiers fournis, et ne
+se modifie pas. Copier le dossier <code class="docutils literal notranslate"><span class="pre">recette</span></code> : sélectionner
+<code class="docutils literal notranslate"><span class="pre">depart\recette</span></code>, <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">C</span></code>, ouvrir <code class="docutils literal notranslate"><span class="pre">travail\</span></code>, <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">V</span></code>. La copie,
+<code class="docutils literal notranslate"><span class="pre">travail\recette\</span></code>, est le dossier sur lequel porte tout le reste du TD. Son
+chemin complet est :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>C:\Users\eleve\Desktop\info01\cours1\4a_recette\travail\recette
+</pre></div>
+</div>
+</section>
+<section id="ouvrir-le-projet-dans-vs-code">
+<h3>Ouvrir le projet dans VS Code<a class="headerlink" href="#ouvrir-le-projet-dans-vs-code" title="Lien vers cette rubrique">#</a></h3>
+<ol class="arabic simple">
+<li><p>Lancer VS Code comme au TD 2a.</p></li>
+<li><p>Menu File, Open Folder (Fichier, Ouvrir le dossier), et choisir
+<code class="docutils literal notranslate"><span class="pre">travail\recette\</span></code>. Ouvrir le dossier du projet entier, et non un fichier
+seul.</p></li>
+<li><p>À la question sur la confiance accordée aux auteurs, répondre « Yes, I
+trust the authors ». Sans cette réponse, l’extension Python ne se charge
+pas.</p></li>
+<li><p>Menu Terminal, New Terminal. Le terminal s’ouvre en bas de la fenêtre,
+déjà placé dans le dossier du projet.</p></li>
+</ol>
+<p><strong>Vérification</strong> : l’invite du terminal a la forme</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>(base) C:\Users\eleve\Desktop\info01\cours1\4a_recette\travail\recette&gt;
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">(base)</span></code> est l’environnement actif, et le <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> final indique un terminal
+<code class="docutils literal notranslate"><span class="pre">cmd</span></code>.
+Si l’invite commence par <code class="docutils literal notranslate"><span class="pre">PS</span></code> et qu’un message <code class="docutils literal notranslate"><span class="pre">activate.ps1</span> <span class="pre">cannot</span> <span class="pre">be</span> <span class="pre">loaded</span></code> s’affiche, le terminal est un PowerShell : faire le réglage du
+terminal du TD 2a, puis ouvrir un nouveau terminal. À défaut, ouvrir
+l’invite de commandes d’Anaconda (« Anaconda Prompt » dans le menu Démarrer), taper <code class="docutils literal notranslate"><span class="pre">cd</span></code> suivi d’une espace,
+glisser le dossier <code class="docutils literal notranslate"><span class="pre">travail\recette</span></code> dans la fenêtre, ce qui écrit son
+chemin, puis Entrée. Toutes les commandes du TD se tapent dans ce terminal.</p>
+</section>
+<section id="ce-que-le-projet-contient">
+<h3>Ce que le projet contient<a class="headerlink" href="#ce-que-le-projet-contient" title="Lien vers cette rubrique">#</a></h3>
+<p>Le projet contient :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>recette\
+├── pyproject.toml
+├── README.md
+├── data\
+│   ├── ingredients.csv
+│   ├── recette.md
+│   └── style.css
+├── src\
+│   └── recette\
+│       ├── __init__.py
+│       ├── __main__.py
+│       ├── calculs.py
+│       └── tableau.py
+├── recette_a_la_main.py
+└── recette_avec_tabulate.py
+</pre></div>
+</div>
+<p>Ouvrir chaque fichier d’un clic dans l’explorateur de VS Code, sans rien
+lancer, et remplir le tableau de la feuille :</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Ce que le projet contient</p></th>
+<th class="head"><p>Ce que c’est</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">data\</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">src\recette\</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">recette_a_la_main.py</span></code>, <code class="docutils literal notranslate"><span class="pre">recette_avec_tabulate.py</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">README.md</span></code></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Pour les deux programmes, comparer leurs lignes <code class="docutils literal notranslate"><span class="pre">import</span></code>, en haut du
+fichier. Pour <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>, lire la ligne <code class="docutils literal notranslate"><span class="pre">dependencies</span></code>. Le <code class="docutils literal notranslate"><span class="pre">README</span></code>
+s’affiche mis en forme avec <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">K</span></code> puis <code class="docutils literal notranslate"><span class="pre">V</span></code>, comme au TD 3a.</p>
+<p><strong>À noter</strong> : ce qui manque au projet pour qu’une autre personne puisse
+l’installer. Le premier paragraphe du <code class="docutils literal notranslate"><span class="pre">README</span></code> du projet l’indique.</p>
+</section>
+<section id="les-noms-importes">
+<h3>Les noms importés<a class="headerlink" href="#les-noms-importes" title="Lien vers cette rubrique">#</a></h3>
+<p>Les deux programmes importent quatre noms. <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> fait partie de
+Python ; les trois autres n’en font pas partie, et n’ont pas la même
+provenance :</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Dans <code class="docutils literal notranslate"><span class="pre">recette_a_la_main.py</span></code></p></th>
+<th class="head"><p>Provenance</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">markdown</span></code></p></td>
+<td><p>la bibliothèque <code class="docutils literal notranslate"><span class="pre">markdown</span></code>, publiée sur les dépôts de paquets</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">recette.calculs</span> <span class="pre">import</span> <span class="pre">…</span></code>, <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">recette.tableau</span> <span class="pre">import</span> <span class="pre">…</span></code></p></td>
+<td><p>le dossier <code class="docutils literal notranslate"><span class="pre">src\recette\</span></code> du projet lui-même</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">recette_avec_tabulate.py</span></code> importe en plus <code class="docutils literal notranslate"><span class="pre">tabulate</span></code>, une bibliothèque
+publiée comme <code class="docutils literal notranslate"><span class="pre">markdown</span></code>. Ces deux sortes de dépendances s’installent par
+deux commandes différentes, à l’étape 3.</p>
+</section>
+</section>
+<section id="creer-un-environnement-d-essai">
+<h2>2 · Créer un environnement d’essai<a class="headerlink" href="#creer-un-environnement-d-essai" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> créer l’environnement <code class="docutils literal notranslate"><span class="pre">recette</span></code>, qui ne contient que
+Python ; l’activer ; lister ce qu’il contient ; lancer
+<code class="docutils literal notranslate"><span class="pre">recette_a_la_main.py</span></code>.</p>
+<p><strong>À obtenir :</strong> l’invite commence par <code class="docutils literal notranslate"><span class="pre">(recette)</span></code> ; le programme s’arrête
+sur un <code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError</span></code>.</p>
+</div></blockquote>
+<section id="creer-et-activer-l-environnement">
+<h3>Créer et activer l’environnement<a class="headerlink" href="#creer-et-activer-l-environnement" title="Lien vers cette rubrique">#</a></h3>
+<ol class="arabic">
+<li><p>Dans le terminal, taper :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>conda create -n recette -c conda-forge python=3.12
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">-n</span> <span class="pre">recette</span></code> donne le nom de l’environnement, <code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">conda-forge</span></code> le dépôt
+d’où viennent les paquets, et <code class="docutils literal notranslate"><span class="pre">python=3.12</span></code> la version de Python. conda
+calcule ce qu’il faut installer, en affiche la liste, puis demande
+<code class="docutils literal notranslate"><span class="pre">Proceed</span> <span class="pre">([y]/n)?</span></code> : taper <code class="docutils literal notranslate"><span class="pre">y</span></code> puis Entrée. La commande se termine par
+les lignes qui indiquent comment activer l’environnement :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># To activate this environment, use
+#
+#     $ conda activate recette
+</pre></div>
+</div>
+</li>
+<li><p>Taper :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>conda activate recette
+conda list
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">list</span></code> affiche un paquet par ligne, après trois lignes d’en-tête
+qui commencent par <code class="docutils literal notranslate"><span class="pre">#</span></code>.</p>
+</li>
+</ol>
+<p><strong>Vérification</strong> : l’invite commence par <code class="docutils literal notranslate"><span class="pre">(recette)</span></code> au lieu de <code class="docutils literal notranslate"><span class="pre">(base)</span></code>.</p>
+<p><strong>À noter</strong> : le nombre de paquets de l’environnement, et si <code class="docutils literal notranslate"><span class="pre">markdown</span></code>,
+<code class="docutils literal notranslate"><span class="pre">tabulate</span></code> ou <code class="docutils literal notranslate"><span class="pre">recette</span></code> sont dans la liste. Noter aussi quelques noms de la
+liste qui ne sont pas <code class="docutils literal notranslate"><span class="pre">python</span></code>.</p>
+</section>
+<section id="voir-l-environnement-dans-vs-code">
+<h3>Voir l’environnement dans VS Code<a class="headerlink" href="#voir-l-environnement-dans-vs-code" title="Lien vers cette rubrique">#</a></h3>
+<p>L’environnement actif se lit à deux endroits : en tête de l’invite du
+terminal, et en bas à droite de la fenêtre, dans la barre d’état, où
+l’extension Python affiche l’interpréteur choisi pour l’éditeur. Pour que
+l’éditeur emploie le nouvel environnement :</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">P</span></code>, taper « Python: Select Interpreter », Entrée ;</p></li>
+<li><p>choisir la ligne <code class="docutils literal notranslate"><span class="pre">recette</span></code>, dont le chemin contient
+<code class="docutils literal notranslate"><span class="pre">.conda\envs\recette</span></code> ;</p></li>
+<li><p>ouvrir un nouveau terminal (menu Terminal, New Terminal).</p></li>
+</ul>
+<p>Le choix de l’interpréteur s’applique au bouton d’exécution, au débogueur et
+aux terminaux ouverts ensuite ; un terminal déjà ouvert conserve son
+environnement. Si <code class="docutils literal notranslate"><span class="pre">recette</span></code> n’est pas proposé, VS Code n’a pas relu la
+liste des environnements : palette, « Python: Clear Cache and Reload
+Window », puis recommencer.</p>
+<p><strong>Vérification</strong> : la barre d’état et l’invite du terminal nomment toutes
+les deux <code class="docutils literal notranslate"><span class="pre">recette</span></code>.</p>
+</section>
+<section id="lancer-le-programme">
+<h3>Lancer le programme<a class="headerlink" href="#lancer-le-programme" title="Lien vers cette rubrique">#</a></h3>
+<ol class="arabic" start="3">
+<li><p>Taper :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python recette_a_la_main.py
+</pre></div>
+</div>
+<p>Si le terminal n’est pas dans le dossier du projet (invite de commandes
+d’Anaconda ouverte depuis le menu Démarrer), s’y placer d’abord avec
+<code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">C:\Users\eleve\Desktop\info01\cours1\4a_recette\travail\recette</span></code>.</p>
+</li>
+</ol>
+<p><strong>À noter</strong> : la dernière ligne du message d’erreur, et le nom qu’elle cite.</p>
+</section>
+<section id="erreurs-frequentes">
+<h3>Erreurs fréquentes<a class="headerlink" href="#erreurs-frequentes" title="Lien vers cette rubrique">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">'conda'</span> <span class="pre">n'est</span> <span class="pre">pas</span> <span class="pre">reconnu</span> <span class="pre">en</span> <span class="pre">tant</span> <span class="pre">que</span> <span class="pre">commande</span> <span class="pre">interne</span> <span class="pre">ou</span> <span class="pre">externe</span></code> : le
+terminal n’est pas une invite de commandes d’Anaconda. Refaire le réglage du TD 2a, ou
+ouvrir une invite de commandes d’Anaconda depuis le menu Démarrer.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CondaToSNonInteractiveError:</span> <span class="pre">Terms</span> <span class="pre">of</span> <span class="pre">Service</span> <span class="pre">have</span> <span class="pre">not</span> <span class="pre">been</span> <span class="pre">accepted</span></code>,
+ou la question <code class="docutils literal notranslate"><span class="pre">Do</span> <span class="pre">you</span> <span class="pre">accept</span> <span class="pre">the</span> <span class="pre">Terms</span> <span class="pre">of</span> <span class="pre">Service</span> <span class="pre">(ToS)</span> <span class="pre">…</span> <span class="pre">[(a)ccept/(r)eject/(v)iew]</span></code> : conda demande, une fois par compte,
+d’accepter les conditions d’utilisation des canaux d’Anaconda. Répondre
+<code class="docutils literal notranslate"><span class="pre">a</span></code>, ou relancer la commande en ajoutant <code class="docutils literal notranslate"><span class="pre">--override-channels</span></code> avant
+<code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">conda-forge</span></code>, ce qui n’emploie que conda-forge.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CondaHTTPError:</span> <span class="pre">HTTP</span> <span class="pre">000</span> <span class="pre">CONNECTION</span> <span class="pre">FAILED</span></code> : la session réseau n’est
+pas ouverte. L’ouvrir, puis relancer la commande. Une ligne « Solving
+environment » qui dure plusieurs minutes, sans erreur, est normale la
+première fois : conda télécharge la liste des paquets de conda-forge.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CondaValueError:</span> <span class="pre">prefix</span> <span class="pre">already</span> <span class="pre">exists</span></code> : un environnement <code class="docutils literal notranslate"><span class="pre">recette</span></code>
+existe déjà sur ce poste, créé lors d’un essai précédent. Le supprimer
+comme à l’étape 5 (<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">remove</span> <span class="pre">-n</span> <span class="pre">recette</span></code>), puis recommencer.</p></li>
+</ul>
+</section>
+</section>
+<section id="resoudre-les-deux-dependances">
+<h2>3 · Résoudre les deux dépendances<a class="headerlink" href="#resoudre-les-deux-dependances" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> installer <code class="docutils literal notranslate"><span class="pre">markdown</span></code> et <code class="docutils literal notranslate"><span class="pre">tabulate</span></code> avec conda ; relancer le
+programme ; installer le projet lui-même avec pip ; relancer le
+programme ; ouvrir la page produite.</p>
+<p><strong>À obtenir :</strong> le terminal affiche <code class="docutils literal notranslate"><span class="pre">recette.html</span> <span class="pre">écrit</span> <span class="pre">pour</span> <span class="pre">4</span> <span class="pre">personne(s),</span> <span class="pre">en</span> <span class="pre">unités</span> <span class="pre">SI</span></code> ; le navigateur affiche la recette mise en
+page.</p>
+</div></blockquote>
+<p>Avant chaque commande d’installation, relire l’invite : elle doit commencer
+par <code class="docutils literal notranslate"><span class="pre">(recette)</span></code>. Une installation lancée depuis <code class="docutils literal notranslate"><span class="pre">(base)</span></code> s’applique à
+l’environnement de base d’Anaconda, que le compte élève ne peut pas
+modifier, et conda répond <code class="docutils literal notranslate"><span class="pre">EnvironmentNotWritableError</span></code>. Dans ce cas, taper
+<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">recette</span></code> et relancer.</p>
+<section id="les-bibliotheques-publiees">
+<h3>Les bibliothèques publiées<a class="headerlink" href="#les-bibliotheques-publiees" title="Lien vers cette rubrique">#</a></h3>
+<ol class="arabic" start="4">
+<li><p>Taper :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>conda install -c conda-forge markdown tabulate
+</pre></div>
+</div>
+<p>conda affiche la liste des paquets qu’il va installer, sous <code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">following</span> <span class="pre">NEW</span> <span class="pre">packages</span> <span class="pre">will</span> <span class="pre">be</span> <span class="pre">INSTALLED:</span></code>, puis demande <code class="docutils literal notranslate"><span class="pre">Proceed</span> <span class="pre">([y]/n)?</span></code> : taper <code class="docutils literal notranslate"><span class="pre">y</span></code> puis Entrée.</p>
+</li>
+</ol>
+<p><strong>À noter</strong> : le nombre de paquets de la liste, et leurs noms, comparés aux
+deux noms demandés.</p>
+<ol class="arabic" start="5">
+<li><p>Relancer le programme :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python recette_a_la_main.py
+</pre></div>
+</div>
+</li>
+</ol>
+<p><strong>À noter</strong> : le nom cité par le message d’erreur, comparé à celui de
+l’étape 2, et d’où vient ce nom (voir « Les noms importés », à l’étape 1).</p>
+</section>
+<section id="le-projet-lui-meme">
+<h3>Le projet lui-même<a class="headerlink" href="#le-projet-lui-meme" title="Lien vers cette rubrique">#</a></h3>
+<ol class="arabic" start="6">
+<li><p>Taper, depuis le dossier du projet :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python -m pip install -e .
+</pre></div>
+</div>
+<p>Le point final fait partie de la commande : il désigne le dossier
+courant, c’est-à-dire le projet. pip lit <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>, vérifie les
+dépendances qui y sont déclarées, et installe le projet. Il télécharge
+aussi, pour la durée de l’installation, l’outil qui fabrique le paquet
+(<code class="docutils literal notranslate"><span class="pre">setuptools</span></code>, déclaré dans <code class="docutils literal notranslate"><span class="pre">[build-system]</span></code>). La sortie se termine par :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Successfully installed recette-0.1.0
+</pre></div>
+</div>
+</li>
+</ol>
+<p><strong>À noter</strong> : ce que pip écrit sur <code class="docutils literal notranslate"><span class="pre">markdown</span></code> et <code class="docutils literal notranslate"><span class="pre">tabulate</span></code> (lignes
+<code class="docutils literal notranslate"><span class="pre">Requirement</span> <span class="pre">already</span> <span class="pre">satisfied</span></code>), et le dossier apparu dans <code class="docutils literal notranslate"><span class="pre">src\</span></code>.</p>
+</section>
+<section id="le-programme-et-la-page-produite">
+<h3>Le programme, et la page produite<a class="headerlink" href="#le-programme-et-la-page-produite" title="Lien vers cette rubrique">#</a></h3>
+<ol class="arabic" start="7">
+<li><p>Relancer le programme :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python recette_a_la_main.py
+</pre></div>
+</div>
+<p>Il affiche :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>recette.html écrit pour 4 personne(s), en unités SI
+</pre></div>
+</div>
+<p>Le fichier <code class="docutils literal notranslate"><span class="pre">recette.html</span></code> apparaît à la racine du projet, dans
+l’explorateur de VS Code. Pour l’ouvrir dans le navigateur : clic droit
+sur <code class="docutils literal notranslate"><span class="pre">recette.html</span></code>, « Reveal in File Explorer », puis double-clic sur le
+fichier dans l’explorateur de Windows.</p>
+</li>
+</ol>
+<p>Ensuite, dans VS Code, ouvrir <code class="docutils literal notranslate"><span class="pre">data\style.css</span></code>, remplacer la valeur d’une
+ligne <code class="docutils literal notranslate"><span class="pre">color:</span></code> ou <code class="docutils literal notranslate"><span class="pre">background:</span></code> (par exemple <code class="docutils literal notranslate"><span class="pre">background:</span> <span class="pre">#faf8f4;</span></code> en
+<code class="docutils literal notranslate"><span class="pre">background:</span> <span class="pre">#e8f0fa;</span></code>), enregistrer avec <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">S</span></code>, puis recharger la
+page dans le navigateur avec <code class="docutils literal notranslate"><span class="pre">F5</span></code>. Remettre la valeur d’origine ensuite.</p>
+<p><strong>Vérification</strong> : la page montre le titre « Crêpes », un tableau des
+ingrédients pour quatre personnes (240 g de farine, 500 ml de lait), puis
+les étapes de la préparation.</p>
+<p><strong>À noter</strong> : l’adresse de la page dans le navigateur, et ce qui change,
+dans la page et dans <code class="docutils literal notranslate"><span class="pre">recette.html</span></code>, quand on modifie <code class="docutils literal notranslate"><span class="pre">style.css</span></code>.</p>
+<p>Sur un poste sans réseau, les opérations 1, 4 et 6, qui téléchargent des paquets, échouent. Passer alors à
+l’étape 4 du guide, qui ne demande que d’écrire des fichiers.</p>
+</section>
+</section>
+<section id="ecrire-ce-qui-manque">
+<h2>4 · Écrire ce qui manque<a class="headerlink" href="#ecrire-ce-qui-manque" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> créer <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> à la racine du projet ; ajouter au
+<code class="docutils literal notranslate"><span class="pre">README.md</span></code> une section « Installation » qui donne les commandes, dans
+l’ordre.</p>
+<p><strong>À obtenir :</strong> <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> est à côté de <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> ; le
+<code class="docutils literal notranslate"><span class="pre">README</span></code> contient une section <code class="docutils literal notranslate"><span class="pre">##</span> <span class="pre">Installation</span></code> avec trois commandes.</p>
+</div></blockquote>
+<p>Les quatre commandes des étapes 2 et 3 ne sont écrites nulle part dans le
+projet : une autre personne, ou soi-même sur un autre poste, devrait les
+retrouver de mémoire. Les deux fichiers écrits à cette étape les
+consignent.</p>
+<section id="le-fichier-environment-yml">
+<h3>Le fichier <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code><a class="headerlink" href="#le-fichier-environment-yml" title="Lien vers cette rubrique">#</a></h3>
+<ol class="arabic simple">
+<li><p>Dans l’explorateur de VS Code, cliquer sur une zone vide, sous les
+fichiers, pour que le nouveau fichier soit créé à la racine du projet et
+non dans <code class="docutils literal notranslate"><span class="pre">data\</span></code> ou <code class="docutils literal notranslate"><span class="pre">src\</span></code>.</p></li>
+<li><p>Cliquer sur l’icône « New File… », en haut de l’explorateur, et taper
+<code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>, puis Entrée.</p></li>
+<li><p>Écrire le contenu suivant, puis enregistrer avec <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">S</span></code> :</p></li>
+</ol>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">recette</span>
+<span class="nt">channels</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span>
+<span class="nt">dependencies</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python=3.12</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">markdown</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tabulate</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">name</span></code> est le nom de l’environnement, <code class="docutils literal notranslate"><span class="pre">channels</span></code> le dépôt d’où viennent les
+paquets (le <code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">conda-forge</span></code> des commandes), et <code class="docutils literal notranslate"><span class="pre">dependencies</span></code> la liste de
+ce qu’il faut installer. En YAML, l’indentation marque la structure : les
+lignes qui commencent par <code class="docutils literal notranslate"><span class="pre">-</span></code> sont décalées de deux espaces, et une
+tabulation est refusée. VS Code insère des espaces quand on appuie sur
+<code class="docutils literal notranslate"><span class="pre">Tab</span></code> dans un fichier <code class="docutils literal notranslate"><span class="pre">.yml</span></code>.</p>
+</section>
+<section id="la-section-installation-du-readme">
+<h3>La section « Installation » du <code class="docutils literal notranslate"><span class="pre">README</span></code><a class="headerlink" href="#la-section-installation-du-readme" title="Lien vers cette rubrique">#</a></h3>
+<p>Ouvrir <code class="docutils literal notranslate"><span class="pre">README.md</span></code>. Après le paragraphe qui commence par « Il manque à ce
+projet deux choses », et avant la section <code class="docutils literal notranslate"><span class="pre">##</span> <span class="pre">Trois</span> <span class="pre">façons</span> <span class="pre">de</span> <span class="pre">s'en</span> <span class="pre">servir</span></code>,
+ajouter :</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gu">## Installation</span>
+
+<span class="sb">```bash</span>
+conda<span class="w"> </span>env<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </span>environment.yml
+conda<span class="w"> </span>activate<span class="w"> </span>recette
+python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+<span class="sb">```</span>
+</pre></div>
+</div>
+<p>Les commandes se retrouvent dans l’historique du terminal : flèche vers le
+haut, dans le terminal, pour remonter les commandes tapées. Une phrase
+avant le bloc peut indiquer où les taper : dans un terminal où la commande
+<code class="docutils literal notranslate"><span class="pre">conda</span></code> est reconnue (une invite de commandes d’Anaconda sous Windows), depuis le dossier
+du projet.</p>
+<p>Enregistrer, puis vérifier le rendu avec <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">K</span></code> puis <code class="docutils literal notranslate"><span class="pre">V</span></code>.</p>
+<p><strong>Vérification</strong> : l’explorateur de VS Code montre <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> au
+même niveau que <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> et <code class="docutils literal notranslate"><span class="pre">README.md</span></code>.</p>
+<p><strong>À noter</strong> : <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> cite déjà <code class="docutils literal notranslate"><span class="pre">markdown</span></code> et <code class="docutils literal notranslate"><span class="pre">tabulate</span></code> ; ce que
+chacun des deux fichiers décrit, et à quel outil il s’adresse. Noter aussi
+laquelle des trois commandes du <code class="docutils literal notranslate"><span class="pre">README</span></code> n’a pas d’équivalent dans
+<code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>.</p>
+</section>
+</section>
+<section id="refaire-l-environnement-a-partir-du-fichier">
+<h2>5 · Refaire l’environnement à partir du fichier<a class="headerlink" href="#refaire-l-environnement-a-partir-du-fichier" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> supprimer l’environnement <code class="docutils literal notranslate"><span class="pre">recette</span></code> ; le recréer avec
+<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">create</span> <span class="pre">-f</span> <span class="pre">environment.yml</span></code> ; réinstaller le projet ; relancer
+le programme. Suivre pour cela uniquement la section « Installation » du
+<code class="docutils literal notranslate"><span class="pre">README</span></code>.</p>
+<p><strong>À obtenir :</strong> <code class="docutils literal notranslate"><span class="pre">recette.html</span> <span class="pre">écrit</span> <span class="pre">pour</span> <span class="pre">4</span> <span class="pre">personne(s),</span> <span class="pre">en</span> <span class="pre">unités</span> <span class="pre">SI</span></code>,
+sur un environnement refait de zéro.</p>
+</div></blockquote>
+<section id="effacer-l-environnement-d-essai">
+<h3>Effacer l’environnement d’essai<a class="headerlink" href="#effacer-l-environnement-d-essai" title="Lien vers cette rubrique">#</a></h3>
+<ol class="arabic" start="8">
+<li><p>Taper :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>conda deactivate
+conda env remove -n recette
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">deactivate</span></code> fait sortir le terminal de l’environnement <code class="docutils literal notranslate"><span class="pre">recette</span></code> :
+l’invite commence de nouveau par <code class="docutils literal notranslate"><span class="pre">(base)</span></code>. conda liste les paquets à supprimer, puis
+demande <code class="docutils literal notranslate"><span class="pre">Proceed</span> <span class="pre">([y]/n)?</span></code> : taper <code class="docutils literal notranslate"><span class="pre">y</span></code> puis Entrée.</p>
+</li>
+</ol>
+<p><strong>Vérification</strong> : <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">list</span></code> ne cite plus <code class="docutils literal notranslate"><span class="pre">recette</span></code>, et le dossier
+du projet est intact.</p>
+<p>Si conda répond <code class="docutils literal notranslate"><span class="pre">Cannot</span> <span class="pre">remove</span> <span class="pre">current</span> <span class="pre">environment.</span> <span class="pre">Deactivate</span> <span class="pre">and</span> <span class="pre">run</span> <span class="pre">conda</span> <span class="pre">remove</span> <span class="pre">again</span></code>, l’environnement est encore actif : taper
+<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">deactivate</span></code>, vérifier l’invite, et recommencer.</p>
+</section>
+<section id="le-refaire-en-suivant-le-readme">
+<h3>Le refaire en suivant le <code class="docutils literal notranslate"><span class="pre">README</span></code><a class="headerlink" href="#le-refaire-en-suivant-le-readme" title="Lien vers cette rubrique">#</a></h3>
+<p>Ouvrir <code class="docutils literal notranslate"><span class="pre">README.md</span></code> et taper les commandes de la section « Installation »,
+dans l’ordre, sans en ajouter.</p>
+<ol class="arabic" start="9">
+<li><p>Depuis le dossier du projet :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>conda env create -f environment.yml
+</pre></div>
+</div>
+</li>
+<li><p>Puis :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>conda activate recette
+python -m pip install -e .
+</pre></div>
+</div>
+</li>
+<li><p>Enfin :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python recette_a_la_main.py
+</pre></div>
+</div>
+</li>
+</ol>
+<p><strong>Vérification</strong> : le programme affiche <code class="docutils literal notranslate"><span class="pre">recette.html</span> <span class="pre">écrit</span> <span class="pre">pour</span> <span class="pre">4</span> <span class="pre">personne(s),</span> <span class="pre">en</span> <span class="pre">unités</span> <span class="pre">SI</span></code>, et la page s’ouvre comme à l’étape 3.</p>
+<p><strong>À noter</strong> : le nombre de commandes qu’il a fallu pour refaire
+l’environnement, comparé aux étapes 2 et 3, et d’où conda a pris le nom
+<code class="docutils literal notranslate"><span class="pre">recette</span></code> à l’opération 9. Si une commande a manqué, l’ajouter au <code class="docutils literal notranslate"><span class="pre">README</span></code> :
+une commande qu’il a fallu ajouter ici manque aussi à la documentation du
+projet.</p>
+<p>Erreurs fréquentes à l’opération 9 :</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">EnvironmentFileNotFound</span></code> : le terminal n’est pas dans le dossier du
+projet, ou le fichier n’a pas été enregistré sous le nom
+<code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>. Vérifier avec <code class="docutils literal notranslate"><span class="pre">dir</span></code> que le fichier est dans la liste.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CondaValueError:</span> <span class="pre">prefix</span> <span class="pre">already</span> <span class="pre">exists</span></code> : l’opération 8 n’a pas été faite,
+ou n’a pas abouti. Refaire l’opération 8.</p></li>
+<li><p>une erreur qui cite une ligne du fichier, avec le mot <code class="docutils literal notranslate"><span class="pre">yaml</span></code> : une
+indentation fausse ou une tabulation dans <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>. Comparer le
+fichier au modèle de l’étape 4.</p></li>
+</ul>
+</section>
+<section id="pour-aller-plus-loin">
+<h3>Pour aller plus loin<a class="headerlink" href="#pour-aller-plus-loin" title="Lien vers cette rubrique">#</a></h3>
+<ul class="simple">
+<li><p>Depuis l’opération 10, la commande <code class="docutils literal notranslate"><span class="pre">recette</span></code> existe dans l’environnement.
+Taper <code class="docutils literal notranslate"><span class="pre">recette</span> <span class="pre">--help</span></code>, puis <code class="docutils literal notranslate"><span class="pre">recette</span> <span class="pre">--personnes</span> <span class="pre">12</span> <span class="pre">--unites</span> <span class="pre">US</span></code>, et
+recharger la page. <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">recette</span></code> fait la même chose.</p></li>
+<li><p>Le <code class="docutils literal notranslate"><span class="pre">README</span></code> du projet demande aussi de documenter
+<code class="docutils literal notranslate"><span class="pre">recette_avec_tabulate.py</span></code> : écrire, à la place de la chaîne « À
+documenter », une chaîne sur le modèle de celle qui ouvre
+<code class="docutils literal notranslate"><span class="pre">recette_a_la_main.py</span></code>. Elle indique ce que le programme fait, comment on le
+lance, et ce qui le distingue de l’autre.</p></li>
+<li><p>Le même <code class="docutils literal notranslate"><span class="pre">README</span></code> propose une section « Exemples » : trois commandes et ce
+qu’elles produisent, dont une page écrite hors du dossier du projet
+(<code class="docutils literal notranslate"><span class="pre">recette</span> <span class="pre">--help</span></code> indique l’option à employer). Chaque commande écrite
+doit avoir été lancée.</p></li>
+</ul>
+<p>En fin de séance, réactiver l’environnement de base dans le terminal avec
+<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">base</span></code>.</p>
+</section>
+</section>
+<section id="ce-que-le-td-fait-constater">
+<h2>Ce que le TD fait constater<a class="headerlink" href="#ce-que-le-td-fait-constater" title="Lien vers cette rubrique">#</a></h2>
+<p>Cette section se lit après avoir fait les étapes.</p>
+<section id="etape-1-le-contenu-d-un-projet-python">
+<h3>Étape 1 : le contenu d’un projet Python<a class="headerlink" href="#etape-1-le-contenu-d-un-projet-python" title="Lien vers cette rubrique">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Ce que le projet contient</p></th>
+<th class="head"><p>Ce que c’est</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code></p></td>
+<td><p>le nom du projet, et ce dont son code dépend</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">data\</span></code></p></td>
+<td><p>ce que le programme lit, et la feuille de style</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">src\recette\</span></code></p></td>
+<td><p>le code, en trois modules</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">recette_a_la_main.py</span></code>, <code class="docutils literal notranslate"><span class="pre">recette_avec_tabulate.py</span></code></p></td>
+<td><p>deux programmes qui ne diffèrent que par un import</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">README.md</span></code></p></td>
+<td><p>ce que le projet fait, mais pas comment l’installer</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Une personne autre que l’auteur ne peut pas installer le projet : aucun
+fichier ne décrit l’environnement dans lequel le code s’exécute, et
+rien ne dit quelles commandes taper. Les deux fichiers de l’étape 4
+comblent ces deux manques.</p>
+<p>Les noms <code class="docutils literal notranslate"><span class="pre">data</span></code> et <code class="docutils literal notranslate"><span class="pre">src</span></code> ne sont pas imposés par Python. Ranger le code
+sous <code class="docutils literal notranslate"><span class="pre">src\</span></code> est la disposition la plus répandue, et la documentation de la
+Python Packaging Authority en donne la raison : le code n’est importable
+qu’une fois le projet installé, si bien qu’on travaille toujours sur la
+version installée, et jamais sur un dossier trouvé par hasard dans le
+dossier courant. L’opération 5 de la feuille fait constater cette règle.</p>
+</section>
+<section id="deux-sortes-de-dependances">
+<h3>Deux sortes de dépendances<a class="headerlink" href="#deux-sortes-de-dependances" title="Lien vers cette rubrique">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Provenance</p></th>
+<th class="head"><p>Commande d’installation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">markdown</span></code>, <code class="docutils literal notranslate"><span class="pre">tabulate</span></code></p></td>
+<td><p>du dépôt conda-forge</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">markdown</span> <span class="pre">tabulate</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">recette</span></code></p></td>
+<td><p>du dossier du projet</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">.</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Une bibliothèque qu’on écrit soi-même n’est sur aucun dépôt tant que
+personne ne l’y a publiée, et c’est le cas ordinaire d’un projet de cours,
+d’un projet interne ou d’un projet en cours d’écriture. Elle s’installe
+depuis son dossier, que le point de la commande désigne. L’option <code class="docutils literal notranslate"><span class="pre">-e</span></code>
+(<em>editable</em>) installe le projet de sorte que Python lise le code
+directement dans le dossier du projet : une modification du code prend
+effet sans réinstallation.</p>
+<p>Cette commande emploie pip plutôt que conda, parce que conda installe des
+paquets venus d’un dépôt, et ne sait pas installer un dossier de travail. C’est la seule
+exception à la règle d’un seul outil par environnement, et elle se limite
+au projet lui-même. <code class="docutils literal notranslate"><span class="pre">pip</span></code> est présent dans l’environnement dès sa création,
+sans qu’on l’ait demandé.</p>
+</section>
+<section id="etapes-2-et-3-un-environnement-python-seul">
+<h3>Étapes 2 et 3 : un environnement « Python seul »<a class="headerlink" href="#etapes-2-et-3-un-environnement-python-seul" title="Lien vers cette rubrique">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Commande</p></th>
+<th class="head"><p>Ce qu’on constate</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">recette</span></code>, puis <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">list</span></code></p></td>
+<td><p>une vingtaine de paquets, et aucun des trois noms importés</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">recette_a_la_main.py</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError:</span> <span class="pre">No</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">'markdown'</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La feuille donne 28 paquets, nombre relevé sous Linux ; sous Windows, la
+même commande en installait 20 en septembre 2026. Le nombre exact dépend du
+système et de la date ; dans tous les cas, un environnement qui ne contient
+que Python n’est pas vide. Il contient des bibliothèques écrites en C sans
+lesquelles l’interpréteur ne démarre pas, comme <code class="docutils literal notranslate"><span class="pre">openssl</span></code>, <code class="docutils literal notranslate"><span class="pre">libsqlite</span></code>,
+<code class="docutils literal notranslate"><span class="pre">libzlib</span></code>, et, sous Windows, les bibliothèques d’exécution de Microsoft
+(<code class="docutils literal notranslate"><span class="pre">ucrt</span></code>, <code class="docutils literal notranslate"><span class="pre">vc14_runtime</span></code>). <code class="docutils literal notranslate"><span class="pre">pip</span></code>, <code class="docutils literal notranslate"><span class="pre">setuptools</span></code> et <code class="docutils literal notranslate"><span class="pre">wheel</span></code> y sont aussi, d’où
+un <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code> qui fonctionne dans un environnement conda sans qu’on l’ait
+installé.</p>
+<p>Le programme s’arrête sur une dépendance manquante, alors que le fichier
+existe et que sa syntaxe est correcte. Le message cite <code class="docutils literal notranslate"><span class="pre">markdown</span></code> et non
+<code class="docutils literal notranslate"><span class="pre">tabulate</span></code> ou <code class="docutils literal notranslate"><span class="pre">recette</span></code>, parce que <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">markdown</span></code> est le premier import
+du fichier qui échoue : Python s’arrête à la première ligne fautive, et ne
+fait pas la liste de ce qui manque.</p>
+</section>
+<section id="etape-3-les-deux-dependances-resolues">
+<h3>Étape 3 : les deux dépendances résolues<a class="headerlink" href="#etape-3-les-deux-dependances-resolues" title="Lien vers cette rubrique">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Commande</p></th>
+<th class="head"><p>Ce qu’on constate</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>4</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">markdown</span> <span class="pre">tabulate</span></code></p></td>
+<td><p>quatre paquets : les deux demandés, <code class="docutils literal notranslate"><span class="pre">importlib-metadata</span></code>, <code class="docutils literal notranslate"><span class="pre">zipp</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">recette_a_la_main.py</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError:</span> <span class="pre">No</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">'recette'</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">.</span></code></p></td>
+<td><p>le projet s’installe, ses dépendances étant déjà installées</p></td>
+</tr>
+<tr class="row-odd"><td><p>7</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">recette_a_la_main.py</span></code>, puis ouvrir <code class="docutils literal notranslate"><span class="pre">recette.html</span></code></p></td>
+<td><p>la recette mise en page, sans serveur ni réseau</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>À l’opération 4, <code class="docutils literal notranslate"><span class="pre">markdown</span></code> a lui-même des dépendances, <code class="docutils literal notranslate"><span class="pre">importlib-metadata</span></code> et
+<code class="docutils literal notranslate"><span class="pre">zipp</span></code>, que conda installe avec lui : ce sont des dépendances transitives
+du projet. Dans l’environnement <code class="docutils literal notranslate"><span class="pre">base</span></code>, la même commande en installerait
+moins, les autres y étant déjà.</p>
+<p>Les messages des opérations 3 et 5 ont la même forme, et leurs causes
+diffèrent. <code class="docutils literal notranslate"><span class="pre">markdown</span></code> manquait à l’environnement, et conda l’a installé.
+<code class="docutils literal notranslate"><span class="pre">recette</span></code> est le code du projet, pourtant présent dans <code class="docutils literal notranslate"><span class="pre">src\recette\</span></code> :
+Python ne le trouve pas, parce qu’il cherche les modules dans le dossier du
+programme lancé et dans ceux de l’environnement, et que <code class="docutils literal notranslate"><span class="pre">src\</span></code> n’est ni
+l’un ni l’autre tant que le projet n’est pas installé.</p>
+<p>À l’opération 6, pip lit <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>, constate que <code class="docutils literal notranslate"><span class="pre">markdown</span></code> et
+<code class="docutils literal notranslate"><span class="pre">tabulate</span></code> sont déjà installés (<code class="docutils literal notranslate"><span class="pre">Requirement</span> <span class="pre">already</span> <span class="pre">satisfied</span></code>), et ne
+les télécharge pas. Il crée <code class="docutils literal notranslate"><span class="pre">src\recette.egg-info\</span></code>, qui décrit le projet
+installé ; ce dossier n’est pas versionné.</p>
+<p>À l’opération 7, on retrouve trois notions vues pendant la séance. Le <code class="docutils literal notranslate"><span class="pre">recette.md</span></code> du
+projet ressemble à celui écrit au TD 3a. La page sépare le contenu, dans
+<code class="docutils literal notranslate"><span class="pre">recette.html</span></code>, de la présentation, dans <code class="docutils literal notranslate"><span class="pre">data\style.css</span></code>, comme les deux
+pages du poème au TD 1a : modifier la feuille de style change la page, et
+<code class="docutils literal notranslate"><span class="pre">recette.html</span></code> n’est pas modifié. Enfin, la page s’ouvre par une adresse
+<code class="docutils literal notranslate"><span class="pre">file:///</span></code>, sans serveur ni réseau.</p>
+</section>
+<section id="etape-4-deux-fichiers-deux-roles">
+<h3>Étape 4 : deux fichiers, deux rôles<a class="headerlink" href="#etape-4-deux-fichiers-deux-roles" title="Lien vers cette rubrique">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> liste ce qu’il faut installer ; le <code class="docutils literal notranslate"><span class="pre">README</span></code> donne l’ordre
+des commandes, y compris celle que le fichier ne peut pas décrire,
+l’installation du projet lui-même par pip. Aucun des deux n’installe quoi
+que ce soit : ils décrivent une installation, que les commandes réalisent.
+Une installation décrite dans un fichier peut être refaite à l’identique,
+sans dépendre du souvenir des commandes tapées.</p>
+<p><code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> déclare déjà <code class="docutils literal notranslate"><span class="pre">markdown</span></code> et <code class="docutils literal notranslate"><span class="pre">tabulate</span></code>, et les réécrire dans
+<code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> n’est pas un doublon. Les deux fichiers ne s’adressent
+pas au même outil : <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> indique à pip de quoi le code a besoin,
+<code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> indique à conda de quoi la machine a besoin, y compris ce qui
+n’est pas du Python, comme Python lui-même.</p>
+</section>
+<section id="etape-5-la-documentation-verifiee">
+<h3>Étape 5 : la documentation vérifiée<a class="headerlink" href="#etape-5-la-documentation-verifiee" title="Lien vers cette rubrique">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Commande</p></th>
+<th class="head"><p>Ce qu’on constate</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>8</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">deactivate</span></code>, puis <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">remove</span> <span class="pre">-n</span> <span class="pre">recette</span></code></p></td>
+<td><p>l’environnement d’essai est supprimé, le dossier du projet est conservé</p></td>
+</tr>
+<tr class="row-odd"><td><p>9</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">create</span> <span class="pre">-f</span> <span class="pre">environment.yml</span></code></p></td>
+<td><p>les trois paquets demandés s’installent d’un coup, avec leurs dépendances</p></td>
+</tr>
+<tr class="row-even"><td><p>10</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">recette</span></code>, puis <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">.</span></code></p></td>
+<td><p>le projet à nouveau importable</p></td>
+</tr>
+<tr class="row-odd"><td><p>11</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">recette_a_la_main.py</span></code></p></td>
+<td><p>la même page, sur un environnement refait de zéro</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La suppression de l’opération 8 est nécessaire : le fichier porte
+<code class="docutils literal notranslate"><span class="pre">name:</span> <span class="pre">recette</span></code>, et <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">create</span></code> refuse de créer un environnement
+dont le nom existe déjà. Recréer l’environnement à partir de rien vérifie
+que le fichier décrit l’environnement entier, et pas seulement ce qui
+manquait à l’ancien. conda
+refuse aussi de supprimer l’environnement actif, d’où le
+<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">deactivate</span></code> qui précède.</p>
+<p>À l’opération 9, une seule commande remplace les opérations 1 et 4, et le
+nom de l’environnement n’est plus tapé : conda le lit dans la ligne <code class="docutils literal notranslate"><span class="pre">name</span></code>
+du fichier. Les opérations 9 et 10 sont les commandes de la section
+« Installation » : une documentation d’installation n’est vérifiée qu’une
+fois suivie par quelqu’un, sur un environnement qui ne contient rien.</p>
+</section>
+<section id="pour-aller-plus-loin-la-commande-recette">
+<h3>Pour aller plus loin : la commande <code class="docutils literal notranslate"><span class="pre">recette</span></code><a class="headerlink" href="#pour-aller-plus-loin-la-commande-recette" title="Lien vers cette rubrique">#</a></h3>
+<p>La commande <code class="docutils literal notranslate"><span class="pre">recette</span></code> existe depuis l’opération 10, parce que la section
+<code class="docutils literal notranslate"><span class="pre">[project.scripts]</span></code> de <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> la déclare ; le cours 3 y revient.
+Elle équivaut à <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">recette</span></code>, et accepte <code class="docutils literal notranslate"><span class="pre">--personnes</span></code>, <code class="docutils literal notranslate"><span class="pre">--unites</span></code>
+et <code class="docutils literal notranslate"><span class="pre">--sortie</span></code>. Une chaîne de documentation possible pour
+<code class="docutils literal notranslate"><span class="pre">recette_avec_tabulate.py</span></code> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">"""La recette pour quatre personnes, avec la bibliothèque `tabulate`.</span>
+
+<span class="sd">    python recette_avec_tabulate.py</span>
+
+<span class="sd">Le programme est celui de `recette_a_la_main.py`, à un import près : le</span>
+<span class="sd">`tabulate` importé ici est celui de la bibliothèque du même nom, installée</span>
+<span class="sd">dans l'environnement, et non celui écrit dans `src/recette/tableau.py`.</span>
+<span class="sd">Pour un autre nombre de convives ou un autre système d'unités, changez</span>
+<span class="sd">`PERSONNES` et `UNITES` et relancez.</span>
+<span class="sd">"""</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../3b_notebooks/guide.html"
+       title="page précédente">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">précédent</p>
+        <p class="prev-next-title">TD 3b — Le notebook, ouvert de trois façons</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../4b_noyaux/guide.html"
+       title="page suivante">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">suivant</p>
+        <p class="prev-next-title">TD 4b — Le client, le noyau, et où ils sont installés (facultatif)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#copier-le-projet-l-ouvrir-et-le-lire">1 · Copier le projet, l’ouvrir, et le lire</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-dossier-du-td">Le dossier du TD</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ouvrir-le-projet-dans-vs-code">Ouvrir le projet dans VS Code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-le-projet-contient">Ce que le projet contient</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-noms-importes">Les noms importés</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creer-un-environnement-d-essai">2 · Créer un environnement d’essai</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creer-et-activer-l-environnement">Créer et activer l’environnement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#voir-l-environnement-dans-vs-code">Voir l’environnement dans VS Code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lancer-le-programme">Lancer le programme</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#erreurs-frequentes">Erreurs fréquentes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resoudre-les-deux-dependances">3 · Résoudre les deux dépendances</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-bibliotheques-publiees">Les bibliothèques publiées</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-projet-lui-meme">Le projet lui-même</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-programme-et-la-page-produite">Le programme, et la page produite</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ecrire-ce-qui-manque">4 · Écrire ce qui manque</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-fichier-environment-yml">Le fichier <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-section-installation-du-readme">La section « Installation » du <code class="docutils literal notranslate"><span class="pre">README</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#refaire-l-environnement-a-partir-du-fichier">5 · Refaire l’environnement à partir du fichier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#effacer-l-environnement-d-essai">Effacer l’environnement d’essai</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-refaire-en-suivant-le-readme">Le refaire en suivant le <code class="docutils literal notranslate"><span class="pre">README</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pour-aller-plus-loin">Pour aller plus loin</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-le-td-fait-constater">Ce que le TD fait constater</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-1-le-contenu-d-un-projet-python">Étape 1 : le contenu d’un projet Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deux-sortes-de-dependances">Deux sortes de dépendances</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etapes-2-et-3-un-environnement-python-seul">Étapes 2 et 3 : un environnement « Python seul »</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-3-les-deux-dependances-resolues">Étape 3 : les deux dépendances résolues</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-4-deux-fichiers-deux-roles">Étape 4 : deux fichiers, deux rôles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-5-la-documentation-verifiee">Étape 5 : la documentation vérifiée</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pour-aller-plus-loin-la-commande-recette">Pour aller plus loin : la commande <code class="docutils literal notranslate"><span class="pre">recette</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par 1re année géomatique
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, module info01 — CC-BY-4.0.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
