@@ -152,6 +152,29 @@
 ]
 
 // --------------------------------------------
+#d("Les supports en ligne")[
+  #annonce[
+    Le site du module donne les pages de cours, les guides des TD et les
+    archives des séances. Il est en cours d'écriture : des pages manquent ou
+    changent d'une semaine à l'autre.
+  ]
+
+  #tableau(
+    columns: (auto, 1fr),
+    align: left + horizon,
+    [Page], [Contenu],
+    [#link("https://geodata-ing1-info-01.github.io/cours-info-01/")[geodata-ing1-info-01.github.io/cours-info-01]], [l'accueil : une page par séance, avec ses TD],
+    [#link("https://geodata-ing1-info-01.github.io/cours-info-01/cours4/index.html")[…/cours4/index.html]], [la séance 4 : le guide du TD 4a, celui du TD 4b],
+    [#link("https://geodata-ing1-info-01.github.io/cours-info-01/telechargements/index.html")[…/telechargements/]], [une archive par séance, les fichiers des TD],
+  )
+
+  #notes[
+    Le guide en ligne est le même que celui de l'archive. Copier le code
+    depuis la page HTML.
+  ]
+]
+
+// --------------------------------------------
 #d("Étape A1 · Le dossier du projet, dans le terminal")[
   #annonce[
     Objectif : créer le dossier du projet par des commandes, en copiant les
@@ -258,7 +281,7 @@
     (
       [créer le dépôt : `git init`],
       [donner son nom et son adresse, pour ce dépôt seulement : `git config user.name`, `user.email`],
-      [écrire `.gitignore` : `echo "sortie/" > .gitignore`],
+      [créer `.gitignore` dans VS Code (New File), y écrire la ligne `sortie/`, enregistrer],
       [vérifier avec `git status`, puis `git add .` et `git commit -m`],
     ),
   )
@@ -292,9 +315,8 @@
     ),
     (
       [lancer `python recette.py`, lire le numéro de ligne, puis la dernière ligne du message],
-      [`SyntaxError: expected ':'` : ajouter le deux-points qui manque],
-      [`TabError` : repérer la flèche (une tabulation) parmi les points, la remplacer par des espaces],
-      [relire `git diff`, puis faire le commit de chaque correction],
+      [`SyntaxError: expected ':'` : ajouter le deux-points qui manque, enregistrer, puis faire un commit],
+      [relancer ; `TabError` : remplacer la flèche (une tabulation) par des espaces, enregistrer, puis faire un commit],
     ),
   )
 
@@ -313,6 +335,8 @@
 
     Ligne 20 : `:` manquant. Ligne 21 : une tabulation au lieu de huit
     espaces.
+
+    Avant chaque commit, `git diff` montre la ligne modifiée.
   ]
 ]
 

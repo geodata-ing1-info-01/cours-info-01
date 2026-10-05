@@ -90,7 +90,6 @@ if __name__ == "__main__":
 qu'à l'étape B6 ; `python -c "import recette"` n'affiche rien.
 
 ```text
-git diff
 git commit -am "Une fonction main"
 ```
 

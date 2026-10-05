@@ -292,15 +292,15 @@ Le poste est partagé : le nom et l'adresse sont réglés pour ce dépôt
 seulement, sans `--global`.
 
 Le programme écrira ses résultats dans un dossier `sortie/`. Ces fichiers
-ne sont pas versionnés, puisque le programme les refait :
+ne sont pas versionnés, puisque le programme les refait. Le fichier
+`.gitignore` donne la liste des fichiers et des dossiers que git ne suit
+pas, un par ligne. Dans l'explorateur de VS Code, créer un fichier (icône
+New File) nommé `.gitignore`, y écrire la ligne `sortie/`, puis enregistrer
+(`Ctrl` + `S`).
 
 ```text
-echo "sortie/" > .gitignore
 git status
 ```
-
-`echo` affiche le texte qui le suit, et `>` écrit cet affichage dans le
-fichier `.gitignore`.
 
 **Vérification** : `git status` liste `.gitignore`, `recette.py` et
 `recettes/` parmi les fichiers non suivis.
@@ -351,15 +351,16 @@ Python s'arrête sur une erreur :
 Le message donne le fichier et le numéro de la ligne, recopie la ligne,
 puis nomme l'erreur. `SyntaxError: expected ':'` signale un deux-points
 manquant : une ligne `for` se termine par `:`. Corriger la ligne 20 et
-enregistrer (`Ctrl` + `S`). Chaque correction a son commit :
+enregistrer (`Ctrl` + `S`), puis faire le commit de cette correction,
+avant de relancer le programme :
 
 ```text
-git diff
 git commit -am "Correction : le deux-points de la boucle"
 ```
 
-`git diff` montre la ligne corrigée, en rouge avant et en vert après. `-a`
-ajoute au commit les fichiers déjà suivis et modifiés.
+`-a` ajoute au commit les fichiers déjà suivis et modifiés. Avant le
+commit, `git diff` montre la ligne modifiée, en rouge avant et en vert
+après (`q` pour quitter).
 
 Relancer le programme. Python s'arrête sur une seconde erreur :
 
@@ -368,7 +369,8 @@ Relancer le programme. Python s'arrête sur une seconde erreur :
 `TabError` signale un mélange d'espaces et de tabulations dans
 l'indentation d'un même bloc. Avec le réglage de l'étape A2, la ligne 21
 commence par une flèche (une tabulation), et les autres lignes par des
-points (des espaces). Effacer la flèche et la remplacer par huit espaces.
+points (des espaces). Effacer la flèche, la remplacer par huit espaces,
+puis enregistrer.
 
 **Vérification** : `python recette.py` affiche
 
@@ -377,8 +379,9 @@ points (des espaces). Effacer la flèche et la remplacer par huit espaces.
 La barre d'état de VS Code, en bas à droite, indique `Spaces: 4` : la
 touche `Tab` insère quatre espaces dans ce fichier.
 
+Faire le commit de cette seconde correction :
+
 ```text
-git diff
 git commit -am "Correction : l'indentation de la ligne 21"
 git log --oneline
 ```
@@ -662,7 +665,6 @@ Le bas du fichier devient :
 qu'à l'étape B6 ; `python -c "import recette"` n'affiche rien.
 
 ```text
-git diff
 git commit -am "Une fonction main"
 ```
 
