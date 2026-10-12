@@ -26,8 +26,14 @@ reçoit :
 Un TD a l'une ou l'autre de ces deux feuilles, ou les deux : la feuille typst
 donne les étapes en résumé, le guide les détaille.
 
+La racine de l'archive reçoit aussi les diapositives de la séance,
+`diapositives_cours<n>.pdf` : la version `cours<n>-sans-tds.pdf` de
+`outils/compiler_diapos.py`, où chaque bloc de TD est remplacé par son
+sommaire, puisque les feuilles des TD sont déjà dans leurs dossiers.
+
 Avant d'assembler, le script refait ce qui se dérive des sources : les données
 (`data/cours<n>/make_data.py build`, qui repart d'un `produit/` vide), les
+diapositives (`outils/compiler_diapos.py --sans-tds`), les
 feuilles de TD (`outils/compiler_tds.py`) et les notebooks
 (`outils/construire_notebooks.py`), et les guides détaillés
 (`outils/compiler_guides.py`). L'archive ne part donc ni avec une version
@@ -76,6 +82,11 @@ MOTIF_TD = re.compile(r"^\d+[a-z]?_")
 def dossiers_td(cours: str) -> list[Path]:
     donnees = RACINE / "data" / f"cours{cours}"
     return sorted(d for d in donnees.iterdir() if d.is_dir() and MOTIF_TD.match(d.name))
+
+
+def diapositives(cours: str) -> Path:
+    """Les diapositives de la séance sans ses TD, compilées dans `src/cours<n>/diapo/`."""
+    return RACINE / f"src/cours{cours}/diapo/cours{cours}-sans-tds.pdf"
 
 
 def feuilles_racine(cours: str) -> list[tuple[str, Path]]:
@@ -161,7 +172,7 @@ def description(cours: str, td: Path | str) -> dict[str, str]:
     return dict(re.findall(r'^\s*(\w+):\s*"([^"]*)"', texte, re.M))
 
 
-def readme(cours: str, tds: list[Path], racine: list[str]) -> str:
+def readme(cours: str, tds: list[Path], racine: list[str], avec_diapos: bool) -> str:
     lignes = [
         f"# Cours {cours} — travaux dirigés",
         "",
@@ -169,6 +180,10 @@ def readme(cours: str, tds: list[Path], racine: list[str]) -> str:
         "la lettre l'ordre dans la séance. La feuille du TD (`td_<dossier>.pdf`) et,",
         "quand il existe, le guide détaillé (`guide_<dossier>.pdf`) sont dans son dossier.",
         "Un TD qui se fait à la racine de l'archive a sa feuille à la racine.",
+    ]
+    if avec_diapos:
+        lignes.append(f"Les diapositives de la séance, sans les TD, sont dans `diapositives_cours{cours}.pdf`.")
+    lignes += [
         "",
         "| TD | Titre | Dossier | |",
         "|----|-------|---------|-|",
@@ -191,6 +206,8 @@ def fabriquer(cours: str) -> int:
     donnees = RACINE / "data" / f"cours{cours}" / "make_data.py"
     if donnees.exists():
         etapes.append((donnees, ["build"], donnees.parent))
+    if (RACINE / f"src/cours{cours}/diapo/cours{cours}.typ").exists():
+        etapes.append((RACINE / "outils" / "compiler_diapos.py", ["--cours", str(cours), "--sans-tds"], RACINE))
     etapes += [
         (RACINE / "outils" / "compiler_tds.py", ["--cours", str(cours)], RACINE),
         (RACINE / "outils" / "construire_notebooks.py", [], RACINE),
@@ -262,11 +279,20 @@ def livrer(cours: str, lister: bool) -> int:
         if not lister:
             shutil.copy2(feuille, cible / feuille.name)
 
+    diapos = diapositives(cours)
+    if diapos.exists():
+        total += 1
+        print(f"diapositives_cours{cours}.pdf : à la racine")
+        if not lister:
+            shutil.copy2(diapos, cible / f"diapositives_cours{cours}.pdf")
+    else:
+        print(f"  diapositives absentes ({diapos.relative_to(RACINE)})", file=sys.stderr)
+
     if lister:
         print(f"\n{total} fichier(s) iraient dans {cible.relative_to(RACINE)}/")
         return 0
 
-    (cible / "README.md").write_text(readme(cours, tds, racine), encoding="utf-8")
+    (cible / "README.md").write_text(readme(cours, tds, racine, diapos.exists()), encoding="utf-8")
     with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as z:
         for f in sorted(cible.rglob("*")):
             # Un dossier vide n'a pas de fichier à écrire : il faut l'inscrire
