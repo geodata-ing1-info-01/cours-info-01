@@ -1,0 +1,852 @@
+
+<!DOCTYPE html>
+
+
+<html lang="fr" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Problèmes avec VS Code &#8212; Introduction à l&#39;informatique</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../_static/documentation_options.js?v=72dce1d2"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../../_static/translations.js?v=e6b791cb"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'annexes/problemes/vscode';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Recherche" href="../../search.html" />
+    <link rel="next" title="Problèmes avec git" href="git.html" />
+    <link rel="prev" title="Problèmes avec JupyterLab et les notebooks" href="jupyterlab.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="fr"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Passer au contenu principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Haut de page</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Alerte de version"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navigation dans le site">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="Sur cette page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction à l'informatique</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Introduction à l’informatique
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Avant les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../avant/poste.html">Premiers tests du poste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../avant/donnees.html">Récupérer les fichiers d’une séance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../avant/python.html">Anaconda et JupyterLab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../avant/vscode.html">VS Code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Après les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../apres/sauvegarder.html">Sauvegarder son travail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../apres/s_entrainer.html">S’entraîner : jeux et exercices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours1_v2/index.html">Séance 1, version 2 — Logiciels, fichiers, terminal et premier programme</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1_v2/notebook/01_logiciels_stockage.html">Logiciels, fichiers et stockage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1_v2/notebook/02_terminal.html">Le terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1_v2/notebook/03_premier_programme.html">Premier programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1_v2/notebook/04_notebook.html">Un notebook et la syntaxe de Markdown</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours1_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 1, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1_v2/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1_v2/notebook/td/1b_terminal/guide.html">TD 1b — Les fichiers du TD 1a en ligne de commande</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1_v2/notebook/td/1c_programme/guide.html">TD 1c — Écrire et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1_v2/notebook/td/1d_notebook/guide.html">TD 1d — Un notebook dans JupyterLab</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours2_v2/index.html">Séance 2, version 2 — Éditeur de code, Markdown et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2_v2/notebook/01_editeur_de_code.html">L’éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2_v2/notebook/02_markdown.html">Une recette en Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2_v2/notebook/03_git_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2_v2/notebook/04_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours2_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2_v2/notebook/td/2a_vscode/guide.html">TD 2a — Configurer VS Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2_v2/notebook/td/2b_erreurs/guide.html">TD 2b — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2_v2/notebook/td/2c_markdown/guide.html">TD 2c — Une recette en Markdown, convertie par pandoc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2_v2/notebook/td/2d_depot_recette/guide.html">TD 2d — Un dépôt git pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours3/index.html">Séance 3 — Chemins, fichiers et ligne de commande</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours3/notebook/01_chemins_programmes.html">Chemins et programmes externes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours3/notebook/02_fichiers_encodage.html">Fichiers et encodage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours3/notebook/03_du_notebook_au_programme.html">Du notebook au programme</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours3/notebook/travaux_diriges.html">Travaux dirigés de la séance 3</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours3/notebook/td/3e_markdown/guide.html">TD 3e — Une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours3/notebook/td/3f_cli/guide.html">TD 3f — Une ligne de commande pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours4/index.html">Séance 4 — Projet d’application 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours4/notebook/travaux_diriges.html">Travaux dirigés du projet 4</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours4/notebook/td/4a_recette/guide.html">TD 4a — Un script Python, pas à pas</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../cours4/notebook/td/4b_paquet/guide.html">TD 4b — Un programme installable</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours5/index.html">Séance 5 — Matériel, réseau, mots de passe, clés SSH et secrets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours5/notebook/01_materiel.html">Le matériel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours5/notebook/02_reseau.html">Le réseau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours5/notebook/03_prouver_qui_lon_est.html">Prouver qui l’on est</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours5/notebook/04_secrets.html">Les secrets de vos programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours5/notebook/travaux_diriges.html">Travaux dirigés de la séance 5</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cours6/index.html">Séance 6 — La forge, sur le dépôt du projet 4</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours7/index.html">Séance 7 — Projet d’application 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours7/notebook/td/7a_recette/guide.html">TD 7a — Compléter son projet, par des pull requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours7/notebook/td/7b_train/guide.html">TD 7b — Reprendre et compléter le projet d’un autre</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Annexes</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../configuration/index.html">Configuration des postes de la salle</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../configuration/anaconda.html">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration/jupyterlab.html">JupyterLab</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../configuration/vscode.html">VS Code</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/vscode_python.html">Python et environnement conda</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/vscode_notebooks.html">Notebooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/vscode_reglages.html">Fichiers de réglages</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration/git.html">Git et Git Bash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration/spyder.html">Spyder</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../poste_personnel/index.html">Configuration d’un ordinateur personnel</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../poste_personnel/conda.html">Python et conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../poste_personnel/vscode.html">VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../poste_personnel/git_outils.html">Git et éditeurs de texte</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../notions/index.html">Notions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notions/outils.html">Choisir entre JupyterLab, Spyder et VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notions/notebooks.html">Les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notions/terminaux.html">Les terminaux en ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notions/variables_environnement.html">Variables d’environnement et recherche des programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notions/environnements.html">Les environnements conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notions/vscode_environnements.html">Comment VS Code gère les environnements Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notions/git_bash.html">Git Bash : une fenêtre, bash et des programmes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../faq.html">FAQ</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="reseau.html">Problèmes de réseau et de compte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bureautique.html">Problèmes avec les logiciels de texte et de bureautique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="anaconda.html">Problèmes avec Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jupyterlab.html">Problèmes avec JupyterLab et les notebooks</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Problèmes avec VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="git.html">Problèmes avec git</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../plus_loin/index.html">Pour aller plus loin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../plus_loin/gestionnaires.html">venv, uv et pixi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plus_loin/cpp.html">C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plus_loin/programme_interpreteur.html">Programme, application et interpréteur</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Archive 2026</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours1/index.html">Séance 1, 2026 — Logiciel, programmation et formats de fichier</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1/notebook/01_logiciels_et_formats.html">Logiciels et formats de fichier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1/notebook/02_programmation.html">Programmation et éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1/notebook/03_markdown_notebook.html">Markdown et notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1/notebook/04_bibliotheques_environnements.html">Bibliothèques et environnements Python</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours1/notebook/travaux_diriges.html">Travaux dirigés de la séance 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1b_archive_odt/guide.html">TD 1b — Un .odt est une archive ZIP (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1c_vscode_python/guide.html">TD 1c — Configurer l’éditeur de code, et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1d_erreurs/guide.html">TD 1d — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1e_hello_cpp/guide.html">TD 1e — Le même programme en C++ (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1f_markdown/guide.html">TD 1f — Mettre en forme une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1g_notebooks/guide.html">TD 1g — Le notebook, ouvert de trois façons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1h_recette/guide.html">TD 1h — Installer un projet Python, et décrire son installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1i_noyaux/guide.html">TD 1i — Le client, le noyau, et où ils sont installés (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1j_trajet/guide.html">TD 1j — Installer un projet en lisant son README (facultatif)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1/notebook/05_comparer_versions.html">Annexe — Comparer deux versions d’un fichier</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours2/index.html">Séance 2, 2026 — Ligne de commande et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2/notebook/01_ligne_de_commande.html">La ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2/notebook/02_depot_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2/notebook/03_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2/notebook/04_lire_et_tenir_un_depot.html">Lire et tenir un dépôt</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2/notebook/td/2a_premier_depot/guide.html">TD 2a — Un premier dépôt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2/notebook/td/2b_branches/guide.html">TD 2b — Branches et fusions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2/notebook/td/2c_annuler/guide.html">TD 2c — Annuler et remettre à jour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2/notebook/td/2d_conflits/guide.html">TD 2d — Créer et résoudre un conflit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2/notebook/td/2e_livrer/guide.html">TD 2e — Publier une version</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Thème">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Thème" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Clair"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Sombre"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="Paramètres système"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>Paramètres système</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Clair</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Sombre</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Problèmes avec VS Code</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problemes">Problèmes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#v1-vs-code-n-est-pas-dans-le-menu-demarrer">V1. VS Code n’est pas dans le menu Démarrer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#v2-vs-code-ne-trouve-pas-python-selon-d-ou-on-l-a-lance">V2. VS Code ne trouve pas Python selon d’où on l’a lancé</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#v3-l-extension-python-ne-s-installe-pas">V3. L’extension Python ne s’installe pas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#v4-restricted-mode-l-extension-python-ne-fait-rien">V4. « Restricted Mode » : l’extension Python ne fait rien</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#v5-le-terminal-de-vs-code-affiche-une-erreur-des-qu-il-s-ouvre">V5. Le terminal de VS Code affiche une erreur dès qu’il s’ouvre</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#v6-python-select-interpreter-ne-propose-pas-anaconda">V6. « Python: Select Interpreter » ne propose pas Anaconda</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#v7-python-lance-un-autre-python-que-celui-d-anaconda">V7. <code class="docutils literal notranslate"><span class="pre">python</span></code> lance un autre Python que celui d’Anaconda</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#v8-modulenotfounderror-alors-que-le-paquet-est-installe">V8. <code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError</span></code> alors que le paquet est installé</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#v9-le-raccourci-clavier-du-terminal-ne-repond-pas">V9. Le raccourci clavier du terminal ne répond pas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#v10-le-fichier-de-reglages-est-souligne-en-rouge-ou-ne-s-enregistre-pas">V10. Le fichier de réglages est souligné en rouge, ou ne s’enregistre pas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#v11-error-loading-webview-could-not-register-service-worker">V11. « Error loading webview: Could not register service worker »</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="problemes-avec-vs-code">
+<h1>Problèmes avec VS Code<a class="headerlink" href="#problemes-avec-vs-code" title="Lien vers cette rubrique">#</a></h1>
+<p>La configuration de VS Code est dans <a class="reference internal" href="../configuration/vscode.html"><span class="std std-doc">Installation et
+configuration</span></a> : <a class="reference internal" href="../configuration/vscode.html"><span class="std std-doc">généralités</span></a>,
+<a class="reference internal" href="../configuration/vscode_python.html"><span class="std std-doc">Python et environnement conda</span></a>,
+<a class="reference internal" href="../configuration/vscode_notebooks.html"><span class="std std-doc">notebooks</span></a>.</p>
+<section id="problemes">
+<span id="dep-vscode"></span><h2>Problèmes<a class="headerlink" href="#problemes" title="Lien vers cette rubrique">#</a></h2>
+<section id="v1-vs-code-n-est-pas-dans-le-menu-demarrer">
+<span id="dep-v1"></span><h3>V1. VS Code n’est pas dans le menu Démarrer<a class="headerlink" href="#v1-vs-code-n-est-pas-dans-le-menu-demarrer" title="Lien vers cette rubrique">#</a></h3>
+<dl class="simple myst">
+<dt>Ce qu’on voit</dt><dd><p>Rien ne répond à <code class="docutils literal notranslate"><span class="pre">visual</span> <span class="pre">studio</span> <span class="pre">code</span></code> ni à <code class="docutils literal notranslate"><span class="pre">code</span></code>.</p>
+</dd>
+<dt>Vérifier</dt><dd><p>Dans un <code class="docutils literal notranslate"><span class="pre">cmd</span></code>, <code class="docutils literal notranslate"><span class="pre">dir</span> <span class="pre">&quot;%LOCALAPPDATA%\Programs\Microsoft</span> <span class="pre">VS</span> <span class="pre">Code\Code.exe&quot;</span></code>
+puis <code class="docutils literal notranslate"><span class="pre">dir</span> <span class="pre">&quot;%ProgramFiles%\Microsoft</span> <span class="pre">VS</span> <span class="pre">Code\Code.exe&quot;</span></code>.</p>
+</dd>
+<dt>Remède</dt><dd><p>Si l’un des deux fichiers existe, double-cliquer dessus dans
+l’explorateur, puis clic droit sur l’icône de la barre des tâches,
+« Épingler à la barre des tâches ». Si aucun n’existe, VS Code n’est pas
+sur le poste : le signaler.</p>
+</dd>
+</dl>
+</section>
+<section id="v2-vs-code-ne-trouve-pas-python-selon-d-ou-on-l-a-lance">
+<span id="dep-v2"></span><h3>V2. VS Code ne trouve pas Python selon d’où on l’a lancé<a class="headerlink" href="#v2-vs-code-ne-trouve-pas-python-selon-d-ou-on-l-a-lance" title="Lien vers cette rubrique">#</a></h3>
+<dl class="simple myst">
+<dt>Ce qu’on voit</dt><dd><p>Lancé depuis Navigator, VS Code propose <code class="docutils literal notranslate"><span class="pre">base</span></code> et son terminal trouve
+<code class="docutils literal notranslate"><span class="pre">python</span></code>. Lancé depuis le menu Démarrer, ni l’un ni l’autre. Ou l’inverse
+selon les réglages déjà faits.</p>
+</dd>
+<dt>Cause</dt><dd><p>Un programme reçoit de celui qui le lance la liste des dossiers où
+chercher les commandes. Navigator, qui s’exécute dans <code class="docutils literal notranslate"><span class="pre">base</span></code>, transmet à VS
+Code une liste qui contient Anaconda ; le menu Démarrer transmet celle du
+compte, qui ne le contient pas (<a class="reference internal" href="anaconda.html#dep-a2"><span class="std std-ref">A2</span></a>).</p>
+</dd>
+<dt>Remède</dt><dd><p>Toujours lancer VS Code depuis le menu Démarrer, une fois l’interpréteur
+et le terminal réglés (<a class="reference internal" href="../configuration/vscode_python.html"><span class="std std-doc">Python et environnement
+conda</span></a>). Le résultat ne dépend alors ni de Navigator ni d’une fenêtre
+ouverte avant.</p>
+</dd>
+</dl>
+</section>
+<section id="v3-l-extension-python-ne-s-installe-pas">
+<span id="dep-v3"></span><h3>V3. L’extension Python ne s’installe pas<a class="headerlink" href="#v3-l-extension-python-ne-s-installe-pas" title="Lien vers cette rubrique">#</a></h3>
+<dl class="simple myst">
+<dt>Ce qu’on voit</dt><dd><p>Le panneau Extensions reste vide, ou affiche « We cannot connect to the
+Extensions Marketplace », ou l’installation ne finit pas.</p>
+</dd>
+<dt>Cause</dt><dd><p>Les extensions viennent d’un serveur. Sans session réseau
+(<a class="reference internal" href="reseau.html#dep-r1"><span class="std std-ref">R1</span></a>) ou derrière un proxy (<a class="reference internal" href="reseau.html#dep-r2"><span class="std std-ref">R2</span></a>), VS Code
+ne l’atteint pas.</p>
+</dd>
+<dt>Vérifier</dt><dd><p>Ouvrir <a class="reference external" href="https://marketplace.visualstudio.com">https://marketplace.visualstudio.com</a> dans Firefox.</p>
+</dd>
+<dt>Remède</dt><dd><p>Ouvrir la session réseau et relancer l’installation. Sans réseau, une
+extension s’installe depuis un fichier <code class="docutils literal notranslate"><span class="pre">.vsix</span></code> : panneau Extensions,
+bouton <code class="docutils literal notranslate"><span class="pre">…</span></code> en haut, « Install from VSIX… ». L’extension Python en
+demande deux autres, Pylance et Python Debugger, à installer de la même
+façon [à décider : fournir les <code class="docutils literal notranslate"><span class="pre">.vsix</span></code> avec l’archive du TD].</p>
+</dd>
+</dl>
+</section>
+<section id="v4-restricted-mode-l-extension-python-ne-fait-rien">
+<span id="dep-v4"></span><h3>V4. « Restricted Mode » : l’extension Python ne fait rien<a class="headerlink" href="#v4-restricted-mode-l-extension-python-ne-fait-rien" title="Lien vers cette rubrique">#</a></h3>
+<dl class="simple myst">
+<dt>Ce qu’on voit</dt><dd><p>« Restricted Mode » en bas de la fenêtre. « Python: Select Interpreter »
+n’est pas dans la palette. Aucun terminal ne s’ouvre, ou VS Code demande
+d’abord si on fait confiance au dossier.</p>
+</dd>
+<dt>Cause</dt><dd><p>Le dossier ouvert n’a pas été approuvé, et l’extension Python ne se
+charge que dans un dossier approuvé.</p>
+</dd>
+<dt>Remède</dt><dd><p>Cliquer sur « Restricted Mode » en bas de la fenêtre, puis « Trust ». Ou
+palette, « Workspaces: Manage Workspace Trust ».</p>
+</dd>
+</dl>
+</section>
+<section id="v5-le-terminal-de-vs-code-affiche-une-erreur-des-qu-il-s-ouvre">
+<span id="dep-v5"></span><h3>V5. Le terminal de VS Code affiche une erreur dès qu’il s’ouvre<a class="headerlink" href="#v5-le-terminal-de-vs-code-affiche-une-erreur-des-qu-il-s-ouvre" title="Lien vers cette rubrique">#</a></h3>
+<dl class="simple myst">
+<dt>Ce qu’on voit</dt><dd><p>À chaque nouveau terminal, une ligne de commande s’écrit toute seule,
+puis <code class="docutils literal notranslate"><span class="pre">…</span> <span class="pre">activate.ps1</span> <span class="pre">cannot</span> <span class="pre">be</span> <span class="pre">loaded</span> <span class="pre">because</span> <span class="pre">running</span> <span class="pre">scripts</span> <span class="pre">is</span> <span class="pre">disabled</span> <span class="pre">on</span> <span class="pre">this</span> <span class="pre">system</span></code> (<a class="reference internal" href="anaconda.html#dep-a7"><span class="std std-ref">A7</span></a>), <code class="docutils literal notranslate"><span class="pre">'conda'</span> <span class="pre">n'est</span> <span class="pre">pas</span> <span class="pre">reconnu</span></code>
+(<a class="reference internal" href="anaconda.html#dep-a2"><span class="std std-ref">A2</span></a>), ou <code class="docutils literal notranslate"><span class="pre">CondaError:</span> <span class="pre">Run</span> <span class="pre">'conda</span> <span class="pre">init'</span> <span class="pre">before</span> <span class="pre">'conda</span> <span class="pre">activate'</span></code>. L’invite ne commence pas par <code class="docutils literal notranslate"><span class="pre">(base)</span></code>.</p>
+</dd>
+<dt>Cause</dt><dd><p>Le terminal est un PowerShell, qui ne peut pas activer l’environnement
+sur les postes de la salle. Ou c’est un « Command Prompt » ordinaire, où
+l’extension Python tape <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">base</span></code> : cette commande ne marche
+dans un <code class="docutils literal notranslate"><span class="pre">cmd</span></code> qu’après un <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">init</span> <span class="pre">cmd.exe</span></code>, rarement fait sur les
+postes.</p>
+</dd>
+<dt>Remède</dt><dd><p>Faire le réglage du terminal, profil « Anaconda Prompt » (<a class="reference internal" href="../configuration/vscode_python.html"><span class="std std-doc">Python et
+environnement conda</span></a>). S’il est fait
+et que l’erreur reste : vérifier que le fichier a été enregistré, que
+l’onglet du terminal s’appelle « Anaconda Prompt », que les chemins sont
+ceux du raccourci « Anaconda Prompt », et faire palette, « Developer: Reload
+Window ». Si le fichier de réglages est souligné en rouge :
+<a class="reference internal" href="#dep-v10"><span class="std std-ref">V10</span></a>.</p>
+</dd>
+</dl>
+</section>
+<section id="v6-python-select-interpreter-ne-propose-pas-anaconda">
+<span id="dep-v6"></span><h3>V6. « Python: Select Interpreter » ne propose pas Anaconda<a class="headerlink" href="#v6-python-select-interpreter-ne-propose-pas-anaconda" title="Lien vers cette rubrique">#</a></h3>
+<dl class="simple myst">
+<dt>Ce qu’on voit</dt><dd><p>La liste ne contient que « Enter interpreter path… », ou des Python qui
+ne sont pas celui d’Anaconda (<code class="docutils literal notranslate"><span class="pre">C:\Python27</span></code>, le Python du Microsoft
+Store).</p>
+</dd>
+<dt>Cause</dt><dd><p>L’extension cherche Anaconda à plusieurs endroits du poste, dont
+<code class="docutils literal notranslate"><span class="pre">C:\ProgramData\anaconda3</span></code>. Elle ne le trouve pas quand il est installé
+ailleurs, ou quand la recherche a échoué une fois et que son résultat
+est resté en cache.</p>
+</dd>
+<dt>Remède</dt><dd><p>Cliquer « Enter interpreter path… », puis « Find… », et choisir le fichier
+<code class="docutils literal notranslate"><span class="pre">C:\ProgramData\anaconda3\python.exe</span></code>. Pour que la liste devienne
+complète (avec les environnements du TD 1h) : le réglage
+<code class="docutils literal notranslate"><span class="pre">python.condaPath</span></code>, décrit dans <a class="reference internal" href="../configuration/vscode_python.html"><span class="std std-doc">Python et environnement
+conda</span></a>, puis « Developer: Reload
+Window ». Le chemin exact est celui du raccourci « Anaconda Prompt »
+(<a class="reference internal" href="anaconda.html#dep-a1"><span class="std std-ref">A1</span></a>).</p>
+</dd>
+</dl>
+</section>
+<section id="v7-python-lance-un-autre-python-que-celui-d-anaconda">
+<span id="dep-v7"></span><h3>V7. <code class="docutils literal notranslate"><span class="pre">python</span></code> lance un autre Python que celui d’Anaconda<a class="headerlink" href="#v7-python-lance-un-autre-python-que-celui-d-anaconda" title="Lien vers cette rubrique">#</a></h3>
+<dl class="simple myst">
+<dt>Ce qu’on voit</dt><dd><p>« Python n’a pas été trouvé ; exécutez sans arguments pour l’installer à
+partir du Microsoft Store… ». Ou <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">2.7</span></code>. Ou <code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError</span></code>
+sur un module qui est pourtant dans <code class="docutils literal notranslate"><span class="pre">base</span></code>.</p>
+</dd>
+<dt>Cause</dt><dd><p>Sans environnement activé (<a class="reference internal" href="anaconda.html#dep-a3"><span class="std std-ref">A3</span></a>), <code class="docutils literal notranslate"><span class="pre">python</span></code> est le premier
+<code class="docutils literal notranslate"><span class="pre">python.exe</span></code> que Windows trouve : souvent un raccourci du Microsoft Store
+qui ne fait que proposer une installation, ou un vieux Python du poste
+(<a class="reference internal" href="../notions/variables_environnement.html"><span class="std std-doc">Variables d’environnement</span></a>).</p>
+</dd>
+<dt>Vérifier</dt><dd><p><code class="docutils literal notranslate"><span class="pre">where</span> <span class="pre">python</span></code> dans le terminal liste tous les <code class="docutils literal notranslate"><span class="pre">python.exe</span></code> trouvés,
+dans l’ordre. <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-c</span> <span class="pre">&quot;import</span> <span class="pre">sys;</span> <span class="pre">print(sys.executable)&quot;</span></code> dit lequel
+répond.</p>
+</dd>
+<dt>Remède</dt><dd><p>Employer un terminal <code class="docutils literal notranslate"><span class="pre">cmd</span></code> activé, par le réglage du terminal (<a class="reference internal" href="../configuration/vscode_python.html"><span class="std std-doc">Python et
+environnement conda</span></a>). Le bouton Run
+n’est pas concerné : il lance l’interpréteur choisi, par son chemin
+complet.</p>
+</dd>
+</dl>
+</section>
+<section id="v8-modulenotfounderror-alors-que-le-paquet-est-installe">
+<span id="dep-v8"></span><h3>V8. <code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError</span></code> alors que le paquet est installé<a class="headerlink" href="#v8-modulenotfounderror-alors-que-le-paquet-est-installe" title="Lien vers cette rubrique">#</a></h3>
+<dl class="simple myst">
+<dt>Ce qu’on voit</dt><dd><p><code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError:</span> <span class="pre">No</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">'pandas'</span></code> (ou un autre), alors que
+<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">list</span></code> dit que le paquet est là.</p>
+</dd>
+<dt>Cause</dt><dd><p>Le paquet est dans un environnement, et le programme s’exécute dans un
+autre. Trois choix indépendants désignent l’environnement : l’interpréteur
+(bouton Run), le terminal (ce qui y est activé), le noyau du notebook.</p>
+</dd>
+<dt>Vérifier</dt><dd><p>Dans chacun des trois, <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">sys;</span> <span class="pre">print(sys.executable)</span></code> : les chemins
+doivent être identiques. <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">list</span> <span class="pre">-n</span> <span class="pre">&lt;env&gt;</span> <span class="pre">&lt;paquet&gt;</span></code> dit dans quel
+environnement le paquet est.</p>
+</dd>
+<dt>Remède</dt><dd><p>Choisir le même environnement aux trois endroits (<a class="reference internal" href="../configuration/vscode_python.html"><span class="std std-doc">Python et
+environnement conda</span></a>,
+<a class="reference internal" href="jupyterlab.html#dep-j4"><span class="std std-ref">J4</span></a>), ou installer le paquet dans celui qui s’exécute :
+<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-n</span> <span class="pre">&lt;env&gt;</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">&lt;paquet&gt;</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="v9-le-raccourci-clavier-du-terminal-ne-repond-pas">
+<span id="dep-v9"></span><h3>V9. Le raccourci clavier du terminal ne répond pas<a class="headerlink" href="#v9-le-raccourci-clavier-du-terminal-ne-repond-pas" title="Lien vers cette rubrique">#</a></h3>
+<dl class="simple myst">
+<dt>Ce qu’on voit</dt><dd><p><code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">ù</span></code> n’ouvre rien, ou ouvre autre chose.</p>
+</dd>
+<dt>Cause</dt><dd><p>Le raccourci dépend de la disposition du clavier, et le poste n’a pas
+forcément celle attendue.</p>
+</dd>
+<dt>Remède</dt><dd><p>Menu Terminal, New Terminal. Ou palette, « Terminal: Create New
+Terminal ».</p>
+</dd>
+</dl>
+</section>
+<section id="v10-le-fichier-de-reglages-est-souligne-en-rouge-ou-ne-s-enregistre-pas">
+<span id="dep-v10"></span><h3>V10. Le fichier de réglages est souligné en rouge, ou ne s’enregistre pas<a class="headerlink" href="#v10-le-fichier-de-reglages-est-souligne-en-rouge-ou-ne-s-enregistre-pas" title="Lien vers cette rubrique">#</a></h3>
+<dl class="simple myst">
+<dt>Ce qu’on voit</dt><dd><p>« Unable to write into user settings. Please open the user settings to
+correct errors/warnings in it and try again ». Ou un réglage ajouté qui
+ne produit rien, avec une ligne soulignée en rouge dans <code class="docutils literal notranslate"><span class="pre">settings.json</span></code>.</p>
+</dd>
+<dt>Cause</dt><dd><p>Une erreur de syntaxe dans le fichier : virgule manquante entre deux
+réglages, virgule en trop avant l’accolade finale, barre oblique inverse
+simple dans un chemin.</p>
+</dd>
+<dt>Vérifier</dt><dd><p>Palette, « Preferences: Open User Settings (JSON) ». Le panneau Problems
+(<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">M</span></code>) indique la ligne.</p>
+</dd>
+<dt>Remède</dt><dd><p>Corriger la ligne indiquée. Chaque réglage est séparé du suivant par une
+virgule ; le dernier n’en a pas ; les chemins s’écrivent avec <code class="docutils literal notranslate"><span class="pre">\\</span></code>. En
+cas de doute, passer par l’interface : palette, « Preferences: Open
+Settings (UI) », qui écrit le fichier elle-même.</p>
+</dd>
+</dl>
+</section>
+<section id="v11-error-loading-webview-could-not-register-service-worker">
+<span id="dep-v11"></span><h3>V11. « Error loading webview: Could not register service worker »<a class="headerlink" href="#v11-error-loading-webview-could-not-register-service-worker" title="Lien vers cette rubrique">#</a></h3>
+<dl class="simple myst">
+<dt>Ce qu’on voit</dt><dd><p>À l’ouverture de l’aperçu Markdown (<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">V</span></code>), d’un
+notebook ou de la page des réglages, un cadre vide avec <code class="docutils literal notranslate"><span class="pre">Error</span> <span class="pre">loading</span> <span class="pre">webview:</span> <span class="pre">Error:</span> <span class="pre">Could</span> <span class="pre">not</span> <span class="pre">register</span> <span class="pre">service</span> <span class="pre">worker:</span> <span class="pre">InvalidStateError:</span> <span class="pre">Failed</span> <span class="pre">to</span> <span class="pre">register</span> <span class="pre">a</span> <span class="pre">ServiceWorker:</span> <span class="pre">The</span> <span class="pre">document</span> <span class="pre">is</span> <span class="pre">in</span> <span class="pre">an</span> <span class="pre">invalid</span> <span class="pre">state</span></code>.</p>
+</dd>
+<dt>Cause</dt><dd><p>Ces vues sont des pages web internes, servies par un programme de cache
+du navigateur intégré, le <em>service worker</em>. Son cache est dans le profil
+du compte, <code class="docutils literal notranslate"><span class="pre">C:\Users\&lt;nom&gt;\AppData\Roaming\Code\Service</span> <span class="pre">Worker</span></code>. Quand
+il a été écrit par une version antérieure de VS Code, la version en
+place ne parvient plus à l’enregistrer. Sur les postes de la salle, le
+profil date de la création de l’image et a traversé plusieurs mises à
+jour de VS Code.</p>
+</dd>
+<dt>Vérifier</dt><dd><p>Dans l’explorateur de fichiers, la date de modification du dossier
+<code class="docutils literal notranslate"><span class="pre">Service</span> <span class="pre">Worker</span></code> est antérieure au dernier démarrage de VS Code.</p>
+</dd>
+<dt>Remède</dt><dd><p>D’abord palette, « Developer: Reload Webviews », qui suffit parfois pour
+la session. Sinon, fermer VS Code entièrement, puis dans un <code class="docutils literal notranslate"><span class="pre">cmd</span></code>
+supprimer les caches, que VS Code recrée au démarrage suivant :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rmdir</span> <span class="o">/</span><span class="n">s</span> <span class="o">/</span><span class="n">q</span> <span class="s2">"%APPDATA%\Code\Service Worker"</span>
+<span class="n">rmdir</span> <span class="o">/</span><span class="n">s</span> <span class="o">/</span><span class="n">q</span> <span class="s2">"%APPDATA%\Code\Cache"</span>
+<span class="n">rmdir</span> <span class="o">/</span><span class="n">s</span> <span class="o">/</span><span class="n">q</span> <span class="s2">"%APPDATA%\Code\Code Cache"</span>
+<span class="n">rmdir</span> <span class="o">/</span><span class="n">s</span> <span class="o">/</span><span class="n">q</span> <span class="s2">"%APPDATA%\Code\CachedData"</span>
+<span class="n">rmdir</span> <span class="o">/</span><span class="n">s</span> <span class="o">/</span><span class="n">q</span> <span class="s2">"%APPDATA%\Code\GPUCache"</span>
+</pre></div>
+</div>
+<p>Les réglages (<code class="docutils literal notranslate"><span class="pre">User\</span></code>), les extensions et l’historique des fichiers
+ouverts ne sont pas dans ces dossiers. Relancer VS Code et rouvrir
+l’aperçu. Si l’erreur reste, un antivirus ou une stratégie empêche
+l’écriture dans <code class="docutils literal notranslate"><span class="pre">Service</span> <span class="pre">Worker</span></code> : lancer <code class="docutils literal notranslate"><span class="pre">code</span> <span class="pre">--verbose</span></code> depuis un
+<code class="docutils literal notranslate"><span class="pre">cmd</span></code> affiche le refus dans la console.</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="jupyterlab.html"
+       title="page précédente">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">précédent</p>
+        <p class="prev-next-title">Problèmes avec JupyterLab et les notebooks</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="git.html"
+       title="page suivante">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">suivant</p>
+        <p class="prev-next-title">Problèmes avec git</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problemes">Problèmes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#v1-vs-code-n-est-pas-dans-le-menu-demarrer">V1. VS Code n’est pas dans le menu Démarrer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#v2-vs-code-ne-trouve-pas-python-selon-d-ou-on-l-a-lance">V2. VS Code ne trouve pas Python selon d’où on l’a lancé</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#v3-l-extension-python-ne-s-installe-pas">V3. L’extension Python ne s’installe pas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#v4-restricted-mode-l-extension-python-ne-fait-rien">V4. « Restricted Mode » : l’extension Python ne fait rien</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#v5-le-terminal-de-vs-code-affiche-une-erreur-des-qu-il-s-ouvre">V5. Le terminal de VS Code affiche une erreur dès qu’il s’ouvre</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#v6-python-select-interpreter-ne-propose-pas-anaconda">V6. « Python: Select Interpreter » ne propose pas Anaconda</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#v7-python-lance-un-autre-python-que-celui-d-anaconda">V7. <code class="docutils literal notranslate"><span class="pre">python</span></code> lance un autre Python que celui d’Anaconda</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#v8-modulenotfounderror-alors-que-le-paquet-est-installe">V8. <code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError</span></code> alors que le paquet est installé</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#v9-le-raccourci-clavier-du-terminal-ne-repond-pas">V9. Le raccourci clavier du terminal ne répond pas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#v10-le-fichier-de-reglages-est-souligne-en-rouge-ou-ne-s-enregistre-pas">V10. Le fichier de réglages est souligné en rouge, ou ne s’enregistre pas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#v11-error-loading-webview-could-not-register-service-worker">V11. « Error loading webview: Could not register service worker »</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par 1re année géomatique
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, module info01 — CC-BY-4.0.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

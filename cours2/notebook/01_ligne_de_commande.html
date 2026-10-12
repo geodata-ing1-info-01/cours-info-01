@@ -1,0 +1,843 @@
+
+<!DOCTYPE html>
+
+
+<html lang="fr" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>La ligne de commande &#8212; Introduction à l&#39;informatique</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../_static/documentation_options.js?v=72dce1d2"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../../_static/translations.js?v=e6b791cb"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cours2/notebook/01_ligne_de_commande';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Recherche" href="../../search.html" />
+    <link rel="next" title="Git et le dépôt local" href="02_depot_local.html" />
+    <link rel="prev" title="Séance 2, 2026 — Ligne de commande et git local" href="../index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="fr"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Passer au contenu principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Haut de page</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Alerte de version"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navigation dans le site">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="Sur cette page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction à l'informatique</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Introduction à l’informatique
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Avant les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../avant/poste.html">Premiers tests du poste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../avant/donnees.html">Récupérer les fichiers d’une séance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../avant/python.html">Anaconda et JupyterLab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../avant/vscode.html">VS Code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Après les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../apres/sauvegarder.html">Sauvegarder son travail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../apres/s_entrainer.html">S’entraîner : jeux et exercices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours1_v2/index.html">Séance 1, version 2 — Logiciels, fichiers, terminal et premier programme</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1_v2/notebook/01_logiciels_stockage.html">Logiciels, fichiers et stockage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1_v2/notebook/02_terminal.html">Le terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1_v2/notebook/03_premier_programme.html">Premier programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1_v2/notebook/04_notebook.html">Un notebook et la syntaxe de Markdown</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours1_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 1, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1_v2/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1_v2/notebook/td/1b_terminal/guide.html">TD 1b — Les fichiers du TD 1a en ligne de commande</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1_v2/notebook/td/1c_programme/guide.html">TD 1c — Écrire et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1_v2/notebook/td/1d_notebook/guide.html">TD 1d — Un notebook dans JupyterLab</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours2_v2/index.html">Séance 2, version 2 — Éditeur de code, Markdown et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2_v2/notebook/01_editeur_de_code.html">L’éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2_v2/notebook/02_markdown.html">Une recette en Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2_v2/notebook/03_git_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2_v2/notebook/04_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours2_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2_v2/notebook/td/2a_vscode/guide.html">TD 2a — Configurer VS Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2_v2/notebook/td/2b_erreurs/guide.html">TD 2b — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2_v2/notebook/td/2c_markdown/guide.html">TD 2c — Une recette en Markdown, convertie par pandoc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2_v2/notebook/td/2d_depot_recette/guide.html">TD 2d — Un dépôt git pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours3/index.html">Séance 3 — Chemins, fichiers et ligne de commande</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours3/notebook/01_chemins_programmes.html">Chemins et programmes externes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours3/notebook/02_fichiers_encodage.html">Fichiers et encodage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours3/notebook/03_du_notebook_au_programme.html">Du notebook au programme</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours3/notebook/travaux_diriges.html">Travaux dirigés de la séance 3</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours3/notebook/td/3e_markdown/guide.html">TD 3e — Une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours3/notebook/td/3f_cli/guide.html">TD 3f — Une ligne de commande pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours4/index.html">Séance 4 — Projet d’application 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours4/notebook/travaux_diriges.html">Travaux dirigés du projet 4</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours4/notebook/td/4a_recette/guide.html">TD 4a — Un script Python, pas à pas</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../cours4/notebook/td/4b_paquet/guide.html">TD 4b — Un programme installable</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours5/index.html">Séance 5 — Matériel, réseau, mots de passe, clés SSH et secrets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours5/notebook/01_materiel.html">Le matériel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours5/notebook/02_reseau.html">Le réseau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours5/notebook/03_prouver_qui_lon_est.html">Prouver qui l’on est</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours5/notebook/04_secrets.html">Les secrets de vos programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours5/notebook/travaux_diriges.html">Travaux dirigés de la séance 5</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cours6/index.html">Séance 6 — La forge, sur le dépôt du projet 4</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours7/index.html">Séance 7 — Projet d’application 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours7/notebook/td/7a_recette/guide.html">TD 7a — Compléter son projet, par des pull requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours7/notebook/td/7b_train/guide.html">TD 7b — Reprendre et compléter le projet d’un autre</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Annexes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../annexes/configuration/index.html">Configuration des postes de la salle</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/configuration/anaconda.html">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/configuration/jupyterlab.html">JupyterLab</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../annexes/configuration/vscode.html">VS Code</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../annexes/configuration/vscode_python.html">Python et environnement conda</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../annexes/configuration/vscode_notebooks.html">Notebooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../annexes/configuration/vscode_reglages.html">Fichiers de réglages</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/configuration/git.html">Git et Git Bash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/configuration/spyder.html">Spyder</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../annexes/poste_personnel/index.html">Configuration d’un ordinateur personnel</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/poste_personnel/conda.html">Python et conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/poste_personnel/vscode.html">VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/poste_personnel/git_outils.html">Git et éditeurs de texte</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../annexes/notions/index.html">Notions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/notions/outils.html">Choisir entre JupyterLab, Spyder et VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/notions/notebooks.html">Les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/notions/terminaux.html">Les terminaux en ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/notions/variables_environnement.html">Variables d’environnement et recherche des programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/notions/environnements.html">Les environnements conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/notions/vscode_environnements.html">Comment VS Code gère les environnements Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/notions/git_bash.html">Git Bash : une fenêtre, bash et des programmes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../annexes/faq.html">FAQ</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/problemes/reseau.html">Problèmes de réseau et de compte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/problemes/bureautique.html">Problèmes avec les logiciels de texte et de bureautique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/problemes/anaconda.html">Problèmes avec Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/problemes/jupyterlab.html">Problèmes avec JupyterLab et les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/problemes/vscode.html">Problèmes avec VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/problemes/git.html">Problèmes avec git</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../annexes/plus_loin/index.html">Pour aller plus loin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/plus_loin/gestionnaires.html">venv, uv et pixi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/plus_loin/cpp.html">C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/plus_loin/programme_interpreteur.html">Programme, application et interpréteur</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Archive 2026</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours1/index.html">Séance 1, 2026 — Logiciel, programmation et formats de fichier</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1/notebook/01_logiciels_et_formats.html">Logiciels et formats de fichier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1/notebook/02_programmation.html">Programmation et éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1/notebook/03_markdown_notebook.html">Markdown et notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1/notebook/04_bibliotheques_environnements.html">Bibliothèques et environnements Python</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours1/notebook/travaux_diriges.html">Travaux dirigés de la séance 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1b_archive_odt/guide.html">TD 1b — Un .odt est une archive ZIP (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1c_vscode_python/guide.html">TD 1c — Configurer l’éditeur de code, et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1d_erreurs/guide.html">TD 1d — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1e_hello_cpp/guide.html">TD 1e — Le même programme en C++ (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1f_markdown/guide.html">TD 1f — Mettre en forme une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1g_notebooks/guide.html">TD 1g — Le notebook, ouvert de trois façons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1h_recette/guide.html">TD 1h — Installer un projet Python, et décrire son installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1i_noyaux/guide.html">TD 1i — Le client, le noyau, et où ils sont installés (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1j_trajet/guide.html">TD 1j — Installer un projet en lisant son README (facultatif)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1/notebook/05_comparer_versions.html">Annexe — Comparer deux versions d’un fichier</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Séance 2, 2026 — Ligne de commande et git local</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">La ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_depot_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_lire_et_tenir_un_depot.html">Lire et tenir un dépôt</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="travaux_diriges.html">Travaux dirigés de la séance 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="td/2a_premier_depot/guide.html">TD 2a — Un premier dépôt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="td/2b_branches/guide.html">TD 2b — Branches et fusions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="td/2c_annuler/guide.html">TD 2c — Annuler et remettre à jour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="td/2d_conflits/guide.html">TD 2d — Créer et résoudre un conflit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="td/2e_livrer/guide.html">TD 2e — Publier une version</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Thème">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Thème" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Clair"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Sombre"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="Paramètres système"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>Paramètres système</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Clair</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Sombre</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>La ligne de commande</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#le-terminal">Le terminal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-forme-d-une-commande">La forme d’une commande</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#les-commandes-de-base">Les commandes de base</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#les-chemins-dans-le-terminal">Les chemins dans le terminal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#les-fichiers-caches">Les fichiers cachés</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#designer-plusieurs-fichiers-les-motifs">Désigner plusieurs fichiers : les motifs</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="la-ligne-de-commande">
+<h1>La ligne de commande<a class="headerlink" href="#la-ligne-de-commande" title="Lien vers cette rubrique">#</a></h1>
+<p>Cette partie présente le terminal, le logiciel dans lequel on tape des
+commandes, puis la forme commune à toutes les commandes et celles qui servent
+à se déplacer dans les dossiers et à manipuler des fichiers. Elle reprend
+ensuite le chemin d’un fichier, vu au cours 1, tel qu’il s’écrit dans le
+terminal, et les motifs qui désignent plusieurs fichiers à la fois. La partie
+n’a pas de TD propre : ses commandes servent dans tous les TD de la séance, à
+partir du <a class="reference internal" href="td/2a_premier_depot/guide.html"><span class="std std-doc">TD 2a</span></a>.</p>
+<section id="le-terminal">
+<h2>Le terminal<a class="headerlink" href="#le-terminal" title="Lien vers cette rubrique">#</a></h2>
+<dl class="simple myst">
+<dt>Un <strong>terminal</strong> est une interface textuelle entre la personne et l’ordinateur</dt><dd><p>on y tape une commande au clavier, on la valide par Entrée, et le résultat
+s’affiche en texte, sous la commande. Les logiciels à fenêtres, comme
+l’explorateur de fichiers, sont des interfaces graphiques : on y agit avec la
+souris, sur des boutons et des menus.</p>
+</dd>
+</dl>
+<p>Le programme qui lit les commandes tapées dans le terminal et les exécute
+s’appelle un <strong>interpréteur de commandes</strong>, ou <em>shell</em>. Chaque interpréteur a
+son langage. Celui de la séance est <strong>bash</strong>, l’interpréteur par défaut de
+Linux, disponible aussi sous macOS. Sous Windows, l’interpréteur par défaut
+est PowerShell, dont les commandes s’écrivent autrement ; bash y est installé
+avec git, dans une fenêtre appelée Git Bash. La page <a class="reference internal" href="../../annexes/configuration/git.html"><span class="std std-doc">Git et Git
+Bash</span></a> décrit comment l’ouvrir sur les
+postes de la salle.</p>
+<p>Le terminal affiche une <strong>invite</strong> avant chaque commande : une ligne qui
+indique l’utilisateur et le dossier dans lequel il travaille.</p>
+<figure class="align-default" id="id1">
+<img alt="Une fenêtre de terminal Ubuntu. L'invite est (base) FGeniet&#64;LNV2410P066:~/SIMV/itowns-2.46.0$ suivie du curseur. Une accolade sous FGeniet&#64;LNV2410P066 porte « Utilisateur », une sous ~/SIMV/itowns-2.46.0 porte « Dossier courant », une sous le $ porte « Zone d'écriture pour l'utilisateur »." src="../../_images/1_invite.svg" />
+<figcaption>
+<p><span class="caption-text">L’invite de bash sur un poste Linux : l’utilisateur et la machine, le dossier
+courant, puis le signe <code class="docutils literal notranslate"><span class="pre">$</span></code> après lequel on écrit.</span><a class="headerlink" href="#id1" title="Lien vers cette image">#</a></p>
+</figcaption>
+</figure>
+<p>L’invite contient trois informations.</p>
+<ul class="simple">
+<li><p>L”<strong>utilisateur</strong> et le nom de la machine, séparés par <code class="docutils literal notranslate"><span class="pre">&#64;</span></code>.</p></li>
+<li><p>Le <strong>dossier courant</strong>, le dossier dans lequel le terminal travaille. Une
+commande qui nomme un fichier sans donner son chemin complet le cherche
+dans ce dossier. Le signe <code class="docutils literal notranslate"><span class="pre">~</span></code> désigne le dossier personnel de
+l’utilisateur.</p></li>
+<li><p>Le signe <code class="docutils literal notranslate"><span class="pre">$</span></code>, après lequel la commande s’écrit.</p></li>
+</ul>
+<p>Le préfixe <code class="docutils literal notranslate"><span class="pre">(base)</span></code> est le nom de l’environnement conda actif, vu au cours 1.
+Dans Git Bash, sur un poste de la salle, l’invite tient sur deux lignes : la
+première donne l’utilisateur, la machine et le dossier courant, sous la forme
+<code class="docutils literal notranslate"><span class="pre">eleve&#64;POSTE</span> <span class="pre">MINGW64</span> <span class="pre">~/Desktop/info01</span></code> ; la seconde commence par <code class="docutils literal notranslate"><span class="pre">$</span></code>.</p>
+</section>
+<section id="la-forme-d-une-commande">
+<h2>La forme d’une commande<a class="headerlink" href="#la-forme-d-une-commande" title="Lien vers cette rubrique">#</a></h2>
+<p>Toutes les commandes bash s’écrivent de la même façon : le nom de la commande,
+puis des options, puis des arguments, séparés par des espaces.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>commande [-o] [--option-longue] &lt;argument&gt;
+</pre></div>
+</div>
+<dl class="simple myst">
+<dt>Commande</dt><dd><p>Le nom du programme à lancer : <code class="docutils literal notranslate"><span class="pre">ls</span></code>, <code class="docutils literal notranslate"><span class="pre">cd</span></code>, <code class="docutils literal notranslate"><span class="pre">git</span></code>.</p>
+</dd>
+<dt>Option</dt><dd><p>Un réglage qui modifie ce que fait la commande. Une option courte est une
+lettre précédée d’un tiret, <code class="docutils literal notranslate"><span class="pre">-a</span></code> ; une option longue est un mot précédé de
+deux tirets, <code class="docutils literal notranslate"><span class="pre">--all</span></code>. Plusieurs options courtes se regroupent derrière un
+seul tiret : <code class="docutils literal notranslate"><span class="pre">-la</span></code> vaut <code class="docutils literal notranslate"><span class="pre">-l</span> <span class="pre">-a</span></code>.</p>
+</dd>
+<dt>Argument</dt><dd><p>Ce sur quoi la commande agit, le plus souvent un nom de fichier ou de
+dossier.</p>
+</dd>
+</dl>
+<p>Dans la documentation des commandes, et dans celle-ci, les crochets <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">]</span></code>
+entourent ce qui est facultatif, et les chevrons <code class="docutils literal notranslate"><span class="pre">&lt;</span> <span class="pre">&gt;</span></code> ce qui est à remplacer
+par une valeur. On ne les tape pas : <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">&lt;dossier&gt;</span></code> se tape <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">travail</span></code>.</p>
+<p>Presque toutes les commandes décrivent leurs options quand on leur passe
+l’option <code class="docutils literal notranslate"><span class="pre">--help</span></code> :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ls --help
+</pre></div>
+</div>
+</section>
+<section id="les-commandes-de-base">
+<h2>Les commandes de base<a class="headerlink" href="#les-commandes-de-base" title="Lien vers cette rubrique">#</a></h2>
+<p>Les commandes suivantes font au clavier ce que l’explorateur de fichiers fait
+à la souris.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Commande</p></th>
+<th class="head"><p>Ce qu’elle fait</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pwd</span></code></p></td>
+<td><p>affiche le chemin du dossier courant</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">[dossier]</span></code></p></td>
+<td><p>liste les fichiers et sous-dossiers d’un dossier, par défaut le dossier courant</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">&lt;dossier&gt;</span></code></p></td>
+<td><p>change de dossier courant</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">&lt;dossier&gt;</span></code></p></td>
+<td><p>crée un dossier</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">touch</span> <span class="pre">&lt;fichier&gt;</span></code></p></td>
+<td><p>crée un fichier vide</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">&lt;source&gt;</span> <span class="pre">&lt;destination&gt;</span></code></p></td>
+<td><p>copie un fichier ; avec <code class="docutils literal notranslate"><span class="pre">-r</span></code>, un dossier et son contenu</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mv</span> <span class="pre">&lt;source&gt;</span> <span class="pre">&lt;destination&gt;</span></code></p></td>
+<td><p>déplace un fichier ou un dossier, ou le renomme</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">&lt;fichier&gt;</span></code></p></td>
+<td><p>supprime un fichier ; avec <code class="docutils literal notranslate"><span class="pre">-r</span></code>, un dossier et son contenu</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Dans le dossier de la séance, <code class="docutils literal notranslate"><span class="pre">ls</span></code> affiche le nom des dossiers de TD :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ ls
+2a_premier_depot  2b_branches  2c_annuler  2d_conflits  2e_livrer  README.md
+$ ls 2d_conflits/depart
+main_operations.py  main_regex.py
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">ls</span></code> n’affiche rien d’autre que les noms. Une commande qui réussit sans
+résultat à montrer, comme <code class="docutils literal notranslate"><span class="pre">cd</span></code> ou <code class="docutils literal notranslate"><span class="pre">mkdir</span></code>, n’affiche rien du tout : le
+terminal affiche seulement l’invite suivante. Une commande qui échoue affiche
+un message d’erreur.</p>
+<div class="admonition warning">
+<p class="admonition-title">Avertissement</p>
+<p><code class="docutils literal notranslate"><span class="pre">rm</span></code> supprime sans demander de confirmation et sans passer par la corbeille.
+Un fichier supprimé par <code class="docutils literal notranslate"><span class="pre">rm</span></code> ne se récupère pas. Vérifier le dossier courant
+avec <code class="docutils literal notranslate"><span class="pre">pwd</span></code>, et la liste des fichiers visés avec <code class="docutils literal notranslate"><span class="pre">ls</span></code>, avant de lancer <code class="docutils literal notranslate"><span class="pre">rm</span></code>.</p>
+</div>
+<p>La touche Tab complète un nom de fichier ou de dossier commencé : taper <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">2d</span></code>, puis Tab, écrit <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">2d_conflits/</span></code>. La flèche vers le haut rappelle les
+commandes précédentes.</p>
+</section>
+<section id="les-chemins-dans-le-terminal">
+<h2>Les chemins dans le terminal<a class="headerlink" href="#les-chemins-dans-le-terminal" title="Lien vers cette rubrique">#</a></h2>
+<p>Le cours 1 a défini le chemin d’un fichier, absolu ou relatif (<a class="reference internal" href="../../cours1/notebook/01_logiciels_et_formats.html"><span class="std std-doc">Logiciels et
+formats de fichier</span></a>). Dans
+bash, un chemin s’écrit avec des barres obliques, <code class="docutils literal notranslate"><span class="pre">/</span></code>, sous Linux et macOS
+comme dans Git Bash sous Windows.</p>
+<p>Les fichiers et les dossiers forment un arbre. La <strong>racine</strong> de l’arbre est un
+dossier qui contient tous les autres, et que bash note <code class="docutils literal notranslate"><span class="pre">/</span></code>.</p>
+<figure class="align-default" id="id2">
+<img alt="Un arbre de dossiers. La racine / contient users, libs et etc ; etc contient ssh et c++ ; ssh contient ssh_config.json. Le chemin de la racine à ssh_config.json, par etc puis ssh, est en rouge." src="../../_images/1_chemin_absolu.svg" />
+<figcaption>
+<p><span class="caption-text">Le chemin absolu de <code class="docutils literal notranslate"><span class="pre">ssh_config.json</span></code> part de la racine : <code class="docutils literal notranslate"><span class="pre">/etc/ssh/ssh_config.json</span></code>.</span><a class="headerlink" href="#id2" title="Lien vers cette image">#</a></p>
+</figcaption>
+</figure>
+<p>Un <strong>chemin absolu</strong> part de la racine, et commence donc par <code class="docutils literal notranslate"><span class="pre">/</span></code>. Il désigne
+le même fichier quel que soit le dossier courant du terminal. Sur l’arbre
+ci-dessus, le chemin absolu de <code class="docutils literal notranslate"><span class="pre">ssh_config.json</span></code> est
+<code class="docutils literal notranslate"><span class="pre">/etc/ssh/ssh_config.json</span></code>.</p>
+<figure class="align-default" id="id3">
+<img alt="Le même arbre. Le terminal est ouvert dans le dossier c++. Le chemin qui remonte de c++ à etc, puis descend dans ssh jusqu'à ssh_config.json, est en vert." src="../../_images/1_chemin_relatif.svg" />
+<figcaption>
+<p><span class="caption-text">Depuis le dossier <code class="docutils literal notranslate"><span class="pre">c++</span></code>, le chemin relatif de <code class="docutils literal notranslate"><span class="pre">ssh_config.json</span></code> remonte
+d’un dossier, puis descend : <code class="docutils literal notranslate"><span class="pre">../ssh/ssh_config.json</span></code>.</span><a class="headerlink" href="#id3" title="Lien vers cette image">#</a></p>
+</figcaption>
+</figure>
+<p>Un <strong>chemin relatif</strong> part du dossier courant du terminal. Deux points, <code class="docutils literal notranslate"><span class="pre">..</span></code>,
+désignent le dossier parent, et un point, <code class="docutils literal notranslate"><span class="pre">.</span></code>, le dossier courant. Si le
+terminal est ouvert dans <code class="docutils literal notranslate"><span class="pre">c++</span></code>, le chemin relatif de <code class="docutils literal notranslate"><span class="pre">ssh_config.json</span></code> est
+<code class="docutils literal notranslate"><span class="pre">../ssh/ssh_config.json</span></code> : <code class="docutils literal notranslate"><span class="pre">..</span></code> remonte dans <code class="docutils literal notranslate"><span class="pre">etc</span></code>, puis <code class="docutils literal notranslate"><span class="pre">ssh/</span></code> descend dans
+<code class="docutils literal notranslate"><span class="pre">ssh</span></code>. Le même chemin tapé depuis un autre dossier désigne un autre fichier,
+ou aucun.</p>
+<p>Sous Windows, Git Bash écrit le disque <code class="docutils literal notranslate"><span class="pre">C:</span></code> comme un dossier de la racine,
+<code class="docutils literal notranslate"><span class="pre">/c</span></code>. Le dossier de la séance sur les postes de la salle,
+<code class="docutils literal notranslate"><span class="pre">C:\Users\eleve\Desktop\info01\cours2</span></code>, s’écrit donc
+<code class="docutils literal notranslate"><span class="pre">/c/Users/eleve/Desktop/info01/cours2</span></code>, ou <code class="docutils literal notranslate"><span class="pre">~/Desktop/info01/cours2</span></code>, puisque
+<code class="docutils literal notranslate"><span class="pre">~</span></code> désigne <code class="docutils literal notranslate"><span class="pre">/c/Users/eleve</span></code>. Dans les chemins relatifs, rien ne change : <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">../2b_branches</span></code> fonctionne de la même façon sous les trois systèmes.</p>
+</section>
+<section id="les-fichiers-caches">
+<h2>Les fichiers cachés<a class="headerlink" href="#les-fichiers-caches" title="Lien vers cette rubrique">#</a></h2>
+<p>Un fichier ou un dossier dont le nom commence par un point est <strong>caché</strong> :
+<code class="docutils literal notranslate"><span class="pre">ls</span></code> ne l’affiche pas, et l’explorateur de fichiers non plus. Les logiciels y
+enregistrent leurs réglages et leurs données de travail. Git enregistre les
+siennes dans un dossier caché, <code class="docutils literal notranslate"><span class="pre">.git</span></code>, sujet de la partie suivante ; SSH
+enregistre les clés du cours 6 dans <code class="docutils literal notranslate"><span class="pre">.ssh</span></code>.</p>
+<p>L’option <code class="docutils literal notranslate"><span class="pre">-a</span></code> de <code class="docutils literal notranslate"><span class="pre">ls</span></code> affiche aussi les éléments cachés :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ ls -a
+.  ..  README.md  td_2a_premier_depot.pdf  travail
+</pre></div>
+</div>
+<p>La liste commence par <code class="docutils literal notranslate"><span class="pre">.</span></code> et <code class="docutils literal notranslate"><span class="pre">..</span></code>, le dossier courant et son parent, que tout
+dossier contient. Dans l’explorateur de fichiers de Windows, le menu
+Affichage, Afficher, Éléments masqués fait apparaître les éléments cachés ;
+sous Ubuntu, le raccourci est <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">H</span></code>.</p>
+</section>
+<section id="designer-plusieurs-fichiers-les-motifs">
+<h2>Désigner plusieurs fichiers : les motifs<a class="headerlink" href="#designer-plusieurs-fichiers-les-motifs" title="Lien vers cette rubrique">#</a></h2>
+<p>Un <strong>motif</strong> désigne en une fois tous les fichiers dont le nom a une certaine
+forme. Bash remplace le motif par la liste des noms qui lui correspondent,
+avant de lancer la commande. Trois caractères ont un sens particulier.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Caractère</p></th>
+<th class="head"><p>Ce qu’il remplace</p></th>
+<th class="head"><p>Exemple</p></th>
+<th class="head"><p>Ce que l’exemple désigne</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">*</span></code></p></td>
+<td><p>n’importe quelle suite de caractères, y compris aucune</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">*.pdf</span></code></p></td>
+<td><p>tous les fichiers du dossier courant dont le nom finit par <code class="docutils literal notranslate"><span class="pre">.pdf</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">?</span></code></p></td>
+<td><p>exactement un caractère</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">reunion_?.txt</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">reunion_1.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">reunion_a.txt</span></code>, mais pas <code class="docutils literal notranslate"><span class="pre">reunion_12.txt</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">]</span></code></p></td>
+<td><p>un seul caractère, pris dans la liste entre crochets</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">mo[tn]o.jpg</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">moto.jpg</span></code> et <code class="docutils literal notranslate"><span class="pre">mono.jpg</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Un motif peut contenir des <code class="docutils literal notranslate"><span class="pre">/</span></code> : <code class="docutils literal notranslate"><span class="pre">*/depart/*.py</span></code> désigne tous les fichiers
+<code class="docutils literal notranslate"><span class="pre">.py</span></code> des dossiers <code class="docutils literal notranslate"><span class="pre">depart</span></code> des sous-dossiers du dossier courant.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ ls */depart/*.py
+2b_branches/depart/main_base.py
+2d_conflits/depart/main_operations.py
+2d_conflits/depart/main_regex.py
+</pre></div>
+</div>
+<p>Entre crochets, un tiret donne un intervalle : <code class="docutils literal notranslate"><span class="pre">reunion_[0-9][0-9].txt</span></code>
+désigne les fichiers <code class="docutils literal notranslate"><span class="pre">reunion_</span></code> suivis de deux chiffres. Un <code class="docutils literal notranslate"><span class="pre">*</span></code> ne traverse
+pas les dossiers : <code class="docutils literal notranslate"><span class="pre">/users/FGeniet/*.jpg</span></code> désigne les images du dossier
+<code class="docutils literal notranslate"><span class="pre">FGeniet</span></code>, et pas celles de ses sous-dossiers.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Les diapositives appellent ces motifs des expressions régulières. Les deux
+existent et se ressemblent, mais leur syntaxe diffère. Les motifs, en anglais
+<em>glob</em>, sont ceux de bash et ne servent qu’à désigner des noms de fichiers.
+Les expressions régulières servent à chercher un texte dans un autre, dans la
+commande <code class="docutils literal notranslate"><span class="pre">grep</span></code> ou le module <code class="docutils literal notranslate"><span class="pre">re</span></code> de Python ; <code class="docutils literal notranslate"><span class="pre">*</span></code> y signifie « le caractère
+précédent, répété zéro fois ou plus ». Le TD 2d en emploie une, en Python.</p>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../index.html"
+       title="page précédente">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">précédent</p>
+        <p class="prev-next-title">Séance 2, 2026 — Ligne de commande et git local</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="02_depot_local.html"
+       title="page suivante">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">suivant</p>
+        <p class="prev-next-title">Git et le dépôt local</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#le-terminal">Le terminal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-forme-d-une-commande">La forme d’une commande</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#les-commandes-de-base">Les commandes de base</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#les-chemins-dans-le-terminal">Les chemins dans le terminal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#les-fichiers-caches">Les fichiers cachés</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#designer-plusieurs-fichiers-les-motifs">Désigner plusieurs fichiers : les motifs</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par 1re année géomatique
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, module info01 — CC-BY-4.0.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

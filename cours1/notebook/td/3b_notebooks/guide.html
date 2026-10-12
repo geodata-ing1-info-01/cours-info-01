@@ -1,0 +1,979 @@
+
+<!DOCTYPE html>
+
+
+<html lang="fr" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>TD 3b — Le notebook, ouvert de trois façons &#8212; Introduction à l&#39;informatique</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../../../_static/documentation_options.js?v=72dce1d2"></script>
+    <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../../../../_static/translations.js?v=e6b791cb"></script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cours1/notebook/td/3b_notebooks/guide';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="../../../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Recherche" href="../../../../search.html" />
+    <link rel="next" title="TD 4a — Installer un projet Python, et décrire son installation" href="../4a_recette/guide.html" />
+    <link rel="prev" title="TD 3a — Mettre en forme une recette en Markdown" href="../3a_markdown/guide.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="fr"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../../../_static/searchtools.js"></script>
+    <script src="../../../../_static/language_data.js"></script>
+    <script src="../../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Passer au contenu principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Haut de page</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Alerte de version"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navigation dans le site">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="Sur cette page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction à l'informatique</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../index.html">
+                    Introduction à l’informatique
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Avant les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/poste.html">Premiers tests du poste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/donnees.html">Récupérer les fichiers d’une séance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/python.html">Anaconda et JupyterLab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/vscode.html">VS Code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Après les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../apres/sauvegarder.html">Sauvegarder son travail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../apres/s_entrainer.html">S’entraîner : jeux et exercices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours1_v2/index.html">Séance 1, version 2 — Logiciels, fichiers, terminal et premier programme</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/01_logiciels_stockage.html">Logiciels, fichiers et stockage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/02_terminal.html">Le terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/03_premier_programme.html">Premier programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/04_notebook.html">Un notebook et la syntaxe de Markdown</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours1_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 1, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/2a_terminal/guide.html">TD 2a — Les fichiers du TD 1a en ligne de commande</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/2b_programme/guide.html">TD 2b — Écrire et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/3a_notebook/guide.html">TD 3a — Un notebook dans JupyterLab</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours2_v2/index.html">Séance 2, version 2 — Éditeur de code, Markdown et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/01_editeur_de_code.html">L’éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/02_markdown.html">Une recette en Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/03_git_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/04_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours2_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/1a_vscode/guide.html">TD 1a — Configurer VS Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/1b_erreurs/guide.html">TD 1b — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/2a_markdown/guide.html">TD 2a — Une recette en Markdown, convertie par pandoc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/3a_depot_recette/guide.html">TD 3a — Un dépôt git pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours3/index.html">Séance 3 — Chemins, fichiers et ligne de commande</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/01_chemins_programmes.html">Chemins et programmes externes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/02_fichiers_encodage.html">Fichiers et encodage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/03_du_notebook_au_programme.html">Du notebook au programme</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours3/notebook/travaux_diriges.html">Travaux dirigés de la séance 3</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours3/notebook/td/3a_cli/guide.html">TD 3a — Une ligne de commande pour la recette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours3/notebook/td/3b_markdown/guide.html">TD 3b — Une recette en Markdown</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours4/index.html">Séance 4 — Du notebook au programme, en deux parcours</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours4/notebook/01_client_noyau.html">Le client et le noyau d’un notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours4/notebook/02_animation.html">Une animation en ligne de commande</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours4/notebook/travaux_diriges.html">Travaux dirigés du projet 4</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours4/notebook/td/4b_cli/guide.html">TD 4b — Une ligne de commande pour la recette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours4/notebook/td/4c_train/guide.html">TD 4c — La fenêtre du train</a></li>
+
+
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours5/index.html">Séance 5 — Matériel, réseau, mots de passe, clés SSH et secrets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/01_materiel.html">Le matériel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/02_reseau.html">Le réseau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/03_prouver_qui_lon_est.html">Prouver qui l’on est</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/04_secrets.html">Les secrets de vos programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/travaux_diriges.html">Travaux dirigés de la séance 5</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cours6/index.html">Séance 6 — La forge, sur le dépôt du projet 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cours7/index.html">Séance 7 — Une fonctionnalité de plus, par une pull request</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Annexes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/configuration/index.html">Configuration des postes de la salle</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/anaconda.html">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/jupyterlab.html">JupyterLab</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../annexes/configuration/vscode.html">VS Code</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_python.html">Python et environnement conda</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_notebooks.html">Notebooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_reglages.html">Fichiers de réglages</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/git.html">Git et Git Bash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/spyder.html">Spyder</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/poste_personnel/index.html">Configuration d’un ordinateur personnel</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/conda.html">Python et conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/vscode.html">VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/git_outils.html">Git et éditeurs de texte</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/notions/index.html">Notions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/outils.html">Choisir entre JupyterLab, Spyder et VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/notebooks.html">Les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/terminaux.html">Les terminaux en ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/variables_environnement.html">Variables d’environnement et recherche des programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/environnements.html">Les environnements conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/vscode_environnements.html">Comment VS Code gère les environnements Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/git_bash.html">Git Bash : une fenêtre, bash et des programmes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/faq.html">FAQ</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/reseau.html">Problèmes de réseau et de compte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/bureautique.html">Problèmes avec les logiciels de texte et de bureautique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/anaconda.html">Problèmes avec Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/jupyterlab.html">Problèmes avec JupyterLab et les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/vscode.html">Problèmes avec VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/git.html">Problèmes avec git</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/plus_loin/index.html">Pour aller plus loin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/gestionnaires.html">venv, uv et pixi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/cpp.html">C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/programme_interpreteur.html">Programme, application et interpréteur</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Archive 2026</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../../index.html">Séance 1, 2026 — Logiciel, programmation et formats de fichier</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../01_logiciels_et_formats.html">Logiciels et formats de fichier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../02_programmation.html">Programmation et éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../03_markdown_notebook.html">Markdown et notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_bibliotheques_environnements.html">Bibliothèques et environnements Python</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../../travaux_diriges.html">Travaux dirigés de la séance 1</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1b_archive_odt/guide.html">TD 1b — Un .odt est une archive ZIP (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../2a_vscode_python/guide.html">TD 2a — Configurer l’éditeur de code, et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../2b_erreurs/guide.html">TD 2b — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../2c_hello_cpp/guide.html">TD 2c — Le même programme en C++ (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../3a_markdown/guide.html">TD 3a — Mettre en forme une recette en Markdown</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">TD 3b — Le notebook, ouvert de trois façons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../4a_recette/guide.html">TD 4a — Installer un projet Python, et décrire son installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../4b_noyaux/guide.html">TD 4b — Le client, le noyau, et où ils sont installés (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../4c_trajet/guide.html">TD 4c — Installer un projet en lisant son README (facultatif)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../05_comparer_versions.html">Annexe — Comparer deux versions d’un fichier</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours2/index.html">Séance 2, 2026 — Ligne de commande et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/01_ligne_de_commande.html">La ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/02_depot_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/03_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/04_lire_et_tenir_un_depot.html">Lire et tenir un dépôt</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/3a_premier_depot/guide.html">TD 3a — Un premier dépôt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/4a_branches/guide.html">TD 4a — Branches et fusions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/4b_annuler/guide.html">TD 4b — Annuler et remettre à jour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/4c_conflits/guide.html">TD 4c — Créer et résoudre un conflit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/6a_livrer/guide.html">TD 6a — Publier une version</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Thème">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Thème" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Clair"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Sombre"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="Paramètres système"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>Paramètres système</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Clair</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Sombre</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>TD 3b — Le notebook, ouvert de trois façons</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ouvrir-le-notebook-dans-le-navigateur">1 · Ouvrir le notebook dans le navigateur</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-dossier-du-td">Le dossier du TD</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyterlite">JupyterLite</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ouvrir-le-notebook-dans-l-editeur">2 · Ouvrir le notebook dans l’éditeur</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ouvrir-le-fichier">Ouvrir le fichier</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choisir-le-noyau">Choisir le noyau</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#executer-les-cellules">Exécuter les cellules</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ouvrir-le-notebook-depuis-anaconda-navigator">3 · Ouvrir le notebook depuis Anaconda Navigator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relancer-une-cellule-et-lire-ce-que-le-noyau-retient">4 · Relancer une cellule, et lire ce que le noyau retient</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relancer-une-cellule">Relancer une cellule</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relancer-la-somme-sans-sa-premiere-ligne">Relancer la somme sans sa première ligne</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#redemarrer-le-noyau">Redémarrer le noyau</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-le-td-fait-constater">Ce que le TD fait constater</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etapes-1-a-3-trois-facons-d-ouvrir-le-meme-fichier">Étapes 1 à 3 : trois façons d’ouvrir le même fichier</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-les-cellules-affichent">Ce que les cellules affichent</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-4-ce-que-le-noyau-retient">Étape 4 : ce que le noyau retient</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-fichier-ipynb">Le fichier <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="td-3b-le-notebook-ouvert-de-trois-facons">
+<h1>TD 3b — Le notebook, ouvert de trois façons<a class="headerlink" href="#td-3b-le-notebook-ouvert-de-trois-facons" title="Lien vers cette rubrique">#</a></h1>
+<p>Le TD ouvre un même notebook, <code class="docutils literal notranslate"><span class="pre">altitudes.ipynb</span></code>, de trois façons : dans le
+navigateur, sans rien installer ; dans l’éditeur de code, VS Code ; dans
+JupyterLab, lancé depuis Anaconda Navigator. Aucune des trois façons ne
+demande de créer un fichier ou un environnement. Le notebook reprend le programme du TD 2a, qui calcule la
+moyenne de trois altitudes, découpé en cellules. La dernière étape fait
+constater ce que le noyau retient d’une cellule à l’autre. Le TD dure une
+douzaine de minutes.</p>
+<p>Le TD nécessite un navigateur, VS Code configuré au TD 2a, et Anaconda
+Navigator.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Étape</p></th>
+<th class="head"><p>Ce qu’on fait</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>ouvrir le notebook dans le navigateur</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>ouvrir le notebook dans l’éditeur</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>ouvrir le notebook depuis Anaconda Navigator</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>relancer une cellule, et lire ce que le noyau retient</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Ce que chaque étape fait constater est expliqué à la fin du guide, dans « Ce
+que le TD fait constater » : faire l’étape d’abord, et noter ce qu’on
+observe, avant de lire l’explication.</p>
+<section id="ouvrir-le-notebook-dans-le-navigateur">
+<h2>1 · Ouvrir le notebook dans le navigateur<a class="headerlink" href="#ouvrir-le-notebook-dans-le-navigateur" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> ouvrir la page jupyter.org/try-jupyter ; y déposer
+<code class="docutils literal notranslate"><span class="pre">altitudes.ipynb</span></code> ; exécuter ses cellules.</p>
+<p><strong>À obtenir :</strong> le notebook ouvert dans un onglet du navigateur, et les
+sorties de ses cellules.</p>
+</div></blockquote>
+<section id="le-dossier-du-td">
+<h3>Le dossier du TD<a class="headerlink" href="#le-dossier-du-td" title="Lien vers cette rubrique">#</a></h3>
+<p>Le dossier <code class="docutils literal notranslate"><span class="pre">info01\cours1\3b_notebooks\</span></code> contient le notebook, la feuille du
+TD et un <code class="docutils literal notranslate"><span class="pre">README.md</span></code>. Il n’a pas de dossier <code class="docutils literal notranslate"><span class="pre">depart\</span></code> : le notebook est
+ouvert à son emplacement, sans copie préalable.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>3b_notebooks\
+├── altitudes.ipynb        le notebook du TD
+├── td_3b_notebooks.pdf    la feuille du TD
+└── README.md
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">altitudes.ipynb</span></code> contient neuf cellules : cinq blocs de texte et quatre
+cellules de code. Les cellules de code n’ont pas encore de sortie.</p>
+</section>
+<section id="jupyterlite">
+<h3>JupyterLite<a class="headerlink" href="#jupyterlite" title="Lien vers cette rubrique">#</a></h3>
+<ol class="arabic simple">
+<li><p>Dans le navigateur, ouvrir l’adresse
+<a class="reference external" href="https://jupyter.org/try-jupyter/lab/">https://jupyter.org/try-jupyter/lab/</a>. Le premier chargement prend une
+dizaine de secondes. La page ne demande ni compte ni installation.</p></li>
+<li><p>Dans l’explorateur de fichiers de Windows, ouvrir
+<code class="docutils literal notranslate"><span class="pre">info01\cours1\3b_notebooks\</span></code>, puis faire glisser <code class="docutils literal notranslate"><span class="pre">altitudes.ipynb</span></code> dans
+le panneau de gauche de la page, celui qui liste les fichiers. Le bouton
+en forme de flèche vers le haut, au-dessus de ce panneau, dépose le
+fichier de la même façon, en passant par une fenêtre d’ouverture de
+fichier.</p></li>
+<li><p>Double-cliquer sur <code class="docutils literal notranslate"><span class="pre">altitudes.ipynb</span></code> dans le panneau. Si la page demande
+de choisir un noyau, prendre celui qui est proposé, Python (Pyodide).</p></li>
+<li><p>Cliquer dans la première cellule de code, puis taper <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">Entrée</span></code> :
+la cellule s’exécute, sa sortie s’affiche dessous, et la cellule
+suivante est sélectionnée. Continuer jusqu’à la fin du notebook. La
+première exécution prend quelques secondes.</p></li>
+</ol>
+<p>Si le réseau de la salle est lent, l’enseignant montre cette étape au
+tableau : passer à l’étape 2.</p>
+<p><strong>À noter</strong> : ce qu’il a fallu créer ou installer pour exécuter le code, et
+où le calcul se fait.</p>
+</section>
+</section>
+<section id="ouvrir-le-notebook-dans-l-editeur">
+<h2>2 · Ouvrir le notebook dans l’éditeur<a class="headerlink" href="#ouvrir-le-notebook-dans-l-editeur" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> ouvrir <code class="docutils literal notranslate"><span class="pre">altitudes.ipynb</span></code> dans VS Code ; choisir le noyau
+<code class="docutils literal notranslate"><span class="pre">base</span></code> d’Anaconda ; exécuter les cellules.</p>
+<p><strong>À obtenir :</strong> les quatre cellules de code exécutées, chacune avec son
+numéro entre crochets.</p>
+</div></blockquote>
+<section id="ouvrir-le-fichier">
+<h3>Ouvrir le fichier<a class="headerlink" href="#ouvrir-le-fichier" title="Lien vers cette rubrique">#</a></h3>
+<p>Lancer VS Code, puis menu File, Open Folder (Fichier, Ouvrir le dossier), et
+choisir <code class="docutils literal notranslate"><span class="pre">Bureau\info01\cours1\3b_notebooks</span></code>. Dans le panneau Explorer, à
+gauche, cliquer sur <code class="docutils literal notranslate"><span class="pre">altitudes.ipynb</span></code>.</p>
+<p>Le notebook s’ouvre en cellules, avec une barre d’outils en haut. Ouvrir un
+<code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> nécessite l’extension Jupyter de Microsoft, d’identifiant
+<code class="docutils literal notranslate"><span class="pre">ms-toolsai.jupyter</span></code>, la troisième du module après l’extension Python (TD 2a)
+et l’extension C++ (TD 2c). Si elle n’a pas été installée avec les réglages
+du TD 2a, VS Code la propose à l’ouverture du fichier : accepter. Si VS Code
+ne la propose pas, l’installer depuis le panneau Extensions
+(<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">X</span></code>), en tapant son identifiant.</p>
+</section>
+<section id="choisir-le-noyau">
+<h3>Choisir le noyau<a class="headerlink" href="#choisir-le-noyau" title="Lien vers cette rubrique">#</a></h3>
+<ol class="arabic simple">
+<li><p>En haut à droite du notebook, cliquer sur « Select Kernel ».</p></li>
+<li><p>Choisir « Python Environments… », puis la ligne <code class="docutils literal notranslate"><span class="pre">base</span></code>, dont le chemin
+est <code class="docutils literal notranslate"><span class="pre">C:\ProgramData\anaconda3\python.exe</span></code>.</p></li>
+</ol>
+<p>Ce que VS Code appelle « noyau » est l’interpréteur Python qui exécute les
+cellules. Choisir celui d’Anaconda ; le TD 4b explique pourquoi ce choix est
+nécessaire. Le nom du noyau choisi s’affiche ensuite à la place de
+« Select Kernel ».</p>
+</section>
+<section id="executer-les-cellules">
+<h3>Exécuter les cellules<a class="headerlink" href="#executer-les-cellules" title="Lien vers cette rubrique">#</a></h3>
+<p>Cliquer dans la première cellule de code, puis <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">Entrée</span></code>, comme dans
+le navigateur. Exécuter ainsi les quatre cellules, dans l’ordre. Le bouton
+« Run All » de la barre d’outils les exécute toutes d’un coup.</p>
+<p>Un bloc de texte s’affiche mis en forme. Un double-clic dessus montre le
+Markdown qu’il contient, celui du TD 3a ; <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">Entrée</span></code> affiche de
+nouveau le texte mis en forme.</p>
+<p><strong>Vérification</strong> : chaque cellule de code a un numéro à gauche, <code class="docutils literal notranslate"><span class="pre">[1]</span></code> à
+<code class="docutils literal notranslate"><span class="pre">[4]</span></code>, et la cellule de la somme affiche trois valeurs.</p>
+<p><strong>À noter</strong> : ce qu’affiche la cellule des données, qui n’appelle pas
+<code class="docutils literal notranslate"><span class="pre">print</span></code>.</p>
+</section>
+</section>
+<section id="ouvrir-le-notebook-depuis-anaconda-navigator">
+<h2>3 · Ouvrir le notebook depuis Anaconda Navigator<a class="headerlink" href="#ouvrir-le-notebook-depuis-anaconda-navigator" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> lancer JupyterLab depuis la page d’accueil de Navigator ;
+ouvrir <code class="docutils literal notranslate"><span class="pre">altitudes.ipynb</span></code> dans son arborescence ; exécuter les cellules.</p>
+<p><strong>À obtenir :</strong> le notebook ouvert dans un onglet du navigateur, cette
+fois fourni par un serveur qui s’exécute sur le poste.</p>
+</div></blockquote>
+<ol class="arabic simple">
+<li><p>Menu Démarrer, taper <code class="docutils literal notranslate"><span class="pre">anaconda</span> <span class="pre">navigator</span></code>, Entrée, puis attendre la page
+d’accueil, qui a une fiche par application. En haut, la liste des
+environnements indique <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">(root)</span></code>.</p></li>
+<li><p>Sur la fiche JupyterLab, cliquer Launch. Une fenêtre noire s’ouvre, puis
+un onglet du navigateur, à une adresse qui commence par
+<code class="docutils literal notranslate"><span class="pre">localhost:8888/lab</span></code>. La fenêtre noire doit rester ouverte.</p></li>
+<li><p>Le panneau de gauche de JupyterLab est une arborescence de fichiers. Y
+descendre, par double-clics, jusqu’au dossier du TD : <code class="docutils literal notranslate"><span class="pre">Desktop</span></code>,
+<code class="docutils literal notranslate"><span class="pre">info01</span></code>, <code class="docutils literal notranslate"><span class="pre">cours1</span></code>, <code class="docutils literal notranslate"><span class="pre">3b_notebooks</span></code>.</p></li>
+<li><p>Double-cliquer sur <code class="docutils literal notranslate"><span class="pre">altitudes.ipynb</span></code>, puis exécuter les cellules par
+<code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">Entrée</span></code>.</p></li>
+</ol>
+<p>Le fichier est le même qu’à l’étape 2 : s’il a été enregistré dans VS Code
+avec ses sorties, JupyterLab les affiche à l’ouverture. Le nom du noyau
+s’affiche en haut à droite du notebook.</p>
+<p><strong>À noter</strong> : l’adresse de l’onglet, et ce qu’elle indique sur la machine
+qui fournit le notebook au navigateur.</p>
+<p>Garder JupyterLab ouvert pour l’étape 4.</p>
+</section>
+<section id="relancer-une-cellule-et-lire-ce-que-le-noyau-retient">
+<h2>4 · Relancer une cellule, et lire ce que le noyau retient<a class="headerlink" href="#relancer-une-cellule-et-lire-ce-que-le-noyau-retient" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> relancer la cellule de la somme ; lire <code class="docutils literal notranslate"><span class="pre">total</span></code> ; puis
+relancer la somme sans remettre <code class="docutils literal notranslate"><span class="pre">total</span></code> à zéro ; redémarrer le noyau et
+tout exécuter.</p>
+<p><strong>À obtenir :</strong> les cellules de nouveau exécutées dans l’ordre, numérotées
+<code class="docutils literal notranslate"><span class="pre">[1]</span></code> à <code class="docutils literal notranslate"><span class="pre">[4]</span></code>.</p>
+</div></blockquote>
+<p>L’étape se fait dans JupyterLab, dont les menus sont cités ici ; dans VS
+Code, les mêmes commandes sont dans la barre d’outils du notebook.</p>
+<section id="relancer-une-cellule">
+<h3>Relancer une cellule<a class="headerlink" href="#relancer-une-cellule" title="Lien vers cette rubrique">#</a></h3>
+<p>Le notebook se termine par la section « Ce que le noyau retient » : une
+cellule qui ne contient que <code class="docutils literal notranslate"><span class="pre">total</span></code>, et une consigne.</p>
+<ol class="arabic simple">
+<li><p>Cliquer dans la cellule de la somme, celle qui commence par <code class="docutils literal notranslate"><span class="pre">total</span> <span class="pre">=</span> <span class="pre">0</span></code>,
+et taper <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">Entrée</span></code>.</p></li>
+<li><p>Cliquer dans la dernière cellule, <code class="docutils literal notranslate"><span class="pre">total</span></code>, et taper <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">Entrée</span></code>.</p></li>
+</ol>
+<p><strong>À noter</strong> : le numéro entre crochets de chaque cellule après ces deux
+exécutions ; la valeur de <code class="docutils literal notranslate"><span class="pre">total</span></code>.</p>
+</section>
+<section id="relancer-la-somme-sans-sa-premiere-ligne">
+<h3>Relancer la somme sans sa première ligne<a class="headerlink" href="#relancer-la-somme-sans-sa-premiere-ligne" title="Lien vers cette rubrique">#</a></h3>
+<p>La première ligne de la cellule de la somme, <code class="docutils literal notranslate"><span class="pre">total</span> <span class="pre">=</span> <span class="pre">0</span></code>, remet la variable
+à zéro chaque fois que la cellule s’exécute. Le texte du notebook, au-dessus
+de la cellule <code class="docutils literal notranslate"><span class="pre">total</span></code>, annonce que relancer la somme ajoute une seconde fois
+les trois altitudes : cette seconde addition ne se produit que si la cellule
+ne contient pas cette ligne. Pour voir ce
+que le noyau retient d’une exécution à l’autre, la retirer le temps d’un
+essai :</p>
+<ol class="arabic simple">
+<li><p>Dans la cellule de la somme, effacer la ligne <code class="docutils literal notranslate"><span class="pre">total</span> <span class="pre">=</span> <span class="pre">0</span></code>.</p></li>
+<li><p>Exécuter cette cellule seule, par <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">Entrée</span></code>, puis la dernière
+cellule, <code class="docutils literal notranslate"><span class="pre">total</span></code>.</p></li>
+<li><p>Remettre la ligne <code class="docutils literal notranslate"><span class="pre">total</span> <span class="pre">=</span> <span class="pre">0</span></code> en tête de la cellule, à l’identique.</p></li>
+</ol>
+<p><strong>À noter</strong> : les trois valeurs affichées par la cellule de la somme, et la
+valeur de <code class="docutils literal notranslate"><span class="pre">total</span></code>.</p>
+</section>
+<section id="redemarrer-le-noyau">
+<h3>Redémarrer le noyau<a class="headerlink" href="#redemarrer-le-noyau" title="Lien vers cette rubrique">#</a></h3>
+<p>Menu Kernel, « Restart Kernel and Run All Cells… », puis confirmer par
+Restart. Dans VS Code : bouton « Restart » de la barre d’outils, puis « Run
+All ».</p>
+<p><strong>Vérification</strong> : les cellules sont numérotées <code class="docutils literal notranslate"><span class="pre">[1]</span></code> à <code class="docutils literal notranslate"><span class="pre">[4]</span></code> dans l’ordre de
+la page, et <code class="docutils literal notranslate"><span class="pre">total</span></code> vaut <code class="docutils literal notranslate"><span class="pre">387.0</span></code>.</p>
+<p>Pour finir, dans JupyterLab : menu File, Shut Down. La fenêtre noire se
+ferme ; fermer ensuite l’onglet.</p>
+</section>
+</section>
+<section id="ce-que-le-td-fait-constater">
+<h2>Ce que le TD fait constater<a class="headerlink" href="#ce-que-le-td-fait-constater" title="Lien vers cette rubrique">#</a></h2>
+<p>Cette section se lit après avoir fait les étapes.</p>
+<section id="etapes-1-a-3-trois-facons-d-ouvrir-le-meme-fichier">
+<h3>Étapes 1 à 3 : trois façons d’ouvrir le même fichier<a class="headerlink" href="#etapes-1-a-3-trois-facons-d-ouvrir-le-meme-fichier" title="Lien vers cette rubrique">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Où l’on ouvre le notebook</p></th>
+<th class="head"><p>Ce qu’il a fallu faire</p></th>
+<th class="head"><p>Ce qu’on constate</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Dans le navigateur</p></td>
+<td><p>ouvrir jupyter.org/try-jupyter, y déposer le fichier</p></td>
+<td><p>aucun compte, aucune installation, le calcul se fait sur votre ordinateur</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dans l’éditeur</p></td>
+<td><p>ouvrir le <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>, installer l’extension proposée, prendre l’interpréteur d’Anaconda</p></td>
+<td><p>les cellules s’exécutent par <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">Entrée</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Depuis Anaconda</p></td>
+<td><p>page d’accueil de Navigator, fiche JupyterLab, Launch</p></td>
+<td><p>un onglet de navigateur, et le fichier dans l’arborescence</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Les trois logiciels ouvrent le même fichier, et l’exécutent de la même
+façon. Ce qui change de l’un à l’autre est l’endroit où s’exécute le noyau,
+le programme qui exécute les cellules :</p>
+<ul class="simple">
+<li><p>JupyterLite, la version de JupyterLab ouverte à l’étape 1, n’a pas de
+serveur. Son noyau est un Python compilé pour le navigateur, Pyodide, qui
+s’exécute dans l’onglet : le code et les données saisis ne sont pas
+envoyés sur le réseau. JupyterLite est un service en ligne dont le calcul
+se fait sur votre machine. Le fichier déposé est enregistré dans le
+stockage interne du navigateur, et n’apparaît dans aucun dossier du
+disque.</p></li>
+<li><p>JupyterLab, lancé par Navigator, est un serveur qui s’exécute sur le
+poste : la fenêtre noire est ce serveur, et <code class="docutils literal notranslate"><span class="pre">localhost:8888</span></code> désigne le
+port 8888 de la machine même. L’onglet du navigateur affiche le notebook,
+sans exécuter le code.</p></li>
+<li><p>VS Code démarre lui-même le noyau, dans l’environnement choisi, sans
+passer par un serveur.</p></li>
+</ul>
+<p>Aucune des trois façons n’a nécessité de créer un environnement : les postes de la
+salle ont la distribution Anaconda, qui installe JupyterLab et <code class="docutils literal notranslate"><span class="pre">ipykernel</span></code>,
+le paquet dont VS Code a besoin pour exécuter un notebook, dans <code class="docutils literal notranslate"><span class="pre">base</span></code>. Sur
+un ordinateur installé avec Miniforge, <code class="docutils literal notranslate"><span class="pre">base</span></code> n’a ni l’un ni l’autre : c’est
+le premier constat du TD 4b.</p>
+<p>Dans le navigateur, une cellule <code class="docutils literal notranslate"><span class="pre">%pip</span> <span class="pre">install</span></code> peut installer une
+bibliothèque écrite entièrement en Python. En revanche, un code qui lance
+un autre programme du système par le module <code class="docutils literal notranslate"><span class="pre">subprocess</span></code>, comme ffmpeg ou
+ImageMagick, ne fonctionne pas. Le notebook du TD ne lance aucun autre
+programme.</p>
+</section>
+<section id="ce-que-les-cellules-affichent">
+<h3>Ce que les cellules affichent<a class="headerlink" href="#ce-que-les-cellules-affichent" title="Lien vers cette rubrique">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Cellule</p></th>
+<th class="head"><p>Sortie</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>les données</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[128.4,</span> <span class="pre">131.0,</span> <span class="pre">127.6]</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>la somme</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">128.4</span></code>, puis <code class="docutils literal notranslate"><span class="pre">259.4</span></code>, puis <code class="docutils literal notranslate"><span class="pre">387.0</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>la moyenne</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">moyenne</span> <span class="pre">:</span> <span class="pre">129.0</span> <span class="pre">m</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">total</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">387.0</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La dernière expression d’une cellule s’affiche sans <code class="docutils literal notranslate"><span class="pre">print</span></code>, comme dans la
+session interactive du TD 2a : la cellule des données affiche la liste,
+et la dernière cellule la valeur de <code class="docutils literal notranslate"><span class="pre">total</span></code>. Les trois valeurs de la somme
+sont celles que le débogueur montrait dans le panneau Variables au TD 2a.</p>
+<p>Le bloc de texte de la moyenne contient une formule écrite en LaTeX, entre
+dollars, que le notebook affiche mise en forme. La formule et le code
+expriment le même calcul sur la même page, l’une pour être lue, l’autre pour
+être exécutée.</p>
+</section>
+<section id="etape-4-ce-que-le-noyau-retient">
+<h3>Étape 4 : ce que le noyau retient<a class="headerlink" href="#etape-4-ce-que-le-noyau-retient" title="Lien vers cette rubrique">#</a></h3>
+<p>Le numéro entre crochets donne l’ordre d’exécution ; il ne dépend pas de la
+place de la cellule dans la page. Après la première relance de l’étape 4, la cellule de
+la somme porte <code class="docutils literal notranslate"><span class="pre">[5]</span></code> et la dernière <code class="docutils literal notranslate"><span class="pre">[6]</span></code>, alors que la moyenne garde <code class="docutils literal notranslate"><span class="pre">[3]</span></code>. Un notebook dont les
+numéros ne se suivent pas a été exécuté dans le désordre.</p>
+<p>La dernière cellule affiche <code class="docutils literal notranslate"><span class="pre">total</span></code> sans le recalculer : la variable a été
+créée par une autre cellule, et le noyau la conserve en mémoire entre deux
+exécutions.
+Relancer la cellule de la somme telle qu’elle est écrite redonne <code class="docutils literal notranslate"><span class="pre">387.0</span></code>,
+parce que sa première ligne, <code class="docutils literal notranslate"><span class="pre">total</span> <span class="pre">=</span> <span class="pre">0</span></code>, remet la variable à zéro.</p>
+<p>Sans cette ligne, la somme part de la valeur de <code class="docutils literal notranslate"><span class="pre">total</span></code> conservée par le
+noyau, et
+ajoute une seconde fois les trois altitudes : elle affiche <code class="docutils literal notranslate"><span class="pre">515.4</span></code>, <code class="docutils literal notranslate"><span class="pre">646.4</span></code>
+puis <code class="docutils literal notranslate"><span class="pre">774.0</span></code>, et <code class="docutils literal notranslate"><span class="pre">total</span></code> vaut <code class="docutils literal notranslate"><span class="pre">774.0</span></code>. La cellule de la moyenne, qui n’a pas
+été relancée, affiche encore <code class="docutils literal notranslate"><span class="pre">129.0</span> <span class="pre">m</span></code> : la page montre alors des résultats
+qui ne correspondent plus entre eux.</p>
+<p>Redémarrer le noyau efface toutes les variables ; le texte des cellules
+reste, et « Run All » les exécute de nouveau dans l’ordre de la page. Le
+redémarrage suivi de « Run All » remet ainsi le notebook dans un état
+cohérent. Sans la ligne
+<code class="docutils literal notranslate"><span class="pre">total</span> <span class="pre">=</span> <span class="pre">0</span></code>, cette réexécution échouerait sur la cellule de la somme, avec
+une erreur <code class="docutils literal notranslate"><span class="pre">NameError</span></code> : après le redémarrage, <code class="docutils literal notranslate"><span class="pre">total</span></code> n’existe plus.</p>
+</section>
+<section id="le-fichier-ipynb">
+<h3>Le fichier <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code><a class="headerlink" href="#le-fichier-ipynb" title="Lien vers cette rubrique">#</a></h3>
+<p>Un <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> est un fichier texte au format JSON. Ouvert dans le Bloc-notes, il
+montre chaque cellule avec son type et ses lignes :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>   "cell_type": "code",
+   …
+   "source": [
+    "altitudes = [128.4, 131.0, 127.6]\n",
+    "altitudes"
+   ]
+</pre></div>
+</div>
+<p>Les sorties y sont enregistrées avec le code, une fois le notebook exécuté
+puis enregistré : rouvert, il affiche encore les résultats de la dernière
+exécution. Le notebook du TD a été écrit dans un autre format de notebook,
+MyST Markdown, du Markdown dont les cellules de code sont des blocs, puis
+converti en <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>.</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../3a_markdown/guide.html"
+       title="page précédente">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">précédent</p>
+        <p class="prev-next-title">TD 3a — Mettre en forme une recette en Markdown</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../4a_recette/guide.html"
+       title="page suivante">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">suivant</p>
+        <p class="prev-next-title">TD 4a — Installer un projet Python, et décrire son installation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ouvrir-le-notebook-dans-le-navigateur">1 · Ouvrir le notebook dans le navigateur</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-dossier-du-td">Le dossier du TD</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyterlite">JupyterLite</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ouvrir-le-notebook-dans-l-editeur">2 · Ouvrir le notebook dans l’éditeur</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ouvrir-le-fichier">Ouvrir le fichier</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choisir-le-noyau">Choisir le noyau</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#executer-les-cellules">Exécuter les cellules</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ouvrir-le-notebook-depuis-anaconda-navigator">3 · Ouvrir le notebook depuis Anaconda Navigator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relancer-une-cellule-et-lire-ce-que-le-noyau-retient">4 · Relancer une cellule, et lire ce que le noyau retient</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relancer-une-cellule">Relancer une cellule</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relancer-la-somme-sans-sa-premiere-ligne">Relancer la somme sans sa première ligne</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#redemarrer-le-noyau">Redémarrer le noyau</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-le-td-fait-constater">Ce que le TD fait constater</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etapes-1-a-3-trois-facons-d-ouvrir-le-meme-fichier">Étapes 1 à 3 : trois façons d’ouvrir le même fichier</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-les-cellules-affichent">Ce que les cellules affichent</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-4-ce-que-le-noyau-retient">Étape 4 : ce que le noyau retient</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-fichier-ipynb">Le fichier <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par 1re année géomatique
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, module info01 — CC-BY-4.0.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

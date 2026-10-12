@@ -1,0 +1,882 @@
+
+<!DOCTYPE html>
+
+
+<html lang="fr" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>TD 1b — Un .odt est une archive ZIP (facultatif) &#8212; Introduction à l&#39;informatique</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../../../_static/documentation_options.js?v=72dce1d2"></script>
+    <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../../../../_static/translations.js?v=e6b791cb"></script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cours1/notebook/td/1b_archive_odt/guide';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="../../../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Recherche" href="../../../../search.html" />
+    <link rel="next" title="TD 1c — Configurer l’éditeur de code, et lancer un programme" href="../1c_vscode_python/guide.html" />
+    <link rel="prev" title="TD 1a — Fichiers, formats et extensions" href="../1a_formats/guide.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="fr"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../../../_static/searchtools.js"></script>
+    <script src="../../../../_static/language_data.js"></script>
+    <script src="../../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Passer au contenu principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Haut de page</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Alerte de version"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navigation dans le site">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="Sur cette page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction à l'informatique</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../index.html">
+                    Introduction à l’informatique
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Avant les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/poste.html">Premiers tests du poste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/donnees.html">Récupérer les fichiers d’une séance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/python.html">Anaconda et JupyterLab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/vscode.html">VS Code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Après les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../apres/sauvegarder.html">Sauvegarder son travail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../apres/s_entrainer.html">S’entraîner : jeux et exercices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours1_v2/index.html">Séance 1, version 2 — Logiciels, fichiers, terminal et premier programme</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/01_logiciels_stockage.html">Logiciels, fichiers et stockage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/02_terminal.html">Le terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/03_premier_programme.html">Premier programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/04_notebook.html">Un notebook et la syntaxe de Markdown</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours1_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 1, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1b_terminal/guide.html">TD 1b — Les fichiers du TD 1a en ligne de commande</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1c_programme/guide.html">TD 1c — Écrire et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1d_notebook/guide.html">TD 1d — Un notebook dans JupyterLab</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours2_v2/index.html">Séance 2, version 2 — Éditeur de code, Markdown et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/01_editeur_de_code.html">L’éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/02_markdown.html">Une recette en Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/03_git_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/04_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours2_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/2a_vscode/guide.html">TD 2a — Configurer VS Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/2b_erreurs/guide.html">TD 2b — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/2c_markdown/guide.html">TD 2c — Une recette en Markdown, convertie par pandoc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/2d_depot_recette/guide.html">TD 2d — Un dépôt git pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours3/index.html">Séance 3 — Chemins, fichiers et ligne de commande</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/01_chemins_programmes.html">Chemins et programmes externes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/02_fichiers_encodage.html">Fichiers et encodage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/03_du_notebook_au_programme.html">Du notebook au programme</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours3/notebook/travaux_diriges.html">Travaux dirigés de la séance 3</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours3/notebook/td/3e_markdown/guide.html">TD 3e — Une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours3/notebook/td/3f_cli/guide.html">TD 3f — Une ligne de commande pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours4/index.html">Séance 4 — Projet d’application 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours4/notebook/travaux_diriges.html">Travaux dirigés du projet 4</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours4/notebook/td/4a_recette/guide.html">TD 4a — Un script Python, pas à pas</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours4/notebook/td/4b_paquet/guide.html">TD 4b — Un programme installable</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours5/index.html">Séance 5 — Matériel, réseau, mots de passe, clés SSH et secrets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/01_materiel.html">Le matériel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/02_reseau.html">Le réseau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/03_prouver_qui_lon_est.html">Prouver qui l’on est</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/04_secrets.html">Les secrets de vos programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/travaux_diriges.html">Travaux dirigés de la séance 5</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cours6/index.html">Séance 6 — La forge, sur le dépôt du projet 4</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours7/index.html">Séance 7 — Projet d’application 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours7/notebook/td/7a_recette/guide.html">TD 7a — Compléter son projet, par des pull requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours7/notebook/td/7b_train/guide.html">TD 7b — Reprendre et compléter le projet d’un autre</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Annexes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/configuration/index.html">Configuration des postes de la salle</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/anaconda.html">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/jupyterlab.html">JupyterLab</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../annexes/configuration/vscode.html">VS Code</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_python.html">Python et environnement conda</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_notebooks.html">Notebooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_reglages.html">Fichiers de réglages</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/git.html">Git et Git Bash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/spyder.html">Spyder</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/poste_personnel/index.html">Configuration d’un ordinateur personnel</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/conda.html">Python et conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/vscode.html">VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/git_outils.html">Git et éditeurs de texte</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/notions/index.html">Notions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/outils.html">Choisir entre JupyterLab, Spyder et VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/notebooks.html">Les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/terminaux.html">Les terminaux en ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/variables_environnement.html">Variables d’environnement et recherche des programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/environnements.html">Les environnements conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/vscode_environnements.html">Comment VS Code gère les environnements Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/git_bash.html">Git Bash : une fenêtre, bash et des programmes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/faq.html">FAQ</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/reseau.html">Problèmes de réseau et de compte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/bureautique.html">Problèmes avec les logiciels de texte et de bureautique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/anaconda.html">Problèmes avec Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/jupyterlab.html">Problèmes avec JupyterLab et les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/vscode.html">Problèmes avec VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/git.html">Problèmes avec git</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/plus_loin/index.html">Pour aller plus loin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/gestionnaires.html">venv, uv et pixi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/cpp.html">C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/programme_interpreteur.html">Programme, application et interpréteur</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Archive 2026</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../../index.html">Séance 1, 2026 — Logiciel, programmation et formats de fichier</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../01_logiciels_et_formats.html">Logiciels et formats de fichier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../02_programmation.html">Programmation et éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../03_markdown_notebook.html">Markdown et notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_bibliotheques_environnements.html">Bibliothèques et environnements Python</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../../travaux_diriges.html">Travaux dirigés de la séance 1</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">TD 1b — Un .odt est une archive ZIP (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1c_vscode_python/guide.html">TD 1c — Configurer l’éditeur de code, et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1d_erreurs/guide.html">TD 1d — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1e_hello_cpp/guide.html">TD 1e — Le même programme en C++ (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1f_markdown/guide.html">TD 1f — Mettre en forme une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1g_notebooks/guide.html">TD 1g — Le notebook, ouvert de trois façons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1h_recette/guide.html">TD 1h — Installer un projet Python, et décrire son installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1i_noyaux/guide.html">TD 1i — Le client, le noyau, et où ils sont installés (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1j_trajet/guide.html">TD 1j — Installer un projet en lisant son README (facultatif)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../05_comparer_versions.html">Annexe — Comparer deux versions d’un fichier</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours2/index.html">Séance 2, 2026 — Ligne de commande et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/01_ligne_de_commande.html">La ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/02_depot_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/03_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/04_lire_et_tenir_un_depot.html">Lire et tenir un dépôt</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2a_premier_depot/guide.html">TD 2a — Un premier dépôt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2b_branches/guide.html">TD 2b — Branches et fusions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2c_annuler/guide.html">TD 2c — Annuler et remettre à jour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2d_conflits/guide.html">TD 2d — Créer et résoudre un conflit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2e_livrer/guide.html">TD 2e — Publier une version</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Thème">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Thème" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Clair"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Sombre"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="Paramètres système"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>Paramètres système</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Clair</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Sombre</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>TD 1b — Un .odt est une archive ZIP (facultatif)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ouvrir-le-odt-comme-une-archive">1 · Ouvrir le <code class="docutils literal notranslate"><span class="pre">.odt</span></code> comme une archive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lire-content-xml">2 · Lire <code class="docutils literal notranslate"><span class="pre">content.xml</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modifier-le-texte-et-la-mise-en-forme">3 · Modifier le texte et la mise en forme</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recompresser-et-rouvrir-dans-libreoffice">4 · Recompresser, et rouvrir dans LibreOffice</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-le-td-fait-constater">Ce que le TD fait constater</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-odt-est-une-archive-de-fichiers-texte">Un <code class="docutils literal notranslate"><span class="pre">.odt</span></code> est une archive de fichiers texte</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dans-les-noms-de-style"><code class="docutils literal notranslate"><span class="pre">_20_</span></code> dans les noms de style</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-couleurs-dans-odf-et-dans-css">Les couleurs dans ODF et dans CSS</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="td-1b-un-odt-est-une-archive-zip-facultatif">
+<h1>TD 1b — Un .odt est une archive ZIP (facultatif)<a class="headerlink" href="#td-1b-un-odt-est-une-archive-zip-facultatif" title="Lien vers cette rubrique">#</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Les fichiers des TD de la séance sont dans l’archive <a href="../../../../telechargements/info01-cours1.zip">info01-cours1.zip</a>.</p>
+</div>
+<p>Le TD ouvre un document LibreOffice, <code class="docutils literal notranslate"><span class="pre">raven.odt</span></code>, comme une archive ZIP,
+modifie son texte et sa mise en forme dans un éditeur de texte, puis
+recompresse l’ensemble : LibreOffice rouvre le document modifié, sans
+qu’aucun traitement de texte soit intervenu. Il dure une douzaine de minutes,
+et il est facultatif : il se fait en séance si le temps le permet, ou seul
+ensuite.</p>
+<p>Il demande l’explorateur de fichiers, qui sait extraire et créer une archive
+ZIP, Notepad++ (ou, à défaut, le Bloc-notes) et LibreOffice Writer pour
+rouvrir le résultat.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Étape</p></th>
+<th class="head"><p>Objectif</p></th>
+<th class="head"><p>Ce qu’on fait</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>voir de quoi un fichier <code class="docutils literal notranslate"><span class="pre">.odt</span></code> est fait</p></td>
+<td><p>ouvrir le <code class="docutils literal notranslate"><span class="pre">.odt</span></code> comme une archive</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>repérer le texte et ses styles dans le XML</p></td>
+<td><p>lire <code class="docutils literal notranslate"><span class="pre">content.xml</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>modifier un document sans logiciel de bureautique</p></td>
+<td><p>modifier le texte et la mise en forme</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>reconstruire un document que LibreOffice ouvre</p></td>
+<td><p>recompresser, et rouvrir dans LibreOffice</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Ce que le TD fait constater est expliqué à la fin du guide, dans « Ce que le
+TD fait constater ».</p>
+<section id="ouvrir-le-odt-comme-une-archive">
+<h2>1 · Ouvrir le <code class="docutils literal notranslate"><span class="pre">.odt</span></code> comme une archive<a class="headerlink" href="#ouvrir-le-odt-comme-une-archive" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> copier <code class="docutils literal notranslate"><span class="pre">depart\raven.odt</span></code> dans <code class="docutils literal notranslate"><span class="pre">travail\</span></code> sous le nom
+<code class="docutils literal notranslate"><span class="pre">raven.zip</span></code>, puis extraire l’archive.</p>
+<p><strong>À obtenir :</strong> un dossier <code class="docutils literal notranslate"><span class="pre">travail\raven\</span></code> qui contient six fichiers, dont
+<code class="docutils literal notranslate"><span class="pre">content.xml</span></code> et <code class="docutils literal notranslate"><span class="pre">styles.xml</span></code>.</p>
+</div></blockquote>
+<p>Ouvrir le dossier <code class="docutils literal notranslate"><span class="pre">info01\cours1\1b_archive_odt\</span></code>. Comme au TD 1a, <code class="docutils literal notranslate"><span class="pre">depart\</span></code>
+contient le fichier fourni, <code class="docutils literal notranslate"><span class="pre">raven.odt</span></code>, et <code class="docutils literal notranslate"><span class="pre">travail\</span></code> reçoit les copies. Les
+extensions doivent être affichées dans l’explorateur (TD 1a, étape 1).</p>
+<ol class="arabic simple">
+<li><p>Copier <code class="docutils literal notranslate"><span class="pre">depart\raven.odt</span></code> dans <code class="docutils literal notranslate"><span class="pre">travail\</span></code> (<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">C</span></code>, puis <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> +
+<code class="docutils literal notranslate"><span class="pre">V</span></code> dans <code class="docutils literal notranslate"><span class="pre">travail\</span></code>).</p></li>
+<li><p>Renommer la copie <code class="docutils literal notranslate"><span class="pre">raven.zip</span></code> (<code class="docutils literal notranslate"><span class="pre">F2</span></code>), et confirmer le changement
+d’extension.</p></li>
+<li><p>Clic droit sur <code class="docutils literal notranslate"><span class="pre">raven.zip</span></code>, « Extraire tout… ». Le dossier proposé est
+<code class="docutils literal notranslate"><span class="pre">travail\raven</span></code> : le garder, et cliquer sur « Extraire ».</p></li>
+</ol>
+<p><strong>Vérification</strong> : <code class="docutils literal notranslate"><span class="pre">travail\raven\</span></code> contient :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>raven\
+├── META-INF\
+│   └── manifest.xml
+├── content.xml
+├── manifest.rdf
+├── meta.xml
+├── mimetype
+└── styles.xml
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fichier</p></th>
+<th class="head"><p>Ce qu’il contient</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mimetype</span></code></p></td>
+<td><p>une ligne, le type du document</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">content.xml</span></code></p></td>
+<td><p>le texte, entouré de balises</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">styles.xml</span></code></p></td>
+<td><p>la mise en forme : polices, tailles, titres</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">meta.xml</span></code></p></td>
+<td><p>l’auteur, les dates, le nombre de mots</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">META-INF\manifest.xml</span></code></p></td>
+<td><p>la liste de ce que contient l’archive</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">manifest.rdf</span></code></p></td>
+<td><p>des métadonnées complémentaires</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="lire-content-xml">
+<h2>2 · Lire <code class="docutils literal notranslate"><span class="pre">content.xml</span></code><a class="headerlink" href="#lire-content-xml" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> ouvrir <code class="docutils literal notranslate"><span class="pre">travail\raven\content.xml</span></code> dans Notepad++ ; y
+chercher <code class="docutils literal notranslate"><span class="pre">Text_20_body</span></code> et <code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">Raven</span></code> avec <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">F</span></code>.</p>
+<p><strong>À obtenir :</strong> le poème, lisible au milieu des balises.</p>
+</div></blockquote>
+<p>Clic droit sur <code class="docutils literal notranslate"><span class="pre">content.xml</span></code>, Ouvrir avec, Notepad++. Notepad++ colore les
+balises, ce qui les rend plus faciles à lire que dans le Bloc-notes. Le
+fichier fait 21 lignes, dont une de plus de 1 300 caractères : chercher avec
+<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">F</span></code> plutôt que de le parcourir. Dans le Bloc-notes, activer le
+retour automatique à la ligne (menu Affichage) pour voir la ligne longue en
+entier.</p>
+<ol class="arabic simple">
+<li><p>Chercher <code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">Raven</span></code> : c’est le titre du poème.</p></li>
+<li><p>Chercher <code class="docutils literal notranslate"><span class="pre">Text_20_body</span></code> : chaque paragraphe du poème commence par cette
+balise.</p></li>
+</ol>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;text:p</span><span class="w"> </span><span class="na">text:style-name=</span><span class="s">"Text_20_body"</span><span class="nt">&gt;</span>Once<span class="w"> </span>upon<span class="w"> </span>a<span class="w"> </span>midnight<span class="w"> </span>dreary,
+while<span class="w"> </span>I<span class="w"> </span>pondered,<span class="w"> </span>weak<span class="w"> </span>and<span class="w"> </span>weary,<span class="w"> </span>…
+</pre></div>
+</div>
+<p><strong>À noter</strong> : ce qui, dans la balise, désigne la mise en forme du
+paragraphe.</p>
+</section>
+<section id="modifier-le-texte-et-la-mise-en-forme">
+<h2>3 · Modifier le texte et la mise en forme<a class="headerlink" href="#modifier-le-texte-et-la-mise-en-forme" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> trois modifications, deux dans <code class="docutils literal notranslate"><span class="pre">content.xml</span></code>, une dans
+<code class="docutils literal notranslate"><span class="pre">styles.xml</span></code> ; enregistrer les deux fichiers.</p>
+<p><strong>À obtenir :</strong> les deux fichiers enregistrés, avec leur nom et leur
+extension d’origine.</p>
+</div></blockquote>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Ce qu’on change</p></th>
+<th class="head"><p>Où</p></th>
+<th class="head"><p>La modification</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>le titre</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">content.xml</span></code></p></td>
+<td><p>remplacer <code class="docutils literal notranslate"><span class="pre">&gt;The</span> <span class="pre">Raven&lt;</span></code> par <code class="docutils literal notranslate"><span class="pre">&gt;Le</span> <span class="pre">Corbeau&lt;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>le style d’un paragraphe</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">content.xml</span></code></p></td>
+<td><p>sur le premier paragraphe du poème, remplacer <code class="docutils literal notranslate"><span class="pre">Text_20_body</span></code> par <code class="docutils literal notranslate"><span class="pre">Heading_20_1</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>la taille des titres</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">styles.xml</span></code></p></td>
+<td><p>dans le style <code class="docutils literal notranslate"><span class="pre">Heading_20_1</span></code>, passer <code class="docutils literal notranslate"><span class="pre">fo:font-size=&quot;115%&quot;</span></code> à <code class="docutils literal notranslate"><span class="pre">fo:font-size=&quot;220%&quot;</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Pour la troisième modification, chercher <code class="docutils literal notranslate"><span class="pre">style:name=&quot;Heading_20_1&quot;</span></code> dans
+<code class="docutils literal notranslate"><span class="pre">styles.xml</span></code> : la ligne suivante contient <code class="docutils literal notranslate"><span class="pre">fo:font-size=&quot;115%&quot;</span></code>. Ne changer
+que cette valeur-là ; les attributs <code class="docutils literal notranslate"><span class="pre">style:font-size-asian</span></code> et
+<code class="docutils literal notranslate"><span class="pre">style:font-size-complex</span></code> voisins concernent d’autres écritures.</p>
+<p>Enregistrer les deux fichiers (<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">S</span></code>), sans changer leur nom.</p>
+<p><strong>Vérification</strong> : dans <code class="docutils literal notranslate"><span class="pre">content.xml</span></code>, le premier paragraphe commence par
+<code class="docutils literal notranslate"><span class="pre">&lt;text:p</span> <span class="pre">text:style-name=&quot;Heading_20_1&quot;&gt;</span></code>.</p>
+</section>
+<section id="recompresser-et-rouvrir-dans-libreoffice">
+<h2>4 · Recompresser, et rouvrir dans LibreOffice<a class="headerlink" href="#recompresser-et-rouvrir-dans-libreoffice" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> compresser les six fichiers de <code class="docutils literal notranslate"><span class="pre">travail\raven\</span></code> en
+<code class="docutils literal notranslate"><span class="pre">raven2.zip</span></code> ; renommer en <code class="docutils literal notranslate"><span class="pre">raven2.odt</span></code> ; l’ouvrir.</p>
+<p><strong>À obtenir :</strong> LibreOffice ouvre <code class="docutils literal notranslate"><span class="pre">raven2.odt</span></code> ; le titre est « Le
+Corbeau », et le premier paragraphe est en grand.</p>
+</div></blockquote>
+<ol class="arabic simple">
+<li><p>Ouvrir le dossier <code class="docutils literal notranslate"><span class="pre">travail\raven\</span></code>, et sélectionner tout son contenu
+(<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">A</span></code>) : les cinq fichiers et le dossier <code class="docutils literal notranslate"><span class="pre">META-INF</span></code>.</p></li>
+<li><p>Clic droit sur la sélection, « Compresser dans » (ou « Envoyer vers »),
+« Dossier compressé (zip) ». Windows crée l’archive dans <code class="docutils literal notranslate"><span class="pre">travail\raven\</span></code>.</p></li>
+<li><p>Renommer l’archive <code class="docutils literal notranslate"><span class="pre">raven2.zip</span></code>, puis <code class="docutils literal notranslate"><span class="pre">raven2.odt</span></code>, et confirmer le
+changement d’extension.</p></li>
+<li><p>Double-cliquer sur <code class="docutils literal notranslate"><span class="pre">raven2.odt</span></code>.</p></li>
+</ol>
+<p><strong>Attention</strong> : compresser le contenu du dossier <code class="docutils literal notranslate"><span class="pre">raven\</span></code>, depuis
+l’intérieur, et non le dossier <code class="docutils literal notranslate"><span class="pre">raven\</span></code> lui-même. Sinon, l’archive contient
+<code class="docutils literal notranslate"><span class="pre">raven\content.xml</span></code> au lieu de <code class="docutils literal notranslate"><span class="pre">content.xml</span></code>, et LibreOffice refuse de
+l’ouvrir (« source file could not be loaded »). Dans ce cas, supprimer
+l’archive et recommencer à l’étape 4.1.</p>
+<p><strong>Vérification</strong> : LibreOffice ouvre le document ; le titre est « Le
+Corbeau », et le premier paragraphe du poème est un titre, en grand.</p>
+</section>
+<section id="ce-que-le-td-fait-constater">
+<h2>Ce que le TD fait constater<a class="headerlink" href="#ce-que-le-td-fait-constater" title="Lien vers cette rubrique">#</a></h2>
+<p>Cette section se lit après avoir fait les étapes.</p>
+<section id="un-odt-est-une-archive-de-fichiers-texte">
+<h3>Un <code class="docutils literal notranslate"><span class="pre">.odt</span></code> est une archive de fichiers texte<a class="headerlink" href="#un-odt-est-une-archive-de-fichiers-texte" title="Lien vers cette rubrique">#</a></h3>
+<p>Un <code class="docutils literal notranslate"><span class="pre">.odt</span></code> est une archive ZIP qui contient des fichiers XML. Le texte est dans
+<code class="docutils literal notranslate"><span class="pre">content.xml</span></code>, la mise en forme dans <code class="docutils literal notranslate"><span class="pre">styles.xml</span></code> : c’est la séparation du
+contenu et de la présentation déjà vue au TD 1a avec HTML et CSS. Les formats
+<code class="docutils literal notranslate"><span class="pre">.docx</span></code>, <code class="docutils literal notranslate"><span class="pre">.xlsx</span></code> et <code class="docutils literal notranslate"><span class="pre">.epub</span></code> sont construits de la même façon.</p>
+<p>Le format est ouvert et documenté : il se manipule avec des outils
+quelconques, un gestionnaire d’archives et un éditeur de texte, sans le
+logiciel qui l’a produit. Le TD a changé le texte, le style d’un paragraphe
+et la taille des titres sans ouvrir de traitement de texte.</p>
+<p>Les fichiers qu’il contient sont du texte, mais le <code class="docutils literal notranslate"><span class="pre">.odt</span></code> lui-même est
+compressé, donc binaire : c’est pourquoi il se versionne mal, un outil comme
+git ne pouvant pas en comparer deux versions ligne à ligne (cours 2).</p>
+</section>
+<section id="dans-les-noms-de-style">
+<h3><code class="docutils literal notranslate"><span class="pre">_20_</span></code> dans les noms de style<a class="headerlink" href="#dans-les-noms-de-style" title="Lien vers cette rubrique">#</a></h3>
+<p>Le paragraphe modifié à l’étape 3 n’a pas changé de texte : seul le nom de son
+style est passé de <code class="docutils literal notranslate"><span class="pre">Text_20_body</span></code> à <code class="docutils literal notranslate"><span class="pre">Heading_20_1</span></code>. Ces noms ne sont pas
+faits de trois morceaux : ce sont « Text body » et « Heading 1 », dont
+l’espace est écrit <code class="docutils literal notranslate"><span class="pre">_20_</span></code>.</p>
+<p>Un nom de style est un nom XML, et l’espace y est interdit. Le format
+OpenDocument écrit donc chaque caractère interdit sous la forme de son code
+hexadécimal entouré de tirets bas, et l’espace vaut <code class="docutils literal notranslate"><span class="pre">20</span></code> dans la table ASCII
+du TD 1a. Le nom lisible est rangé à part, dans l’attribut
+<code class="docutils literal notranslate"><span class="pre">style:display-name</span></code> de <code class="docutils literal notranslate"><span class="pre">styles.xml</span></code> (<code class="docutils literal notranslate"><span class="pre">style:display-name=&quot;Heading</span> <span class="pre">1&quot;</span></code>) ; c’est
+lui que LibreOffice affiche, traduit en français, dans son panneau des
+styles.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Dans le panneau des styles de LibreOffice</p></th>
+<th class="head"><p>Dans <code class="docutils literal notranslate"><span class="pre">content.xml</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Corps de texte</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Text_20_body</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Titre 1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Heading_20_1</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Titre 2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Heading_20_2</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>C’est le même principe que le <code class="docutils literal notranslate"><span class="pre">%20</span></code> d’une adresse web, vu au TD 1a : les deux
+interdisent l’espace, et l’écrivent par son code, chacun avec sa marque.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Ce qui interdit l’espace</p></th>
+<th class="head"><p>L’espace s’y écrit</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Une adresse web</p></td>
+<td><p>la syntaxe des URL</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">%20</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Un nom de style ODF</p></td>
+<td><p>la syntaxe des noms XML</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">_20_</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La règle est fixée par la spécification OpenDocument 1.3, partie 3, aux
+sections sur <code class="docutils literal notranslate"><span class="pre">style:name</span></code> et <code class="docutils literal notranslate"><span class="pre">style:display-name</span></code> :
+<a class="reference external" href="https://docs.oasis-open.org/office/OpenDocument/v1.3/OpenDocument-v1.3-part3-schema.html">https://docs.oasis-open.org/office/OpenDocument/v1.3/OpenDocument-v1.3-part3-schema.html</a>.</p>
+</section>
+<section id="les-couleurs-dans-odf-et-dans-css">
+<h3>Les couleurs dans ODF et dans CSS<a class="headerlink" href="#les-couleurs-dans-odf-et-dans-css" title="Lien vers cette rubrique">#</a></h3>
+<p>Pour aller plus loin, une couleur peut s’ajouter au style <code class="docutils literal notranslate"><span class="pre">Heading_20_1</span></code>,
+dans <code class="docutils literal notranslate"><span class="pre">styles.xml</span></code>, par l’attribut <code class="docutils literal notranslate"><span class="pre">fo:color</span></code>. ODF n’accepte que le code
+hexadécimal : <code class="docutils literal notranslate"><span class="pre">fo:color=&quot;#c0392b&quot;</span></code> colore les titres, <code class="docutils literal notranslate"><span class="pre">fo:color=&quot;red&quot;</span></code> est
+ignoré et le titre reste noir. CSS, au TD 1a, accepte les deux écritures.</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../1a_formats/guide.html"
+       title="page précédente">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">précédent</p>
+        <p class="prev-next-title">TD 1a — Fichiers, formats et extensions</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../1c_vscode_python/guide.html"
+       title="page suivante">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">suivant</p>
+        <p class="prev-next-title">TD 1c — Configurer l’éditeur de code, et lancer un programme</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ouvrir-le-odt-comme-une-archive">1 · Ouvrir le <code class="docutils literal notranslate"><span class="pre">.odt</span></code> comme une archive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lire-content-xml">2 · Lire <code class="docutils literal notranslate"><span class="pre">content.xml</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modifier-le-texte-et-la-mise-en-forme">3 · Modifier le texte et la mise en forme</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recompresser-et-rouvrir-dans-libreoffice">4 · Recompresser, et rouvrir dans LibreOffice</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-le-td-fait-constater">Ce que le TD fait constater</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-odt-est-une-archive-de-fichiers-texte">Un <code class="docutils literal notranslate"><span class="pre">.odt</span></code> est une archive de fichiers texte</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dans-les-noms-de-style"><code class="docutils literal notranslate"><span class="pre">_20_</span></code> dans les noms de style</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-couleurs-dans-odf-et-dans-css">Les couleurs dans ODF et dans CSS</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par 1re année géomatique
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, module info01 — CC-BY-4.0.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

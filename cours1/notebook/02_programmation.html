@@ -1,0 +1,1012 @@
+
+<!DOCTYPE html>
+
+
+<html lang="fr" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Programmation et éditeur de code &#8212; Introduction à l&#39;informatique</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../_static/documentation_options.js?v=72dce1d2"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../../_static/translations.js?v=e6b791cb"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cours1/notebook/02_programmation';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Recherche" href="../../search.html" />
+    <link rel="next" title="Markdown et notebook" href="03_markdown_notebook.html" />
+    <link rel="prev" title="Logiciels et formats de fichier" href="01_logiciels_et_formats.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="fr"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Passer au contenu principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Haut de page</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Alerte de version"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navigation dans le site">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="Sur cette page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction à l'informatique</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Introduction à l’informatique
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Avant les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../avant/poste.html">Premiers tests du poste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../avant/donnees.html">Récupérer les fichiers d’une séance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../avant/python.html">Anaconda et JupyterLab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../avant/vscode.html">VS Code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Après les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../apres/sauvegarder.html">Sauvegarder son travail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../apres/s_entrainer.html">S’entraîner : jeux et exercices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours1_v2/index.html">Séance 1, version 2 — Logiciels, fichiers, terminal et premier programme</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1_v2/notebook/01_logiciels_stockage.html">Logiciels, fichiers et stockage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1_v2/notebook/02_terminal.html">Le terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1_v2/notebook/03_premier_programme.html">Premier programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1_v2/notebook/04_notebook.html">Un notebook et la syntaxe de Markdown</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours1_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 1, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1_v2/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1_v2/notebook/td/1b_terminal/guide.html">TD 1b — Les fichiers du TD 1a en ligne de commande</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1_v2/notebook/td/1c_programme/guide.html">TD 1c — Écrire et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1_v2/notebook/td/1d_notebook/guide.html">TD 1d — Un notebook dans JupyterLab</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours2_v2/index.html">Séance 2, version 2 — Éditeur de code, Markdown et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2_v2/notebook/01_editeur_de_code.html">L’éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2_v2/notebook/02_markdown.html">Une recette en Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2_v2/notebook/03_git_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2_v2/notebook/04_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours2_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2_v2/notebook/td/2a_vscode/guide.html">TD 2a — Configurer VS Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2_v2/notebook/td/2b_erreurs/guide.html">TD 2b — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2_v2/notebook/td/2c_markdown/guide.html">TD 2c — Une recette en Markdown, convertie par pandoc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2_v2/notebook/td/2d_depot_recette/guide.html">TD 2d — Un dépôt git pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours3/index.html">Séance 3 — Chemins, fichiers et ligne de commande</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours3/notebook/01_chemins_programmes.html">Chemins et programmes externes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours3/notebook/02_fichiers_encodage.html">Fichiers et encodage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours3/notebook/03_du_notebook_au_programme.html">Du notebook au programme</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours3/notebook/travaux_diriges.html">Travaux dirigés de la séance 3</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours3/notebook/td/3e_markdown/guide.html">TD 3e — Une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours3/notebook/td/3f_cli/guide.html">TD 3f — Une ligne de commande pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours4/index.html">Séance 4 — Projet d’application 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours4/notebook/travaux_diriges.html">Travaux dirigés du projet 4</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours4/notebook/td/4a_recette/guide.html">TD 4a — Un script Python, pas à pas</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../cours4/notebook/td/4b_paquet/guide.html">TD 4b — Un programme installable</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours5/index.html">Séance 5 — Matériel, réseau, mots de passe, clés SSH et secrets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours5/notebook/01_materiel.html">Le matériel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours5/notebook/02_reseau.html">Le réseau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours5/notebook/03_prouver_qui_lon_est.html">Prouver qui l’on est</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours5/notebook/04_secrets.html">Les secrets de vos programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours5/notebook/travaux_diriges.html">Travaux dirigés de la séance 5</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cours6/index.html">Séance 6 — La forge, sur le dépôt du projet 4</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours7/index.html">Séance 7 — Projet d’application 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours7/notebook/td/7a_recette/guide.html">TD 7a — Compléter son projet, par des pull requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours7/notebook/td/7b_train/guide.html">TD 7b — Reprendre et compléter le projet d’un autre</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Annexes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../annexes/configuration/index.html">Configuration des postes de la salle</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/configuration/anaconda.html">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/configuration/jupyterlab.html">JupyterLab</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../annexes/configuration/vscode.html">VS Code</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../annexes/configuration/vscode_python.html">Python et environnement conda</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../annexes/configuration/vscode_notebooks.html">Notebooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../annexes/configuration/vscode_reglages.html">Fichiers de réglages</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/configuration/git.html">Git et Git Bash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/configuration/spyder.html">Spyder</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../annexes/poste_personnel/index.html">Configuration d’un ordinateur personnel</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/poste_personnel/conda.html">Python et conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/poste_personnel/vscode.html">VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/poste_personnel/git_outils.html">Git et éditeurs de texte</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../annexes/notions/index.html">Notions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/notions/outils.html">Choisir entre JupyterLab, Spyder et VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/notions/notebooks.html">Les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/notions/terminaux.html">Les terminaux en ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/notions/variables_environnement.html">Variables d’environnement et recherche des programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/notions/environnements.html">Les environnements conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/notions/vscode_environnements.html">Comment VS Code gère les environnements Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/notions/git_bash.html">Git Bash : une fenêtre, bash et des programmes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../annexes/faq.html">FAQ</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/problemes/reseau.html">Problèmes de réseau et de compte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/problemes/bureautique.html">Problèmes avec les logiciels de texte et de bureautique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/problemes/anaconda.html">Problèmes avec Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/problemes/jupyterlab.html">Problèmes avec JupyterLab et les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/problemes/vscode.html">Problèmes avec VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/problemes/git.html">Problèmes avec git</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../annexes/plus_loin/index.html">Pour aller plus loin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/plus_loin/gestionnaires.html">venv, uv et pixi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/plus_loin/cpp.html">C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/plus_loin/programme_interpreteur.html">Programme, application et interpréteur</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Archive 2026</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Séance 1, 2026 — Logiciel, programmation et formats de fichier</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_logiciels_et_formats.html">Logiciels et formats de fichier</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Programmation et éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_markdown_notebook.html">Markdown et notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_bibliotheques_environnements.html">Bibliothèques et environnements Python</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="travaux_diriges.html">Travaux dirigés de la séance 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="td/1b_archive_odt/guide.html">TD 1b — Un .odt est une archive ZIP (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="td/1c_vscode_python/guide.html">TD 1c — Configurer l’éditeur de code, et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="td/1d_erreurs/guide.html">TD 1d — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="td/1e_hello_cpp/guide.html">TD 1e — Le même programme en C++ (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="td/1f_markdown/guide.html">TD 1f — Mettre en forme une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="td/1g_notebooks/guide.html">TD 1g — Le notebook, ouvert de trois façons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="td/1h_recette/guide.html">TD 1h — Installer un projet Python, et décrire son installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="td/1i_noyaux/guide.html">TD 1i — Le client, le noyau, et où ils sont installés (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="td/1j_trajet/guide.html">TD 1j — Installer un projet en lisant son README (facultatif)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="05_comparer_versions.html">Annexe — Comparer deux versions d’un fichier</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours2/index.html">Séance 2, 2026 — Ligne de commande et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2/notebook/01_ligne_de_commande.html">La ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2/notebook/02_depot_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2/notebook/03_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2/notebook/04_lire_et_tenir_un_depot.html">Lire et tenir un dépôt</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2/notebook/td/2a_premier_depot/guide.html">TD 2a — Un premier dépôt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2/notebook/td/2b_branches/guide.html">TD 2b — Branches et fusions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2/notebook/td/2c_annuler/guide.html">TD 2c — Annuler et remettre à jour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2/notebook/td/2d_conflits/guide.html">TD 2d — Créer et résoudre un conflit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2/notebook/td/2e_livrer/guide.html">TD 2e — Publier une version</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Thème">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Thème" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Clair"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Sombre"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="Paramètres système"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>Paramètres système</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Clair</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Sombre</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Programmation et éditeur de code</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-un-programme-a-une-application">D’un programme à une application</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deux-chemins-du-texte-a-l-execution">Deux chemins du texte à l’exécution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#du-code-source-aux-instructions-machine">Du code source aux instructions machine</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-place-de-l-interpreteur">La place de l’interpréteur</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#les-fonctions-d-un-ide">Les fonctions d’un IDE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#les-fonctions-d-edition-de-texte-d-un-ide">Les fonctions d’édition de texte d’un IDE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#texte-brut-et-regles-du-langage">Texte brut et règles du langage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chasse-fixe-et-chasse-proportionnelle">Chasse fixe et chasse proportionnelle</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l-indentation-en-espaces-ou-en-tabulation">L’indentation, en espaces ou en tabulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#td-de-la-partie">TD de la partie</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="programmation-et-editeur-de-code">
+<h1>Programmation et éditeur de code<a class="headerlink" href="#programmation-et-editeur-de-code" title="Lien vers cette rubrique">#</a></h1>
+<p>Cette partie décrit ce qui sépare le texte d’un programme de son exécution :
+la compilation, l’interprétation, et la place de l’interpréteur entre le
+programme et le système d’exploitation. Elle présente ensuite l’éditeur de
+code, le logiciel dans lequel ce texte s’écrit, et ce qu’il apporte par
+rapport à un éditeur de texte ordinaire : la coloration, le soulignement des
+fautes, la police à chasse fixe et l’affichage des espaces. Trois TD
+l’accompagnent, le <a class="reference internal" href="td/1c_vscode_python/guide.html"><span class="std std-doc">TD 1c</span></a>, le
+<a class="reference internal" href="td/1d_erreurs/guide.html"><span class="std std-doc">TD 1d</span></a> et le <a class="reference internal" href="td/1e_hello_cpp/guide.html"><span class="std std-doc">TD 1e,
+facultatif</span></a> ; ils sont présentés en fin de page.</p>
+<section id="d-un-programme-a-une-application">
+<h2>D’un programme à une application<a class="headerlink" href="#d-un-programme-a-une-application" title="Lien vers cette rubrique">#</a></h2>
+<p>Renommer trois cents photos selon leur date de prise de vue, calculer la
+longueur d’un trajet à partir d’un relevé GPS ou réunir cinquante tableaux en
+un seul fichier sont des tâches faisables à la main. Elles prennent une
+soirée, et une erreur de recopie y passe inaperçue. Un programme fait le même
+travail en quelques secondes, et de la même façon à chaque exécution :
+la deuxième exécution ne coûte rien, et une erreur, quand il y en a une, se
+reproduit à l’identique sur toutes les données, ce qui permet de la repérer.</p>
+<p>Trois mots voisins désignent l’activité, son résultat, et ce que reçoit
+l’utilisateur.</p>
+<dl class="simple myst">
+<dt>Programmation</dt><dd><p>L’activité qui consiste à écrire un programme.</p>
+</dd>
+<dt>Programme</dt><dd><p>Le résultat de cette activité : un texte, écrit dans un langage de
+programmation, qui décrit un traitement.</p>
+</dd>
+<dt>Application</dt><dd><p>Le programme tel que le reçoit la personne qui s’en sert.</p>
+</dd>
+</dl>
+<p>Programme et application désignent le même objet, vu par celui qui l’écrit
+et par celui qui s’en sert. Tous les programmes n’ont pas de fenêtre ;
+beaucoup de ceux que vous écrirez dans ce module se lanceront depuis un terminal. On écrit un
+programme quand aucun logiciel existant ne fait exactement ce dont on a
+besoin, ou pour enchaîner plusieurs logiciels sans intervention manuelle
+entre deux étapes.</p>
+<p>Ce qui distingue un programme d’une application est la façon dont il est
+distribué, et ce que doit faire un utilisateur pour s’en servir. Le même code
+source peut suivre deux chemins.</p>
+<figure class="align-default" id="id1">
+<img alt="Deux chaînes de trois étapes. Distribution : le code source, ce qu'on écrit ; l'empaquetage (packaging) ; une application, qui s'installe. Déploiement : le code source, ce qu'on écrit ; la mise en ligne, ou déploiement ; une application web, rien à installer." src="../../_images/2_distribution_deploiement.svg" />
+<figcaption>
+<p><span class="caption-text">Le même code source, distribué en application à installer ou déployé en
+application web.</span><a class="headerlink" href="#id1" title="Lien vers cette image">#</a></p>
+</figcaption>
+</figure>
+<p>L”<strong>empaquetage</strong> rassemble le programme et ce dont il a besoin dans un
+fichier d’installation. Le <strong>déploiement</strong> installe le programme sur un
+serveur, et l’utilisateur s’en sert depuis son navigateur. Dans les deux cas,
+le programme lui-même ne change pas : seule change la façon de le mettre à
+disposition. Le cours 6 revient sur ces deux opérations.</p>
+</section>
+<section id="deux-chemins-du-texte-a-l-execution">
+<h2>Deux chemins du texte à l’exécution<a class="headerlink" href="#deux-chemins-du-texte-a-l-execution" title="Lien vers cette rubrique">#</a></h2>
+<p>Un programme est un fichier texte, que le processeur ne sait pas exécuter
+tel quel. Deux façons de passer du texte à l’exécution existent, et chaque
+langage de programmation suit principalement l’une ou l’autre.</p>
+<figure class="align-default" id="id2">
+<img alt="Deux chaînes. Compilé : bonjour.cpp, le texte écrit ; le compilateur, une fois ; bonjour.exe, des instructions ; le résultat, à chaque lancement. Interprété : bonjour.py, le texte écrit ; l'interpréteur, à chaque lancement ; le résultat, rien sur le disque." src="../../_images/2_compile_interprete.svg" />
+<figcaption>
+<p><span class="caption-text">Un programme compilé et un programme interprété, du texte au résultat.</span><a class="headerlink" href="#id2" title="Lien vers cette image">#</a></p>
+</figcaption>
+</figure>
+<p>Dans un langage <strong>compilé</strong>, comme le C++, un programme appelé
+<strong>compilateur</strong> traduit le texte une fois pour toutes en un fichier
+exécutable, qui contient des instructions pour le processeur. À chaque
+lancement, le système d’exploitation exécute ce fichier, sans relire le
+texte. La chaîne a une étape de plus, mais cette étape n’est faite qu’une
+fois.</p>
+<p>Dans un langage <strong>interprété</strong>, comme Python, un programme appelé
+<strong>interpréteur</strong> lit le texte et l’exécute à chaque lancement. La chaîne a une
+étape de moins, mais l’analyse du texte est refaite à chaque exécution. Lancer
+un programme Python ne crée donc aucun fichier exécutable sur le disque.</p>
+<p>L’analyse du texte refaite à chaque lancement rend un programme interprété
+plus lent qu’un programme compilé qui fait le même calcul. L’écart peut
+atteindre un facteur 100 à 1000 sur une boucle de calcul ; c’est pourquoi
+les bibliothèques de calcul de Python, comme <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, font exécuter leurs
+calculs par du code écrit en C et compilé. Le cours 6 et le projet de la
+séance 7 mesurent cet écart.</p>
+<p>Les deux fichiers de la figure sont ceux des TD : <code class="docutils literal notranslate"><span class="pre">bonjour.py</span></code> est le
+programme du TD 1c, et <code class="docutils literal notranslate"><span class="pre">bonjour.cpp</span></code> le même programme écrit en C++, que le
+TD 1e compile.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Certains langages combinent les deux chemins. Un programme Java est compilé
+en un code intermédiaire, que la machine virtuelle Java exécute ; pendant
+l’exécution, elle compile en instructions machine les parties du programme
+qui reviennent le plus souvent. Cette compilation pendant l’exécution
+s’appelle la compilation à la volée (<em>just-in-time</em>, JIT). Les navigateurs
+exécutent JavaScript de la même façon.</p>
+</div>
+</section>
+<section id="du-code-source-aux-instructions-machine">
+<h2>Du code source aux instructions machine<a class="headerlink" href="#du-code-source-aux-instructions-machine" title="Lien vers cette rubrique">#</a></h2>
+<p>Compiler un programme C++ enchaîne quatre étapes, que la documentation du
+compilateur GCC nomme dans cet ordre : le prétraitement, la compilation
+proprement dite, l’assemblage et l’édition de liens.</p>
+<figure class="align-default" id="id3">
+<img alt="Quatre étapes reliées par des flèches : le préprocesseur produit un seul texte ; le compilateur produit de l'assembleur ; l'assembleur produit des instructions machine ; l'éditeur de liens produit un exécutable." src="../../_images/2_etapes_compilation.svg" />
+<figcaption>
+<p><span class="caption-text">Les quatre étapes de la compilation.</span><a class="headerlink" href="#id3" title="Lien vers cette image">#</a></p>
+</figcaption>
+</figure>
+<p>Le préprocesseur réunit le texte du programme et celui des fichiers qu’il
+inclut en un seul texte. Le compilateur traduit ce texte en <strong>assembleur</strong>,
+une écriture lisible des instructions du processeur, que l’assembleur
+convertit ensuite en instructions machine. L’éditeur de liens rassemble enfin
+ces instructions et celles des bibliothèques employées en un seul fichier
+exécutable.</p>
+<p>Les trois lignes de C++ suivantes calculent le nombre de pixels d’une image :</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">largeur</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1920</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">hauteur</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1080</span><span class="p">;</span>
+<span class="k">return</span><span class="w"> </span><span class="n">largeur</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">hauteur</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Le compilateur <code class="docutils literal notranslate"><span class="pre">g++</span></code> les traduit en quatre instructions, que le processeur
+exécute telles quelles :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mov   DWORD PTR -8[rbp], 1920
+mov   DWORD PTR -4[rbp], 1080
+mov   eax,  DWORD PTR -8[rbp]
+imul  eax,  DWORD PTR -4[rbp]
+</pre></div>
+</div>
+<p>Chaque instruction machine fait une opération élémentaire. <code class="docutils literal notranslate"><span class="pre">mov</span></code> copie une
+valeur : la première ligne écrit 1920 à l’emplacement de la mémoire désigné
+par <code class="docutils literal notranslate"><span class="pre">-8[rbp]</span></code>, une adresse calculée à partir du repère <code class="docutils literal notranslate"><span class="pre">rbp</span></code>. <code class="docutils literal notranslate"><span class="pre">imul</span></code> multiplie
+deux valeurs. Un programme interprété aboutit aux mêmes opérations
+élémentaires, mais l’interpréteur doit d’abord lire et analyser chaque ligne
+du texte, à chaque exécution et à chaque tour de boucle.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>La sortie montrée s’obtient avec
+<code class="docutils literal notranslate"><span class="pre">g++</span> <span class="pre">-S</span> <span class="pre">-O0</span> <span class="pre">-masm=intel</span> <span class="pre">-fno-asynchronous-unwind-tables</span> <span class="pre">surface.cpp</span> <span class="pre">-o</span> <span class="pre">-</span></code>,
+sur un fichier <code class="docutils literal notranslate"><span class="pre">surface.cpp</span></code> qui contient les trois lignes dans une fonction.
+L’option <code class="docutils literal notranslate"><span class="pre">-S</span></code> arrête la compilation avant l’étape de l’assembleur, et
+affiche le texte en assembleur produit par le compilateur. Le
+contenu d’un fichier exécutable, octet par octet, est étudié au cours 3.</p>
+</div>
+</section>
+<section id="la-place-de-l-interpreteur">
+<h2>La place de l’interpréteur<a class="headerlink" href="#la-place-de-l-interpreteur" title="Lien vers cette rubrique">#</a></h2>
+<p>La partie précédente a montré qu’un programme passe par le système
+d’exploitation pour atteindre le matériel. Un programme interprété ajoute un
+intermédiaire : il ne s’adresse pas au système d’exploitation, c’est
+l’interpréteur qui lit son texte et s’adresse au système à sa place.</p>
+<figure class="align-default" id="id4">
+<img alt="Trois couches superposées. En haut, le programme interprété, par exemple bonjour.py ou une page web. Au milieu, l'interpréteur, qui traduit en bytecode puis l'exécute, par exemple python ou le navigateur. En bas, le système d'exploitation, Windows, macOS ou Linux. Entre le programme et l'interpréteur, le texte du programme descend et le résultat remonte ; entre l'interpréteur et le système, un appel système comme open ou read descend et des octets remontent." src="../../_images/2_place_interpreteur.svg" />
+<figcaption>
+<p><span class="caption-text">Un programme interprété s’adresse à l’interpréteur, qui s’adresse au
+système d’exploitation.</span><a class="headerlink" href="#id4" title="Lien vers cette image">#</a></p>
+</figcaption>
+</figure>
+<p>Deux échanges de nature différente figurent sur ce schéma. Entre le
+programme et l’interpréteur circule du texte. Entre l’interpréteur et le
+système d’exploitation circulent des <strong>appels système</strong>, les demandes
+d’ouvrir un fichier, de lire ou d’écrire des octets, décrites dans la partie
+précédente. Un programme compilé, comme <code class="docutils literal notranslate"><span class="pre">bonjour.exe</span></code>, fait lui-même ses
+appels système : il est déjà en instructions machine, et n’a pas besoin
+d’interpréteur.</p>
+<p>Avant d’exécuter un programme, l’interpréteur <code class="docutils literal notranslate"><span class="pre">python</span></code> traduit le texte
+entier en <strong>bytecode</strong>, les instructions d’une machine virtuelle qui n’existe
+qu’à l’intérieur de <code class="docutils literal notranslate"><span class="pre">python</span></code>. Le bytecode n’est pas fait d’instructions
+machine : le processeur ne sait pas l’exécuter, et c’est l’interpréteur qui
+l’exécute. Les fichiers <code class="docutils literal notranslate"><span class="pre">.pyc</span></code> du dossier <code class="docutils literal notranslate"><span class="pre">__pycache__</span></code>, qui apparaissent à
+côté des programmes Python, conservent ce bytecode sur le disque, pour que la
+traduction ne soit pas refaite au lancement suivant.</p>
+<p>Un interpréteur est un programme comme les autres. L’interpréteur de
+Python le plus employé, CPython, est écrit en C et compilé : ce qui exécute le
+texte d’un programme Python est lui-même un fichier exécutable en
+instructions machine. Il en découle une conséquence pratique : un programme
+Python ne se lance que sur un poste où Python est installé, alors qu’un
+exécutable compilé se lance seul. L’installation de Python et des outils du
+module est l’objet de la partie suivante.</p>
+<p>Le navigateur tient le même rôle pour les pages web : il interprète HTML, CSS
+et JavaScript, sans qu’on l’appelle interpréteur. Le mot « interpréteur » désigne ainsi
+un rôle : celui du logiciel qui lit le texte d’un programme et l’exécute.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Les noms <code class="docutils literal notranslate"><span class="pre">open</span></code> et <code class="docutils literal notranslate"><span class="pre">read</span></code> sont ceux des appels système de macOS et de Linux,
+définis par la norme POSIX. Windows nomme les siens <code class="docutils literal notranslate"><span class="pre">CreateFile</span></code> et
+<code class="docutils literal notranslate"><span class="pre">ReadFile</span></code> ; les noms diffèrent, mais les demandes faites au système sont de
+même nature. La commande <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">dis</span> <span class="pre">bonjour.py</span></code> affiche le bytecode d’un
+programme.</p>
+</div>
+</section>
+<section id="les-fonctions-d-un-ide">
+<h2>Les fonctions d’un IDE<a class="headerlink" href="#les-fonctions-d-un-ide" title="Lien vers cette rubrique">#</a></h2>
+<div class="admonition-environnement-de-developpement-integre-ide admonition">
+<p class="admonition-title">Environnement de développement intégré (IDE)</p>
+<p>Logiciel qui réunit les outils nécessaires pour écrire, exécuter, tester et
+mettre au point des programmes, avec des fonctions propres à un ou plusieurs
+langages de programmation.</p>
+<p>D’après Wikipédia (en anglais), <em>Integrated development environment</em>.</p>
+</div>
+<p>Le sigle IDE vient de l’anglais <em>integrated development environment</em>. Un
+éditeur de texte ordinaire, comme le Bloc-notes, sait seulement écrire du
+texte ; un IDE y ajoute les autres fonctions du tableau, dans la même
+fenêtre.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>La fonction</p></th>
+<th class="head"><p>Ce que l’éditeur en fournit</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Écrire le code</p></td>
+<td><p>la coloration, l’indentation, la complétion, le soulignement des fautes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Le lancer et le tester</p></td>
+<td><p>un terminal intégré et un bouton d’exécution, dans la même fenêtre</p></td>
+</tr>
+<tr class="row-even"><td><p>Naviguer dans le projet</p></td>
+<td><p>l’arborescence des fichiers, la recherche dans tous les fichiers</p></td>
+</tr>
+<tr class="row-odd"><td><p>Déboguer</p></td>
+<td><p>l’exécution pas à pas, l’arrêt sur une ligne, la lecture des variables</p></td>
+</tr>
+<tr class="row-even"><td><p>Connaître le langage</p></td>
+<td><p>certains IDE ne servent qu’un langage ; d’autres s’étendent par
+des extensions</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Le module emploie Visual Studio Code (VS Code). Il sert plusieurs langages,
+et la prise en charge de chacun s’ajoute par une <strong>extension</strong> de l’éditeur :
+l’extension Python, l’extension C/C++. Microsoft présente VS Code comme un
+éditeur de code plutôt que comme un IDE, parce que ses fonctions avancées
+viennent de ces extensions. D’autres IDE ne servent qu’un langage, comme
+RStudio pour R ou l’IDE Arduino. Le débogage et le suivi des versions avec
+git, que VS Code intègre aussi, sont traités au cours 2.</p>
+<div class="admonition warning">
+<p class="admonition-title">Avertissement</p>
+<p>Un IDE ne contient pas forcément l’interpréteur ni le compilateur du langage.
+Ils s’installent à part, et se configurent pour chaque langage et chaque
+système d’exploitation. La documentation de VS Code le précise pour le C++ :
+l’extension C/C++ ne fournit ni compilateur ni débogueur. Le bouton
+d’exécution de l’éditeur appelle un outil qui doit être installé par
+ailleurs. Si cet outil n’est pas installé, le programme ne se lance pas ; si
+l’éditeur appelle un autre interpréteur Python que celui de l’environnement
+du module, le programme se lance sans les bibliothèques installées dans cet
+environnement.</p>
+</div>
+</section>
+<section id="les-fonctions-d-edition-de-texte-d-un-ide">
+<h2>Les fonctions d’édition de texte d’un IDE<a class="headerlink" href="#les-fonctions-d-edition-de-texte-d-un-ide" title="Lien vers cette rubrique">#</a></h2>
+<p>Dans ce module, le programme, ses réglages, sa documentation et la liste des
+fichiers que git doit ignorer sont des fichiers texte, écrits dans un
+éditeur. Programmer demande d’écrire ces fichiers sans faute, et l’éditeur de
+code rend cette écriture plus simple et plus rapide.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Dans un éditeur de texte ordinaire</p></th>
+<th class="head"><p>Dans un éditeur de code</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>une faute de frappe se découvre à l’exécution</p></td>
+<td><p>elle est soulignée pendant la frappe</p></td>
+</tr>
+<tr class="row-odd"><td><p>on cherche un fichier dans l’explorateur</p></td>
+<td><p>l’arborescence et la recherche sont dans la fenêtre</p></td>
+</tr>
+<tr class="row-even"><td><p>une indentation fausse ne se voit pas</p></td>
+<td><p>les espaces s’affichent</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La colonne de gauche décrit le travail de quelqu’un qui écrit son code dans
+le Bloc-notes. Les sections suivantes détaillent les fonctions de la colonne
+de droite.</p>
+</section>
+<section id="texte-brut-et-regles-du-langage">
+<h2>Texte brut et règles du langage<a class="headerlink" href="#texte-brut-et-regles-du-langage" title="Lien vers cette rubrique">#</a></h2>
+<p>Un programme s’écrit en <strong>texte brut</strong> : le fichier ne contient que les
+caractères du programme. Un traitement de texte, comme Word ou LibreOffice
+Writer, enregistre en plus la mise en forme du document ; un programme
+enregistré ainsi n’est plus lisible par l’interpréteur.</p>
+<figure class="align-default" id="id5">
+<img alt="Trois panneaux. À gauche, enregistré par un traitement de texte : les deux lignes de code, altitude = 128.4 et print(altitude), entourées de balises text:p avec un nom de style. Au milieu, le fichier d'un programme : les deux lignes seules, sans couleur. À droite, les mêmes deux lignes affichées par l'éditeur de code, avec le nombre et le nom de la fonction en couleur." src="../../_images/2_texte_brut.svg" />
+<figcaption>
+<p><span class="caption-text">Les mêmes deux lignes de code, dans un fichier de traitement de texte, dans
+le fichier d’un programme, et affichées par l’éditeur de code.</span><a class="headerlink" href="#id5" title="Lien vers cette image">#</a></p>
+</figcaption>
+</figure>
+<p>Le panneau de gauche reprend le <code class="docutils literal notranslate"><span class="pre">content.xml</span></code> d’un document LibreOffice, que
+le TD 1b ouvre : les lignes de code y sont mêlées aux balises de style. Un
+programme ne s’écrit donc jamais dans Word ni dans LibreOffice. Un traitement
+de texte remplace aussi les guillemets droits par des guillemets
+typographiques, et un programme copié depuis un document Word peut refuser
+de s’exécuter pour cette raison, sur un message qui ne mentionne pas les
+guillemets.</p>
+<p>Le panneau du milieu et celui de droite montrent le même fichier, octet pour
+octet. Un langage de programmation a une <strong>syntaxe</strong>, un ensemble de règles
+d’écriture défini ; l’éditeur connaît la syntaxe des langages courants et
+donne une couleur à chaque catégorie de mot, sans rien ajouter au fichier.
+Les couleurs distinguent les mots du langage et les fonctions connues, les
+nombres, le texte entre guillemets et les noms choisis par celui qui écrit.
+Un mot du langage mal orthographié perd sa couleur, ce qui se voit sans rien
+exécuter.</p>
+<p>Les mêmes règles servent à vérifier le texte. Une extension de langage,
+comme l’extension Python de VS Code, relit le fichier pendant qu’il s’écrit
+et souligne ce qui ne suit pas les règles, sans lancer le programme, de la
+même façon qu’un correcteur orthographique souligne un mot pendant la
+frappe.</p>
+<figure class="align-default" id="id6">
+<img alt="Trois lignes de Python : altitudes = [128.4, 131.0], puis for altitude in altitudes, puis print(altitude) indenté. Le mot altitudes de la deuxième ligne est souligné d'un trait ondulé." src="../../_images/2_soulignement.svg" />
+<figcaption>
+<p><span class="caption-text">La faute soulignée par l’éditeur : le deux-points manque à la fin de la
+ligne <code class="docutils literal notranslate"><span class="pre">for</span></code>.</span><a class="headerlink" href="#id6" title="Lien vers cette image">#</a></p>
+</figcaption>
+</figure>
+<p>Sans l’éditeur, cette faute n’apparaîtrait qu’au lancement du programme.
+Python 3.12 affiche alors un message qui se termine par ces trois lignes :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>    for altitude in altitudes
+                             ^
+SyntaxError: expected ':'
+</pre></div>
+</div>
+<p>Ici le message désigne la bonne ligne, ce qui n’est pas toujours le cas :
+l’interpréteur ou le compilateur signale l’endroit où il ne peut plus
+continuer, qui peut se trouver après la faute.</p>
+<p>La vérification automatique est possible parce qu’un langage de
+programmation a peu de règles, écrites explicitement, et presque pas
+d’exceptions, contrairement à l’orthographe du français. Un logiciel peut
+donc vérifier de façon sûre qu’un programme respecte la syntaxe de son
+langage, ce qu’aucun logiciel ne sait faire pour un texte en français.
+Cette vérification porte seulement sur l’écriture : un programme
+sans aucune faute soulignée peut calculer autre chose que ce qu’on voulait.</p>
+</section>
+<section id="chasse-fixe-et-chasse-proportionnelle">
+<h2>Chasse fixe et chasse proportionnelle<a class="headerlink" href="#chasse-fixe-et-chasse-proportionnelle" title="Lien vers cette rubrique">#</a></h2>
+<p>Un éditeur de code affiche le texte dans une police à <strong>chasse fixe</strong>, où
+toutes les lettres ont la même largeur. Un traitement de texte emploie une
+police à <strong>chasse proportionnelle</strong>, où le <code class="docutils literal notranslate"><span class="pre">i</span></code> est plus étroit que le <code class="docutils literal notranslate"><span class="pre">m</span></code>. En
+imprimerie, la chasse est la largeur d’un caractère.</p>
+<figure class="align-default" id="id7">
+<img alt="Le même programme de sept lignes, une fonction surface qui calcule une aire puis choisit une catégorie avec if et else, affiché deux fois. À gauche, en chasse fixe, les retraits des lignes sous if et sous else s'alignent nettement. À droite, en chasse proportionnelle, les retraits sont plus étroits et difficiles à comparer d'une ligne à l'autre." src="../../_images/2_chasse.svg" />
+<figcaption>
+<p><span class="caption-text">Le même programme, à la même taille, dans une police à chasse fixe et dans
+une police à chasse proportionnelle.</span><a class="headerlink" href="#id7" title="Lien vers cette image">#</a></p>
+</figcaption>
+</figure>
+<p>Dans la colonne de droite, le décalage de chaque ligne ne se mesure plus :
+l’entrée dans le <code class="docutils literal notranslate"><span class="pre">if</span></code> et dans le <code class="docutils literal notranslate"><span class="pre">else</span></code> se voit mal, et rien n’indique que
+les deux lignes <code class="docutils literal notranslate"><span class="pre">categorie</span></code> sont au même niveau. Python tient compte des
+espaces qui commencent une ligne pour savoir à quel bloc elle appartient ;
+la chasse fixe permet de compter ces espaces à l’œil, et de distinguer trois
+espaces de quatre.</p>
+<p>La police et la coloration sont des réglages d’affichage de l’éditeur, qui ne
+sont pas enregistrés dans le fichier. L’indentation, au contraire, est faite
+de caractères du fichier, et Python en tient compte. Dans LibreOffice, on
+choisit une police pour la mise en page du document ; dans un éditeur de
+code, la police à chasse fixe répond à une contrainte technique.</p>
+</section>
+<section id="l-indentation-en-espaces-ou-en-tabulation">
+<h2>L’indentation, en espaces ou en tabulation<a class="headerlink" href="#l-indentation-en-espaces-ou-en-tabulation" title="Lien vers cette rubrique">#</a></h2>
+<p>Une ligne s’indente par des espaces ou par une tabulation, qui sont deux
+caractères différents. L’espace occupe toujours une colonne. La tabulation
+occupe le nombre de colonnes que l’éditeur lui attribue, et ce réglage change
+d’un éditeur à l’autre.</p>
+<figure class="align-default" id="id8">
+<img alt="Le même fichier de trois lignes affiché deux fois. La deuxième ligne, aire = longueur * largeur, est indentée par quatre espaces, marqués par quatre points ; la troisième, return aire, par une tabulation, marquée par une flèche. À gauche, avec une tabulation réglée sur 4 colonnes, les deux lignes semblent alignées. À droite, avec une tabulation réglée sur 8 colonnes, la troisième ligne est décalée plus loin que la deuxième." src="../../_images/2_tabulation.svg" />
+<figcaption>
+<p><span class="caption-text">Un même fichier, affiché avec une tabulation de 4 colonnes puis de 8 ; <code class="docutils literal notranslate"><span class="pre">·</span></code>
+marque un espace et <code class="docutils literal notranslate"><span class="pre">→</span></code> une tabulation.</span><a class="headerlink" href="#id8" title="Lien vers cette image">#</a></p>
+</figcaption>
+</figure>
+<p>Les octets du fichier sont les mêmes dans les deux colonnes ; seul le
+réglage de l’éditeur change. Python refuse qu’un même bloc mélange les deux
+caractères, et l’indique par une erreur <code class="docutils literal notranslate"><span class="pre">TabError:</span> <span class="pre">inconsistent</span> <span class="pre">use</span> <span class="pre">of</span> <span class="pre">tabs</span> <span class="pre">and</span> <span class="pre">spaces</span> <span class="pre">in</span> <span class="pre">indentation</span></code>, qui signale ce mélange dans l’indentation. Sur un
+éditeur réglé sur 4 colonnes, le mélange ne se voit pas, sauf si l’éditeur
+affiche les espaces et les tabulations par des signes, comme ici.</p>
+<p>La barre d’état de VS Code, en bas à droite, indique le réglage en cours :
+<code class="docutils literal notranslate"><span class="pre">Spaces:</span> <span class="pre">4</span></code> signifie que la touche de tabulation insère quatre espaces.
+L’extension Python impose ce réglage, qui est la convention du langage ; un
+fichier écrit avec un autre éditeur peut suivre une autre convention.</p>
+<p>La même barre d’état indique les <strong>fins de ligne</strong> du fichier. Windows termine
+chaque ligne par deux caractères, notés <code class="docutils literal notranslate"><span class="pre">CRLF</span></code> ; Linux et macOS par un seul,
+noté <code class="docutils literal notranslate"><span class="pre">LF</span></code>. Un même texte n’a donc pas la même taille selon le système qui l’a
+enregistré, et un outil de comparaison peut signaler toutes les lignes comme
+modifiées alors que seules les fins de ligne diffèrent. Le cours 2 revient
+sur ce point avec git.</p>
+</section>
+<section id="td-de-la-partie">
+<h2>TD de la partie<a class="headerlink" href="#td-de-la-partie" title="Lien vers cette rubrique">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="td/1c_vscode_python/guide.html"><span class="std std-doc">TD 1c — Configurer l’éditeur de code, et lancer un
+programme</span></a>, 25 minutes : lancer VS Code,
+installer l’extension Python et choisir l’interpréteur, puis exécuter un
+même programme en entier, ligne à ligne et pas à pas.</p></li>
+<li><p><a class="reference internal" href="td/1d_erreurs/guide.html"><span class="std std-doc">TD 1d — Trois programmes fautifs</span></a>, 10 minutes :
+afficher les caractères invisibles dans l’éditeur, puis corriger trois
+programmes Python qui refusent de s’exécuter.</p></li>
+<li><p><a class="reference internal" href="td/1e_hello_cpp/guide.html"><span class="std std-doc">TD 1e — Le même programme en C++</span></a>, facultatif,
+10 minutes : configurer l’éditeur pour un second langage, avec son
+extension et son compilateur, puis compiler et exécuter le programme du
+TD 1c écrit en C++.</p></li>
+</ul>
+<p>Les TD des autres parties sont dans <a class="reference internal" href="travaux_diriges.html"><span class="std std-doc">Travaux dirigés de la
+séance 1</span></a>.</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="01_logiciels_et_formats.html"
+       title="page précédente">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">précédent</p>
+        <p class="prev-next-title">Logiciels et formats de fichier</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="03_markdown_notebook.html"
+       title="page suivante">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">suivant</p>
+        <p class="prev-next-title">Markdown et notebook</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-un-programme-a-une-application">D’un programme à une application</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deux-chemins-du-texte-a-l-execution">Deux chemins du texte à l’exécution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#du-code-source-aux-instructions-machine">Du code source aux instructions machine</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-place-de-l-interpreteur">La place de l’interpréteur</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#les-fonctions-d-un-ide">Les fonctions d’un IDE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#les-fonctions-d-edition-de-texte-d-un-ide">Les fonctions d’édition de texte d’un IDE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#texte-brut-et-regles-du-langage">Texte brut et règles du langage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chasse-fixe-et-chasse-proportionnelle">Chasse fixe et chasse proportionnelle</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l-indentation-en-espaces-ou-en-tabulation">L’indentation, en espaces ou en tabulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#td-de-la-partie">TD de la partie</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par 1re année géomatique
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, module info01 — CC-BY-4.0.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

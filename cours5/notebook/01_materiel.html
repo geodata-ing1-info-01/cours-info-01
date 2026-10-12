@@ -1,0 +1,1186 @@
+
+<!DOCTYPE html>
+
+
+<html lang="fr" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Le matériel &#8212; Introduction à l&#39;informatique</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../_static/documentation_options.js?v=72dce1d2"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../../_static/translations.js?v=e6b791cb"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cours5/notebook/01_materiel';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Recherche" href="../../search.html" />
+    <link rel="next" title="Le réseau" href="02_reseau.html" />
+    <link rel="prev" title="Séance 5 — Matériel, réseau, mots de passe, clés SSH et secrets" href="../index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="fr"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Passer au contenu principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Haut de page</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Alerte de version"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navigation dans le site">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="Sur cette page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction à l'informatique</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Introduction à l’informatique
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Avant les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../avant/poste.html">Premiers tests du poste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../avant/donnees.html">Récupérer les fichiers d’une séance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../avant/python.html">Anaconda et JupyterLab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../avant/vscode.html">VS Code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Après les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../apres/sauvegarder.html">Sauvegarder son travail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../apres/s_entrainer.html">S’entraîner : jeux et exercices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Séances</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours1_v2/index.html">Séance 1, version 2 — Logiciels, fichiers, terminal et premier programme</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1_v2/notebook/01_logiciels_stockage.html">Logiciels, fichiers et stockage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1_v2/notebook/02_terminal.html">Le terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1_v2/notebook/03_premier_programme.html">Premier programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1_v2/notebook/04_notebook.html">Un notebook et la syntaxe de Markdown</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours1_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 1, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1_v2/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1_v2/notebook/td/1b_terminal/guide.html">TD 1b — Les fichiers du TD 1a en ligne de commande</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1_v2/notebook/td/1c_programme/guide.html">TD 1c — Écrire et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1_v2/notebook/td/1d_notebook/guide.html">TD 1d — Un notebook dans JupyterLab</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours2_v2/index.html">Séance 2, version 2 — Éditeur de code, Markdown et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2_v2/notebook/01_editeur_de_code.html">L’éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2_v2/notebook/02_markdown.html">Une recette en Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2_v2/notebook/03_git_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2_v2/notebook/04_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours2_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2_v2/notebook/td/2a_vscode/guide.html">TD 2a — Configurer VS Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2_v2/notebook/td/2b_erreurs/guide.html">TD 2b — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2_v2/notebook/td/2c_markdown/guide.html">TD 2c — Une recette en Markdown, convertie par pandoc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2_v2/notebook/td/2d_depot_recette/guide.html">TD 2d — Un dépôt git pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours3/index.html">Séance 3 — Chemins, fichiers et ligne de commande</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours3/notebook/01_chemins_programmes.html">Chemins et programmes externes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours3/notebook/02_fichiers_encodage.html">Fichiers et encodage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours3/notebook/03_du_notebook_au_programme.html">Du notebook au programme</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours3/notebook/travaux_diriges.html">Travaux dirigés de la séance 3</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours3/notebook/td/3e_markdown/guide.html">TD 3e — Une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours3/notebook/td/3f_cli/guide.html">TD 3f — Une ligne de commande pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours4/index.html">Séance 4 — Projet d’application 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours4/notebook/travaux_diriges.html">Travaux dirigés du projet 4</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours4/notebook/td/4a_recette/guide.html">TD 4a — Un script Python, pas à pas</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../cours4/notebook/td/4b_paquet/guide.html">TD 4b — Un programme installable</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Séance 5 — Matériel, réseau, mots de passe, clés SSH et secrets</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Le matériel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_reseau.html">Le réseau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_prouver_qui_lon_est.html">Prouver qui l’on est</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_secrets.html">Les secrets de vos programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="travaux_diriges.html">Travaux dirigés de la séance 5</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cours6/index.html">Séance 6 — La forge, sur le dépôt du projet 4</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours7/index.html">Séance 7 — Projet d’application 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours7/notebook/td/7a_recette/guide.html">TD 7a — Compléter son projet, par des pull requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours7/notebook/td/7b_train/guide.html">TD 7b — Reprendre et compléter le projet d’un autre</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Annexes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../annexes/configuration/index.html">Configuration des postes de la salle</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/configuration/anaconda.html">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/configuration/jupyterlab.html">JupyterLab</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../annexes/configuration/vscode.html">VS Code</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../annexes/configuration/vscode_python.html">Python et environnement conda</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../annexes/configuration/vscode_notebooks.html">Notebooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../annexes/configuration/vscode_reglages.html">Fichiers de réglages</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/configuration/git.html">Git et Git Bash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/configuration/spyder.html">Spyder</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../annexes/poste_personnel/index.html">Configuration d’un ordinateur personnel</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/poste_personnel/conda.html">Python et conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/poste_personnel/vscode.html">VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/poste_personnel/git_outils.html">Git et éditeurs de texte</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../annexes/notions/index.html">Notions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/notions/outils.html">Choisir entre JupyterLab, Spyder et VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/notions/notebooks.html">Les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/notions/terminaux.html">Les terminaux en ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/notions/variables_environnement.html">Variables d’environnement et recherche des programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/notions/environnements.html">Les environnements conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/notions/vscode_environnements.html">Comment VS Code gère les environnements Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/notions/git_bash.html">Git Bash : une fenêtre, bash et des programmes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../annexes/faq.html">FAQ</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/problemes/reseau.html">Problèmes de réseau et de compte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/problemes/bureautique.html">Problèmes avec les logiciels de texte et de bureautique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/problemes/anaconda.html">Problèmes avec Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/problemes/jupyterlab.html">Problèmes avec JupyterLab et les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/problemes/vscode.html">Problèmes avec VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/problemes/git.html">Problèmes avec git</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../annexes/plus_loin/index.html">Pour aller plus loin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/plus_loin/gestionnaires.html">venv, uv et pixi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/plus_loin/cpp.html">C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../annexes/plus_loin/programme_interpreteur.html">Programme, application et interpréteur</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Archive 2026</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours1/index.html">Séance 1, 2026 — Logiciel, programmation et formats de fichier</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1/notebook/01_logiciels_et_formats.html">Logiciels et formats de fichier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1/notebook/02_programmation.html">Programmation et éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1/notebook/03_markdown_notebook.html">Markdown et notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1/notebook/04_bibliotheques_environnements.html">Bibliothèques et environnements Python</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours1/notebook/travaux_diriges.html">Travaux dirigés de la séance 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1b_archive_odt/guide.html">TD 1b — Un .odt est une archive ZIP (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1c_vscode_python/guide.html">TD 1c — Configurer l’éditeur de code, et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1d_erreurs/guide.html">TD 1d — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1e_hello_cpp/guide.html">TD 1e — Le même programme en C++ (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1f_markdown/guide.html">TD 1f — Mettre en forme une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1g_notebooks/guide.html">TD 1g — Le notebook, ouvert de trois façons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1h_recette/guide.html">TD 1h — Installer un projet Python, et décrire son installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1i_noyaux/guide.html">TD 1i — Le client, le noyau, et où ils sont installés (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours1/notebook/td/1j_trajet/guide.html">TD 1j — Installer un projet en lisant son README (facultatif)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours1/notebook/05_comparer_versions.html">Annexe — Comparer deux versions d’un fichier</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cours2/index.html">Séance 2, 2026 — Ligne de commande et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2/notebook/01_ligne_de_commande.html">La ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2/notebook/02_depot_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2/notebook/03_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cours2/notebook/04_lire_et_tenir_un_depot.html">Lire et tenir un dépôt</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../cours2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2/notebook/td/2a_premier_depot/guide.html">TD 2a — Un premier dépôt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2/notebook/td/2b_branches/guide.html">TD 2b — Branches et fusions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2/notebook/td/2c_annuler/guide.html">TD 2c — Annuler et remettre à jour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2/notebook/td/2d_conflits/guide.html">TD 2d — Créer et résoudre un conflit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../cours2/notebook/td/2e_livrer/guide.html">TD 2e — Publier une version</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Thème">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Thème" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Clair"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Sombre"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="Paramètres système"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>Paramètres système</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Clair</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Sombre</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Le matériel</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#les-composants-d-un-ordinateur">Les composants d’un ordinateur</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-carte-mere">La carte mère</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#le-processeur">Le processeur</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-temperature-du-processeur">La température du processeur</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memoire-vive-et-disque">Mémoire vive et disque</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#le-chemin-d-une-donnee">Le chemin d’une donnée</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ordres-de-grandeur-tailles">Ordres de grandeur : tailles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ordres-de-grandeur-temps-d-acces">Ordres de grandeur : temps d’accès</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#si-la-memoire-vive-valait-une-seconde">Si la mémoire vive valait une seconde</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#processeur-et-carte-graphique">Processeur et carte graphique</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trente-ans-de-processeurs">Trente ans de processeurs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#puissance-de-calcul-et-consommation">Puissance de calcul et consommation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l-electricite-des-services-en-ligne">L’électricité des services en ligne</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-coute-un-service-en-ligne">Ce que coûte un service en ligne</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#td-de-la-partie">TD de la partie</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="le-materiel">
+<h1>Le matériel<a class="headerlink" href="#le-materiel" title="Lien vers cette rubrique">#</a></h1>
+<p>Cette partie présente les composants d’un ordinateur et le rôle de chacun,
+puis détaille le processeur, la mémoire vive et le disque. Elle donne ensuite
+les ordres de grandeur des tailles et des temps d’accès, compare le processeur
+et la carte graphique, et suit trente ans d’évolution des processeurs. Elle se
+termine par l’électricité consommée par les appareils et par les services en
+ligne, et par le coût de ces services. La partie n’a pas de TD propre : le TD
+5a, fait après la partie sur le réseau, relève les caractéristiques du poste
+et mesure ses temps d’accès.</p>
+<section id="les-composants-d-un-ordinateur">
+<h2>Les composants d’un ordinateur<a class="headerlink" href="#les-composants-d-un-ordinateur" title="Lien vers cette rubrique">#</a></h2>
+<p>Un ordinateur de bureau réunit six composants dans un boîtier. L’écran, le
+clavier et la souris sont branchés à l’extérieur.</p>
+<figure class="align-default" id="id1">
+<img alt="Le boîtier contient six composants, chacun avec son rôle. Le processeur, exécution des instructions ; la mémoire vive, stockage temporaire des données ; le disque, stockage pérenne des données ; la carte graphique, calcul de l'image affichée, puis calcul parallèle ; la carte réseau, connexion au réseau par câble ou Wi-Fi ; l'alimentation, conversion du 230 V. Hors du boîtier, reliés à lui, l'écran, le clavier et la souris." src="../../_images/1_composants.svg" />
+<figcaption>
+<p><span class="caption-text">Les composants d’un ordinateur et le rôle de chacun.</span><a class="headerlink" href="#id1" title="Lien vers cette image">#</a></p>
+</figcaption>
+</figure>
+<p>La suite de la partie détaille le processeur, la mémoire vive et le disque.
+La <strong>carte graphique</strong> a été conçue pour calculer l’image affichée ; elle sert
+aujourd’hui aussi au calcul parallèle, présenté plus bas. La <strong>carte réseau</strong>
+relie le poste au réseau, par un câble ou en Wi-Fi ; elle est le sujet de la
+partie suivante. L”<strong>alimentation</strong> convertit le 230 V du secteur en 12 V, 5 V
+et 3,3 V. Un portable et un téléphone ont les mêmes composants, soudés sur une
+seule carte.</p>
+</section>
+<section id="la-carte-mere">
+<h2>La carte mère<a class="headerlink" href="#la-carte-mere" title="Lien vers cette rubrique">#</a></h2>
+<p>Les composants se branchent sur la <strong>carte mère</strong>, qui les relie par des
+pistes de cuivre. Un ensemble de pistes entre deux composants s’appelle un
+<strong>bus</strong>. Les diapositives en montrent une photo : une carte Gigabyte B550 de
+2020 (photo Nicolasfoster, Wikimedia Commons, CC0). On y trouve les éléments
+suivants.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Élément</p></th>
+<th class="head"><p>Rôle</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>le processeur, sous son ventilateur</p></td>
+<td><p>exécute les instructions</p></td>
+</tr>
+<tr class="row-odd"><td><p>les emplacements de la mémoire vive</p></td>
+<td><p>reçoivent les barrettes ; sur la photo, quatre emplacements, deux
+occupés</p></td>
+</tr>
+<tr class="row-even"><td><p>les emplacements pour cartes</p></td>
+<td><p>reçoivent les cartes d’extension ; le plus long reçoit la carte
+graphique</p></td>
+</tr>
+<tr class="row-odd"><td><p>un emplacement M.2</p></td>
+<td><p>reçoit un SSD au format M.2, de 22 × 80 mm</p></td>
+</tr>
+<tr class="row-even"><td><p>le jeu de puces</p></td>
+<td><p>relie le reste de la carte au processeur</p></td>
+</tr>
+<tr class="row-odd"><td><p>les connecteurs arrière</p></td>
+<td><p>USB, réseau, écran, son</p></td>
+</tr>
+<tr class="row-even"><td><p>l’arrivée de l’alimentation, les prises des disques</p></td>
+<td><p>amènent le courant, relient les disques</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La mémoire, les cartes et les disques se remplacent sans changer de carte
+mère. Un processeur d’une autre génération demande en général une autre
+carte. Un poste sans carte graphique séparée, comme le PC de bureau des
+années 2010 photographié dans les diapositives, affiche l’image par le
+processeur ; ses emplacements vides permettent d’ajouter une carte graphique.</p>
+</section>
+<section id="le-processeur">
+<h2>Le processeur<a class="headerlink" href="#le-processeur" title="Lien vers cette rubrique">#</a></h2>
+<p>Le <strong>processeur</strong> exécute les instructions du programme une par une. Une
+instruction est une opération élémentaire : lire une valeur en mémoire,
+additionner, comparer, sauter à une autre instruction. Une ligne de Python
+correspond à des dizaines ou des centaines d’instructions.</p>
+<figure class="align-default" id="id2">
+<img alt="Quatre cœurs côte à côte. Au-dessus de chacun, une file d'instructions du programme, dans l'ordre : lire a, lire b, a + b, comparer, sauter, écrire." src="../../_images/1_coeurs.svg" />
+<figcaption>
+<p><span class="caption-text">Un processeur à quatre cœurs : chaque cœur suit sa file d’instructions.</span><a class="headerlink" href="#id2" title="Lien vers cette image">#</a></p>
+</figcaption>
+</figure>
+<p>Un processeur contient plusieurs <strong>cœurs</strong>, et chaque cœur suit sa propre file
+d’instructions. La <strong>fréquence</strong>, ou cadence, donne le nombre de cycles par
+seconde : une fréquence de 3 GHz fait 3 milliards de cycles par seconde. Un
+programme Python ordinaire occupe un seul cœur ; les autres cœurs servent aux
+autres programmes ouverts. Les postes de la salle ont 4 cœurs, valeur relevée
+au TD 5a ; un portable en a 4 à 8, un serveur de calcul 32 à 128.</p>
+</section>
+<section id="la-temperature-du-processeur">
+<h2>La température du processeur<a class="headerlink" href="#la-temperature-du-processeur" title="Lien vers cette rubrique">#</a></h2>
+<p>En charge, un processeur travaille entre 60 et 100 °C. À la limite fixée par
+le fabricant, il baisse sa fréquence pour ne pas s’abîmer.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Situation</p></th>
+<th class="head"><p>Température de la puce</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>au repos, bureautique</p></td>
+<td><p>30 à 50 °C</p></td>
+</tr>
+<tr class="row-odd"><td><p>en charge, poste de bureau</p></td>
+<td><p>60 à 90 °C</p></td>
+</tr>
+<tr class="row-even"><td><p>en charge, portable fin</p></td>
+<td><p>80 à 100 °C</p></td>
+</tr>
+<tr class="row-odd"><td><p>limite du fabricant, où la fréquence baisse</p></td>
+<td><p>95 °C (AMD), 100 °C (Intel)</p></td>
+</tr>
+<tr class="row-even"><td><p>sans radiateur ni ventilateur</p></td>
+<td><p>la limite en quelques secondes</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Ces valeurs sont des ordres de grandeur. Les limites sont celles des
+processeurs Ryzen 7000 d’AMD et Core de 13<sup>e</sup> génération d’Intel,
+données par les fabricants ; pour AMD (2022), 95 °C en charge est le
+fonctionnement prévu des Ryzen 7000.</p>
+<p>Un processeur consomme 65 à 250 W sur une puce de 1 à 2,5 cm², soit 50 à
+100 W par cm². Une plaque de cuisson en consomme moins de 10 W par cm². Cette
+chaleur à évacuer a arrêté la montée en fréquence vers 2005 (section <a class="reference internal" href="#trente-ans-de-processeurs">Trente
+ans de processeurs</a>). Un portable qui ralentit
+pendant un long calcul baisse sa fréquence pour rester sous la limite. Le
+gestionnaire des tâches de Windows n’affiche pas la température du
+processeur ; elle se lit avec l’outil du fabricant.</p>
+</section>
+<section id="memoire-vive-et-disque">
+<h2>Mémoire vive et disque<a class="headerlink" href="#memoire-vive-et-disque" title="Lien vers cette rubrique">#</a></h2>
+<p>Un ordinateur a deux mémoires. La <strong>mémoire vive</strong> (RAM) est rapide et
+s’efface à l’extinction. Le <strong>disque</strong> est lent et conserve son contenu.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p>Mémoire vive (RAM)</p></th>
+<th class="head"><p>Disque (SSD, disque dur)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Taille</p></td>
+<td><p>8 à 32 Go</p></td>
+<td><p>500 Go à 4 To</p></td>
+</tr>
+<tr class="row-odd"><td><p>Temps d’accès</p></td>
+<td><p>100 ns</p></td>
+<td><p>100 µs (SSD), 10 ms (disque dur)</p></td>
+</tr>
+<tr class="row-even"><td><p>À l’extinction</p></td>
+<td><p>effacée</p></td>
+<td><p>conservé</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ce qu’on y trouve</p></td>
+<td><p>les variables d’un programme en cours</p></td>
+<td><p>les fichiers, les programmes installés</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Le cours 1 a montré qu’un fichier conserve un résultat après l’arrêt du
+programme : il le peut parce qu’il est sur le disque. Ouvrir un fichier le
+copie du disque vers la mémoire vive ; l’enregistrer le recopie sur le disque.
+Un travail non enregistré se trouve seulement en mémoire vive, et disparaît à
+l’extinction.</p>
+<p>Un <strong>SSD</strong> est fait de mémoire flash, sans pièce mobile. Un <strong>disque dur</strong>
+lit un plateau tournant ; il est cent fois plus lent à l’accès. Les postes de
+la salle ont un SSD.</p>
+</section>
+<section id="le-chemin-d-une-donnee">
+<h2>Le chemin d’une donnée<a class="headerlink" href="#le-chemin-d-une-donnee" title="Lien vers cette rubrique">#</a></h2>
+<p>Une donnée traitée par le processeur passe par tous les étages de mémoire.
+Plus un étage est proche du processeur, plus il est petit et rapide.</p>
+<figure class="align-default" id="id3">
+<img alt="Une pyramide de quatre étages, du sommet à la base. Le cache, dans le processeur : quelques Mo, 1 ns. La mémoire vive, RAM : 8 à 32 Go, 100 ns. Le disque, SSD ou disque dur : 0,5 à 4 To, 0,1 à 10 ms. Le réseau, un autre ordinateur : sans limite de taille, 1 à 300 ms. La taille est écrite à gauche de chaque étage, le temps d'accès à droite." src="../../_images/1_pyramide.svg" />
+<figcaption>
+<p><span class="caption-text">Les étages de mémoire, avec leur taille et leur temps d’accès.</span><a class="headerlink" href="#id3" title="Lien vers cette image">#</a></p>
+</figcaption>
+</figure>
+<p>Le <strong>cache</strong> est une petite mémoire placée dans le processeur. Il garde les
+dernières données lues en mémoire vive. Une boucle qui lit des valeurs
+voisines est donc plus rapide qu’une boucle qui saute d’un endroit à l’autre
+d’un tableau. Le réseau forme un étage de plus,
+au-delà du disque.</p>
+</section>
+<section id="ordres-de-grandeur-tailles">
+<h2>Ordres de grandeur : tailles<a class="headerlink" href="#ordres-de-grandeur-tailles" title="Lien vers cette rubrique">#</a></h2>
+<p>Chaque unité vaut mille fois la précédente. Kilo, méga, giga et téra sont les
+préfixes employés pour les mètres.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Unité</p></th>
+<th class="head"><p>Octets</p></th>
+<th class="head"><p>Un exemple</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1 octet</p></td>
+<td><p>1</p></td>
+<td><p>une lettre : <code class="docutils literal notranslate"><span class="pre">a</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>1 Ko</p></td>
+<td><p>1 000</p></td>
+<td><p>le poème du cours 1, 1 341 caractères : 1,3 Ko</p></td>
+</tr>
+<tr class="row-even"><td><p>1 Mo</p></td>
+<td><p>1 000 000</p></td>
+<td><p>une photo de téléphone : 3 Mo</p></td>
+</tr>
+<tr class="row-odd"><td><p>100 Mo</p></td>
+<td><p>10<sup>8</sup></p></td>
+<td><p>une dalle d’orthophoto, 5 000 × 5 000 pixels × 3 octets : 75 Mo</p></td>
+</tr>
+<tr class="row-even"><td><p>1 Go</p></td>
+<td><p>10<sup>9</sup></p></td>
+<td><p>une heure de vidéo HD : 1 à 3 Go ; Anaconda installé : 5 Go</p></td>
+</tr>
+<tr class="row-odd"><td><p>1 To</p></td>
+<td><p>10<sup>12</sup></p></td>
+<td><p>le disque d’un portable</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La dalle d’orthophoto compte 25 millions de pixels, et chaque pixel trois
+octets, un par couleur (rouge, vert, bleu) ; le calcul suppose l’image sans
+compression. Le cours 3 compare les formats d’image.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Les unités Kio, Mio et Gio valent 1 024, 1 024² et 1 024³ octets.
+L’explorateur de Windows affiche des Kio sous le nom « Ko » : un disque de
+1 To y fait 931 « Go ».</p>
+</div>
+</section>
+<section id="ordres-de-grandeur-temps-d-acces">
+<h2>Ordres de grandeur : temps d’accès<a class="headerlink" href="#ordres-de-grandeur-temps-d-acces" title="Lien vers cette rubrique">#</a></h2>
+<p>La figure place les temps d’accès sur une échelle logarithmique : chaque
+graduation vaut dix fois la précédente, ce qui permet de montrer ensemble une
+nanoseconde et une demi-seconde.</p>
+<figure class="align-default" id="id4">
+<img alt="Des barres horizontales sur une échelle logarithmique graduée de 1 ns à 1 s. En foncé, le cache du processeur, 1 ns ; la mémoire vive, 100 ns ; le SSD, 100 µs ; le disque dur, 10 ms. En bleu clair, le réseau de la salle, 0,5 ms ; Paris – Marseille, 13 ms ; Paris – New York, 75 ms ; Paris – Sydney, 270 ms." src="../../_images/1_temps_acces.svg" />
+<figcaption>
+<p><span class="caption-text">Temps d’un accès ou d’un aller-retour sur le réseau, valeurs typiques.</span><a class="headerlink" href="#id4" title="Lien vers cette image">#</a></p>
+</figcaption>
+</figure>
+<p>Les temps du réseau sont ceux d’un aller-retour depuis Paris, mesurés par
+wondernetwork.com en septembre 2026. Ils sont du même ordre que le temps
+d’accès au disque, ou plus longs. Ces temps sont des temps d’accès, jusqu’au
+premier octet ; le débit, le nombre d’octets reçus chaque seconde, est
+présenté dans la partie sur le réseau.</p>
+</section>
+<section id="si-la-memoire-vive-valait-une-seconde">
+<h2>Si la mémoire vive valait une seconde<a class="headerlink" href="#si-la-memoire-vive-valait-une-seconde" title="Lien vers cette rubrique">#</a></h2>
+<p>Le tableau suivant reprend les temps précédents, multipliés par dix millions :
+un accès à la mémoire vive dure alors une seconde. La construction reprend
+celle de Brendan Gregg, <em>Systems Performance</em>, qui prend le cycle du
+processeur pour unité.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Accès</p></th>
+<th class="head"><p>Temps réel</p></th>
+<th class="head"><p>À l’échelle</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>cache du processeur</p></td>
+<td><p>1 ns</p></td>
+<td><p>un centième de seconde</p></td>
+</tr>
+<tr class="row-odd"><td><p>mémoire vive</p></td>
+<td><p>100 ns</p></td>
+<td><p>1 seconde</p></td>
+</tr>
+<tr class="row-even"><td><p>SSD</p></td>
+<td><p>100 µs</p></td>
+<td><p>un quart d’heure</p></td>
+</tr>
+<tr class="row-odd"><td><p>disque dur</p></td>
+<td><p>10 ms</p></td>
+<td><p>une journée</p></td>
+</tr>
+<tr class="row-even"><td><p>Paris – Marseille, aller-retour</p></td>
+<td><p>13 ms</p></td>
+<td><p>un jour et demi</p></td>
+</tr>
+<tr class="row-odd"><td><p>Paris – New York, aller-retour</p></td>
+<td><p>75 ms</p></td>
+<td><p>une semaine</p></td>
+</tr>
+<tr class="row-even"><td><p>Paris – Sydney, aller-retour</p></td>
+<td><p>270 ms</p></td>
+<td><p>un mois</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Pendant une lecture sur le disque dur, le processeur pourrait faire
+l’équivalent d’une journée d’accès à la mémoire vive ; pendant un aller-retour
+vers New York, une semaine. Un programme tient compte de ces écarts :</p>
+<ul class="simple">
+<li><p>il lit un fichier une fois et garde son contenu en mémoire ;</p></li>
+<li><p>il écrit les nombres en binaire, comme les images P5 du cours 3 ;</p></li>
+<li><p>il emploie numpy à la place d’une boucle Python (projet 7) ;</p></li>
+<li><p>il fait ses <code class="docutils literal notranslate"><span class="pre">commit</span></code> en local, et un <code class="docutils literal notranslate"><span class="pre">push</span></code> sur le réseau quand le travail
+est prêt (partie suivante).</p></li>
+</ul>
+<p>Avant de modifier un programme pour le rendre plus rapide, on mesure ses
+temps ; le projet 7 fait ces mesures.</p>
+</section>
+<section id="processeur-et-carte-graphique">
+<h2>Processeur et carte graphique<a class="headerlink" href="#processeur-et-carte-graphique" title="Lien vers cette rubrique">#</a></h2>
+<p>Le processeur consacre la surface de sa puce au contrôle et au cache, la
+carte graphique au calcul.</p>
+<figure class="align-default" id="id5">
+<img alt="Deux puces de même taille. À gauche, le processeur, 8 cœurs sur deux rangées ; chaque cœur a une grande zone de contrôle des instructions, quatre unités de calcul et un peu de cache ; un grand cache partagé occupe le bas de la puce. À droite, la carte graphique, des milliers d'unités : dix rangées de 22 unités de calcul, chacune précédée d'un petit contrôle et d'un petit cache, et un cache étroit en bas." src="../../_images/1_puces.svg" />
+<figcaption>
+<p><span class="caption-text">La surface d’une puce de processeur et d’une puce de carte graphique. D’après
+NVIDIA, <em>CUDA C++ Programming Guide</em>, figure 1 ; proportions indicatives.</span><a class="headerlink" href="#id5" title="Lien vers cette image">#</a></p>
+</figcaption>
+</figure>
+<p>Le <strong>contrôle</strong> lit les instructions, prévoit les sauts et réordonne les
+instructions. Grâce à lui, un cœur exécute vite un programme quelconque ; il
+occupe de la surface. Sur la carte graphique, un contrôle pilote une rangée d’unités
+de calcul, qui exécutent toutes la même instruction. Le cache évite d’attendre
+la mémoire vive. La carte graphique en a peu : pendant qu’une rangée attend
+ses données, une autre calcule. Le schéma montre 10 rangées de 22 unités ; une
+carte courante a 3 000 à 16 000 unités, que les fabricants appellent des
+cœurs.</p>
+<p>Éclaircir une image applique la même multiplication à chaque pixel. Le
+processeur traite les pixels quatre par quatre, la carte graphique tous à la
+fois.</p>
+<figure class="align-default" id="id6">
+<img alt="Deux images de 16 × 8 pixels à éclaircir. À gauche, le processeur, 4 cœurs, après 3 étapes : chaque cœur traite une bande de deux lignes, et seuls les trois premiers pixels de chaque bande sont éclaircis ; 4 pixels par étape, 32 étapes. À droite, la carte graphique, 128 cœurs, après 1 étape : tous les pixels sont éclaircis ; 128 pixels par étape, 1 étape." src="../../_images/1_pixels.svg" />
+<figcaption>
+<p><span class="caption-text">La même opération sur chaque pixel d’une image, par un processeur et par une
+carte graphique.</span><a class="headerlink" href="#id6" title="Lien vers cette image">#</a></p>
+</figcaption>
+</figure>
+<p>Une dalle de 5 000 × 5 000 pixels compte 25 millions de pixels : 3 millions
+d’étapes sur 8 cœurs, 1 500 étapes sur 16 000 cœurs. L’écart réel est plus
+faible, pour trois raisons : un cœur de processeur est plus rapide, il traite
+plusieurs valeurs par instruction, et l’image doit être copiée dans la mémoire
+de la carte graphique. La carte graphique accélère seulement une même
+opération appliquée à beaucoup de données.</p>
+<p>Dans ce module, numpy (projet 7) applique une opération à tout un tableau, sur
+le processeur. Le calcul sur carte graphique relève des cours de traitement
+d’image et d’apprentissage. Une vidéo de 1 min 30, tournée par les MythBusters
+pour NVIDIA en 2008, illustre la différence :
+<a class="reference external" href="https://www.youtube.com/watch?v=fKK933KK6Gg">youtube.com/watch?v=fKK933KK6Gg</a>.</p>
+</section>
+<section id="trente-ans-de-processeurs">
+<h2>Trente ans de processeurs<a class="headerlink" href="#trente-ans-de-processeurs" title="Lien vers cette rubrique">#</a></h2>
+<p>La fréquence des processeurs a cessé de monter vers 2005. Le nombre de
+transistors et le nombre de cœurs continuent d’augmenter.</p>
+<figure class="align-default" id="id7">
+<img alt="Un nuage de points de 1990 à 2022, un point par processeur, sur une échelle verticale logarithmique de 1 à 10 puissance 8. Les transistors, en milliers, montent régulièrement d'environ mille à plus de dix millions. La fréquence, en MHz, monte jusqu'à environ 3 000 vers 2005, puis reste à ce niveau. La puissance, en watts, monte jusqu'à environ 100 vers 2005, puis reste entre 100 et 300. Le nombre de cœurs vaut 1 jusqu'en 2004, puis augmente jusqu'à plusieurs dizaines." src="../../_images/1_tendances.svg" />
+<figcaption>
+<p><span class="caption-text">Trente ans de processeurs, un point par processeur. Données de Karl Rupp,
+<em>microprocessor-trend-data</em>, CC BY 4.0.</span><a class="headerlink" href="#id7" title="Lien vers cette image">#</a></p>
+</figcaption>
+</figure>
+<p>Selon la <strong>loi de Moore</strong>, le nombre de transistors double environ tous les
+deux ans depuis 1970. La fréquence plafonne vers 3 GHz depuis 2005, parce
+que la puissance à évacuer plafonne vers 100 W. Depuis, le gain de vitesse
+vient du nombre de cœurs ; un programme qui n’utilise qu’un cœur gagne peu
+d’une génération de processeurs à l’autre.</p>
+<p>Le tableau suivant compare d’autres valeurs en 1995 et en 2025.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p>1995</p></th>
+<th class="head"><p>2025</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>mémoire vive</p></td>
+<td><p>8 Mo</p></td>
+<td><p>16 Go</p></td>
+</tr>
+<tr class="row-odd"><td><p>disque</p></td>
+<td><p>1 Go</p></td>
+<td><p>1 To</p></td>
+</tr>
+<tr class="row-even"><td><p>prix du Go de disque</p></td>
+<td><p>1 000 $</p></td>
+<td><p>2 centimes</p></td>
+</tr>
+<tr class="row-odd"><td><p>accès au réseau</p></td>
+<td><p>modem à 28,8 kbit/s</p></td>
+<td><p>fibre à 1 Gbit/s</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="puissance-de-calcul-et-consommation">
+<h2>Puissance de calcul et consommation<a class="headerlink" href="#puissance-de-calcul-et-consommation" title="Lien vers cette rubrique">#</a></h2>
+<p>Un smartphone calcule autant que le premier superordinateur à avoir dépassé
+mille milliards d’opérations par seconde, en 1997, pour cent mille fois moins
+d’électricité.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Appareil</p></th>
+<th class="head"><p>Opérations par seconde</p></th>
+<th class="head"><p>Puissance</p></th>
+<th class="head"><p>Électricité par an</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>téléphone à touches</p></td>
+<td><p>10<sup>7</sup></p></td>
+<td><p>0,01 à 0,5 W</p></td>
+<td><p>0,1 kWh</p></td>
+</tr>
+<tr class="row-odd"><td><p>smartphone</p></td>
+<td><p>10<sup>12</sup></p></td>
+<td><p>1 à 5 W</p></td>
+<td><p>5 à 7 kWh</p></td>
+</tr>
+<tr class="row-even"><td><p>ordinateur portable</p></td>
+<td><p>10<sup>12</sup></p></td>
+<td><p>15 à 45 W</p></td>
+<td><p>30 à 60 kWh</p></td>
+</tr>
+<tr class="row-odd"><td><p>PC de bureau et carte graphique</p></td>
+<td><p>10<sup>13</sup> à 10<sup>14</sup></p></td>
+<td><p>100 à 400 W</p></td>
+<td><p>200 à 400 kWh</p></td>
+</tr>
+<tr class="row-even"><td><p>serveur, en continu</p></td>
+<td><p>10<sup>13</sup></p></td>
+<td><p>300 à 800 W</p></td>
+<td><p>3 000 à 7 000 kWh</p></td>
+</tr>
+<tr class="row-odd"><td><p>ASCI Red, superordinateur, 1997</p></td>
+<td><p>1,3 · 10<sup>12</sup></p></td>
+<td><p>850 000 W</p></td>
+<td><p>7 500 000 kWh</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Les valeurs sont des ordres de grandeur. Les opérations comptées sont des
+opérations en virgule flottante, processeur graphique compris. ASCI Red a
+mesuré 1,3 TFLOPS, pour 850 kW sans compter le refroidissement.</p>
+<p>La dernière colonne suppose un téléphone à touches rechargé une fois par
+semaine (batterie de 3 Wh), un smartphone rechargé chaque jour (15 Wh), un
+portable allumé 8 heures par jour et un serveur allumé en continu. Le
+téléphone à touches consomme quelques dizaines de milliwatts, et sa batterie
+tient dix jours. Un smartphone a les composants d’un PC sur une puce de 2 cm,
+limités à 5 W par la batterie et par l’absence de ventilateur.</p>
+</section>
+<section id="l-electricite-des-services-en-ligne">
+<h2>L’électricité des services en ligne<a class="headerlink" href="#l-electricite-des-services-en-ligne" title="Lien vers cette rubrique">#</a></h2>
+<p>Un fichier gardé en ligne consomme de l’électricité même quand personne ne le
+lit : les disques qui le portent restent allumés.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Quoi</p></th>
+<th class="head"><p>Électricité</p></th>
+<th class="head"><p>Équivalent</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>une question à un assistant d’IA</p></td>
+<td><p>0,3 à 2 Wh</p></td>
+<td><p>10 s à 1 min de télévision</p></td>
+</tr>
+<tr class="row-odd"><td><p>la même, modèle « qui raisonne »</p></td>
+<td><p>7 à 33 Wh</p></td>
+<td><p>4 à 20 min de télévision</p></td>
+</tr>
+<tr class="row-even"><td><p>une heure de vidéo en streaming</p></td>
+<td><p>80 Wh</p></td>
+<td><p>une ampoule LED de 10 W, 8 h</p></td>
+</tr>
+<tr class="row-odd"><td><p>garder 1 To en ligne pendant un an</p></td>
+<td><p>40 à 150 kWh</p></td>
+<td><p>1 à 3 disques toujours allumés</p></td>
+</tr>
+<tr class="row-even"><td><p>le même To dans un tiroir</p></td>
+<td><p>0</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>centres de données du monde, 2024</p></td>
+<td><p>415 TWh</p></td>
+<td><p>1,5 % du mondial, la France entière</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Sources : pour l’IA, Jegham et al. (2025), serveurs seuls ; IEA 2020 et 2025 ;
+pour la France, RTE 2024 ; la télévision est comptée à 100 W. La ligne du
+disque est un calcul : 5 W × 8 760 h = 44 kWh par an et par disque, pour deux
+ou trois copies, plus le refroidissement.</p>
+<p>Les estimations pour une question à un assistant d’IA varient d’un facteur 100
+selon la source et le périmètre compté :</p>
+<ul class="simple">
+<li><p>Google (2025) : 0,24 Wh pour une question médiane à Gemini. Le chiffre vient
+du fournisseur ; il couvre les serveurs et le refroidissement, sans
+l’entraînement, la fabrication, le réseau ni l’appareil de l’utilisateur.</p></li>
+<li><p>Jegham et al. (université de Rhode Island, 2025) : pour GPT-4o, 0,4 Wh pour
+une question courte, 1,8 Wh pour une longue ; pour o3 et DeepSeek-R1, plus
+de 30 Wh.</p></li>
+<li><p>L’analyse de cycle de vie de Mistral AI (Carbone 4, ADEME, 2025), commandée
+par le fournisseur : 1,14 g de CO₂e et 45 mL d’eau pour une réponse de 400
+tokens, fabrication et entraînement compris.</p></li>
+<li><p>Une image générée coûte environ 60 fois plus qu’un texte (Luccioni et al.,
+2024).</p></li>
+</ul>
+<p>La consommation totale vient du volume : des milliards de questions par jour.
+L’IEA prévoit le doublement de la consommation des centres de données d’ici
+2030, surtout à cause de l’IA. En pratique, on supprime en ligne ce qui ne
+sert plus, et on garde les données lourdes d’un projet sur un disque local.</p>
+</section>
+<section id="ce-que-coute-un-service-en-ligne">
+<h2>Ce que coûte un service en ligne<a class="headerlink" href="#ce-que-coute-un-service-en-ligne" title="Lien vers cette rubrique">#</a></h2>
+<p>Le coût d’un service en ligne suit le nombre de machines qui tournent, et de
+personnes qui les font tourner.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Service</p></th>
+<th class="head"><p>Ce qui tourne</p></th>
+<th class="head"><p>Par an</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>un site personnel, pages statiques</p></td>
+<td><p>une part d’un serveur partagé, ou GitHub Pages</p></td>
+<td><p>0 à 60 €</p></td>
+</tr>
+<tr class="row-odd"><td><p>OpenStreetMap, la carte du monde</p></td>
+<td><p>deux salles de serveurs, Amsterdam et Dublin</p></td>
+<td><p>100 000 à 170 000 €</p></td>
+</tr>
+<tr class="row-even"><td><p>Wikipédia</p></td>
+<td><p>plusieurs centres de données</p></td>
+<td><p>3,4 M$ d’hébergement</p></td>
+</tr>
+<tr class="row-odd"><td><p>Meta : Facebook, Instagram, WhatsApp</p></td>
+<td><p>des dizaines de centres de données</p></td>
+<td><p>72 milliards de $ d’investissement</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Sources : nom de domaine à 10 € par an, hébergement partagé à 3 à 5 € par
+mois ; OpenStreetMap Foundation, plan 2023 ; Wikimedia, exercice 2024-2025 ;
+Meta, résultats 2025.</p>
+<p>Trois ordres de grandeur séparent un site personnel d’OpenStreetMap, et cinq
+séparent OpenStreetMap de Meta. OpenStreetMap fonctionne avec deux salles,
+parce que le rendu des tuiles est réparti entre plusieurs organisations et
+que leur diffusion est offerte. Chez Wikimedia, le personnel est la plus
+grande dépense. Un site publié sur GitHub Pages ne coûte que son nom de
+domaine, s’il en a un.</p>
+</section>
+<section id="td-de-la-partie">
+<h2>TD de la partie<a class="headerlink" href="#td-de-la-partie" title="Lien vers cette rubrique">#</a></h2>
+<p>La partie n’a pas de TD propre. Le TD 5a, <code class="docutils literal notranslate"><span class="pre">cours5/5a_mesures/</span></code>, fait après la
+partie sur le réseau, relève le processeur, la mémoire et le disque du poste,
+puis mesure leurs temps avec un script Python. Les TD de la séance sont
+réunis dans <a class="reference internal" href="travaux_diriges.html"><span class="std std-doc">Travaux dirigés de la séance 5</span></a>.</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../index.html"
+       title="page précédente">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">précédent</p>
+        <p class="prev-next-title">Séance 5 — Matériel, réseau, mots de passe, clés SSH et secrets</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="02_reseau.html"
+       title="page suivante">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">suivant</p>
+        <p class="prev-next-title">Le réseau</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#les-composants-d-un-ordinateur">Les composants d’un ordinateur</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-carte-mere">La carte mère</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#le-processeur">Le processeur</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-temperature-du-processeur">La température du processeur</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memoire-vive-et-disque">Mémoire vive et disque</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#le-chemin-d-une-donnee">Le chemin d’une donnée</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ordres-de-grandeur-tailles">Ordres de grandeur : tailles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ordres-de-grandeur-temps-d-acces">Ordres de grandeur : temps d’accès</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#si-la-memoire-vive-valait-une-seconde">Si la mémoire vive valait une seconde</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#processeur-et-carte-graphique">Processeur et carte graphique</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trente-ans-de-processeurs">Trente ans de processeurs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#puissance-de-calcul-et-consommation">Puissance de calcul et consommation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l-electricite-des-services-en-ligne">L’électricité des services en ligne</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-coute-un-service-en-ligne">Ce que coûte un service en ligne</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#td-de-la-partie">TD de la partie</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par 1re année géomatique
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, module info01 — CC-BY-4.0.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
