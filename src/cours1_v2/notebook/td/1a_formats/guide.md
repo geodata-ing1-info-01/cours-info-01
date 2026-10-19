@@ -186,8 +186,8 @@ Ouvrir `info01\cours1\1a_formats\`. Le dossier contient :
 └── README.md
 ```
 
-`depart\` contient les fichiers fournis, et ne se modifie pas. `travail\`
-reçoit les copies et ce que le TD fabrique. Si une copie est abîmée, on en
+Ne pas modifier les fichiers de `depart\`. Enregistrer dans `travail\` les
+copies et les fichiers que vous produisez. Si une copie est abîmée, on en
 refait une à partir de `depart\`.
 
 Le chemin complet d'un fichier de départ, et celui d'un fichier exporté,
@@ -213,10 +213,11 @@ La suite du guide écrit les chemins à partir de `1a_formats\`.
 > **À obtenir :** `travail\` contient `raven.pdf` et `raven.png` ;
 > `depart\raven.odt` n'a pas changé.
 
-Le document de départ est `depart\raven.odt`. Il reste dans `depart\`, et il
-reste ouvert dans Writer pendant toute l'étape. Exporter écrit une copie du
-document dans un nouveau fichier, dans un autre format, et garde ouvert le
-document de départ. Les deux copies vont dans `travail\`.
+Le document de départ est `depart\raven.odt`. Dans cette étape, vous
+l'ouvrez dans Writer, puis vous l'exportez en PDF, puis en PNG, dans
+`travail\`. La commande Exporter enregistre une copie du document dans un
+nouveau fichier. Le document ouvert dans Writer reste `raven.odt`, et il
+n'est pas modifié.
 
 ![Le document de départ, ouvert dans Writer, et ses deux exports](illustrations/exports.png)
 
@@ -356,9 +357,9 @@ lisible, et ce que Notepad++ montre de plus.
 > **À obtenir :** le fichier rouvert, et le nombre de prénoms qu'il
 > contient.
 
-Cette étape fait exception à la règle de l'étape 1 : elle se fait dans le
-dossier partagé, sur un fichier que l'enseignant y a déposé pour l'occasion.
-Aucun autre fichier de `formationTemp` ne doit être modifié.
+Par exception à la règle de l'étape 1, chaque élève modifie dans cette étape
+un fichier du dossier partagé, `info01-salle.txt`, que l'enseignant a déposé
+pour l'occasion. Ne modifier aucun autre fichier de `formationTemp`.
 
 1. Sur le Bureau, double-cliquer sur le raccourci `formationTemp`.
 2. Clic droit sur `info01-salle.txt`, Ouvrir avec, Bloc-notes. Le fichier
@@ -368,7 +369,7 @@ Aucun autre fichier de `formationTemp` ne doit être modifié.
    `Ctrl` + `S`.
 4. Fermer le Bloc-notes, puis rouvrir `info01-salle.txt` de la même façon.
 
-Le fichier se lit dans toute la promotion : n'y écrire que son prénom.
+Toute la promotion peut lire ce fichier. N'y écrire que son prénom.
 
 **À noter** : combien de prénoms le fichier contient, et si le sien y est.
 

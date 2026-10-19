@@ -6,6 +6,7 @@
 // texte au cours 3, sauf le quiz sur le vocabulaire des chemins (diapositives
 // 15 et 16 de 2026), placé après les formats. Quatre diapositives nouvelles
 // sur le stockage, à la fin.
+
 #import "../../../commun/prelude.typ": *
 // Import nominatif, et non `: *` : `schemas.typ` ouvre `cetz.draw`, dont les
 // noms (`grid`, `line`, `circle`, `content`…) masqueraient ceux de typst.
@@ -397,28 +398,32 @@
 // d'une séance à l'autre ; l'espace personnel réseau existe, mais les élèves
 // ne savent pas encore s'en servir en septembre.
 // Relecture du 19/10/2026 : « Deux élèves dans le même dossier partagé »
-// passe après le TD 1a, dans `01b_fichier_partage.typ`.
+// passe après le TD 1a, dans `01b_fichier_partage.typ`. « Les emplacements
+// de stockage » est retirée : le disque du poste et `formationTemp` sont
+// présentés par « Les fichiers du cours », au début du TD 1a, et ses notes
+// passent sur le schéma du réseau.
 
 // --------------------------------------------
-#d("Les emplacements de stockage")[
+// Nouveau (v2), 27/09 : le schéma des emplacements, entre le tableau et le
+// cas du dossier partagé.
+#d("Les emplacements de stockage sur le réseau")[
   #annonce[
-    Un fichier est enregistré sur un disque : celui du poste, ou celui d'une
-    autre machine que le poste atteint par le réseau. L'explorateur les
-    présente de la même façon.
+    Le Bureau est sur le disque du poste, `formationTemp` sur le disque du
+    serveur de l'école. Pour aller sur Internet, les postes passent par le
+    proxy de l'école, qui demande un mot de passe.
   ]
 
-  #tableau(
-    columns: (1.25fr, 1fr, 1fr),
-    align: left + horizon,
-    [Emplacement], [Qui y a accès], [D'une séance à l'autre],
-    [Bureau, Documents : disque du poste], [votre session, sur ce poste], [conservés, sur ce poste seulement],
-    [`formationTemp` : serveur de l'école], [toute la promotion], [modifiable par tous],
-    [espace personnel : serveur de l'école], [vous, depuis tout poste], [conservé],
-    [stockage en ligne : serveur hors de l'école], [vous, et qui vous invitez], [conservé, recopié sur le poste],
-    [clé USB], [qui a la clé], [ce que vous emportez],
-  )
+  #align(center, scale(85%, reflow: true, schema-stockage-reseau()))
+
+  #legende[
+    Un chemin qui commence par `\\` désigne un dossier d'une autre machine,
+    ici le serveur.
+  ]
 
   #notes[
+    Faire situer sur le schéma le disque du poste, `formationTemp`,
+    l'espace personnel et le stockage en ligne. La clé USB n'y figure pas.
+
     Lire un fichier sur le réseau est plus lent que sur le disque du poste ;
     les ordres de grandeur sont au cours 5.
 
@@ -431,24 +436,6 @@
     Stockage en ligne synchronisé : OneDrive, Google Drive, Dropbox. Le
     fichier est sur le poste et sur le serveur ; un logiciel recopie chaque
     modification dans les deux sens.
-  ]
-]
-
-// --------------------------------------------
-// Nouveau (v2), 27/09 : le schéma des emplacements, entre le tableau et le
-// cas du dossier partagé.
-#d("Les emplacements de stockage sur le réseau")[
-  #annonce[
-    Le serveur de l'école est relié aux postes par le réseau local. Le
-    stockage en ligne est sur des serveurs hors de l'école, atteints par
-    Internet.
-  ]
-
-  #align(center, schema-stockage-reseau())
-
-  #notes[
-    Faire situer sur le schéma chaque ligne du tableau précédent. La clé USB
-    n'y figure pas.
 
     Depuis chez soi, `formationTemp` et l'espace personnel ne sont pas
     accessibles. Depuis l'école, Internet l'est.
@@ -459,36 +446,20 @@
 
     Même dessin au cours 5 (« Local et distant »), avec les temps
     d'aller-retour.
-  ]
-]
 
-// --------------------------------------------
-#d("Reconnaître un emplacement réseau à son chemin")[
-  #annonce[
-    Un chemin qui commence par deux barres inversées désigne un dossier d'une
-    autre machine : le nom qui suit est celui du serveur.
-  ]
+    Relecture du 19/10/2026 : reprend « Reconnaître un emplacement réseau à
+    son chemin », retirée. Un lecteur réseau a une icône propre dans « Ce
+    PC », qui distingue `Z:` d'un disque du poste. `formationTemp` peut
+    apparaître ainsi, comme un lecteur réseau.
 
-  #tableau(
-    columns: (auto, 1fr),
-    align: left + horizon,
-    [Chemin affiché dans la barre d'adresse], [Où est le fichier],
-    [`C:\Users\eleve\Desktop\info01\cours1`], [sur le disque du poste],
-    [`\\serveur\formationTemp\info01-cours1.zip`], [sur le serveur nommé `serveur`, par le réseau],
-    [`Z:\info01-cours1.zip`], [sur un lecteur réseau : un dossier de serveur auquel Windows a donné une lettre],
-  )
+    Le serveur de l'école porte aussi les espaces personnels.
 
-  #legende[
-    Un lecteur réseau a une icône propre dans « Ce PC », qui distingue `Z:`
-    d'un disque du poste.
-  ]
-
-  #notes[
     À compléter avant la séance : le vrai chemin de `formationTemp` sur les
-    postes (`\\…\…`), et la lettre de lecteur s'il y en a une. Le relever dans
-    la barre d'adresse de l'explorateur, raccourci du Bureau ouvert.
-
-    La règle affichée dans `src/avant/donnees.md` (« une autre lettre que
-    `C:` ») est fausse si `D:` est un disque du poste : à vérifier.
+    postes (`\\…\…`), la lettre de lecteur s'il y en a une, et le
+    fonctionnement du proxy (identifiant de l'école, fenêtre du navigateur).
+    Le chemin se relève dans la barre d'adresse de l'explorateur, raccourci
+    du Bureau ouvert. La règle de `src/avant/donnees.md` (« une autre lettre
+    que `C:` ») est fausse si `D:` est un disque du poste : à vérifier.
   ]
 ]
+

@@ -159,13 +159,14 @@
     19/10/2026 : la diapositive « Contenu de la séance » est retirée, et
     « Les fichiers du cours » ouvre le TD 1a) : trois parties, des logiciels
     et fichiers jusqu'au notebook. Logiciels, fichiers et stockage, cours et
-    TD 1a, 30′ ; terminal et premier programme, cours et TD 1b, 1c, 50′ ; un
-    notebook et la syntaxe de Markdown, cours et TD 1d, 15′. Durées
-    indicatives. Les diapositives brunes sont les TD : quatre, dans les
-    trois parties.
+    TD 1a ; le terminal, cours et TD 1b ; programme Python et notebook, avec
+    compiler et interpréter, cours et TD 1c, 1d. Durées à revoir après
+    la réorganisation du 19/10/2026 (avant : 30′, 50′ pour le terminal et le
+    premier programme, 15′ pour le notebook). Les diapositives brunes sont
+    les TD : quatre, dans les trois parties.
 
-    Si la séance déborde, la partie 3 passe en début de cours 3, qui ouvre
-    des notebooks. Le TD des programmes fautifs est au cours 2 v2 depuis le
+    Si la séance déborde, le notebook et le TD 1d passent en début de
+    cours 3, qui ouvre des notebooks. Le TD des programmes fautifs est au cours 2 v2 depuis le
     27/09/2026.
   ]
 ]

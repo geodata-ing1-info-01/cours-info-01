@@ -34,12 +34,12 @@ minutes.
 | 7 | exécuter du Python ligne à ligne, en interactif | refaire le calcul dans une session interactive de Python |
 
 Sur un poste où l'étape 2 est déjà faite, l'invite de Git Bash commence
-par `(base)`, et `type -a python` affiche en premier le Python d'Anaconda :
+par `(base)`, et `which python` affiche le Python d'Anaconda :
 faire l'étape 1, puis passer à l'étape 3.
 
 ![Notepad++ et Git Bash, côte à côte](illustrations/deux_fenetres.png)
 
-## 1 · Quel python la commande lance
+## 1 · Quel programme python la commande lance
 
 > **À faire :** afficher le fichier que lance la commande `python` ;
 > trouver le `python.exe` d'Anaconda dans l'explorateur ; le lancer par son
@@ -57,13 +57,12 @@ Dans Git Bash, ouvert au TD 1b dans `1b_terminal/` :
 
 ```text
 cd ../1c_programme
+which python
 python --version
-type -a python
 ```
 
-`python --version` affiche la version du Python que la commande lance.
-`type -a python` affiche le fichier lancé, puis les autres fichiers de ce
-nom, dans l'ordre où bash les trouve. bash cherche le fichier dans une liste
+`which python` affiche le chemin du fichier que lance la commande `python`.
+`python --version` affiche la version de ce Python. bash cherche le fichier dans une liste
 de dossiers, la variable `PATH`, et lance le premier qu'il trouve.
 
 Sur les postes de la salle, avant l'étape 2, ce n'est pas le Python
@@ -109,7 +108,7 @@ trouvé dans `PATH`.
 
 > **À faire :** configurer conda dans Git Bash ; fermer et rouvrir Git Bash ; vérifier quel python la commande lance.
 >
-> **À obtenir :** l'invite commence par `(base)` ; `type -a python` affiche en premier le Python d'Anaconda.
+> **À obtenir :** l'invite commence par `(base)` ; `which python` affiche le Python d'Anaconda.
 
 ### Configurer conda dans Git Bash
 
@@ -134,14 +133,14 @@ Fermer Git Bash (`exit`, ou la croix de la fenêtre), et le rouvrir dans
 **Vérification** : la première ligne de l'invite est `(base)`. Puis :
 
 ```text
+which python
 python --version
-type -a python
 ls -a ~
 ```
 
-`python --version` affiche `Python 3.` suivi de la version installée par
-Anaconda. `type -a python` affiche en premier le fichier d'Anaconda, puis
-celui de l'étape 1 s'il existe. `ls -a ~` liste le dossier personnel, et
+`which python` affiche `/c/ProgramData/anaconda3/python`, le fichier
+d'Anaconda. `python --version` affiche `Python 3.` suivi de la version
+installée par Anaconda. `ls -a ~` liste le dossier personnel, et
 parmi les noms, `.bash_profile` : un fichier caché, écrit par
 `conda init bash`.
 

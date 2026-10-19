@@ -15,7 +15,7 @@
 #import "../../commun/prelude.typ": *
 #import "@preview/cetz:0.4.2"
 #import cetz.draw: *
-#import "../../cours5/diapo/schemas.typ": _etiquette, _fleche, _ecran, _clavier, _disque, _portable, _boitier-reseau, _nuage, _serveur
+#import "../../cours5/diapo/schemas.typ": _etiquette, _fleche, _ecran, _clavier, _disque, _portable, _boitier-reseau, _nuage, _serveur, _cadenas
 
 // ---------------------------------------------------------------------------
 // Entrées et sorties d'un logiciel
@@ -145,65 +145,101 @@
 // Les emplacements de stockage sur le réseau
 //
 // À gauche, le réseau local de l'école, dans un cadre : les postes de la
-// salle, le commutateur, le serveur de fichiers. Le routeur est sur le bord du
-// cadre. À droite, hors du cadre : Internet, les serveurs du stockage en ligne,
-// et l'ordinateur de l'élève chez lui, qui n'atteint que ces derniers.
+// salle, chacun avec son boîtier, le commutateur, le serveur de fichiers, le
+// proxy. Le routeur est sur le bord du cadre. À droite, hors du cadre :
+// Internet, les serveurs du stockage en ligne, et l'ordinateur de l'élève
+// chez lui, qui n'atteint que ces derniers.
+//
+// Relecture du 19/10/2026 : reprend « Reconnaître un emplacement réseau à
+// son chemin », retirée. Deux dossiers, en bas du cadre, renvoient chacun à
+// l'endroit où il est enregistré : le Bureau au boîtier d'un poste,
+// `formationTemp` au serveur ; leur chemin est écrit dessous. Le proxy, sur
+// le chemin vers Internet, porte un cadenas : il demande un identifiant et
+// un mot de passe.
 
-// Un poste de la salle : l'écran du cours 5, réduit pour en aligner trois.
-#let _poste(x, y) = group({
-  translate((x, y))
-  scale(0.75)
-  _ecran(0, 0)
-})
+// Un poste de la salle : l'écran du cours 5, réduit pour en aligner trois,
+// et son boîtier à droite, où est le disque.
+#let _poste(x, y) = {
+  group({
+    translate((x, y))
+    scale(0.75)
+    _ecran(0, 0)
+  })
+  let bx = x + 1.35
+  rect((bx - 0.3, y - 0.42), (bx + 0.3, y + 1.0), radius: 0.05, fill: white,
+       stroke: 1.2pt + accent)
+  line((bx - 0.18, y + 0.75), (bx + 0.18, y + 0.75), stroke: 0.8pt + accent)
+  line((bx - 0.18, y + 0.6), (bx + 0.18, y + 0.6), stroke: 0.8pt + accent)
+  circle((bx, y - 0.15), radius: 0.07, fill: accent, stroke: none)
+}
+
+// Un dossier : son nom, et le chemin que l'explorateur affiche.
+#let _dossier(pos, nom, chemin) = content(pos, anchor: "north", box(
+  fill: white, stroke: 1.2pt + attention, radius: 3pt, inset: (x: 7pt, y: 5pt),
+  align(center)[
+    #text(size: 15pt, weight: demi-gras, fill: attention)[#nom] \
+    #text(size: 15pt)[#raw(chemin)]
+  ],
+))
 
 #let schema-stockage-reseau() = cetz.canvas(length: 1cm, {
   set-style(stroke: 0.9pt + accent.lighten(45%))
   let lien = 1.4pt + accent
-  let y-reseau = 6.0
+  let renvoi = (end: ">", fill: attention, scale: 1.1)
+  let y-reseau = 6.6
 
   // le réseau local de l'école
-  rect((0, 0), (15.0, 8.6), radius: 0.2, fill: gris.lighten(55%),
+  rect((0, 0.4), (17.2, 8.9), radius: 0.2, fill: gris.lighten(55%),
        stroke: (paint: accent, thickness: 1.2pt, dash: "dashed"))
-  content((0.35, 8.3), anchor: "north-west",
+  content((0.35, 8.6), anchor: "north-west",
           text(size: 14pt, weight: demi-gras, fill: accent)[#petites-capitales[réseau local de l'école]])
 
-  // les postes de la salle, reliés au commutateur
-  for x in (1.6, 4.1, 6.6) {
-    line((x, 4.0), (4.1, y-reseau - 0.35), stroke: lien)
-    _poste(x, 2.8)
+  // les postes de la salle, chacun avec son boîtier, reliés au commutateur
+  for x in (1.4, 4.4, 7.4) {
+    line((x, 5.35), (4.4, y-reseau - 0.35), stroke: lien)
+    _poste(x, 4.1)
   }
-  _etiquette((4.1, 2.25), "Les postes de la salle", "le disque du poste : Bureau, Documents",
-             largeur: 7cm)
+  _etiquette((4.4, 3.2), "Les postes de la salle", none, largeur: 6.2cm)
 
-  _boitier-reseau(4.1, y-reseau)
-  _etiquette((4.1, y-reseau + 0.5), "Le commutateur", none, largeur: 5cm, anchor: "south")
+  _boitier-reseau(4.4, y-reseau)
+  _etiquette((4.4, y-reseau + 0.5), "Le commutateur", none, largeur: 5cm, anchor: "south")
 
   // le serveur de fichiers de l'école
-  line((5.2, y-reseau), (11.8, y-reseau), stroke: lien)
-  line((10.4, y-reseau), (10.4, 5.2), stroke: lien)
-  _serveur(10.4, 3.9)
-  // `raw` est à 0,78 em : 16 pt pour qu'il ait la taille du texte voisin.
-  _etiquette((10.4, 2.45), [Le serveur de l'école],
-             [#text(size: 16pt)[`formationTemp`], espaces personnels], largeur: 5.6cm)
+  line((5.5, y-reseau), (16.4, y-reseau), stroke: lien)
+  line((11.0, y-reseau), (11.0, 5.4), stroke: lien)
+  _serveur(11.0, 4.1)
+  _etiquette((11.0, 2.65), [Le serveur de l'école], none, largeur: 4.6cm)
+
+  // le proxy : la sortie vers Internet, avec un mot de passe
+  rect((13.2, y-reseau - 0.4), (14.8, y-reseau + 0.4), radius: 0.06, fill: white,
+       stroke: 1.4pt + accent)
+  _cadenas(14.0, y-reseau, accent, echelle: 0.28)
+  _etiquette((14.0, y-reseau - 0.55), "Le proxy", [mot de passe],
+             largeur: 3.2cm)
 
   // le routeur, au bord du réseau local
-  _boitier-reseau(12.9, y-reseau, voyants: 3)
-  _etiquette((12.9, y-reseau - 0.5), "Le routeur", [relie l'école \ à Internet],
-             largeur: 3.4cm)
+  _boitier-reseau(17.2, y-reseau, l: 1.6, voyants: 3)
+  _etiquette((17.2, y-reseau + 0.5), "Le routeur", none, largeur: 3cm, anchor: "south")
+
+  // les deux dossiers, et le disque où chacun est enregistré
+  _dossier((4.4, 2.35), "Bureau", "C:\\Users\\eleve\\Desktop")
+  line((6.65, 1.65), (8.75, 1.65), (8.75, 3.6), stroke: 1.4pt + attention, mark: renvoi)
+  _dossier((14.6, 4.35), "formationTemp", "\\\\serveur\\formationTemp")
+  line((12.35, 3.7), (11.95, 3.7), stroke: 1.4pt + attention, mark: renvoi)
 
   // Internet, le stockage en ligne, l'ordinateur chez soi
-  line((14.0, y-reseau), (16.4, y-reseau), stroke: lien)
-  _nuage(18.0, y-reseau)
-  content((18.0, y-reseau), text(size: 16pt, weight: demi-gras, fill: accent)[Internet])
+  line((18.0, y-reseau), (18.8, y-reseau), stroke: lien)
+  _nuage(20.4, y-reseau)
+  content((20.4, y-reseau), text(size: 16pt, weight: demi-gras, fill: accent)[Internet])
 
-  line((19.9, y-reseau), (21.7, y-reseau), stroke: lien)
-  _serveur(22.6, y-reseau + 0.4)
-  _etiquette((22.6, y-reseau - 1.05), "Le stockage en ligne",
-             "Google Drive, OneDrive, Dropbox, Nextcloud", largeur: 5.6cm)
+  line((22.3, y-reseau), (23.8, y-reseau), stroke: lien)
+  _serveur(24.7, y-reseau + 0.4)
+  _etiquette((24.7, y-reseau - 1.05), "Le stockage en ligne",
+             "Google Drive, OneDrive, Dropbox, Nextcloud", largeur: 4.6cm)
 
-  line((18.0, y-reseau - 0.95), (18.0, 3.2), stroke: lien)
-  _portable(18.0, 1.8)
-  _etiquette((18.0, 1.35), "Chez vous", "votre ordinateur", largeur: 4cm)
+  line((20.4, y-reseau - 0.95), (20.4, 3.0), stroke: lien)
+  _portable(20.4, 1.6)
+  _etiquette((20.4, 1.15), "Chez vous", "votre ordinateur", largeur: 4cm)
 })
 
 // ---------------------------------------------------------------------------
@@ -289,6 +325,47 @@
 // `depart/` du TD 1b, telle que le guide du TD la montre (relevée de nouveau
 // le 19/10/2026, sans les pages web). Une ligne par `raw`, pour estomper
 // l'invite.
+// La fenêtre de Git Bash juste ouverte dans un dossier de TD, ce que
+// l'élève doit voir (relecture du 19/10/2026) : au TD 1b, dans
+// `1b_terminal`, sans ligne `(base)` ; au TD 1c, après le réglage de
+// conda, avec. Couleurs de l'invite réelle, assombries pour le fond blanc,
+// comme sur « L'invite de Git Bash » ; le dossier courant, à vérifier, est
+// encadré, et la ligne `(base)` aussi quand elle est demandée.
+#let git-bash-ouvert(dossier: "1b_terminal", base: false, taille: 15pt) = {
+  // La barre de titre de `fenetre` (theme.typ), recopiée : le corps de
+  // `fenetre` commence par une ligne vide, qui ferait déborder les
+  // diapositives où cette fenêtre suit une liste de consignes.
+  let cadre(corps) = box(
+    stroke: 1.5pt + attention, inset: (x: 3pt, y: 2pt), outset: (y: 2pt), radius: 2pt, corps,
+  )
+  let lignes = {
+    set align(left)
+    set text(font: police-code, size: taille)
+    set par(leading: 0.85em)
+    if base { cadre("(base)"); linebreak() }
+    text(fill: rgb("#1a7f37"), "eleve@POSTE-12")
+    " "
+    text(fill: rgb("#a2248f"), "MINGW64")
+    " "
+    cadre(text(fill: rgb("#9a6700"), "~/Desktop/info01/cours1/" + dossier))
+    linebreak()
+    [\$ #box(width: 0.6em, height: 0.95em, fill: estompe)]
+  }
+  block(width: 100%, stroke: 1pt + accent.lighten(55%), clip: true, {
+    block(width: 100%, fill: gris, inset: (x: 9pt, y: 6pt), below: 0pt, std.grid(
+      columns: (auto, 1fr), column-gutter: 9pt, align: horizon,
+      box(height: 8pt, {
+        for i in range(3) {
+          place(horizon + left, dx: i * 11pt, std.circle(radius: 3.5pt, stroke: 0.8pt + estompe))
+        }
+        h(29pt)
+      }),
+      text(size: 13pt, fill: estompe, "MINGW64:/c/Users/eleve/Desktop/info01/cours1/" + dossier),
+    ))
+    block(width: 100%, inset: (x: 10pt, y: 9pt), above: 0pt, lignes)
+  })
+}
+
 #let _invite-2a = "eleve@POSTE-12 MINGW64 ~/Desktop/info01/cours1/1b_terminal"
 
 #let git-bash-ls() = fenetre("Git Bash", code: true)[
@@ -365,6 +442,32 @@
   )
 }
 
+// Le dossier d'Anaconda dans l'explorateur, au TD 1c : `C:\ProgramData` est
+// masqué, d'où le chemin tapé dans la barre d'adresse ; `python.exe`, le
+// fichier de l'interpréteur, est surligné.
+#let explorateur-anaconda() = explorateur(
+  [C:\\ProgramData\\anaconda3], ("python.exe", "pythonw.exe", "python3.dll"),
+  choisi: 0, titre: "anaconda3",
+)
+
+// Les mêmes trois fenêtres, l'une sous l'autre, pour une colonne à droite
+// des consignes (relecture du 19/10/2026).
+#let schema-exports-vertical() = {
+  let fleche(corps) = align(center, stack(
+    dir: ltr, spacing: 8pt,
+    text(size: 22pt, fill: accent)[↓],
+    align(horizon, text(size: 12pt, fill: estompe)[#corps]),
+  ))
+  stack(
+    dir: ttb, spacing: 4pt,
+    explorateur([…\\depart], ("raven.odt", "raven_une_ligne.txt"), choisi: 0, titre: "depart"),
+    fleche[double-clic],
+    writer-exports(),
+    fleche[exports],
+    explorateur([…\\travail], ("raven.pdf", "raven.png"), titre: "travail"),
+  )
+}
+
 // ---------------------------------------------------------------------------
 // Une fenêtre de terminal, une ligne par `raw`
 //
@@ -421,6 +524,9 @@
 //   #consignes([ouvrir…], [copier…])
 #let consignes(..elements, taille: 18pt) = {
   set text(size: taille)
+  // Les commandes à taper sont le contenu principal : le code passe de 0,78
+  // à 0,9 fois la taille du texte (0,78 × 1,15).
+  show raw: set text(size: 1.15em)
   std.grid(
     columns: (auto, 1fr), column-gutter: 10pt, row-gutter: 0.6em,
     ..elements.pos().enumerate().map(((i, x)) => (
@@ -428,6 +534,45 @@
     )).flatten(),
   )
 }
+
+// La manière de faire une consigne, en gris : la tâche reste en noir et se
+// lit d'un coup d'œil, la manière se lit au moment de la faire (relecture
+// du 19/10/2026).
+//
+//   #consignes([Copier `info01-cours1.zip` : #comment[clic droit, Copier.]])
+#let comment(corps) = text(fill: estompe)[#corps]
+
+// Les opérations d'une consigne, lettrées a, b… sous la tâche, en gris.
+//
+//   #consignes([Exporter en PDF. #sous-etapes([Menu Fichier…], [Enregistrer.])])
+#let sous-etapes(..elements) = block(above: 4pt, below: 2pt, {
+  set text(fill: estompe)
+  std.grid(
+    columns: (auto, 1fr), column-gutter: 8pt, row-gutter: 0.4em,
+    ..elements.pos().enumerate().map(((i, x)) => (
+      [#"abcdefgh".at(i).], x,
+    )).flatten(),
+  )
+})
+
+// Plusieurs commandes à taper l'une après l'autre, sous une consigne.
+//
+//   #consignes([Copier, puis ouvrir : #commandes("cp a b", "start b")])
+#let commandes(..lignes) = block(above: 5pt, below: 2pt, stack(
+  dir: ttb, spacing: 5pt,
+  ..lignes.pos().map(l => raw(l)),
+))
+
+// Ce qu'une consigne fait constater, écrit sous elle : affiché dans le
+// corrigé seulement, comme une colonne `reponse` (STYLE.md, « TD et
+// corrigé »). Hors du corrigé, rien ne s'affiche et la consigne garde sa
+// hauteur.
+//
+//   #consignes([Lister `depart` : `ls depart`. #constat[les fichiers des deux textes]])
+#let constat(corps) = reponse(block(
+  above: 3pt, below: 0pt,
+  text(size: 0.85em, fill: attention)[#corps],
+))
 
 // ---------------------------------------------------------------------------
 // Le dossier `depart\` du TD 1a, et la barre d'adresse à vérifier

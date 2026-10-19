@@ -8,9 +8,11 @@
 #import "../../../commun/prelude.typ": *
 #import "../schemas.typ": explorateur-copie, git-bash-copie, chaine-terminal, git-bash-ls
 
+// 19/10/2026 : « Terminal et premier programme » devient « Le terminal » ;
+// le premier programme ouvre la partie 3, avec le notebook.
 #separateur(
-  "Terminal et premier programme",
-  annonce: "Se déplacer dans les dossiers et agir sur les fichiers en tapant des commandes, puis lancer un programme Python écrit dans un éditeur de texte.",
+  "Le terminal",
+  annonce: "Se déplacer dans les dossiers et agir sur les fichiers en tapant des commandes.",
 )
 
 // --------------------------------------------
@@ -49,88 +51,9 @@
   ]
 ]
 
-// --------------------------------------------
-// Nouveau (v2), 27/09.
-#d("Une opération sur 120 fichiers")[
-  #annonce[
-    Dans Paint, il faut refaire les mêmes opérations pour chacune des 120
-    images.
-  ]
-
-  #panneau[Interface graphique : Paint, pour chaque image][
-    #grid(
-      columns: (1fr, auto), column-gutter: 20pt, align: horizon,
-      chaine(
-        ("Ouvrir", [`depart/img_001.png`]),
-        ("Redimensionner", "640 pixels de large"),
-        ("Enregistrer sous", [dans `travail/`]),
-      ),
-      text(size: 34pt, weight: demi-gras)[× 120],
-    )
-  ]
-  #panneau[Ligne de commande : Git Bash, pour toutes les images][
-    #fenetre("Git Bash", code: true)[
-      #text(size: 19pt, raw("$ magick mogrify -path travail -resize 640 depart/*.png"))
-    ]
-  ]
-
-  #legende[
-    Le motif `*` désigne les 120 fichiers de `depart/`. Des logiciels
-    graphiques ont aussi un traitement par lots, limité aux opérations qu'ils
-    prévoient.
-  ]
-
-  #notes[
-    Commande exécutée avec ImageMagick 7.1 sur trois PNG de 1920 × 1080,
-    qui donne trois PNG de 640 × 360 dans `travail/`.
-
-    Ne pas faire taper la commande : `magick`, le programme d'ImageMagick,
-    n'est disponible qu'au cours 4, dans l'environnement `animation`.
-
-    Exemple de Software Carpentry (« Introducing the Shell ») : 1 520
-    fichiers à ouvrir un par un, plus de 12 heures d'attention.
-  ]
-]
-
-// --------------------------------------------
-// Nouveau (v2), 27/09. Sources dans les notes ; la vitesse n'est pas une
-// ligne du tableau, les mesures publiées étant partagées.
-#d("Comparaison des deux interfaces")[
-  #annonce[
-    L'interface graphique se prend en main plus vite. La ligne de commande
-    répète une opération sur beaucoup de fichiers, et la commande se
-    conserve pour être relancée.
-  ]
-
-  #tableau(
-    columns: (auto, 1fr, 1.25fr),
-    align: left + horizon,
-    [], [Interface graphique], [Ligne de commande],
-    [Trouver une opération], [dans les menus affichés], [connaître son nom, ou lire l'aide],
-    [Voir le résultat], [après chaque action], [en le demandant],
-    [Premières utilisations], [peu d'erreurs], [des fautes de frappe, des options oubliées],
-    [Traiter 120 fichiers], [120 fois la même opération], [une commande, avec un motif],
-    [Refaire le travail plus tard], [refaire chaque action], [relancer la commande, gardée dans un fichier],
-    [Travailler sur un serveur], [s'il a un bureau à distance], [par `ssh`, vu au cours 5],
-  )
-
-  #notes[
-    Novices, MS-DOS contre Macintosh : plus d'erreurs et plus de temps en
-    ligne de commande (Margono et Shneiderman, 1987).
-
-    Ne pas dire que la ligne de commande est plus rapide en général : les
-    mesures publiées sont partagées (Cockburn et al., _ACM Computing
-    Surveys_, 2014). L'écart porte sur le nombre d'actions quand les
-    fichiers sont nombreux.
-
-    Garder une commande dans un fichier pour la relancer : Software
-    Carpentry, « Shell Scripts » ; Wilson et al., « Good enough practices in
-    scientific computing », 2017.
-
-    Si la question vient : Power Automate pour le bureau, de Microsoft,
-    enchaîne des clics et des opérations sur les fichiers sans commande.
-  ]
-]
+// Relecture du 19/10/2026 : « Une opération sur 120 fichiers » et
+// « Comparaison des deux interfaces » sont retirées. La page de cours
+// `02_terminal.md` garde la comparaison.
 
 // --------------------------------------------
 #d("Le terminal et l'interpréteur de commandes")[
@@ -171,128 +94,107 @@
 ]
 
 // --------------------------------------------
-#d("Les terminaux d'un poste Windows")[
-  #annonce[
-    Plusieurs terminaux sont installés sur les postes de la salle, chacun
-    avec son interpréteur. Le module emploie Git Bash, installé avec git.
-  ]
-
-  #tableau(
-    columns: (auto, 1fr, auto, 1fr),
-    align: left + horizon,
-    [Terminal], [Où le trouver], [Interpréteur], [Dans le module],
-    [Invite de commandes], [menu Démarrer], [cmd], [celle d'Anaconda, pour Python et JupyterLab],
-    [Terminal Windows], [menu Démarrer], [PowerShell], [non employé],
-    surligne[Git Bash], surligne[clic droit dans un dossier],
-      surligne[bash], surligne[à toutes les séances],
-  )
-
-  #legende[
-    bash est l'interpréteur des terminaux de Linux ; zsh, très proche, celui
-    de macOS. Les commandes du module s'y tapent à l'identique.
-  ]
-
-  #notes[
-    Non montrés ici (27/09) : l'invite de commandes d'Anaconda, qui lance
-    JupyterLab à la partie 3, et le terminal de VS Code, au cours 2.
-
-    Raison du choix (syllabus v2) : en 2026, chaque séance employait un
-    terminal différent (PowerShell remplacé par un profil « Anaconda Prompt » au
-    cours 1, bash au cours 2, invite de commandes d'Anaconda et Git Bash au cours 3), sans
-    que la différence soit expliquée.
-
-    Windows 11 : « Open Git Bash here » est sous « Afficher d'autres
-    options » du menu contextuel. À vérifier sur un poste de la salle.
-
-    PowerShell n'est pas employé : sans droits d'administrateur, il
-    n'exécute pas le script d'activation de conda, `activate.ps1 cannot be loaded because running scripts is
-    disabled on this system`, relevé en 2026 sur les postes.
-  ]
-]
-
-// --------------------------------------------
-// Nouveau (v2), 27/09 : les raisons du choix de bash. Sources dans les notes.
-#d("Le choix de Git Bash")[
-  #annonce[
-    bash n'est pas fourni avec Windows. Le module l'emploie parce qu'il est
-    l'interpréteur de Linux, installé sur la plupart des serveurs, et que Git
-    Bash est installé avec git.
-  ]
-
-  #tableau(
-    columns: (auto, 1fr, 1.2fr, 1.1fr),
-    align: left + horizon,
-    [], [cmd], [PowerShell], surligne[bash, dans Git Bash],
-    [Sur les postes], [avec Windows], [avec Windows], surligne[avec git],
-    [Sous Linux et macOS], [absent], [à installer], surligne[bash ; zsh sous macOS],
-    [Statut], [conservé pour la compatibilité], [recommandé par Microsoft], surligne[logiciel libre, GNU],
-    [Lister, copier], [`dir`, `copy`], [`Get-ChildItem`, `Copy-Item`], surligne[`ls`, `cp`],
-    [Développeurs], [non compté], [23 %], surligne[49 %],
-  )
-
-  #legende[
-    Serveurs web : 92 % sous Unix, dont Linux (W3Techs, septembre 2026).
-    Développeurs : enquête Stack Overflow 2025. Les commandes du TD 1b dans
-    les trois interpréteurs sont en annexe de son guide.
-  ]
-
-  #notes[
-    Microsoft recommande PowerShell pour automatiser Windows (Microsoft
-    Learn, « Windows commands », 2025). cmd
-    reste pour la compatibilité avec les scripts de MS-DOS et évolue peu
-    (R. Turner, blog Windows Command Line de Microsoft, 2018).
-
-    PowerShell connaît `ls`, `cp`, `mv`, `rm` comme autres noms de ses
-    commandes, sans leurs options : `ls -a` échoue, `ls -Force` liste les
-    fichiers cachés.
-
-    Linux : 500 des 500 machines du TOP500 depuis novembre 2017 ; plus de
-    60 % des cœurs des clients d'Azure, le nuage de Microsoft (page Azure,
-    lue le 27/09/2026).
-
-    Git Bash fournit aussi `ssh`, employé au cours 5.
-
-    Software Carpentry recommande Git for Windows sous Windows, sans droits
-    d'administrateur. Le MIT (_Missing Semester_) écarte cmd et PowerShell,
-    propres à Windows.
-
-    Aucune étude trouvée qui compare la facilité d'apprentissage de bash et
-    de PowerShell.
-  ]
-]
-
-// --------------------------------------------
-// Nouveau (v2) : captures trouvées en ligne, en attendant celles d'un poste de
-// la salle ; sources dans `src/cours1_v2/images/terminaux/CREDITS.md`.
-#let _capture(fichier, legende-capture, hauteur: 98pt) = block(width: 100%)[
-  #align(center, box(
+// Relecture du 19/10/2026 : « Les terminaux d'un poste Windows », « Le choix
+// de Git Bash » et « Trois terminaux à l'écran » fusionnées, d'après la
+// dernière. Au-dessus de chaque capture, le chemin qui ouvre le terminal ;
+// en dessous, l'invite, puis les systèmes où son interpréteur s'emploie ;
+// en bas, le choix du module. Les tableaux des deux premières passent en
+// notes. Captures : `src/cours1_v2/images/terminaux/CREDITS.md` ; logos :
+// `src/cours1_v2/images/os/CREDITS.md`.
+#let _capture(fichier, nom, lancer, invite, hauteur: 100pt) = align(center, stack(
+  dir: ttb, spacing: 5pt,
+  text(size: 16pt, weight: demi-gras)[#nom],
+  text(size: 13pt, fill: estompe)[#lancer],
+  box(
     stroke: 1pt + accent.lighten(55%),
     image("/src/cours1_v2/images/terminaux/" + fichier, height: hauteur),
-  ))
-  #v(-0.3em)
-  #align(center, text(size: 14pt, fill: estompe)[#legende-capture])
-]
+  ),
+  text(size: 13pt, fill: estompe)[Invite : #invite],
+))
 
-#d("Trois terminaux à l'écran")[
+#let _systemes(..logos, texte) = align(center, stack(
+  dir: ttb, spacing: 5pt,
+  line(length: 92%, stroke: 1pt + accent.lighten(55%)),
+  stack(
+    dir: ltr, spacing: 12pt,
+    ..logos.pos().map(f => image("/src/cours1_v2/images/os/" + f, height: 20pt)),
+  ),
+  text(size: 13pt, fill: estompe)[#texte],
+))
+
+#d("Les trois terminaux du poste")[
   #annonce[
     L'invite, au début de chaque ligne, indique quel interpréteur lit la
     commande.
   ]
 
   #grid(
-    columns: (1fr, 1fr, 1fr), column-gutter: 12pt,
-    _capture("git_bash_2011.png", hauteur: 125pt)[Git Bash : \ `utilisateur@machine`, puis `$`],
-    _capture("cmd_windows11.png", hauteur: 125pt)[Invite de commandes : \ `C:\Users\…>`],
-    _capture("powershell_terminal_windows.png", hauteur: 125pt)[PowerShell : \ `PS C:\Users\…>`],
+    columns: (1fr, 1fr, auto, 1fr), column-gutter: 10pt, row-gutter: 6pt,
+    _capture("cmd_windows11.png", [Invite de commandes (cmd)],
+      [Démarrer #sym.arrow.r `cmd`], [`C:\Users\…>`]),
+    _capture("powershell_terminal_windows.png", [PowerShell],
+      [Démarrer #sym.arrow.r Terminal], [`PS C:\Users\…>`]),
+    grid.cell(rowspan: 2, line(angle: 90deg, length: 190pt, stroke: (paint: accent.lighten(55%), thickness: 1pt, dash: "dashed"))),
+    _capture("git_bash_2011.png", [bash / Git Bash],
+      [clic droit #sym.arrow.r Open Git Bash here], [`utilisateur@machine`, puis `$`]),
+    grid.cell(colspan: 2, _systemes("windows.svg")[Windows]),
+    _systemes("linux_tux.svg", "macos_apple.svg", "windows.svg")[Linux, macOS ; Windows avec Git Bash],
   )
 
-  #notes[
-    Captures en ligne (Wikimedia Commons, The Carpentries), sources dans
-    `CREDITS.md`. La capture de Git Bash date de 2011 (`MINGW32`) : à
-    remplacer par une capture d'un poste de la salle. L'invite de commandes
-    d'Anaconda, qui n'a pas encore été vue, est retirée (27/09).
+  #v(2pt)
+  #block(
+    width: 100%, inset: (x: 13pt, y: 8pt),
+    fill: attention.lighten(90%), stroke: (left: 3pt + attention),
+  )[
+    #set text(size: 16pt)
+    #text(fill: attention, weight: demi-gras)[Le module emploie Git Bash.]
+    Git Bash est installé avec git sur les postes. Son interpréteur, bash,
+    est celui de Linux et de la plupart des serveurs, et les mêmes commandes
+    fonctionnent sous macOS.
+  ]
 
-    Faire repérer l'invite sur chacune : elle indique le langage à employer.
+  #notes[
+    Faire repérer l'invite sur chaque capture : elle indique le langage à
+    employer.
+
+    Lancer Git Bash : sous Windows 11, « Open Git Bash here » est sous
+    « Afficher d'autres options » du menu contextuel (à vérifier sur un
+    poste de la salle). Aussi : Démarrer #sym.arrow.r Git Bash. Le
+    Terminal Windows ouvre PowerShell.
+
+    Mêmes opérations, lister et copier : `dir`, `copy` (cmd) ;
+    `Get-ChildItem`, `Copy-Item` (PowerShell) ; `ls`, `cp` (bash).
+    PowerShell connaît `ls`, `cp` comme autres noms, sans leurs options :
+    `ls -a` échoue. Les commandes du TD 1b dans les trois interpréteurs
+    sont en annexe de son guide.
+
+    PowerShell n'est pas employé : sans droits d'administrateur, il
+    n'exécute pas le script d'activation de conda (`activate.ps1 cannot be
+    loaded because running scripts is disabled on this system`, relevé en
+    2026 sur les postes). PowerShell 7 s'installe aussi sous Linux et
+    macOS. Microsoft le recommande pour automatiser Windows (Microsoft
+    Learn, « Windows commands », 2025) ; cmd reste pour la compatibilité
+    avec MS-DOS (R. Turner, Microsoft, 2018).
+
+    macOS : zsh par défaut, très proche de bash ; les commandes du module
+    s'y tapent à l'identique.
+
+    Chiffres : serveurs web 92 % sous Unix, dont Linux (W3Techs, septembre
+    2026) ; Linux sur les 500 machines du TOP500 depuis novembre 2017 ;
+    plus de 60 % des cœurs des clients d'Azure (page Azure, 27/09/2026).
+    Développeurs : bash 49 %, PowerShell 23 % (Stack Overflow 2025).
+
+    Git Bash fournit aussi `ssh`, employé au cours 5. Software Carpentry
+    recommande Git for Windows, sans droits d'administrateur ; le MIT
+    (_Missing Semester_) écarte cmd et PowerShell. Aucune étude trouvée qui
+    compare la facilité d'apprentissage de bash et de PowerShell.
+
+    Raison du choix (syllabus v2) : en 2026, chaque séance employait un
+    terminal différent, sans que la différence soit expliquée.
+
+    Non montrés : l'invite de commandes d'Anaconda (partie 3) et le
+    terminal de VS Code (cours 2). La capture de Git Bash date de 2011
+    (`MINGW32`) : à remplacer par une capture d'un poste de la salle.
   ]
 ]
 

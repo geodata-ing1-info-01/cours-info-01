@@ -12,9 +12,15 @@
 // moment. Sorties de ces deux diapositives relevées de nouveau, avec bash 5.1
 // et coreutils 8.32.
 //
+// Relecture du 19/10/2026, suite : les tableaux « Commande / Ce que vous
+// constatez » deviennent des listes de consignes, une action par ligne, la
+// commande à taper écrite à la fin ; ce que chaque consigne fait constater
+// est écrit sous elle, par `constat`, et n'apparaît que dans le corrigé.
+//
 // Inclus par `cours1_v2.typ` ; compilable seul par
 // `outils/compiler_tds.py --cours 1_v2`.
 #import "../../../commun/prelude.typ": *
+#import "../schemas.typ": consignes, commandes, constat, git-bash-ouvert
 
 #let td = (
   numero: "1b",
@@ -26,21 +32,18 @@
 #separateur-td(..td)
 
 #d("Ouvrir Git Bash dans le dossier du TD")[
-  #tableau(
-    columns: (auto, 1.2fr, 1fr),
-    align: left + horizon,
-    [], [Ce qu'il faut faire], [Ce que vous vérifiez],
-    [1], [dans l'explorateur, ouvrir `cours1\1b_terminal`],
-      [deux dossiers, `depart` et `travail`],
-    [2], [clic droit sur un endroit vide, « Afficher d'autres options », « Open Git Bash here »],
-      [une fenêtre Git Bash s'ouvre],
-    [3], [lire la première ligne de l'invite],
-      [elle se termine par `~/Desktop/info01/cours1/1b_terminal`],
+  #consignes(
+    [Dans l'explorateur, ouvrir le dossier `cours1\1b_terminal`. Il contient les dossiers `depart` et `travail`.],
+    [Faire un clic droit sur un endroit vide de la fenêtre. Choisir « Afficher d'autres options », puis « Open Git Bash here ».],
+    [Dans la fenêtre de Git Bash, vérifier que la première ligne de l'invite se termine par le dossier du TD, comme sur le schéma.],
   )
 
+  #v(4pt)
+  #align(center, box(width: 82%, git-bash-ouvert()))
+
   #legende[
-    À défaut : Git Bash depuis le menu Démarrer, puis
-    `cd ~/Desktop/info01/cours1/1b_terminal`.
+    Si le menu ne propose pas Git Bash : ouvrir Git Bash depuis le menu
+    Démarrer, puis taper `cd ~/Desktop/info01/cours1/1b_terminal`.
   ]
 
   #notes[
@@ -55,22 +58,30 @@
 ]
 
 #d("Se déplacer et lister")[
-  #tableau(
-    columns: (auto, 1fr),
-    align: left + horizon,
-    [Commande], [Ce que vous constatez],
-    [`pwd`], reponse[`/c/Users/eleve/Desktop/info01/cours1/1b_terminal`],
-    [`ls`], reponse[`depart/`, `travail/` et les PDF du TD ; le `/` marque un dossier],
-    [`ls depart`], reponse[les fichiers des deux textes, `raven.odt` compris],
-    [`ls -a travail`], reponse[`./` et `../` : le dossier est vide, sauf ces deux entrées cachées],
-    [`cd depart`, puis `pwd`], reponse[le dossier courant a changé, l'invite aussi],
-    [`cd ..`], reponse[retour dans `1b_terminal`],
-    [`ls ../1a_formats/travail`], reponse[les fichiers exportés au TD 1a, sans quitter le dossier],
+  #annonce[
+    Taper chaque commande dans Git Bash, puis appuyer sur Entrée.
+  ]
+
+  #consignes(
+    taille: 16pt,
+    [Afficher le dossier courant : `pwd`.
+      #constat[`/c/Users/eleve/Desktop/info01/cours1/1b_terminal`]],
+    [Lister le contenu du dossier courant : `ls`.
+      #constat[`depart/`, `travail/` et les PDF du TD. Le `/` final marque un dossier.]],
+    [Lister le contenu de `depart` : `ls depart`.
+      #constat[Les fichiers des deux textes, `raven.odt` compris.]],
+    [Lister le contenu de `travail`, entrées cachées comprises : `ls -a travail`.
+      #constat[`./` et `../` seulement : le dossier est vide, à part ces deux entrées cachées.]],
+    [Entrer dans `depart` : `cd depart`. Taper ensuite `pwd`, et relire l'invite.
+      #constat[Le dossier courant est maintenant `depart`, et l'invite le montre.]],
+    [Revenir dans `1b_terminal` : `cd ..`.],
+    [Sans quitter `1b_terminal`, lister les fichiers exportés au TD 1a : `ls ../1a_formats/travail`.
+      #constat[`raven.pdf` et `raven.png`, si les exports du TD 1a sont faits.]],
   )
 
   #legende[
-    La flèche vers le haut rappelle les commandes précédentes. `Tab` complète
-    un nom de fichier ou de dossier commencé.
+    Pour retrouver une commande déjà tapée, appuyer sur la flèche vers le
+    haut. Pour compléter un nom commencé, appuyer sur `Tab`.
   ]
 
   #notes[
@@ -88,16 +99,16 @@
     Windows associe à son extension, comme un double-clic.
   ]
 
-  #tableau(
-    columns: (1.3fr, auto, 1fr),
-    align: left + horizon,
-    [Commandes], [Logiciel lancé], [Ce qui se passe],
-    [`cp depart/raven.odt travail/` \ `mv travail/raven.odt travail/raven_odt.pdf` \ `start travail/raven_odt.pdf`],
-      [un lecteur PDF], reponse[refus : le fichier n'est pas un PDF],
-    [`cp depart/raven.odt travail/riri.fifi.loulou.odt` \ `start travail/riri.fifi.loulou.odt`],
-      [LibreOffice Writer], reponse[s'ouvre : seule la fin du nom compte],
-    [`cp depart/raven.odt travail/raven.loulou` \ `start travail/raven.loulou`],
-      [aucun], reponse[une fenêtre de Windows demande de choisir le logiciel ; avec LibreOffice, le texte s'ouvre],
+  #consignes(
+    taille: 16pt,
+    [Copier `raven.odt` dans `travail` : `cp depart/raven.odt travail/`.],
+    [Renommer la copie en `raven_odt.pdf` : `mv travail/raven.odt travail/raven_odt.pdf`.],
+    [Ouvrir le fichier renommé : `start travail/raven_odt.pdf`. Noter le logiciel qui s'ouvre et ce qu'il affiche.
+      #constat[Un lecteur PDF s'ouvre, et signale une erreur : le contenu du fichier n'est pas du PDF.]],
+    [Copier `raven.odt` sous le nom `riri.fifi.loulou.odt`, puis ouvrir la copie : #commandes("cp depart/raven.odt travail/riri.fifi.loulou.odt", "start travail/riri.fifi.loulou.odt")
+      #constat[Writer ouvre le texte : seule la fin du nom compte.]],
+    [Copier `raven.odt` sous le nom `raven.loulou`, puis ouvrir la copie. Si Windows demande un logiciel, choisir LibreOffice Writer. #commandes("cp depart/raven.odt travail/raven.loulou", "start travail/raven.loulou")
+      #constat[Windows ne connaît pas l'extension `.loulou` et demande quel logiciel employer. Writer ouvre le texte.]],
   )
 
   #legende[
@@ -126,21 +137,20 @@
     entre guillemets.
   ]
 
-  #tableau(
-    columns: (1.2fr, 1fr),
-    align: left + horizon,
-    [Commande], [Ce que vous constatez],
-    [`cp depart/raven_une_ligne.txt travail/le corbeau.txt`],
-      reponse[un message d'erreur : `cp` a reçu trois noms, `travail/le` et `corbeau.txt` séparés],
-    [`cp depart/raven_une_ligne.txt "travail/le corbeau.txt"`],
-      reponse[pas de message : la copie est faite],
-    [`ls travail`], reponse[`'le corbeau.txt'`, entre apostrophes, parmi les fichiers],
-    [`start "" "travail/le corbeau.txt"`],
-      reponse[le poème s'ouvre dans le Bloc-notes],
+  #consignes(
+    taille: 16pt,
+    [Copier `raven_une_ligne.txt` sous le nom `le corbeau.txt`, sans guillemets, puis lire le message : #commandes("cp depart/raven_une_ligne.txt travail/le corbeau.txt")
+      #constat[Un message d'erreur : `cp` a reçu trois noms, dont `travail/le` et `corbeau.txt`.]],
+    [Refaire la copie, avec le nom entre guillemets : #commandes("cp depart/raven_une_ligne.txt \"travail/le corbeau.txt\"")
+      #constat[Aucun message : la copie est faite.]],
+    [Lister le contenu de `travail` : `ls travail`.
+      #constat[`'le corbeau.txt'`, entre apostrophes, parmi les fichiers.]],
+    [Ouvrir la copie : `start "" "travail/le corbeau.txt"`.
+      #constat[Le poème s'ouvre dans le Bloc-notes.]],
   )
 
   #legende[
-    Les noms des fichiers du module n'ont pas d'espace : `_` le remplace.
+    Dans les noms de fichiers du module, `_` remplace l'espace.
   ]
 
   #notes[
@@ -156,15 +166,17 @@
 ]
 
 #d("Copier plusieurs fichiers d'un coup")[
-  #tableau(
-    columns: (auto, 1fr),
-    align: left + horizon,
-    [Commande], [Ce que vous constatez],
-    [`mkdir travail/textes`], reponse[un dossier `textes/` dans `travail/`],
-    [`cp depart/*.txt travail/textes/`], reponse[pas de message],
-    [`ls travail/textes`], reponse[`auld_lang_syne_une_ligne.txt  raven_une_ligne.txt`],
-    [`ls depart/*.odt`], reponse[`depart/auld_lang_syne.odt  depart/raven.odt`],
-    [`rm travail/textes/auld_lang_syne_une_ligne.txt`], reponse[le fichier disparaît, sans passer par la corbeille],
+  #consignes(
+    taille: 16pt,
+    [Créer un dossier `textes` dans `travail` : `mkdir travail/textes`.],
+    [Copier dans ce dossier tous les fichiers `.txt` de `depart` : `cp depart/*.txt travail/textes/`.
+      #constat[Aucun message.]],
+    [Lister le contenu de `textes` : `ls travail/textes`.
+      #constat[`auld_lang_syne_une_ligne.txt  raven_une_ligne.txt`]],
+    [Lister les fichiers `.odt` de `depart` : `ls depart/*.odt`.
+      #constat[`depart/auld_lang_syne.odt  depart/raven.odt`]],
+    [Supprimer l'une des copies, puis lister de nouveau `textes` : #commandes("rm travail/textes/auld_lang_syne_une_ligne.txt", "ls travail/textes")
+      #constat[Le fichier a disparu. `rm` ne le met pas dans la corbeille.]],
   )
 
   #notes[

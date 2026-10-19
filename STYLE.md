@@ -172,9 +172,10 @@ Les captures ne sont pas versionnées, et leur fabrication est décrite dans
 
 ## Tournures corrigées en relecture
 
-Les relectures de septembre 2026 (cours 2, 3 et 5) ont corrigé les mêmes
-tournures, y compris dans des diapositives réécrites après une première
-correction. Elles s'ajoutent à la table précédente.
+Les relectures de septembre 2026 (cours 2, 3 et 5) et d'octobre 2026
+(cours 1 v2) ont corrigé les mêmes tournures, y compris dans des
+diapositives réécrites après une première correction. Elles s'ajoutent à la
+table précédente.
 
 | Tournure | Écrit | Corrigé |
 |----------|-------|---------|
@@ -185,6 +186,18 @@ correction. Elles s'ajoutent à la table précédente.
 | Annonce sans verbe | « Dans l'Anaconda Prompt. » | « Les commandes se tapent dans l'Anaconda Prompt. » |
 | Annonce qui reformule le titre | « Chaque étape corrige une limite de la précédente » sous un tableau dont une colonne s'intitule « Limite corrigée » | pas d'annonce |
 | Verbe vague ou elliptique | « un `import` suffit » | « s'importent sans installation » |
+| Constat à la place d'une consigne | « `depart/raven.odt` reste ouvert dans LibreOffice Writer » ; « L'archive se copie de `formationTemp` vers le Bureau, puis s'extrait » | « Dans `depart\`, double-cliquer sur `raven.odt`. » ; « Chacun doit la copier sur le Bureau, puis l'extraire. » |
+| Objet sujet d'un verbe d'action, pronom flou | « Chaque export en écrit une copie » | « Exporter en PDF : menu Fichier, Exporter sous, Exporter au format PDF… » |
+| Consigne reléguée en fin de phrase | « …une copie, dans un autre format, à enregistrer dans `travail/` » | « Enregistrer dans `travail\` », en tête de la consigne |
+| Généralité à la place des cas | « chaque export », « un autre format » | « en PDF », « en PNG » |
+| Titre en deux membres reliés par une relative | « La commande `python` et le fichier qu'elle lance » | « Exécution d'un programme Python » |
+
+Sur une diapositive de TD, ce que l'élève doit faire s'écrit en consignes
+numérotées (gabarit `consignes`) ou en pistes (`attendu-pistes`) : une
+action par ligne, dans l'ordre de la manipulation, le verbe en tête, le
+fichier, le menu ou le bouton nommés. Une annonce qui décrit un état
+(« reste ouvert », « se copie », « va dans ») oblige l'élève à deviner
+l'action.
 
 Une restructuration réécrit des phrases : le texte nouveau repasse par ces
 deux tables, et un texte déjà relu se déplace sans être reformulé.

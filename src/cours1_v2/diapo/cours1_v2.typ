@@ -54,13 +54,15 @@
 }
 
 #include "parties/02b_programme.typ"
+// 19/10/2026 : « Programmation littérale » suit « Exécution d'un programme
+// Python », avant les TD 1c et 1d, qui s'enchaînent.
+#include "parties/03_notebook.typ"
 #if tds {
   include "tds/1c_programme.typ"
 } else {
   sommaire-td(td-1c)
 }
 
-#include "parties/03_notebook.typ"
 #if tds {
   include "tds/1d_notebook.typ"
 } else {

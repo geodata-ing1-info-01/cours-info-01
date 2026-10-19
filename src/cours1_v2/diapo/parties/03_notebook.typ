@@ -5,36 +5,54 @@
 // Reprend les diapositives 79 à 82 du cours 1 de 2026. La syntaxe de Markdown
 // est réduite à ce qu'une cellule de texte demande ; l'intention de Markdown,
 // la conversion par pandoc et le README sont au cours 2.
+//
+// Seconde relecture du 19/10/2026 : plus de séparateur ; « Programmation
+// littérale » suit « Exécution d'un programme Python », dans la partie
+// « Programme Python et notebook » ouverte dans `02b_programme.typ`, avant
+// les TD 1c et 1d (ordre des inclusions dans `cours1_v2.typ`).
+//
+// Relecture du 19/10/2026 : « Lancer JupyterLab » ouvre le TD 1d, et « La
+// syntaxe minimale de Markdown » passe avant l'étape du TD qui écrit une
+// cellule de texte (`tds/1d_notebook.typ`). « Programmation littérale » :
+// une phrase d'annonce, la capture en grand, et ce qui était dans
+// l'annonce et la légende posé en étiquettes sur la capture.
 #import "../../../commun/prelude.typ": *
 #import "../../../cours1/diapo/schemas_notebooks.typ": schema-notebook
 
-#separateur(
-  "Un notebook et la syntaxe de Markdown",
-  annonce: "Un document qui réunit du texte, du code et ses résultats ; le texte s'y écrit en Markdown.",
+// Étiquette posée sur la capture : `x` et `y` en pixels de l'image
+// (1400 × 535), convertis à la largeur affichée.
+#let _largeur-capture = 670pt
+#let _etiquette-capture(x, y, corps) = place(
+  top + left, dx: x * _largeur-capture / 1400, dy: y * _largeur-capture / 1400,
+  box(fill: attention, inset: (x: 5pt, y: 3pt), radius: 3pt,
+      text(size: 13pt, fill: white, weight: demi-gras)[#corps]),
 )
 
 #d("Programmation littérale")[
   #annonce[
-    Le texte, le code et son résultat tiennent dans un seul document. Les
-    cours et les TD de Python du module emploient des notebooks, qu'il faut
-    donc savoir lancer et exécuter.
+    Un notebook réunit le texte, le code et son résultat dans un seul
+    document.
   ]
 
   // 28/09 : la capture de « Un notebook dans JupyterLab », réunie ici.
   #align(center)[
     #if captures-disponibles {
-      box(stroke: 1pt + accent.lighten(55%),
-          image("/illustrations/cours1/notebook_jupyterlab.png", height: 165pt))
+      box(stroke: 1pt + accent.lighten(55%), {
+        image("/illustrations/cours1/notebook_jupyterlab.png", width: _largeur-capture)
+        _etiquette-capture(700, 120)[← du texte, écrit en Markdown]
+        _etiquette-capture(720, 60)[le noyau, qui exécute le code →]
+        _etiquette-capture(40, 238)[ordre d'exécution →]
+        _etiquette-capture(930, 320)[← une cellule de code]
+        _etiquette-capture(640, 398)[← sa sortie, gardée dans le fichier]
+        _etiquette-capture(925, 444)[← du texte qui commente le résultat]
+      })
     } else {
       scale(70%, reflow: true, schema-notebook())
     }
   ]
 
   #legende[
-    Du texte, une cellule de code et sa sortie, puis du texte. Le noyau, un
-    programme Python lancé par JupyterLab, exécute les cellules et garde
-    leurs variables. Le terme « programmation littérale » est de Donald
-    Knuth, 1984.
+    Le terme « programmation littérale » est de Donald Knuth, 1984.
   ]
 
   #notes[
@@ -46,8 +64,13 @@
     fichier, l'explication dans un autre, et le résultat nulle part. Ici
     les trois sont au même endroit, et dans l'ordre du raisonnement.
 
+    Les cours et les TD de Python du module emploient des notebooks, qu'il
+    faut donc savoir lancer et exécuter. Le noyau est un programme Python
+    lancé par JupyterLab : il exécute les cellules et garde leurs
+    variables.
+
     v2 : le bloc de texte s'écrit en Markdown, dont la syntaxe minimale est
-    deux diapositives plus loin.
+    au TD 1d, avant l'étape qui écrit une cellule de texte.
 
     Le résultat est enregistré dans le document : rouvert demain, il
     affiche encore ce que le code a produit aujourd'hui. C'est ce qui rend
@@ -75,102 +98,5 @@
 
     À gauche, l'arborescence : un notebook est un fichier dans un dossier,
     comme le reste.
-  ]
-]
-// --------------------------------------------
-// Nouveau (v2) : la syntaxe réduite à ce qu'une cellule de texte demande.
-#d("La syntaxe minimale de Markdown")[
-  #annonce[
-    Une cellule de texte s'écrit en Markdown : du texte brut, où quelques
-    signes indiquent la mise en forme.
-  ]
-
-  #tableau(
-    columns: (1fr, 1fr),
-    align: left + horizon,
-    [Ce qu'on tape], [Ce qui s'affiche],
-    [`# Altitudes`, `## Les données`], [#text(size: 20pt, weight: "bold")[Altitudes] #h(0.6em) #text(size: 16pt, weight: "bold")[Les données]],
-    [deux lignes séparées par une ligne vide], [deux paragraphes],
-    [`du *texte* en **gras**`], [du #emph[texte] en #strong[gras]],
-    [`- une puce`], [• une puce],
-    [`1. une étape`], [1. une étape],
-    [`[le site](https://jupyter.org)`], [#text(fill: attention)[#underline[le site]]],
-    [``la variable `total` ``], [la variable #raw("total")],
-  )
-
-  #legende[
-    Le texte tapé reste lisible sans être affiché mis en forme. Le cours 2
-    y ajoute les tableaux et les images.
-  ]
-
-  #notes[
-    Deux pièges, une minute chacun. Une ligne vide sépare les paragraphes,
-    sans quoi deux lignes consécutives n'en font qu'un. Le dièse veut un
-    espace : `#Titre` ne produit pas un titre.
-
-    Intention de Markdown (John Gruber, 15 mars 2004, Daring Fireball) :
-    un format facile à lire et à écrire, convertible en HTML, et lisible
-    tel quel sans avoir l'air balisé. Syntaxe complète :
-    daringfireball.net/projects/markdown/syntax. Depuis 2014, CommonMark en
-    fixe une spécification.
-
-    Dans JupyterLab, `Maj` + `Entrée` affiche la cellule mise en forme, un
-    double-clic revient au texte tapé. Une cellule de texte n'a pas de
-    numéro `[1]` : aucun noyau ne l'exécute. (28/09 : « Le bloc de texte :
-    du Markdown » retirée, réunie ici.)
-  ]
-]
-// --------------------------------------------
-// Nouveau (v2) : remplace « Lancer JupyterLab depuis Anaconda » ; Navigator
-// était lent à démarrer sur les postes en 2026. 27/09 : l'invite de commandes
-// d'Anaconda d'abord, Git Bash ensuite.
-#d("Lancer JupyterLab")[
-  #annonce[
-    JupyterLab est installé avec Anaconda, et se lance dans un terminal où
-    conda est actif. Le module donne deux terminaux, pour ne pas être bloqué
-    si le réglage de Git Bash manque sur un poste.
-  ]
-
-  #face-a-face(
-    panneau("Depuis l'invite de commandes d'Anaconda")[
-      #text(size: 16pt)[```console
-      (base) …>cd Desktop\info01\cours1\1d_notebook
-      (base) …>jupyter lab
-      ```]
-      #v(0.3em)
-      #text(size: 15pt, fill: estompe)[
-        Menu Démarrer, « Anaconda Prompt ». conda y est actif sans réglage :
-        à essayer d'abord.
-      ]
-    ],
-    panneau("Depuis Git Bash")[
-      #text(size: 16pt)[```console
-      $ cd ~/Desktop/info01/cours1/1d_notebook
-      $ jupyter lab
-      ```]
-      #v(0.3em)
-      #text(size: 15pt, fill: estompe)[
-        Le terminal du module, après le réglage du TD 1c.
-      ]
-    ],
-  )
-
-  #legende[
-    Le navigateur s'ouvre sur `localhost:8888`, le poste lui-même : le
-    serveur de JupyterLab tourne sur le poste, et le terminal reste occupé
-    tant qu'il tourne. `Ctrl` + `C` l'arrête. Le cours 5 y revient.
-  ]
-
-  #notes[
-    En 2026, Navigator a mis plusieurs minutes à s'ouvrir sur les postes, et
-    répondait parfois « already running » sans fenêtre. Il reste le dernier
-    secours : page d'accueil, fiche JupyterLab, bouton Launch.
-
-    L'invite de commandes d'Anaconda emploie `cmd` : chemins avec des `\`.
-    Elle s'ouvre dans le dossier personnel, `C:\Users\eleve`, que l'invite
-    affiche à la place de `…`. Nom du raccourci à vérifier sur les postes
-    (« Anaconda Prompt »).
-
-    Le client et le serveur d'un notebook sont au cours 5 (syllabus v2).
   ]
 ]
