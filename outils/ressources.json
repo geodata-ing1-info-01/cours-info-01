@@ -1,5 +1,5 @@
 {
-  "genere_le": "2026-09-10",
+  "genere_le": "2026-10-01",
   "avec_produit": false,
   "fichiers": {
     "data/cours1/1a_formats/fourni/auld_lang_syne.txt": {
@@ -62,49 +62,33 @@
       "taille": 18945,
       "sha256": "6f508120a38a707af5956a6090418daa9e21b0e2a43dc872a4dce68786c51ab7"
     },
-    "illustrations/cours1/anaconda_navigator_accueil.png": {
-      "taille": 71274,
-      "sha256": "fe96e7e01208a82fb0f31ae7bb242c32972a5921b2b2519ccf2c0a6399eeae93"
+    "data/cours3/3d_images/fourni/vague_original.jpg": {
+      "taille": 2342637,
+      "sha256": "cbb9988f2f18b9180a1cc0cf5dbb0e3bbf8f2e85d17930cf6ca9ab36fac36303"
     },
-    "illustrations/cours1/apercu_recette.png": {
-      "taille": 66486,
-      "sha256": "fd7b3990eb3426a15b341314cea8202039fe647964e5c5dce029bccdd81e6454"
+    "data/cours3/3e_markdown/fourni/gaufres.jpg": {
+      "taille": 126714,
+      "sha256": "6d346df1fb01a61bf9a95ada57ccdbca32f0499fdc58bc2e5cd516e3d6b92be1"
     },
-    "illustrations/cours1/libreoffice_export_pdf.png": {
-      "taille": 58886,
-      "sha256": "1a5b19cb21849c2836740503027b2551e01edef2e55cf1c58428b4a65d88a31a"
+    "data/cours3/3f_cli/fourni/ImageMagick-7.1.2-31-portable-Q16-x64.7z": {
+      "taille": 11739115,
+      "sha256": "33d8b47bb404a6b30c672195795e64a8ce0c807f9bba084e359ff086d6c5d50d"
     },
-    "illustrations/cours1/notebook_jupyterlab.png": {
-      "taille": 61841,
-      "sha256": "513f8af1f376121d362b97ef46b0950d41ce0bd1e9619b5848e220bdbd543ab3"
+    "data/cours3/3f_cli/fourni/photos/crepes.jpg": {
+      "taille": 87036,
+      "sha256": "b10eb5bc06f679ba5a32f78deb372aa95133e7f60662a2c27b272bf3834973fd"
     },
-    "illustrations/cours1/page_html_brut.png": {
-      "taille": 80729,
-      "sha256": "3b2d8402065bbad3338fd1e1e594c9c74154ae31b7960883bf5d31a733bd95e1"
+    "data/cours3/3f_cli/fourni/photos/mousse_chocolat.jpg": {
+      "taille": 115054,
+      "sha256": "a0920216b9f00cea9842553f0aebdf45aa2038b03945b51545e47a482737b730"
     },
-    "illustrations/cours1/page_html_style.png": {
-      "taille": 89606,
-      "sha256": "dc70635a4e732ba4a6e8fbd121973fd883e6442eff8129626a6ef097e1d850f3"
+    "data/cours3/3f_cli/fourni/photos/pate_pizza.jpg": {
+      "taille": 118395,
+      "sha256": "3d70ab55b7f13b7166734e372ccef49cf98be333504e614d3d794b0a20cd96bb"
     },
-    "illustrations/cours1/terminal_linux_gnome.png": {
-      "taille": 7796,
-      "sha256": "0261a8f4a2ec9b2ffc73b8b80255361aabe72e36dc732c72f054991bc79bd380"
-    },
-    "illustrations/cours1/terminal_windows_powershell.jpg": {
-      "taille": 69262,
-      "sha256": "839e5e09c08586aa012df6d6bd023969e8377c3713c8a56fb7cee036d0ef664a"
-    },
-    "illustrations/cours1/vscode_espaces.png": {
-      "taille": 97198,
-      "sha256": "717932143ff9cc9271185e0e15d454d7cc083cef21b36c9db7293bb81a49d7e9"
-    },
-    "illustrations/cours1/vscode_hello.png": {
-      "taille": 98729,
-      "sha256": "a51287641e03fe7f32a024304adffb88a4c1d4165ac1980c70071e3ac2c2918c"
-    },
-    "illustrations/cours1/vscode_projet.png": {
-      "taille": 100062,
-      "sha256": "b84db6e731a8d33b281ac70cf092fa6231d1bc2407c13f44b4bda297bc883590"
+    "data/cours3/3f_cli/fourni/photos/salade_lentilles.jpg": {
+      "taille": 152157,
+      "sha256": "e4a287574edb8b3fd4b51c8fbde159549a9bce30ef506aef881cbc7c1f0ab752"
     }
   }
 }
