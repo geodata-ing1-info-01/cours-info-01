@@ -276,8 +276,8 @@ La moyenne des quatre altitudes vaut 130,05, arrondie à une décimale par
 > **À faire :** ouvrir `commandes.sh` dans Notepad++ ; le lancer par
 > `bash commandes.sh` ; le relancer.
 >
-> **À obtenir :** les pages web du TD 1b copiées dans `copies/`, puis la
-> moyenne du programme.
+> **À obtenir :** les fichiers `.txt` du TD 1b copiés dans `copies/`, puis
+> la moyenne du programme.
 
 Un script est un fichier texte qui contient des commandes. `bash` les lit
 et les exécute dans l'ordre, comme si on les tapait. Dans Notepad++, ouvrir
@@ -287,7 +287,7 @@ et les exécute dans l'ordre, comme si on les tapait. Dans Notepad++, ouvrir
 # Commandes du TD 1b, puis le programme du TD 1c.
 # Lancer depuis 1c_programme : bash commandes.sh
 mkdir -p copies
-cp ../1b_terminal/depart/*.html copies/
+cp ../1b_terminal/depart/*.txt copies/
 ls copies
 python altitudes.py
 ```
@@ -303,12 +303,11 @@ Dans Git Bash, dans `1c_programme/` :
 bash commandes.sh
 ```
 
-**Vérification** : Git Bash affiche la liste des quatre pages web copiées,
-puis la moyenne de l'étape 5.
+**Vérification** : Git Bash affiche la liste des deux fichiers `.txt`
+copiés, puis la moyenne de l'étape 5.
 
 ```text
-auld_lang_syne_brut.html   raven_brut.html
-auld_lang_syne_style.html  raven_style.html
+auld_lang_syne_une_ligne.txt  raven_une_ligne.txt
 moyenne : 130.1 m
 ```
 
@@ -382,9 +381,9 @@ d'Anaconda en tête de `PATH` : son `python.exe` est alors trouvé le premier.
 Le cours 2 ouvre le même Git Bash dans l'éditeur de code, qui lit le même
 fichier.
 
-**Un programme est un fichier texte.** Notepad++ affiche `altitudes.py`
-comme les fichiers `.css` et `.html` du TD 1a : il reconnaît l'extension
-`.py`, et colore le code Python. Les couleurs ne sont pas dans le
+**Un programme est un fichier texte.** Notepad++ ouvre `altitudes.py`
+comme les fichiers texte du TD 1a, et reconnaît en plus l'extension `.py` :
+il colore le code Python. Les couleurs ne sont pas dans le
 fichier. N'importe quel éditeur de texte sert à écrire un programme ; le
 cours 2 installe un éditeur de code, qui ajoute d'autres services.
 
@@ -416,7 +415,7 @@ dans les chemins. [À vérifier sur un poste de la salle : ce fichier n'a pas
 rem Commandes du TD 1b, puis le programme du TD 1c.
 rem Lancer depuis 1c_programme : commandes.bat
 if not exist copies mkdir copies
-copy ..\1b_terminal\depart\*.html copies\
+copy ..\1b_terminal\depart\*.txt copies\
 dir /b copies
 python altitudes.py
 ```

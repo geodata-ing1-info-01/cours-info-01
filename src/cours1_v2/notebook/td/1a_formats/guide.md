@@ -17,13 +17,14 @@ table ASCII au cours 3.*
 
 Le TD commence par copier les fichiers de la séance sur le poste. Il manipule
 ensuite les fichiers d'un même texte, le poème *The Raven* d'Edgar Allan Poe
-(1845), sous plusieurs formes : un document LibreOffice, un fichier texte,
-deux pages web. On les exporte et on les ouvre avec différents logiciels,
+(1845), sous plusieurs formes : un document LibreOffice et un fichier
+texte. On les exporte et on les ouvre avec différents logiciels,
 pour comparer ce que décide l'extension et ce que contient le fichier. Il
-dure un quart d'heure.
+se termine dans le dossier partagé, où toute la salle modifie le même
+fichier. Il dure un quart d'heure.
 
-Tout se fait avec l'explorateur de fichiers, LibreOffice, un navigateur et
-deux éditeurs de texte, le Bloc-notes et Notepad++. Aucune commande n'est
+Tout se fait avec l'explorateur de fichiers, LibreOffice et deux éditeurs
+de texte, le Bloc-notes et Notepad++. Aucune commande n'est
 nécessaire.
 
 Le dossier `depart\` contient aussi les mêmes fichiers pour un second texte,
@@ -35,8 +36,8 @@ les étapes avec lui.
 | 1 | travailler sur le disque du poste, hors du dossier partagé | copier les fichiers de la séance sur le poste |
 | 2 | travailler sur des copies, à côté des fichiers livrés | préparer le dossier du TD |
 | 3 | produire un même texte dans plusieurs formats | exporter un même document en trois formats |
-| 4 | lire l'adresse d'une page ouverte depuis le disque | ouvrir une page web depuis son disque |
-| 5 | comparer fichiers texte et fichiers binaires dans un éditeur | lire les fichiers avec deux éditeurs de texte |
+| 4 | comparer fichiers texte et fichiers binaires dans un éditeur | lire les fichiers avec deux éditeurs de texte |
+| 5 | voir ce que devient un fichier du dossier partagé modifié par plusieurs personnes | modifier à plusieurs un fichier partagé |
 
 Chaque étape commence par un encadré qui la résume. Ce que chaque étape fait
 constater est expliqué à la fin du guide, dans « Ce que le TD fait
@@ -179,9 +180,6 @@ Ouvrir `info01\cours1\1a_formats\`. Le dossier contient :
 │   ├── raven.odt                  le poème, document LibreOffice
 │   ├── raven_une_ligne.txt        le poème, en texte sur une seule ligne
 │   ├── raven_une_ligne.donnees    le même fichier, avec une autre extension
-│   ├── raven_brut.html            le poème, en page web sans mise en forme
-│   ├── raven_style.html           la même page, avec une feuille de style
-│   ├── style.css                  la feuille de style
 │   └── auld_lang_syne…            les mêmes fichiers pour le second texte
 ├── travail\                       vide
 ├── td_1a_formats.pdf              la feuille du TD
@@ -315,85 +313,32 @@ comme une image posée sur une page.
 - **Writer a été fermé avant les exports.** Le rouvrir par un double-clic sur
   `depart\raven.odt`, et reprendre à l'étape 3.2.
 
-## 4 · Ouvrir une page web depuis son disque
+## 4 · Lire les fichiers avec deux éditeurs de texte
 
-> **À faire :** ouvrir `depart\raven_brut.html` puis `depart\raven_style.html`
-> dans le navigateur ; modifier une couleur dans `style.css` ; lire
-> l'adresse de la page.
->
-> **À obtenir :** la page mise en forme change de couleur après `F5`.
-
-### Deux pages, une feuille de style
-
-1. Double-cliquer sur `depart\raven_brut.html`. Le navigateur l'ouvre, sans
-   réseau.
-2. Double-cliquer sur `depart\raven_style.html` : le même texte, mis en
-   forme.
-3. Ouvrir les deux fichiers dans le Bloc-notes (clic droit, Ouvrir avec,
-   Bloc-notes) et comparer leur en-tête, entre `<head>` et `</head>`, puis
-   la façon dont le poème est écrit.
-4. Ouvrir `depart\style.css` dans le Bloc-notes. Remplacer la valeur d'une
-   ligne `color:` par `crimson`, ou par un code comme `#c0392b`, et
-   enregistrer.
-5. Revenir au navigateur sur `raven_style.html`, et recharger la page avec
-   `F5`.
-
-`style.css` est le seul fichier de `depart\` que le TD modifie : remettre
-sa couleur d'origine à la fin de l'étape.
-
-**Vérification** : après `F5`, le texte de `raven_style.html` a la nouvelle
-couleur. `raven_brut.html` n'a pas changé.
-
-### L'adresse de la page
-
-Lire l'adresse que le navigateur affiche pour `raven_style.html`. Elle a la
-forme :
-
-```text
-file:///C:/Users/eleve/Desktop/info01/cours1/1a_formats/depart/raven_style.html
-```
-
-**À noter** : ce qui ressemble à un chemin de fichier dans cette adresse, et
-ce qui en diffère. Noter aussi ce qui distingue les deux fichiers HTML dans
-le Bloc-notes.
-
-### Si ça bloque
-
-- **Le fichier `.html` s'ouvre dans un éditeur de texte.** Clic droit sur le
-  fichier, « Ouvrir avec », puis le navigateur (Firefox, Edge, Chrome).
-- **Rien ne change après `F5`.** Vérifier que `style.css` est enregistré :
-  dans le Bloc-notes, `Ctrl` + `S`. Vérifier aussi que la page rechargée est
-  `raven_style.html`, la seule des deux qui appelle `style.css`.
-- **Le Bloc-notes n'est pas proposé dans « Ouvrir avec ».** Choisir
-  « Choisir une autre application », puis Bloc-notes.
-
-## 5 · Lire les fichiers avec deux éditeurs de texte
-
-> **À faire :** ouvrir quatre fichiers de `depart\` dans le Bloc-notes, puis
+> **À faire :** ouvrir trois fichiers de `depart\` dans le Bloc-notes, puis
 > dans Notepad++.
 >
-> **À obtenir :** les quatre fichiers ouverts dans chaque éditeur, puis
+> **À obtenir :** les trois fichiers ouverts dans chaque éditeur, puis
 > fermés sans enregistrer.
 
-Ouvrir chacun des quatre fichiers suivants dans le Bloc-notes (clic droit,
+Ouvrir chacun des trois fichiers suivants dans le Bloc-notes (clic droit,
 Ouvrir avec, Bloc-notes), puis dans Notepad++ (clic droit, Ouvrir avec,
 Notepad++, ou par le menu Fichier de Notepad++) :
 
 - `depart\raven_une_ligne.txt`
-- `depart\style.css`
-- `depart\raven_brut.html`
+- `depart\raven_une_ligne.donnees`
 - `depart\raven.odt`
 
 **Attention** : ne rien enregistrer, et fermer sans sauver. Un `.odt`
 réenregistré par un éditeur de texte est détruit.
 
 **À noter** : pour chaque fichier et chaque éditeur, si le contenu est
-lisible, et ce que Notepad++ ajoute à l'affichage.
+lisible, et ce que Notepad++ montre de plus.
 
 ### Si ça bloque
 
 - **Une fenêtre demande d'enregistrer à la fermeture.** Répondre « Ne pas
-  enregistrer », pour chacun des quatre fichiers.
+  enregistrer », pour chacun des trois fichiers.
 - **Notepad++ n'est pas dans « Ouvrir avec ».** Lancer Notepad++ depuis le
   menu Démarrer, puis ouvrir les fichiers par son menu Fichier, Ouvrir. S'il
   n'est pas installé sur le poste, faire l'étape avec le seul Bloc-notes, et
@@ -401,6 +346,41 @@ lisible, et ce que Notepad++ ajoute à l'affichage.
 - **Un `.odt` a été enregistré par un éditeur de texte.** Il ne s'ouvre plus
   dans Writer. Le recopier depuis l'archive `info01-cours1.zip`, qui garde les
   fichiers de départ.
+
+## 5 · Modifier à plusieurs un fichier partagé
+
+> **À faire :** ouvrir `info01-salle.txt`, dans `formationTemp`, avec le
+> Bloc-notes ; au signal de l'enseignant, y écrire son prénom et
+> enregistrer ; fermer, puis rouvrir le fichier.
+>
+> **À obtenir :** le fichier rouvert, et le nombre de prénoms qu'il
+> contient.
+
+Cette étape fait exception à la règle de l'étape 1 : elle se fait dans le
+dossier partagé, sur un fichier que l'enseignant y a déposé pour l'occasion.
+Aucun autre fichier de `formationTemp` ne doit être modifié.
+
+1. Sur le Bureau, double-cliquer sur le raccourci `formationTemp`.
+2. Clic droit sur `info01-salle.txt`, Ouvrir avec, Bloc-notes. Le fichier
+   est vide. Laisser la fenêtre ouverte, et attendre le signal de
+   l'enseignant.
+3. Au signal, écrire son prénom sur une ligne, puis enregistrer avec
+   `Ctrl` + `S`.
+4. Fermer le Bloc-notes, puis rouvrir `info01-salle.txt` de la même façon.
+
+Le fichier se lit dans toute la promotion : n'y écrire que son prénom.
+
+**À noter** : combien de prénoms le fichier contient, et si le sien y est.
+
+### Si ça bloque
+
+- **Windows refuse d'enregistrer.** Le poste n'a pas le droit d'écrire dans
+  `formationTemp` : prévenir l'enseignant, et lire le fichier sur le poste
+  d'un voisin.
+- **Le fichier s'ouvre dans Notepad++ ou dans un autre logiciel.** Le
+  fermer, et passer par clic droit, Ouvrir avec, Bloc-notes : Notepad++
+  propose de recharger un fichier modifié par un autre poste, et l'étape ne
+  montre plus rien.
 
 ## Ce que le TD fait constater
 
@@ -418,42 +398,12 @@ Un PDF décrit la page : les caractères y sont rangés avec leur position. Une
 image PNG ou JPEG photographie la page : elle ne garde que l'apparence, et
 le texte n'y est plus que des points de couleur.
 
-### Étape 4 : une page web, son style, son adresse
-
-`raven_brut.html` et `raven_style.html` contiennent le même poème. Dans
-`raven_brut.html`, il tient dans un seul paragraphe, `<p>`, et le navigateur
-l'affiche en un bloc : les sauts de ligne du fichier ne sont pas rendus, la
-structure d'une page HTML se déclare par des balises. `raven_style.html`
-écrit un paragraphe par vers, et son en-tête contient une ligne de plus,
-`<link rel="stylesheet" href="style.css">`, qui appelle la feuille de style.
-`style.css` décrit la présentation : couleurs, polices, largeur. Modifier `style.css` change l'apparence de la page sans
-toucher au texte. Le contenu est dans un fichier, la présentation dans un
-autre, et l'un change sans l'autre. CSS accepte les couleurs par leur nom
-(`crimson`) comme par leur code hexadécimal (`#c0392b`), deux chiffres par
-composante, rouge, vert, bleu.
-
-Une adresse web, ou **URL**, est un chemin de fichier précédé de la machine
-où aller le chercher :
-
-| Partie | Dans `https://www.ensg.eu/cours/info01/raven.html` |
-|---|---|
-| le protocole, la façon convenue de demander le fichier | `https://` |
-| la machine | `www.ensg.eu` |
-| le chemin sur cette machine | `/cours/info01/` |
-| le fichier | `raven.html` |
-
-L'adresse d'une page ouverte depuis le disque a la même forme, avec le
-protocole `file`. Entre `file://` et le chemin, la place de la machine est
-vide, puisque c'est la vôtre ; la troisième barre est le début du chemin,
-`/C:/`. Le navigateur écrit tous les chemins avec des `/`, même sous Windows.
-
-### Étape 5 : ce qu'un éditeur de texte affiche
+### Étape 4 : ce qu'un éditeur de texte affiche
 
 | Fichier | Dans le Bloc-notes | Dans Notepad++ |
 |---|---|---|
-| `raven_une_ligne.txt` | le poème, lisible en entier | le même, sans couleur |
-| `style.css` | des règles, lisibles | sélecteurs et propriétés en couleur |
-| `raven_brut.html` | le texte et ses balises | les balises en couleur, repliables |
+| `raven_une_ligne.txt` | le poème, lisible en entier | le même |
+| `raven_une_ligne.donnees` | le même poème | le même |
 | `raven.odt` | `PK`, puis des caractères sans suite : du binaire | les mêmes, et des `NUL` en surbrillance |
 
 Un éditeur de texte affiche un caractère par octet, selon la table
@@ -461,12 +411,29 @@ d'encodage, et n'interprète rien d'autre : ni image, ni mise en forme. Ce qui
 n'a pas de caractère correspondant apparaît en carré ou en signe étrange ;
 Notepad++ marque `NUL` les octets de valeur `00`.
 
-Les couleurs de Notepad++ ne viennent pas du fichier : l'éditeur les ajoute
-d'après l'extension, qu'il associe à un langage. Renommer `style.css` en
-`style.txt` les fait disparaître. L'éditeur de code du cours 2 fait la
-même chose pour Python.
-
-`raven_brut.html` est du texte, `raven.odt` n'en est pas, et leur nom ne le
-disait pas : seule l'ouverture dans un éditeur de texte le montre. Les deux
+`raven_une_ligne.donnees` est le même texte que `raven_une_ligne.txt`, sous
+une extension qu'aucun logiciel ne connaît : l'extension ne change rien au
+contenu. `raven.odt` n'est pas du texte, et son nom ne le disait pas : seule
+l'ouverture dans un éditeur de texte le montre. Les deux
 caractères `PK` du début sont la signature d'une archive ZIP, dont un `.odt`
 est une forme. Le cours 3 y revient avec la table ASCII.
+
+### Étape 5 : un fichier modifié à plusieurs
+
+Le fichier rouvert ne contient qu'un prénom, ou quelques-uns : la plupart
+ont disparu, et le Bloc-notes n'a affiché aucun message.
+
+Le Bloc-notes lit le fichier une fois, à l'ouverture, et le garde en
+mémoire. À l'enregistrement, il écrit le fichier entier : le fichier vide lu
+à l'ouverture, plus le prénom ajouté. Chaque enregistrement remplace donc le
+précédent, et le fichier rouvert est celui du dernier enregistrement. Les
+autres prénoms présents sont ceux d'élèves qui ont ouvert le fichier après
+un premier enregistrement. Le Bloc-notes ne sait pas que d'autres postes ont
+ouvert le même fichier.
+
+Un fichier du dossier partagé est le même pour toute la salle. Pour ne pas
+perdre son travail de cette façon, on copie les fichiers sur le poste, et on
+travaille dans la copie, comme à l'étape 1. LibreOffice pose un fichier de
+verrou, et avertit le second qui ouvre un document déjà ouvert ; un éditeur
+de texte ne le fait pas. Git, au cours 2, fait travailler chacun dans sa
+copie, et fusionne ensuite les modifications.

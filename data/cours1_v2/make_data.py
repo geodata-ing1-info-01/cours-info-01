@@ -6,6 +6,9 @@ version 1 : ce script les recopie depuis `data/cours1/1a_formats/produit/depart/
 que `data/cours1/make_data.py build` fabrique. Les autres TD ont leurs
 fichiers versionnés dans leur dossier.
 
+Les TD 1a et 1b n'abordent plus la page web (décision du 19/10/2026) :
+les pages `.html` et la feuille de style ne sont pas recopiées.
+
     python data/cours1/make_data.py build      # d'abord, si produit/ est vide
     python data/cours1_v2/make_data.py build
 """
@@ -19,6 +22,8 @@ from pathlib import Path
 ICI = Path(__file__).resolve().parent
 DEPART_V1 = ICI.parent / "cours1" / "1a_formats" / "produit" / "depart"
 TDS = ("1a_formats", "1b_terminal")
+# Ce qu'un TD ne reçoit pas des fichiers de la version 1.
+EXCLUS = {td: ("*.html", "*.css") for td in TDS}
 
 
 def build() -> None:
@@ -27,7 +32,7 @@ def build() -> None:
     for td in TDS:
         cible = ICI / td / "produit" / "depart"
         shutil.rmtree(cible, ignore_errors=True)
-        shutil.copytree(DEPART_V1, cible)
+        shutil.copytree(DEPART_V1, cible, ignore=shutil.ignore_patterns(*EXCLUS.get(td, ())))
         (ICI / td / "produit" / "travail").mkdir(exist_ok=True)
         print(f"✓ {cible.relative_to(ICI.parent.parent)}")
 

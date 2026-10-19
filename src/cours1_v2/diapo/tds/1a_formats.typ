@@ -5,39 +5,82 @@
 // renommage des extensions et l'espace dans un nom passent au TD 1b, en ligne
 // de commande ; la table ASCII au cours 3.
 //
+// Relecture du 19/10/2026 : « Les fichiers du cours » ouvre le TD, juste
+// avant la copie de l'archive ; une dernière étape fait modifier à toute la
+// salle un même fichier de `formationTemp`. Ce qu'elle fait constater est
+// expliqué après le TD, par `parties/01b_fichier_partage.typ`. Le TD
+// n'aborde plus la page web : « Ouvrir une page html depuis son disque » et
+// « L'adresse que le navigateur affiche » sont retirées, et `depart/` n'a
+// plus de fichiers `.html` ni `.css` (`data/cours1_v2/make_data.py`).
+//
 // Inclus par `cours1_v2.typ` ; compilable seul par
 // `outils/compiler_tds.py --cours 1_v2`, qui dépose la feuille dans
 // `data/cours1_v2/1a_formats/`.
 #import "../../../commun/prelude.typ": *
-#import "../schemas.typ": schema-exports
+#import "../schemas.typ": schema-exports, consignes, schema-dossier-depart
 
 #let td = (
   numero: "1a",
   titre: "Fichiers, formats et extensions",
-  annonce: "Objectif : récupérer les fichiers de la séance, puis distinguer l'extension d'un fichier et son contenu, sur un même texte enregistré dans plusieurs formats",
+  annonce: "Objectif : récupérer les fichiers de la séance, distinguer l'extension d'un fichier et son contenu sur un même texte enregistré dans plusieurs formats, puis modifier à plusieurs un fichier du dossier partagé",
   dossier: "cours1/1a_formats/",
   duree: "15′",
 )
 #separateur-td(..td)
 
-// Nouveau (v2) : la copie de l'archive devient la première étape du TD.
-#d("Copier les fichiers de la séance sur le poste")[
+// --------------------------------------------
+// Nouveau (v2) : l'arborescence des cinq TD de la version 2. Placée au début
+// du TD 1a le 19/10/2026, juste avant la copie de l'archive.
+#d("Les fichiers du cours")[
   #annonce[
-    L'archive de la séance est dans le dossier partagé. Elle se copie sur le
-    Bureau, puis se décompresse.
+    Une archive par séance, un dossier par TD. Aujourd'hui, tout est dans
+    `cours1/`.
   ]
 
-  #tableau(
-    columns: (auto, 1fr, 1fr),
-    align: left + horizon,
-    [], [Ce qu'il faut faire], [Ce que vous vérifiez],
-    [1], [Bureau, raccourci `formationTemp` ; copier `info01-cours1.zip`],
-      [la barre d'adresse commence par `\\`],
-    [2], [le coller dans le dossier `info01` du Bureau, créé la première fois],
-      [la barre d'adresse est `C:\Users\eleve\Desktop\info01`],
-    [3], [clic droit sur l'archive, « Extraire tout… », effacer la fin du dossier proposé],
-      [`cours1` apparaît à côté de l'archive],
-    [4], [ouvrir `cours1\1a_formats`], [deux dossiers, `depart` et `travail`],
+  #align(center)[
+    #block(
+      inset: (x: 20pt, y: 13pt), fill: gris,
+      stroke: 1pt + accent.lighten(62%),
+    )[
+      #set text(size: 23pt)
+      #set align(left)
+      #raw(
+"cours1/                un dossier par TD, dans l'ordre de la séance
+├── 1a_formats/
+├── 1b_terminal/
+├── 1c_programme/
+└── 1d_notebook/")
+    ]
+  ]
+
+  #legende[
+    Dans chaque dossier, la feuille du TD et son guide détaillé, en PDF.
+  ]
+
+  #notes[
+    La copie de l'archive est la diapositive suivante.
+
+    Rappeler le nom du dossier à chaque TD.
+
+    Version 2 : aucun TD facultatif dans la séance. Les TD 1b (archive
+    `.odt`), 1i et 1j de 2026 restent dans l'archive 2026 du book ; le TD 1e
+    (C++) est l'annexe « C++ ».
+  ]
+]
+
+// Nouveau (v2) : la copie de l'archive devient la première étape du TD.
+// Relecture du 19/10/2026 : une liste de consignes à la place du tableau,
+// difficile à suivre pendant la manipulation ; les vérifications passent en
+// notes.
+#d("Copier les fichiers de la séance sur le poste")[
+  #consignes(
+    [Sur le Bureau, ouvrir le raccourci `formationTemp`.],
+    [Copier `info01-cours1.zip` : clic droit, Copier.],
+    [Sur le Bureau, créer le dossier `info01` s'il n'existe pas : clic droit, Nouveau, Dossier.],
+    [Ouvrir `info01`, et y coller l'archive : clic droit, Coller.],
+    [Extraire l'archive : clic droit sur `info01-cours1.zip`, Extraire tout…],
+    [Dans la fenêtre qui s'ouvre, effacer `\info01-cours1` à la fin du chemin, puis cliquer sur Extraire.],
+    [Ouvrir `cours1\1a_formats\` : il contient `depart\` et `travail\`.],
   )
 
   #legende[
@@ -46,10 +89,13 @@
   ]
 
   #notes[
-    Faire lire la barre d'adresse aux étapes 1 et 2, comme sur la
-    diapositive « Reconnaître un emplacement réseau à son chemin ».
+    Faire lire la barre d'adresse aux étapes 1 et 4, comme sur la
+    diapositive « Reconnaître un emplacement réseau à son chemin » : dans
+    `formationTemp`, elle commence par `\\` ; dans `info01`, elle indique
+    `C:\Users\eleve\Desktop\info01`. Après l'étape 6, `cours1` est à côté
+    de l'archive.
 
-    Étape 3 : sans effacer la fin du chemin proposé, Windows crée
+    Étape 6 : sans effacer la fin du chemin proposé, Windows crée
     `info01\info01-cours1\cours1`, et les chemins des diapositives ne
     correspondent plus.
 
@@ -58,13 +104,9 @@
 ]
 
 // Reprise du TD 1a de 2026 ; chemins de l'exemple mis à jour pour le Bureau.
+// Relecture du 19/10/2026 : l'avertissement d'abord, puis la fenêtre de
+// l'explorateur sur `depart\` à la place du tableau des chemins.
 #d([Deux dossiers : `depart/` et `travail/`])[
-  #annonce[
-    `depart/` contient les fichiers du TD et ne se modifie pas ; `travail/`
-    reçoit vos copies. Une copie abîmée se refait, un original abîmé ne se
-    refait pas.
-  ]
-
   #avertissement[
     Avant d'ouvrir un fichier : afficher les extensions, que Windows masque
     par défaut.
@@ -72,28 +114,28 @@
     Extensions de noms de fichiers.
   ]
 
-  #tableau(
-    columns: (auto, 1fr),
-    align: left + horizon,
-    [], [Sur un poste de la salle],
-    [Le fichier de départ], [`C:\Users\eleve\Desktop\info01\cours1\1a_formats\depart\raven.odt`],
-    [Un fichier exporté], [`C:\Users\eleve\Desktop\info01\cours1\1a_formats\travail\raven.pdf`],
-  )
-
-  #legende[
-    Sous macOS et Linux, `/Users/alice/…` ou `/home/alice/…`, avec des `/`.
-    Les diapositives qui suivent n'écrivent que la fin du chemin, à partir de
-    `cours1/`.
+  #annonce[
+    `depart/` contient les fichiers du TD, et ne se modifie pas. Ce que vous
+    produisez va dans `travail/`, vide au départ.
   ]
 
+  #schema-dossier-depart()
+
   #notes[
-    Faire lire les deux chemins en entier une fois : c'est le vocabulaire de
-    la partie — racine, dossiers, nom, extension — sur les fichiers qu'ils
-    ont sous la main. Puis dire qu'on abrège.
+    Faire lire en entier une fois le chemin de la barre d'adresse : le
+    vocabulaire de la partie (racine, dossiers, nom) s'y applique aux
+    fichiers qu'ils ont sous la main. Puis dire qu'on abrège : les
+    diapositives qui suivent n'écrivent que la fin du chemin, à partir de
+    `cours1/`.
+
+    L'explorateur affiche d'abord « Bureau > info01 > cours1 > 1a_formats >
+    depart » ; un clic dans la barre montre le chemin complet. Sous macOS et
+    Linux, `/Users/alice/…` ou `/home/alice/…`, avec des `/`.
+
+    À dire : une copie abîmée se refait, un original abîmé ne se refait pas.
 
     `travail/` est livré vide. Tout ce que le TD fait copier ou fabriquer y
-    va ; `depart/` reste tel quel, sauf la couleur de `style.css` plus loin,
-    qu'on remet.
+    va ; `depart/` reste tel quel.
   ]
 ]
 
@@ -160,104 +202,18 @@
   ]
 ]
 // --------------------------------------------
-#d("Ouvrir une page html depuis son disque")[
-  #annonce[
-    Double-cliquer sur `depart/raven_brut.html` : le navigateur l'ouvre sans
-    réseau. L'adresse commence par `file:///`.
-  ]
-
-  #tableau(
-    columns: (auto, 1fr),
-    align: left + horizon,
-    [Fichier ouvert], [Ce que vous constatez],
-    [`raven_brut.html`], reponse[la page s'affiche, l'adresse est un chemin de votre disque],
-    [`raven_style.html`], reponse[le même texte, mis en forme : il appelle `style.css`],
-    [`style.css`], reponse[changez-y une couleur, enregistrez, puis `F5` dans le navigateur],
-  )
-
-  #legende[
-    Le fichier `.html` est identique dans les deux cas. Seule la ligne
-    `<link rel="stylesheet" href="style.css">` les distingue.
-  ]
-
-  #notes[
-    Sur un format que les étudiants reverront : le contenu dans un fichier, la présentation dans un autre, et
-    on change l'un sans toucher l'autre.
-
-    Pour la couleur, CSS accepte `color: crimson` aussi bien que
-    `color: #c0392b` — contrairement à ODF. Faire essayer les deux.
-
-    Fichiers dans `cours1/1a_formats/depart/`. Si `style.css` n'est pas dans
-    le même dossier que le `.html`, la page s'affiche sans mise en forme :
-    bonne occasion de reparler des chemins relatifs. Ici on modifie un fichier
-    de `depart/`, exprès : c'est une couleur, et on la remet ensuite.
-  ]
-]
-
-// --------------------------------------------
-#d("L'adresse que le navigateur affiche")[
-  #annonce[
-    Une adresse web est un chemin de fichier, précédé de la machine où aller
-    le chercher — une #sigle("URL")[#initiale("U")niform #initiale("R")esource #initiale("L")ocator].
-    Celle de la page ouverte depuis le disque a la même forme.
-  ]
-
-  #align(center)[
-    #grid(
-      columns: (auto, auto, auto, auto),
-      row-gutter: 11pt,
-      align: center,
-      text(font: police-code, size: 22pt, fill: estompe, "https://"),
-      text(font: police-code, size: 22pt, fill: brun, weight: demi-gras, "www.ensg.eu"),
-      text(font: police-code, size: 22pt, fill: encre, "/cours/info01/"),
-      text(font: police-code, size: 22pt, fill: accent, weight: demi-gras, "raven.html"),
-      text(size: 13pt, fill: estompe)[le protocole],
-      text(size: 13pt, fill: brun)[à quelle machine],
-      text(size: 13pt, fill: estompe)[le chemin sur cette machine],
-      text(size: 13pt, fill: accent)[le fichier],
-    )
-  ]
-
-  #v(0.5em)
-  #tableau(
-    columns: (auto, 1fr),
-    align: left + horizon,
-    [Dans la barre d'adresse], [Ce que vous en dites],
-    [`file:///C:/Users/eleve/Desktop/info01/cours1/1a_formats/depart/raven_brut.html`],
-      reponse[la même structure ; le chemin est celui du disque, avec des `/`],
-    [Pourquoi trois barres après `file:` ?],
-      reponse[deux ouvrent la place de la machine, restée vide : c'est la vôtre ; la troisième est la racine],
-  )
-
-  #notes[
-    C'est la diapositive qui explique pourquoi une page ouverte par double-clic
-    affiche `file:///`. Poser la question des trois barres avant de projeter
-    la réponse : entre `file:` et le chemin, la place de la machine est vide,
-    puisque c'est la machine locale, et `/C:/` est la racine du disque.
-
-    Faire remarquer les `/` : le navigateur écrit tous les chemins à la façon
-    d'Unix, même sous Windows.
-
-    « Protocole » : la façon convenue de demander la ressource à la machine.
-    `https` pour une page web, `file` pour un fichier du disque ; le mot
-    suffit ici, le réseau est au cours 5.
-  ]
-]
-// --------------------------------------------
 #d("Deux éditeurs de texte, les mêmes fichiers")[
   #annonce[
     Un éditeur de texte n'affiche rien d'autre que des caractères : il lit
-    chaque octet et montre le caractère correspondant. Le Bloc-notes s'arrête
-    là ; Notepad++ reconnaît l'extension et colore ce qu'il sait lire.
+    chaque octet et montre le caractère correspondant.
   ]
 
   #tableau(
     columns: (auto, 1fr, 1fr),
     align: left + horizon,
     [Fichier, dans `depart/`], [Dans le Bloc-notes], [Dans Notepad++],
-    [`raven_une_ligne.txt`], reponse[le poème, lisible en entier], reponse[le même, sans couleur],
-    [`style.css`], reponse[des règles, lisibles], reponse[sélecteurs et propriétés colorés],
-    [`raven_brut.html`], reponse[le texte et ses balises], reponse[les balises colorées, repliables],
+    [`raven_une_ligne.txt`], reponse[le poème, lisible en entier], reponse[le même],
+    [`raven_une_ligne.donnees`], reponse[le même poème : l'extension ne change rien au contenu], reponse[le même],
     [`raven.odt`], reponse[`PK`, puis du charabia : binaire], reponse[le même charabia, et des `NUL`],
   )
 
@@ -276,20 +232,61 @@
     ni image, ni mise en forme. Ce qui n'a pas de caractère correspondant
     apparaît en carré ou en signe étrange.
 
-    Notepad++ lit les mêmes octets : la couleur ne vient pas du fichier, elle
-    vient de l'extension, que l'éditeur associe à un langage (`.css`,
-    `.html`) ; renommer `style.css` en `style.txt` la fait disparaître. C'est
-    l'annonce de l'éditeur de code, au cours 2, qui fait la même chose
-    pour Python. Le `.odt` y montre des `NUL` en surbrillance : Notepad++ marque
-    les octets sans caractère. À vérifier sur un poste de la salle, Notepad++
-    n'étant pas installé d'origine sous Windows.
+    Notepad++ lit les mêmes octets. Il colore un fichier d'après son
+    extension, quand il l'associe à un langage : aucun fichier de ce TD n'en
+    a, depuis que les `.css` et `.html` sont retirés (19/10/2026) ; le `.py`
+    du TD 1c le sera. Le `.odt` y montre des `NUL` en surbrillance : Notepad++
+    marque les octets sans caractère. À vérifier sur un poste de la salle,
+    Notepad++ n'étant pas installé d'origine sous Windows.
 
     Choisir de petits fichiers : ceux du dossier font de 0,5 à 20 ko. Un
     fichier de plusieurs mégaoctets fige l'affichage sans rien apprendre.
 
     v2 : la diapositive des octets (`PK`) est au cours 3.
 
-    Faire le lien avec l'extension : `raven_brut.html` est du texte, `.odt`
-    n'en est pas, et le nom ne le disait pas.
+    Faire le lien avec l'extension : `raven_une_ligne.donnees` est du texte
+    sous une extension qu'aucun logiciel ne connaît, `raven.odt` n'en est
+    pas, et le nom ne le disait pas.
+  ]
+]
+
+// --------------------------------------------
+// Relecture du 19/10/2026 : toute la salle modifie le même fichier du
+// dossier partagé. La diapositive qui suit le TD, « Modifications
+// simultanées d'un fichier partagé », explique ce qu'on y constate.
+#d("Modifier à plusieurs un fichier partagé")[
+  #annonce[
+    Toute la salle ouvre le même fichier de `formationTemp` dans le
+    Bloc-notes, puis y ajoute une ligne. Ce fichier est le seul du dossier
+    partagé que le TD fait modifier.
+  ]
+
+  #tableau(
+    columns: (auto, 1.5fr, 1fr),
+    align: left + horizon,
+    [], [Ce qu'il faut faire], [Ce que vous constatez],
+    [1], [dans `formationTemp`, clic droit sur `info01-salle.txt`, Ouvrir avec, Bloc-notes ; attendre le signal],
+      reponse[le fichier est vide],
+    [2], [au signal, écrire son prénom, puis `Ctrl` + `S`],
+      reponse[le Bloc-notes enregistre sans aucun message],
+    [3], [fermer le Bloc-notes, puis rouvrir le fichier],
+      reponse[un prénom, ou quelques-uns : la plupart ont disparu],
+  )
+
+  #notes[
+    Avant la séance : déposer dans `formationTemp` un fichier texte vide,
+    `info01-salle.txt`, à côté de l'archive. Le vider avant chaque groupe.
+
+    Attendre que toute la salle ait le fichier ouvert avant de donner le
+    signal : chacun doit avoir lu le fichier vide. Faire écrire le prénom
+    seul : le fichier est lisible par toute la promotion.
+
+    À vérifier sur un poste de la salle : l'élève a le droit d'écrire dans
+    `formationTemp`, et le Bloc-notes de Windows 11 enregistre sans signaler
+    que le fichier a changé depuis son ouverture. Notepad++ propose de
+    recharger un fichier modifié ailleurs : ne pas l'employer ici.
+
+    Demander combien de prénoms chacun lit, puis passer à la diapositive qui
+    suit le TD.
   ]
 ]

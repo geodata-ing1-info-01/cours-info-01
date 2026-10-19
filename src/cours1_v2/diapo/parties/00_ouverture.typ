@@ -124,7 +124,8 @@
   )
 
   #avertissement[
-    Une partie de la séance 1 reprend des notions surement vues au lycée et/ou prépa.
+    Une partie de la séance 1 reprend des notions surement vues au lycée et/ou
+    prépa, et avance vite : posez vos questions tout de suite.
   ]
 
   #notes[
@@ -139,7 +140,8 @@
 
     Sur l'avertissement : ces notions sont rappelées pour que la suite du
     module parte du même point pour tout le monde. Passer vite, en disant qu'on
-    a conscience que ce sera une redite pour une partie de la salle. Notions concernées : données en
+    a conscience que ce sera une redite pour une partie de la salle, et que
+    tout ce qui suit s'appuie dessus. Notions concernées : données en
     tableau et fichiers csv, le Web, HTML et CSS, les formats d'image (SNT,
     seconde) ; binaire, hexadécimal, encodage du texte, système d'exploitation
     et ligne de commande (NSI, première) ; écrire et exécuter un programme
@@ -152,6 +154,19 @@
     machine. Ce qui évite ces erreurs n'est enseigné nulle part ailleurs.
 
     Version 2 : titres des séances d'après `syllabus/02_syllabus_v2.md`.
+
+    Séance 1, à annoncer à l'oral avant la page de titre (relecture du
+    19/10/2026 : la diapositive « Contenu de la séance » est retirée, et
+    « Les fichiers du cours » ouvre le TD 1a) : trois parties, des logiciels
+    et fichiers jusqu'au notebook. Logiciels, fichiers et stockage, cours et
+    TD 1a, 30′ ; terminal et premier programme, cours et TD 1b, 1c, 50′ ; un
+    notebook et la syntaxe de Markdown, cours et TD 1d, 15′. Durées
+    indicatives. Les diapositives brunes sont les TD : quatre, dans les
+    trois parties.
+
+    Si la séance déborde, la partie 3 passe en début de cours 3, qui ouvre
+    des notebooks. Le TD des programmes fautifs est au cours 2 v2 depuis le
+    27/09/2026.
   ]
 ]
 // ================================ Séance 1 ==================================
@@ -162,77 +177,3 @@
   auteur: "1re année géomatique",
   date: "2027-2028",
 )
-
-// --------------------------------------------
-// Nouveau (v2) : l'arborescence des cinq TD de la version 2.
-#d("Les fichiers du cours")[
-  #annonce[
-    Une archive par séance, un dossier par TD. Aujourd'hui, tout est dans
-    `cours1/`.
-  ]
-
-  #align(center)[
-    #block(
-      inset: (x: 20pt, y: 13pt), fill: gris,
-      stroke: 1pt + accent.lighten(62%),
-    )[
-      #set text(size: 23pt)
-      #set align(left)
-      #raw(
-"cours1/                un dossier par TD, dans l'ordre de la séance
-├── 1a_formats/
-├── 1b_terminal/
-├── 1c_programme/
-└── 1d_notebook/")
-    ]
-  ]
-
-  #legende[
-    Dans chaque dossier, la feuille du TD et son guide détaillé, en PDF.
-  ]
-
-  #notes[
-    L'archive se copie depuis le dossier partagé au premier TD, après la
-    diapositive sur le stockage : ne pas la faire copier avant.
-
-    Rappeler le nom du dossier à chaque TD.
-
-    Version 2 : aucun TD facultatif dans la séance. Les TD 1b (archive
-    `.odt`), 1i et 1j de 2026 restent dans l'archive 2026 du book ; le TD 1e
-    (C++) est l'annexe « C++ ».
-  ]
-]
-
-// --------------------------------------------
-// Nouveau (v2) : trois parties, d'après le budget du syllabus v2.
-#d("Contenu de la séance")[
-  #annonce[
-    Trois parties, des logiciels et fichiers jusqu'au notebook.
-  ]
-
-  #tableau(
-    columns: (1fr, auto, auto),
-    align: (left + horizon, left + horizon, right + horizon),
-    [Partie], [Nature], [Durée],
-    [Logiciels, fichiers et stockage], [cours et TD 1a], [30′],
-    [Terminal et premier programme], [cours et TD 1b, 1c], [50′],
-    [Un notebook et la syntaxe de Markdown], [cours et TD 1d], [15′],
-  )
-
-  #avertissement[
-    La première partie de révision avance vite : posez vos questions tout de suite, tout ce
-    qui suit s'appuie dessus.
-  ]
-
-  #legende[
-    Durées indicatives.
-  ]
-
-  #notes[
-    Les diapositives brunes sont les TD : quatre, dans les trois parties.
-
-    Si la séance déborde, la partie 3 passe en début de cours 3, qui ouvre
-    des notebooks. Le TD des programmes fautifs est au cours 2 v2 depuis le
-    27/09/2026.
-  ]
-]

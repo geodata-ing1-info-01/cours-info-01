@@ -248,7 +248,7 @@
     entière au cours 2 (syllabus v2).
 
     Notepad++ colore le code d'après l'extension `.py` ; la couleur n'est
-    pas dans le fichier. Le TD 1a l'a montré sur `.css` et `.html`.
+    pas dans le fichier.
   ]
 ]
 
@@ -267,7 +267,7 @@
       # Commandes du TD 1b, puis le programme du TD 1c.
       # Lancer depuis 1c_programme : bash commandes.sh
       mkdir -p copies
-      cp ../1b_terminal/depart/*.html copies/
+      cp ../1b_terminal/depart/*.txt copies/
       ls copies
       python altitudes.py
       ```]
@@ -276,8 +276,7 @@
       #terminal(
         taille: 17pt,
         "$ bash commandes.sh",
-        "auld_lang_syne_brut.html   raven_brut.html",
-        "auld_lang_syne_style.html  raven_style.html",
+        "auld_lang_syne_une_ligne.txt  raven_une_ligne.txt",
         "moyenne : 129.0 m",
       )
     ],

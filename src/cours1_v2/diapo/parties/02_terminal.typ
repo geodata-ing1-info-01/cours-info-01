@@ -563,8 +563,8 @@
         align: left + horizon,
         [Commande], [Noms désignés dans `depart/`],
         [`ls depart/*.txt`], [les deux fichiers `.txt`],
-        [`ls depart/raven*`], [les cinq fichiers de *The Raven*],
-        [`cp depart/*.html travail/`], [les quatre pages web],
+        [`ls depart/raven*`], [les trois fichiers de *The Raven*],
+        [`cp depart/*.odt travail/`], [les deux documents LibreOffice],
       )
     ],
   )

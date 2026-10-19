@@ -262,7 +262,7 @@ remplace.
 - `--help` affiche l'aide de la plupart des commandes.
 - L'interpréteur découpe la ligne aux espaces. Un nom de fichier qui
   contient une espace s'écrit donc entre guillemets :
-  `cp depart/raven_brut.html "travail/raven brut.html"`.
+  `cp depart/raven_une_ligne.txt "travail/le corbeau.txt"`.
 
 ## Les commandes de base
 
@@ -425,9 +425,9 @@ correspondent, puis lance la commande.
 * - `ls depart/*.txt`
   - les deux fichiers `.txt`
 * - `ls depart/raven*`
-  - les cinq fichiers de *The Raven*
-* - `cp depart/*.html travail/`
-  - les quatre pages web
+  - les trois fichiers de *The Raven*
+* - `cp depart/*.odt travail/`
+  - les deux documents LibreOffice
 ```
 
 :::{note}

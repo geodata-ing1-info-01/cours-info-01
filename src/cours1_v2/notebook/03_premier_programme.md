@@ -192,7 +192,7 @@ commande, aussi souvent qu'il le faut.
 # Commandes du TD 1b, puis le programme du TD 1c.
 # Lancer depuis 1c_programme : bash commandes.sh
 mkdir -p copies
-cp ../1b_terminal/depart/*.html copies/
+cp ../1b_terminal/depart/*.txt copies/
 ls copies
 python altitudes.py
 ```
@@ -203,8 +203,7 @@ python altitudes.py
 
 ```text
 $ bash commandes.sh
-auld_lang_syne_brut.html   raven_brut.html
-auld_lang_syne_style.html  raven_style.html
+auld_lang_syne_une_ligne.txt  raven_une_ligne.txt
 moyenne : 129.0 m
 ```
 :::

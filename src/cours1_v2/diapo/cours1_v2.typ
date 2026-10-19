@@ -42,6 +42,9 @@
 } else {
   sommaire-td(td-1a)
 }
+// Ce que la dernière étape du TD 1a fait constater : projeté avec ou sans
+// les TD, absent de la feuille du TD.
+#include "parties/01b_fichier_partage.typ"
 
 #include "parties/02_terminal.typ"
 #if tds {

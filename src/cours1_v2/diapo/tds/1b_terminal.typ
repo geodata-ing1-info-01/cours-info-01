@@ -6,6 +6,12 @@
 // le TD sous Linux (bash 5.2, coreutils 9.4, LC_ALL=C) sur une copie du
 // dossier livré ; les messages de Git Bash peuvent différer d'un mot.
 //
+// Relecture du 19/10/2026 : plus de page web dans le cours 1. Le nom avec
+// espace et le motif `*` portent sur les fichiers `.txt` ; le test de la page
+// sans mise en forme (`style.css` absent de `travail/`) est retiré pour le
+// moment. Sorties de ces deux diapositives relevées de nouveau, avec bash 5.1
+// et coreutils 8.32.
+//
 // Inclus par `cours1_v2.typ` ; compilable seul par
 // `outils/compiler_tds.py --cours 1_v2`.
 #import "../../../commun/prelude.typ": *
@@ -124,13 +130,13 @@
     columns: (1.2fr, 1fr),
     align: left + horizon,
     [Commande], [Ce que vous constatez],
-    [`cp depart/raven_brut.html travail/raven brut.html`],
-      reponse[un message d'erreur : `cp` a reçu trois noms, `travail/raven` et `brut.html` séparés],
-    [`cp depart/raven_brut.html "travail/raven brut.html"`],
+    [`cp depart/raven_une_ligne.txt travail/le corbeau.txt`],
+      reponse[un message d'erreur : `cp` a reçu trois noms, `travail/le` et `corbeau.txt` séparés],
+    [`cp depart/raven_une_ligne.txt "travail/le corbeau.txt"`],
       reponse[pas de message : la copie est faite],
-    [`ls travail`], reponse[`raven brut.html` parmi les fichiers],
-    [`start "" "travail/raven brut.html"`],
-      reponse[la page s'ouvre, sans mise en forme : `style.css` n'est pas dans `travail/`],
+    [`ls travail`], reponse[`'le corbeau.txt'`, entre apostrophes, parmi les fichiers],
+    [`start "" "travail/le corbeau.txt"`],
+      reponse[le poème s'ouvre dans le Bloc-notes],
   )
 
   #legende[
@@ -138,17 +144,14 @@
   ]
 
   #notes[
-    Message relevé sous Linux : `cp: target 'brut.html': No such file or
-    directory`. La version de coreutils de Git Bash peut écrire `is not a
-    directory` ; le sens est le même.
+    Message relevé sous Linux avec coreutils 8.32 : `cp: target
+    'corbeau.txt' is not a directory`. coreutils 9.4 écrit `No such file or
+    directory` ; le sens est le même. `ls` met entre apostrophes un nom qui
+    contient un espace, comme il faudrait le taper.
 
     `start` prend son premier argument entre guillemets pour le titre d'une
     fenêtre : d'où `""` avant le nom. Ne pas s'y attarder ; à vérifier sur un
     poste.
-
-    La page sans mise en forme : le chemin relatif `href="style.css"` ne
-    trouve rien dans `travail/`. `cp depart/style.css travail/`, puis `F5`
-    dans le navigateur.
   ]
 ]
 
@@ -157,18 +160,18 @@
     columns: (auto, 1fr),
     align: left + horizon,
     [Commande], [Ce que vous constatez],
-    [`mkdir travail/pages`], reponse[un dossier `pages/` dans `travail/`],
-    [`cp depart/*.html travail/pages/`], reponse[pas de message],
-    [`ls travail/pages`], reponse[les quatre pages web des deux textes],
-    [`ls depart/*.txt`], reponse[`depart/auld_lang_syne_une_ligne.txt  depart/raven_une_ligne.txt`],
-    [`rm travail/pages/auld_lang_syne_brut.html`], reponse[le fichier disparaît, sans passer par la corbeille],
+    [`mkdir travail/textes`], reponse[un dossier `textes/` dans `travail/`],
+    [`cp depart/*.txt travail/textes/`], reponse[pas de message],
+    [`ls travail/textes`], reponse[`auld_lang_syne_une_ligne.txt  raven_une_ligne.txt`],
+    [`ls depart/*.odt`], reponse[`depart/auld_lang_syne.odt  depart/raven.odt`],
+    [`rm travail/textes/auld_lang_syne_une_ligne.txt`], reponse[le fichier disparaît, sans passer par la corbeille],
   )
 
   #notes[
     `*` est remplacé par Git Bash avant que `cp` ne démarre : `cp` reçoit
-    les quatre noms. Diapositive « Le motif `*` ».
+    les deux noms. Diapositive « Le motif `*` ».
 
-    Sortie de `ls depart/*.txt` relevée sur le dossier livré.
+    Sorties relevées sur le dossier livré, le 19/10/2026.
   ]
 ]
 

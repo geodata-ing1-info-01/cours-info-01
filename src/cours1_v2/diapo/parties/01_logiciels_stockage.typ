@@ -10,12 +10,12 @@
 // Import nominatif, et non `: *` : `schemas.typ` ouvre `cetz.draw`, dont les
 // noms (`grid`, `line`, `circle`, `content`…) masqueraient ceux de typst.
 #import "../../../cours1/diapo/schemas.typ": schema-ou-sexecute
-#import "../schemas.typ": schema-stockage-reseau
+#import "../schemas.typ": schema-stockage-reseau, schema-entrees-sorties
 
 // Nouveau (v2) : titre et annonce de la partie.
 #separateur(
   "Logiciels, fichiers et stockage",
-  annonce: "Ce qu'un logiciel fait, où il s'exécute, le rôle des fichiers et les disques où ils sont enregistrés."
+  annonce: "Ce qu'un logiciel fait, le rôle des fichiers et les disques où ils sont enregistrés."
 )
 // ------------------------------- Vocabulaire --------------------------------
 
@@ -66,7 +66,8 @@
     d'application, qui sert à accomplir une tâche (LibreOffice, Firefox, un
     lecteur de musique). La dire, sans l'afficher.
 
-    « Webapp » est repris à la diapositive sur le lieu d'exécution.
+    // « Webapp » est repris à la diapositive sur le lieu d'exécution,
+    // masquée depuis le 19/10/2026.
   ]
 ]
 
@@ -114,68 +115,52 @@
   ]
 ]
 
+// Relecture du 19/10/2026 : fusionnée avec « Utilisation / utilité d'un
+// fichier », dont le tableau est retiré et les exemples passent en notes.
+// Les quatre boîtes de 2026 sont remplacées par `schema-entrees-sorties`.
 #d("Entrées et sorties d'un logiciel")[
   #annonce[
-    Ce qu'un logiciel reçoit et ce qu'il produit sont de deux natures : un
-    fichier, qui se conserve, ou un flux vers un périphérique, qui ne garde rien.
+    Les entrées et sorties d'un logiciel sont des fichiers ou des flux
+    échangés avec les périphériques. Un fichier conserve un résultat, que
+    l'on peut ensuite ouvrir avec un autre logiciel, copier sur une autre
+    machine ou remettre à quelqu'un d'autre.
   ]
 
-  #layout(dispo => context {
-    let ecart = 34pt
-    let largeur = (dispo.width - 2 * ecart) / 3
-    let gouttiere = 10pt
-    // Entrées et sorties se répondent : mêmes deux natures de chaque côté.
-    let entrees = (
-      ("Entrée : un fichier", "un relevé GPS, une image"),
-      ("Entrée : un périphérique", "clavier, souris, réseau"),
-    )
-    let sorties = (
-      ("Sortie : un fichier", "une image, un tableau, une vidéo"),
-      ("Sortie : un périphérique", "écran, son, réseau"),
-    )
-    // Les colonnes latérales portent deux boîtes, celle du milieu une seule :
-    // la hauteur commune est celle de la plus haute des trois colonnes.
-    let hauteur = calc.max(
-      measure(bloc("Traitement", "le logiciel"), width: largeur).height,
-      ..(entrees + sorties).map(
-        s => 2 * measure(bloc(..s), width: largeur).height + gouttiere,
-      ),
-    )
-    let colonne(paire) = grid(
-      rows: ((hauteur - gouttiere) / 2,) * 2, row-gutter: gouttiere,
-      ..paire.map(s => bloc(..s, hauteur: 100%)),
-    )
-    grid(
-      columns: (largeur, ecart, largeur, ecart, largeur),
-      rows: hauteur,
-      align: horizon,
-      colonne(entrees),
-      fleche,
-      bloc("Traitement", "le logiciel", plein: true, hauteur: hauteur),
-      fleche,
-      colonne(sorties),
-    )
-  })
-
-  #legende[
-    Un fichier sert à conserver un résultat et à l'échanger : avec un autre
-    logiciel, avec une autre machine, ou avec quelqu'un d'autre.
-  ]
+  #align(center, schema-entrees-sorties())
 
   #notes[
+    Lire le schéma à l'horizontale, puis à la verticale. Ce qu'un programme
+    garde en mémoire vive disparaît quand il s'arrête. Pas de sauvegarde en
+    RAM. Le fichier enregistré sur le disque reste, et se rouvre plus tard.
+    Le processeur et la mémoire vive sont au cours 5 : ne pas les détailler
+    ici.
+
     Le module s'intéresse à ce qui laisse un fichier, parce qu'un fichier
     se relit, se compare, se versionne, et surtout circule d'un logiciel
     à l'autre.
-    
-    Pas de sauvegarde en RAM. 
-    
+
     Le réseau est du côté des périphériques, en entrée comme en sortie :
     pour le logiciel, c'est un flux qu'on lit ou qu'on écrit sans qu'il
-    reste, comme le clavier ou l'écran.
+    reste, comme le clavier ou l'écran. Sur la flèche de copie, le réseau
+    transporte un flux, et le fichier est sur un disque à chaque bout.
+
+    Exemples d'usage d'un fichier, à donner à l'oral : relire dans une
+    semaine ce que le programme a produit ; le tableau écrit par un
+    logiciel, ouvert par un autre ; de votre poste à celui de la salle, et
+    retour ; un rendu, ou le dépôt partagé du cours 6.
+
+    Un format de fichier est ce sur quoi deux logiciels se mettent d'accord
+    sans se connaître.
+
+    Transition vers la suite de la partie : reconnaître le type d'un
+    fichier, et savoir sur quel disque il est enregistré.
   ]
 ]
 // ------------------------------ Fichiers -----------------------------------
 // --------------------------------------------
+// Masquée à la relecture du 19/10/2026 : le lieu d'exécution d'une
+// application web n'est plus projeté. Retirer `/*` et `*/` pour la remettre.
+/*
 #d("Où s'exécute une application web ?")[
   #align(center, schema-ou-sexecute())
 
@@ -198,51 +183,13 @@
     il y a dix ans se calcule parfois en local aujourd'hui.
   ]
 ]
-
-// --------------------------------------------
-#d("Utilisation / utilité d'un fichier")[
-  #annonce[
-    Un fichier conserve un résultat après l'arrêt du programme : un état de
-    travail à reprendre, ou un document final à transmettre.
-  ]
-
-  #tableau(
-    columns: (auto, 1fr),
-    align: left + horizon,
-    [Ce qu'il permet], [Quand cela vous servira],
-    [Conserver un résultat],
-      [relire dans une semaine ce que le programme a produit],
-    [Passer d'un logiciel à l'autre],
-      [le tableau écrit par l'un, ouvert par l'autre],
-    [Changer de machine],
-      [de votre poste à celui de la salle, et retour],
-    [Le remettre à quelqu'un],
-      [un rendu, ou le dépôt partagé du cours 6],
-  )
-
-  // v2 : le chemin passe à la partie 2 ; la légende nomme la suite de cette partie.
-  #legende[
-    D'où la suite de cette partie : reconnaître le type d'un fichier, et
-    savoir sur quel disque il est enregistré.
-  ]
-
-  #notes[
-     c'est le fichier qui reste. Les quatre lignes disent ce que ce
-    « rester » permet, toutes vraies dès cette semaine — les trois
-    premières aujourd'hui, la quatrième au cours 6.
-
-    Deuxième ligne: un format de fichier
-    est ce sur quoi deux logiciels se mettent d'accord sans se connaître.
-  ]
-]
+*/
 // -------------------------- Extensions et formats ---------------------------
 // --------------------------------------------
 #d("Fichier, extension et type de fichier")[
   #annonce[
-    Le type d'un fichier (texte, vidéo…) est indiqué par son *extension*, la
-    fin du nom après le dernier point. Le système s'en sert pour choisir le
-    logiciel à lancer, mais elle reste une indication sur le contenu, pas une
-    garantie.
+    Le type d'un fichier (texte, vidéo…) est indiqué par son *extension*. Le
+    système s'en sert pour choisir le logiciel à lancer.
   ]
 
   #align(center)[
@@ -261,16 +208,14 @@
     `raven`. Réglage à changer une fois, avant le TD 1a.
   ]
 
-  #tableau(
-    columns: (auto, 1fr),
-    align: left + horizon,
-    [L'extension], [Ce qu'elle décide],
-    [ce qu'elle fait], [le système choisit le logiciel à lancer au double-clic],
-    [ce qu'elle ne fait pas], [elle ne modifie aucun octet du fichier],
-    [comment on la change], [en renommant le fichier, comme le reste du nom],
-  )
-
   #notes[
+    À dire, sans l'afficher (relecture du 19/10/2026, le tableau est
+    retiré) : l'extension est la fin du nom, après le dernier point. Le
+    système choisit d'après elle le logiciel lancé au double-clic. Elle se
+    change en renommant le fichier, comme le reste du nom, et ce renommage
+    ne modifie aucun octet du fichier : l'extension indique le type du
+    contenu sans le garantir. Le TD 1b le fait constater au terminal.
+
     Faire activer l'affichage des extensions dans l'explorateur, sans quoi le
     TD qui suit est impossible à suivre : `F2` ne montrerait pas ce
     qu'on renomme.
@@ -451,6 +396,8 @@
 // faits donnés par l'équipe le 26/09/2026 : le Bureau du poste est conservé
 // d'une séance à l'autre ; l'espace personnel réseau existe, mais les élèves
 // ne savent pas encore s'en servir en septembre.
+// Relecture du 19/10/2026 : « Deux élèves dans le même dossier partagé »
+// passe après le TD 1a, dans `01b_fichier_partage.typ`.
 
 // --------------------------------------------
 #d("Les emplacements de stockage")[
@@ -512,40 +459,6 @@
 
     Même dessin au cours 5 (« Local et distant »), avec les temps
     d'aller-retour.
-  ]
-]
-
-// --------------------------------------------
-#d("Deux élèves dans le même dossier partagé")[
-  #annonce[
-    Un fichier du dossier partagé est le même pour toute la salle. Avec un
-    éditeur de texte, le dernier qui enregistre remplace la version de
-    l'autre.
-  ]
-
-  #chaine(
-    ("10 h 00", "Alice ouvre recette.md dans formationTemp"),
-    ("10 h 02", "Bruno ouvre le même fichier"),
-    ("10 h 10", "Alice enregistre ses modifications"),
-    ("10 h 15", "Bruno enregistre : le fichier ne contient plus que les siennes"),
-  )
-
-  #v(0.4em)
-  #avertissement[
-    Ne pas travailler dans `formationTemp`. Copier les fichiers sur le poste,
-    et travailler dans la copie.
-  ]
-
-  #notes[
-    Cas vécu à la séance 1 de 2026 : du travail perdu dans `formationTemp`
-    (`src/avant/donnees.md`).
-
-    LibreOffice pose un fichier de verrou (`.~lock.raven.odt#`), et affiche
-    un avertissement au second qui ouvre le document. Le Bloc-notes et Notepad++ ne le font
-    pas.
-
-    Git, au cours 2, et la forge, au cours 6, évitent ce problème : chacun
-    travaille dans sa copie, et les modifications se fusionnent.
   ]
 ]
 

@@ -73,7 +73,7 @@ commandes est un message d'erreur : le lire.
 
 ```text
 1b_terminal/
-├── depart/        les fichiers du TD 1a : raven.odt, raven_brut.html…
+├── depart/        les fichiers du TD 1a : raven.odt, raven_une_ligne.txt…
 ├── travail/       vide
 └── td_1b_terminal.pdf
 ```
@@ -138,12 +138,9 @@ ls depart
 ```
 
 ```text
-auld_lang_syne.odt                raven_brut.html
-auld_lang_syne_brut.html          raven_style.html
-auld_lang_syne_style.html         raven_une_ligne.donnees
-auld_lang_syne_une_ligne.donnees  raven_une_ligne.txt
-auld_lang_syne_une_ligne.txt      style.css
-raven.odt
+auld_lang_syne.odt                raven.odt
+auld_lang_syne_une_ligne.donnees  raven_une_ligne.donnees
+auld_lang_syne_une_ligne.txt      raven_une_ligne.txt
 ```
 
 `depart` est un **argument** : le dossier à lister. Sans argument, `ls`
@@ -276,80 +273,76 @@ de Windows : `explorer.exe travail\\raven_odt.pdf`.
 
 ## 4 · Un espace dans un nom de fichier
 
-> **À faire :** copier `raven_brut.html` sous le nom `raven brut.html`, sans puis avec guillemets ; l'ouvrir.
+> **À faire :** copier `raven_une_ligne.txt` sous le nom `le corbeau.txt`, sans puis avec guillemets ; l'ouvrir.
 >
-> **À obtenir :** la copie `raven brut.html` dans `travail/`, ouverte dans le navigateur.
+> **À obtenir :** la copie `le corbeau.txt` dans `travail/`, ouverte dans le Bloc-notes.
 
 ```text
-cp depart/raven_brut.html travail/raven brut.html
+cp depart/raven_une_ligne.txt travail/le corbeau.txt
 ```
 
 Git Bash affiche un message d'erreur, par exemple :
 
 ```text
-cp: target 'brut.html': No such file or directory
+cp: target 'corbeau.txt' is not a directory
 ```
 
 Git Bash découpe la ligne aux espaces : `cp` a reçu trois noms,
-`depart/raven_brut.html`, `travail/raven` et `brut.html`, et il copie les
-deux premiers dans le troisième, qu'il prend pour un dossier. Entre
+`depart/raven_une_ligne.txt`, `travail/le` et `corbeau.txt`, et il copie
+les deux premiers dans le troisième, qu'il prend pour un dossier. Entre
 guillemets, le nom reste un seul argument :
 
 ```text
-cp depart/raven_brut.html "travail/raven brut.html"
+cp depart/raven_une_ligne.txt "travail/le corbeau.txt"
 ls travail
-start "" "travail/raven brut.html"
+start "" "travail/le corbeau.txt"
 ```
 
-La page s'ouvre dans le navigateur. `start` prend le premier argument entre
-guillemets pour le titre d'une fenêtre : d'où les guillemets vides `""`
-avant le nom du fichier.
-
-**À noter** : la mise en forme de la page, et la raison, d'après le TD 1a.
-
-La page s'affiche sans mise en forme : son chemin relatif `style.css` ne
-trouve pas de feuille de style dans `travail/`. Copier la feuille, puis
-recharger la page par `F5` dans le navigateur :
-
-```text
-cp depart/style.css travail/
-```
+`ls` écrit le nom entre apostrophes, `'le corbeau.txt'`, comme il faudrait
+le taper. Le poème s'ouvre dans le Bloc-notes. `start` prend le premier
+argument entre guillemets pour le titre d'une fenêtre : d'où les guillemets
+vides `""` avant le nom du fichier.
 
 Les noms de fichiers du module n'ont pas d'espace : `_` le remplace.
 
 ## 5 · Copier plusieurs fichiers d'un coup
 
-> **À faire :** créer `travail/pages/` ; y copier les quatre pages web par un motif ; supprimer l'une d'elles.
+> **À faire :** créer `travail/textes/` ; y copier les deux fichiers `.txt` par un motif ; supprimer l'un d'eux.
 >
-> **À obtenir :** trois pages dans `travail/pages/`.
+> **À obtenir :** `raven_une_ligne.txt` seul dans `travail/textes/`.
 
 ```text
-mkdir travail/pages
-cp depart/*.html travail/pages/
-ls travail/pages
+mkdir travail/textes
+cp depart/*.txt travail/textes/
+ls travail/textes
 ```
 
-`mkdir` crée un dossier. Dans `depart/*.html`, `*` remplace n'importe quelle
+```text
+auld_lang_syne_une_ligne.txt  raven_une_ligne.txt
+```
+
+`mkdir` crée un dossier. Dans `depart/*.txt`, `*` remplace n'importe quelle
 suite de caractères : Git Bash remplace le motif par la liste des noms qui
-correspondent, puis lance `cp` avec ces quatre noms.
+correspondent, puis lance `cp` avec ces deux noms.
 
 ```text
-ls depart/*.txt
+ls depart/*.odt
 ```
 
 ```text
-depart/auld_lang_syne_une_ligne.txt  depart/raven_une_ligne.txt
+depart/auld_lang_syne.odt  depart/raven.odt
 ```
 
 ```text
-rm travail/pages/auld_lang_syne_brut.html
-ls travail/pages
+rm travail/textes/auld_lang_syne_une_ligne.txt
+ls travail/textes
 ```
 
 `rm` supprime le fichier, sans passer par la corbeille : il ne se récupère
 pas. Relire la commande avant de valider.
 
-**Vérification** : `ls travail/pages` affiche trois pages.
+**Vérification** : `ls travail/textes` n'affiche plus que
+`raven_une_ligne.txt`.
 
 ## Ce que le TD fait constater
 
@@ -414,9 +407,9 @@ Microsoft, et n'ont pas été exécutées.]
 | copier un fichier | `cp depart/raven.odt travail/` | `cp depart/raven.odt travail/` | `copy depart\raven.odt travail\` |
 | renommer un fichier | `mv travail/raven.odt travail/raven_odt.pdf` | `mv travail/raven.odt travail/raven_odt.pdf` | `ren travail\raven.odt raven_odt.pdf` |
 | ouvrir avec le logiciel associé | `start travail/raven_odt.pdf` | `start travail/raven_odt.pdf` | `start travail\raven_odt.pdf` |
-| ouvrir un fichier dont le nom a un espace | `start "" "travail/raven brut.html"` | `start "travail/raven brut.html"` | `start "" "travail\raven brut.html"` |
-| créer un dossier | `mkdir travail/pages` | `mkdir travail/pages` | `mkdir travail\pages` |
-| copier plusieurs fichiers | `cp depart/*.html travail/pages/` | `cp depart/*.html travail/pages/` | `copy depart\*.html travail\pages\` |
+| ouvrir un fichier dont le nom a un espace | `start "" "travail/le corbeau.txt"` | `start "travail/le corbeau.txt"` | `start "" "travail\le corbeau.txt"` |
+| créer un dossier | `mkdir travail/textes` | `mkdir travail/textes` | `mkdir travail\textes` |
+| copier plusieurs fichiers | `cp depart/*.txt travail/textes/` | `cp depart/*.txt travail/textes/` | `copy depart\*.txt travail\textes\` |
 | supprimer un fichier, sans corbeille | `rm travail/raven.loulou` | `rm travail/raven.loulou` | `del travail\raven.loulou` |
 | afficher l'aide d'une commande | `ls --help` | `help ls` | `dir /?` |
 

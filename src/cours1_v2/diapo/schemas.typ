@@ -15,7 +15,131 @@
 #import "../../commun/prelude.typ": *
 #import "@preview/cetz:0.4.2"
 #import cetz.draw: *
-#import "../../cours5/diapo/schemas.typ": _etiquette, _ecran, _portable, _boitier-reseau, _nuage, _serveur
+#import "../../cours5/diapo/schemas.typ": _etiquette, _fleche, _ecran, _clavier, _disque, _portable, _boitier-reseau, _nuage, _serveur
+
+// ---------------------------------------------------------------------------
+// Entrées et sorties d'un logiciel
+//
+// Relecture du 19/10/2026 : remplace les quatre boîtes « entrée / sortie,
+// fichier / périphérique » du cours 1 de 2026. Dans votre ordinateur, des
+// logiciels, dessinés en icônes d'application (le matériel vient au cours
+// 5), et le disque avec les fichiers qu'il conserve. À l'horizontale, les
+// flux du clavier et vers l'écran ; à la verticale, les fichiers ouverts et
+// enregistrés ; vers la droite, la copie d'un fichier sur un autre
+// ordinateur. Le clavier, l'écran, le disque et le portable sont les
+// dessins du cours 5.
+
+// Une icône d'application : une tuile arrondie, un pictogramme dedans.
+#let _tuile(x, y, c: 1.6) = rect(
+  (x - c / 2, y - c / 2), (x + c / 2, y + c / 2),
+  radius: 0.25, fill: white, stroke: 1.4pt + accent,
+)
+
+// LibreOffice : une feuille de tableur, la ligne d'en-tête pleine.
+#let _icone-tableur(x, y) = {
+  _tuile(x, y)
+  let (g, d, b, h) = (x - 0.55, x + 0.55, y - 0.5, y + 0.5)
+  rect((g, h - 0.25), (d, h), fill: accent.lighten(30%), stroke: none)
+  rect((g, b), (d, h), stroke: 1pt + accent)
+  for k in range(1, 4) {
+    line((g, h - k * 0.25), (d, h - k * 0.25), stroke: 0.8pt + accent)
+  }
+  for k in range(1, 3) {
+    line((g + k * 1.1 / 3, b), (g + k * 1.1 / 3, h), stroke: 0.8pt + accent)
+  }
+}
+
+// Le navigateur : un globe.
+#let _icone-navigateur(x, y) = {
+  _tuile(x, y)
+  let r = 0.55
+  circle((x, y), radius: r, fill: none, stroke: 1.2pt + accent)
+  circle((x, y), radius: (0.24, r), fill: none, stroke: 1pt + accent)
+  line((x - r, y), (x + r, y), stroke: 1pt + accent)
+  for dy in (-0.28, 0.28) {
+    let demi = calc.sqrt(r * r - dy * dy)
+    line((x - demi, y + dy), (x + demi, y + dy), stroke: 0.8pt + accent)
+  }
+}
+
+// Un programme : des lignes de code, deux en retrait.
+#let _icone-script(x, y) = {
+  _tuile(x, y)
+  let lignes = ((0, 0.85), (0.3, 0.7), (0.3, 0.5), (0, 0.65))
+  for (i, (retrait, longueur)) in lignes.enumerate() {
+    let yy = y + 0.45 - i * 0.3
+    line((x - 0.55 + retrait, yy), (x - 0.55 + retrait + longueur, yy),
+         stroke: (paint: accent, thickness: 3pt, cap: "round"))
+  }
+}
+
+// Un fichier : une page cornée, son nom dessous.
+#let _fichier(x, y, nom) = {
+  let (l, h, pli) = (0.85, 1.1, 0.28)
+  let (g, d, b, s) = (x - l / 2, x + l / 2, y - h / 2, y + h / 2)
+  line((g, b), (d, b), (d, s - pli), (d - pli, s), (g, s), close: true,
+       fill: white, stroke: 1.2pt + accent)
+  line((d - pli, s), (d - pli, s - pli), (d, s - pli), stroke: 1pt + accent)
+  for k in range(3) {
+    let yy = s - 0.45 - k * 0.18
+    line((g + 0.15, yy), (d - 0.15, yy), stroke: 0.8pt + accent.lighten(45%))
+  }
+  // `raw` est à 0,78 em : 15 pt pour un nom de fichier lisible.
+  content((x, b - 0.1), anchor: "north", text(size: 15pt, fill: accent, raw(nom)))
+}
+
+#let schema-entrees-sorties() = cetz.canvas(length: 1cm, {
+  set-style(stroke: 0.9pt + accent.lighten(45%))
+  let action(pos, corps, anchor: "south") = content(
+    pos, anchor: anchor, text(size: 15pt, fill: accent)[#corps])
+
+  // votre ordinateur, et les logiciels qui s'y exécutent
+  rect((5.3, 0), (18.1, 7.6), radius: 0.15, stroke: 1.6pt + accent)
+  _etiquette((11.7, -0.1), "Votre ordinateur", none, largeur: 5cm)
+  rect((5.9, 3.7), (17.5, 7.3), fill: accent.lighten(88%),
+       stroke: 1pt + accent.lighten(40%))
+  content((11.7, 7.15), anchor: "north",
+          text(size: 17pt, weight: demi-gras, fill: accent)[Un logiciel en cours d'exécution])
+  _icone-tableur(8.4, 5.4)
+  _etiquette((8.4, 4.45), "LibreOffice", none, largeur: 3.2cm)
+  _icone-navigateur(11.7, 5.4)
+  _etiquette((11.7, 4.45), "Navigateur", none, largeur: 3.2cm)
+  _icone-script(15.0, 5.4)
+  _etiquette((15.0, 4.45), "Programme", none, largeur: 3.2cm)
+
+  // les flux, échangés avec les périphériques
+  _clavier(2.3, 5.4)
+  _etiquette((2.3, 4.75), "Clavier, souris", none, largeur: 3.8cm)
+  _fleche((3.95, 5.4), (5.85, 5.4))
+  action((4.6, 5.6), "flux")
+
+  _ecran(23.4, 4.85)
+  _etiquette((23.4, 4.1), "Écran, son", none, largeur: 3.8cm)
+  _fleche((17.55, 5.4), (21.9, 5.4))
+  action((19.7, 5.6), "flux")
+
+  // le disque, et les fichiers qu'il conserve
+  rect((6.7, 0.25), (16.1, 2.6), radius: 0.1, fill: gris.lighten(50%),
+       stroke: 1pt + accent.lighten(40%))
+  _disque(11.7, 1.75)
+  _etiquette((11.7, 0.95), "Disque", none, largeur: 2.4cm)
+  _fichier(8.4, 1.75, "releve.csv")
+  _fichier(15.0, 1.75, "carte.png")
+
+  _fleche((8.4, 2.4), (8.4, 3.65))
+  action((8.2, 3.0), "ouvrir", anchor: "east")
+  _fleche((15.0, 3.65), (15.0, 2.4))
+  action((15.2, 3.0), "enregistrer", anchor: "west")
+
+  // la copie d'un fichier sur un autre ordinateur, et retour
+  line((15.55, 1.75), (22.05, 1.75), stroke: 1.4pt + accent,
+       mark: (start: ">", end: ">", fill: accent, scale: 1.2))
+  action((20.1, 1.95), "copie")
+  content((20.1, 1.55), anchor: "north",
+          text(size: 13pt, fill: estompe)[clé USB, réseau])
+  _portable(23.4, 0.75)
+  _etiquette((23.4, -0.1), "Un autre ordinateur", none, largeur: 5.6cm)
+})
 
 // ---------------------------------------------------------------------------
 // Les emplacements de stockage sur le réseau
@@ -113,8 +237,8 @@
          text(font: police-code, size: 13pt)[…\\1b_terminal\\depart])
   #block(width: 55%)[
     #_entree("raven.odt", choisie: true)
-    #_entree("raven_brut.html")
-    #_entree("style.css")
+    #_entree("raven_une_ligne.txt")
+    #_entree("auld_lang_syne.odt")
   ]
   #place(top + right, dx: -4pt, dy: 26pt,
          _menu("Ouvrir", "Couper", "Copier", "Renommer", choisi: 2))
@@ -162,8 +286,9 @@
 }
 
 // La commande `ls depart` dans Git Bash, avec sa sortie : la liste du dossier
-// `depart/` du TD 1b, telle que le guide du TD la montre. Une ligne par
-// `raw`, pour estomper l'invite.
+// `depart/` du TD 1b, telle que le guide du TD la montre (relevée de nouveau
+// le 19/10/2026, sans les pages web). Une ligne par `raw`, pour estomper
+// l'invite.
 #let _invite-2a = "eleve@POSTE-12 MINGW64 ~/Desktop/info01/cours1/1b_terminal"
 
 #let git-bash-ls() = fenetre("Git Bash", code: true)[
@@ -171,12 +296,9 @@
   #let lignes = (
     (estompe, _invite-2a),
     (accent, "$ ls depart"),
-    (accent, "auld_lang_syne.odt                raven_brut.html"),
-    (accent, "auld_lang_syne_brut.html          raven_style.html"),
-    (accent, "auld_lang_syne_style.html         raven_une_ligne.donnees"),
-    (accent, "auld_lang_syne_une_ligne.donnees  raven_une_ligne.txt"),
-    (accent, "auld_lang_syne_une_ligne.txt      style.css"),
-    (accent, "raven.odt"),
+    (accent, "auld_lang_syne.odt                raven.odt"),
+    (accent, "auld_lang_syne_une_ligne.donnees  raven_une_ligne.donnees"),
+    (accent, "auld_lang_syne_une_ligne.txt      raven_une_ligne.txt"),
     (accent, ""),
     (estompe, _invite-2a),
     (accent, "$"),
@@ -227,10 +349,10 @@
   ]
   let legende-panneau(corps) = align(center, text(size: 14pt, fill: estompe, corps))
   std.grid(
-    columns: (1fr, auto, 1.5fr, auto, 1fr),
+    columns: (1.2fr, auto, 1.5fr, auto, 0.8fr),
     column-gutter: 8pt, row-gutter: 6pt,
     align: (center + horizon),
-    explorateur([…\\depart], ("raven.odt", "raven_brut.html", "style.css"), choisi: 0, titre: "depart"),
+    explorateur([…\\depart], ("raven.odt", "raven_une_ligne.txt", "auld_lang_syne.odt"), choisi: 0, titre: "depart"),
     fleche-texte[double-clic],
     writer-exports(),
     fleche-texte[exports],
@@ -286,3 +408,73 @@
     #_dossier-path("/c/Python27", [`python.exe`, Python 2.7])
   ],
 )
+
+// ---------------------------------------------------------------------------
+// Une liste de consignes de TD, numérotée
+//
+// Relecture du 19/10/2026 : remplace les tableaux « Ce qu'il faut faire /
+// Ce que vous vérifiez », difficiles à suivre pendant la manipulation. Même
+// présentation que les pistes du gabarit `attendu-pistes` du cours 3, en plus
+// grand : une consigne par ligne, qui commence par un verbe ; le numéro donne
+// l'ordre des opérations.
+//
+//   #consignes([ouvrir…], [copier…])
+#let consignes(..elements, taille: 18pt) = {
+  set text(size: taille)
+  std.grid(
+    columns: (auto, 1fr), column-gutter: 10pt, row-gutter: 0.6em,
+    ..elements.pos().enumerate().map(((i, x)) => (
+      text(fill: accent, weight: demi-gras)[#str(i + 1).], x,
+    )).flatten(),
+  )
+}
+
+// ---------------------------------------------------------------------------
+// Le dossier `depart\` du TD 1a, et la barre d'adresse à vérifier
+//
+// Relecture du 19/10/2026 : remplace le tableau des chemins de « Deux
+// dossiers : depart/ et travail/ ». La fenêtre de l'explorateur sur
+// `depart\`, ses six fichiers sur deux colonnes, le poème de Poe à gauche,
+// celui de Burns à droite (sans les pages web, retirées du TD le même jour).
+// La barre d'adresse est cerclée de la couleur `attention`, et une flèche la
+// désigne : c'est elle qu'on lit avant d'ouvrir ou d'enregistrer un fichier.
+
+#let _entree-serree(nom) = block(
+  width: 100%, above: 1pt, below: 1pt, inset: (x: 5pt, y: 2.5pt),
+  [#_icone-fichier #h(6pt) #text(font: police-code, size: 12pt, nom)],
+)
+
+#let schema-dossier-depart() = {
+  let barre = block(
+    width: 100%, stroke: 1.6pt + attention, inset: (x: 6pt, y: 4pt), radius: 2pt,
+    text(font: police-code, size: 12pt,
+         "C:\\Users\\eleve\\Desktop\\info01\\cours1\\1a_formats\\depart"),
+  )
+  let colonne(noms) = stack(..noms.map(_entree-serree))
+  // Un seul `stack`, et l'espacement des blocs réduit : avec celui de la
+  // diapositive, entre la barre de titre et le contenu, la fenêtre ne
+  // tiendrait plus sous l'avertissement et l'annonce.
+  set block(spacing: 0pt)
+  let fenetre-depart = fenetre("depart", align(left, stack(
+    spacing: 6pt,
+    barre,
+    std.grid(
+      columns: (1fr, 1fr), column-gutter: 8pt,
+      colonne(("raven.odt", "raven_une_ligne.donnees", "raven_une_ligne.txt")),
+      colonne(("auld_lang_syne.odt", "auld_lang_syne_une_ligne.donnees",
+               "auld_lang_syne_une_ligne.txt")),
+    ),
+  )))
+  std.grid(
+    columns: (1fr, 5.4cm), column-gutter: 8pt,
+    fenetre-depart,
+    [
+      #v(20pt)
+      #std.grid(
+        columns: (auto, 1fr), column-gutter: 6pt, align: (horizon, horizon),
+        text(size: 30pt, fill: attention)[#sym.arrow.l.long],
+        text(size: 15pt, fill: attention, weight: demi-gras)[Vérifier ici le dossier ouvert],
+      )
+    ],
+  )
+}

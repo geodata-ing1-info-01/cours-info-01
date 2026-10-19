@@ -25,14 +25,14 @@
 #let fleche = align(center + horizon, text(size: 22pt)[→])
 
 #grid(
-  columns: (4.6cm, 0.5cm, 7cm, 0.5cm, 4.6cm),
+  columns: (5.8cm, 0.5cm, 6.2cm, 0.5cm, 4.2cm),
   align: (left + top, center + horizon, left + top, center + horizon, left + top),
   [
     #fenetre("depart")[
       #adresse[…\\depart]
       #entree("raven.odt", choisie: true, n: 1)
-      #entree("raven_brut.html")
-      #entree("style.css")
+      #entree("raven_une_ligne.txt")
+      #entree("auld_lang_syne.odt")
     ]
     #legende-fenetre[#repere(1) double-clic sur le document de départ, qui reste dans `depart\`]
   ],

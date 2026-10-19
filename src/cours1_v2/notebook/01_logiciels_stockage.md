@@ -297,7 +297,7 @@ enregistré.
 - Lire un fichier sur le réseau est plus lent que sur le disque du poste ;
   le cours 5 en donne les ordres de grandeur.
 
-## Deux élèves dans le même dossier partagé
+## Modifications simultanées d'un fichier partagé
 
 Un fichier du dossier partagé est le même pour toute la salle. Avec un
 éditeur de texte, le dernier qui enregistre remplace la version de l'autre.

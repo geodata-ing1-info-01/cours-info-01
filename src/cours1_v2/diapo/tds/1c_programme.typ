@@ -210,7 +210,7 @@
     [1], [ouvrir `commandes.sh` dans Notepad++],
       reponse[six lignes, dont deux commentaires ; Notepad++ reconnaît l'extension `.sh`],
     [2], [`bash commandes.sh`],
-      reponse[les quatre pages copiées dans `copies/`, puis `moyenne : 130.1 m`],
+      reponse[les deux fichiers `.txt` copiés dans `copies/`, puis `moyenne : 130.1 m`],
     [3], [relancer : flèche vers le haut, puis `Entrée`],
       reponse[la même sortie, sans erreur : `mkdir -p` accepte un dossier qui existe],
   )
