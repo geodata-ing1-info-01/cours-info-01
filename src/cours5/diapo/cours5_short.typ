@@ -1,17 +1,23 @@
-// Cours 5, version courte : neuf diapositives du cours 5, présentées en tête
-// du cours 6 (20 octobre 2026), la séance 5 n'ayant pas eu lieu.
+// Cours 5, version courte : neuf diapositives du cours 5, dont une
+// facultative, présentées en tête du cours 6 (20 octobre 2026), la séance 5
+// n'ayant pas eu lieu.
 //
-// Les diapositives sont reprises de `parties/`, sans séparateur. Trois sont
+// Les diapositives sont reprises de `parties/`, sans séparateur. Deux sont
 // des fusions : « Ordres de grandeur : temps d'accès » avec « Si la mémoire
-// vive valait une seconde », « Une clé à la place du mot de passe » avec
-// « La connexion SSH », « Un secret dans un dépôt y reste » avec « Séparer
-// le code et les secrets ». Les schémas sont ceux de `schemas.typ`.
+// vive valait une seconde », « Mot de passe ou paire de clés » avec
+// « Connexion SSH avec une paire de clés ». Deux sont propres à cette
+// version : « Parades contre les quatre attaques », sur le schéma des
+// attaques, et « Empreinte, sel et calcul lent », facultative. Les schémas
+// sont ceux de `schemas.typ`.
+//
+// Retirées le 19/10/2026 au soir : « Processeur et carte graphique »,
+// « Client et serveur », « Séparation du code et des secrets ».
 //
 //   typst compile --root . src/cours5/diapo/cours5_short.typ
 //   typst compile --root . --input notes=true src/cours5/diapo/cours5_short.typ src/cours5/diapo/cours5_short-notes.pdf
 
 #import "../../commun/prelude.typ": *
-#import "schemas.typ": schema-composants, pyramide-memoire, barres-temps, schema-pixels, schema-client-serveur, schema-connexion, schema-echange-ssh, repere
+#import "schemas.typ": schema-composants, pyramide-memoire, barres-temps, schema-connexion, schema-empreinte-sel, schema-cryptographie, schema-echange-ssh, repere
 
 #show: diapos.with(
   titre-court: "Introduction à l'informatique",
@@ -31,7 +37,7 @@
 
   #notes[
     Carte graphique : conçue pour calculer l'image affichée, utilisée aujourd'hui
-    pour le calcul parallèle (diapositive « Processeur et carte graphique »).
+    pour le calcul parallèle.
 
     Carte réseau : câble ou Wi-Fi.
 
@@ -115,55 +121,7 @@
 ]
 
 // --------------------------------------------
-#d("Processeur et carte graphique : une image")[
-  #annonce[
-    Éclaircir une image applique la même multiplication à chaque pixel. Le
-    processeur traite les pixels quatre par quatre, la carte graphique tous à
-    la fois.
-  ]
-
-  #align(center, schema-pixels())
-
-  #notes[
-    Dalle de 5 000 × 5 000 pixels : 25 millions de pixels, 3 millions d'étapes
-    sur 8 cœurs, 1 500 sur 16 000 cœurs. L'écart réel est plus faible : un cœur
-    de processeur est plus rapide, traite plusieurs valeurs par instruction, et
-    l'image doit être copiée dans la mémoire de la carte.
-
-    La carte graphique n'accélère que la même opération sur beaucoup de données.
-
-    Dans le module : numpy (projet 7) applique une opération à tout un tableau,
-    sur le processeur. Le calcul sur carte graphique relève des cours de
-    traitement d'image et d'apprentissage.
-  ]
-]
-
-// --------------------------------------------
-#d("Client et serveur")[
-  #annonce[
-    Le client envoie une requête, le serveur répond. Le serveur répond à
-    beaucoup de clients à la fois.
-  ]
-
-  #align(center, schema-client-serveur())
-
-  #v(0.15em)
-  #tableau(
-    columns: (1fr, 1fr, 1.4fr),
-    align: left + horizon,
-    [Client], [Serveur], [Contenu de la requête],
-    [le navigateur], [le site web], [l'adresse de la page demandée],
-    [`git push`], [la forge], [les nouveaux commits],
-    [`ssh`], [un serveur de calcul], [l'ouverture d'un terminal],
-  )
-
-  #notes[
-    Le cours 6 ajoute `git pull`, qui demande à la forge les commits des autres.
-  ]
-]
-
-// --------------------------------------------
-#d("Quatre façons d'obtenir un mot de passe")[
+#d("Quatre attaques contre un mot de passe")[
   #annonce[
     Le mot de passe se lit à trois endroits : la table, le réseau, le poste.
     Il peut aussi être deviné.
@@ -197,12 +155,6 @@
   ]
 
   #notes[
-    Parades, à dire (la diapositive « Une parade par menace » n'est pas
-    reprise) : (1) l'empreinte, avec un sel et un calcul lent, à la charge du
-    site ; (2) un mot de passe long, tiré au hasard, différent sur chaque
-    site, donc un gestionnaire de mots de passe ; (3) le chiffrement du
-    trajet, HTTPS, SSH, WPA ; (4) le deuxième facteur, diapositive suivante.
-
     Le mot de passe de la messagerie d'abord : il réinitialise tous les
     autres. Le gestionnaire du navigateur ou du téléphone suffit pour
     commencer ; KeePassXC et Bitwarden sont les deux libres courants.
@@ -214,7 +166,89 @@
 ]
 
 // --------------------------------------------
-#d("Le deuxième facteur")[
+// Ajoutée le 19/10/2026 : les quatre parades sur le schéma des quatre
+// attaques, aux mêmes repères. Elle tient lieu de « Parades contre les quatre
+// attaques » du cours complet, qui est un tableau.
+#d("Parades contre les quatre attaques")[
+  #annonce[
+    Le site protège sa table et le trajet ; vous protégez le mot de passe et
+    le poste.
+  ]
+
+  #align(center, schema-connexion(
+    entetes: ("identifiant", "empreinte du mot de passe"),
+    lignes: (
+      ("alice", "c41e07b29d1f58a3…"),
+      ("bob", "5e823f9a1c07e4b6…"),
+      ("chloé", "0b3dd2a47e9c1f05…"),
+    ),
+    calcul: "bcrypt", reperes: true, zoom: 106%,
+    mot-de-passe: "k7#Qp2vLx9!R", chiffre: true, telephone: true,
+  ))
+
+  #v(0.3em)
+  #set text(size: pt-footnotesize)
+  #grid(
+    columns: (auto, 1fr, auto, 1fr), column-gutter: 10pt, row-gutter: 9pt,
+    align: (center + horizon, left + horizon),
+    repere(1), [une empreinte du mot de passe, qu'on ne sait pas inverser],
+    repere(2), [un mot de passe long, tiré au hasard, un par site],
+    repere(3), [le trajet chiffré : HTTPS, SSH, WPA sur le Wi-Fi],
+    repere(4), [un deuxième facteur : un code reçu sur le téléphone],
+  )
+
+  #notes[
+    1 et 3 sont faits par le site : on ne les vérifie que par le cadenas du
+    navigateur (HTTPS). 2 et 4 dépendent de vous.
+
+    1 : détail à la diapositive suivante, facultative. bob et chloé ont le
+    même mot de passe et deux empreintes différentes, grâce au sel.
+
+    2 : un gestionnaire de mots de passe tire au hasard et retient. Le
+    navigateur et le téléphone en ont un, sans installation ; KeePassXC et
+    Bitwarden sont les deux libres courants. Le mot de passe de la messagerie
+    d'abord : il réinitialise tous les autres.
+
+    4 : le deuxième facteur arrête aussi l'hameçonnage du mot de passe, mais
+    un code peut être donné sur une fausse page ; une clé physique ou une
+    passkey vérifie l'adresse du site (diapositive suivante).
+  ]
+]
+
+// --------------------------------------------
+// Facultative (19/10/2026) : la parade 1 en détail, pour qui demande ce
+// qu'est une empreinte. Résume « Fonction de hachage et empreinte », « Empreinte
+// avec sel » et « Empreinte à calcul lent » du cours complet.
+#d("Empreinte, sel et calcul lent")[
+  #annonce[
+    Le site garde une empreinte du mot de passe. Un message chiffré se rouvre
+    avec la clé, alors qu'une empreinte ne se défait pas.
+  ]
+
+  #align(center, schema-empreinte-sel())
+
+  #notes[
+    Facultative : à passer si le temps manque.
+
+    À la connexion, le serveur calcule l'empreinte du mot de passe reçu et la
+    compare à celle de la table. Un site qui chiffrerait ses mots de passe les
+    perdrait tous si la clé était volée avec la table.
+
+    Empreinte : SHA-256, 64 caractères pour un mot comme pour un fichier de
+    1 Go. Le même calcul donne l'identifiant d'un commit (cours 2).
+
+    Sans sel, une liste publique d'empreintes déjà calculées donne
+    `123456` pour `8d969eef…`. Le sel n'est pas secret : il est volé avec la
+    table, mais un calcul ne sert plus que pour un compte.
+
+    bcrypt : une carte graphique RTX 4090, hashcat (Chick3nman, 2022). 8
+    caractères tirés au hasard : 3,5 jours avec SHA-256, 1 100 ans avec
+    bcrypt. ANSSI (PG-078, 2021, § 4.6) : sel et fonction lente.
+  ]
+]
+
+// --------------------------------------------
+#d("Authentification à deux facteurs")[
   #annonce[
     Il existe trois sortes de preuves d'identité, appelées facteurs. Un
     deuxième facteur ajoute au mot de passe une preuve d'une autre sorte.
@@ -258,8 +292,43 @@
 ]
 
 // --------------------------------------------
-// Fusion de « Une clé à la place du mot de passe » et de « La connexion SSH ».
-#d("Clé SSH : la paire et la connexion")[
+// Ajoutée le 19/10/2026 : ce qu'est une paire de clés, et le rôle de chacune.
+#d("Cryptographie symétrique et asymétrique")[
+  #annonce[
+    La cryptographie asymétrique emploie une paire de clés, créées ensemble.
+    La clé publique peut être communiquée à tous ; la clé privée n'est connue
+    que de son détenteur.
+  ]
+
+  #align(center, schema-cryptographie())
+
+  #legende[
+    Ce que fait l'une des deux clés, seule l'autre le défait ou le vérifie. La
+    clé privée ne se calcule pas à partir de la clé publique.
+  ]
+
+  #notes[
+    Symétrique : une seule clé, que les deux côtés doivent avoir ; il faut la
+    leur transmettre sans qu'on l'intercepte. Exemples : AES, le Wi-Fi (WPA),
+    une session SSH une fois ouverte.
+
+    Asymétrique : RSA (1977), les courbes elliptiques (Ed25519, 2011). Le
+    calcul (arithmétique sur de grands nombres) est hors programme ; une
+    partie des étudiants l'a vu en NSI.
+
+    Chiffrer : n'importe qui ferme un message avec la clé publique, seul le
+    détenteur de la clé privée l'ouvre. Signer : le détenteur signe avec la
+    clé privée, n'importe qui vérifie avec la clé publique. SSH se sert de la
+    signature ; une clé Ed25519 ne sait d'ailleurs que signer.
+
+    L'asymétrique est lent : HTTPS et SSH s'en servent pour reconnaître le
+    serveur et convenir d'une clé symétrique, qui chiffre ensuite la session.
+  ]
+]
+
+// --------------------------------------------
+// Fusion de « Mot de passe ou paire de clés » et de « Connexion SSH avec une paire de clés ».
+#d("Connexion SSH avec une paire de clés")[
   #annonce[
     Pour une machine ou un programme, une paire de clés remplace le mot de
     passe. Le serveur vérifie que vous détenez la clé privée sans la recevoir.
@@ -268,80 +337,22 @@
   #align(center, schema-echange-ssh(cles: true, pas: 1.25))
 
   #notes[
-    Les deux clés sont créées ensemble par `ssh-keygen`. Un message fermé avec
-    la clé publique ne peut être ouvert qu'avec la clé privée.
+    Les deux clés sont créées ensemble par `ssh-keygen`.
 
-    Rien n'est tapé, et le serveur ne garde rien de secret. Les quatre façons :
+    Rien n'est tapé, et le serveur ne garde rien de secret. Les quatre attaques :
     le serveur ne garde que la clé publique, inutile seule ; une clé de
     256 bits ne se devine pas ; rien de secret ne passe sur le réseau ; rien
     n'est tapé, donc rien ne peut être obtenu par hameçonnage.
 
-    Le défi est un nombre tiré au hasard. Le renvoyer ouvert prouve la
-    détention de la clé privée. Un défi ne sert qu'une fois : l'intercepter ne
+    Le défi est un nombre tiré au hasard. Seule la clé privée produit une
+    signature que la clé publique valide : la signature prouve la détention de
+    la clé privée. Un défi ne sert qu'une fois : intercepter la signature ne
     donne rien. Toute la session est ensuite chiffrée. SSH : *Secure Shell*,
     un terminal à distance.
-
-    La clé privée ne se calcule pas à partir de la clé publique. Le calcul
-    (arithmétique sur de grands nombres) est hors programme.
 
     Usages de la même paire : la forge
     (`git clone git@github.com:alice/projet.git`), un serveur de calcul
     (`ssh alice@calcul.ecole.fr`), la copie de fichiers (`scp`), VS Code à
     distance (Remote – SSH). Une paire par poste.
-  ]
-]
-
-// --------------------------------------------
-// Fusion de « Un secret dans un dépôt y reste » et de « Séparer le code et
-// les secrets » : la sortie de `git log -p` passe en notes.
-#d("Séparer le code et les secrets")[
-  #annonce[
-    Un secret supprimé par un nouveau commit reste dans le commit qui l'a
-    ajouté. Le code lit donc le secret dans un fichier que git ignore.
-  ]
-
-  #face-a-face(
-    panneau("Dans le dépôt, pour tout le monde")[
-      #block(width: 100%, inset: (x: 12pt, y: 10pt), fill: gris)[
-        #set text(size: 17pt)
-        #raw(block: true, "carte.py            import config
-                    cle = config.CLE_API
-config.example.py   CLE_API = \"à remplir\"
-.gitignore          config.py
-README.md")
-      ]
-    ],
-    panneau("Sur votre poste seulement")[
-      #block(width: 100%, inset: (x: 12pt, y: 10pt), stroke: 1.2pt + brun)[
-        #set text(size: 17pt)
-        #raw(block: true, "config.py           CLE_API = \"d7f3a9c1e5b24086\"")
-      ]
-      #v(0.5em)
-      #text(size: 15pt, fill: estompe)[
-        Qui clone le dépôt copie `config.example.py` en `config.py` et y met
-        sa propre clé. `git status` ne liste jamais `config.py`.
-      ]
-    ],
-  )
-
-  #legende[
-    En 2025, 28,65 millions de secrets ont été ajoutés dans des commits
-    publics sur GitHub ; 64 % de ceux trouvés en 2022 étaient encore valides
-    en 2026 (GitGuardian, *State of Secrets Sprawl 2026*).
-  ]
-
-  #notes[
-    Secret : clé privée SSH, mot de passe, jeton d'API (*token*) d'un service
-    de cartographie ou d'IA, et le fichier `.env` ou `config.py` qui les range.
-
-    `git log -p -- config.py` affiche le commit qui ajoute la clé et celui qui
-    la supprime. Des programmes lisent les commits publics en continu et
-    testent les clés trouvées : un secret poussé est copié avant d'être
-    supprimé. S'il a fui : le révoquer d'abord, puis le remplacer.
-
-    Le `.gitignore` du cours 2. Avant de committer : `git status` ne
-    doit pas lister le fichier du secret.
-
-    Démonstration complète : TD 5b, facultatif, dans l'archive `cours5/`.
   ]
 ]

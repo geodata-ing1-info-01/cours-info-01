@@ -1,7 +1,7 @@
 // Cours 5 — clôture. Incluse par `cours5.typ`.
 #import "../../../commun/prelude.typ": *
 
-#d("Vers le cours 6")[
+#d("Au cours 6 : compte GitHub et clé SSH")[
   #annonce[
     Au cours 6, chacun crée son compte GitHub, avec un deuxième facteur, et y
     déclare une clé SSH, avant de publier son dépôt.

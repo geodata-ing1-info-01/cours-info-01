@@ -4,11 +4,11 @@
 
 #separateur(
   "Les secrets de vos programmes",
-  annonce: "Un jeton d'API, token en anglais, est un mot de passe utilisé par un programme. Il se perd des mêmes façons qu'un mot de passe, et aussi par le dépôt git.",
+  annonce: "Un jeton d'API, token en anglais, est un mot de passe utilisé par un programme. Il est exposé aux mêmes attaques qu'un mot de passe, et aussi à la publication dans un dépôt git.",
 )
 
 // --------------------------------------------
-#d("Ce qui est un secret")[
+#d("Secrets et éléments publics d'un projet")[
   #annonce[
     Un secret donne accès à quelque chose. Il ne va ni dans un dépôt, ni
     dans un message, ni dans une capture d'écran.
@@ -50,7 +50,7 @@
 ]
 
 // --------------------------------------------
-#d("Un secret dans un dépôt y reste")[
+#d("Un secret dans l'historique git")[
   #annonce[
     Le commit qui supprime le fichier ne supprime pas le commit qui l'a
     ajouté. `git log -p` affiche les deux.
@@ -80,7 +80,7 @@ commit 9cb1911  Premier script de carte
 ]
 
 // --------------------------------------------
-#d("Séparer le code et les secrets")[
+#d("Séparation du code et des secrets")[
   #annonce[
     Le code lit le secret dans un fichier que git ignore. Le dépôt contient
     un modèle de ce fichier, sans la valeur.
@@ -120,7 +120,7 @@ README.md")
 ]
 
 // --------------------------------------------
-#d("Si un secret a fui")[
+#d("Fuite d'un secret : révocation et remplacement")[
   #annonce[
     Supprimer le fichier ne suffit pas. Le secret est d'abord rendu inutile,
     puis remplacé.

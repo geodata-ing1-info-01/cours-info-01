@@ -1,21 +1,21 @@
 // Cours 5, partie 3 — prouver qui l'on est. Incluse par `cours5.typ`.
 //
-// Le fil : la table des comptes d'un site, les quatre façons d'obtenir le
-// mot de passe d'un autre, une parade par façon (l'empreinte, la longueur et
+// Le fil : la table des comptes d'un site, les quatre attaques contre le
+// mot de passe d'un autre, une parade par attaque (l'empreinte, la longueur et
 // le hasard, le chiffrement, le deuxième facteur), puis la clé, qui remplace
 // le mot de passe pour les machines et les programmes. La clé déclarée sur
 // GitHub est faite au cours 6 (TD de la clé SSH retiré le 30/09/2026).
 #import "../../../commun/prelude.typ": *
-#import "../schemas.typ": schema-cles, schema-echange-ssh, schema-connexion, repere
+#import "../schemas.typ": schema-cryptographie, schema-echange-ssh, schema-connexion, repere
 #import "../style.typ": terminal
 
 #separateur(
-  "Prouver qui l'on est",
-  annonce: "Le mot de passe, les quatre façons de l'obtenir, les parades, et la clé qui le remplace.",
+  "Mots de passe et clés SSH",
+  annonce: "Le mot de passe, les quatre attaques possibles, leurs parades, puis la paire de clés qui le remplace.",
 )
 
 // --------------------------------------------
-#d("La connexion à un site")[
+#d("Connexion à un site par mot de passe")[
   #annonce[
     Le site garde chaque compte dans une table : l'identifiant et le mot de
     passe. À la connexion, le serveur compare le mot de passe reçu avec celui
@@ -38,7 +38,7 @@
 ]
 
 // --------------------------------------------
-#d("Quatre façons d'obtenir un mot de passe")[
+#d("Quatre attaques contre un mot de passe")[
   #annonce[
     Le mot de passe se lit à trois endroits : la table, le réseau, le poste.
     Il peut aussi être deviné.
@@ -72,7 +72,7 @@
   ]
 
   #notes[
-    Chaque façon a sa parade, dans l'ordre des numéros : l'empreinte (1), la
+    Chaque attaque a sa parade, dans l'ordre des numéros : l'empreinte (1), la
     longueur et le hasard (2), le chiffrement (3), le deuxième facteur (4).
 
     Un mot de passe obtenu est ensuite essayé sur les autres sites. 60 à 84 %
@@ -82,7 +82,7 @@
 ]
 
 // --------------------------------------------
-#d("L'empreinte d'un contenu")[
+#d("Fonction de hachage et empreinte")[
   #annonce[
     Une fonction de hachage répond à la question : ces deux contenus sont-ils
     identiques ? Elle calcule pour chaque contenu une empreinte de taille
@@ -119,7 +119,7 @@
 ]
 
 // --------------------------------------------
-#d("La table avec des empreintes")[
+#d("Table des comptes avec empreintes")[
   #annonce[
     Le serveur garde l'empreinte du mot de passe. À la connexion, il calcule
     l'empreinte du mot de passe reçu et la compare à celle de la table.
@@ -141,7 +141,7 @@
     align: (left + horizon, left + horizon),
     [Avec la table volée], [Résultat],
     [taper `2aa0358d…` dans le formulaire], [le serveur calcule l'empreinte de `2aa0358d…` : `1ea04f0b…`, différente de celle de la table],
-    [calculer l'empreinte de mots de passe candidats et comparer], [chez soi, sans limite d'essais : c'est la devinette, façon 2],
+    [calculer l'empreinte de mots de passe candidats et comparer], [chez soi, sans limite d'essais : la devinette, attaque 2],
   )
 
   #notes[
@@ -157,7 +157,7 @@
 ]
 
 // --------------------------------------------
-#d("Le sel")[
+#d("Empreinte avec sel")[
   #annonce[
     Sans sel, deux comptes qui ont le même mot de passe ont la même
     empreinte. Le serveur tire au hasard un sel pour chaque compte, et
@@ -203,7 +203,7 @@
 ]
 
 // --------------------------------------------
-#d("Le calcul lent")[
+#d("Empreinte à calcul lent")[
   #annonce[
     Avec le sel, le voleur peut encore essayer des mots de passe, compte
     par compte. Une fonction lente, comme bcrypt, réduit le nombre d'essais
@@ -305,7 +305,7 @@ d("L'entropie d'un mot de passe")[
 }
 
 // --------------------------------------------
-#d("Combien de temps pour le deviner")[
+#d("Temps pour deviner un mot de passe")[
   #annonce[
     Avec une table d'empreintes volée, le voleur essaie les mots de passe
     dans l'ordre le plus probable, sur seize cartes graphiques.
@@ -349,7 +349,7 @@ d("L'entropie d'un mot de passe")[
 // --------------------------------------------
 #d("Hameçonnage")[
   #annonce[
-    Façon 4 : le mot de passe est donné par son propriétaire, sur une
+    Attaque 4 : le mot de passe est donné par son propriétaire, sur une
     page qui imite le site.
   ]
 
@@ -405,7 +405,7 @@ d("L'entropie d'un mot de passe")[
 ]
 
 // --------------------------------------------
-#d("Une parade par menace")[
+#d("Parades contre les quatre attaques")[
   #annonce[
     Le mot de passe de la messagerie est à protéger en premier : il permet de
     réinitialiser tous les autres.
@@ -414,7 +414,7 @@ d("L'entropie d'un mot de passe")[
   #tableau(
     columns: (auto, 1fr, 1fr),
     align: (left + horizon, left + horizon, left + horizon),
-    [Menace], [Parade], [Ce que cela demande],
+    [Attaque], [Parade], [Ce que cela demande],
     [1. lu dans la table], [l'empreinte, avec un sel et un calcul lent], [rien de votre part : c'est le site qui le fait],
     [2. deviné], [long, tiré au hasard, différent sur chaque site], [un gestionnaire de mots de passe, qui tire au hasard et retient],
     [3. intercepté], [le chiffrement du trajet], [HTTPS, SSH, WPA sur le Wi-Fi ; déjà en place presque partout],
@@ -437,7 +437,7 @@ d("L'entropie d'un mot de passe")[
 ]
 
 // --------------------------------------------
-#d("Le deuxième facteur")[
+#d("Authentification à deux facteurs")[
   #annonce[
     Il existe trois sortes de preuves d'identité, appelées facteurs. Un
     deuxième facteur ajoute au mot de passe une preuve d'une autre sorte.
@@ -484,21 +484,26 @@ d("L'entropie d'un mot de passe")[
 ]
 
 // --------------------------------------------
-#d("Une clé à la place du mot de passe")[
+#d("Mot de passe ou paire de clés")[
   #annonce[
     Pour une machine ou un programme, une paire de clés remplace le mot de
     passe. Rien n'est tapé, et le serveur ne garde rien de secret.
   ]
 
-  #align(center, schema-cles())
+  #tableau(
+    columns: (auto, 1fr, 1fr),
+    align: (left + horizon, left + horizon, left + horizon),
+    [Attaque], [Avec un mot de passe], [Avec une paire de clés],
+    [1. lu dans la table], [une empreinte, d'où un mot de passe faible se retrouve], [la clé publique, inutile seule],
+    [2. deviné], [30 bits pour `Marseille2024!`, 90 pour sept mots], [une clé de 256 bits : hors de portée],
+    [3. intercepté], [il passe sur le réseau, chiffré par HTTPS], [rien de secret ne passe sur le réseau],
+    [4. pris sur le poste], [il est tapé, donc exposé à l'hameçonnage], [rien n'est tapé ; le fichier de la clé privée reste à protéger],
+  )
 
   #notes[
-    Les quatre façons : le serveur ne garde que la clé publique, inutile seule ;
-    une clé de 256 bits ne se devine pas ; rien de secret ne passe sur le
-    réseau ; rien n'est tapé, donc rien ne peut être obtenu par hameçonnage.
-
-    La clé privée ne se calcule pas à partir de la clé publique. Le calcul
-    (arithmétique sur de grands nombres) est hors programme.
+    Ligne 4 : un logiciel espion peut copier le fichier de la clé privée. La
+    phrase de passe, posée par `ssh-keygen`, le chiffre sur le disque
+    (diapositive « Création d'une paire de clés SSH »).
 
     Usages de la même paire : la forge
     (`git clone git@github.com:alice/projet.git`), un serveur de calcul
@@ -511,7 +516,42 @@ d("L'entropie d'un mot de passe")[
 ]
 
 // --------------------------------------------
-#d("La connexion SSH")[
+// Ajoutée le 19/10/2026 : ce qu'est une paire de clés, et le rôle de chacune.
+#d("Cryptographie symétrique et asymétrique")[
+  #annonce[
+    La cryptographie asymétrique emploie une paire de clés, créées ensemble.
+    La clé publique peut être communiquée à tous ; la clé privée n'est connue
+    que de son détenteur.
+  ]
+
+  #align(center, schema-cryptographie())
+
+  #legende[
+    Ce que fait l'une des deux clés, seule l'autre le défait ou le vérifie. La
+    clé privée ne se calcule pas à partir de la clé publique.
+  ]
+
+  #notes[
+    Symétrique : une seule clé, que les deux côtés doivent avoir ; il faut la
+    leur transmettre sans qu'on l'intercepte. Exemples : AES, le Wi-Fi (WPA),
+    une session SSH une fois ouverte.
+
+    Asymétrique : RSA (1977), les courbes elliptiques (Ed25519, 2011). Le
+    calcul (arithmétique sur de grands nombres) est hors programme ; une
+    partie des étudiants l'a vu en NSI.
+
+    Chiffrer : n'importe qui ferme un message avec la clé publique, seul le
+    détenteur de la clé privée l'ouvre. Signer : le détenteur signe avec la
+    clé privée, n'importe qui vérifie avec la clé publique. SSH se sert de la
+    signature ; une clé Ed25519 ne sait d'ailleurs que signer.
+
+    L'asymétrique est lent : HTTPS et SSH s'en servent pour reconnaître le
+    serveur et convenir d'une clé symétrique, qui chiffre ensuite la session.
+  ]
+]
+
+// --------------------------------------------
+#d("Connexion SSH avec une paire de clés")[
   #annonce[
     Le serveur vérifie que vous détenez la clé privée sans la recevoir.
   ]
@@ -519,9 +559,13 @@ d("L'entropie d'un mot de passe")[
   #align(center, schema-echange-ssh())
 
   #notes[
-    Le défi est un nombre tiré au hasard. Le renvoyer ouvert prouve la
-    détention de la clé privée. Un défi ne sert qu'une fois : l'intercepter ne
+    Le défi est un nombre tiré au hasard. Seule la clé privée produit une
+    signature que la clé publique valide : la signature prouve la détention de
+    la clé privée. Un défi ne sert qu'une fois : intercepter la signature ne
     donne rien.
+
+    En pratique, le défi est l'identifiant de la session, tiré au hasard à son
+    ouverture.
 
     Toute la session est ensuite chiffrée. SSH : *Secure Shell*, un terminal à
     distance.
@@ -529,7 +573,7 @@ d("L'entropie d'un mot de passe")[
 ]
 
 // --------------------------------------------
-#d("Les deux fichiers de la paire")[
+#d("Création d'une paire de clés SSH")[
   #annonce[
     `ssh-keygen` écrit les deux fichiers dans `.ssh/`, dans votre dossier
     personnel.

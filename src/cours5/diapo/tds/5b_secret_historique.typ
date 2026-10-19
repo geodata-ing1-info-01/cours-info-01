@@ -15,7 +15,7 @@
 )
 #separateur-td(..td)
 
-#d("Committer, supprimer, relire")[
+#d("Historique d'un secret supprimé")[
   #annonce[
     Committer un fichier qui contient une clé inventée, puis le supprimer
     dans un second commit.
@@ -45,7 +45,7 @@
   ]
 ]
 
-#d("Tenir le secret à l'écart")[
+#d("Secret dans un fichier ignoré par git")[
   #annonce[
     Le dépôt contient un modèle et une règle d'exclusion. `git add` ignore le
     fichier qui contient la vraie valeur.

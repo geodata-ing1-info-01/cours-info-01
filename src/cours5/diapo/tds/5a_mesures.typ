@@ -13,7 +13,7 @@
 )
 #separateur-td(..td)
 
-#d("Le poste, dans le gestionnaire des tâches")[
+#d("Relevé dans le gestionnaire des tâches")[
   #annonce[
     `Ctrl` + `Maj` + `Échap`, onglet Performance. Relever quatre valeurs.
   ]

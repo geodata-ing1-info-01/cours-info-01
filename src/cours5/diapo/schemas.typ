@@ -260,53 +260,62 @@
 
 #let _pave(a, b, couleur) = rect(a, b, fill: couleur, stroke: none)
 
-#let schema-puces() = cetz.canvas(length: 0.82cm, {
-  // le processeur : huit cœurs sur deux rangées, puis le cache partagé
-  rect((0, 1.2), (10.4, 7.2), radius: 0.1, stroke: 1.4pt + accent)
+// Les deux puces se dessinent à partir de leur coin inférieur gauche (x, y),
+// à l'échelle `u` : 10,4 u de large, 6 u de haut, titre compris au-dessus.
+#let _puce-processeur(x, y, u, titre, taille-titre: 15pt, taille-cache: 13pt) = {
+  rect((x, y), (x + 10.4 * u, y + 6 * u), radius: 0.1 * u, stroke: 1.4pt + accent)
+  // huit cœurs sur deux rangées, puis le cache partagé
   for r in range(2) {
     for i in range(4) {
-      let x0 = 0.2 + i * 2.567
-      let y0 = 5.7 - r * 1.6
-      rect((x0, y0), (x0 + 2.3, y0 + 1.4), stroke: 0.6pt + _trait)
-      _pave((x0 + 0.1, y0 + 0.36), (x0 + 1.3, y0 + 1.3), _c-controle)
+      let x0 = x + (0.2 + i * 2.567) * u
+      let y0 = y + (4.5 - r * 1.6) * u
+      rect((x0, y0), (x0 + 2.3 * u, y0 + 1.4 * u), stroke: 0.6pt + _trait)
+      _pave((x0 + 0.1 * u, y0 + 0.36 * u), (x0 + 1.3 * u, y0 + 1.3 * u), _c-controle)
       for (dx, dy) in ((0, 0), (0.42, 0), (0, 0.49), (0.42, 0.49)) {
-        _pave((x0 + 1.4 + dx, y0 + 0.36 + dy), (x0 + 1.76 + dx, y0 + 0.81 + dy), _c-calcul)
+        _pave((x0 + (1.4 + dx) * u, y0 + (0.36 + dy) * u),
+              (x0 + (1.76 + dx) * u, y0 + (0.81 + dy) * u), _c-calcul)
       }
-      _pave((x0 + 0.1, y0 + 0.08), (x0 + 2.2, y0 + 0.28), _c-cache)
+      _pave((x0 + 0.1 * u, y0 + 0.08 * u), (x0 + 2.2 * u, y0 + 0.28 * u), _c-cache)
     }
   }
-  _pave((0.2, 1.4), (10.2, 3.9), _c-cache)
-  content((5.2, 2.65), text(size: 13pt, fill: accent)[cache partagé])
-  content((0, 7.45), anchor: "south-west",
-          text(size: 15pt, weight: demi-gras, fill: estompe, bottom-edge: "baseline")[Processeur : 8 cœurs])
+  _pave((x + 0.2 * u, y + 0.2 * u), (x + 10.2 * u, y + 2.7 * u), _c-cache)
+  content((x + 5.2 * u, y + 1.45 * u), text(size: taille-cache, fill: accent)[cache partagé])
+  content((x, y + 6.25 * u), anchor: "south-west",
+          text(size: taille-titre, weight: demi-gras, fill: estompe, bottom-edge: "baseline", titre))
+}
 
-  // la carte graphique : des rangées d'unités de calcul, un contrôle et un
-  // petit cache par rangée
-  let x0 = 12.6
-  rect((x0, 1.2), (x0 + 10.4, 7.2), radius: 0.1, stroke: 1.4pt + accent)
+// des rangées d'unités de calcul, un contrôle et un petit cache par rangée
+#let _puce-carte(x, y, u, titre, taille-titre: 15pt, taille-cache: 11pt) = {
+  rect((x, y), (x + 10.4 * u, y + 6 * u), radius: 0.1 * u, stroke: 1.4pt + accent)
   for r in range(10) {
-    let yh = 7.0 - r * 0.5
-    let yb = yh - 0.42
-    _pave((x0 + 0.2, yb), (x0 + 0.6, yh), _c-controle)
-    _pave((x0 + 0.65, yb), (x0 + 0.95, yh), _c-cache)
+    let yh = y + (5.8 - r * 0.5) * u
+    let yb = yh - 0.42 * u
+    _pave((x + 0.2 * u, yb), (x + 0.6 * u, yh), _c-controle)
+    _pave((x + 0.65 * u, yb), (x + 0.95 * u, yh), _c-cache)
     for k in range(22) {
-      let xa = x0 + 1.05 + k * 0.4
-      _pave((xa, yb), (xa + 0.34, yh), _c-calcul)
+      let xa = x + (1.05 + k * 0.4) * u
+      _pave((xa, yb), (xa + 0.34 * u, yh), _c-calcul)
     }
   }
-  _pave((x0 + 0.2, 1.4), (x0 + 10.2, 2.0), _c-cache)
-  content((x0 + 5.2, 1.7), text(size: 11pt, fill: accent)[cache])
-  content((x0, 7.45), anchor: "south-west",
-          text(size: 15pt, weight: demi-gras, fill: estompe, bottom-edge: "baseline")[Carte graphique : des milliers d'unités])
+  _pave((x + 0.2 * u, y + 0.2 * u), (x + 10.2 * u, y + 0.8 * u), _c-cache)
+  content((x + 5.2 * u, y + 0.5 * u), text(size: taille-cache, fill: accent)[cache])
+  content((x, y + 6.25 * u), anchor: "south-west",
+          text(size: taille-titre, weight: demi-gras, fill: estompe, bottom-edge: "baseline", titre))
+}
+
+#let _entrees-puces = (
+  (_c-calcul, [calcul]),
+  (_c-controle, [contrôle des instructions]),
+  (_c-cache, [cache : mémoire rapide]),
+)
+
+#let schema-puces() = cetz.canvas(length: 0.82cm, {
+  _puce-processeur(0, 1.2, 1, [Processeur : 8 cœurs])
+  _puce-carte(12.6, 1.2, 1, [Carte graphique : des milliers d'unités])
 
   // la légende
-  let entrees = (
-    (_c-calcul, [calcul]),
-    (_c-controle, [contrôle des instructions]),
-    (_c-cache, [cache : mémoire rapide]),
-  )
   let xs = (3.5, 7.5, 16.0)
-  for ((couleur, nom), x) in entrees.zip(xs) {
+  for ((couleur, nom), x) in _entrees-puces.zip(xs) {
     _pave((x, 0.1), (x + 0.45, 0.55), couleur)
     content((x + 0.65, 0.325), anchor: "west",
             text(size: 13pt, fill: accent, top-edge: "cap-height", bottom-edge: "baseline")[#nom])
@@ -366,6 +375,97 @@
 })
 
 // ---------------------------------------------------------------------------
+// Processeur et carte graphique : la puce et une image, sur une diapositive
+//
+// En haut, les deux puces de `schema-puces`, réduites, la légende des couleurs
+// entre elles. Sous chaque puce, la même image en pixel art, 16 × 8 pixels
+// (un paysage : soleil, montagnes enneigées, rivière, sapin, maison), à
+// éclaircir : la même multiplication sur chaque pixel, et un pixel traité est
+// dessiné éclairci. Le processeur a 8 cœurs, un par ligne, qui avancent d'un
+// pixel par étape : l'état après 3 étapes. La carte graphique a un cœur par
+// pixel : tout est fait en une étape. Les couleurs de l'image sont celles
+// d'une image, et ne codent rien d'autre.
+
+#let _palette-paysage = (
+  s: rgb("#9cc9e8"),   // ciel
+  o: rgb("#f2c14e"),   // soleil
+  w: rgb("#f4f4f4"),   // neige
+  m: rgb("#8a8f99"),   // montagne
+  d: rgb("#646a75"),   // montagne à l'ombre
+  g: rgb("#7cb35a"),   // herbe
+  h: rgb("#5a9443"),   // herbe sombre
+  b: rgb("#3f7fbf"),   // rivière
+  t: rgb("#2f6b35"),   // sapin
+  r: rgb("#b5523b"),   // toit
+  f: rgb("#e8d9b5"),   // mur
+  p: rgb("#7a4b2a"),   // porte
+)
+
+#let _paysage = (
+  "sssssssssssssoos",
+  "ssswsssssssssoos",
+  "sswmwsssswssssss",
+  "smmdmmssmmmsssss",
+  "mmddmmmmdmmmrrrs",
+  "gghggbbggghgfffg",
+  "ghggbbggtgggfpfg",
+  "hggbbggtttghgggh",
+)
+
+// L'image, le coin supérieur gauche en (x0, y0), pixels de côté `p` ;
+// `fait(l, c)` dit si le pixel de la ligne l, colonne c, est éclairci.
+#let _pixel-art(x0, y0, p, fait) = {
+  for (l, ligne) in _paysage.enumerate() {
+    for (c, code) in ligne.clusters().enumerate() {
+      let couleur = _palette-paysage.at(code)
+      if fait(l, c) { couleur = couleur.lighten(50%) }
+      rect((x0 + c * p, y0 - l * p), (x0 + (c + 1) * p, y0 - (l + 1) * p),
+           fill: couleur, stroke: none)
+    }
+  }
+  rect((x0, y0), (x0 + 16 * p, y0 - 8 * p), stroke: 0.8pt + _trait)
+}
+
+#let schema-puces-image() = cetz.canvas(length: 1cm, {
+  let u = 0.65
+  let p = 0.48
+  // centres des deux colonnes
+  let (c1, c2) = (4.2, 17.4)
+  _puce-processeur(c1 - 5.2 * u, -4.15, u, [Processeur : 8 cœurs],
+                   taille-titre: 14pt, taille-cache: 11pt)
+  _puce-carte(c2 - 5.2 * u, -4.15, u, [Carte graphique : des milliers d'unités],
+              taille-titre: 14pt, taille-cache: 9pt)
+  // la légende des couleurs, entre les deux puces
+  for (k, (couleur, nom)) in _entrees-puces.enumerate() {
+    let y = -1.5 - k * 0.6
+    _pave((7.95, y - 0.2), (8.35, y + 0.2), couleur)
+    content((8.55, y), anchor: "west",
+            text(size: 12pt, fill: accent, top-edge: "cap-height", bottom-edge: "baseline")[#nom])
+  }
+
+  // les deux images
+  let haut = -4.75
+  let x1 = c1 - 8 * p
+  _pixel-art(x1, haut, p, (l, c) => c < 3)
+  for l in range(8) {
+    content((x1 - 0.12, haut - (l + 0.5) * p), anchor: "east",
+            text(size: 10pt, fill: estompe)[#(l + 1)])
+  }
+  content((c1, haut - 8 * p - 0.15), anchor: "north", text(size: 13pt, fill: accent)[
+    un cœur par ligne : 8 pixels par étape, 16 étapes ; ici, après 3
+  ])
+  let x2 = c2 - 8 * p
+  _pixel-art(x2, haut, p, (l, c) => true)
+  // entre les deux images, l'opération appliquée
+  content(((c1 + 8 * p + x2) / 2, haut - 4 * p), align(center, text(size: 14pt, fill: accent)[
+    éclaircir : \ la même multiplication \ sur chaque pixel
+  ]))
+  content((c2, haut - 8 * p - 0.15), anchor: "north", text(size: 13pt, fill: accent)[
+    un cœur par pixel : 128 pixels par étape, 1 étape
+  ])
+})
+
+// ---------------------------------------------------------------------------
 // Opérations par seconde : la décomposition pour un portable
 //
 // Le nombre d'opérations par seconde est un produit : unités de calcul,
@@ -374,9 +474,9 @@
 // graphique intégrée, puis le total. Valeurs d'un AMD Ryzen 5 7530U (2023) à
 // sa cadence de base. Dessiné avec les primitives de typst, sans cetz.
 
-#let _facteur(valeur, unite) = box(
+#let _facteur(valeur, unite, fond: white) = box(
   width: 100%, inset: (x: 4pt, y: 7pt), radius: 4pt,
-  stroke: 1.2pt + accent, fill: white,
+  stroke: 1.2pt + accent, fill: fond,
   align(center)[
     #text(size: 22pt, weight: demi-gras, fill: accent)[#valeur]
     #linebreak()
@@ -395,12 +495,191 @@
     nom[Processeur], _facteur([6], [cœurs]), signe[×], cadence, signe[×],
     _facteur([32], [opérations par cycle]), signe[=], resultat[3,8 · 10#super[11]],
     [], [], [], [], [],
-    text(size: 13pt, fill: estompe)[8 nombres par instruction \ × 2 instructions par cycle \ × 2 opérations : a × b + c],
+    text(size: 13pt, fill: estompe)[8 nombres par instruction \ × 2 opérations : a × b + c \ × 2 instructions par cycle],
     [], [],
     nom[Carte graphique], _facteur([448], [unités de calcul]), signe[×], cadence, signe[×],
     _facteur([2], [opérations par cycle]), signe[=], resultat[1,8 · 10#super[12]],
     std.grid.cell(colspan: 6, align(right, text(size: 17pt, fill: accent)[total])),
     signe[≈], resultat[2 · 10#super[12]],
+  )
+}
+
+// ---------------------------------------------------------------------------
+// Le processeur, en cinq étapes
+//
+// Une figure pour cinq diapositives. Chaque étape ajoute un facteur au nombre
+// d'opérations par seconde, jusqu'à la ligne « Processeur » de
+// `schema-operations` : AMD Ryzen 5 7530U à sa cadence de base, 2 GHz.
+//
+//   1  un cœur, une instruction par cycle, une opération par instruction
+//   2  instruction vectorielle : 8 nombres par instruction
+//   3  multiplication et addition dans la même instruction : 2 opérations
+//   4  deux unités de calcul : 2 instructions par cycle
+//   5  six cœurs
+//
+// En haut, le dessin : la file d'instructions à gauche, l'instruction en
+// cours sur fond clair ; le cœur à droite, avec ses registres d'entrée (cases
+// blanches), l'opération (cases pleines) et les résultats (cases claires). À
+// l'étape 5, les six cœurs, réduits à leurs cases d'opération. En bas, le
+// calcul, un facteur par case, dans l'ordre des étapes ; le facteur ajouté
+// par l'étape est sur fond clair. Le dessin a la même taille aux cinq étapes
+// et les cases du calcul la même largeur, pour que rien ne bouge d'une
+// diapositive à l'autre.
+
+#let _case = 0.9        // largeur d'une case de registre
+#let _pas-case = 0.98   // d'une case à la suivante
+#let _haut-case = 0.52
+#let _pas-rang = 0.62   // d'une rangée à la suivante
+#let _fond-nouveau = accent.lighten(88%)
+
+// Une unité de calcul de `n` cases, le haut en `y0`. `lettres` nomme les
+// registres d'entrée, `sortie` celui des résultats.
+#let _unite-calcul(x0, y0, n, lettres, sortie, fma) = {
+  let nom(lettre, i) = if n == 1 { lettre } else { [#lettre#sub[#(i + 1)]] }
+  let rangee(r, remplissage, trait, texte) = {
+    let y = y0 - r * _pas-rang
+    for i in range(n) {
+      let x = x0 + i * _pas-case
+      rect((x, y - _haut-case), (x + _case, y), fill: remplissage, stroke: trait)
+      content((x + _case / 2, y - _haut-case / 2), texte(i))
+    }
+  }
+  for (r, lettre) in lettres.enumerate() {
+    rangee(r, white, 0.8pt + _trait, i => text(size: 13pt, fill: accent, nom(lettre, i)))
+  }
+  rangee(lettres.len(), accent, none,
+         i => text(size: 13pt, fill: white, weight: demi-gras, if fma [×+] else [×]))
+  rangee(lettres.len() + 1, accent.lighten(80%), 0.8pt + _trait,
+         i => text(size: 13pt, fill: accent, nom(sortie, i)))
+}
+
+#let _dessin-coeur(etape) = cetz.canvas(length: 1cm, {
+  set-style(stroke: 0.9pt + _trait)
+  // le cadre invisible : même taille à toutes les étapes
+  rect((0, 0.75), (23.3, -3.9), stroke: none)
+
+  if etape == 5 {
+    for k in range(6) {
+      let x0 = k * 3.94
+      // le cœur 1 exécute le programme Python, en `attention` et avec le
+      // logo ; les autres cœurs, aux autres programmes, restent en `accent`
+      let python = k == 0
+      let teinte = if python { attention } else { accent }
+      // la file d'instructions du cœur, esquissée
+      for j in range(3) {
+        let y = 0.7 - j * 0.38
+        rect((x0 + 0.5, y - 0.3), (x0 + 3.0, y), radius: 0.04,
+             fill: if python { attention.lighten(75%) } else { white },
+             stroke: 0.9pt + if python { attention } else { _trait })
+      }
+      _fleche((x0 + 1.75, -0.45), (x0 + 1.75, -0.9), couleur: teinte)
+      rect((x0, -1.0), (x0 + 3.5, -3.6), radius: 0.08,
+           fill: if python { attention.lighten(85%) } else { gris },
+           stroke: 1.4pt + teinte)
+      let etiquette = text(size: 16pt, weight: demi-gras, fill: teinte)[cœur #(k + 1)]
+      if python {
+        content((x0 + 1.4, -1.4), etiquette)
+        // le logo non modifié, suivi du symbole de marque que demande la PSF
+        content((x0 + 2.75, -1.4), image("/illustrations/cours5/python_logo.svg",
+                                         height: 0.62cm))
+        content((x0 + 3.1, -1.12), anchor: "west",
+                text(size: 7pt, fill: estompe)[™])
+      } else {
+        content((x0 + 1.75, -1.4), etiquette)
+      }
+      for u in range(2) {
+        for i in range(8) {
+          let x = x0 + 0.15 + i * 0.41
+          let y = -2.0 - u * 0.65
+          rect((x, y - 0.48), (x + 0.38, y), fill: teinte, stroke: none)
+        }
+      }
+    }
+  } else {
+    let fma = etape >= 3
+    let n = if etape == 1 { 1 } else { 8 }
+    let file = if etape <= 2 {
+      (("lire a", false), ("lire b", false), ("a × b", true), ("écrire r", false))
+    } else if etape == 3 {
+      (("lire a", false), ("lire b", false), ("lire c", false),
+       ("a × b + c", true), ("écrire r", false))
+    } else {
+      (("lire a, b, c", false), ("lire d, e, f", false), ("a × b + c", true),
+       ("d × e + f", true), ("écrire r, s", false))
+    }
+
+    // la file d'instructions
+    content((1.9, 0.45), text(size: 13pt, fill: estompe)[instructions])
+    for (k, (ins, encours)) in file.enumerate() {
+      let y = 0.1 - k * 0.6
+      rect((0, y - 0.5), (3.8, y), radius: 0.05,
+           fill: if encours { accent.lighten(80%) } else { white })
+      content((1.9, y - 0.25), text(size: 13pt, font: police-code, fill: accent)[#ins])
+    }
+    _fleche((3.95, -1.4), (4.55, -1.4))
+
+    // le cœur et ses unités
+    let largeur-unite = (n - 1) * _pas-case + _case
+    let unites = if etape == 4 { 2 } else { 1 }
+    let x-coeur = 4.7
+    let largeur = calc.max(unites * largeur-unite + (unites - 1) * 1.0 + 1.0, 3.6)
+    let x-unite = x-coeur + (largeur - unites * largeur-unite - (unites - 1) * 1.0) / 2
+    rect((x-coeur, 0.6), (x-coeur + largeur, -3.85), radius: 0.08, fill: gris,
+         stroke: 1.4pt + accent)
+    content((x-coeur + 0.3, 0.33), anchor: "west",
+            text(size: 16pt, weight: demi-gras, fill: accent)[cœur])
+    let lettres = if fma { ("a", "b", "c") } else { ("a", "b") }
+    for u in range(unites) {
+      let x0 = x-unite + u * (largeur-unite + 1.0)
+      let (entrees, sortie) = if u == 0 { (lettres, "r") } else { (("d", "e", "f"), "s") }
+      _unite-calcul(x0, -0.2, n, entrees, sortie, fma)
+      content((x0 + largeur-unite / 2, -3.3), anchor: "north",
+              text(size: 13pt, fill: estompe)[unité de calcul])
+    }
+    // à l'étape 2, le rappel que les 8 cases font la même opération
+    if etape == 2 {
+      let y = -0.2 - 2 * _pas-rang - _haut-case / 2
+      _fleche((x-coeur + largeur + 1.1, y), (x-coeur + largeur - 0.4, y))
+      content((x-coeur + largeur + 1.3, y), anchor: "west",
+              text(size: 15pt, fill: accent)[la même opération \ pour les 8 nombres])
+    }
+  }
+})
+
+#let schema-processeur(etape) = {
+  let signe(s) = text(size: 22pt, fill: estompe)[#s]
+  // les facteurs, dans l'ordre des étapes ; à l'étape 1, une opération par
+  // cycle tient lieu des trois facteurs suivants
+  let facteurs = (
+    ([2 · 10#super[9]], [cycles par seconde]),
+    if etape == 1 { ([1], [opération par cycle]) } else { ([8], [nombres par instruction]) },
+    ([2], [opérations \ a × b + c]),
+    ([2], [instructions par cycle]),
+    ([6], [cœurs]),
+  ).slice(0, calc.max(etape, 2))
+  let total = (
+    [2 · 10#super[9]], [1,6 · 10#super[10]], [3,2 · 10#super[10]],
+    [6,4 · 10#super[10]], [3,8 · 10#super[11]],
+  ).at(etape - 1)
+  let cellules = ()
+  for (k, (valeur, unite)) in facteurs.enumerate() {
+    if k > 0 { cellules.push(signe[×]) }
+    cellules.push(_facteur(valeur, block(height: 2.3em, align(horizon, unite)),
+                           fond: if etape > 1 and k == etape - 1 { _fond-nouveau } else { white }))
+  }
+  cellules.push(signe[=])
+  cellules.push(align(left)[
+    #text(size: 22pt, weight: demi-gras, fill: accent)[#total]
+    #linebreak()
+    #text(size: 13pt, fill: estompe)[opérations par seconde]
+  ])
+
+  _dessin-coeur(etape)
+  v(0.4em)
+  std.grid(
+    columns: (3.3cm, 0.75cm) * facteurs.len() + (auto,),
+    column-gutter: 0pt, align: center + horizon,
+    ..cellules,
   )
 }
 
@@ -700,13 +979,19 @@
 // obtient le mot de passe d'un autre : la table, le formulaire, le réseau,
 // le poste.
 //
+// Pour montrer les parades (version courte, 19/10/2026) : `mot-de-passe`
+// remplace celui du formulaire, `chiffre: true` montre le trajet chiffré,
+// `telephone: true` dessine à droite du poste le téléphone du deuxième
+// facteur.
+//
 //   schema-connexion(
 //     entetes: ("identifiant", "mot de passe"),
 //     lignes: (("alice", "Marseille2024!"), ("bob", "123456")),
 //     calcul: "SHA-256",
 //   )
 
-#let schema-connexion(entetes: (), lignes: (), calcul: none, reperes: false, zoom: 115%) = std.scale(zoom, reflow: true, cetz.canvas(length: 1cm, {
+#let schema-connexion(entetes: (), lignes: (), calcul: none, reperes: false, zoom: 115%,
+                      mot-de-passe: "Marseille2024!", chiffre: false, telephone: false) = std.scale(zoom, reflow: true, cetz.canvas(length: 1cm, {
   set-style(stroke: 0.9pt + _trait)
   let y = 0
 
@@ -719,15 +1004,23 @@
     #text(fill: estompe)[identifiant] \
     #text(font: police-code)[alice] \
     #text(fill: estompe)[mot de passe] \
-    #text(font: police-code)[Marseille2024!]
+    #text(font: police-code)[#mot-de-passe]
   ])
   _etiquette((2.0, y - 1.35), "Votre poste", none, largeur: 4cm)
+
+  // le téléphone du deuxième facteur, à droite du poste, au-dessus du réseau
+  if telephone {
+    rect((4.7, y + 0.35), (6.1, y + 2.55), radius: 0.15, fill: white, stroke: 1.4pt + accent)
+    rect((4.85, y + 0.6), (5.95, y + 2.25), fill: gris.lighten(40%), stroke: none)
+    content((5.4, y + 2.05), text(size: 10pt, fill: estompe)[code])
+    content((5.4, y + 1.2), text(size: 12pt, font: police-code, fill: accent)[482 \ 913])
+  }
 
   // le réseau
   _fleche((4.6, y), (10.7, y), epaisseur: 1.6pt)
   content((7.65, y + 0.15), anchor: "south",
-          text(size: 13pt, font: police-code, fill: accent)[alice, Marseille2024!])
-  content((7.65, y - 0.15), anchor: "north", text(size: 14pt, fill: estompe)[le réseau])
+          text(size: 13pt, font: police-code, fill: accent)[#if chiffre [9c1f47ae…] else [alice, #mot-de-passe]])
+  content((7.65, y - 0.15), anchor: "north", text(size: 14pt, fill: estompe)[#if chiffre [le réseau (HTTPS)] else [le réseau]])
 
   // le serveur, et le calcul qu'il fait avant de comparer
   _serveur(11.8, y)
@@ -818,14 +1111,138 @@
 })
 
 // ---------------------------------------------------------------------------
+// Empreinte, sel et calcul lent (version courte, diapositive facultative)
+//
+// Trois lignes, lues de gauche à droite : ce qui entre, le calcul écrit sur
+// la flèche, ce qui sort. Empreinte : deux mots presque identiques, deux
+// empreintes sans rapport, et la flèche du retour barrée. Sel : le même mot
+// de passe pour bob et chloé, sans sel puis avec ; le sel en `attention`,
+// car il n'est pas secret. Calcul lent : le temps pour essayer toutes les
+// combinaisons de 8 caractères, avec SHA-256 et avec bcrypt.
+
+#let schema-empreinte-sel() = cetz.canvas(length: 1cm, {
+  set-style(stroke: 0.9pt + _trait)
+  let code(corps, couleur: accent) = text(size: 14pt, font: police-code, fill: couleur, corps)
+  let petit(corps, couleur: estompe) = text(size: 12pt, fill: couleur, corps)
+  // une ligne : l'entrée finit en x0, la flèche porte le calcul, la sortie
+  // commence au bout de la flèche
+  let calcul(x0, y, entree, nom, sortie, longueur: 2.4) = {
+    content((x0, y), anchor: "east", entree)
+    _fleche((x0 + 0.2, y), (x0 + 0.2 + longueur, y), epaisseur: 1.2pt)
+    content((x0 + 0.2 + longueur / 2, y + 0.14), anchor: "south",
+            text(size: 11pt, fill: estompe)[#nom])
+    content((x0 + 0.4 + longueur, y), anchor: "west", sortie)
+  }
+  let titre(y, nom, detail) = {
+    content((0, y + 0.3), anchor: "west", text(size: 15pt, weight: demi-gras, fill: accent)[#nom])
+    content((0, y - 0.1), anchor: "north-west", box(width: 4.4cm, petit(detail)))
+  }
+  let separation(y) = line((0, y), (23.2, y), stroke: 0.6pt + gris.darken(10%))
+
+  // l'empreinte
+  titre(-0.45, [empreinte], [un calcul à sens unique])
+  calcul(8.6, 0.1, code[bonjour], [SHA-256], code[2cb4b143…])
+  calcul(8.6, -0.9, code[Bonjour], [SHA-256], code[9172e8ee…])
+  // le retour impossible, sous les deux lignes
+  line((13.2, -1.75), (8.8, -1.75), stroke: (paint: estompe, thickness: 1.1pt, dash: "dashed"),
+       mark: (end: ">", fill: estompe, scale: 1.0))
+  line((10.75, -1.5), (11.25, -2.0), stroke: 2pt + accent)
+  line((10.75, -2.0), (11.25, -1.5), stroke: 2pt + accent)
+  content((13.5, -1.75), anchor: "west", petit[aucun calcul ne remonte au mot de passe])
+  content((14.6, -0.4), anchor: "west", box(width: 8.6cm, text(size: 13pt, fill: accent)[
+    le même mot donne toujours la même empreinte ; une lettre de différence donne une empreinte sans rapport
+  ]))
+
+  separation(-2.45)
+
+  // le sel
+  titre(-3.75, [sel], [un par compte, gardé dans la table])
+  content((8.6, -2.95), anchor: "east", petit[sans sel])
+  calcul(8.6, -3.55, code[123456], [SHA-256], code[8d969eef…], longueur: 1.9)
+  calcul(8.6, -4.45, code[123456], [SHA-256], code[8d969eef…], longueur: 1.9)
+  content((6.3, -3.55), anchor: "east", petit[bob])
+  content((6.3, -4.45), anchor: "east", petit[chloé])
+  content((11.1, -5.05), anchor: "west", petit(couleur: accent)[identiques])
+  content((18.4, -2.95), anchor: "east", petit[avec sel])
+  calcul(18.4, -3.55, [#code(couleur: attention)[b21e04]#code[123456]], [SHA-256], code[fe80f1e0…], longueur: 1.9)
+  calcul(18.4, -4.45, [#code(couleur: attention)[e5d1f8]#code[123456]], [SHA-256], code[f63e6f06…], longueur: 1.9)
+  content((20.9, -5.05), anchor: "west", petit(couleur: accent)[différentes])
+
+  separation(-5.5)
+
+  // le calcul lent
+  titre(-6.95, [calcul lent], [moins d'essais par seconde])
+  content((8.6, -6.0), anchor: "east", petit[8 caractères tirés au hasard])
+  calcul(8.6, -6.65, code[k7\#Qp2vL], [SHA-256 : 22 milliards d'essais par seconde],
+         text(size: 15pt, weight: demi-gras, fill: accent)[trouvé en 3,5 jours], longueur: 8.0)
+  calcul(8.6, -7.65, code[k7\#Qp2vL], [bcrypt : 184 000 essais par seconde],
+         text(size: 15pt, weight: demi-gras, fill: accent)[trouvé en 1 100 ans], longueur: 8.0)
+})
+
+// ---------------------------------------------------------------------------
+// Cryptographie symétrique et asymétrique : une clé ou deux
+//
+// Trois lignes de même forme : une clé, un geste, le message, le geste
+// inverse, l'autre clé. La couleur d'une clé dit qui la détient : `accent`
+// la clé partagée, `attention` la clé publique, que tout le monde a, `brun`
+// la clé privée, que son détenteur garde. Les clés sont toutes dessinées en
+// clés : la clé publique ne prend pas ici la forme d'un cadenas, qui ne vaut
+// que pour fermer.
+
+#let schema-cryptographie() = cetz.canvas(length: 1cm, {
+  set-style(stroke: 0.9pt + _trait)
+  let lignes = (
+    ([symétrique], [le mot de passe du Wi-Fi],
+     (accent, [la clé], [les deux côtés]), [ferme], [message fermé], [ouvre],
+     (accent, [la même clé], [les deux côtés])),
+    ([asymétrique : chiffrer], [envoyer un secret],
+     (attention, [clé publique], [n'importe qui]), [ferme], [message fermé], [ouvre],
+     (brun, [clé privée], [son détenteur seul])),
+    ([asymétrique : signer], [prouver qui l'on est : SSH],
+     (brun, [clé privée], [son détenteur seul]), [signe], [message signé], [vérifie],
+     (attention, [clé publique], [n'importe qui])),
+  )
+  let cle-et-nom(x, y, (couleur, nom, qui)) = {
+    _cle(x, y + 0.15, couleur, echelle: 0.5)
+    content((x - 0.1, y - 0.4), anchor: "north", std.stack(
+      dir: ttb, spacing: 4pt,
+      align(center, text(size: 14pt, weight: demi-gras, fill: couleur)[#nom]),
+      align(center, text(size: 12pt, fill: estompe)[#qui]),
+    ))
+  }
+  for (k, (type, usage, gauche, geste, message, inverse, droite)) in lignes.enumerate() {
+    let y = -k * 2.2
+    // séparation entre la ligne symétrique et les deux lignes asymétriques
+    if k == 1 {
+      line((0, y + 0.95), (23.0, y + 0.95), stroke: 0.6pt + gris.darken(10%))
+    }
+    content((0, y + 0.25), anchor: "west", text(size: 15pt, weight: demi-gras, fill: accent)[#type])
+    content((0, y - 0.3), anchor: "west", text(size: 12pt, fill: estompe)[#usage])
+    cle-et-nom(7.6, y, gauche)
+    _fleche((9.2, y + 0.15), (11.3, y + 0.15))
+    content((10.25, y + 0.35), anchor: "south", text(size: 13pt, fill: accent)[#geste])
+    rect((11.5, y - 0.35), (15.3, y + 0.65), radius: 0.08, fill: gris, stroke: 0.9pt + _trait)
+    content((13.4, y + 0.15), text(size: 13pt, fill: accent)[#message])
+    _fleche((15.5, y + 0.15), (17.6, y + 0.15))
+    content((16.55, y + 0.35), anchor: "south", text(size: 13pt, fill: accent)[#inverse])
+    cle-et-nom(19.5, y, droite)
+  }
+})
+
+// ---------------------------------------------------------------------------
 // La connexion SSH : quatre messages
 //
 // Deux lignes de vie, le client et le serveur, et les messages dans l'ordre.
 // La clé privée n'apparaît que du côté du client : elle n'est jamais envoyée.
+// Le client signe le défi avec la clé privée, le serveur vérifie la signature
+// avec la clé publique (signature Ed25519, depuis le 19/10/2026 ; le défi
+// « fermé avec la clé publique » de la première version était le
+// fonctionnement de SSH-1 avec RSA).
 //
-// Avec `cles: true`, la paire de `schema-cles` est dessinée en tête, entre
-// les deux acteurs : la clé près du poste, le cadenas près du serveur, et
-// le nom de chaque fichier sous l'acteur qui le garde. `pas` règle l'écart
+// Avec `cles: true`, la paire est dessinée en tête, entre les deux acteurs,
+// comme dans `schema-cryptographie` : la clé privée près du poste, la clé
+// publique près du serveur, et le nom de chaque fichier sous l'acteur qui le
+// garde. `pas` règle l'écart
 // entre deux messages.
 
 #let schema-echange-ssh(cles: false, pas: 1.45) = cetz.canvas(length: 1cm, {
@@ -850,9 +1267,9 @@
   if cles {
     let yc = y0 + 1.3
     _cle(xc + 4.2, yc, brun, echelle: 0.75)
-    _cadenas(xs - 3.6, yc, attention, echelle: 0.6)
-    line((xc + 5.9, yc), (xs - 4.6, yc), stroke: (paint: estompe, thickness: 1pt, dash: "dashed"))
-    content(((xc + xs) / 2 + 0.6, yc + 0.15), anchor: "south",
+    _cle(xs - 3.6, yc, attention, echelle: 0.75)
+    line((xc + 5.9, yc), (xs - 5.2, yc), stroke: (paint: estompe, thickness: 1pt, dash: "dashed"))
+    content(((xc + xs) / 2 - 0.3, yc + 0.15), anchor: "south",
             text(size: 13pt, fill: estompe)[une paire, créée par `ssh-keygen`])
   }
   line((xc, y0 - 0.2), (xc, y0 - 4 * pas - 0.4), stroke: 1pt + _trait)
@@ -860,15 +1277,15 @@
 
   let messages = (
     (true, "« je suis alice »", "le nom du compte, en clair"),
-    (false, "un défi, fermé avec la clé publique d'alice", "un nombre tiré au hasard"),
-    (true, "le défi, ouvert avec la clé privée", "seule la clé privée le pouvait"),
-    (false, "« entrez »", "la session est ouverte"),
+    (false, "un défi", "un nombre tiré au hasard"),
+    (true, "le défi, signé avec la clé privée", "la clé reste sur le poste"),
+    (false, "« entrez »", "signature vérifiée avec la clé publique d’alice"),
   )
   for (i, message) in messages.enumerate() {
     let (vers-serveur, texte, detail) = message
     let y = y0 - 0.6 - i * pas
     let (a, b) = if vers-serveur { (xc + 0.3, xs - 0.3) } else { (xs - 0.3, xc + 0.3) }
-    let couleur = if i == 1 { attention } else if i == 2 { brun } else { accent }
+    let couleur = if i == 2 { brun } else if i == 3 { attention } else { accent }
     _fleche((a, y), (b, y), couleur: couleur, epaisseur: 1.5pt)
     content(((xc + xs) / 2, y + 0.12), anchor: "south", box[
       #text(size: 15pt, fill: couleur, weight: demi-gras)[#(i + 1). #texte]

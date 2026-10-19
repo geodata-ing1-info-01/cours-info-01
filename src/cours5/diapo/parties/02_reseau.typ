@@ -12,7 +12,7 @@
 )
 
 // --------------------------------------------
-#d("Local et distant")[
+#d("Liens entre le poste et un serveur")[
   #annonce[
     Entre votre poste et un serveur, les données traversent une suite de
     liens. Chaque lien ajoute du temps ; la distance en ajoute le plus.
@@ -91,7 +91,7 @@
 ]
 
 // --------------------------------------------
-#d("Adresse, nom et port")[
+#d("Adresse IP, nom de domaine, port, protocole")[
   #annonce[
     Pour joindre un serveur, il faut son adresse, et savoir à quel service on
     s'adresse dessus.
@@ -154,13 +154,13 @@
     compte. Un `git push` ordinaire envoie quelques Ko ; l'attente vient des
     allers-retours.
 
-    Débit en bits par seconde, taille en octets : voir « Le débit dépend du
-    lien ».
+    Débit en bits par seconde, taille en octets : voir « Débit selon le type
+    de lien ».
   ]
 ]
 
 // --------------------------------------------
-#d("La latence dépend de la distance")[
+#d("Latence et distance")[
   #annonce[
     Dans la fibre, la lumière parcourt 200 000 km par seconde. Un aller-retour
     ne peut pas aller plus vite que la distance ne le permet.
@@ -194,7 +194,7 @@
 ]
 
 // --------------------------------------------
-#d("Le débit dépend du lien")[
+#d("Débit selon le type de lien")[
   #annonce[
     Le lien le plus lent du trajet fixe le débit. Le plus souvent, c'est le
     dernier : le Wi-Fi ou la 4G.
@@ -225,7 +225,7 @@
 ]
 
 // --------------------------------------------
-#d("Le sans-fil")[
+#d("Liaisons sans fil")[
   #annonce[
     Portée, débit, latence et consommation changent d'une technologie à
     l'autre.
@@ -262,12 +262,12 @@
 
     Le chiffrement du Wi-Fi (WPA) protège contre qui est à portée. HTTPS et SSH
     chiffrent sur tout le trajet, opérateur compris. La partie 3 y revient
-    (interception, façon 3).
+    (interception, attaque 3).
   ]
 ]
 
 // --------------------------------------------
-#d("Un commit et un push")[
+#d("Commit local et push sur le réseau")[
   #annonce[
     Le commit écrit sur le disque du poste, le push traverse le réseau. Git
     est fait pour qu'on puisse travailler sans réseau et pousser plus tard.

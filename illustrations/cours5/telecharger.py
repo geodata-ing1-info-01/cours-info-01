@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Récupère les illustrations du cours 5 : les photos sur Wikimedia Commons, à
-la taille utile, et le dessin xkcd n° 936.
+la taille utile, le dessin xkcd n° 936 et le logo Python.
 
     python illustrations/cours5/telecharger.py
 
@@ -40,6 +40,12 @@ PHOTOS = {
 # en double résolution, tel quel.
 XKCD = {
     "xkcd_936.png": "https://imgs.xkcd.com/comics/password_strength_2x.png",
+}
+
+# Le logo Python sans texte, en SVG, tel quel : la PSF admet le logo non
+# modifié, accompagné du symbole ™, dans un support qui parle de Python.
+LOGOS = {
+    "python_logo.svg": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
 }
 
 
@@ -83,6 +89,12 @@ def main() -> int:
             (ICI / nom).write_bytes(reponse.read())
         taille = (ICI / nom).stat().st_size // 1000
         print(f"{nom:20} {taille} Ko  CC BY-NC 2.5")
+    for nom, url in LOGOS.items():
+        requete = urllib.request.Request(url, headers={"User-Agent": UA})
+        with urllib.request.urlopen(requete, timeout=60) as reponse:
+            (ICI / nom).write_bytes(reponse.read())
+        taille = (ICI / nom).stat().st_size // 1000
+        print(f"{nom:20} {taille} Ko  marque de la PSF")
     return 0
 
 
