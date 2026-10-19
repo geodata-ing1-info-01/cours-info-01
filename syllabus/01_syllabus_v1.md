@@ -118,7 +118,7 @@ Deux moitiés ; la seconde prépare directement la forge (cours 6). Déroulé di
 
 **A. Matériel et réseau, ordres de grandeur (~1 h) — culture générale.**
 
-- **🎓 30′ · Le matériel** : composants (schéma, photo d'un boîtier ouvert, photo d'une carte mère), processeur, température du processeur (question à la salle), mémoire vive et disque, le chemin d'une donnée, tailles, temps d'accès sur échelle log et « si la mémoire vive valait une seconde », processeur et carte graphique, trente ans de processeurs, puissance de calcul et consommation, électricité et coût des services en ligne.
+- **🎓 30′ · Le matériel** : composants (schéma numéroté et photo d'un boîtier ouvert), processeur, température du processeur (question à la salle), mémoire vive et disque, la hiérarchie des mémoires, tailles, temps d'accès sur échelle log et « si la mémoire vive valait une seconde », processeur et carte graphique, trente ans de processeurs, opérations par seconde d'un portable, puissance de calcul et consommation, électricité et coût des services en ligne.
 - **🎓 15′ · Le réseau** : local et distant, client et serveur, adresse, nom et port (rappel de SNT), débit et latence, la distance, le lien le plus lent, le sans-fil, commit et push.
 - **⌨️ 15′ · TD 5a** : les caractéristiques du poste dans le gestionnaire des tâches, puis `mesures.py` dans l'invite de commandes d'Anaconda : additions, copie en mémoire, écriture et relecture sur le disque, aller-retour et téléchargement.
 

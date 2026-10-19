@@ -57,33 +57,34 @@ Total : 100′, dont 15′ de TD. Les 20′ du TD de la clé SSH, retiré le 30/
 
 ---
 
-## Ouverture (2 diapositives)
+## Ouverture (1 diapositive)
 
 1. Page de titre.
-2. **Contenu de la séance** : le tableau ci-dessus.
+2. *Contenu de la séance* : retirée le 19/10/2026.
 
-## Partie 1 — Le matériel (🎓 30′, 15 pages)
+## Partie 1 — Le matériel (🎓 30′, 16 pages)
 
 3. Séparateur.
-4. **Les composants d'un ordinateur.** Schéma dessiné : le boîtier avec processeur, mémoire vive, disque, carte graphique (flèche : de l'image affichée au calcul parallèle), carte réseau et alimentation ; l'écran et le clavier à l'extérieur. Un rôle en quelques mots sous chaque composant.
-4b. **Un boîtier ouvert.** Photo d'un PC de bureau des années 2010 (Wikimedia Commons, CC BY 4.0), sept repères numérotés : alimentation, carte mère, processeur sous son ventilateur, mémoire vive, disque, emplacements vides, connecteurs arrière. Notes : pas de carte graphique séparée sur un poste de bureau.
-4c. **La carte mère.** Photo d'une carte ATX de 2020 (CC0), sept repères : processeur, emplacements mémoire, emplacements pour cartes, emplacement SSD M.2, jeu de puces, connecteurs arrière, alimentation et prises des disques. Ces deux diapositives ne sont produites que si les photos sont en place (`illustrations/cours5/telecharger.py`).
+4. **Les composants d'un ordinateur.** Schéma dessiné : le boîtier avec processeur, mémoire vive, disque, carte graphique (flèche : de l'image affichée au calcul parallèle), carte réseau et alimentation, numérotés de 1 à 6 ; l'écran et le clavier sous le boîtier. Un rôle en quelques mots sous chaque composant. À droite, la photo d'un PC de bureau des années 2010 (Wikimedia Commons, CC BY 4.0), avec les mêmes numéros : l'emplacement de carte vide pour la carte graphique, la prise réseau parmi les connecteurs arrière. Sans la photo, le schéma seul, l'écran et le clavier à droite. Notes : pas de carte graphique séparée sur ce poste ; la carte mère et les bus.
+4b. *Un boîtier ouvert* : fusionnée dans la 4 le 19/10/2026, en commentaire dans `parties/01_materiel.typ`. Photo d'un PC de bureau des années 2010 (Wikimedia Commons, CC BY 4.0), sept repères numérotés : alimentation, carte mère, processeur sous son ventilateur, mémoire vive, disque, emplacements vides, connecteurs arrière. Notes : pas de carte graphique séparée sur un poste de bureau.
+4c. *La carte mère* : retirée le 19/10/2026, en commentaire dans `parties/01_materiel.typ`. Photo d'une carte ATX de 2020 (CC0), sept repères : processeur, emplacements mémoire, emplacements pour cartes, emplacement SSD M.2, jeu de puces, connecteurs arrière, alimentation et prises des disques.
 5. **Le processeur.** Quatre cœurs, chacun avec sa file d'instructions ; cadence 3 GHz = 3 milliards de cycles par seconde. Notes : un programme Python ordinaire n'occupe qu'un cœur.
 5b. **Température du processeur.** Question à la salle, vote à main levée : 40, 60, 90 ou 150 °C pour un processeur qui calcule sans arrêt.
 5c. **Température du processeur — réponses.** Tableau : 30 à 50 °C au repos, 60 à 90 °C en charge sur un poste de bureau, 80 à 100 °C sur un portable fin ; à la limite du fabricant (95 °C AMD, 100 °C Intel), la fréquence baisse. Notes : 50 à 100 W par cm² de puce, et le lien avec la fréquence plafonnée de « Trente ans de processeurs ».
 6. **Mémoire vive et disque.** Tableau : taille, temps d'accès, à l'extinction, ce qu'on y trouve. Le lien avec le cours 1 : les variables d'un programme sont en mémoire vive, un fichier est sur le disque, et c'est pour cela qu'il reste.
-7. **Le chemin d'une donnée.** Pyramide cache / mémoire vive / disque / réseau, avec taille et temps d'accès à chaque étage. Une donnée traitée par le processeur passe par tous les étages.
+7. **Hiérarchie des mémoires.** Pyramide cache / mémoire vive / disque / réseau, avec taille et temps d'accès à chaque étage. Remplissage gris pour ce qui s'efface à l'extinction (cache, mémoire vive), bleu clair pour ce qui est conservé (disque, réseau).
 8. **Ordres de grandeur : tailles.** Tableau octet, Ko, Mo, Go, To avec un exemple chacun, dont une dalle d'orthophoto (5 000 × 5 000 pixels × 3 octets = 75 Mo). Notes : Ko = 1 000 octets, Kio = 1 024 ; Windows affiche des Kio en les appelant Ko.
-9. **Ordres de grandeur : temps d'accès.** Barres sur échelle logarithmique, de la nanoseconde à la seconde : cache, mémoire vive, SSD, disque dur, réseau local, Paris–Marseille, Paris–New York, Paris–Sydney.
-10. **Si la mémoire vive valait une seconde.** La même échelle, tableau : mémoire vive 1 s, SSD un quart d'heure, disque dur une journée, Paris–New York une semaine, Paris–Sydney un mois. C'est la diapositive à retenir de la partie.
-11. **Processeur et carte graphique : la puce.** Deux puces de même taille, d'après la figure 1 du *CUDA C++ Programming Guide* (NVIDIA) : le processeur, huit cœurs faits surtout de contrôle, et un grand cache ; la carte graphique, des rangées d'unités de calcul avec un contrôle par rangée.
+9. **Ordres de grandeur : temps d'accès.** Barres sur échelle logarithmique, de la nanoseconde à la seconde : cache, mémoire vive, SSD, disque dur, réseau local, Paris–Marseille, Paris–New York, Paris–Sydney. À droite, une colonne « si la mémoire vive valait 1 s » : SSD un quart d'heure, disque dur une journée, Paris–New York une semaine, Paris–Sydney un mois. Diapositive à retenir.
+10. Fusionnée dans la 9 le 19/10/2026 (« Si la mémoire vive valait une seconde »).
+11. **Processeur et carte graphique : la puce.** Deux puces de même taille, d'après la figure 1 du *CUDA C++ Programming Guide* (NVIDIA) : le processeur, huit cœurs faits surtout de contrôle, et un grand cache ; la carte graphique, des rangées d'unités de calcul avec un contrôle par rangée. La légende rappelle que le cache est une mémoire rapide.
 11b. **Processeur et carte graphique : une image.** Une image de 16 × 8 pixels à éclaircir : quatre cœurs par bandes, 32 étapes ; un cœur par pixel, une étape. Notes : les chiffres pour une dalle d'orthophoto, et la démonstration des MythBusters pour NVIDIA.
 12. **Trente ans de processeurs.** Nuage de points 1990-2022, échelle log : transistors, fréquence, puissance, cœurs (données de Karl Rupp, CC BY 4.0, générées dans `donnees/tendances.typ`). La fréquence plafonne vers 2005 à 3 GHz, la puissance à 100 W ; les cœurs prennent le relais. Notes : mémoire, disque, prix du Go et modem sur la même période.
+12b. **Opérations par seconde d'un portable.** Calcul posé pour un AMD Ryzen 5 7530U (2023, 15 W) à sa cadence de base : processeur, 6 cœurs × 2 · 10⁹ cycles par seconde × 32 opérations par cycle = 3,8 · 10¹¹ ; carte graphique intégrée, 448 unités × 2 · 10⁹ × 2 = 1,8 · 10¹² ; total ≈ 2 · 10¹², l'ordre de grandeur du tableau suivant. Sous les 32 : 8 nombres par instruction vectorielle × 2 instructions par cycle × 2 opérations (a × b + c). Annonce : un maximum théorique. Notes : une addition Python mesurée au TD 5a (30 à 100 ns) est cent mille fois plus lente.
 13. **Puissance de calcul et consommation.** Tableau du téléphone à touches au superordinateur ASCI Red (1997, 1,3 TFLOPS, 850 kW) : opérations par seconde, puissance, électricité par an. Un smartphone égale ASCI Red pour cent mille fois moins d'électricité.
 14. **L'électricité des services en ligne.** Tableau : une question à un assistant d'IA (0,3 à 2 Wh, et 7 à 33 Wh pour un modèle qui raisonne, Jegham et al. 2025), une heure de streaming (80 Wh, IEA), 1 To gardé en ligne un an (40 à 150 kWh, calcul), le même To dans un tiroir (0), les centres de données du monde (415 TWh en 2024, 1,5 % de l'électricité mondiale, l'ordre de grandeur de la France). Notes : l'écart des estimations selon le périmètre ; les 0,24 Wh de Google (serveurs seuls, chiffre du fournisseur) ; l'analyse de cycle de vie de Mistral AI (Carbone 4, ADEME, 2025) : 1,14 g CO₂e et 45 mL d'eau par réponse, fabrication et entraînement compris.
 15. **Ce que coûte un service en ligne.** Tableau : site personnel (0 à 60 €/an), OpenStreetMap (100 000 à 170 000 €, plan 2023 de l'OSMF), Wikipédia (3,4 M$ d'hébergement, exercice 2024-2025), Meta (72 milliards de $ d'investissement en 2025).
 
-Passé en notes de la diapositive 10 : ce que cela change pour un programme (lire un fichier une fois, binaire plutôt que texte, numpy, commit local et push réseau).
+Passé en notes de la diapositive 9 : ce que cela change pour un programme (lire un fichier une fois, écrire des nombres en binaire, numpy, commit local et push réseau).
 
 Sources : Brendan Gregg, *Systems Performance* (2020), table 2.2 des latences ; Peter Norvig et Jeff Dean, « Latency numbers every programmer should know » ; Karl Rupp, *microprocessor-trend-data* ; IEA, *Energy and AI* (avril 2025) et *The carbon footprint of streaming video* (2020) ; Google, *Measuring the environmental impact of delivering AI at Google scale* (août 2025) ; OSMF, *Spending plan for 2023* ; Wikimedia Foundation, rapport d'audit 2024-2025 ; Meta, résultats du quatrième trimestre 2025 ; ASCI Red, Sandia National Laboratories.
 
@@ -154,6 +155,7 @@ Dossier `cours5/5b_secret_historique/`. Rejouer la diapositive 33 : `git init`, 
 
 - Programmes du lycée : SNT et NSI, BO spécial n° 1 du 22 janvier 2019, <https://eduscol.education.fr/>.
 - Processeurs : Karl Rupp, *microprocessor-trend-data*, CC BY 4.0, <https://github.com/karlrupp/microprocessor-trend-data>.
+- Ryzen 5 7530U : Notebookcheck, <https://www.notebookcheck.net/AMD-Ryzen-5-7530U-Processor-Benchmarks-and-Specs.681702.0.html> ; carte graphique, 448 unités à 2 GHz, 1,79 TFLOPS : CPU-Monkey, <https://www.cpu-monkey.com/en/igpu-amd_radeon_rx_vega_7_renoir> ; deux unités FMA de 256 bits par cœur Zen 3 : AnandTech, *AMD Zen 3 Ryzen Deep Dive Review*, 2020.
 - Électricité : IEA, *Energy and AI*, avril 2025, <https://www.iea.org/reports/energy-and-ai> ; IEA, *The carbon footprint of streaming video*, 2020 ; Google, *Measuring the environmental impact of delivering AI at Google Scale*, août 2025, <https://arxiv.org/abs/2508.15734> ; ASCI Red, <https://en.wikipedia.org/wiki/ASCI_Red>.
 - Coûts : OSMF, *Spending plan for 2023*, <https://operations.osmfoundation.org/2022/12/31/plan.html> ; Wikimedia Foundation, audit 2024-2025 ; Meta, résultats 2025.
 - Photos : Wikimedia Commons, voir `illustrations/cours5/README.md`.

@@ -158,15 +158,17 @@ Un **SSD** est fait de mémoire flash, sans pièce mobile. Un **disque dur**
 lit un plateau tournant ; il est cent fois plus lent à l'accès. Les postes de
 la salle ont un SSD.
 
-## Le chemin d'une donnée
+## Hiérarchie des mémoires
 
-Une donnée traitée par le processeur passe par tous les étages de mémoire.
-Plus un étage est proche du processeur, plus il est petit et rapide.
+Les types de mémoire sont rangés selon leur proximité du processeur. Plus un
+étage est proche du processeur, plus il est petit et rapide. Le cache et la
+mémoire vive s'effacent à l'extinction du poste ; le disque conserve son
+contenu, et le réseau garde les données sur un autre ordinateur.
 
 ```{figure} figures/1_pyramide.svg
-:alt: Une pyramide de quatre étages, du sommet à la base. Le cache, dans le processeur : quelques Mo, 1 ns. La mémoire vive, RAM : 8 à 32 Go, 100 ns. Le disque, SSD ou disque dur : 0,5 à 4 To, 0,1 à 10 ms. Le réseau, un autre ordinateur : sans limite de taille, 1 à 300 ms. La taille est écrite à gauche de chaque étage, le temps d'accès à droite.
+:alt: Une pyramide de quatre étages, du sommet à la base. Le cache, dans le processeur : quelques Mo, 1 ns. La mémoire vive, RAM : 8 à 32 Go, 100 ns. Le disque, SSD ou disque dur : 0,5 à 4 To, 0,1 à 10 ms. Le réseau, un autre ordinateur : sans limite de taille, 1 à 300 ms. La taille est écrite à gauche de chaque étage, le temps d'accès à droite. Le cache et la mémoire vive sont en gris, contenu effacé à l'extinction ; le disque et le réseau en bleu clair, contenu conservé.
 
-Les étages de mémoire, avec leur taille et leur temps d'accès.
+Les étages de mémoire, avec leur taille, leur temps d'accès et ce qu'ils gardent à l'extinction.
 ```
 
 Le **cache** est une petite mémoire placée dans le processeur. Il garde les

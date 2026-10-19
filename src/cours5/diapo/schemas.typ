@@ -38,6 +38,13 @@
   mark: (end: ">", fill: couleur, scale: 1.2), ..args,
 )
 
+// Un numéro dans un cercle, posé sur un schéma ou sur une photo.
+#let repere(n, taille: 21pt) = box(
+  width: taille, height: taille,
+  fill: white, stroke: 1.6pt + accent, radius: taille / 2,
+  std.align(center + horizon, text(size: 12.5pt, weight: demi-gras, fill: accent)[#n]),
+)
+
 // ---------------------------------------------------------------------------
 // Les composants d'un ordinateur
 //
@@ -141,13 +148,26 @@
   }
 }
 
-#let schema-composants() = cetz.canvas(length: 1cm, {
+// Avec `dessous: true`, le boîtier est resserré et l'écran et le clavier
+// passent dessous : le schéma laisse la droite de la diapositive à la photo
+// du boîtier ouvert. Avec `numeros: true`, chaque composant porte le numéro
+// du repère qui le désigne sur cette photo.
+
+#let schema-composants(dessous: false, numeros: false) = cetz.canvas(length: 1cm, {
   set-style(stroke: 0.9pt + _trait)
 
   // le boîtier
-  rect((0, -0.7), (16.6, 10.2), radius: 0.15, stroke: 1.6pt + accent, name: "boitier")
-  content((0.35, 9.9), anchor: "north-west",
+  let (y-bas, y-haut) = if dessous { (-0.2, 9.6) } else { (-0.7, 10.2) }
+  rect((0, y-bas), (16.6, y-haut), radius: 0.15, stroke: 1.6pt + accent, name: "boitier")
+  content((0.35, y-haut - 0.3), anchor: "north-west",
           text(size: 13pt, fill: estompe)[#petites-capitales("le boîtier")])
+
+  if numeros {
+    for (n, pos) in ((1.7, 8.4), (7.2, 8.4), (11.7, 8.45),
+                     (1.15, 3.85), (7.4, 3.65), (11.85, 3.85)).enumerate() {
+      content(pos, repere(n + 1))
+    }
+  }
 
   // les six composants, sur deux rangées
   _processeur(3.2, 7.6)
@@ -173,15 +193,26 @@
   _etiquette((13.4, 2.1), "Alimentation", "conversion du 230 V", largeur: 4.4cm)
 
   // ce que l'utilisateur touche
-  _ecran(21.0, 6.4)
-  _etiquette((21.0, 5.5), "Écran", none)
-  _clavier(21.0, 2.6)
-  _etiquette((21.0, 1.9), "Clavier, souris", none)
+  if dessous {
+    _ecran(4.0, -2.6)
+    content((5.8, -1.9), anchor: "west",
+            text(size: 16pt, weight: demi-gras, fill: accent)[Écran])
+    _clavier(11.0, -2.0)
+    content((12.8, -2.0), anchor: "west",
+            text(size: 16pt, weight: demi-gras, fill: accent)[Clavier, souris])
+    line((4.0, y-bas), (4.0, -0.9))
+    line((11.0, y-bas), (11.0, -1.55))
+  } else {
+    _ecran(21.0, 6.4)
+    _etiquette((21.0, 5.5), "Écran", none)
+    _clavier(21.0, 2.6)
+    _etiquette((21.0, 1.9), "Clavier, souris", none)
 
-  line("boitier.east", (rel: (0.9, 0), to: "boitier.east"),
-       (rel: (0.9, 0), to: ("boitier.east", "|-", (0, 6.4))), (19.6, 6.4))
-  line((rel: (0.9, 0), to: "boitier.east"),
-       (rel: (0.9, 0), to: ("boitier.east", "|-", (0, 2.6))), (19.5, 2.6))
+    line("boitier.east", (rel: (0.9, 0), to: "boitier.east"),
+         (rel: (0.9, 0), to: ("boitier.east", "|-", (0, 6.4))), (19.6, 6.4))
+    line((rel: (0.9, 0), to: "boitier.east"),
+         (rel: (0.9, 0), to: ("boitier.east", "|-", (0, 2.6))), (19.5, 2.6))
+  }
 })
 
 // ---------------------------------------------------------------------------
@@ -272,12 +303,13 @@
   let entrees = (
     (_c-calcul, [calcul]),
     (_c-controle, [contrôle des instructions]),
-    (_c-cache, [cache]),
+    (_c-cache, [cache : mémoire rapide]),
   )
   let xs = (3.5, 7.5, 16.0)
   for ((couleur, nom), x) in entrees.zip(xs) {
     _pave((x, 0.1), (x + 0.45, 0.55), couleur)
-    content((x + 0.65, 0.325), anchor: "west", text(size: 13pt, fill: accent)[#nom])
+    content((x + 0.65, 0.325), anchor: "west",
+            text(size: 13pt, fill: accent, top-edge: "cap-height", bottom-edge: "baseline")[#nom])
   }
 })
 
@@ -334,34 +366,78 @@
 })
 
 // ---------------------------------------------------------------------------
-// Le chemin d'une donnée : la pyramide des mémoires
+// Opérations par seconde : la décomposition pour un portable
+//
+// Le nombre d'opérations par seconde est un produit : unités de calcul,
+// cycles par seconde, opérations par cycle. Une ligne pour le processeur, avec
+// sous les 32 opérations par cycle leur décomposition, une ligne pour la carte
+// graphique intégrée, puis le total. Valeurs d'un AMD Ryzen 5 7530U (2023) à
+// sa cadence de base. Dessiné avec les primitives de typst, sans cetz.
+
+#let _facteur(valeur, unite) = box(
+  width: 100%, inset: (x: 4pt, y: 7pt), radius: 4pt,
+  stroke: 1.2pt + accent, fill: white,
+  align(center)[
+    #text(size: 22pt, weight: demi-gras, fill: accent)[#valeur]
+    #linebreak()
+    #text(size: 13pt, fill: estompe)[#unite]
+  ],
+)
+
+#let schema-operations() = {
+  let signe(s) = text(size: 22pt, fill: estompe)[#s]
+  let nom(s) = align(left, text(size: 17pt, weight: demi-gras, fill: accent)[#s])
+  let resultat(v) = align(left, text(size: 22pt, weight: demi-gras, fill: accent)[#v])
+  let cadence = _facteur([2 · 10#super[9]], [cycles par seconde])
+  std.grid(
+    columns: (auto, 1fr, auto, 1.25fr, auto, 1.25fr, auto, auto),
+    column-gutter: 8pt, row-gutter: 8pt, align: center + horizon,
+    nom[Processeur], _facteur([6], [cœurs]), signe[×], cadence, signe[×],
+    _facteur([32], [opérations par cycle]), signe[=], resultat[3,8 · 10#super[11]],
+    [], [], [], [], [],
+    text(size: 13pt, fill: estompe)[8 nombres par instruction \ × 2 instructions par cycle \ × 2 opérations : a × b + c],
+    [], [],
+    nom[Carte graphique], _facteur([448], [unités de calcul]), signe[×], cadence, signe[×],
+    _facteur([2], [opérations par cycle]), signe[=], resultat[1,8 · 10#super[12]],
+    std.grid.cell(colspan: 6, align(right, text(size: 17pt, fill: accent)[total])),
+    signe[≈], resultat[2 · 10#super[12]],
+  )
+}
+
+// ---------------------------------------------------------------------------
+// Hiérarchie des mémoires : la pyramide
 //
 // Quatre étages, du plus rapide et plus petit au plus lent et plus grand.
 // Chaque étage porte son nom au centre, sa taille à gauche, son temps d'accès à
-// droite.
+// droite. Le remplissage dit si le contenu de l'étage reste à l'extinction du
+// poste : gris pour le cache et la mémoire vive, qui s'effacent ; bleu clair
+// pour le disque et le réseau, qui conservent. Une légende sous la base.
+
+#let _efface = gris
+#let _conserve = attention.lighten(58%)
 
 #let pyramide-memoire() = cetz.canvas(length: 1cm, {
   let etages = (
-    ("Cache", "dans le processeur", "quelques Mo", "1 ns"),
-    ("Mémoire vive", "RAM", "8 à 32 Go", "100 ns"),
-    ("Disque", "SSD ou disque dur", "0,5 à 4 To", "0,1 à 10 ms"),
-    ("Réseau", "un autre ordinateur", "sans limite", "1 à 300 ms"),
+    ("Cache", "dans le processeur", "quelques Mo", "1 ns", false),
+    ("Mémoire vive", "RAM", "8 à 32 Go", "100 ns", false),
+    ("Disque", "SSD ou disque dur", "0,5 à 4 To", "0,1 à 10 ms", true),
+    ("Réseau", "un autre ordinateur", "sans limite", "1 à 300 ms", true),
   )
   let etage-h = 1.55
   let (xg, xd) = (0, 22)
   let cx = (xg + xd) / 2
   // largeur du sommet et de la base
-  let (l-haut, l-bas) = (5.0, 16.0)
+  let (l-haut, l-bas) = (6.4, 16.0)
   let n = etages.len()
   for (i, etage) in etages.enumerate() {
-    let (nom, detail, taille, temps) = etage
+    let (nom, detail, taille, temps, conserve) = etage
     let y-haut = (n - i) * etage-h
     let y-bas = (n - i - 1) * etage-h
     let l1 = l-haut + (l-bas - l-haut) * i / n
     let l2 = l-haut + (l-bas - l-haut) * (i + 1) / n
     line((cx - l1 / 2, y-haut), (cx + l1 / 2, y-haut), (cx + l2 / 2, y-bas),
          (cx - l2 / 2, y-bas), close: true,
-         fill: accent.lighten(92% - i * 8%), stroke: 1.2pt + accent)
+         fill: if conserve { _conserve } else { _efface }, stroke: 1.2pt + accent)
     content((cx, (y-haut + y-bas) / 2), box[
       #align(center)[
         #text(size: 17pt, weight: demi-gras, fill: accent)[#nom]
@@ -378,6 +454,13 @@
           text(size: 13pt, fill: estompe)[#petites-capitales("taille")])
   content((cx + l-bas / 2 + 0.5, n * etage-h + 0.35), anchor: "south-west",
           text(size: 13pt, fill: estompe)[#petites-capitales("temps d'accès")])
+  let pastille(couleur) = box(width: 0.9em, height: 0.9em, baseline: 0.12em,
+                              fill: couleur, stroke: 1pt + accent)
+  content((cx, -0.6), anchor: "north", text(size: 15pt, fill: accent)[
+    #pastille(_efface) #h(0.3em) contenu effacé à l'extinction
+    #h(2em)
+    #pastille(_conserve) #h(0.3em) contenu conservé à l'extinction
+  ])
 })
 
 // ---------------------------------------------------------------------------
@@ -387,42 +470,56 @@
 // c'est ce qui rend comparables une nanoseconde et une demi-seconde sur la
 // même diapositive. Chaque décade est marquée ; la valeur est écrite au bout
 // de la barre. Dessiné avec les primitives de typst, sans cetz.
+//
+// Avec `echelle` (l'en-tête d'une colonne), chaque ligne peut porter un
+// cinquième élément, écrit dans une colonne à droite : le même temps sur une
+// échelle humaine. `interligne` resserre les barres quand la place manque.
 
-#let barres-temps(lignes, t-min: 1e-9, t-max: 1, largeur-nom: 150pt, largeur-valeur: 80pt) = layout(dispo => {
+#let barres-temps(lignes, t-min: 1e-9, t-max: 1, largeur-nom: 150pt, largeur-valeur: 80pt, echelle: none, largeur-echelle: 190pt, interligne: 6pt) = layout(dispo => {
   let decades = calc.round(calc.log(t-max / t-min, base: 10))
-  let largeur-barre = dispo.width - largeur-nom - largeur-valeur - 20pt
+  let largeur-droite = if echelle == none { 0pt } else { largeur-echelle }
+  let largeur-barre = dispo.width - largeur-nom - largeur-valeur - 20pt - largeur-droite
   let x(t) = largeur-barre * calc.log(t / t-min, base: 10) / decades
   let hauteur-ligne = 20pt
-  let interligne = 6pt
   let n = lignes.len()
-  let hauteur = n * (hauteur-ligne + interligne) + 26pt
+  let haut = if echelle == none { 0pt } else { hauteur-ligne }
+  let hauteur = n * (hauteur-ligne + interligne) + 26pt + haut
 
   block(width: 100%, height: hauteur, {
+    if echelle != none {
+      place(top + right, box(width: largeur-echelle, height: hauteur-ligne,
+            align(right + horizon, text(size: 13pt, fill: estompe)[#echelle])))
+    }
     // repères des décades, avec l'unité lisible
     let reperes = (
       (1e-9, "1 ns"), (1e-6, "1 µs"), (1e-3, "1 ms"), (1, "1 s"),
     )
     for (t, nom) in reperes {
-      place(top + left, dx: largeur-nom + 10pt + x(t), dy: 0pt,
-            std.line(angle: 90deg, length: hauteur - 22pt, stroke: 0.5pt + gris.darken(15%)))
+      place(top + left, dx: largeur-nom + 10pt + x(t), dy: haut,
+            std.line(angle: 90deg, length: hauteur - 22pt - haut, stroke: 0.5pt + gris.darken(15%)))
       place(bottom + left, dx: largeur-nom + 10pt + x(t) - 14pt,
             text(size: 12pt, fill: estompe)[#nom])
     }
     for k in range(int(decades) + 1) {
       let t = t-min * calc.pow(10, k)
-      place(top + left, dx: largeur-nom + 10pt + x(t), dy: 0pt,
+      place(top + left, dx: largeur-nom + 10pt + x(t), dy: haut,
             std.line(angle: 90deg, length: 6pt, stroke: 0.7pt + estompe))
     }
     for (i, ligne) in lignes.enumerate() {
-      let (nom, t, valeur, couleur) = ligne
-      let y = i * (hauteur-ligne + interligne)
+      let (nom, t, valeur, couleur, ..reste) = ligne
+      let y = haut + i * (hauteur-ligne + interligne)
+      if echelle != none and reste.len() > 0 {
+        place(top + right, dy: y, box(width: largeur-echelle, height: hauteur-ligne,
+              align(right + horizon, text(size: 15pt, fill: accent)[#reste.at(0)])))
+      }
       place(top + left, dx: 0pt, dy: y,
             box(width: largeur-nom, height: hauteur-ligne,
                 align(right + horizon, text(size: 15pt, fill: accent)[#nom])))
       place(top + left, dx: largeur-nom + 10pt, dy: y + 3pt,
             std.rect(width: x(t), height: hauteur-ligne - 6pt, fill: couleur, stroke: none))
-      place(top + left, dx: largeur-nom + 10pt + x(t) + 6pt, dy: y,
-            box(height: hauteur-ligne,
+      // fond blanc : la valeur passe devant le trait de la décade suivante
+      place(top + left, dx: largeur-nom + 10pt + x(t) + 4pt, dy: y,
+            box(height: hauteur-ligne, fill: white, inset: (x: 2pt),
                 align(horizon, text(size: 14pt, fill: accent, weight: demi-gras)[#valeur])))
     }
   })
@@ -609,13 +706,6 @@
 //     calcul: "SHA-256",
 //   )
 
-// Un numéro dans un cercle, posé sur un schéma ou sur une photo.
-#let repere(n, taille: 21pt) = box(
-  width: taille, height: taille,
-  fill: white, stroke: 1.6pt + accent, radius: taille / 2,
-  std.align(center + horizon, text(size: 12.5pt, weight: demi-gras, fill: accent)[#n]),
-)
-
 #let schema-connexion(entetes: (), lignes: (), calcul: none, reperes: false, zoom: 115%) = std.scale(zoom, reflow: true, cetz.canvas(length: 1cm, {
   set-style(stroke: 0.9pt + _trait)
   let y = 0
@@ -662,10 +752,10 @@
 
   if reperes {
     let r(pos, n) = content(pos, repere(n))
-    r((16.1, y + 1.85), 1)
+    r((15.55, y + 1.6), 1)
     r((11.8, y + 1.6), 2)
     r((5.2, y - 0.5), 3)
-    r((-0.2, y + 1.25), 4)
+    r((-0.75, y + 0.9), 4)
   }
 }))
 
@@ -732,26 +822,39 @@
 //
 // Deux lignes de vie, le client et le serveur, et les messages dans l'ordre.
 // La clé privée n'apparaît que du côté du client : elle n'est jamais envoyée.
+//
+// Avec `cles: true`, la paire de `schema-cles` est dessinée en tête, entre
+// les deux acteurs : la clé près du poste, le cadenas près du serveur, et
+// le nom de chaque fichier sous l'acteur qui le garde. `pas` règle l'écart
+// entre deux messages.
 
-#let schema-echange-ssh() = cetz.canvas(length: 1cm, {
+#let schema-echange-ssh(cles: false, pas: 1.45) = cetz.canvas(length: 1cm, {
   set-style(stroke: 0.9pt + _trait)
   let (xc, xs) = (3.0, 20.0)
   let y0 = 6.6
-  let pas = 1.45
 
   // les deux acteurs
   _portable(xc, y0 + 0.4)
   content((xc, y0 + 2.1), anchor: "south", box[
     #text(size: 16pt, weight: demi-gras, fill: accent)[votre poste]
     #linebreak()
-    #text(size: 13pt, fill: brun)[clé privée]
+    #text(size: 13pt, fill: brun)[clé privée#if cles [, `id_ed25519`]]
   ])
   _serveur(xs, y0 + 1.0)
   content((xs, y0 + 2.4), anchor: "south", box[
     #text(size: 16pt, weight: demi-gras, fill: accent)[le serveur]
     #linebreak()
-    #text(size: 13pt, fill: attention)[votre clé publique]
+    #text(size: 13pt, fill: attention)[votre clé publique#if cles [, `id_ed25519.pub`]]
   ])
+
+  if cles {
+    let yc = y0 + 1.3
+    _cle(xc + 4.2, yc, brun, echelle: 0.75)
+    _cadenas(xs - 3.6, yc, attention, echelle: 0.6)
+    line((xc + 5.9, yc), (xs - 4.6, yc), stroke: (paint: estompe, thickness: 1pt, dash: "dashed"))
+    content(((xc + xs) / 2 + 0.6, yc + 0.15), anchor: "south",
+            text(size: 13pt, fill: estompe)[une paire, créée par `ssh-keygen`])
+  }
   line((xc, y0 - 0.2), (xc, y0 - 4 * pas - 0.4), stroke: 1pt + _trait)
   line((xs, y0 - 0.4), (xs, y0 - 4 * pas - 0.4), stroke: 1pt + _trait)
 

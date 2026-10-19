@@ -1,6 +1,6 @@
 // Cours 5, partie 1 — le matériel. Incluse par `cours5.typ`.
 #import "../../../commun/prelude.typ": *
-#import "../schemas.typ": schema-composants, schema-coeurs, pyramide-memoire, barres-temps, photo-reperee, legende-reperes, graphe-tendances, schema-puces, schema-pixels
+#import "../schemas.typ": schema-composants, schema-coeurs, pyramide-memoire, barres-temps, photo-reperee, legende-reperes, graphe-tendances, schema-puces, schema-pixels, schema-operations
 
 #separateur(
   "Le matériel",
@@ -8,11 +8,40 @@
 )
 
 // --------------------------------------------
+// Avec la photo en place, le schéma est numéroté et la photo du boîtier
+// ouvert est à sa droite, avec les mêmes numéros (fusion du 19/10/2026 avec
+// « Un boîtier ouvert ») ; sans elle, le schéma seul.
 #d("Les composants d'un ordinateur")[
-  #align(center, schema-composants())
+  #if captures-disponibles {
+    grid(
+      columns: (auto, 1fr), column-gutter: 16pt, align: horizon,
+      scale(86%, reflow: true, schema-composants(dessous: true, numeros: true)),
+      [
+        #photo-reperee("/illustrations/cours5/boitier_ouvert.jpg", 1400 / 1275, (
+          (0.34, 0.50), (0.47, 0.42), (0.62, 0.53),
+          (0.30, 0.66), (0.185, 0.58), (0.23, 0.21),
+        ), hauteur: 262pt)
+        #legende[
+          Un PC de bureau des années 2010, panneau retiré. Photo
+          PantheraLeo1359531, Wikimedia Commons, CC BY 4.0.
+        ]
+      ],
+    )
+  } else {
+    align(center, schema-composants())
+  }
 
   #notes[
     La suite de la partie détaille le processeur, la mémoire vive et le disque.
+
+    Les numéros du schéma désignent les mêmes composants sur la photo. Le
+    processeur est sous le ventilateur (1). La carte réseau est intégrée à la
+    carte mère ; on n'en voit que la prise, parmi les connecteurs arrière (5).
+    Ce poste n'a pas de carte graphique séparée : le processeur gère
+    l'affichage. Les emplacements vides (4) permettent d'en ajouter une.
+
+    La carte mère relie les composants par des pistes de cuivre. Un ensemble de
+    pistes entre deux composants s'appelle un bus.
 
     Carte graphique : conçue pour calculer l'image affichée, utilisée aujourd'hui
     pour le calcul parallèle (diapositives « Processeur et carte graphique »).
@@ -26,6 +55,10 @@
   ]
 ]
 
+// « Un boîtier ouvert » et « La carte mère », retirées le 19/10/2026 : la
+// photo du boîtier ouvert est passée sur « Les composants d'un ordinateur ».
+// Gardées en commentaire pour une version ultérieure.
+/*
 // Les deux photos ne sont produites qu'avec les images en place : sans
 // elles, le schéma dessiné qui précède porte seul les composants.
 #if captures-disponibles {
@@ -92,6 +125,7 @@ d("La carte mère")[
   ]
 ]
 }
+*/
 
 // --------------------------------------------
 #d("Le processeur")[
@@ -213,15 +247,20 @@ d("La carte mère")[
 ]
 
 // --------------------------------------------
-#d("Le chemin d'une donnée")[
+#d("Hiérarchie des mémoires")[
   #annonce[
-    Une donnée traitée par le processeur passe par tous les étages : plus
-    l'étage est proche du processeur, plus il est petit et rapide.
+    Les types de mémoire sont rangés selon leur proximité du processeur, le
+    plus proche en haut.
   ]
 
   #align(center, pyramide-memoire())
 
   #notes[
+    Plus l'étage est proche du processeur, plus il est petit et rapide : les
+    deux colonnes le montrent. La couleur reprend la ligne « À l'extinction »
+    de la diapositive précédente ; le réseau garde les données sur un autre
+    ordinateur, que l'extinction du poste ne touche pas.
+
     Le cache est une petite mémoire dans le processeur ; il garde les dernières
     données lues en mémoire vive. Une boucle sur des valeurs voisines est donc
     plus rapide qu'une boucle qui saute dans un tableau.
@@ -261,21 +300,23 @@ d("La carte mère")[
 ]
 
 // --------------------------------------------
+// Fusion de « Ordres de grandeur : temps d'accès » et de « Si la mémoire vive
+// valait une seconde » (19/10/2026), comme dans `cours5_short.typ`.
 #d("Ordres de grandeur : temps d'accès")[
   #annonce[
     De la nanoseconde à la demi-seconde, sur une échelle logarithmique :
     chaque graduation vaut dix fois la précédente.
   ]
 
-  #barres-temps((
-    ([cache du processeur], 1e-9, [1 ns], accent),
-    ([mémoire vive], 1e-7, [100 ns], accent),
-    ([SSD], 1e-4, [100 µs], accent),
-    ([disque dur], 1e-2, [10 ms], accent),
-    ([réseau de la salle], 5e-4, [0,5 ms], attention),
-    ([Paris – Marseille], 1.3e-2, [13 ms], attention),
-    ([Paris – New York], 7.5e-2, [75 ms], attention),
-    ([Paris – Sydney], 2.7e-1, [270 ms], attention),
+  #barres-temps(echelle: [si la mémoire vive valait 1 s], interligne: 3pt, (
+    ([cache du processeur], 1e-9, [1 ns], accent, [un centième de seconde]),
+    ([mémoire vive], 1e-7, [100 ns], accent, [1 seconde]),
+    ([SSD], 1e-4, [100 µs], accent, [un quart d'heure]),
+    ([disque dur], 1e-2, [10 ms], accent, [une journée]),
+    ([réseau de la salle], 5e-4, [0,5 ms], attention, [une heure et demie]),
+    ([Paris – Marseille], 1.3e-2, [13 ms], attention, [un jour et demi]),
+    ([Paris – New York], 7.5e-2, [75 ms], attention, [une semaine]),
+    ([Paris – Sydney], 2.7e-1, [270 ms], attention, [un mois]),
   ))
 
   #legende[
@@ -284,34 +325,14 @@ d("La carte mère")[
   ]
 
   #notes[
-    Chaque barre est environ mille fois plus longue que la précédente. Les temps
-    réseau, en bleu clair, commencent au niveau du disque dur.
+    Colonne de droite : les mêmes temps multipliés par dix millions.
+    Du cache au disque dur, chaque étage prend cent à mille fois plus de temps
+    que le précédent. Les temps réseau, en bleu clair, commencent au niveau du
+    disque dur.
 
     Ce sont des temps d'accès, jusqu'au premier octet. Le débit est traité en
     partie 2.
-  ]
-]
 
-// --------------------------------------------
-#d("Si la mémoire vive valait une seconde")[
-  #annonce[
-    Les temps de la diapositive précédente, multipliés par dix millions.
-  ]
-
-  #tableau(
-    columns: (1fr, auto, auto),
-    align: (left + horizon, right + horizon, right + horizon),
-    [Accès], [Temps réel], [À l'échelle],
-    [cache du processeur], [1 ns], [un centième de seconde],
-    [mémoire vive], [100 ns], [1 seconde],
-    [SSD], [100 µs], [un quart d'heure],
-    [disque dur], [10 ms], [une journée],
-    [Paris – Marseille, aller-retour], [13 ms], [un jour et demi],
-    [Paris – New York, aller-retour], [75 ms], [une semaine],
-    [Paris – Sydney, aller-retour], [270 ms], [un mois],
-  )
-
-  #notes[
     Pendant une lecture sur le disque dur, le processeur pourrait faire
     l'équivalent d'une journée d'accès à la mémoire ; pendant un aller-retour
     vers New York, une semaine.
@@ -409,6 +430,44 @@ d("La carte mère")[
     De 1995 à 2025 : mémoire vive de 8 Mo à 16 Go ; disque de 1 Go à 1 To ; prix
     du Go de disque de 1 000 \$ à 2 centimes ; modem à 28,8 kbit/s, fibre à
     1 Gbit/s.
+  ]
+]
+
+// --------------------------------------------
+#d("Opérations par seconde d'un portable")[
+  #annonce[
+    Le nombre d'opérations par seconde est un maximum théorique, atteint
+    quand chaque unité de calcul travaille à chaque cycle.
+  ]
+
+  #schema-operations()
+
+  #legende[
+    AMD Ryzen 5 7530U (2023, 15 W) à sa cadence de base : six cœurs Zen 3, et
+    une carte graphique intégrée de 448 unités. Nombres à virgule de 32 bits.
+    Caractéristiques : Notebookcheck, CPU-Monkey.
+  ]
+
+  #notes[
+    Le calcul : unités de calcul × cycles par seconde × opérations par cycle.
+    La première ligne se refait avec les cœurs et la cadence relevés au TD 5a,
+    en gardant 32 opérations par cycle comme ordre de grandeur.
+
+    Les 32 opérations par cycle d'un cœur : une instruction vectorielle (AVX2)
+    traite 8 nombres de 32 bits à la fois ; le cœur a deux unités qui en
+    exécutent chacune une par cycle ; chacune fait une multiplication suivie
+    d'une addition (a × b + c), comptée deux opérations. La diapositive « Le
+    processeur », une instruction après l'autre, simplifie.
+
+    La carte graphique fait les quatre cinquièmes du total, avec beaucoup
+    d'unités simples (diapositives « Processeur et carte graphique »).
+
+    Un programme Python ordinaire reste loin de ce maximum : une addition y
+    prend 30 à 100 ns (TD 5a), soit 10 à 30 millions par seconde, cent mille
+    fois moins. numpy emploie les instructions vectorielles ; la carte
+    graphique demande des bibliothèques dédiées.
+
+    Cadence de base 2 GHz ; jusqu'à 4,5 GHz sur un seul cœur.
   ]
 ]
 

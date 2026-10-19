@@ -6,11 +6,11 @@ Premier jet, septembre 2026. Gabarits, conventions et commandes : voir
 [`syllabus/cours/5_materiel_reseau_ssh/contenu_detaille.md`](../../../syllabus/cours/5_materiel_reseau_ssh/contenu_detaille.md).
 
 ```bash
-python outils/compiler_diapos.py --cours 5                  # 53 pages : 43 d'exposé, 10 de TD
+python outils/compiler_diapos.py --cours 5                  # 56 pages : 50 d'exposé, 6 de TD
 python outils/compiler_diapos.py --cours 5 --notes          # notes de conduite à droite
 python outils/compiler_diapos.py --cours 5 --corrige        # réponses des TD
-python outils/compiler_diapos.py --cours 5 --sans-tds       # 46 pages, un sommaire par bloc de TD
-python illustrations/cours5/telecharger.py                  # les deux photos ; sans elles, 51 pages
+python outils/compiler_diapos.py --cours 5 --sans-tds       # 52 pages, un sommaire par bloc de TD
+python illustrations/cours5/telecharger.py                  # les deux photos ; sans elles, 54 pages
 python outils/compiler_tds.py --cours 5                     # une feuille par TD, dans data/cours5/
 python outils/livrer_tds.py --cours 5                       # l'archive remise aux étudiants
 python outils/verifier_diapos.py src/cours5/diapo/cours5.pdf
@@ -36,7 +36,9 @@ Les chemins Windows sont recomposés à partir de ces sorties.
 
 Les deux photos annotées viennent de Wikimedia Commons et sont décrites dans
 [`illustrations/cours5/README.md`](../../../illustrations/cours5/README.md) ;
-les deux diapositives qui les portent ne sont produites que si elles sont là.
+la photo du boîtier ouvert n'est posée à droite du schéma des composants que
+si elle est là. La diapositive de la carte mère est en commentaire dans
+`parties/01_materiel.typ` depuis le 19/10/2026.
 
 `schemas.typ` ouvre `cetz.draw` : ce qui y est primitive typst du même nom
 s'écrit `std.rect`, `std.line`, `std.rotate`, et les parties l'importent
