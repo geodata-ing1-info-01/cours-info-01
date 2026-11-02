@@ -43,13 +43,13 @@ supprimer. Les autres lignes ne changent pas et indiquent l'endroit : le
 nombre qui les précède est le numéro de la ligne dans VS Code, quand les
 modifications sont faites de haut en bas.
 
-| Étape | Objectif | Durée |
-|---|---|---|
-| [E0](#e0-récupérer-le-projet-et-son-environnement) | récupérer un projet et son environnement, le faire tourner | 20′ |
-| [E1](#e1-lire-le-code) | lire le code d'un autre : comment une image est composée | 10′ |
-| [E2](#e2-effet-1-la-fenêtre-du-train) | effet 1, la fenêtre du train, sur une branche ; une pull request | 20′ |
-| [E3](#e3-effet-2-les-ombres-des-poteaux) | effet 2, les ombres des poteaux avec numpy, sur une autre branche ; un conflit | 40′ |
-| [E4](#e4-bonus-un-troisième-plan) (bonus) | un troisième plan, sans modifier le code | |
+| Étape | Objectif |
+|---|---|
+| [E0](#e0-récupérer-le-projet-et-son-environnement) | récupérer un projet et son environnement, le faire tourner |
+| [E1](#e1-lire-le-code) | lire le code d'un autre : comment une image est composée |
+| [E2](#e2-effet-1-la-fenêtre-du-train) | effet 1, la fenêtre du train, sur une branche ; une pull request |
+| [E3](#e3-effet-2-les-ombres-des-poteaux) | effet 2, les ombres des poteaux avec numpy, sur une autre branche ; un conflit |
+| [E4](#e4-bonus-un-troisième-plan) (bonus) | un troisième plan, sans modifier le code |
 
 ## Au début de la séance
 

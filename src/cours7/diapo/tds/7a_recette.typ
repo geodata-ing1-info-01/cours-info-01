@@ -14,6 +14,7 @@
 #import "../../../cours3/diapo/schemas.typ": sortie
 #import "../schemas.typ": page-recette, sommaire-recettes
 #import "../../../cours1_v2/diapo/schemas.typ": consignes, comment, commandes
+#show link: underline
 
 #let td = (
   numero: "7a",
@@ -26,11 +27,10 @@
 #separateur-td(..td)
 
 // --------------------------------------------
-#d("Ce que le programme écrira à la fin du TD")[
+#d("Objectif du TD : générer les pages HTML des recettes et leur sommaire")[
   #annonce[
-    Au départ, `recette.py` écrit les quantités d'une recette dans un
-    fichier CSV. À la fin du TD, il écrit aussi une page HTML par recette,
-    avec son texte et le tableau des quantités, et un sommaire.
+    Au départ, `recette.py` écrit seulement les quantités d'une recette,
+    dans un fichier CSV.
   ]
 
   #align(center, grid(
@@ -72,19 +72,21 @@
 // --------------------------------------------
 #d("Les étapes du TD")[
   #annonce[
-    Deux fonctionnalités, chacune sur sa branche, livrée par une pull
-    request : la page d'une recette, puis toutes les pages et le sommaire.
+    Le TD ajoute deux fonctionnalités au programme, chacune sur sa propre
+    branche soumise par une pull request : générer la page HTML d'une
+    recette, puis générer les pages HTML de toutes les recettes et leur
+    sommaire.
   ]
 
   #tableau(
-    columns: (auto, 1.3fr, 1fr),
+    columns: (auto, 1.75fr, 1fr),
     align: (center + horizon, left + horizon, left + horizon),
     [Étape], [Objectif], [Résultat],
     [D0], [récupérer le projet et le relancer], [`sortie/crepes_6_SI.csv`],
-    [D1], [compléter le texte de la recette par le tableau, puis le convertir par pandoc], [`sortie/crepes.md`, puis `sortie/crepes.html`],
-    [D2], [proposer la branche `page` par une pull request], [la branche fusionnée sur GitHub],
-    [D3], [écrire les pages de toutes les recettes en une commande], [dix pages],
-    [D4], [écrire une page qui relie les autres ; seconde pull request], [`sortie/index.html`],
+    [D1], [compléter le texte de la recette par le tableau, puis le convertir par pandoc], [`sortie/crepes.md`, puis #box[`sortie/crepes.html`]],
+    [D2], [soumettre la branche `page` avec une pull request], [la branche fusionnée sur GitHub],
+    [D3], [ajouter une option qui génère les pages de toutes les recettes], [dix pages],
+    [D4], [générer le sommaire, puis soumettre la branche `livre`], [`sortie/index.html`],
   )
 
   #notes[
@@ -95,8 +97,8 @@
 // --------------------------------------------
 #d("Aide-mémoire : une branche, une pull request")[
   #annonce[
-    Rappel du cours 6, pour les étapes D1 à D4. Chaque fonctionnalité se
-    développe sur une branche, puis arrive sur `master` par une pull
+    Rappel du cours 6, pour les étapes D1 à D4. Chaque fonctionnalité est
+    développée sur sa propre branche, puis ajoutée à `master` par une pull
     request.
   ]
 
@@ -114,10 +116,110 @@
 ]
 
 // --------------------------------------------
+// Aide-mémoire Python, ajouté le 02/11/2026 : les instructions des TD 3 et
+// 4a dont le TD a besoin. Le guide en donne la version complète, à la suite
+// de « Au début de la séance ».
+#let doc-python = "https://docs.python.org/fr/3/"
+// Le tableau d'un aide-mémoire Python : le code agrandi, lisible projeté
+#let aide-memoire(..cellules) = {
+  show raw: set text(size: 1.2em)
+  tableau(entete: false, columns: (auto, 1fr), align: left + horizon, ..cellules)
+}
+
+#d("Aide-mémoire Python : chaînes de caractères")[
+  #annonce[
+    Les étapes D1 et D4 assemblent du texte avec ces instructions, vues aux
+    TD 3 et 4a.
+  ]
+
+  #aide-memoire(
+    [`"Pour " + str(6) + " personnes"`], [met les chaînes bout à bout : `"Pour 6 personnes"`],
+    [`texte = texte + ligne`], [ajoute `ligne` à la fin de `texte`],
+    [`"\n"`], [le caractère de fin de ligne],
+    [`round(374.96, 1)`], [arrondit à un chiffre après la virgule : `375.0`],
+    [`texte.replace(ancien, nouveau)`], [une copie de `texte`, où `nouveau` remplace chaque `ancien`],
+    [`ligne.strip()`], [une copie sans les espaces ni la fin de ligne, au début et à la fin],
+    [`ligne.lstrip("# ")`], [une copie sans les `#` ni les espaces du début],
+  )
+
+  #legende[
+    Documentation :
+    #link(doc-python + "tutorial/introduction.html#text")[le texte, dans le tutoriel],
+    #link(doc-python + "library/stdtypes.html#string-methods")[les méthodes des chaînes],
+    #link(doc-python + "library/functions.html#round")[`round`].
+  ]
+]
+
+// --------------------------------------------
+#d("Aide-mémoire Python : chemins et fichiers texte")[
+  #annonce[
+    Les fonctions du TD lisent et écrivent leurs fichiers avec ces
+    instructions, vues aux TD 3b, 3c et 3f.
+  ]
+
+  #aide-memoire(
+    [`chemin.stem`, `chemin.suffix`], [pour `crepes.csv` : `"crepes"`, `".csv"`],
+    [`chemin.with_suffix(".html")`], [le même chemin, avec l'extension `.html`],
+    [`sorted(dossier.iterdir())`], [le contenu du dossier, dans l'ordre alphabétique],
+    [`with open(chemin, encoding="utf-8") as fichier:`], [ouvre le fichier en lecture, jusqu'à la fin du bloc],
+    [`fichier.readline()`], [la ligne suivante, fin de ligne comprise],
+    [`chemin.read_text(encoding="utf-8")`], [tout le texte du fichier],
+    [`chemin.write_text(texte, encoding="utf-8")`], [écrit `texte` dans le fichier],
+  )
+
+  #legende[
+    Documentation :
+    #link(doc-python + "library/pathlib.html")[`pathlib`],
+    #link(doc-python + "tutorial/inputoutput.html#reading-and-writing-files")[lecture et écriture de fichiers].
+  ]
+]
+
+// --------------------------------------------
+#d("Aide-mémoire Python : le module argparse")[
+  #annonce[
+    Le programme principal lit ses options avec ces instructions, vues au
+    TD 3f et à l'étape B6 du TD 4a. `action="store_true"` est nouveau.
+  ]
+
+  #aide-memoire(
+    [`analyseur = argparse.ArgumentParser()`], [crée l'analyseur de la ligne de commande],
+    [`analyseur.add_argument("nom")`], [un argument obligatoire : `crepes`],
+    [`analyseur.add_argument("-p", "--personnes", type=int, default=4)`], [une option avec une valeur entière : `-p 6`],
+    [`analyseur.add_argument("--page", action="store_true")`], [une option sans valeur : `True` ou `False`],
+    [`options = analyseur.parse_args()`], [lit la ligne de commande : `options.page`],
+  )
+
+  #legende[
+    Documentation :
+    #link(doc-python + "howto/argparse.html")[tutoriel `argparse`],
+    #link(doc-python + "howto/argparse.html#introducing-optional-arguments")[les options sans valeur].
+  ]
+]
+
+// --------------------------------------------
+#d("Aide-mémoire Python : subprocess et shutil")[
+  #annonce[
+    `ecrire_page` lance pandoc et copie la feuille de style avec ces deux
+    fonctions, vues aux TD 3b et 3f.
+  ]
+
+  #aide-memoire(
+    [`subprocess.run(["pandoc", "a.md", "-o", "a.html"], check=True)`], [lance `pandoc a.md -o a.html` ; arrête le programme si pandoc échoue],
+    [`shutil.copy(source, destination)`], [copie le fichier `source` vers `destination`],
+  )
+
+  #legende[
+    Documentation :
+    #link(doc-python + "library/subprocess.html#subprocess.run")[`subprocess.run`],
+    #link(doc-python + "library/shutil.html#shutil.copy")[`shutil.copy`].
+  ]
+]
+
+// --------------------------------------------
 // Consignes numérotées depuis le 02/11/2026, comme au cours 1 v2 : la
 // liste « Attendu, Pistes » se lisait mal. L'étape tient sur deux
 // diapositives.
-#d("Étape D0 · Copie du dépôt de départ")[
+#d("Étape D0 · Copier le dépôt de départ")[
   #annonce[
     Objectif : copier le dépôt de départ du module sur son compte GitHub et
     sur le poste.
@@ -140,7 +242,7 @@
 ]
 
 // --------------------------------------------
-#d("Étape D0 · Lancement du programme")[
+#d("Étape D0 · Lancer le programme")[
   #annonce[
     Objectif : faire tourner le programme du dépôt cloné, dans
     `travail/recette/`.
@@ -164,10 +266,11 @@
 ]
 
 // --------------------------------------------
-#d("Étape D1 · Le texte complété par le tableau")[
+#d("Étape D1 · Compléter le texte par le tableau")[
   #annonce[
-    La page d'une recette réunit son texte, écrit à la main dans un fichier
-    Markdown, et le tableau des quantités, que `recette.py` calcule déjà.
+    La page d'une recette réunit son texte, un fichier Markdown fourni dans
+    le dossier #box[`depart/recettes/`] du TD, et le tableau des quantités, que
+    `recette.py` calcule déjà.
     L'étape D1 modifie le programme pour qu'il écrive ce tableau dans la
     section `## Ingrédients`, vide dans le texte.
   ]
@@ -185,7 +288,7 @@
 // --------------------------------------------
 // Vue d'ensemble de D1 (02/11/2026) : les cinq modifications du programme,
 // dans l'ordre ; les trois diapositives suivantes en reprennent les numéros.
-#d("Étape D1 · Les modifications du programme")[
+#d("Étape D1 · Les six modifications du programme")[
   #annonce[
     Objectif : modifier `recette.py` pour qu'il écrive aussi la page HTML de
     la recette, quand la commande porte une nouvelle option, `--page`.
@@ -193,17 +296,18 @@
 
   #consignes(
     taille: 16pt,
-    [Ajouter au projet le texte des recettes, un fichier Markdown par recette dans `recettes/`, dont la section `## Ingrédients` est vide.],
-    [Écrire une fonction, `tableau`, qui convertit la liste des ingrédients en tableau Markdown.],
-    [Écrire une fonction, `ecrire_markdown`, qui place ce tableau dans le texte de la recette et écrit le résultat dans `sortie/`.],
+    [Copier le texte des recettes du dossier #box[`depart/recettes/`] du TD dans le dossier `recettes/` du projet : un fichier Markdown par recette, dont la section `## Ingrédients` est vide.],
+    [Écrire une fonction `tableau(ingredients)`, qui renvoie le tableau Markdown des ingrédients.],
+    [Écrire une fonction `ecrire_markdown(nom, personnes, unites, ingredients)`, qui place ce tableau dans le texte de la recette, écrit le résultat dans `sortie/<nom>.md` et renvoie son chemin.],
     [Modifier le programme principal pour qu'il écrive ce texte complété, seulement avec l'option #box[`--page`] :
       #commandes("python recette.py crepes -p 6 --page")],
-    [Convertir le texte complété en page HTML avec pandoc : une fonction, `ecrire_page`.],
+    [Écrire une fonction `ecrire_page(markdown)`, qui convertit le texte complété en page HTML avec pandoc.],
+    [Ajouter la feuille de style `style.css`, qui fixe la présentation de la page.],
   )
 
   #legende[
-    Sur une branche `page`. Modifications 1 à 4 : guide, étape D1.1, puis
-    un commit. Modification 5 : guide, étape D1.2, puis un commit.
+    Sur une branche `page`. Modifications 1 à 4 : guide, étape D1.1 ;
+    modifications 5 et 6 : étape D1.2. Un commit à la fin de chacune.
   ]
 ]
 
@@ -243,9 +347,10 @@
 // --------------------------------------------
 #d("Étape D1 · De la recette au texte complété")[
   #annonce[
-    L'appel `ecrire_markdown("crepes", 6, "SI", ingredients)` lit le texte de
-    la recette, remplace sa ligne `## Ingrédients` par un titre suivi du
-    tableau, puis écrit le résultat dans `sortie/`.
+    `ecrire_markdown(nom, personnes, unites, ingredients)` lit
+    `recettes/<nom>.md`, remplace sa ligne `## Ingrédients` par un titre
+    suivi du tableau, écrit le résultat dans `sortie/<nom>.md` et renvoie ce
+    chemin.
   ]
 
   #grid(
@@ -264,14 +369,19 @@
       #sortie("# Crêpes\n…\n## Ingrédients pour 6 personnes, en unités SI\n\n| Ingrédient | Quantité |\n|---|---|\n| Farine | 375.0 g |\n…\n\n## Préparation", taille: 10pt)
     ],
   )
+
+  #legende[
+    `nom` : la recette, sans extension ; `personnes` et `unites` : pour le
+    titre de la section ; `ingredients` : la liste de tuples.
+  ]
 ]
 
 // --------------------------------------------
 // Étapes D1 à D4 en consignes numérotées depuis le 02/11/2026, comme D0.
-#d("Étape D1 · Modifications 1 à 3 : texte et tableau")[
+#d("Étape D1 · Modifications 1 à 3 : ajouter les textes et deux fonctions")[
   #annonce[
-    Objectif : ajouter au projet le texte des recettes, et à `recette.py`
-    les deux fonctions qui le complètent par le tableau des quantités.
+    Objectif : copier le texte des recettes dans le projet, puis écrire les
+    deux fonctions qui ajoutent le tableau des quantités à ce texte.
   ]
 
   #consignes(
@@ -289,7 +399,7 @@
 ]
 
 // --------------------------------------------
-#d("Étape D1 · Modification 4 : l'option --page")[
+#d("Étape D1 · Modification 4 : ajouter l'option --page")[
   #annonce[
     Objectif : écrire le texte complété quand la commande porte l'option
     `--page`.
@@ -297,7 +407,7 @@
 
   #consignes(
     taille: 16pt,
-    [Ajouter l'option `--page` à l'analyseur de la ligne de commande.],
+    [Ajouter l'option `--page` à l'analyseur de la ligne de commande, comme option sans valeur : `action="store_true"`.],
     [À la fin du programme, appeler `ecrire_markdown` quand l'option `--page` est donnée.],
     [Lancer `python recette.py crepes -p 6 --page`, puis ouvrir `sortie/crepes.md` : le tableau pour 6 personnes y remplace la section vide.],
     [Enregistrer un commit :
@@ -305,26 +415,25 @@
   )
 
   #legende[
-    Guide, étape D1.1.
+    Guide, étape D1.1. Les options sans valeur : documentation d'argparse,
+    #link("https://docs.python.org/fr/3/howto/argparse.html#introducing-optional-arguments")[« Introduction aux arguments optionnels »].
   ]
 ]
 
 // --------------------------------------------
 #d("Étape D1 · Modification 5 : générer la page HTML en appelant pandoc")[
   #annonce[
-    Objectif : convertir le texte complété en page HTML, avec la feuille de
-    style.
+    Objectif : convertir le texte complété en page HTML avec pandoc.
+    `ecrire_page(markdown)` reçoit le chemin du texte complété et renvoie
+    celui de la page.
   ]
 
   #consignes(
     taille: 16pt,
-    [Copier la feuille de style dans le projet : `cp ../../depart/style.css .`],
-    [Dans `recette.py`, ajouter `import shutil` et `import subprocess`, puis la constante `STYLE = RACINE / "style.css"` sous `SORTIE`.],
-    [Ajouter une fonction `ecrire_page(markdown)` : elle copie `style.css` dans `sortie/`, puis lance pandoc par `subprocess.run` (cours 3). La page a le même chemin que le texte, avec l'extension `.html` (`with_suffix`).],
+    [Dans `recette.py`, ajouter `import subprocess`.],
+    [Ajouter une fonction `ecrire_page(markdown)`, qui lance pandoc par `subprocess.run` (cours 3) et renvoie le chemin de la page : celui du texte, avec l'extension `.html` (`with_suffix`).],
     [À la fin du programme, appeler `ecrire_page` après `ecrire_markdown`.],
-    [Lancer `python recette.py crepes -p 6 --page`, puis `start sortie/crepes.html` : la page de la première diapositive du TD.],
-    [Enregistrer un commit :
-      #commandes("git add style.css", "git commit -am \"La page HTML de la recette, par pandoc\"")],
+    [Lancer `python recette.py crepes -p 6 --page`, puis `start sortie/crepes.html` : le texte et le tableau, avec la mise en forme par défaut de pandoc.],
   )
 
   #legende[
@@ -343,10 +452,34 @@
 ]
 
 // --------------------------------------------
+#d("Étape D1 · Modification 6 : ajouter la feuille de style")[
+  #annonce[
+    La feuille de style `style.css` fixe la présentation des pages : polices,
+    couleurs, largeur du texte, bordures du tableau. Les dix pages et le
+    sommaire la partageront.
+  ]
+
+  #consignes(
+    taille: 16pt,
+    [Copier la feuille de style dans le projet : `cp ../../depart/style.css .`],
+    [Dans `recette.py`, ajouter `import shutil`, puis la constante `STYLE = RACINE / "style.css"` sous `SORTIE`.],
+    [Dans `ecrire_page`, copier `style.css` dans `sortie/` (`shutil.copy`), puis ajouter `"--css", "style.css"` à la commande de pandoc.],
+    [Relancer `python recette.py crepes -p 6 --page`, puis rouvrir la page : elle a la présentation de la première diapositive du TD.],
+    [Enregistrer un commit :
+      #commandes("git add style.css", "git commit -am \"La page HTML de la recette, par pandoc\"")],
+  )
+
+  #legende[
+    Guide, étape D1.2. `--css style.css` met dans la page un lien vers
+    `style.css`, que le navigateur cherche à côté de la page.
+  ]
+]
+
+// --------------------------------------------
 #d("Étape D2 · Soumettre les modifications avec une pull request")[
   #annonce[
     Objectif : proposer la branche `page` sur GitHub, la fusionner dans
-    `master`, puis ramener le résultat sur le poste.
+    `master`, puis ramener sur le poste le `master` fusionné.
   ]
 
   #consignes(
@@ -370,10 +503,12 @@
 ]
 
 // --------------------------------------------
-#d("Étape D3 · La liste des noms des recettes")[
+#d("Étape D3 · Obtenir la liste des noms des recettes")[
   #annonce[
-    Objectif : écrire la page de chaque recette en une commande, `--toutes`.
-    Le programme a d'abord besoin de la liste des noms des recettes.
+    Avec six recettes de plus, il faudrait dix commandes presque
+    identiques. Objectif : ajouter une option, `--toutes`, qui génère toutes
+    les pages en une commande. Cette option a besoin de la liste des noms
+    des recettes.
   ]
 
   #consignes(
@@ -381,7 +516,7 @@
     [Créer la branche `livre`, puis y copier les six recettes de plus :
       #commandes("git checkout -b livre", "cp ../../depart/recettes/*.csv ../../depart/recettes/*.md recettes/")],
     [Vérifier que `ls recettes` liste dix fichiers `.csv` et dix fichiers `.md`.],
-    [Dans `recette.py`, ajouter une fonction `noms_des_recettes()`. Pour chaque fichier `.csv` de `recettes/`, pris dans l'ordre (`sorted(DONNEES.glob("*.csv"))`), elle ajoute à une liste son nom sans l'extension (`stem`), puis renvoie la liste.],
+    [Dans `recette.py`, ajouter une fonction `noms_des_recettes()`. Elle parcourt les fichiers de `recettes/` dans l'ordre (`sorted(DONNEES.iterdir())`), garde ceux dont l'extension (`suffix`) vaut `.csv`, ajoute à une liste leur nom sans l'extension (`stem`), puis renvoie la liste.],
   )
 
   #legende[
@@ -390,10 +525,10 @@
 ]
 
 // --------------------------------------------
-#d("Étape D3 · Le programme, pour chaque nom")[
+#d("Étape D3 · Ajouter l'option --toutes, qui génère la page de chaque recette")[
   #annonce[
-    Objectif : répéter les lignes du programme pour chaque recette de la
-    liste, avec `--toutes`, ou pour la seule recette nommée.
+    Objectif : générer la page de chaque recette avec `--toutes`, ou de la
+    seule recette nommée.
   ]
 
   #consignes(
@@ -402,7 +537,7 @@
     [Construire la liste `noms` : tous les noms avec `--toutes`, sinon `[options.nom]`. Sans l'un ni l'autre, arrêter le programme par `analyseur.error`.],
     [Sélectionner les lignes de `ingredients = lire_ingredients(…)` jusqu'à la fin du fichier, appuyer sur `Tab`, puis écrire au-dessus `for nom in noms:`.],
     [Dans ces lignes, remplacer `NOM` par `nom`.],
-    [Lancer `python recette.py --toutes --page` : il écrit les dix pages. `python recette.py crepes --page` écrit toujours la seule page des crêpes.],
+    [Lancer `python recette.py --toutes --page` : le programme écrit les dix pages. `python recette.py crepes --page` écrit toujours la seule page des crêpes.],
     [Enregistrer un commit :
       #commandes("git add recettes", "git commit -am \"Toutes les recettes\"")],
   )
@@ -423,9 +558,10 @@
 ]
 
 // --------------------------------------------
-#d("Étape D4 · Le sommaire")[
+#d("Étape D4 · Générer le sommaire des recettes")[
   #annonce[
-    Objectif : une page qui mène à toutes les autres.
+    Objectif : générer une page, `sortie/index.html`, avec un lien vers
+    chaque recette.
   ]
 
   #grid(
@@ -451,10 +587,10 @@
 ]
 
 // --------------------------------------------
-#d("Étape D4 · La seconde pull request")[
+#d("Étape D4 · Soumettre la branche livre avec une pull request")[
   #annonce[
-    Objectif : livrer la branche `livre` sur GitHub, comme la branche `page`
-    à l'étape D2.
+    Objectif : fusionner la branche `livre` dans `master` sur GitHub, comme
+    la branche `page` à l'étape D2.
   ]
 
   #consignes(

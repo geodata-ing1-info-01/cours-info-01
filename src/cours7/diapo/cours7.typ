@@ -69,9 +69,9 @@
 // --------------------------------------------
 #d("Une fonctionnalité, une pull request")[
   #annonce[
-    Une fonctionnalité se développe sur une branche. La pull request
-    demande sa fusion dans `master`, sur le site ; le poste récupère ensuite
-    le résultat.
+    Chaque fonctionnalité est développée sur sa propre branche. La pull
+    request demande, sur le site, sa fusion dans `master` ; `git pull`
+    ramène ensuite le résultat sur le poste.
   ]
 
   #code-commente(
@@ -160,7 +160,7 @@
 }
 
 // --------------------------------------------
-#d("Ce qu'on rend")[
+#d("Travail à rendre")[
   #annonce[
     Le dépôt GitHub, avec ses pull requests fusionnées.
   ]

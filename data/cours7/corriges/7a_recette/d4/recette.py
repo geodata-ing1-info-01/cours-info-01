@@ -73,17 +73,19 @@ def convertir(ingredients, table):
 
 def tableau(ingredients):
     """Le tableau Markdown des ingrédients, une ligne par ingrédient."""
-    lignes = ["| Ingrédient | Quantité |", "|---|---|"]
+    texte = "| Ingrédient | Quantité |\n"
+    texte = texte + "|---|---|\n"
     for nom, quantite, unite in ingredients:
-        lignes.append("| " + nom + " | " + str(round(quantite, 1)) + " " + unite + " |")
-    return "\n".join(lignes)
+        texte = texte + "| " + nom + " | " + str(round(quantite, 1)) + " " + unite + " |\n"
+    return texte
 
 
 def ecrire_markdown(nom, personnes, unites, ingredients):
     """Le texte de recettes/<nom>.md, avec le tableau des ingrédients sous « ## Ingrédients », écrit dans sortie/ ; renvoie son chemin."""
     source = (DONNEES / (nom + ".md")).read_text(encoding="utf-8")
     intitule = "## Ingrédients pour " + str(personnes) + " personnes, en unités " + unites
-    complete = source.replace("## Ingrédients", intitule + "\n\n" + tableau(ingredients))
+    remplacement = intitule + "\n\n" + tableau(ingredients)
+    complete = source.replace("## Ingrédients", remplacement)
     markdown = SORTIE / (nom + ".md")
     markdown.write_text(complete, encoding="utf-8")
     return markdown
@@ -91,8 +93,11 @@ def ecrire_markdown(nom, personnes, unites, ingredients):
 
 def ecrire_page(markdown):
     """La page HTML d'un fichier Markdown de sortie/, par pandoc, avec la feuille de style ; renvoie son chemin."""
-    titre = markdown.read_text(encoding="utf-8").splitlines()[0].lstrip("# ")
-    shutil.copy(STYLE, markdown.parent / "style.css")
+    with open(markdown, encoding="utf-8") as fichier:
+        premiere_ligne = fichier.readline()
+    titre = premiere_ligne.strip()
+    titre = titre.lstrip("# ")
+    shutil.copy(STYLE, SORTIE / "style.css")
     page = markdown.with_suffix(".html")
     subprocess.run(["pandoc", str(markdown), "-o", str(page), "--standalone",
                     "--css", "style.css", "--metadata", "pagetitle=" + titre], check=True)
@@ -102,19 +107,24 @@ def ecrire_page(markdown):
 def noms_des_recettes():
     """Le nom de chaque recette de recettes/ : ses fichiers .csv, sans l'extension."""
     noms = []
-    for chemin in sorted(DONNEES.glob("*.csv")):
-        noms.append(chemin.stem)
+    # Plus court : sorted(DONNEES.glob("*.csv")) ne donne que les fichiers .csv, sans le test
+    for chemin in sorted(DONNEES.iterdir()):
+        if chemin.suffix == ".csv":
+            noms.append(chemin.stem)
     return noms
 
 
 def ecrire_sommaire(noms):
     """Le sommaire : sortie/index.md, un lien vers la page de chaque recette, puis sa page HTML ; renvoie son chemin."""
-    lignes = ["# Le livre de recettes", ""]
+    texte = "# Le livre de recettes\n\n"
     for nom in noms:
-        titre = (DONNEES / (nom + ".md")).read_text(encoding="utf-8").splitlines()[0].lstrip("# ")
-        lignes.append("- [" + titre + "](" + nom + ".html)")
+        with open(DONNEES / (nom + ".md"), encoding="utf-8") as fichier:
+            premiere_ligne = fichier.readline()
+        titre = premiere_ligne.strip()
+        titre = titre.lstrip("# ")
+        texte = texte + "- [" + titre + "](" + nom + ".html)\n"
     markdown = SORTIE / "index.md"
-    markdown.write_text("\n".join(lignes) + "\n", encoding="utf-8")
+    markdown.write_text(texte, encoding="utf-8")
     return ecrire_page(markdown)
 
 

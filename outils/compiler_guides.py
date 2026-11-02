@@ -92,6 +92,8 @@ ENTETE_TYPST = """\
 )
 #set table(stroke: 0.5pt + luma(180))
 #show table: set align(left)
+#show table: set par(justify: false)
+#show link: it => underline(text(fill: rgb("#1a5276"), it))
 """
 
 STYLE_HTML = """\

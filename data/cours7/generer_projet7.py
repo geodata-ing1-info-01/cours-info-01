@@ -71,17 +71,19 @@ TABLEAU = '''
 
 def tableau(ingredients):
     \"\"\"Le tableau Markdown des ingrédients, une ligne par ingrédient.\"\"\"
-    lignes = ["| Ingrédient | Quantité |", "|---|---|"]
+    texte = "| Ingrédient | Quantité |\\n"
+    texte = texte + "|---|---|\\n"
     for nom, quantite, unite in ingredients:
-        lignes.append("| " + nom + " | " + str(round(quantite, 1)) + " " + unite + " |")
-    return "\\n".join(lignes)
+        texte = texte + "| " + nom + " | " + str(round(quantite, 1)) + " " + unite + " |\\n"
+    return texte
 
 
 def ecrire_markdown(nom, personnes, unites, ingredients):
     \"\"\"Le texte de recettes/<nom>.md, avec le tableau des ingrédients sous « ## Ingrédients », écrit dans sortie/ ; renvoie son chemin.\"\"\"
     source = (DONNEES / (nom + ".md")).read_text(encoding="utf-8")
     intitule = "## Ingrédients pour " + str(personnes) + " personnes, en unités " + unites
-    complete = source.replace("## Ingrédients", intitule + "\\n\\n" + tableau(ingredients))
+    remplacement = intitule + "\\n\\n" + tableau(ingredients)
+    complete = source.replace("## Ingrédients", remplacement)
     markdown = SORTIE / (nom + ".md")
     markdown.write_text(complete, encoding="utf-8")
     return markdown
@@ -90,11 +92,28 @@ PAGE = '''
 
 def ecrire_page(markdown):
     \"\"\"La page HTML d'un fichier Markdown de sortie/, par pandoc, avec la feuille de style ; renvoie son chemin.\"\"\"
-    titre = markdown.read_text(encoding="utf-8").splitlines()[0].lstrip("# ")
-    shutil.copy(STYLE, markdown.parent / "style.css")
+    with open(markdown, encoding="utf-8") as fichier:
+        premiere_ligne = fichier.readline()
+    titre = premiere_ligne.strip()
+    titre = titre.lstrip("# ")
+    shutil.copy(STYLE, SORTIE / "style.css")
     page = markdown.with_suffix(".html")
     subprocess.run(["pandoc", str(markdown), "-o", str(page), "--standalone",
                     "--css", "style.css", "--metadata", "pagetitle=" + titre], check=True)
+    return page
+'''
+# La page sans feuille de style, avant la modification 6 du TD 7a (état d1p)
+PAGE_SANS_STYLE = '''
+
+def ecrire_page(markdown):
+    \"\"\"La page HTML d'un fichier Markdown de sortie/, par pandoc ; renvoie son chemin.\"\"\"
+    with open(markdown, encoding="utf-8") as fichier:
+        premiere_ligne = fichier.readline()
+    titre = premiere_ligne.strip()
+    titre = titre.lstrip("# ")
+    page = markdown.with_suffix(".html")
+    subprocess.run(["pandoc", str(markdown), "-o", str(page), "--standalone",
+                    "--metadata", "pagetitle=" + titre], check=True)
     return page
 '''
 NOMS = '''
@@ -102,20 +121,25 @@ NOMS = '''
 def noms_des_recettes():
     \"\"\"Le nom de chaque recette de recettes/ : ses fichiers .csv, sans l'extension.\"\"\"
     noms = []
-    for chemin in sorted(DONNEES.glob("*.csv")):
-        noms.append(chemin.stem)
+    # Plus court : sorted(DONNEES.glob("*.csv")) ne donne que les fichiers .csv, sans le test
+    for chemin in sorted(DONNEES.iterdir()):
+        if chemin.suffix == ".csv":
+            noms.append(chemin.stem)
     return noms
 '''
 SOMMAIRE = '''
 
 def ecrire_sommaire(noms):
     \"\"\"Le sommaire : sortie/index.md, un lien vers la page de chaque recette, puis sa page HTML ; renvoie son chemin.\"\"\"
-    lignes = ["# Le livre de recettes", ""]
+    texte = "# Le livre de recettes\\n\\n"
     for nom in noms:
-        titre = (DONNEES / (nom + ".md")).read_text(encoding="utf-8").splitlines()[0].lstrip("# ")
-        lignes.append("- [" + titre + "](" + nom + ".html)")
+        with open(DONNEES / (nom + ".md"), encoding="utf-8") as fichier:
+            premiere_ligne = fichier.readline()
+        titre = premiere_ligne.strip()
+        titre = titre.lstrip("# ")
+        texte = texte + "- [" + titre + "](" + nom + ".html)\\n"
     markdown = SORTIE / "index.md"
-    markdown.write_text("\\n".join(lignes) + "\\n", encoding="utf-8")
+    markdown.write_text(texte, encoding="utf-8")
     return ecrire_page(markdown)
 '''
 OPTION_PAGE = 'analyseur.add_argument("--page", action="store_true", help="écrit aussi la page de la recette : son texte complété, puis sa page HTML")\n'
@@ -131,13 +155,15 @@ PAGE_HTML = '''    page = ecrire_page(markdown)
 '''
 
 
-def _recette_d1(avec_html, avec_option=True):
+def _recette_d1(avec_html, avec_option=True, avec_style=True):
     texte = B6
-    if avec_html:
+    if avec_html and avec_style:
         texte = _remplacer(texte, "import csv\n", "import csv\nimport shutil\nimport subprocess\n")
         texte = _remplacer(texte, 'SORTIE = RACINE / "sortie"\n', 'SORTIE = RACINE / "sortie"\nSTYLE = RACINE / "style.css"\n')
+    elif avec_html:
+        texte = _remplacer(texte, "import csv\n", "import csv\nimport subprocess\n")
     debut, programme = texte.split(TITRE_PROGRAMME)
-    debut = debut.rstrip("\n") + "\n" + TABLEAU + (PAGE if avec_html else "")
+    debut = debut.rstrip("\n") + "\n" + TABLEAU + ((PAGE if avec_style else PAGE_SANS_STYLE) if avec_html else "")
     if avec_option:
         programme = _remplacer(programme, LIGNE_U, LIGNE_U + OPTION_PAGE) + PAGE_MARKDOWN + (PAGE_HTML if avec_html else "")
     return debut + TITRE_PROGRAMME + programme
@@ -197,8 +223,9 @@ if options.page and options.toutes:
 
 
 def recette(etat):
-    """`recette.py` du TD 7a à la fin de l'étape `etat` : a0 (le départ), d1f (les fonctions du texte complété, pas encore appelées), d1a (le texte complété), d1, d3, d4."""
+    """`recette.py` du TD 7a à la fin de l'étape `etat` : a0 (le départ), d1f (les fonctions du texte complété, pas encore appelées), d1a (le texte complété), d1p (la page, sans feuille de style), d1, d3, d4."""
     return {"a0": lambda: B6, "d1f": lambda: _recette_d1(False, avec_option=False),
+            "d1p": lambda: _recette_d1(True, avec_style=False),
             "d1a": lambda: _recette_d1(False), "d1": lambda: _recette_d1(True),
             "d3": lambda: _recette_d3(False), "d4": lambda: _recette_d3(True)}[etat]()
 
