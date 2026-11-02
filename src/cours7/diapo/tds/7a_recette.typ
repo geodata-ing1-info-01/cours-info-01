@@ -1,22 +1,24 @@
-// TD 7a du projet 7 — « Compléter son projet, par des pull requests », parcours standard.
+// TD 7a du projet 7 — « Compléter un projet GitHub, par des pull requests », parcours standard.
 //
 // Inclus par `cours7.typ` ; compilable seul par `outils/compiler_tds.py`. Un
 // fichier inclus n'hérite pas des imports de son appelant.
 //
-// Refait le 30/09/2026 : le TD part du programme du TD 4a (étape B6),
-// récupéré depuis GitHub, et lui ajoute la page HTML d'une recette (le texte
+// Refait le 30/09/2026 : le TD part du dépôt de référence `td7a-recette`, le
+// corrigé du TD 4a (programme de l'étape B6), que chaque élève copie sur son
+// compte depuis le 02/11/2026, et lui ajoute la page HTML d'une recette (le texte
 // complété par le tableau, puis pandoc), puis toutes les recettes et un
 // sommaire ; deux pull requests. Pas de numpy au parcours standard.
 // Corrigés et guide écrits par `data/cours7/generer_projet7.py` ; la page
 // et le sommaire dessinés par `../schemas.typ`, d'après la sortie réelle.
 #import "../../../commun/prelude.typ": *
-#import "../../../cours3/diapo/schemas.typ": attendu-pistes, sortie
+#import "../../../cours3/diapo/schemas.typ": sortie
 #import "../schemas.typ": page-recette, sommaire-recettes
+#import "../../../cours1_v2/diapo/schemas.typ": consignes, comment, commandes
 
 #let td = (
   numero: "7a",
-  titre: "Compléter son projet, par des pull requests",
-  annonce: "TD d'application : récupérer son projet du projet 4 depuis GitHub, lui ajouter l'écriture des pages HTML des recettes et d'un sommaire, sur des branches livrées par des pull requests",
+  titre: "Compléter un projet GitHub, par des pull requests",
+  annonce: "TD d'application : partir du dépôt GitHub du corrigé du TD 4a, ajouter à son programme l'écriture des pages HTML des recettes et d'un sommaire, sur des branches livrées par des pull requests",
   dossier: "cours7/7a_recette/",
   duree: "85′",
   statut: "parcours standard",
@@ -26,7 +28,7 @@
 // --------------------------------------------
 #d("Ce que le programme écrira à la fin du TD")[
   #annonce[
-    Aujourd'hui, `recette.py` écrit les quantités d'une recette dans un
+    Au départ, `recette.py` écrit les quantités d'une recette dans un
     fichier CSV. À la fin du TD, il écrit aussi une page HTML par recette,
     avec son texte et le tableau des quantités, et un sommaire.
   ]
@@ -60,9 +62,10 @@
   )
 
   #notes[
-    Le dépôt de chaque élève est celui du cours 6. Sinon, le dépôt de
-    référence `recette` (l'état B7 du TD 4a), cloné puis poussé vers un
-    dépôt vide de l'élève : guide, étape D0, cas B.
+    Tous partent du dépôt de référence `td7a-recette` (l'état B7 du TD 4a),
+    cloné puis poussé vers un dépôt vide `td7a-recette` de l'élève : guide,
+    étape D0. Le dépôt `recette` du cours 6 ne sert pas : ses numéros de
+    ligne ne correspondent pas à ceux du guide.
   ]
 ]
 
@@ -111,23 +114,43 @@
 ]
 
 // --------------------------------------------
-#d("Étape D0 · Récupérer le projet")[
+// Consignes numérotées depuis le 02/11/2026, comme au cours 1 v2 : la
+// liste « Attendu, Pistes » se lisait mal. L'étape tient sur deux
+// diapositives.
+#d("Étape D0 · Copie du dépôt de départ")[
   #annonce[
-    Objectif : retrouver sur le poste le projet publié au cours 6, et le
-    faire tourner.
+    Objectif : copier le dépôt de départ du module sur son compte GitHub et
+    sur le poste.
   ]
 
-  #attendu-pistes(
-    (
-      [le dépôt `recette` dans `travail/`],
-      [`python recette.py crepes -p 6` écrit `sortie/crepes_6_SI.csv`],
-      [`git log --oneline` affiche l'historique du projet 4],
-    ),
-    (
-      [cloner son dépôt : `git clone git@github.com:<compte>/recette.git`],
-      [sans dépôt utilisable : cloner le dépôt de référence, puis `git remote set-url`],
-      [donner son nom et son adresse pour ce dépôt : `git config user.name`, `user.email`],
-    ),
+  #consignes(
+    taille: 16pt,
+    [Sur son compte GitHub, créer un dépôt vide nommé `td7a-recette`.
+      #comment[Bouton New repository, sans cocher « Add a README file ».]],
+    [Dans le terminal Git Bash ouvert dans `cours7/7a_recette/`, cloner le dépôt de départ du module dans `travail/recette/` :
+      #commandes("cd travail", "git clone git@github.com:geodata-ing1-info-01/td7a-recette.git recette", "cd recette")],
+    [Envoyer le dépôt cloné vers son dépôt `td7a-recette`, en remplaçant `<compte>` par son nom de compte GitHub :
+      #commandes("git remote set-url origin git@github.com:<compte>/td7a-recette.git", "git push -u origin master")],
+    [Sur la page GitHub de son dépôt, vérifier que `recette.py` et les commits du TD 4a y sont.],
+  )
+
+  #legende[
+    Guide, étape D0.
+  ]
+]
+
+// --------------------------------------------
+#d("Étape D0 · Lancement du programme")[
+  #annonce[
+    Objectif : faire tourner le programme du dépôt cloné, dans
+    `travail/recette/`.
+  ]
+
+  #consignes(
+    taille: 16pt,
+    [Donner son nom et son adresse pour ce dépôt :
+      #commandes("git config user.name \"Prénom Nom\"", "git config user.email \"prenom.nom@exemple.fr\"")],
+    [Lancer le programme : `python recette.py crepes -p 6`. Il affiche les ingrédients pour 6 personnes et écrit `sortie/crepes_6_SI.csv`.],
   )
 
   #legende[
@@ -160,23 +183,40 @@
 ]
 
 // --------------------------------------------
-#d("Étape D1 · Écrire le texte complété")[
+// Étapes D1 à D4 en consignes numérotées depuis le 02/11/2026, comme D0.
+#d("Étape D1 · Écriture du texte complété")[
   #annonce[
     Objectif : écrire `sortie/crepes.md`, le texte de la recette avec le
     tableau des quantités à la place de la section vide.
   ]
 
-  #attendu-pistes(
-    (
-      [`python recette.py crepes -p 6 --page` écrit `sortie/crepes.md`, avec le tableau pour 6 personnes],
-      [un commit sur la branche `page`],
-    ),
-    (
-      [créer la branche `page` ; copier les `.md` des recettes et `style.css`],
-      [écrire `tableau(ingredients)` : une ligne Markdown par ingrédient],
-      [écrire `ecrire_markdown` : remplacer `## Ingrédients` par un titre et le tableau (`replace`), puis écrire le résultat],
-      [ajouter l'option `--page`, qui appelle `ecrire_markdown`],
-    ),
+  #consignes(
+    taille: 16pt,
+    [Créer la branche `page`, puis y copier la feuille de style et le texte de quatre recettes :
+      #commandes("git checkout -b page", "cp ../../depart/style.css .", "cp ../../depart/recettes/crepes.md ../../depart/recettes/pate_pizza.md recettes/", "cp ../../depart/recettes/mousse_chocolat.md ../../depart/recettes/cookies.md recettes/")],
+    [Dans `recette.py`, ajouter la fonction `tableau(ingredients)`, qui renvoie le tableau Markdown des ingrédients, une ligne par ingrédient.],
+    [Ajouter la fonction `ecrire_markdown`, qui remplace `## Ingrédients` par un titre suivi du tableau (`replace`), puis écrit le texte obtenu dans `sortie/`.],
+  )
+
+  #legende[
+    Guide, étape D1.1.
+  ]
+]
+
+// --------------------------------------------
+#d("Étape D1 · L'option --page")[
+  #annonce[
+    Objectif : écrire le texte complété quand la commande porte l'option
+    `--page`.
+  ]
+
+  #consignes(
+    taille: 16pt,
+    [Ajouter l'option `--page` à l'analyseur de la ligne de commande.],
+    [À la fin du programme, appeler `ecrire_markdown` quand l'option `--page` est donnée.],
+    [Lancer `python recette.py crepes -p 6 --page`, puis ouvrir `sortie/crepes.md` : le tableau pour 6 personnes y remplace la section vide.],
+    [Enregistrer un commit :
+      #commandes("git add style.css recettes", "git commit -am \"Le texte de la recette, complété par le tableau des ingrédients\"")],
   )
 
   #legende[
@@ -191,17 +231,13 @@
     style, pour l'ouvrir dans un navigateur.
   ]
 
-  #attendu-pistes(
-    (
-      [`python recette.py crepes -p 6 --page` écrit aussi `sortie/crepes.html`],
-      [`start sortie/crepes.html` ouvre la page de la première diapositive du TD],
-      [un commit],
-    ),
-    (
-      [écrire `ecrire_page(markdown)` : copier `style.css`, puis lancer pandoc par `subprocess.run` (cours 3)],
-      [la page : le même chemin, avec l'extension `.html` (`with_suffix`)],
-      [appeler `ecrire_page` après `ecrire_markdown`],
-    ),
+  #consignes(
+    taille: 16pt,
+    [Dans `recette.py`, ajouter `import shutil` et `import subprocess`, puis la constante `STYLE = RACINE / "style.css"` sous `SORTIE`.],
+    [Ajouter la fonction `ecrire_page(markdown)` : elle copie `style.css` dans `sortie/`, puis lance pandoc par `subprocess.run` (cours 3). La page a le même chemin que le texte, avec l'extension `.html` (`with_suffix`).],
+    [À la fin du programme, appeler `ecrire_page` après `ecrire_markdown`.],
+    [Lancer `python recette.py crepes -p 6 --page`, puis ouvrir la page : `start sortie/crepes.html`. Elle est celle de la première diapositive du TD.],
+    [Enregistrer un commit : `git commit -am "La page HTML de la recette, par pandoc"`.],
   )
 
   #legende[
@@ -226,16 +262,14 @@
     `master`, puis ramener le résultat sur le poste.
   ]
 
-  #attendu-pistes(
-    (
-      [la pull request de `page`, fusionnée sur GitHub],
-      [`git log --oneline --graph` montre le commit `Merge pull request #1`],
-    ),
-    (
-      [envoyer la branche : `git push -u origin page`],
-      [sur le site : Compare & pull request, puis Merge pull request],
-      [ramener `master` sur le poste : `git checkout master`, `git pull`],
-    ),
+  #consignes(
+    taille: 16pt,
+    [Envoyer la branche sur GitHub : `git push -u origin page`.],
+    [Sur la page GitHub du dépôt, cliquer sur Compare & pull request, puis sur Create pull request.],
+    [Sur la page de la pull request, cliquer sur Merge pull request, puis sur Confirm merge.],
+    [Sur le poste, revenir sur `master` et y ramener la fusion :
+      #commandes("git checkout master", "git pull")],
+    [Vérifier que `git log --oneline --graph` montre le commit `Merge pull request #1`.],
   )
 
   #legende[
@@ -255,21 +289,16 @@
     Le programme a d'abord besoin de la liste des noms des recettes.
   ]
 
-  #attendu-pistes(
-    (
-      [dix recettes dans `recettes/` : dix `.csv` et dix `.md`],
-      [`noms_des_recettes()` renvoie `['cookies', 'crepes', …, 'tarte_pommes']`],
-    ),
-    (
-      [créer la branche `livre` ; copier les six recettes de plus],
-      [les fichiers `.csv` de `recettes/` : `DONNEES.glob("*.csv")`],
-      [le nom d'un fichier sans son extension : `stem` (`crepes.csv` donne `crepes`)],
-      [ajouter chaque nom à une liste, dans l'ordre (`sorted`), et la renvoyer],
-    ),
+  #consignes(
+    taille: 16pt,
+    [Créer la branche `livre`, puis y copier les six recettes de plus :
+      #commandes("git checkout -b livre", "cp ../../depart/recettes/*.csv ../../depart/recettes/*.md recettes/")],
+    [Vérifier que `ls recettes` liste dix fichiers `.csv` et dix fichiers `.md`.],
+    [Dans `recette.py`, ajouter la fonction `noms_des_recettes()`. Pour chaque fichier `.csv` de `recettes/`, pris dans l'ordre (`sorted(DONNEES.glob("*.csv"))`), elle ajoute à une liste son nom sans l'extension (`stem`), puis renvoie la liste.],
   )
 
   #legende[
-    Guide, étape D3.1.
+    Guide, étape D3.1. La fonction renvoie `['cookies', 'crepes', …, 'tarte_pommes']`.
   ]
 ]
 
@@ -280,18 +309,15 @@
     liste, avec `--toutes`, ou pour la seule recette nommée.
   ]
 
-  #attendu-pistes(
-    (
-      [`python recette.py --toutes --page` écrit les dix pages],
-      [`python recette.py crepes --page` écrit toujours la seule page des crêpes],
-      [un commit sur la branche `livre`],
-    ),
-    (
-      [rendre le nom facultatif : `nargs="?"` ; ajouter l'option `--toutes`],
-      [construire la liste `noms` : tous les noms avec `--toutes`, sinon `[options.nom]`],
-      [placer les lignes du programme dans `for nom in noms:` : les sélectionner, puis `Tab`],
-      [dans ces lignes, remplacer `NOM` par `nom`],
-    ),
+  #consignes(
+    taille: 16pt,
+    [Rendre le nom de la recette facultatif (`nargs="?"`), et ajouter l'option `--toutes`.],
+    [Construire la liste `noms` : tous les noms avec `--toutes`, sinon `[options.nom]`. Sans l'un ni l'autre, arrêter le programme par `analyseur.error`.],
+    [Sélectionner les lignes de `ingredients = lire_ingredients(…)` jusqu'à la fin du fichier, appuyer sur `Tab`, puis écrire au-dessus `for nom in noms:`.],
+    [Dans ces lignes, remplacer `NOM` par `nom`.],
+    [Lancer `python recette.py --toutes --page` : il écrit les dix pages. `python recette.py crepes --page` écrit toujours la seule page des crêpes.],
+    [Enregistrer un commit :
+      #commandes("git add recettes", "git commit -am \"Toutes les recettes\"")],
   )
 
   #legende[
@@ -312,34 +338,49 @@
 // --------------------------------------------
 #d("Étape D4 · Le sommaire")[
   #annonce[
-    Objectif : une page qui mène à toutes les autres, puis la seconde pull
-    request.
+    Objectif : une page qui mène à toutes les autres.
   ]
 
   #grid(
-    columns: (1.5fr, 1fr), column-gutter: 20pt, align: top,
-    attendu-pistes(
-      (
-        [`sortie/index.html` affiche un lien par recette],
-        [la branche `livre` fusionnée sur GitHub],
-      ),
-      (
-        [écrire `sortie/index.md` : un titre, puis un lien par recette, `- [Crêpes](crepes.html)`],
-        [le texte du lien : la première ligne du fichier `.md` de la recette],
-        [convertir par `ecrire_page`, comme une recette],
-        [un commit, puis la pull request de `livre`],
-      ),
+    columns: (1.6fr, 1fr), column-gutter: 20pt, align: top,
+    consignes(
+      taille: 16pt,
+      [Dans `recette.py`, ajouter la fonction `ecrire_sommaire(noms)`. Elle écrit `sortie/index.md` : un titre, puis un lien par recette, `- [Crêpes](crepes.html)`. Elle le convertit ensuite par `ecrire_page`.],
+      [Pour le texte de chaque lien, prendre la première ligne du fichier `.md` de la recette, sans le `# `.],
+      [À la fin du programme, après la boucle, appeler `ecrire_sommaire(noms)` quand `--page` et `--toutes` sont donnés.],
+      [Lancer `python recette.py --toutes --page`, puis `start sortie/index.html` : chaque lien ouvre une page.],
     ),
     sommaire-recettes(largeur: 5.6cm),
   )
 
   #legende[
-    Guide, étape D4. En bonus, l'étape D5 publie les pages avec GitHub
-    Pages.
+    Guide, étape D4.
   ]
 
   #reponse(legende[
     Constaté : les liens sont relatifs ; le sommaire et les pages
     fonctionnent tant qu'ils sont dans le même dossier.
   ])
+]
+
+// --------------------------------------------
+#d("Étape D4 · La seconde pull request")[
+  #annonce[
+    Objectif : livrer la branche `livre` sur GitHub, comme la branche `page`
+    à l'étape D2.
+  ]
+
+  #consignes(
+    taille: 16pt,
+    [Enregistrer un commit, puis envoyer la branche sur GitHub :
+      #commandes("git commit -am \"Le sommaire\"", "git push -u origin livre")],
+    [Sur GitHub, ouvrir la pull request de `livre`, puis la fusionner : Compare & pull request, Create pull request, Merge pull request, Confirm merge.],
+    [Sur le poste, revenir sur `master` et y ramener la fusion :
+      #commandes("git checkout master", "git pull")],
+  )
+
+  #legende[
+    Guide, étape D4. En bonus, l'étape D5 publie les pages avec GitHub
+    Pages.
+  ]
 ]

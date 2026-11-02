@@ -1,8 +1,8 @@
-# Compléter son projet, par des pull requests — TD 7a, projet 7
+# Compléter un projet GitHub, par des pull requests — TD 7a, projet 7
 
-La suite du programme `recette.py` du projet 4, récupéré depuis GitHub : la
-page HTML de chaque recette, écrite par pandoc, puis toutes les recettes et
-un sommaire. Chaque fonctionnalité se développe sur une branche et arrive
+Le TD part du dépôt GitHub `td7a-recette`, publié par le module : le
+programme `recette.py` du corrigé du TD 4a. Il lui ajoute la page HTML de
+chaque recette, écrite par pandoc, puis toutes les recettes et un sommaire. Chaque fonctionnalité se développe sur une branche et arrive
 sur `master` par une pull request.
 
 | Dossier | Ce qu'il contient |
@@ -19,7 +19,7 @@ vérifier le résultat.
 
 | | Ce qu'on fait |
 |---|---|
-| D0 | cloner son dépôt `recette` (ou le dépôt de référence), le relancer |
+| D0 | copier le dépôt `td7a-recette` sur son compte, le cloner, relancer le programme |
 | D1 | branche `page` : l'option `--page`, la page HTML par pandoc |
 | D2 | la pull request de `page`, fusionnée sur GitHub, puis `git pull` |
 | D3 | branche `livre` : six recettes de plus, l'option `--toutes` |

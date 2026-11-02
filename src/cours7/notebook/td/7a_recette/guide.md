@@ -1,5 +1,5 @@
 ---
-title: "TD 7a — Compléter son projet, par des pull requests"
+title: "TD 7a — Compléter un projet GitHub, par des pull requests"
 subtitle: Guide détaillé, étape par étape
 jupytext:
   text_representation:
@@ -10,9 +10,11 @@ kernelspec:
   display_name: Python 3
 ---
 
-Le TD complète le programme `recette.py` du projet 4, récupéré depuis
-GitHub. Aujourd'hui, le programme calcule les ingrédients d'une recette pour
-un nombre de personnes et les écrit dans un fichier CSV. À la fin du TD, il
+Le TD part d'un dépôt GitHub publié par le module, `td7a-recette`, le même
+pour tous : il contient le programme `recette.py` du corrigé du TD 4a, avec
+son historique. Le TD ajoute de nouvelles fonctions à ce programme. Au
+départ, le programme calcule les ingrédients d'une recette pour un nombre de
+personnes et les écrit dans un fichier CSV. À la fin du TD, il
 écrit aussi, pour chaque recette, une page HTML qui réunit le texte de la
 recette et le tableau des quantités calculées, puis un sommaire qui relie
 ces pages, comme un livre de recettes.
@@ -24,19 +26,20 @@ ces pages, comme un livre de recettes.
 Chaque fonctionnalité se développe sur une branche, puis arrive sur
 `master` par une pull request, fusionnée sur le site de GitHub.
 
-Le guide donne les lignes à modifier comme ceux du projet 4. Une ligne
-marquée `-` est à supprimer, une ligne marquée `+` est à ajouter, sans le
-`+` ni les cinq espaces qui le suivent. Les lignes sans signe ne changent
-pas et indiquent l'endroit. Le nombre qui suit le signe est le numéro de la
-ligne dans VS Code, quand les modifications sont faites de haut en bas.
+Le guide donne les modifications du programme par blocs. Les lignes en
+vert, entre deux lignes `+++`, sont à ajouter : les copier telles quelles,
+sans les lignes `+++`. Les lignes en rouge, entre deux lignes `---`, sont à
+supprimer. Les autres lignes ne changent pas et indiquent l'endroit : le
+nombre qui les précède est le numéro de la ligne dans VS Code, quand les
+modifications sont faites de haut en bas.
 
 | Étape | Objectif | Durée |
 |---|---|---|
-| [D0](#d0-récupérer-le-projet) | récupérer le projet et le relancer | 15′ |
-| [D1](#d1-la-page-dune-recette) | écrire la page HTML d'une recette : le texte complété, puis pandoc | 25′ |
+| [D0](#d0-récupérer-le-projet-github-initial) | copier le dépôt de départ sur son poste puis son compte GitHub, lancer le programme (test) | 15′ |
+| [D1](#d1-générer-la-page-html-dune-recette) | écrire la page HTML d'une recette : ajout de la liste d'ingrédients, conversion HTML | 25′ |
 | [D2](#d2-la-pull-request) | proposer la branche par une pull request | 10′ |
-| [D3](#d3-toutes-les-recettes) | écrire les pages de toutes les recettes en une commande | 20′ |
-| [D4](#d4-le-sommaire) | écrire une page qui relie les autres ; seconde pull request | 15′ |
+| [D3](#d3-toutes-les-recettes) | générer les pages de toutes les recettes avec un seul appel de commande | 20′ |
+| [D4](#d4-le-sommaire) | écrire une page d'index des recettes ; deuxième pull request | 15′ |
 | [D5](#d5-bonus-les-pages-sur-github-pages) (bonus) | publier les pages avec GitHub Pages | |
 
 ## Au début de la séance
@@ -50,47 +53,40 @@ ligne dans VS Code, quand les modifications sont faites de haut en bas.
 Ouvrir le dossier `cours7/7a_recette/` dans VS Code, puis un terminal Git Bash
 (menu Terminal, New Terminal ; flèche à côté du `+`, Git Bash).
 
-## D0 · Récupérer le projet
+## D0 · Récupérer le projet GitHub initial
 
-> **À faire :** le dépôt `recette` dans `travail/`, depuis GitHub ; votre nom et votre adresse pour ce dépôt.
+> **À faire :** créer sur votre compte GitHub un dépôt vide `td7a-recette` ; cloner dans `travail/recette/` le dépôt de départ du module, puis l'envoyer vers votre nouveau dépôt GitHub ; régler votre nom et votre adresse pour ce dépôt.
 >
-> **À obtenir :** `python recette.py crepes -p 6` écrit `sortie/crepes_6_SI.csv` ; `git log --oneline` affiche l'historique du projet 4.
+> **À obtenir :** la page GitHub de votre dépôt `td7a-recette` affiche `recette.py` et les commits du TD 4a ; exécuter depuis le dossier `travail/recette/`, `python recette.py crepes -p 6` écrit `sortie/crepes_6_SI.csv`.
 
-**Cas A, votre dépôt `recette` est sur GitHub et le programme fonctionne.**
-Sur sa page GitHub, bouton Code, onglet SSH, copier l'adresse, puis :
+Le dépôt de départ, `td7a-recette`, est sur le compte GitHub du module,
+`geodata-ing1-info-01`. Le TD se fait dans une copie de ce dépôt, sur votre
+compte : vous y poussez vos branches et y fusionnez vos pull requests.
 
-```text
-cd travail
-git clone git@github.com:<compte>/recette.git
-cd recette
-```
-
-**Cas B, pas de dépôt, ou un programme qui ne fonctionne pas.** Le module
-publie un dépôt de référence, `td7a-recette`, sur le compte GitHub
-`geodata-ing1-info-01`. Sur son compte GitHub, créer d'abord un dépôt vide nommé `recette` (New repository, sans
-README), puis :
+Sur votre compte GitHub, créer un dépôt vide nommé `td7a-recette` (New
+repository, sans README). Puis, en remplaçant `<compte>` par le nom de votre
+compte GitHub :
 
 ```text
 cd travail
 git clone git@github.com:geodata-ing1-info-01/td7a-recette.git recette
 cd recette
-git remote set-url origin git@github.com:<compte>/recette.git
+git remote set-url origin git@github.com:<compte>/td7a-recette.git
 git push -u origin master
 ```
 
+Le dernier argument de `git clone` nomme le dossier local `recette`.
 `git remote set-url` change l'adresse du dépôt distant `origin` : les
-`push` suivants vont au dépôt de l'élève. Le dernier argument de
-`git clone` nomme le dossier local `recette`, comme dans le cas A. Le dépôt
-garde l'historique du projet 4.
+`push` suivants utilisent votre nouveau dépôt.
 
-Dans les deux cas, régler votre nom et votre adresse pour ce dépôt :
+Régler ensuite votre nom et votre adresse pour ce dépôt :
 
 ```text
 git config user.name "Prénom Nom"
 git config user.email "prenom.nom@exemple.fr"
 ```
 
-**Vérification** : `python recette.py crepes -p 6` affiche
+**Vérification** : exécuter depuis le dossier `travail/recette/` la commande `python recette.py crepes -p 6` affiche
 
 ```text
 crepes pour 6 personnes, en unités SI
@@ -102,9 +98,9 @@ Beurre fondu : 75.0 g
 écrit : C:\Users\eleve\Desktop\cours7\7a_recette\travail\recette\sortie\crepes_6_SI.csv
 ```
 
-## D1 · La page d'une recette
+## D1 · Générer la page HTML d'une recette
 
-> **À faire :** sur une branche `page` : compléter le texte de la recette par le tableau des ingrédients (D1.1), puis convertir ce texte en page HTML par pandoc (D1.2) ; un commit pour chacune.
+> **À faire :** sur une branche `page` : compléter le texte de la recette par le tableau des ingrédients (D1.1), puis convertir ce texte en page HTML en appelant pandoc (D1.2) ; faire un commit pour chacune des modifications D1.1 et D1.2
 >
 > **À obtenir :** `python recette.py crepes -p 6 --page` écrit `sortie/crepes.md`, puis `sortie/crepes.html`, la page de la figure du début du guide.
 
@@ -114,7 +110,7 @@ Markdown, et le tableau des ingrédients, calculé par le programme. Le
 programme les réunit dans un fichier Markdown complet (D1.1), puis pandoc
 convertit ce fichier en page HTML (D1.2).
 
-### D1.1 Le texte de la recette, complété par le tableau
+### D1.1 Ajouter le tableau des ingrédients au texte de la recette
 
 ```text
 git checkout -b page
@@ -151,42 +147,48 @@ suivi du tableau des ingrédients, que la fonction `tableau` écrit en
 Markdown, une ligne par ingrédient. `replace` renvoie le texte avec ce
 remplacement. Le résultat est écrit dans `sortie/crepes.md`.
 
-```diff
+```modif
    69
    70
-+     def tableau(ingredients):
-+         """Le tableau Markdown des ingrédients, une ligne par ingrédient."""
-+         lignes = ["| Ingrédient | Quantité |", "|---|---|"]
-+         for nom, quantite, unite in ingredients:
-+             lignes.append("| " + nom + " | " + str(round(quantite, 1)) + " " + unite + " |")
-+         return "\n".join(lignes)
-+
-+
-+     def ecrire_markdown(nom, personnes, unites, ingredients):
-+         """Le texte de recettes/<nom>.md, avec le tableau des ingrédients sous « ## Ingrédients », écrit dans sortie/ ; renvoie son chemin."""
-+         source = (DONNEES / (nom + ".md")).read_text(encoding="utf-8")
-+         intitule = "## Ingrédients pour " + str(personnes) + " personnes, en unités " + unites
-+         complete = source.replace("## Ingrédients", intitule + "\n\n" + tableau(ingredients))
-+         markdown = SORTIE / (nom + ".md")
-+         markdown.write_text(complete, encoding="utf-8")
-+         return markdown
-+
-+
++++
+def tableau(ingredients):
+    """Le tableau Markdown des ingrédients, une ligne par ingrédient."""
+    lignes = ["| Ingrédient | Quantité |", "|---|---|"]
+    for nom, quantite, unite in ingredients:
+        lignes.append("| " + nom + " | " + str(round(quantite, 1)) + " " + unite + " |")
+    return "\n".join(lignes)
+
+
+def ecrire_markdown(nom, personnes, unites, ingredients):
+    """Le texte de recettes/<nom>.md, avec le tableau des ingrédients sous « ## Ingrédients », écrit dans sortie/ ; renvoie son chemin."""
+    source = (DONNEES / (nom + ".md")).read_text(encoding="utf-8")
+    intitule = "## Ingrédients pour " + str(personnes) + " personnes, en unités " + unites
+    complete = source.replace("## Ingrédients", intitule + "\n\n" + tableau(ingredients))
+    markdown = SORTIE / (nom + ".md")
+    markdown.write_text(complete, encoding="utf-8")
+    return markdown
+
+
++++
    89 # ---- Le programme -------------------------------------------------------------
    90
     …
    94 analyseur.add_argument("-p", "--personnes", type=int, default=4, help="nombre de personnes (défaut : 4)")
    95 analyseur.add_argument("-u", "--unites", choices=("SI", "US"), default="SI", help="système d'unités (défaut : SI)")
-+     analyseur.add_argument("--page", action="store_true", help="écrit aussi la page de la recette : son texte complété, puis sa page HTML")
++++
+analyseur.add_argument("--page", action="store_true", help="écrit aussi la page de la recette : son texte complété, puis sa page HTML")
++++
    97 options = analyseur.parse_args()
    98 NOM = options.nom
     …
   116 ecrire_ingredients(fichier, ingredients)
   117 print("écrit :", fichier)
-+
-+     if options.page:
-+         markdown = ecrire_markdown(NOM, PERSONNES, UNITES, ingredients)
-+         print("écrit :", markdown)
++++
+
+if options.page:
+    markdown = ecrire_markdown(NOM, PERSONNES, UNITES, ingredients)
+    print("écrit :", markdown)
++++
 ```
 
 **Vérification** : `python recette.py crepes -p 6 --page` se termine par
@@ -228,39 +230,47 @@ fonction `ecrire_page` le lance avec `subprocess.run`, et copie la feuille
 de style `style.css` à côté de la page. `with_suffix(".html")` donne le
 chemin du même fichier avec l'extension `.html`.
 
-```diff
+```modif
     3 import argparse
     4 import csv
-+     import shutil
-+     import subprocess
++++
+import shutil
+import subprocess
++++
     7 from pathlib import Path
     8
     …
    20 DONNEES = RACINE / "recettes"
    21 SORTIE = RACINE / "sortie"
-+     STYLE = RACINE / "style.css"
++++
+STYLE = RACINE / "style.css"
++++
    23
    24
     …
    90
    91
-+     def ecrire_page(markdown):
-+         """La page HTML d'un fichier Markdown de sortie/, par pandoc, avec la feuille de style ; renvoie son chemin."""
-+         titre = markdown.read_text(encoding="utf-8").splitlines()[0].lstrip("# ")
-+         shutil.copy(STYLE, markdown.parent / "style.css")
-+         page = markdown.with_suffix(".html")
-+         subprocess.run(["pandoc", str(markdown), "-o", str(page), "--standalone",
-+                         "--css", "style.css", "--metadata", "pagetitle=" + titre], check=True)
-+         return page
-+
-+
++++
+def ecrire_page(markdown):
+    """La page HTML d'un fichier Markdown de sortie/, par pandoc, avec la feuille de style ; renvoie son chemin."""
+    titre = markdown.read_text(encoding="utf-8").splitlines()[0].lstrip("# ")
+    shutil.copy(STYLE, markdown.parent / "style.css")
+    page = markdown.with_suffix(".html")
+    subprocess.run(["pandoc", str(markdown), "-o", str(page), "--standalone",
+                    "--css", "style.css", "--metadata", "pagetitle=" + titre], check=True)
+    return page
+
+
++++
   102 # ---- Le programme -------------------------------------------------------------
   103
     …
   133     markdown = ecrire_markdown(NOM, PERSONNES, UNITES, ingredients)
   134     print("écrit :", markdown)
-+         page = ecrire_page(markdown)
-+         print("écrit :", page)
++++
+    page = ecrire_page(markdown)
+    print("écrit :", page)
++++
 ```
 
 **Vérification** : `python recette.py crepes -p 6 --page` se termine par
@@ -335,17 +345,19 @@ fichiers de `recettes/` dont le nom se termine par `.csv`, et `stem` est le
 nom d'un chemin sans son extension. La fonction `noms_des_recettes` renvoie
 la liste des dix noms, de `cookies` à `tarte_pommes`.
 
-```diff
+```modif
    98                     "--css", "style.css", "--metadata", "pagetitle=" + titre], check=True)
    99     return page
-+
-+
-+     def noms_des_recettes():
-+         """Le nom de chaque recette de recettes/ : ses fichiers .csv, sans l'extension."""
-+         noms = []
-+         for chemin in sorted(DONNEES.glob("*.csv")):
-+             noms.append(chemin.stem)
-+         return noms
++++
+
+
+def noms_des_recettes():
+    """Le nom de chaque recette de recettes/ : ses fichiers .csv, sans l'extension."""
+    noms = []
+    for chemin in sorted(DONNEES.glob("*.csv")):
+        noms.append(chemin.stem)
+    return noms
++++
 ```
 
 ### D3.2 Le programme, pour chaque nom
@@ -440,30 +452,34 @@ titre, puis une liste Markdown, un lien par recette :
 `- [Crêpes](crepes.html)`. Le texte du lien est le titre de la recette, la
 première ligne de son fichier `.md`, sans le `# `.
 
-```diff
+```modif
   108
   109
-+     def ecrire_sommaire(noms):
-+         """Le sommaire : sortie/index.md, un lien vers la page de chaque recette, puis sa page HTML ; renvoie son chemin."""
-+         lignes = ["# Le livre de recettes", ""]
-+         for nom in noms:
-+             titre = (DONNEES / (nom + ".md")).read_text(encoding="utf-8").splitlines()[0].lstrip("# ")
-+             lignes.append("- [" + titre + "](" + nom + ".html)")
-+         markdown = SORTIE / "index.md"
-+         markdown.write_text("\n".join(lignes) + "\n", encoding="utf-8")
-+         return ecrire_page(markdown)
-+
-+
++++
+def ecrire_sommaire(noms):
+    """Le sommaire : sortie/index.md, un lien vers la page de chaque recette, puis sa page HTML ; renvoie son chemin."""
+    lignes = ["# Le livre de recettes", ""]
+    for nom in noms:
+        titre = (DONNEES / (nom + ".md")).read_text(encoding="utf-8").splitlines()[0].lstrip("# ")
+        lignes.append("- [" + titre + "](" + nom + ".html)")
+    markdown = SORTIE / "index.md"
+    markdown.write_text("\n".join(lignes) + "\n", encoding="utf-8")
+    return ecrire_page(markdown)
+
+
++++
   121 # ---- Le programme -------------------------------------------------------------
   122
     …
   161         page = ecrire_page(markdown)
   162         print("écrit :", page)
-+
-+     # Le sommaire des pages écrites
-+     if options.page and options.toutes:
-+         sommaire = ecrire_sommaire(noms)
-+         print("écrit :", sommaire)
++++
+
+# Le sommaire des pages écrites
+if options.page and options.toutes:
+    sommaire = ecrire_sommaire(noms)
+    print("écrit :", sommaire)
++++
 ```
 
 **Vérification** : `python recette.py --toutes --page` se termine par
@@ -491,7 +507,7 @@ git pull
 
 > **À faire :** copier les pages dans un dossier `docs/` du dépôt ; régler GitHub Pages sur ce dossier.
 >
-> **À obtenir :** le sommaire s'ouvre à l'adresse `https://<compte>.github.io/recette/`.
+> **À obtenir :** le sommaire s'ouvre à l'adresse `https://<compte>.github.io/td7a-recette/`.
 
 `sortie/` n'est pas versionné. GitHub Pages publie un dossier versionné :
 une copie des pages, dans `docs/`.
@@ -508,6 +524,6 @@ Sur GitHub : Settings, Pages ; Source : Deploy from a branch ; Branch :
 `master`, dossier `/docs` ; Save. Une minute plus tard, la page Settings,
 Pages donne l'adresse du site.
 
-**Vérification** : `https://<compte>.github.io/recette/` affiche le
+**Vérification** : `https://<compte>.github.io/td7a-recette/` affiche le
 sommaire. Les pages publiées sont une copie : après une modification du
 programme, refaire la copie, le commit et le `push`.

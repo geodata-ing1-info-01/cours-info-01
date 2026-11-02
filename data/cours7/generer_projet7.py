@@ -4,9 +4,9 @@ Refait le 30/09/2026 (`syllabus/cours/7_projet_effets/refonte_30-09.md`).
 Chaque TD part d'un dépôt git récupéré sur GitHub, le complète sur des
 branches, et livre chaque branche par une pull request.
 
-TD 7a, parcours standard, la recette en pages. Départ : le programme du
-TD 4a à l'étape B6 (`data/cours4/corriges/4a_recette/b6/`), dans le dépôt de
-l'élève ou dans le dépôt de référence `td7a-recette`.
+TD 7a, parcours standard, la recette en pages. Départ : le dépôt de
+référence `td7a-recette`, le corrigé du TD 4a (programme de l'étape B6,
+`data/cours4/corriges/4a_recette/b6/`), que chaque élève copie sur son compte.
 
     d1  l'option --page : la page HTML d'une recette, par pandoc
     d3  l'option --toutes : toutes les recettes, une boucle sur leurs noms
@@ -43,7 +43,7 @@ TD_TRAIN = ICI / "7b_train"
 COURS4 = DEPOT / "data" / "cours4"
 
 sys.path.insert(0, str(DEPOT / "outils"))
-from modifications import modifications  # noqa: E402,F401  (employé par guides_projet7.py)
+from modifications import blocs  # noqa: E402,F401  (employé par guides_projet7.py)
 
 _spec = importlib.util.spec_from_file_location("generer_recette", COURS4 / "generer_recette.py")
 recette4 = importlib.util.module_from_spec(_spec)

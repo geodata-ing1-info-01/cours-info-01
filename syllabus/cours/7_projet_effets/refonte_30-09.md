@@ -22,6 +22,11 @@ référence `recette` (cas B : `git clone`, `git remote set-url origin`,
 `git push -u origin master`). Le dépôt de référence a l'historique du TD 4a
 jusqu'à l'étape B7 (README, étiquette `v1.0`).
 
+*Modifié le 02/11/2026 : le cas A est retiré. Tous partent du dépôt de
+référence `td7a-recette`, poussé vers un dépôt vide `td7a-recette` de leur
+compte (le nom `recette` est pris par le dépôt du cours 6). Les numéros de
+ligne des blocs du guide ne valent que pour ce dépôt.*
+
 | Étape | Objectif | Résultat |
 |---|---|---|
 | D0 (15′) | récupérer le projet et le relancer | `python recette.py crepes -p 6` ; `git log` montre l'historique du projet 4 |

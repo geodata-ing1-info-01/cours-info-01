@@ -105,7 +105,7 @@ Repris du v2. L'outil « trajectoire » est retiré ; le cours 6 ne demande pas 
 *Refait le 30/09/2026 avec le projet 4 ([`cours/7_projet_effets/refonte_30-09.md`](cours/7_projet_effets/refonte_30-09.md)). Chaque TD part d'un dépôt git récupéré sur GitHub, le complète sur des branches, et livre chaque branche par une pull request fusionnée sur le site. Pas de numpy au parcours standard.*
 
 - **🎓 10′ · Tous** : présentation ; une fonctionnalité, une pull request.
-- **⌨️ TD 7a, standard, 85′** : le dépôt `recette` du projet 4 (ou le dépôt de référence) ; `--page`, la page HTML d'une recette par pandoc (reprise du TD 3f) ; pull request ; `--toutes` ; le sommaire ; seconde pull request ; en bonus, GitHub Pages.
+- **⌨️ TD 7a, standard, 85′** : le dépôt de référence `td7a-recette`, corrigé du TD 4a, copié sur son compte ; `--page`, la page HTML d'une recette par pandoc (reprise du TD 3f) ; pull request ; `--toutes` ; le sommaire ; seconde pull request ; en bonus, GitHub Pages.
 - **Parcours avancé** : 🎓 10′, une image comme tableau numpy, un masque de colonnes ; ⌨️ **TD 7b, 100′** : le dépôt de référence `train` (deux plans, sans fenêtre), cloné, lancé, lu ; deux branches du même commit, `fenetre` et `poteaux` (calque numpy) ; la seconde pull request s'arrête sur un conflit, résolu sur le poste ; en bonus, un troisième plan par `decor/plans.csv`.
 
 Les TD 7a (livre de recettes, photo, `--frigo`) et 7b (scène complète, boucle et numpy chronométrés) du 27/09 sont dans l'historique git. Dépôts de référence : `recette` (TD 4a, étape B7, étiquette `v1.0` ; sert aussi au cours 6) et `train`, écrits par `data/cours7/generer_projet7.py --depots`.

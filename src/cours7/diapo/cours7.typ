@@ -4,8 +4,8 @@
 // chaque TD part d'un dépôt git récupéré sur GitHub (cours 6), le complète
 // sur des branches, et livre chaque branche par une pull request.
 //
-//   - parcours standard : TD 7a, la recette en pages (le programme du
-//     projet 4, sa page HTML par pandoc, toutes les recettes, un sommaire) ;
+//   - parcours standard : TD 7a, la recette en pages (le dépôt du corrigé
+//     du TD 4a, sa page HTML par pandoc, toutes les recettes, un sommaire) ;
 //   - parcours avancé : TD 7b, la fenêtre du train (un projet récupéré, la
 //     fenêtre et les ombres des poteaux sur deux branches, numpy, un
 //     conflit), précédé de deux diapositives sur numpy.
@@ -38,48 +38,31 @@
 )
 
 // --------------------------------------------
-#d("Contenu de la séance")[
-  #annonce[
-    Un TD d'application des cours 1 à 6, sur un projet récupéré depuis
-    GitHub : lui ajouter des fonctionnalités sur des branches, puis livrer
-    chaque branche par une pull request, fusionnée sur le site.
-  ]
-
-  #tableau(
-    columns: (auto, 1fr, auto),
-    align: (left + horizon, left + horizon, center + horizon),
-    [Parcours], [Ce qu'on fait], [Durée],
-    [Tous], [présentation de la séance ; le chemin d'une pull request], [10 min],
-    [Standard], [TD 7a : ajouter à son script l'écriture des pages HTML des recettes et d'un sommaire, livrée par deux pull requests], [85 min],
-    [Avancé], [exposé : représenter une image par un tableau de nombres, avec numpy], [10 min],
-    [], [TD 7b : reprendre un projet commencé par d'autres, lui ajouter deux fonctionnalités sur deux branches, résoudre le conflit de leur fusion], [100 min],
-  )
-
-  #notes[
-    Le guide de chaque TD, dans son dossier, détaille chaque étape : le
-    faire ouvrir dès le début. La clé SSH du cours 6 doit être enregistrée
-    sur le compte GitHub de chaque élève.
-  ]
-]
-
-// --------------------------------------------
+// « Contenu de la séance » et « Deux parcours » fusionnées le 02/11/2026 :
+// le tableau des parties et des durées passe en notes.
 #d("Deux parcours")[
   #annonce[
-    Chaque élève garde son parcours. Les deux TD partent d'un dépôt GitHub.
+    Prendre le parcours standard. Le parcours avancé est réservé aux élèves
+    qui se sentent très à l'aise.
   ]
 
   #tableau(
     columns: (auto, 1fr, 1fr),
     align: left + horizon,
     [], [Parcours standard], [Parcours avancé],
-    [Le projet], [`recette`, le dépôt du projet 4 publié au cours 6], [`train`, un dépôt du module, commencé par d'autres],
+    [Le projet], [`td7a-recette`, le corrigé du TD 4a], [`train`, un dépôt du module, commencé par d'autres],
     [Ce qu'on ajoute], [l'écriture des pages HTML des recettes et d'un sommaire], [la fenêtre du train, les ombres des poteaux (numpy)],
     [Dossier], [`cours7/7a_recette/`], [`cours7/7b_train/`],
   )
 
-  #legende[
-    Sans dépôt utilisable du projet 4, le TD 7a part du dépôt de référence
-    `recette`, cloné puis poussé vers un dépôt vide de son compte.
+  #notes[
+    Déroulé : tous, présentation et chemin d'une pull request, 10 min.
+    Standard : TD 7a, 85 min. Avancé : exposé numpy (une image comme
+    tableau de nombres), 10 min, puis TD 7b, 100 min.
+
+    Le guide de chaque TD, dans son dossier, détaille chaque étape : le
+    faire ouvrir dès le début. La clé SSH du cours 6 doit être enregistrée
+    sur le compte GitHub de chaque élève.
   ]
 ]
 
@@ -185,7 +168,7 @@
   #tableau(
     columns: (auto, 1fr, 1fr),
     align: left + horizon,
-    [], [Parcours standard, `recette`], [Parcours avancé, `train`],
+    [], [Parcours standard, `td7a-recette`], [Parcours avancé, `train`],
     [Pull requests fusionnées], [`page`, puis `livre`], [`fenetre`, puis `poteaux`],
     [`git log --oneline --graph`], [deux commits de fusion], [trois commits de fusion, dont celui du conflit],
     [Le résultat], [`sortie/index.html` et dix pages], [`sortie/train.mp4` : la vue complète],

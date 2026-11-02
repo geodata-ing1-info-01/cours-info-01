@@ -25,5 +25,7 @@ python ../../outils/compiler_guides.py --cours 7
 ```
 
 Les dépôts de référence sont à pousser sur le compte GitHub du module
-(`recette` : l'historique du TD 4a jusqu'au README et à l'étiquette `v1.0` ;
-`train` : trois commits). Le dépôt `recette` sert aussi au cours 6.
+(`td7a-recette` : l'historique du TD 4a jusqu'au README et à l'étiquette
+`v1.0` ; `td7b-train` : trois commits). Le même historique sert aussi au
+cours 6. Au TD 7a, tous partent de `td7a-recette` (décision du 02/11/2026) :
+les numéros de ligne des blocs du guide sont ceux de son `recette.py`.

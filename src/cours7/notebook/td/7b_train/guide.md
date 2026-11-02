@@ -36,11 +36,12 @@ Chacune arrive sur `master` par une pull request. Les deux modifient le
 même endroit de la fonction `image` : la seconde pull request s'arrête sur
 un conflit, que l'on résout sur le poste.
 
-Le guide donne les lignes à modifier comme ceux du projet 4. Une ligne
-marquée `-` est à supprimer, une ligne marquée `+` est à ajouter, sans le
-`+` ni les cinq espaces qui le suivent. Les lignes sans signe ne changent
-pas et indiquent l'endroit. Le nombre qui suit le signe est le numéro de la
-ligne dans VS Code, quand les modifications sont faites de haut en bas.
+Le guide donne les modifications du programme par blocs. Les lignes en
+vert, entre deux lignes `+++`, sont à ajouter : les copier telles quelles,
+sans les lignes `+++`. Les lignes en rouge, entre deux lignes `---`, sont à
+supprimer. Les autres lignes ne changent pas et indiquent l'endroit : le
+nombre qui les précède est le numéro de la ligne dans VS Code, quand les
+modifications sont faites de haut en bas.
 
 | Étape | Objectif | Durée |
 |---|---|---|
@@ -211,10 +212,12 @@ la vitre. Dans la fonction `image`, une ligne de plus l'ajoute à la commande
 de `magick`, après la boucle des plans, avec `-composite`, comme chaque
 plan.
 
-```diff
+```modif
    53     for nom, vitesse in plans:
    54         commande = commande + arguments_plan(nom, numero * vitesse) + ["-composite"]
-+         commande = commande + [str(DECOR / "fenetre.png"), "-composite"]
++++
+    commande = commande + [str(DECOR / "fenetre.png"), "-composite"]
++++
    56     commande = commande + [str(fichier)]
    57     subprocess.run(commande, check=True)
 ```
@@ -273,45 +276,53 @@ opérations sur ce tableau se font sur chaque valeur à la fois :
 booléens choisit des colonnes : `calque[:, colonnes, 3] = 110` règle
 l'opacité de ces colonnes, sur toutes les lignes (`:`), à 110 sur 255.
 
-```diff
+```modif
    18 from pathlib import Path
    19
-+     import numpy as np
-+     from PIL import Image
-+
++++
+import numpy as np
+from PIL import Image
+
++++
    23 # Les programmes
    24 MAGICK = "magick"
     …
    29 SORTIE = Path.cwd() / "sortie"
    30 IMAGES = SORTIE / "images"
-+
-+     # Les ombres des poteaux : des bandes sombres qui passent très vite vers la gauche
-+     POTEAUX = SORTIE / "poteaux.png"     # le calque des poteaux, refait pour chaque image
-+     ECART_POTEAUX = 400                  # pixels entre deux bandes
-+     LARGEUR_POTEAU = 24                  # largeur d'une bande, en pixels
-+     VITESSE_POTEAUX = 90                 # pixels par image
++++
+
+# Les ombres des poteaux : des bandes sombres qui passent très vite vers la gauche
+POTEAUX = SORTIE / "poteaux.png"     # le calque des poteaux, refait pour chaque image
+ECART_POTEAUX = 400                  # pixels entre deux bandes
+LARGEUR_POTEAU = 24                  # largeur d'une bande, en pixels
+VITESSE_POTEAUX = 90                 # pixels par image
++++
    37
    38
     …
    57
    58
-+     def ecrire_poteaux(fichier, numero):
-+         """Le calque des poteaux de l'image `numero`, 640 × 480 pixels : des bandes sombres, transparent ailleurs."""
-+         # Un tableau hauteur × largeur × 4 (rouge, vert, bleu, opacité), à zéro : noir et transparent
-+         calque = np.zeros((480, 640, 4), dtype=np.uint8)
-+         # Pour chaque colonne, vrai si elle tombe dans une bande
-+         colonnes = (np.arange(640) + VITESSE_POTEAUX * numero) % ECART_POTEAUX < LARGEUR_POTEAU
-+         calque[:, colonnes, 3] = 110     # l'opacité de ces colonnes, sur toute la hauteur
-+         Image.fromarray(calque).save(fichier)
-+
-+
++++
+def ecrire_poteaux(fichier, numero):
+    """Le calque des poteaux de l'image `numero`, 640 × 480 pixels : des bandes sombres, transparent ailleurs."""
+    # Un tableau hauteur × largeur × 4 (rouge, vert, bleu, opacité), à zéro : noir et transparent
+    calque = np.zeros((480, 640, 4), dtype=np.uint8)
+    # Pour chaque colonne, vrai si elle tombe dans une bande
+    colonnes = (np.arange(640) + VITESSE_POTEAUX * numero) % ECART_POTEAUX < LARGEUR_POTEAU
+    calque[:, colonnes, 3] = 110     # l'opacité de ces colonnes, sur toute la hauteur
+    Image.fromarray(calque).save(fichier)
+
+
++++
    69 def image(fichier, plans, numero):
    70     """L'image numéro `numero` : le fond, puis chaque plan décalé de numero × sa vitesse."""
     …
    72     for nom, vitesse in plans:
    73         commande = commande + arguments_plan(nom, numero * vitesse) + ["-composite"]
-+         ecrire_poteaux(POTEAUX, numero)
-+         commande = commande + [str(POTEAUX), "-composite"]
++++
+    ecrire_poteaux(POTEAUX, numero)
+    commande = commande + [str(POTEAUX), "-composite"]
++++
    76     commande = commande + [str(fichier)]
    77     subprocess.run(commande, check=True)
 ```

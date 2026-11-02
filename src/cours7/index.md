@@ -6,13 +6,15 @@ title: "Séance 7 — Projet d'application 2"
 
 Reprendre un projet depuis GitHub, lui ajouter des fonctionnalités sur des
 branches, et livrer chaque branche par une pull request, fusionnée sur le
-site. Chaque élève garde son parcours.
+site. Chacun prend le parcours standard, sauf les élèves qui se sentent
+très à l'aise, qui peuvent prendre le parcours avancé.
 
-## Parcours standard : TD 7a, compléter son projet, par des pull requests
+## Parcours standard : TD 7a, compléter un projet GitHub, par des pull requests
 
-Le TD part du programme `recette.py` du projet 4, publié au cours 6. Il lui
-ajoute la page HTML de chaque recette, écrite par pandoc, puis toutes les
-recettes et un sommaire. Le [guide détaillé](notebook/td/7a_recette/guide.md)
+Le TD part du dépôt GitHub `td7a-recette`, publié par le module : le
+programme `recette.py` du corrigé du TD 4a, avec son historique. Il ajoute à
+ce programme la page HTML de chaque recette, écrite par pandoc, puis toutes
+les recettes et un sommaire. Le [guide détaillé](notebook/td/7a_recette/guide.md)
 donne chaque étape.
 
 ```{list-table}
@@ -22,7 +24,8 @@ donne chaque étape.
   - Ce qu'on fait
   - Durée
 * - D0
-  - cloner son dépôt `recette`, relancer le programme
+  - copier le dépôt `td7a-recette` sur son compte, le cloner, relancer le
+    programme
   - 15 min
 * - D1
   - branche `page` : l'option `--page`, la page HTML d'une recette par
@@ -77,9 +80,8 @@ donne chaque étape.
 
 ## Avant la séance
 
-Garder son dépôt GitHub du cours 6, et la clé SSH du cours 6 enregistrée
-sur son compte. Qui n'a pas de dépôt `recette` utilisable part du dépôt de
-référence : le cloner, puis le pousser vers un dépôt vide de son compte.
+Garder son compte GitHub du cours 6, avec la clé SSH du cours 6
+enregistrée.
 
 ```{toctree}
 :hidden:

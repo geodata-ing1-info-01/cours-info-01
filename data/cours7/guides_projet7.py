@@ -2,7 +2,7 @@
 
 Appelé par `generer_projet7.py` après la vérification des corrigés : le code
 montré vient de `recette(etat)` et `train(etat)`, les blocs de modifications
-de `outils/modifications.py`, et les sorties montrées sont celles des
+de `blocs` (`outils/modifications.py`), et les sorties montrées sont celles des
 programmes et de git, exécutés au moment de l'écriture.
 
 Écrit `src/cours7/notebook/td/7a_recette/guide.md` et
@@ -19,7 +19,7 @@ import tempfile
 from pathlib import Path
 
 from generer_projet7 import (DEPOT, LIGNE_FENETRE, LIGNES_POTEAUX, TD_RECETTE, TITRE_PROGRAMME, depot_recette,
-                             depot_train, ecrire, modifications, recette, train, verifier_train)
+                             depot_train, ecrire, blocs, recette, train, verifier_train)
 
 sys.path.insert(0, str(DEPOT / "src"))
 from _identifiants import identifiant_titre  # noqa: E402
@@ -77,11 +77,12 @@ def executer(fabriquer, projet_windows, fichiers, *arguments, preparer=None):
         return texte.rstrip("\n")
 
 
-RAPPEL_MODIFICATIONS = """Le guide donne les lignes à modifier comme ceux du projet 4. Une ligne
-marquée `-` est à supprimer, une ligne marquée `+` est à ajouter, sans le
-`+` ni les cinq espaces qui le suivent. Les lignes sans signe ne changent
-pas et indiquent l'endroit. Le nombre qui suit le signe est le numéro de la
-ligne dans VS Code, quand les modifications sont faites de haut en bas."""
+RAPPEL_MODIFICATIONS = """Le guide donne les modifications du programme par blocs. Les lignes en
+vert, entre deux lignes `+++`, sont à ajouter : les copier telles quelles,
+sans les lignes `+++`. Les lignes en rouge, entre deux lignes `---`, sont à
+supprimer. Les autres lignes ne changent pas et indiquent l'endroit : le
+nombre qui les précède est le numéro de la ligne dans VS Code, quand les
+modifications sont faites de haut en bas."""
 
 DEBUT_SEANCE = """## Au début de la séance
 
@@ -134,10 +135,12 @@ def guide_7a():
                         "--toutes", "--page", preparer=preparer_d3).splitlines()[-1]
     crepes_md = (TD_RECETTE / "depart" / "recettes" / "crepes.md").read_text(encoding="utf-8")
     noms = sorted(p.stem for p in (TD_RECETTE / "depart" / "recettes").glob("*.md"))
-    texte = ENTETE.format(titre="TD 7a — Compléter son projet, par des pull requests") + f"""
-Le TD complète le programme `recette.py` du projet 4, récupéré depuis
-GitHub. Aujourd'hui, le programme calcule les ingrédients d'une recette pour
-un nombre de personnes et les écrit dans un fichier CSV. À la fin du TD, il
+    texte = ENTETE.format(titre="TD 7a — Compléter un projet GitHub, par des pull requests") + f"""
+Le TD part d'un dépôt GitHub publié par le module, `td7a-recette`, le même
+pour tous : il contient le programme `recette.py` du corrigé du TD 4a, avec
+son historique. Le TD ajoute de nouvelles fonctions à ce programme. Au
+départ, le programme calcule les ingrédients d'une recette pour un nombre de
+personnes et les écrit dans un fichier CSV. À la fin du TD, il
 écrit aussi, pour chaque recette, une page HTML qui réunit le texte de la
 recette et le tableau des quantités calculées, puis un sommaire qui relie
 ces pages, comme un livre de recettes.
@@ -153,61 +156,54 @@ Chaque fonctionnalité se développe sur une branche, puis arrive sur
 
 | Étape | Objectif | Durée |
 |---|---|---|
-| [D0](#@D0) | récupérer le projet et le relancer | 15′ |
-| [D1](#@D1) | écrire la page HTML d'une recette : le texte complété, puis pandoc | 25′ |
+| [D0](#@D0) | copier le dépôt de départ sur son poste puis son compte GitHub, lancer le programme (test) | 15′ |
+| [D1](#@D1) | écrire la page HTML d'une recette : ajout de la liste d'ingrédients, conversion HTML | 25′ |
 | [D2](#@D2) | proposer la branche par une pull request | 10′ |
-| [D3](#@D3) | écrire les pages de toutes les recettes en une commande | 20′ |
-| [D4](#@D4) | écrire une page qui relie les autres ; seconde pull request | 15′ |
+| [D3](#@D3) | générer les pages de toutes les recettes avec un seul appel de commande | 20′ |
+| [D4](#@D4) | écrire une page d'index des recettes ; deuxième pull request | 15′ |
 | [D5](#@D5) (bonus) | publier les pages avec GitHub Pages | |
 
 {DEBUT_SEANCE.format(td="7a_recette")}
 
-## D0 · Récupérer le projet
+## D0 · Récupérer le projet GitHub initial
 
-{encadre("le dépôt `recette` dans `travail/`, depuis GitHub ; votre nom et votre adresse pour ce dépôt.",
-         "`python recette.py crepes -p 6` écrit `sortie/crepes_6_SI.csv` ; `git log --oneline` affiche l'historique du projet 4.")}
+{encadre("créer sur votre compte GitHub un dépôt vide `td7a-recette` ; cloner dans `travail/recette/` le dépôt de départ du module, puis l'envoyer vers votre nouveau dépôt GitHub ; régler votre nom et votre adresse pour ce dépôt.",
+         "la page GitHub de votre dépôt `td7a-recette` affiche `recette.py` et les commits du TD 4a ; exécuter depuis le dossier `travail/recette/`, `python recette.py crepes -p 6` écrit `sortie/crepes_6_SI.csv`.")}
 
-**Cas A, votre dépôt `recette` est sur GitHub et le programme fonctionne.**
-Sur sa page GitHub, bouton Code, onglet SSH, copier l'adresse, puis :
+Le dépôt de départ, `td7a-recette`, est sur le compte GitHub du module,
+`geodata-ing1-info-01`. Le TD se fait dans une copie de ce dépôt, sur votre
+compte : vous y poussez vos branches et y fusionnez vos pull requests.
 
-```text
-cd travail
-git clone git@github.com:<compte>/recette.git
-cd recette
-```
-
-**Cas B, pas de dépôt, ou un programme qui ne fonctionne pas.** Le module
-publie un dépôt de référence, `td7a-recette`, sur le compte GitHub
-`geodata-ing1-info-01`. Sur son compte GitHub, créer d'abord un dépôt vide nommé `recette` (New repository, sans
-README), puis :
+Sur votre compte GitHub, créer un dépôt vide nommé `td7a-recette` (New
+repository, sans README). Puis, en remplaçant `<compte>` par le nom de votre
+compte GitHub :
 
 ```text
 cd travail
 git clone git@github.com:geodata-ing1-info-01/td7a-recette.git recette
 cd recette
-git remote set-url origin git@github.com:<compte>/recette.git
+git remote set-url origin git@github.com:<compte>/td7a-recette.git
 git push -u origin master
 ```
 
+Le dernier argument de `git clone` nomme le dossier local `recette`.
 `git remote set-url` change l'adresse du dépôt distant `origin` : les
-`push` suivants vont au dépôt de l'élève. Le dernier argument de
-`git clone` nomme le dossier local `recette`, comme dans le cas A. Le dépôt
-garde l'historique du projet 4.
+`push` suivants utilisent votre nouveau dépôt.
 
-Dans les deux cas, régler votre nom et votre adresse pour ce dépôt :
+Régler ensuite votre nom et votre adresse pour ce dépôt :
 
 ```text
 git config user.name "Prénom Nom"
 git config user.email "prenom.nom@exemple.fr"
 ```
 
-**Vérification** : `python recette.py crepes -p 6` affiche
+**Vérification** : exécuter depuis le dossier `travail/recette/` la commande `python recette.py crepes -p 6` affiche
 
 {sortie("a0", "crepes", "-p", "6")}
 
-## D1 · La page d'une recette
+## D1 · Générer la page HTML d'une recette
 
-{encadre("sur une branche `page` : compléter le texte de la recette par le tableau des ingrédients (D1.1), puis convertir ce texte en page HTML par pandoc (D1.2) ; un commit pour chacune.",
+{encadre("sur une branche `page` : compléter le texte de la recette par le tableau des ingrédients (D1.1), puis convertir ce texte en page HTML en appelant pandoc (D1.2) ; faire un commit pour chacune des modifications D1.1 et D1.2",
          "`python recette.py crepes -p 6 --page` écrit `sortie/crepes.md`, puis `sortie/crepes.html`, la page de la figure du début du guide.")}
 
 La page d'une recette réunit deux choses : le texte de la recette (le titre,
@@ -216,7 +212,7 @@ Markdown, et le tableau des ingrédients, calculé par le programme. Le
 programme les réunit dans un fichier Markdown complet (D1.1), puis pandoc
 convertit ce fichier en page HTML (D1.2).
 
-### D1.1 Le texte de la recette, complété par le tableau
+### D1.1 Ajouter le tableau des ingrédients au texte de la recette
 
 ```text
 git checkout -b page
@@ -236,7 +232,7 @@ suivi du tableau des ingrédients, que la fonction `tableau` écrit en
 Markdown, une ligne par ingrédient. `replace` renvoie le texte avec ce
 remplacement. Le résultat est écrit dans `sortie/crepes.md`.
 
-{modifications(recette("a0"), recette("d1a"))}
+{blocs(recette("a0"), recette("d1a"))}
 
 **Vérification** : `python recette.py crepes -p 6 --page` se termine par
 
@@ -259,7 +255,7 @@ fonction `ecrire_page` le lance avec `subprocess.run`, et copie la feuille
 de style `style.css` à côté de la page. `with_suffix(".html")` donne le
 chemin du même fichier avec l'extension `.html`.
 
-{modifications(recette("d1a"), recette("d1"))}
+{blocs(recette("d1a"), recette("d1"))}
 
 **Vérification** : `python recette.py crepes -p 6 --page` se termine par
 
@@ -328,7 +324,7 @@ fichiers de `recettes/` dont le nom se termine par `.csv`, et `stem` est le
 nom d'un chemin sans son extension. La fonction `noms_des_recettes` renvoie
 la liste des dix noms, de `{noms[0]}` à `{noms[-1]}`.
 
-{modifications(d1_debut, d3_debut)}
+{blocs(d1_debut, d3_debut)}
 
 ### D3.2 Le programme, pour chaque nom
 
@@ -378,7 +374,7 @@ titre, puis une liste Markdown, un lien par recette :
 `- [Crêpes](crepes.html)`. Le texte du lien est le titre de la recette, la
 première ligne de son fichier `.md`, sans le `# `.
 
-{modifications(recette("d3"), recette("d4"))}
+{blocs(recette("d3"), recette("d4"))}
 
 **Vérification** : `python recette.py --toutes --page` se termine par
 
@@ -402,7 +398,7 @@ git pull
 ## D5 (bonus) · Les pages sur GitHub Pages
 
 {encadre("copier les pages dans un dossier `docs/` du dépôt ; régler GitHub Pages sur ce dossier.",
-         "le sommaire s'ouvre à l'adresse `https://<compte>.github.io/recette/`.")}
+         "le sommaire s'ouvre à l'adresse `https://<compte>.github.io/td7a-recette/`.")}
 
 `sortie/` n'est pas versionné. GitHub Pages publie un dossier versionné :
 une copie des pages, dans `docs/`.
@@ -419,7 +415,7 @@ Sur GitHub : Settings, Pages ; Source : Deploy from a branch ; Branch :
 `master`, dossier `/docs` ; Save. Une minute plus tard, la page Settings,
 Pages donne l'adresse du site.
 
-**Vérification** : `https://<compte>.github.io/recette/` affiche le
+**Vérification** : `https://<compte>.github.io/td7a-recette/` affiche le
 sommaire. Les pages publiées sont une copie : après une modification du
 programme, refaire la copie, le commit et le `push`.
 """
@@ -613,7 +609,7 @@ la vitre. Dans la fonction `image`, une ligne de plus l'ajoute à la commande
 de `magick`, après la boucle des plans, avec `-composite`, comme chaque
 plan.
 
-{modifications(r2, train("e2"))}
+{blocs(r2, train("e2"))}
 
 **Vérification** : `python train.py --numero 40`, puis ouvrir
 `sortie/train_0040.png` : le paysage derrière la vitre, et le cadre noir
@@ -668,7 +664,7 @@ opérations sur ce tableau se font sur chaque valeur à la fois :
 booléens choisit des colonnes : `calque[:, colonnes, 3] = 110` règle
 l'opacité de ces colonnes, sur toutes les lignes (`:`), à 110 sur 255.
 
-{modifications(r2, train("e3"))}
+{blocs(r2, train("e3"))}
 
 **Vérification** : `python train.py --numero 3`, puis ouvrir
 `sortie/train_0003.png` : deux bandes sombres sur le paysage. Puis
