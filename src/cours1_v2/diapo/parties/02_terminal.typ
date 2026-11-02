@@ -186,8 +186,8 @@
 // --------------------------------------------
 #d("L'invite de Git Bash")[
   #annonce[
-    Avant chaque commande, Git Bash affiche une invite qui rappelle : l'utilisateur, la
-    machine et le dossier courant. La commande se tape après le `$`.
+    Avant chaque commande, Git Bash affiche une invite qui rappelle
+    l'utilisateur, la machine et le dossier courant. La commande se tape après le `$`.
   ]
 
   // Les couleurs de l'invite réelle de Git Bash, assombries pour le fond
@@ -368,7 +368,8 @@
   )
 
   #legende[
-    Sous macOS, Linux et python, utilisation d'un autre séparateur : `/home/alice/cours1/1a_formats/depart/raven.odt`.
+    macOS et Linux séparent les dossiers par `/`, que Python accepte aussi
+    sous Windows : `/home/alice/cours1/1a_formats/depart/raven.odt`.
   ]
 
   #notes[

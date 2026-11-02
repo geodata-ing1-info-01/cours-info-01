@@ -47,9 +47,8 @@
   ]
 
   #notes[
-    Les cinq termes pour questions / interaction avec la salle et tester
-    les connaissances des étudiants. + pour discussion sur sujet que définition
-    rigide des cinq termes. 
+    Les cinq termes servent à interroger la salle, à tester les
+    connaissances des étudiants et à ouvrir une discussion sur leur sens.
 
     Ce qu'il faut en tirer : aucun de ces mots n'a de définition arrêtée, et
     tous désignent des logiciels. « App » est l'abréviation anglaise
@@ -94,15 +93,14 @@
   ]
 
   #notes[
-    Le système orchestre les programmes ouverts en même temps et gère aussi les 
-    droit d'accès  (empêche un pogramme d'écrire dans la mémoire d'un autre). 
-    Conséquence pratique : 
-    Un pogramme peut donc "dépendre" en théorie de l'OS et du materiels et ne
-    peut fonctionner que sur certains combinaisons.
-    les chemins de fichiers ne s'écrivent pas pareil d'un système à
-    l'autre et les outils installés diffèrent. 
+    Le système orchestre les programmes ouverts en même temps et gère aussi
+    les droits d'accès (il empêche un programme d'écrire dans la mémoire d'un
+    autre). Conséquences pratiques : un programme peut dépendre de l'OS et du
+    matériel, et ne fonctionner que sur certaines combinaisons ; les chemins
+    de fichiers ne s'écrivent pas pareil d'un système à l'autre, et les
+    outils installés diffèrent.
 
-    La question sert à faire constater que le schéma vaut aussi pour les smartphones. 
+    La question sert à faire constater que le schéma vaut aussi pour les smartphones.
     Réponse attendue : Android ou iOS.
     Éventuellement évoquer le lien entre Linux et Android.
   ]
@@ -129,10 +127,12 @@
     transporte un flux, et le fichier est sur un disque à chaque bout.
 
     Exemples d'usage d'un fichier, à donner à l'oral : relire dans une
-    semaine ce que le programme a produit ; un tableau (tabler) écrit par un
-    logiciel, puis importé/ouvet dans un autre ; trasnfert entre postes (et stockage externe comme USB)
+    semaine ce que le programme a produit ; un tableau (tableur) écrit par un
+    logiciel, puis importé ou ouvert dans un autre ; un transfert entre
+    postes (et vers un stockage externe, comme une clé USB).
 
-    Un format de fichier est des moyens d'échange/interactions entre logiciels.
+    Un format de fichier est un moyen d'échange et d'interaction entre
+    logiciels.
 
     Transition vers la suite de la partie : reconnaître le type d'un
     fichier, et savoir sur quel disque il est enregistré.
@@ -191,7 +191,7 @@
   ]
 
   #notes[
-    À dire, sans l'afficher: l'extension est la fin du nom, après le dernier point. Le
+    À dire, sans l'afficher : l'extension est la fin du nom, après le dernier point. Le
     système choisit d'après elle le logiciel lancé au double-clic. Elle se
     change en renommant le fichier, comme le reste du nom. 
     L'extension indique le type du contenu sans le garantir. Le TD 1b le fait constater au terminal.
@@ -274,8 +274,8 @@
 #d("Quizz : vocabulaire associé aux chemins de fichier")[
   #annonce[
     Un chemin dit où trouver un fichier dans l'arborescence des dossiers.
-    Les parties d'un chemin ou des noms / désignations propres : dites à quoi chacun correspond
-    dans cet exemple.
+    Les parties d'un chemin ont chacune un nom : dites à quoi chacun
+    correspond dans cet exemple.
   ]
 
   #align(center)[
@@ -386,7 +386,7 @@
     Faire situer sur le schéma le disque du poste, `formationTemp`,
     l'espace personnel et le stockage en ligne. La clé USB n'y figure pas.
 
-    Lire un fichier sur le réseau est plus lent que sur le disque du poste ;
+    Lire un fichier sur le réseau est plus lent que sur le disque du poste.
 
     À compléter avant la séance : le nom de l'espace personnel de l'élève,
     son chemin, et comment l'ouvrir. Les élèves ne s'en servent pas encore

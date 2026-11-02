@@ -6,14 +6,14 @@
 
 #separateur(
   "Programme Python et notebook",
-  annonce: "comment executer et ouvrir des fichiers de codes python",
+  annonce: "Exécuter et ouvrir des fichiers de code Python.",
 )
 
 // --------------------------------------------
 // Seconde relecture du 19/10/2026 : ce que les parties 1 et 2 ont dit, que
 // la partie 3 emploie. Les icônes des éditeurs sont celles du TD 1a
 // (`images/editeurs/CREDITS.md`).
-#d("notions des parties 1 et 2 utiles pour Python")[
+#d("Notions des parties 1 et 2 utiles pour Python")[
   #annonce[
     `python` est un programme en ligne de commande. Il prend en entrée un
     fichier texte, écrit dans un éditeur de texte comme le Bloc-notes, dont
@@ -63,7 +63,7 @@
 // Relecture du 19/10/2026 : la moitié « Compilé » de « Compiler ou
 // interpréter » (refaite le 27/09 à partir de « Deux chemins du texte à
 // l'exécution »).
-#d("Du code au programme : compilation puis execution")[
+#d("Du code au programme : compilation puis exécution")[
   #annonce[
     Le processeur n'exécute que des instructions machine. Un compilateur
     traduit une fois le texte du programme en instructions machine, et les
@@ -101,7 +101,7 @@
 // Relecture du 19/10/2026 : la moitié « Interprété » de « Compiler ou
 // interpréter », avec les notes de « Compilé ou interprété : ce que chacun
 // apporte », retirée.
-#d("Du code au programme : Interpréteur")[
+#d("Du code au programme : interpréteur")[
   #annonce[
     Un interpréteur lit le texte du programme et l'exécute, à chaque
     lancement, sans fichier exécutable. Python est un langage interprété.

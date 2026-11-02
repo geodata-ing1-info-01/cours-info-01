@@ -73,7 +73,7 @@
 #d("Copier les fichiers de la séance sur le poste")[
 
   #annonce[
-    Copier `info01-cours1.zip` depuis `formationTemp` sur le Bureau et la déarchiver dans un dossier `info01`.
+    Copier `info01-cours1.zip` depuis `formationTemp` sur le Bureau et l'extraire dans un dossier `info01`.
   ]
 
   #consignes(
@@ -186,7 +186,7 @@
 ]
 
 // --------------------------------------------
-#d("Quels formats permet la manipulation du texte ?")[
+#d("Quels formats permettent la manipulation du texte ?")[
   #annonce[
     Rouvrir les trois fichiers, et essayer dans chacun de sélectionner une
     ligne du poème, puis de chercher un mot avec `Ctrl` + `F`.

@@ -7,7 +7,7 @@
 
 #let td = (
   numero: "1b",
-  titre: "rejouer le TD 1a mais en ligne de commande",
+  titre: "Rejouer le TD 1a mais en ligne de commande",
   annonce: "Objectif : manipuler des fichiers en ligne de commande, dans Git Bash : se déplacer, copier, renommer, ouvrir",
   dossier: "cours1/1b_terminal/",
   duree: "15′",
@@ -148,7 +148,7 @@
   ]
 ]
 
-#d("Copier plusieurs fichiers d'un coup avec '*'")[
+#d([Copier plusieurs fichiers d'un coup avec `*`])[
   #consignes(
     taille: 16pt,
     [Créer un dossier `textes` dans `travail` : `mkdir travail/textes`.],
