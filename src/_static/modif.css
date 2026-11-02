@@ -1,0 +1,8 @@
+/* Blocs ```modif des guides de TD (`_coloration.py`) : les lignes à ajouter
+   en vert, les lignes à supprimer en rouge, comme dans les guides en PDF. Le
+   style Pygments du thème ne colore pas les lignes ajoutées, et met les
+   lignes supprimées en bleu. */
+html[data-theme="light"] .highlight-modif .gi { color: #22863a; }
+html[data-theme="light"] .highlight-modif .gd { color: #b31d28; }
+html[data-theme="dark"] .highlight-modif .gi { color: #7ee787; }
+html[data-theme="dark"] .highlight-modif .gd { color: #ffa198; }

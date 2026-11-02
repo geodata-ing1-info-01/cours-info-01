@@ -62,6 +62,10 @@ compile en `produit/illustrations/<nom>.png` du TD, que `livrer_tds.py` met à
 plat dans `<td>/illustrations/`. Un notebook ouvert depuis `travail/` les
 affiche par `![…](../illustrations/<nom>.png)`.
 
+Les blocs ```modif d'un guide (`blocs` de `outils/modifications.py`) sont
+réécrits en HTML dans le `.ipynb`, par `src/_coloration.py` : JupyterLab ne
+connaît pas ce format, et n'afficherait pas en vert les lignes à ajouter.
+
 Sort en code 1 si une conversion, une exécution ou une illustration échoue.
 """
 
@@ -83,6 +87,8 @@ AFFECTATION = re.compile(r"^(\s*)([\w.\[\]\"', ]+?)\s*=(?!=)")
 
 RACINE = Path(__file__).resolve().parent.parent
 SOURCES = sorted((RACINE / "src").glob("cours*/notebook/td/**/*.md"))
+sys.path.insert(0, str(RACINE / "src"))
+from _coloration import blocs_en_html  # noqa: E402
 
 
 def destination(source: Path) -> tuple[Path, Path] | None:
@@ -178,6 +184,22 @@ def reponse(lignes: list[str]) -> dict:
     }
 
 
+def colorer(notebook: Path) -> None:
+    """Les blocs ```modif des cellules Markdown du notebook, réécrits en HTML coloré."""
+    contenu = json.loads(notebook.read_text(encoding="utf-8"))
+    modifie = False
+    for cellule in contenu["cells"]:
+        if cellule["cell_type"] != "markdown":
+            continue
+        source = "".join(cellule["source"])
+        colore = blocs_en_html(source)
+        if colore != source:
+            cellule["source"] = colore
+            modifie = True
+    if modifie:
+        notebook.write_text(json.dumps(contenu, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+
+
 def a_trous(complet: Path, livre: Path) -> bool:
     """Écrit la version livrée du notebook ; dit s'il y avait des cellules à masquer.
 
@@ -256,6 +278,7 @@ def convertir(source: Path, executer: bool) -> bool:
         print(conversion.stderr.strip(), file=sys.stderr)
         return False
     print(f"  {cible.relative_to(RACINE)}")
+    colorer(cible)
 
     # Le notebook complet est d'abord écrit à la place du livré ; s'il porte
     # des cellules `corrige`, il part dans `_corrige/` et le livré est refait

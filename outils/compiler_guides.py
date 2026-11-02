@@ -24,6 +24,11 @@ plat dans le dossier livré : l'étudiant trouve le guide à côté de `depart/`
     python outils/compiler_guides.py --cours 3
     python outils/compiler_guides.py --cours 4
 
+Les blocs ```modif (`blocs` de `outils/modifications.py`) ont leurs lignes à
+ajouter en vert et leurs lignes à supprimer en rouge : dans le PDF par une
+règle typst de l'en-tête, dans la page HTML par `src/_coloration.py`, qui les
+écrit en HTML avant la conversion.
+
 Demande pandoc 3.1.2 ou plus récent et typst, tous deux dans l'environnement
 `info01`. Sort en code 1 si une conversion échoue.
 """
@@ -38,6 +43,8 @@ import tempfile
 from pathlib import Path
 
 RACINE = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(RACINE / "src"))
+from _coloration import blocs_en_html  # noqa: E402
 
 # Le format de la page passe par les variables du modèle typst de pandoc
 # (`VARIABLES_TYPST`) ; l'en-tête ajoute des blocs de code plus petits que le
@@ -53,6 +60,21 @@ margin:
 """
 
 ENTETE_TYPST = """\
+// Blocs ```modif : les lignes entre deux `+++` en vert, entre deux `---` en
+// rouge. La règle précède celle du fond gris, qui s'applique donc d'abord et
+// lui passe le bloc.
+#let couleurs-modif = ("+++": rgb("#22863a"), "---": rgb("#b31d28"))
+#show raw.where(block: true, lang: "modif"): it => {
+  let marque = none
+  let lignes = ()
+  for ligne in it.text.split("\\n") {
+    let ouvre = marque == none and ligne in couleurs-modif
+    if ouvre { marque = ligne }
+    lignes.push(if marque == none { raw(ligne) } else { text(fill: couleurs-modif.at(marque), raw(ligne)) })
+    if not ouvre and ligne == marque { marque = none }
+  }
+  lignes.join(linebreak())
+}
 #show raw.where(block: true): set text(size: 8.5pt)
 #show raw.where(block: true): block.with(fill: luma(242), inset: 6pt, radius: 3pt, width: 100%)
 #let apres-partie = state("apres-partie", false)
@@ -154,6 +176,8 @@ def convertir(source: Path, produit: Path) -> int:
     with tempfile.TemporaryDirectory() as temporaire:
         copie = Path(temporaire) / "guide.md"
         copie.write_text(sans_premier_titre(source.read_text(encoding="utf-8")), encoding="utf-8")
+        copie_html = Path(temporaire) / "guide_html.md"
+        copie_html.write_text(blocs_en_html(copie.read_text(encoding="utf-8")), encoding="utf-8")
         entete = Path(temporaire) / "entete.typ"
         entete.write_text(ENTETE_TYPST, encoding="utf-8")
         variables = Path(temporaire) / "variables.yaml"
@@ -164,7 +188,7 @@ def convertir(source: Path, produit: Path) -> int:
             ["pandoc", str(copie), "--from", "markdown", "--pdf-engine=typst",
              "--resource-path", os.pathsep.join((str(produit), str(source.parent))),
              "--include-in-header", str(entete), "--metadata-file", str(variables), "-o", str(produit / f"guide_{td}.pdf")],
-            ["pandoc", str(copie), "--from", "markdown", "--standalone", "--embed-resources",
+            ["pandoc", str(copie_html), "--from", "markdown", "--standalone", "--embed-resources",
              "--resource-path", os.pathsep.join((str(produit), str(source.parent))),
              "--include-in-header", str(style), "-o", str(produit / f"guide_{td}.html")],
         ]

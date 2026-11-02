@@ -15,10 +15,29 @@ fichier modifié, une ligne à supprimer son numéro au moment où on la
 supprime. Une ligne ajoutée n'a pas de numéro. `…` remplace les lignes qui
 ne changent pas entre deux blocs.
 
-Utilisé par `data/cours4/generer_guides.py` ; en ligne de commande, pour un
-guide écrit à la main :
+Les lignes ajoutées de ce format ne se copient pas telles quelles : il faut
+retirer le `+` et les espaces qui le suivent. `blocs` écrit le même contenu
+dans un bloc ```modif, où les lignes ajoutées se copient sans retouche,
+entre deux lignes `+++`, et les lignes supprimées vont entre deux lignes
+`---` :
+
+       53     for nom, vitesse in plans:
+       54         commande = commande + arguments_plan(nom, numero * vitesse) + ["-composite"]
+    +++
+        commande = commande + [str(DECOR / "fenetre.png"), "-composite"]
+    +++
+       56     commande = commande + [str(fichier)]
+
+`src/_coloration.py` met ces lignes en vert et en rouge dans le book, et
+`outils/compiler_guides.py` et `outils/construire_notebooks.py` dans les
+guides en PDF, en HTML et en notebook.
+
+`modifications` est utilisé par `data/cours4/generer_guides.py`, `blocs` par
+`data/cours7/guides_projet7.py` ; en ligne de commande, pour un guide écrit
+à la main :
 
     python outils/modifications.py avant.py apres.py
+    python outils/modifications.py --blocs avant.py apres.py
 """
 
 from __future__ import annotations
@@ -28,6 +47,8 @@ import difflib
 from pathlib import Path
 
 LARGEUR = 3          # les chiffres du numéro de ligne
+AJOUT = "+++"        # encadre, dans un bloc ```modif, les lignes à ajouter
+SUPPRESSION = "---"  # encadre les lignes à supprimer
 
 
 def modifications(avant: str, apres: str, contexte: int = 2) -> str:
@@ -52,14 +73,44 @@ def modifications(avant: str, apres: str, contexte: int = 2) -> str:
     return "```diff\n" + "\n".join(ligne.rstrip() for ligne in lignes) + "\n```"
 
 
+def blocs(avant: str, apres: str, contexte: int = 2) -> str:
+    """Le bloc ```modif qui fait passer de `avant` à `apres` : les lignes à ajouter entre deux `+++`, sans numéro."""
+    a = avant.splitlines()
+    b = apres.splitlines()
+    lignes = []
+    for groupe in difflib.SequenceMatcher(None, a, b, autojunk=False).get_grouped_opcodes(contexte):
+        if lignes:
+            lignes.append("  " + "…".rjust(LARGEUR))
+        for operation, i1, i2, j1, j2 in groupe:
+            if operation == "equal":
+                for k in range(i2 - i1):
+                    lignes.append(f"  {j1 + k + 1:{LARGEUR}} {a[i1 + k]}")
+                continue
+            if i2 > i1:
+                lignes.append(SUPPRESSION)
+                for k in range(i2 - i1):
+                    lignes.append(f"  {j1 + k + 1:{LARGEUR}} {a[i1 + k]}")
+                lignes.append(SUPPRESSION)
+            if j2 > j1:
+                ajoutees = b[j1:j2]
+                if any(ligne.strip() in (AJOUT, SUPPRESSION) for ligne in ajoutees):
+                    raise ValueError(f"une ligne ajoutée se lirait comme une marque {AJOUT} ou {SUPPRESSION}")
+                lignes += [AJOUT, *ajoutees, AJOUT]
+    if not lignes:
+        raise ValueError("les deux versions sont identiques")
+    return "```modif\n" + "\n".join(ligne.rstrip() for ligne in lignes) + "\n```"
+
+
 def main():
     analyseur = argparse.ArgumentParser(description="Les lignes qui changent d'un fichier à l'autre, en bloc ```diff numéroté.")
     analyseur.add_argument("avant", type=Path, help="la version avant la modification")
     analyseur.add_argument("apres", type=Path, help="la version après la modification")
     analyseur.add_argument("-c", "--contexte", type=int, default=2, help="lignes de contexte autour de chaque bloc (défaut : 2)")
+    analyseur.add_argument("--blocs", action="store_true", help="un bloc ```modif : les lignes ajoutées entre deux +++, à copier telles quelles")
     options = analyseur.parse_args()
-    print(modifications(options.avant.read_text(encoding="utf-8"),
-                        options.apres.read_text(encoding="utf-8"), options.contexte))
+    ecrire = blocs if options.blocs else modifications
+    print(ecrire(options.avant.read_text(encoding="utf-8"),
+                 options.apres.read_text(encoding="utf-8"), options.contexte))
 
 
 if __name__ == "__main__":

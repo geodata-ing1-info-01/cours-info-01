@@ -49,6 +49,7 @@ nb_execution_raise_on_error = True   # une cellule qui échoue casse la build
 html_theme = "sphinx_book_theme"
 html_title = "Introduction à l'informatique"
 html_static_path = ["_static"]
+html_css_files = ["modif.css"]   # couleurs des blocs ```modif des guides de TD
 html_favicon = "_static/favicon.png"
 html_theme_options = {
     "home_page_in_toc": True,
@@ -160,5 +161,12 @@ def _lien_archive(app, docname, source) -> None:
     source[0] = texte[:fin] + "\n" + note + texte[fin:]
 
 
+# Les blocs ```modif des guides de TD : les lignes à ajouter, entre deux
+# `+++`, en vert ; les lignes à supprimer, entre deux `---`, en rouge. Voir
+# `_coloration.py`, à côté de ce fichier.
+from _coloration import LexerModif  # noqa: E402
+
+
 def setup(app):
     app.connect("source-read", _lien_archive)
+    app.add_lexer("modif", LexerModif)
