@@ -167,9 +167,9 @@
 #d("Étape D1 · Le texte complété par le tableau")[
   #annonce[
     La page d'une recette réunit son texte, écrit à la main dans un fichier
-    Markdown, et le tableau des quantités, calculé par le programme. La
-    section `## Ingrédients` du texte est vide : le programme y met le
-    tableau.
+    Markdown, et le tableau des quantités, que `recette.py` calcule déjà.
+    L'étape D1 modifie le programme pour qu'il écrive ce tableau dans la
+    section `## Ingrédients`, vide dans le texte.
   ]
 
   #face-a-face(
@@ -183,19 +183,104 @@
 ]
 
 // --------------------------------------------
-// Étapes D1 à D4 en consignes numérotées depuis le 02/11/2026, comme D0.
-#d("Étape D1 · Écriture du texte complété")[
+// Vue d'ensemble de D1 (02/11/2026) : les cinq modifications du programme,
+// dans l'ordre ; les trois diapositives suivantes en reprennent les numéros.
+#d("Étape D1 · Les modifications du programme")[
   #annonce[
-    Objectif : écrire `sortie/crepes.md`, le texte de la recette avec le
-    tableau des quantités à la place de la section vide.
+    Objectif : modifier `recette.py` pour qu'il écrive aussi la page HTML de
+    la recette, quand la commande porte une nouvelle option, `--page`.
   ]
 
   #consignes(
     taille: 16pt,
-    [Créer la branche `page`, puis y copier la feuille de style et le texte de quatre recettes :
-      #commandes("git checkout -b page", "cp ../../depart/style.css .", "cp ../../depart/recettes/crepes.md ../../depart/recettes/pate_pizza.md recettes/", "cp ../../depart/recettes/mousse_chocolat.md ../../depart/recettes/cookies.md recettes/")],
-    [Dans `recette.py`, ajouter la fonction `tableau(ingredients)`, qui renvoie le tableau Markdown des ingrédients, une ligne par ingrédient.],
-    [Ajouter la fonction `ecrire_markdown`, qui remplace `## Ingrédients` par un titre suivi du tableau (`replace`), puis écrit le texte obtenu dans `sortie/`.],
+    [Ajouter au projet le texte des recettes, un fichier Markdown par recette dans `recettes/`, dont la section `## Ingrédients` est vide.],
+    [Écrire une fonction, `tableau`, qui convertit la liste des ingrédients en tableau Markdown.],
+    [Écrire une fonction, `ecrire_markdown`, qui place ce tableau dans le texte de la recette et écrit le résultat dans `sortie/`.],
+    [Modifier le programme principal pour qu'il écrive ce texte complété, seulement avec l'option #box[`--page`] :
+      #commandes("python recette.py crepes -p 6 --page")],
+    [Convertir le texte complété en page HTML avec pandoc : une fonction, `ecrire_page`.],
+  )
+
+  #legende[
+    Sur une branche `page`. Modifications 1 à 4 : guide, étape D1.1, puis
+    un commit. Modification 5 : guide, étape D1.2, puis un commit.
+  ]
+]
+
+// --------------------------------------------
+// Les données que transforment `tableau` et `ecrire_markdown` (02/11/2026),
+// avant les consignes de code : sorties réelles du programme, crêpes pour 6
+// personnes en unités SI (guide, étape D1.1).
+#let appel(..lignes) = align(horizon + center, stack(
+  spacing: 6pt,
+  ..lignes.pos().map(l => text(size: 15pt, raw(l))),
+  text(size: 26pt, fill: accent)[→],
+))
+
+#d("Étape D1 · Des ingrédients au tableau Markdown")[
+  #annonce[
+    Dans le programme, les ingrédients sont une liste de tuples : nom,
+    quantité, unité. L'appel `tableau(ingredients)` renvoie leur tableau
+    Markdown, une ligne par ingrédient.
+  ]
+
+  #grid(
+    columns: (1fr, auto, 1fr), column-gutter: 14pt, align: (top, horizon, top),
+    panneau("ingredients : une liste de tuples")[
+      #sortie("[(\"Farine\", 375.0, \"g\"),\n (\"Lait\", 750.0, \"ml\"),\n (\"Œufs\", 6.0, \"\"),\n (\"Sel\", 3.0, \"g\"),\n (\"Beurre fondu\", 75.0, \"g\")]", taille: 11pt)
+    ],
+    appel("tableau(ingredients)"),
+    panneau("le tableau Markdown renvoyé")[
+      #sortie("| Ingrédient | Quantité |\n|---|---|\n| Farine | 375.0 g |\n| Lait | 750.0 ml |\n| Œufs | 6.0  |\n| Sel | 3.0 g |\n| Beurre fondu | 75.0 g |", taille: 11pt)
+    ],
+  )
+
+  #legende[
+    Les crêpes, pour 6 personnes en unités SI. Guide, étape D1.1.
+  ]
+]
+
+// --------------------------------------------
+#d("Étape D1 · De la recette au texte complété")[
+  #annonce[
+    L'appel `ecrire_markdown("crepes", 6, "SI", ingredients)` lit le texte de
+    la recette, remplace sa ligne `## Ingrédients` par un titre suivi du
+    tableau, puis écrit le résultat dans `sortie/`.
+  ]
+
+  #grid(
+    columns: (1fr, auto, 1fr), column-gutter: 14pt, align: (top, horizon, top),
+    stack(
+      spacing: 10pt,
+      panneau("recettes/crepes.md : le texte")[
+        #sortie("# Crêpes\n…\n## Ingrédients\n\n## Préparation", taille: 10pt)
+      ],
+      panneau("tableau(ingredients)")[
+        #sortie("| Ingrédient | Quantité |\n|---|---|\n| Farine | 375.0 g |\n…", taille: 10pt)
+      ],
+    ),
+    appel("ecrire_markdown(", "\"crepes\", 6, \"SI\",", "ingredients)"),
+    panneau("sortie/crepes.md : le texte complété")[
+      #sortie("# Crêpes\n…\n## Ingrédients pour 6 personnes, en unités SI\n\n| Ingrédient | Quantité |\n|---|---|\n| Farine | 375.0 g |\n…\n\n## Préparation", taille: 10pt)
+    ],
+  )
+]
+
+// --------------------------------------------
+// Étapes D1 à D4 en consignes numérotées depuis le 02/11/2026, comme D0.
+#d("Étape D1 · Modifications 1 à 3 : texte et tableau")[
+  #annonce[
+    Objectif : ajouter au projet le texte des recettes, et à `recette.py`
+    les deux fonctions qui le complètent par le tableau des quantités.
+  ]
+
+  #consignes(
+    taille: 16pt,
+    [Créer la branche `page` : `git checkout -b page`.],
+    [Copier dans `recettes/` le texte des quatre recettes qui ont déjà leur fichier CSV :
+      #commandes("cp ../../depart/recettes/crepes.md ../../depart/recettes/pate_pizza.md recettes/", "cp ../../depart/recettes/mousse_chocolat.md ../../depart/recettes/cookies.md recettes/")],
+    [Dans `recette.py`, avant le programme principal, ajouter une fonction `tableau(ingredients)`, qui renvoie le tableau Markdown des ingrédients, une ligne par ingrédient.],
+    [Ajouter une fonction `ecrire_markdown(nom, personnes, unites, ingredients)`, qui lit le fichier de la recette, `recettes/<nom>.md`, remplace `## Ingrédients` par un titre suivi du tableau (`replace`), puis écrit le texte obtenu dans `sortie/`.],
   )
 
   #legende[
@@ -204,7 +289,7 @@
 ]
 
 // --------------------------------------------
-#d("Étape D1 · L'option --page")[
+#d("Étape D1 · Modification 4 : l'option --page")[
   #annonce[
     Objectif : écrire le texte complété quand la commande porte l'option
     `--page`.
@@ -216,7 +301,7 @@
     [À la fin du programme, appeler `ecrire_markdown` quand l'option `--page` est donnée.],
     [Lancer `python recette.py crepes -p 6 --page`, puis ouvrir `sortie/crepes.md` : le tableau pour 6 personnes y remplace la section vide.],
     [Enregistrer un commit :
-      #commandes("git add style.css recettes", "git commit -am \"Le texte de la recette, complété par le tableau des ingrédients\"")],
+      #commandes("git add recettes", "git commit -am \"Le texte de la recette, complété par le tableau des ingrédients\"")],
   )
 
   #legende[
@@ -225,19 +310,21 @@
 ]
 
 // --------------------------------------------
-#d("Étape D1 · La page HTML, par pandoc")[
+#d("Étape D1 · Modification 5 : générer la page HTML en appelant pandoc")[
   #annonce[
     Objectif : convertir le texte complété en page HTML, avec la feuille de
-    style, pour l'ouvrir dans un navigateur.
+    style.
   ]
 
   #consignes(
     taille: 16pt,
+    [Copier la feuille de style dans le projet : `cp ../../depart/style.css .`],
     [Dans `recette.py`, ajouter `import shutil` et `import subprocess`, puis la constante `STYLE = RACINE / "style.css"` sous `SORTIE`.],
-    [Ajouter la fonction `ecrire_page(markdown)` : elle copie `style.css` dans `sortie/`, puis lance pandoc par `subprocess.run` (cours 3). La page a le même chemin que le texte, avec l'extension `.html` (`with_suffix`).],
+    [Ajouter une fonction `ecrire_page(markdown)` : elle copie `style.css` dans `sortie/`, puis lance pandoc par `subprocess.run` (cours 3). La page a le même chemin que le texte, avec l'extension `.html` (`with_suffix`).],
     [À la fin du programme, appeler `ecrire_page` après `ecrire_markdown`.],
-    [Lancer `python recette.py crepes -p 6 --page`, puis ouvrir la page : `start sortie/crepes.html`. Elle est celle de la première diapositive du TD.],
-    [Enregistrer un commit : `git commit -am "La page HTML de la recette, par pandoc"`.],
+    [Lancer `python recette.py crepes -p 6 --page`, puis `start sortie/crepes.html` : la page de la première diapositive du TD.],
+    [Enregistrer un commit :
+      #commandes("git add style.css", "git commit -am \"La page HTML de la recette, par pandoc\"")],
   )
 
   #legende[
@@ -256,7 +343,7 @@
 ]
 
 // --------------------------------------------
-#d("Étape D2 · La pull request")[
+#d("Étape D2 · Soumettre les modifications avec une pull request")[
   #annonce[
     Objectif : proposer la branche `page` sur GitHub, la fusionner dans
     `master`, puis ramener le résultat sur le poste.
@@ -294,7 +381,7 @@
     [Créer la branche `livre`, puis y copier les six recettes de plus :
       #commandes("git checkout -b livre", "cp ../../depart/recettes/*.csv ../../depart/recettes/*.md recettes/")],
     [Vérifier que `ls recettes` liste dix fichiers `.csv` et dix fichiers `.md`.],
-    [Dans `recette.py`, ajouter la fonction `noms_des_recettes()`. Pour chaque fichier `.csv` de `recettes/`, pris dans l'ordre (`sorted(DONNEES.glob("*.csv"))`), elle ajoute à une liste son nom sans l'extension (`stem`), puis renvoie la liste.],
+    [Dans `recette.py`, ajouter une fonction `noms_des_recettes()`. Pour chaque fichier `.csv` de `recettes/`, pris dans l'ordre (`sorted(DONNEES.glob("*.csv"))`), elle ajoute à une liste son nom sans l'extension (`stem`), puis renvoie la liste.],
   )
 
   #legende[
@@ -345,7 +432,7 @@
     columns: (1.6fr, 1fr), column-gutter: 20pt, align: top,
     consignes(
       taille: 16pt,
-      [Dans `recette.py`, ajouter la fonction `ecrire_sommaire(noms)`. Elle écrit `sortie/index.md` : un titre, puis un lien par recette, `- [Crêpes](crepes.html)`. Elle le convertit ensuite par `ecrire_page`.],
+      [Dans `recette.py`, ajouter une fonction `ecrire_sommaire(noms)`. Elle écrit `sortie/index.md` : un titre, puis un lien par recette, `- [Crêpes](crepes.html)`. Elle le convertit ensuite par `ecrire_page`.],
       [Pour le texte de chaque lien, prendre la première ligne du fichier `.md` de la recette, sans le `# `.],
       [À la fin du programme, après la boucle, appeler `ecrire_sommaire(noms)` quand `--page` et `--toutes` sont donnés.],
       [Lancer `python recette.py --toutes --page`, puis `start sortie/index.html` : chaque lien ouvre une page.],

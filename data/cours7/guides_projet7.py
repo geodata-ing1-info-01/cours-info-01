@@ -11,6 +11,7 @@ programmes et de git, exécutés au moment de l'écriture.
 
 from __future__ import annotations
 
+import ast
 import re
 import shutil
 import subprocess
@@ -86,7 +87,7 @@ modifications sont faites de haut en bas."""
 
 DEBUT_SEANCE = """## Au début de la séance
 
-- Le compte GitHub du cours 6, avec la clé SSH du cours 6 enregistrée.
+- Le compte GitHub du cours 6.
 - L'archive `info01-cours7.zip`, copiée depuis `formationTemp` sur le
   Bureau, puis extraite : clic droit, Extraire tout, en effaçant la fin du
   dossier proposé, `\\info01-cours7`. Le dossier extrait est
@@ -124,6 +125,14 @@ def guide_7a():
     complete = executer(depot_recette, PROJET_RECETTE, {"recette.py": recette("d1a")}, "-c", code,
                         preparer=preparer_d1).split("@@@\n", 1)[1]
     extrait_complete = "\n".join(complete.splitlines()[:14]) + "\n…"
+    # La liste des ingrédients des crêpes pour 6 personnes, et le tableau que `tableau` en écrit
+    code = ("import sys, runpy; sys.argv = ['recette.py', 'crepes', '-p', '6']; "
+            "e = runpy.run_path('recette.py', run_name='__main__'); "
+            "print('@@@'); print(repr(e['ingredients'])); print('@@@'); print(e['tableau'](e['ingredients']), end='')")
+    _, liste, tableau_crepes = executer(depot_recette, PROJET_RECETTE, {"recette.py": recette("d1f")},
+                                        "-c", code).split("@@@\n")
+    liste_code = "ingredients = [\n" + "".join(
+        f'    ("{nom}", {quantite!r}, "{unite}"),\n' for nom, quantite, unite in ast.literal_eval(liste)) + "]"
     d1_debut, d1_programme = recette("d1").split(TITRE_PROGRAMME)
     d3_debut, d3_programme = recette("d3").split(TITRE_PROGRAMME)
     toutes = executer(depot_recette, PROJET_RECETTE, {"recette.py": recette("d3")}, "recette.py",
@@ -203,57 +212,131 @@ git config user.email "prenom.nom@exemple.fr"
 
 ## D1 · Générer la page HTML d'une recette
 
-{encadre("sur une branche `page` : compléter le texte de la recette par le tableau des ingrédients (D1.1), puis convertir ce texte en page HTML en appelant pandoc (D1.2) ; faire un commit pour chacune des modifications D1.1 et D1.2",
+{encadre("sur une branche `page` : modifier le programme pour qu'il complète le texte de la recette par le tableau des ingrédients (D1.1), puis convertisse ce texte en page HTML en appelant pandoc (D1.2) ; faire un commit à la fin de D1.1 et à la fin de D1.2.",
          "`python recette.py crepes -p 6 --page` écrit `sortie/crepes.md`, puis `sortie/crepes.html`, la page de la figure du début du guide.")}
 
-La page d'une recette réunit deux choses : le texte de la recette (le titre,
-le temps de préparation, les étapes), écrit à la main dans un fichier
-Markdown, et le tableau des ingrédients, calculé par le programme. Le
-programme les réunit dans un fichier Markdown complet (D1.1), puis pandoc
-convertit ce fichier en page HTML (D1.2).
+Au départ, `recette.py` écrit les quantités d'une recette dans un fichier
+CSV. L'étape D1 modifie ce programme pour qu'il écrive aussi la page HTML
+de la recette, celle de la figure du début du guide. Cette page réunit
+deux choses : le texte de la recette (le titre, le temps de préparation,
+les étapes), écrit à la main dans un fichier Markdown, et le tableau des
+ingrédients, que le programme calcule déjà.
 
-### D1.1 Ajouter le tableau des ingrédients au texte de la recette
+Les modifications à faire, dans l'ordre :
+
+1. Ajouter au projet le texte des recettes, un fichier Markdown par recette
+   dans `recettes/`. Ce texte sert de modèle : sa section `## Ingrédients`
+   est vide, et le programme la remplit.
+2. Écrire une fonction, `tableau`, qui convertit la liste des ingrédients
+   en tableau Markdown.
+3. Écrire une fonction, `ecrire_markdown`, qui place ce tableau dans le
+   texte de la recette, sous `## Ingrédients`, et écrit le résultat dans
+   `sortie/`.
+4. Modifier le programme principal pour qu'il écrive ce texte complété,
+   seulement quand la commande porte une nouvelle option, `--page` :
+   `python recette.py crepes -p 6 --page`. Sans l'option, le programme fait
+   ce qu'il faisait avant.
+5. Convertir le texte complété en page HTML avec pandoc : une fonction,
+   `ecrire_page`, qui place aussi la feuille de style à côté de la page.
+
+Les modifications 1 à 4 forment l'étape D1.1, la modification 5 l'étape
+D1.2. Toutes se font sur une branche, `page`, à créer avant la première :
 
 ```text
 git checkout -b page
-cp ../../depart/style.css .
+```
+
+### D1.1 Ajouter le tableau des ingrédients au texte de la recette
+
+L'exemple des crêpes, pour 6 personnes en unités SI, montre ce que font
+les deux nouvelles fonctions : elles partent du texte de la recette et de
+la liste des ingrédients, et écrivent le texte complété.
+
+**Le texte de la recette.** Le texte de chaque recette est fourni dans
+`depart/recettes/`, un fichier Markdown par recette. Le texte des crêpes :
+
+{fence(crepes_md, "markdown")}
+
+Sa section `## Ingrédients` est vide : la fonction `ecrire_markdown` y
+placera le tableau des ingrédients.
+
+**La liste des ingrédients et son tableau Markdown.** Dans le programme,
+les ingrédients d'une recette sont une liste de tuples, un tuple par
+ingrédient : son nom, sa quantité et son unité. `lire_ingredients` lit
+cette liste dans le fichier CSV, puis `adapter` et `convertir` en
+recalculent les quantités. Pour les crêpes, la liste `ingredients` vaut :
+
+{fence(liste_code)}
+
+L'appel `tableau(ingredients)` renvoie le tableau Markdown de cette liste :
+deux lignes d'en-tête, puis une ligne par ingrédient, la quantité et
+l'unité dans la seconde colonne :
+
+{fence(tableau_crepes, "markdown")}
+
+**Le texte complété.** L'appel `ecrire_markdown("crepes", 6, "SI",
+ingredients)` lit le texte de la recette, `recettes/crepes.md`. Il remplace
+sa ligne `## Ingrédients` par un titre, `## Ingrédients pour 6 personnes,
+en unités SI`, suivi du tableau : `replace` renvoie le texte avec ce
+remplacement. Il écrit le résultat dans `sortie/crepes.md`, et renvoie ce
+chemin. Le début du texte complété :
+
+{fence(extrait_complete, "markdown")}
+
+**Modification 1, le texte des recettes.** Copier dans `recettes/` le texte
+des quatre recettes qui ont déjà leur fichier CSV :
+
+```text
 cp ../../depart/recettes/crepes.md ../../depart/recettes/pate_pizza.md recettes/
 cp ../../depart/recettes/mousse_chocolat.md ../../depart/recettes/cookies.md recettes/
 ```
 
 Chaque recette a maintenant deux fichiers : les ingrédients, en CSV, et le
-texte, en Markdown. Le texte des crêpes :
+texte, en Markdown.
 
-{fence(crepes_md, "markdown")}
+**Modifications 2 et 3, les fonctions `tableau` et `ecrire_markdown`.**
+Ajouter les deux fonctions avant le programme principal :
 
-La section `## Ingrédients` est vide. La fonction `ecrire_markdown` la
-remplace par un titre, `## Ingrédients pour 6 personnes, en unités SI`,
-suivi du tableau des ingrédients, que la fonction `tableau` écrit en
-Markdown, une ligne par ingrédient. `replace` renvoie le texte avec ce
-remplacement. Le résultat est écrit dans `sortie/crepes.md`.
+{blocs(recette("a0"), recette("d1f"))}
 
-{blocs(recette("a0"), recette("d1a"))}
+**Modification 4, l'option `--page`.** `action="store_true"` fait de
+`--page` une option sans valeur : `options.page` vaut `True` quand la
+commande porte l'option, `False` sinon. Le programme principal n'appelle
+`ecrire_markdown` que dans le premier cas, après l'écriture du fichier CSV :
+
+{blocs(recette("d1f"), recette("d1a"))}
 
 **Vérification** : `python recette.py crepes -p 6 --page` se termine par
 
 {dernieres("d1a", 1, "crepes", "-p", "6", "--page", preparer=preparer_d1)}
 
 Ouvrir `sortie/crepes.md` dans VS Code (`Ctrl` + `Maj` + `V` pour
-l'aperçu) :
-
-{fence(extrait_complete, "markdown")}
+l'aperçu) : il commence par le texte complété montré plus haut.
 
 ```text
-git add style.css recettes
+git add recettes
 git commit -am "Le texte de la recette, complété par le tableau des ingrédients"
 ```
 
-### D1.2 La page HTML, par pandoc
+### D1.2 Générer la page HTML en appelant pandoc
 
-pandoc convertit un fichier Markdown en page HTML, comme au cours 3. La
-fonction `ecrire_page` le lance avec `subprocess.run`, et copie la feuille
-de style `style.css` à côté de la page. `with_suffix(".html")` donne le
-chemin du même fichier avec l'extension `.html`.
+pandoc convertit un fichier Markdown en page HTML, comme au cours 3.
+L'appel `ecrire_page(markdown)`, où `markdown` est le chemin
+`sortie/crepes.md` que renvoie `ecrire_markdown`, lance pandoc avec
+`subprocess.run`. pandoc écrit la page `sortie/crepes.html` : le même
+chemin, avec l'extension `.html` (`with_suffix(".html")`). La page a besoin
+d'une feuille de style, `style.css`, fournie dans `depart/` : `ecrire_page`
+la copie à côté de la page, dans `sortie/`.
+
+**Modification 5, la page HTML.** Copier la feuille de style dans le
+projet :
+
+```text
+cp ../../depart/style.css .
+```
+
+Puis ajouter une fonction, `ecrire_page`, et son appel après celui de
+`ecrire_markdown` :
 
 {blocs(recette("d1a"), recette("d1"))}
 
@@ -268,13 +351,26 @@ start sortie/crepes.html
 ouvre la page dans le navigateur : celle de la figure du début du guide.
 
 ```text
+git add style.css
 git commit -am "La page HTML de la recette, par pandoc"
 ```
 
-## D2 · La pull request
+## D2 · Soumettre les modifications avec une pull request
 
 {encadre("pousser la branche `page` ; ouvrir la pull request sur GitHub et la fusionner ; ramener `master` sur le poste.",
          "sur GitHub, la pull request est fusionnée ; `git log --oneline --graph` montre le commit de fusion sur `master`.")}
+
+La branche `page` contient maintenant la nouvelle fonctionnalité, sur le
+poste seulement. Une pull request la propose sur GitHub, pour la fusionner
+dans `master`. Dans un projet à plusieurs, une autre personne relit alors
+les modifications avant la fusion ; ici, chacun fusionne la sienne, dans
+son dépôt.
+
+Les opérations, dans l'ordre :
+
+1. Envoyer la branche `page` sur GitHub.
+2. Sur le site, ouvrir la pull request, puis la fusionner.
+3. Ramener sur le poste le `master` de GitHub, qui contient la fusion.
 
 ```text
 git push -u origin page
@@ -286,7 +382,7 @@ request montre les commits et les modifications de la branche. Bouton Merge
 pull request, puis Confirm merge : la branche est fusionnée dans `master`,
 sur GitHub.
 
-Le dépôt du poste ne le sait pas encore :
+Le `master` du poste n'a pas encore cette fusion :
 
 ```text
 git checkout master
@@ -299,14 +395,25 @@ request #1`, et `recette.py` contient `ecrire_page`.
 
 ## D3 · Toutes les recettes
 
-{encadre("sur une branche `livre` : six recettes de plus ; la fonction `noms_des_recettes` (D3.1) ; le programme répété pour chaque nom, avec l'option `--toutes` (D3.2) ; un commit.",
+{encadre("sur une branche `livre` : six recettes de plus ; une fonction, `noms_des_recettes` (D3.1) ; le programme répété pour chaque nom, avec l'option `--toutes` (D3.2) ; un commit.",
          "`python recette.py --toutes --page` écrit les pages des dix recettes dans `sortie/`.")}
 
 Jusqu'ici, une commande écrit la page d'une seule recette : il faudrait dix
 commandes pour dix recettes. L'option `--toutes` fait le travail pour chaque
-recette de `recettes/`, en une commande. Le programme a besoin pour cela de
-la liste des noms des recettes (D3.1), puis répète ses lignes pour chaque
-nom de cette liste (D3.2).
+recette de `recettes/`, en une commande.
+
+Les modifications à faire, dans l'ordre :
+
+1. Ajouter au projet les six autres recettes, leur fichier CSV et leur
+   texte.
+2. Écrire une fonction, `noms_des_recettes`, qui renvoie la liste des noms
+   des recettes de `recettes/` (D3.1).
+3. Modifier le programme principal pour qu'il répète ses lignes pour chaque
+   nom de cette liste, quand la commande porte une nouvelle option,
+   `--toutes` : `python recette.py --toutes --page` (D3.2).
+
+Toutes se font sur une branche, `livre`. Créer la branche, puis copier les
+six recettes :
 
 ```text
 git checkout -b livre
@@ -363,8 +470,23 @@ git commit -am "Toutes les recettes"
 
 ## D4 · Le sommaire
 
-{encadre("la fonction `ecrire_sommaire`, appelée après la boucle ; un commit ; la pull request de la branche `livre`.",
+{encadre("une fonction, `ecrire_sommaire`, appelée après la boucle ; un commit ; la pull request de la branche `livre`.",
          "`sortie/index.html` a un lien vers chaque page ; la branche `livre` est fusionnée dans `master` sur GitHub.")}
+
+Les dix pages ne sont reliées par aucun lien : pour ouvrir l'une d'elles,
+il faut connaître le nom de son fichier. Le sommaire, `sortie/index.html`,
+donne un lien vers chacune.
+
+Les modifications à faire, dans l'ordre :
+
+1. Écrire une fonction, `ecrire_sommaire`, qui écrit le sommaire en
+   Markdown, `sortie/index.md`, puis le convertit en page HTML par
+   `ecrire_page`.
+2. Modifier le programme principal pour qu'il appelle cette fonction après
+   la boucle, quand la commande porte `--page` et `--toutes`.
+
+La branche `livre` se termine ensuite par un commit et sa pull request,
+comme la branche `page` à l'étape D2.
 
 ![Le sommaire : un lien par recette](illustrations/sommaire.png)
 
@@ -400,6 +522,8 @@ git pull
 {encadre("copier les pages dans un dossier `docs/` du dépôt ; régler GitHub Pages sur ce dossier.",
          "le sommaire s'ouvre à l'adresse `https://<compte>.github.io/td7a-recette/`.")}
 
+GitHub Pages publie sur le web des pages rangées dans un dépôt GitHub : le
+livre de recettes devient lisible par tous, à une adresse en `github.io`.
 `sortie/` n'est pas versionné. GitHub Pages publie un dossier versionné :
 une copie des pages, dans `docs/`.
 

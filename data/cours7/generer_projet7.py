@@ -131,14 +131,15 @@ PAGE_HTML = '''    page = ecrire_page(markdown)
 '''
 
 
-def _recette_d1(avec_html):
+def _recette_d1(avec_html, avec_option=True):
     texte = B6
     if avec_html:
         texte = _remplacer(texte, "import csv\n", "import csv\nimport shutil\nimport subprocess\n")
         texte = _remplacer(texte, 'SORTIE = RACINE / "sortie"\n', 'SORTIE = RACINE / "sortie"\nSTYLE = RACINE / "style.css"\n')
     debut, programme = texte.split(TITRE_PROGRAMME)
     debut = debut.rstrip("\n") + "\n" + TABLEAU + (PAGE if avec_html else "")
-    programme = _remplacer(programme, LIGNE_U, LIGNE_U + OPTION_PAGE) + PAGE_MARKDOWN + (PAGE_HTML if avec_html else "")
+    if avec_option:
+        programme = _remplacer(programme, LIGNE_U, LIGNE_U + OPTION_PAGE) + PAGE_MARKDOWN + (PAGE_HTML if avec_html else "")
     return debut + TITRE_PROGRAMME + programme
 
 
@@ -196,8 +197,9 @@ if options.page and options.toutes:
 
 
 def recette(etat):
-    """`recette.py` du TD 7a à la fin de l'étape `etat` : a0 (le départ), d1a (le texte complété), d1, d3, d4."""
-    return {"a0": lambda: B6, "d1a": lambda: _recette_d1(False), "d1": lambda: _recette_d1(True),
+    """`recette.py` du TD 7a à la fin de l'étape `etat` : a0 (le départ), d1f (les fonctions du texte complété, pas encore appelées), d1a (le texte complété), d1, d3, d4."""
+    return {"a0": lambda: B6, "d1f": lambda: _recette_d1(False, avec_option=False),
+            "d1a": lambda: _recette_d1(False), "d1": lambda: _recette_d1(True),
             "d3": lambda: _recette_d3(False), "d4": lambda: _recette_d3(True)}[etat]()
 
 
