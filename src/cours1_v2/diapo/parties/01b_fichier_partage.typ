@@ -1,13 +1,6 @@
 // Partie du cours 1 v2 — incluse par `cours1_v2.typ` juste après le TD 1a.
 // Un fichier inclus n'hérite pas des imports de son appelant.
 //
-// Relecture du 19/10/2026 : la diapositive « Deux élèves dans le même
-// dossier partagé » quitte la partie 1, change de titre, et explique la
-// dernière étape du TD 1a, où toute la salle modifie le même fichier de
-// `formationTemp`. Elle est ici plutôt que dans le fichier du TD : elle
-// reste projetée quand le support est compilé sans les TD, et elle ne
-// figure pas sur la feuille du TD, où elle donnerait la réponse avant la
-// manipulation.
 #import "../../../commun/prelude.typ": *
 
 // --------------------------------------------

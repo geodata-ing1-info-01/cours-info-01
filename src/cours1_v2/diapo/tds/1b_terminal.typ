@@ -1,22 +1,5 @@
 // TD 1b du cours 1 v2 — « Les fichiers du TD 1a en ligne de commande ».
 //
-// Nouveau (v2) : la seconde moitié du TD 1a de 2026 (renommer une extension,
-// un espace dans un nom), faite dans Git Bash. La configuration de conda dans
-// Git Bash est passée au début du TD 1c le 27/09. Les sorties ont été relevées en rejouant
-// le TD sous Linux (bash 5.2, coreutils 9.4, LC_ALL=C) sur une copie du
-// dossier livré ; les messages de Git Bash peuvent différer d'un mot.
-//
-// Relecture du 19/10/2026 : plus de page web dans le cours 1. Le nom avec
-// espace et le motif `*` portent sur les fichiers `.txt` ; le test de la page
-// sans mise en forme (`style.css` absent de `travail/`) est retiré pour le
-// moment. Sorties de ces deux diapositives relevées de nouveau, avec bash 5.1
-// et coreutils 8.32.
-//
-// Relecture du 19/10/2026, suite : les tableaux « Commande / Ce que vous
-// constatez » deviennent des listes de consignes, une action par ligne, la
-// commande à taper écrite à la fin ; ce que chaque consigne fait constater
-// est écrit sous elle, par `constat`, et n'apparaît que dans le corrigé.
-//
 // Inclus par `cours1_v2.typ` ; compilable seul par
 // `outils/compiler_tds.py --cours 1_v2`.
 #import "../../../commun/prelude.typ": *
@@ -24,7 +7,7 @@
 
 #let td = (
   numero: "1b",
-  titre: "Les fichiers du TD 1a en ligne de commande",
+  titre: "rejouer le TD 1a mais en ligne de commande",
   annonce: "Objectif : manipuler des fichiers en ligne de commande, dans Git Bash : se déplacer, copier, renommer, ouvrir",
   dossier: "cours1/1b_terminal/",
   duree: "15′",
@@ -57,7 +40,7 @@
   ]
 ]
 
-#d("Se déplacer et lister")[
+#d("Se déplacer et lister le contenu d'un dossier")[
   #annonce[
     Taper chaque commande dans Git Bash, puis appuyer sur Entrée.
   ]
@@ -165,7 +148,7 @@
   ]
 ]
 
-#d("Copier plusieurs fichiers d'un coup")[
+#d("Copier plusieurs fichiers d'un coup avec '*'")[
   #consignes(
     taille: 16pt,
     [Créer un dossier `textes` dans `travail` : `mkdir travail/textes`.],

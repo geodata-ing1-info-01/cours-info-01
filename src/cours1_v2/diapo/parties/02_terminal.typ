@@ -1,28 +1,20 @@
 // Partie 2 du cours 1 v2, première moitié : le terminal. Incluse par
 // `cours1_v2.typ`. Un fichier inclus n'hérite pas des imports de son appelant.
 //
-// Nouveau (v2) : le terminal passe du cours 2 au cours 1, avec un TD. Les
-// diapositives du cours 2 de 2026 (Beamer, listes à puces) sont réécrites ;
-// les diapositives sur les chemins du cours 1 de 2026 sont reprises sans être
-// reformulées, le quiz sur leur vocabulaire dans la partie 1.
 #import "../../../commun/prelude.typ": *
 #import "../schemas.typ": explorateur-copie, git-bash-copie, chaine-terminal, git-bash-ls
 
-// 19/10/2026 : « Terminal et premier programme » devient « Le terminal » ;
-// le premier programme ouvre la partie 3, avec le notebook.
 #separateur(
   "Le terminal",
   annonce: "Se déplacer dans les dossiers et agir sur les fichiers en tapant des commandes.",
 )
 
 // --------------------------------------------
-// Nouveau (v2), 27/09 : interface graphique et ligne de commande, avant le
-// vocabulaire du terminal.
+// interface graphique et ligne de commande, avant le vocabulaire du terminal.
 #d("Interface graphique et ligne de commande")[
   #annonce[
-    Dans une interface graphique, on choisit l'opération parmi celles que la
-    fenêtre affiche. En ligne de commande, on tape le nom de l'opération, qu'il
-    faut connaître.
+    Dans une interface graphique, on choisit l'opération parmi les menus et boutons affichés. 
+    En ligne de commande, on tape le nom de l'opération, qu'il faut donc connaître.
   ]
 
   #face-a-face(
@@ -59,7 +51,7 @@
 #d("Le terminal et l'interpréteur de commandes")[
   #annonce[
     Le terminal est la fenêtre : il affiche du texte et transmet ce qu'on
-    tape. L'interpréteur de commandes lit chaque ligne et lance le programme
+    tape. L'interpréteur de commandes reçoit chaque ligne et lance le programme
     qu'elle nomme.
   ]
 
@@ -94,13 +86,6 @@
 ]
 
 // --------------------------------------------
-// Relecture du 19/10/2026 : « Les terminaux d'un poste Windows », « Le choix
-// de Git Bash » et « Trois terminaux à l'écran » fusionnées, d'après la
-// dernière. Au-dessus de chaque capture, le chemin qui ouvre le terminal ;
-// en dessous, l'invite, puis les systèmes où son interpréteur s'emploie ;
-// en bas, le choix du module. Les tableaux des deux premières passent en
-// notes. Captures : `src/cours1_v2/images/terminaux/CREDITS.md` ; logos :
-// `src/cours1_v2/images/os/CREDITS.md`.
 #let _capture(fichier, nom, lancer, invite, hauteur: 100pt) = align(center, stack(
   dir: ttb, spacing: 5pt,
   text(size: 16pt, weight: demi-gras)[#nom],
@@ -201,7 +186,7 @@
 // --------------------------------------------
 #d("L'invite de Git Bash")[
   #annonce[
-    Avant chaque commande, Git Bash affiche une invite : l'utilisateur, la
+    Avant chaque commande, Git Bash affiche une invite qui rappelle : l'utilisateur, la
     machine et le dossier courant. La commande se tape après le `$`.
   ]
 
@@ -340,8 +325,6 @@
 ]
 
 // ------------------------------- Chemins -----------------------------------
-// Reprise de la diapositive 17 du cours 1 de 2026, sans reformulation. Le quiz
-// des diapositives 15 et 16 est dans la partie 1, après les formats.
 
 // --------------------------------------------
 #d("Le chemin d'un fichier en ligne de commande")[
@@ -385,9 +368,7 @@
   )
 
   #legende[
-    Sous macOS et Linux, l'autre séparateur : `/home/alice/cours1/1a_formats/depart/raven.odt`.
-    Un projet qui n'écrit que des chemins relatifs se copie, se déplace et
-    s'envoie sans rien changer : `C:\Users\alice` n'existe que sur un poste.
+    Sous macOS, Linux et python, utilisation d'un autre séparateur : `/home/alice/cours1/1a_formats/depart/raven.odt`.
   ]
 
   #notes[

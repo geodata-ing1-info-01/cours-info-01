@@ -1,17 +1,5 @@
 // TD 1a du cours 1 v2 — « Fichiers, formats et extensions », à la souris.
 //
-// Première moitié du TD 1a de 2026 : copier les fichiers de la séance,
-// exporter, ouvrir une page web depuis le disque, deux éditeurs de texte. Le
-// renommage des extensions et l'espace dans un nom passent au TD 1b, en ligne
-// de commande ; la table ASCII au cours 3.
-//
-// Relecture du 19/10/2026 : « Les fichiers du cours » ouvre le TD, juste
-// avant la copie de l'archive ; une dernière étape fait modifier à toute la
-// salle un même fichier de `formationTemp`. Ce qu'elle fait constater est
-// expliqué après le TD, par `parties/01b_fichier_partage.typ`. Le TD
-// n'aborde plus la page web : « Ouvrir une page html depuis son disque » et
-// « L'adresse que le navigateur affiche » sont retirées, et `depart/` n'a
-// plus de fichiers `.html` ni `.css` (`data/cours1_v2/make_data.py`).
 //
 // Inclus par `cours1_v2.typ` ; compilable seul par
 // `outils/compiler_tds.py --cours 1_v2`, qui dépose la feuille dans
@@ -30,9 +18,7 @@
 
 // --------------------------------------------
 // Nouveau (v2) : l'arborescence des cinq TD de la version 2. Placée au début
-// du TD 1a le 19/10/2026, juste avant la copie de l'archive. Le même jour,
-// elle reprend les deux premières lignes de « Les emplacements de stockage »,
-// retirée de la partie 1 : d'où vient l'archive, où elle est copiée.
+// du TD 1a le 19/10/2026, juste avant la copie de l'archive. 
 #d("Les fichiers du cours")[
   #annonce[
     L'archive de la séance, `info01-cours1.zip`, est dans `formationTemp`.
@@ -65,7 +51,7 @@
   ]
 
   #legende[
-    Dans chaque dossier, la feuille du TD et son guide détaillé, en PDF.
+    Chaque dossier contient la feuille du TD et son guide détaillé, en PDF.
   ]
 
   #notes[
@@ -84,10 +70,12 @@
 ]
 
 // Nouveau (v2) : la copie de l'archive devient la première étape du TD.
-// Relecture du 19/10/2026 : une liste de consignes à la place du tableau,
-// difficile à suivre pendant la manipulation ; les vérifications passent en
-// notes.
 #d("Copier les fichiers de la séance sur le poste")[
+
+  #annonce[
+    Copier `info01-cours1.zip` depuis `formationTemp` sur le Bureau et la déarchiver dans un dossier `info01`.
+  ]
+
   #consignes(
     [Ouvrir `formationTemp` : #comment[double-clic sur son raccourci, sur le Bureau.]],
     [Copier `info01-cours1.zip` : #comment[clic droit sur l'archive, Copier.]],
@@ -117,11 +105,7 @@
     Fin de séance : dire où emporter son travail (à préciser).
   ]
 ]
-
-// Reprise du TD 1a de 2026 ; chemins de l'exemple mis à jour pour le Bureau.
-// Relecture du 19/10/2026 : l'avertissement d'abord, puis la fenêtre de
-// l'explorateur sur `depart\` à la place du tableau des chemins.
-#d([Deux dossiers : `depart/` et `travail/`])[
+#d([Deux dossiers par TD : `depart/` et `travail/`])[
   #avertissement[
     Avant d'ouvrir un fichier : afficher les extensions, que Windows masque
     par défaut.
@@ -147,8 +131,6 @@
     depart » ; un clic dans la barre montre le chemin complet. Sous macOS et
     Linux, `/Users/alice/…` ou `/home/alice/…`, avec des `/`.
 
-    À dire : une copie abîmée se refait, un original abîmé ne se refait pas.
-
     `travail/` est livré vide. Tout ce que le TD fait copier ou fabriquer y
     va ; `depart/` reste tel quel.
   ]
@@ -164,7 +146,7 @@
 // une liste de consignes, comme la copie de l'archive. Seconde relecture du
 // même jour : chaque tâche en noir, sa manière en gris, en deux opérations
 // lettrées pour les exports ; le schéma passe en colonne à droite.
-#d("Exporter le document de départ")[
+#d([Exporter le document `raven.odt` en PDF et PNG])[
   #grid(
     columns: (1.75fr, 1fr), column-gutter: 18pt, align: top,
     [#consignes(
@@ -204,7 +186,7 @@
 ]
 
 // --------------------------------------------
-#d("Un même document, trois formats")[
+#d("Quels formats permet la manipulation du texte ?")[
   #annonce[
     Rouvrir les trois fichiers, et essayer dans chacun de sélectionner une
     ligne du poème, puis de chercher un mot avec `Ctrl` + `F`.
@@ -250,7 +232,7 @@
 #d("Ouvrir les fichiers avec un éditeur de texte")[
   #annonce[
     On ouvre cette fois les fichiers avec un éditeur de texte, le Bloc-notes
-    ou Notepad++. LibreOffice ne sert pas dans cette étape.
+    ou Notepad++.
   ]
 
   #grid(
@@ -287,9 +269,9 @@
     apparaît en carré ou en signe étrange.
 
     Notepad++ lit les mêmes octets. Il colore un fichier d'après son
-    extension, quand il l'associe à un langage : aucun fichier de ce TD n'en
-    a, depuis que les `.css` et `.html` sont retirés (19/10/2026) ; le `.py`
-    du TD 1c le sera. Le `.odt` y montre des `NUL` en surbrillance : Notepad++
+    extension, quand il l'associe à un langage tel que le `.py`
+    du TD 1c. 
+    Le `.odt` y montre des `NUL` en surbrillance : Notepad++
     marque les octets sans caractère. À vérifier sur un poste de la salle,
     Notepad++ n'étant pas installé d'origine sous Windows.
 

@@ -1,11 +1,6 @@
 // Partie 1 du cours 1 v2 — incluse par `cours1_v2.typ`, qui porte les
-// réglages globaux. Un fichier inclus n'hérite pas des imports de son appelant.
+// réglages globaux.
 //
-// Reprend les diapositives 10 à 14, 18, 21 et 22 du cours 1 de 2026, sans les
-// reformuler. Les chemins passent à la partie 2 (terminal), le binaire et le
-// texte au cours 3, sauf le quiz sur le vocabulaire des chemins (diapositives
-// 15 et 16 de 2026), placé après les formats. Quatre diapositives nouvelles
-// sur le stockage, à la fin.
 
 #import "../../../commun/prelude.typ": *
 // Import nominatif, et non `: *` : `schemas.typ` ouvre `cetz.draw`, dont les
@@ -16,7 +11,7 @@
 // Nouveau (v2) : titre et annonce de la partie.
 #separateur(
   "Logiciels, fichiers et stockage",
-  annonce: "Ce qu'un logiciel fait, le rôle des fichiers et les disques où ils sont enregistrés."
+  annonce: "Quelques définitions et rappels"
 )
 // ------------------------------- Vocabulaire --------------------------------
 
@@ -52,8 +47,9 @@
   ]
 
   #notes[
-    Les cinq termes se traitent à l'oral, en demandant à la salle ce que chacun
-    désigne et en quoi ils diffèrent. Ne rien écrire de plus à l'écran.
+    Les cinq termes pour questions / interaction avec la salle et tester
+    les connaissances des étudiants. + pour discussion sur sujet que définition
+    rigide des cinq termes. 
 
     Ce qu'il faut en tirer : aucun de ces mots n'a de définition arrêtée, et
     tous désignent des logiciels. « App » est l'abréviation anglaise
@@ -65,21 +61,18 @@
     logiciel de base, qui fait fonctionner la machine et donne accès au
     matériel (Windows, macOS, Linux, et les pilotes), contre logiciel
     d'application, qui sert à accomplir une tâche (LibreOffice, Firefox, un
-    lecteur de musique). La dire, sans l'afficher.
-
-    // « Webapp » est repris à la diapositive sur le lieu d'exécution,
-    // masquée depuis le 19/10/2026.
+    lecteur de musique).
   ]
 ]
 
 // --------------------------------------------
 #d("Le système d'exploitation")[
   #annonce[
-    Un programme ne s'adresse pas directement au matériel : il passe par le système.
+    Un programme ne s'adresse pas directement au matériel : il passe par le système (OS).
   ]
 
   #couche(
-    icone-fenetre(taille: 26pt), "Vos programmes",
+    icone-fenetre(taille: 26pt), "Programmes",
     "LibreOffice, un navigateur, votre script", plein: true,
   )
   #liaison("« ouvre releve.csv »", "le contenu")
@@ -93,8 +86,6 @@
     "processeur, mémoire, disque, réseau",
   )
 
-  // Une seule question : le numéro de `question()` ne code plus rien, et la
-  // place qu'il prend manque à la troisième couche.
   #block(
     width: 100%, inset: (x: 14pt, y: 7pt), above: 0.5em,
     fill: gris, stroke: (left: 3pt + accent),
@@ -103,22 +94,20 @@
   ]
 
   #notes[
-    Le système arbitre entre tous les programmes ouverts en même temps : c'est
-    lui qui empêche l'un d'écrire dans la mémoire d'un autre. Conséquence
-    pratique : les chemins de fichiers ne s'écrivent pas pareil d'un système à
-    l'autre et les outils installés diffèrent. Le matériel est repris au
-    cours 5.
+    Le système orchestre les programmes ouverts en même temps et gère aussi les 
+    droit d'accès  (empêche un pogramme d'écrire dans la mémoire d'un autre). 
+    Conséquence pratique : 
+    Un pogramme peut donc "dépendre" en théorie de l'OS et du materiels et ne
+    peut fonctionner que sur certains combinaisons.
+    les chemins de fichiers ne s'écrivent pas pareil d'un système à
+    l'autre et les outils installés diffèrent. 
 
-    La question sert à faire constater que le schéma vaut aussi pour ce qu'ils
-    ont en poche. Réponse attendue : Android ou iOS. Ordre de grandeur mondial
-    si elle est demandée : environ 70 % Android, 30 % iOS (StatCounter, 2026).
+    La question sert à faire constater que le schéma vaut aussi pour les smartphones. 
+    Réponse attendue : Android ou iOS.
     Éventuellement évoquer le lien entre Linux et Android.
   ]
 ]
 
-// Relecture du 19/10/2026 : fusionnée avec « Utilisation / utilité d'un
-// fichier », dont le tableau est retiré et les exemples passent en notes.
-// Les quatre boîtes de 2026 sont remplacées par `schema-entrees-sorties`.
 #d("Entrées et sorties d'un logiciel")[
   #annonce[
     Les entrées et sorties d'un logiciel sont des fichiers ou des flux
@@ -132,13 +121,7 @@
   #notes[
     Lire le schéma à l'horizontale, puis à la verticale. Ce qu'un programme
     garde en mémoire vive disparaît quand il s'arrête. Pas de sauvegarde en
-    RAM. Le fichier enregistré sur le disque reste, et se rouvre plus tard.
-    Le processeur et la mémoire vive sont au cours 5 : ne pas les détailler
-    ici.
-
-    Le module s'intéresse à ce qui laisse un fichier, parce qu'un fichier
-    se relit, se compare, se versionne, et surtout circule d'un logiciel
-    à l'autre.
+    RAM. Le fichier enregistré sur le disque est pérenne, et peut se rouvrir plus tard.
 
     Le réseau est du côté des périphériques, en entrée comme en sortie :
     pour le logiciel, c'est un flux qu'on lit ou qu'on écrit sans qu'il
@@ -146,12 +129,10 @@
     transporte un flux, et le fichier est sur un disque à chaque bout.
 
     Exemples d'usage d'un fichier, à donner à l'oral : relire dans une
-    semaine ce que le programme a produit ; le tableau écrit par un
-    logiciel, ouvert par un autre ; de votre poste à celui de la salle, et
-    retour ; un rendu, ou le dépôt partagé du cours 6.
+    semaine ce que le programme a produit ; un tableau (tabler) écrit par un
+    logiciel, puis importé/ouvet dans un autre ; trasnfert entre postes (et stockage externe comme USB)
 
-    Un format de fichier est ce sur quoi deux logiciels se mettent d'accord
-    sans se connaître.
+    Un format de fichier est des moyens d'échange/interactions entre logiciels.
 
     Transition vers la suite de la partie : reconnaître le type d'un
     fichier, et savoir sur quel disque il est enregistré.
@@ -210,22 +191,18 @@
   ]
 
   #notes[
-    À dire, sans l'afficher (relecture du 19/10/2026, le tableau est
-    retiré) : l'extension est la fin du nom, après le dernier point. Le
+    À dire, sans l'afficher: l'extension est la fin du nom, après le dernier point. Le
     système choisit d'après elle le logiciel lancé au double-clic. Elle se
-    change en renommant le fichier, comme le reste du nom, et ce renommage
-    ne modifie aucun octet du fichier : l'extension indique le type du
-    contenu sans le garantir. Le TD 1b le fait constater au terminal.
+    change en renommant le fichier, comme le reste du nom. 
+    L'extension indique le type du contenu sans le garantir. Le TD 1b le fait constater au terminal.
 
-    Faire activer l'affichage des extensions dans l'explorateur, sans quoi le
-    TD qui suit est impossible à suivre : `F2` ne montrerait pas ce
-    qu'on renomme.
+    Si besoin faire activer l'affichage des extensions dans l'explorateur, sans quoi le
+    TD qui suit est impossible à suivre : `F2` ne montrerait pas ce qu'on renomme.
 
     État vérifié en 2026 : Windows 11 masque toujours les extensions des types
     connus par défaut, et le réglage se trouve dans Explorateur > Affichage >
     Afficher > Extensions de noms de fichiers. Sous macOS, Finder > Réglages >
-    Avancé > « Afficher tous les suffixes de fichiers ». À faire une fois, utile
-    tout le semestre.
+    Avancé > « Afficher tous les suffixes de fichiers ». 
   ]
 ]
 // --------------------------------------------
@@ -250,9 +227,8 @@
     deux qui peuvent faire débat : `.svg` (une image, mais du texte XML) et `.csv` (du
     texte, pas un fichier Excel). Ne pas s'attarder sur `.tif`.
 
-    La dernière ligne est celle du module, et elle est volontairement groupée :
-    ce sont les quatre fichiers qu'ils éditeront eux-mêmes. Probable que les étudiants
-    ne les connaissent pas.
+    La dernière ligne est celle des formats utilisés en programmation (python). 
+    Probable que les étudiants ne les connaissent pas tous.
   ]
 ]
 
@@ -293,13 +269,12 @@
 ]
 
 // ------------------------------- Chemins -----------------------------------
-// Diapositives 15 et 16 du cours 1 de 2026, sans reformulation.
 
 // --------------------------------------------
 #d("Quizz : vocabulaire associé aux chemins de fichier")[
   #annonce[
     Un chemin dit où trouver un fichier dans l'arborescence des dossiers.
-    Plusieurs mots en désignent les parties : dites à quoi chacun correspond
+    Les parties d'un chemin ou des noms / désignations propres : dites à quoi chacun correspond
     dans cet exemple.
   ]
 
@@ -311,7 +286,7 @@
   #tableau(
     columns: (auto, 1fr),
     align: left + horizon,
-    [Le mot], [Ce qu'il désigne dans l'exemple],
+    [Nom de la partie du chemin], [Ce qu'il désigne dans l'exemple],
     [la racine, ou le disque], [],
     [un nom de dossier], [],
     [le nom du fichier], [],
@@ -368,7 +343,7 @@
   #tableau(
     columns: (auto, 1fr),
     align: left + horizon,
-    [Le mot], [Ce qu'il désigne dans l'exemple],
+    [Nom de la partie du chemin], [Ce qu'il désigne dans l'exemple],
     [la racine, ou le disque],
       [#text(fill: estompe)[`C:\`], le point de départ ; `/` sous macOS et Linux],
     [un nom de dossier],
@@ -393,24 +368,11 @@
 ]
 
 // ------------------------------- Stockage ----------------------------------
-// Nouveau (v2) : quatre diapositives, d'après le syllabus v2 (partie 1) et les
-// faits donnés par l'équipe le 26/09/2026 : le Bureau du poste est conservé
-// d'une séance à l'autre ; l'espace personnel réseau existe, mais les élèves
-// ne savent pas encore s'en servir en septembre.
-// Relecture du 19/10/2026 : « Deux élèves dans le même dossier partagé »
-// passe après le TD 1a, dans `01b_fichier_partage.typ`. « Les emplacements
-// de stockage » est retirée : le disque du poste et `formationTemp` sont
-// présentés par « Les fichiers du cours », au début du TD 1a, et ses notes
-// passent sur le schéma du réseau.
-
-// --------------------------------------------
-// Nouveau (v2), 27/09 : le schéma des emplacements, entre le tableau et le
-// cas du dossier partagé.
 #d("Les emplacements de stockage sur le réseau")[
   #annonce[
     Le Bureau est sur le disque du poste, `formationTemp` sur le disque du
     serveur de l'école. Pour aller sur Internet, les postes passent par le
-    proxy de l'école, qui demande un mot de passe.
+    proxy de l'école, avec demande de mot de passe.
   ]
 
   #align(center, scale(85%, reflow: true, schema-stockage-reseau()))
@@ -425,7 +387,6 @@
     l'espace personnel et le stockage en ligne. La clé USB n'y figure pas.
 
     Lire un fichier sur le réseau est plus lent que sur le disque du poste ;
-    les ordres de grandeur sont au cours 5.
 
     À compléter avant la séance : le nom de l'espace personnel de l'élève,
     son chemin, et comment l'ouvrir. Les élèves ne s'en servent pas encore
@@ -439,19 +400,6 @@
 
     Depuis chez soi, `formationTemp` et l'espace personnel ne sont pas
     accessibles. Depuis l'école, Internet l'est.
-
-    L'école ne fournit pas de stockage en ligne, a priori. Nextcloud est un
-    logiciel libre, installé par des universités et des associations. Les
-    trois autres sont des services de Google, Microsoft et Dropbox.
-
-    Même dessin au cours 5 (« Local et distant »), avec les temps
-    d'aller-retour.
-
-    Relecture du 19/10/2026 : reprend « Reconnaître un emplacement réseau à
-    son chemin », retirée. Un lecteur réseau a une icône propre dans « Ce
-    PC », qui distingue `Z:` d'un disque du poste. `formationTemp` peut
-    apparaître ainsi, comme un lecteur réseau.
-
     Le serveur de l'école porte aussi les espaces personnels.
 
     À compléter avant la séance : le vrai chemin de `formationTemp` sur les

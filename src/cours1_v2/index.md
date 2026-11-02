@@ -5,19 +5,18 @@ title: "Séance 1, version 2 — Logiciels, fichiers, terminal et premier progra
 :::{note}
 Version 2 de la séance 1, en cours de construction pour l'année 2027-2028,
 écrite en septembre 2026 à partir des retours sur la séance 1. La séance
-jouée en 2026 est dans la partie « Archive 2026 ». Les TD de cette version
-peuvent servir à réviser la séance 1 et le terminal.
+donnée en 2026 est dans la partie « Archive 2026 ».
 :::
 
 ## Contenu de la séance
 
-Trois parties, qui alternent une explication courte et des TD sur machine.
+Trois parties, alternant une explication courte et des TD sur machine.
 
 ```{list-table}
 :header-rows: 1
 
 * - Partie
-  - Ce qu'on y voit
+  - Contenu
   - TD
 * - [Logiciels, fichiers et stockage](notebook/01_logiciels_stockage.md)
   - ce qu'est un logiciel, le rôle d'un fichier, l'extension, le

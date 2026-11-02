@@ -1,41 +1,19 @@
 // Partie 2 du cours 1 v2, seconde moitié : le premier programme. Incluse par
 // `cours1_v2.typ`. Un fichier inclus n'hérite pas des imports de son appelant.
 //
-// Refaite le 27/09/2026. Python y est présenté comme un programme en ligne de
-// commande, lancé par le nom d'un fichier exécutable que bash cherche dans
-// PATH ; puis compilé et interprété, avec ce que chacun apporte et le choix de
-// Python ; enfin un script de commandes. « D'un programme à une application »
-// et « La place de l'interpréteur » sont passées en annexe du book
-// (`src/annexes/plus_loin/programme_interpreteur.md`), l'indentation et le TD
-// des programmes fautifs au cours 2 v2.
-//
-// Relecture du 19/10/2026 : « Compiler ou interpréter » est coupée en deux
-// diapositives, placées en tête de la partie ; « Compilé ou interprété : ce
-// que chacun apporte » est retirée, ses sources passent dans les notes.
-// « Python, un programme en ligne de commande » montre les deux façons de
-// lancer `python`, avec un fichier ou seul ; l'invite de commandes
-// d'Anaconda passe dans les notes. « Un script de commandes » est retirée :
-// la page de cours `03_premier_programme.md` garde la section, et l'étape
-// facultative du TD 1c montre le script.
-//
-// Seconde relecture du 19/10/2026 : le premier programme et le notebook
-// forment une seule partie, « Programme Python et notebook », ouverte ici
-// par un séparateur de partie à la place de la reprise ; la partie 2 devient
-// « Le terminal ». Une diapositive de rappel des parties 1 et 2 ouvre la
-// partie, avant « Compiler un programme » et « Interpréter un programme ».
 #import "../../../commun/prelude.typ": *
 #import "../schemas.typ": terminal, chaine-terminal
 
 #separateur(
   "Programme Python et notebook",
-  annonce: "Un programme Python est un fichier texte, que l'interpréteur python exécute. Un notebook réunit ce code, son résultat et du texte écrit en Markdown.",
+  annonce: "comment executer et ouvrir des fichiers de codes python",
 )
 
 // --------------------------------------------
 // Seconde relecture du 19/10/2026 : ce que les parties 1 et 2 ont dit, que
 // la partie 3 emploie. Les icônes des éditeurs sont celles du TD 1a
 // (`images/editeurs/CREDITS.md`).
-#d("Rappel des parties 1 et 2")[
+#d("notions des parties 1 et 2 utiles pour Python")[
   #annonce[
     `python` est un programme en ligne de commande. Il prend en entrée un
     fichier texte, écrit dans un éditeur de texte comme le Bloc-notes, dont
@@ -85,7 +63,7 @@
 // Relecture du 19/10/2026 : la moitié « Compilé » de « Compiler ou
 // interpréter » (refaite le 27/09 à partir de « Deux chemins du texte à
 // l'exécution »).
-#d("Compiler un programme")[
+#d("Du code au programme : compilation puis execution")[
   #annonce[
     Le processeur n'exécute que des instructions machine. Un compilateur
     traduit une fois le texte du programme en instructions machine, et les
@@ -123,7 +101,7 @@
 // Relecture du 19/10/2026 : la moitié « Interprété » de « Compiler ou
 // interpréter », avec les notes de « Compilé ou interprété : ce que chacun
 // apporte », retirée.
-#d("Interpréter un programme")[
+#d("Du code au programme : Interpréteur")[
   #annonce[
     Un interpréteur lit le texte du programme et l'exécute, à chaque
     lancement, sans fichier exécutable. Python est un langage interprété.
