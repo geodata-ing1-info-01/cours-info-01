@@ -235,29 +235,37 @@ Le programme se lance dans le terminal de VS Code, dans
 seule fois, à l'étape B1. Pour les étapes suivantes, il ne donne que les
 lignes qui changent, comme dans cet extrait de l'étape B2 :
 
-```diff
+```modif
    33 # ---- Le programme -------------------------------------------------------------
    34
--  35 print("Crêpes pour", PERSONNES_RECETTE, "personnes")
--  36 afficher(INGREDIENTS)
-+     # Les valeurs à changer
-+     PERSONNES = 6             # le nombre de personnes voulu
+---
+   35 print("Crêpes pour", PERSONNES_RECETTE, "personnes")
+   36 afficher(INGREDIENTS)
+---
++++
+# Les valeurs à changer
+PERSONNES = 6             # le nombre de personnes voulu
+
+ingredients = adapter(INGREDIENTS, PERSONNES_RECETTE, PERSONNES)
+
+print("Crêpes pour", PERSONNES, "personnes")
+afficher(ingredients)
++++
 ```
 
-Une ligne marquée `-` est à supprimer, une ligne marquée `+` est à ajouter.
-Les lignes sans signe ne changent pas et indiquent l'endroit de la
-modification. Le signe `…` remplace des lignes qui ne changent pas.
+Les lignes en vert, entre deux lignes `+++`, sont à ajouter. Les lignes en
+rouge, entre deux lignes `---`, sont à supprimer. Les autres lignes ne
+changent pas et indiquent l'endroit de la modification. Le signe `…`
+remplace des lignes qui ne changent pas.
 
-Le nombre qui suit le signe est le numéro de la ligne dans VS Code, quand
-les modifications sont faites de haut en bas. Une ligne ajoutée n'a pas de
-numéro. Si le fichier n'a pas les mêmes lignes vides que le guide, les
-numéros diffèrent de quelques lignes, et les lignes sans signe permettent
-de retrouver l'endroit.
+Le nombre en tête d'une ligne est le numéro de la ligne dans VS Code, quand
+les modifications sont faites de haut en bas. Une ligne à ajouter n'a pas
+de numéro. Si le fichier n'a pas les mêmes lignes vides que le guide, les
+numéros diffèrent de quelques lignes, et les lignes qui ne changent pas
+permettent de retrouver l'endroit.
 
-Une ligne ajoutée se copie sans le `+` ni les cinq espaces qui le suivent.
-Pour plusieurs lignes, les coller dans VS Code, sélectionner leurs six
-premiers caractères en rectangle (`Maj+Alt` en faisant glisser la souris),
-puis appuyer sur `Suppr`.
+Les lignes à ajouter se copient telles quelles, avec leur indentation, sans
+les lignes `+++`.
 
 **Si une étape échoue.** `git status` montre les fichiers modifiés depuis
 le dernier commit. `git diff` montre les lignes modifiées (`q` pour
@@ -387,29 +395,35 @@ Elle parcourt ensuite la liste des ingrédients avec une boucle `for`, comme
 `afficher`. Elle construit une nouvelle liste, `resultat`, un ingrédient à
 la fois, avec `append`, et la renvoie.
 
-```diff
+```modif
    22
    23
-+     def adapter(ingredients, personnes_recette, personnes):
-+         """Les ingrédients pour `personnes` personnes, d'une recette écrite pour `personnes_recette` personnes."""
-+         facteur = personnes / personnes_recette
-+         resultat = []
-+         for nom, quantite, unite in ingredients:
-+             resultat.append((nom, quantite * facteur, unite))
-+         return resultat
-+
-+
++++
+def adapter(ingredients, personnes_recette, personnes):
+    """Les ingrédients pour `personnes` personnes, d'une recette écrite pour `personnes_recette` personnes."""
+    facteur = personnes / personnes_recette
+    resultat = []
+    for nom, quantite, unite in ingredients:
+        resultat.append((nom, quantite * facteur, unite))
+    return resultat
+
+
++++
    33 # ---- Le programme -------------------------------------------------------------
    34
--  35 print("Crêpes pour", PERSONNES_RECETTE, "personnes")
--  36 afficher(INGREDIENTS)
-+     # Les valeurs à changer
-+     PERSONNES = 6             # le nombre de personnes voulu
-+
-+     ingredients = adapter(INGREDIENTS, PERSONNES_RECETTE, PERSONNES)
-+
-+     print("Crêpes pour", PERSONNES, "personnes")
-+     afficher(ingredients)
+---
+   35 print("Crêpes pour", PERSONNES_RECETTE, "personnes")
+   36 afficher(INGREDIENTS)
+---
++++
+# Les valeurs à changer
+PERSONNES = 6             # le nombre de personnes voulu
+
+ingredients = adapter(INGREDIENTS, PERSONNES_RECETTE, PERSONNES)
+
+print("Crêpes pour", PERSONNES, "personnes")
+afficher(ingredients)
++++
 ```
 
 **Vérification** : `python recette.py` affiche
@@ -445,46 +459,56 @@ lequel multiplier la quantité. `VERS_US["g"]` vaut `("oz", 1 / 28.3495)`.
 La fonction `convertir` reçoit l'une des deux tables. Une unité absente de
 la table, comme l'unité vide des œufs, ne change pas.
 
-```diff
+```modif
    12 ]
    13 PERSONNES_RECETTE = 4     # les recettes sont écrites pour 4 personnes
-+
-+     # Pour chaque unité : l'unité de l'autre système, et le nombre par lequel
-+     # multiplier la quantité
-+     VERS_US = {"g": ("oz", 1 / 28.3495), "ml": ("cup", 1 / 236.588)}
-+     VERS_SI = {"oz": ("g", 28.3495), "cup": ("ml", 236.588)}
++++
+
+# Pour chaque unité : l'unité de l'autre système, et le nombre par lequel
+# multiplier la quantité
+VERS_US = {"g": ("oz", 1 / 28.3495), "ml": ("cup", 1 / 236.588)}
+VERS_SI = {"oz": ("g", 28.3495), "cup": ("ml", 236.588)}
++++
    19
    20
     …
    36
    37
-+     def convertir(ingredients, table):
-+         """Les ingrédients, chaque unité présente dans `table` remplacée par celle de l'autre système."""
-+         resultat = []
-+         for nom, quantite, unite in ingredients:
-+             if unite in table:
-+                 nouvelle_unite, facteur = table[unite]
-+                 resultat.append((nom, quantite * facteur, nouvelle_unite))
-+             else:
-+                 resultat.append((nom, quantite, unite))
-+         return resultat
-+
-+
++++
+def convertir(ingredients, table):
+    """Les ingrédients, chaque unité présente dans `table` remplacée par celle de l'autre système."""
+    resultat = []
+    for nom, quantite, unite in ingredients:
+        if unite in table:
+            nouvelle_unite, facteur = table[unite]
+            resultat.append((nom, quantite * facteur, nouvelle_unite))
+        else:
+            resultat.append((nom, quantite, unite))
+    return resultat
+
+
++++
    50 # ---- Le programme -------------------------------------------------------------
    51
    52 # Les valeurs à changer
    53 PERSONNES = 6             # le nombre de personnes voulu
-+     UNITES = "US"             # le système d'unités voulu : "SI" ou "US"
++++
+UNITES = "US"             # le système d'unités voulu : "SI" ou "US"
++++
    55
    56 ingredients = adapter(INGREDIENTS, PERSONNES_RECETTE, PERSONNES)
    57
--  58 print("Crêpes pour", PERSONNES, "personnes")
-+     if UNITES == "US":
-+         ingredients = convertir(ingredients, VERS_US)
-+     else:
-+         ingredients = convertir(ingredients, VERS_SI)
-+
-+     print("Crêpes pour", PERSONNES, "personnes, en unités", UNITES)
+---
+   58 print("Crêpes pour", PERSONNES, "personnes")
+---
++++
+if UNITES == "US":
+    ingredients = convertir(ingredients, VERS_US)
+else:
+    ingredients = convertir(ingredients, VERS_SI)
+
+print("Crêpes pour", PERSONNES, "personnes, en unités", UNITES)
++++
    64 afficher(ingredients)
 ```
 
@@ -538,63 +562,81 @@ Les chemins se construisent avec `pathlib`, à partir du dossier du script.
 au chemin. Construits ainsi, les chemins ne dépendent pas du dossier du
 terminal, et le programme trouve `recettes/` d'où qu'on le lance.
 
-```diff
+```modif
     1 """Une recette à l'échelle : les ingrédients pour un nombre de personnes, en unités SI ou US."""
-+
-+     import csv
-+     from pathlib import Path
++++
+
+import csv
+from pathlib import Path
++++
     5
     6 # ---- Les données -------------------------------------------------------------
     7
--   8 # La recette des crêpes : (ingrédient, quantité, unité)
--   9 INGREDIENTS = [
--  10     ("Farine", 250, "g"),
--  11     ("Lait", 500, "ml"),
--  12     ("Œufs", 4, ""),
--  13     ("Sel", 2, "g"),
--  14     ("Beurre fondu", 50, "g"),
--  15 ]
+---
+    8 # La recette des crêpes : (ingrédient, quantité, unité)
+    9 INGREDIENTS = [
+   10     ("Farine", 250, "g"),
+   11     ("Lait", 500, "ml"),
+   12     ("Œufs", 4, ""),
+   13     ("Sel", 2, "g"),
+   14     ("Beurre fondu", 50, "g"),
+   15 ]
+---
     8 PERSONNES_RECETTE = 4     # les recettes sont écrites pour 4 personnes
     9
     …
    13 VERS_SI = {"oz": ("g", 28.3495), "cup": ("ml", 236.588)}
    14
-+     # Les chemins partent du dossier du script : __file__ est le chemin de ce fichier
-+     RACINE = Path(__file__).parent
-+     DONNEES = RACINE / "recettes"
-+
++++
+# Les chemins partent du dossier du script : __file__ est le chemin de ce fichier
+RACINE = Path(__file__).parent
+DONNEES = RACINE / "recettes"
+
++++
    19
    20 # ---- Les fonctions -----------------------------------------------------------
-+
-+     def lire_ingredients(chemin):
-+         """Les ingrédients du fichier CSV : une liste de (ingrédient, quantité, unité)."""
-+         ingredients = []
-+         with open(chemin, encoding="utf-8", newline="") as fichier:
-+             lecteur = csv.reader(fichier)
-+             next(lecteur)             # la première ligne nomme les colonnes
-+             for nom, quantite, unite in lecteur:
-+                 ingredients.append((nom, float(quantite), unite))
-+         return ingredients
-+
++++
+
+def lire_ingredients(chemin):
+    """Les ingrédients du fichier CSV : une liste de (ingrédient, quantité, unité)."""
+    ingredients = []
+    with open(chemin, encoding="utf-8", newline="") as fichier:
+        lecteur = csv.reader(fichier)
+        next(lecteur)             # la première ligne nomme les colonnes
+        for nom, quantite, unite in lecteur:
+            ingredients.append((nom, float(quantite), unite))
+    return ingredients
+
++++
    32
    33 def afficher(ingredients):
     …
    61
    62 # Les valeurs à changer
-+     NOM = "crepes"            # la recette : un fichier de recettes/, sans .csv
++++
+NOM = "crepes"            # la recette : un fichier de recettes/, sans .csv
++++
    64 PERSONNES = 6             # le nombre de personnes voulu
    65 UNITES = "US"             # le système d'unités voulu : "SI" ou "US"
    66
--  67 ingredients = adapter(INGREDIENTS, PERSONNES_RECETTE, PERSONNES)
-+     ingredients = lire_ingredients(DONNEES / (NOM + ".csv"))
-+     ingredients = adapter(ingredients, PERSONNES_RECETTE, PERSONNES)
+---
+   67 ingredients = adapter(INGREDIENTS, PERSONNES_RECETTE, PERSONNES)
+---
++++
+ingredients = lire_ingredients(DONNEES / (NOM + ".csv"))
+ingredients = adapter(ingredients, PERSONNES_RECETTE, PERSONNES)
++++
    69
    70 if UNITES == "US":
     …
    73     ingredients = convertir(ingredients, VERS_SI)
    74
--  75 print("Crêpes pour", PERSONNES, "personnes, en unités", UNITES)
-+     print(NOM, "pour", PERSONNES, "personnes, en unités", UNITES)
+---
+   75 print("Crêpes pour", PERSONNES, "personnes, en unités", UNITES)
+---
++++
+print(NOM, "pour", PERSONNES, "personnes, en unités", UNITES)
++++
    76 afficher(ingredients)
 ```
 
@@ -642,35 +684,41 @@ module `csv` : <https://docs.python.org/fr/3/library/csv.html>), les valeurs sé
 des virgules. `SORTIE.mkdir(exist_ok=True)` crée le dossier `sortie/` s'il
 n'existe pas encore.
 
-```diff
+```modif
    16 RACINE = Path(__file__).parent
    17 DONNEES = RACINE / "recettes"
-+     SORTIE = RACINE / "sortie"
++++
+SORTIE = RACINE / "sortie"
++++
    19
    20
     …
    30             ingredients.append((nom, float(quantite), unite))
    31     return ingredients
-+
-+
-+     def ecrire_ingredients(chemin, ingredients):
-+         """Écrit les ingrédients dans un fichier CSV, avec les mêmes colonnes que les fichiers lus."""
-+         with open(chemin, "w", encoding="utf-8", newline="") as fichier:
-+             ecrivain = csv.writer(fichier)
-+             ecrivain.writerow(["ingredient", "quantite", "unite"])
-+             for nom, quantite, unite in ingredients:
-+                 ecrivain.writerow([nom, round(quantite, 1), unite])
++++
+
+
+def ecrire_ingredients(chemin, ingredients):
+    """Écrit les ingrédients dans un fichier CSV, avec les mêmes colonnes que les fichiers lus."""
+    with open(chemin, "w", encoding="utf-8", newline="") as fichier:
+        ecrivain = csv.writer(fichier)
+        ecrivain.writerow(["ingredient", "quantite", "unite"])
+        for nom, quantite, unite in ingredients:
+            ecrivain.writerow([nom, round(quantite, 1), unite])
++++
    41
    42
     …
    85 print(NOM, "pour", PERSONNES, "personnes, en unités", UNITES)
    86 afficher(ingredients)
-+
-+     # Le résultat, dans sortie/
-+     SORTIE.mkdir(exist_ok=True)
-+     fichier = SORTIE / (NOM + "_" + str(PERSONNES) + "_" + UNITES + ".csv")
-+     ecrire_ingredients(fichier, ingredients)
-+     print("écrit :", fichier)
++++
+
+# Le résultat, dans sortie/
+SORTIE.mkdir(exist_ok=True)
+fichier = SORTIE / (NOM + "_" + str(PERSONNES) + "_" + UNITES + ".csv")
+ecrire_ingredients(fichier, ingredients)
+print("écrit :", fichier)
++++
 ```
 
 **Vérification** : `python recette.py` affiche la recette, puis
@@ -709,28 +757,34 @@ changent pas. `nom` est un argument obligatoire. `-p` et `-u` sont des
 options, avec une valeur par défaut. `choices` limite les valeurs
 possibles, et `type=int` convertit la valeur lue en nombre entier.
 
-```diff
+```modif
     1 """Une recette à l'échelle : les ingrédients pour un nombre de personnes, en unités SI ou US."""
     2
-+     import argparse
++++
+import argparse
++++
     4 import csv
     5 from pathlib import Path
     …
    71 # ---- Le programme -------------------------------------------------------------
    72
--  73 # Les valeurs à changer
--  74 NOM = "crepes"            # la recette : un fichier de recettes/, sans .csv
--  75 PERSONNES = 6             # le nombre de personnes voulu
--  76 UNITES = "US"             # le système d'unités voulu : "SI" ou "US"
-+     # Les valeurs viennent de la ligne de commande
-+     analyseur = argparse.ArgumentParser(description="Les ingrédients d'une recette pour un nombre de personnes, en unités SI ou US.")
-+     analyseur.add_argument("nom", help="la recette : un fichier de recettes/, sans .csv")
-+     analyseur.add_argument("-p", "--personnes", type=int, default=4, help="nombre de personnes (défaut : 4)")
-+     analyseur.add_argument("-u", "--unites", choices=("SI", "US"), default="SI", help="système d'unités (défaut : SI)")
-+     options = analyseur.parse_args()
-+     NOM = options.nom
-+     PERSONNES = options.personnes
-+     UNITES = options.unites
+---
+   73 # Les valeurs à changer
+   74 NOM = "crepes"            # la recette : un fichier de recettes/, sans .csv
+   75 PERSONNES = 6             # le nombre de personnes voulu
+   76 UNITES = "US"             # le système d'unités voulu : "SI" ou "US"
+---
++++
+# Les valeurs viennent de la ligne de commande
+analyseur = argparse.ArgumentParser(description="Les ingrédients d'une recette pour un nombre de personnes, en unités SI ou US.")
+analyseur.add_argument("nom", help="la recette : un fichier de recettes/, sans .csv")
+analyseur.add_argument("-p", "--personnes", type=int, default=4, help="nombre de personnes (défaut : 4)")
+analyseur.add_argument("-u", "--unites", choices=("SI", "US"), default="SI", help="système d'unités (défaut : SI)")
+options = analyseur.parse_args()
+NOM = options.nom
+PERSONNES = options.personnes
+UNITES = options.unites
++++
    82
    83 ingredients = lire_ingredients(DONNEES / (NOM + ".csv"))
 ```

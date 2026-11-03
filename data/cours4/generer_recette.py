@@ -45,7 +45,7 @@ TD_PAQUET = ICI / "4b_paquet"
 CORRIGES = ICI / "corriges"
 
 sys.path.insert(0, str(DEPOT / "outils"))
-from modifications import modifications  # noqa: E402
+from modifications import blocs  # noqa: E402
 
 ETATS = ["depart", "b1", "b2", "b3", "b4", "b5", "b6", "c1", "c2", "c4", "c5"]
 
@@ -446,7 +446,7 @@ def main():
         paires = [("depart", "b1"), ("b1", "b2"), ("b2", "b3"), ("b3", "b4"), ("b4", "b5"), ("b5", "b6"), ("b6", "c1")]
         for avant, apres in paires:
             print(f"\n===== {avant} → {apres}")
-            print(modifications(version(avant), version(apres)))
+            print(blocs(version(avant), version(apres)))
 
 
 if __name__ == "__main__":

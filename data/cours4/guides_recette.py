@@ -2,7 +2,7 @@
 
 Appelé par `generer_recette.py` après l'écriture et la vérification des
 corrigés : le code montré vient de `version(etat)`, les blocs de
-modifications de `outils/modifications.py`, et les sorties montrées sont
+modifications de `blocs` (`outils/modifications.py`), et les sorties montrées sont
 celles des corrigés, exécutés au moment de l'écriture (`executer`).
 
 Écrit `src/cours4/notebook/td/4a_recette/guide.md` et
@@ -13,7 +13,7 @@ from __future__ import annotations
 
 import sys
 
-from generer_recette import DEPOT, TD_PAQUET, executer, modifications, quantites, version
+from generer_recette import DEPOT, TD_PAQUET, blocs, executer, quantites, version
 
 sys.path.insert(0, str(DEPOT / "src"))
 from _identifiants import identifiant_titre  # noqa: E402
@@ -74,30 +74,31 @@ lignes qui changent, comme dans cet extrait de l'étape B2 :
 
 {exemple}
 
-Une ligne marquée `-` est à supprimer, une ligne marquée `+` est à ajouter.
-Les lignes sans signe ne changent pas et indiquent l'endroit de la
-modification. Le signe `…` remplace des lignes qui ne changent pas.
+Les lignes en vert, entre deux lignes `+++`, sont à ajouter. Les lignes en
+rouge, entre deux lignes `---`, sont à supprimer. Les autres lignes ne
+changent pas et indiquent l'endroit de la modification. Le signe `…`
+remplace des lignes qui ne changent pas.
 
-Le nombre qui suit le signe est le numéro de la ligne dans VS Code, quand
-les modifications sont faites de haut en bas. Une ligne ajoutée n'a pas de
-numéro. Si le fichier n'a pas les mêmes lignes vides que le guide, les
-numéros diffèrent de quelques lignes, et les lignes sans signe permettent
-de retrouver l'endroit.
+Le nombre en tête d'une ligne est le numéro de la ligne dans VS Code, quand
+les modifications sont faites de haut en bas. Une ligne à ajouter n'a pas
+de numéro. Si le fichier n'a pas les mêmes lignes vides que le guide, les
+numéros diffèrent de quelques lignes, et les lignes qui ne changent pas
+permettent de retrouver l'endroit.
 
-Une ligne ajoutée se copie sans le `+` ni les cinq espaces qui le suivent.
-Pour plusieurs lignes, les coller dans VS Code, sélectionner leurs six
-premiers caractères en rectangle (`Maj+Alt` en faisant glisser la souris),
-puis appuyer sur `Suppr`."""
+Les lignes à ajouter se copient telles quelles, avec leur indentation, sans
+les lignes `+++`."""
 
 
 # ---- TD 4a ---------------------------------------------------------------------
 
 def guide_4a():
-    b1_b2 = modifications(version("b1"), version("b2"))
+    b1_b2 = blocs(version("b1"), version("b2"))
     lignes = b1_b2.splitlines()
     debut = next(i for i, l in enumerate(lignes) if "# ---- Le programme" in l)
-    fin = next(i for i, l in enumerate(lignes) if "PERSONNES = 6" in l)
-    exemple = "\n".join(["```diff", *lignes[debut:fin + 1], "```"])
+    # L'extrait va jusqu'à la fin du bloc à ajouter qui contient `PERSONNES = 6`
+    personnes = next(i for i, l in enumerate(lignes) if "PERSONNES = 6" in l)
+    fin = next(i for i in range(personnes, len(lignes)) if lignes[i] == "+++")
+    exemple = "\n".join(["```modif", *lignes[debut:fin + 1], "```"])
     depart_deux_points = version("depart").replace("in ingredients\n", "in ingredients:\n")
     cookies_si = version("b4").replace('NOM = "crepes"', 'NOM = "cookies"').replace('UNITES = "US"', 'UNITES = "SI"')
     texte = ENTETE.format(titre="TD 4a — Un script Python, pas à pas") + f"""
@@ -430,7 +431,7 @@ lequel multiplier la quantité. `VERS_US["g"]` vaut `("oz", 1 / 28.3495)`.
 La fonction `convertir` reçoit l'une des deux tables. Une unité absente de
 la table, comme l'unité vide des œufs, ne change pas.
 
-{modifications(version("b2"), version("b3"))}
+{blocs(version("b2"), version("b3"))}
 
 **Vérification** : `python recette.py` affiche
 
@@ -467,7 +468,7 @@ Les chemins se construisent avec `pathlib`, à partir du dossier du script.
 au chemin. Construits ainsi, les chemins ne dépendent pas du dossier du
 terminal, et le programme trouve `recettes/` d'où qu'on le lance.
 
-{modifications(version("b3"), version("b4"))}
+{blocs(version("b3"), version("b4"))}
 
 **Vérification** : `python recette.py` affiche la même recette qu'à l'étape
 B3, lue cette fois dans le fichier :
@@ -497,7 +498,7 @@ module `csv` : <https://docs.python.org/fr/3/library/csv.html>), les valeurs sé
 des virgules. `SORTIE.mkdir(exist_ok=True)` crée le dossier `sortie/` s'il
 n'existe pas encore.
 
-{modifications(version("b4"), version("b5"))}
+{blocs(version("b4"), version("b5"))}
 
 **Vérification** : `python recette.py` affiche la recette, puis
 
@@ -525,7 +526,7 @@ changent pas. `nom` est un argument obligatoire. `-p` et `-u` sont des
 options, avec une valeur par défaut. `choices` limite les valeurs
 possibles, et `type=int` convertit la valeur lue en nombre entier.
 
-{modifications(version("b5"), version("b6"))}
+{blocs(version("b5"), version("b6"))}
 
 **Vérifications** :
 
@@ -615,8 +616,8 @@ deux modules, un environnement décrit par un fichier, puis une commande
 TD expliquent ces quatre notions. Chaque étape se termine par un commit.
 
 Le guide donne les lignes à modifier sous la forme expliquée dans la
-partie B du guide du TD 4a : `-` pour une ligne à supprimer, `+` pour une
-ligne à ajouter.
+partie B du guide du TD 4a : en vert, entre deux lignes `+++`, les lignes
+à ajouter ; en rouge, entre deux lignes `---`, les lignes à supprimer.
 
 | Étape | Objectif | Commits de plus |
 |---|---|---|
@@ -691,7 +692,7 @@ Dans `recette.py`, il reste les chemins, puis `main` et son appel.
 `import csv` n'y sert plus. Une ligne importe les tables et les fonctions
 de `quantites.py` :
 
-{modifications(version("c2-coupe"), c2)}
+{blocs(version("c2-coupe"), c2)}
 
 `from quantites import adapter` exécute `quantites.py` une fois, et le nom
 `adapter` est ensuite utilisable dans `recette.py`. Python cherche
@@ -772,7 +773,7 @@ s'arrête sur une erreur dont la dernière ligne est :
 La racine du projet est le dossier parent de `src/` : un `.parent` de plus,
 comme `..` dans un chemin.
 
-{modifications(c2, c4)}
+{blocs(c2, c4)}
 
 **Vérification** : `python src/recette.py crepes` affiche la recette.
 
@@ -835,7 +836,7 @@ La fonction `ecrire_page` écrit un tableau Markdown, puis lance pandoc avec
 `subprocess.run`, comme au cours 3. Elle reste dans `recette.py`, car elle
 dépend d'un programme extérieur.
 
-{modifications(c4, c5)}
+{blocs(c4, c5)}
 
 **Vérification** :
 

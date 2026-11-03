@@ -21,8 +21,8 @@ deux modules, un environnement décrit par un fichier, puis une commande
 TD expliquent ces quatre notions. Chaque étape se termine par un commit.
 
 Le guide donne les lignes à modifier sous la forme expliquée dans la
-partie B du guide du TD 4a : `-` pour une ligne à supprimer, `+` pour une
-ligne à ajouter.
+partie B du guide du TD 4a : en vert, entre deux lignes `+++`, les lignes
+à ajouter ; en rouge, entre deux lignes `---`, les lignes à supprimer.
 
 | Étape | Objectif | Commits de plus |
 |---|---|---|
@@ -175,13 +175,17 @@ Dans `recette.py`, il reste les chemins, puis `main` et son appel.
 `import csv` n'y sert plus. Une ligne importe les tables et les fonctions
 de `quantites.py` :
 
-```diff
+```modif
     2
     3 import argparse
--   4 import csv
+---
+    4 import csv
+---
     4 from pathlib import Path
-+
-+     from quantites import VERS_SI, VERS_US, adapter, afficher, convertir, ecrire_ingredients, lire_ingredients
++++
+
+from quantites import VERS_SI, VERS_US, adapter, afficher, convertir, ecrire_ingredients, lire_ingredients
++++
     7
     8 # ---- Les données -------------------------------------------------------------
 ```
@@ -281,11 +285,15 @@ FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\eleve\\Deskt
 La racine du projet est le dossier parent de `src/` : un `.parent` de plus,
 comme `..` dans un chemin.
 
-```diff
+```modif
    11
    12 # Les chemins partent du dossier du script : __file__ est le chemin de ce fichier
--  13 RACINE = Path(__file__).parent
-+     RACINE = Path(__file__).parent.parent     # src/, puis le dossier du projet
+---
+   13 RACINE = Path(__file__).parent
+---
++++
+RACINE = Path(__file__).parent.parent     # src/, puis le dossier du projet
++++
    14 DONNEES = RACINE / "recettes"
    15 SORTIE = RACINE / "sortie"
 ```
@@ -372,44 +380,52 @@ La fonction `ecrire_page` écrit un tableau Markdown, puis lance pandoc avec
 `subprocess.run`, comme au cours 3. Elle reste dans `recette.py`, car elle
 dépend d'un programme extérieur.
 
-```diff
+```modif
     2
     3 import argparse
-+     import subprocess
++++
+import subprocess
++++
     5 from pathlib import Path
     6
     …
    17
    18
-+     # ---- Les fonctions -----------------------------------------------------------
-+
-+     def ecrire_page(chemin, titre, ingredients):
-+         """Écrit la page HTML des ingrédients : un tableau Markdown, converti par pandoc."""
-+         lignes = ["# " + titre, "", "| Ingrédient | Quantité |", "|---|---|"]
-+         for nom, quantite, unite in ingredients:
-+             lignes.append("| " + nom + " | " + str(round(quantite, 1)) + " " + unite + " |")
-+         markdown = chemin.with_suffix(".md")
-+         markdown.write_text("\n".join(lignes) + "\n", encoding="utf-8")
-+         subprocess.run(["pandoc", str(markdown), "-o", str(chemin), "--standalone",
-+                         "--metadata", "title=" + titre], check=True)
-+
-+
++++
+# ---- Les fonctions -----------------------------------------------------------
+
+def ecrire_page(chemin, titre, ingredients):
+    """Écrit la page HTML des ingrédients : un tableau Markdown, converti par pandoc."""
+    lignes = ["# " + titre, "", "| Ingrédient | Quantité |", "|---|---|"]
+    for nom, quantite, unite in ingredients:
+        lignes.append("| " + nom + " | " + str(round(quantite, 1)) + " " + unite + " |")
+    markdown = chemin.with_suffix(".md")
+    markdown.write_text("\n".join(lignes) + "\n", encoding="utf-8")
+    subprocess.run(["pandoc", str(markdown), "-o", str(chemin), "--standalone",
+                    "--metadata", "title=" + titre], check=True)
+
+
++++
    32 # ---- Le programme -------------------------------------------------------------
    33
     …
    38     analyseur.add_argument("-p", "--personnes", type=int, default=4, help="nombre de personnes (défaut : 4)")
    39     analyseur.add_argument("-u", "--unites", choices=("SI", "US"), default="SI", help="système d'unités (défaut : SI)")
-+         analyseur.add_argument("--page", action="store_true", help="écrit aussi la page HTML, par pandoc")
++++
+    analyseur.add_argument("--page", action="store_true", help="écrit aussi la page HTML, par pandoc")
++++
    41     options = analyseur.parse_args()
    42     NOM = options.nom
     …
    61     print("écrit :", fichier)
    62
-+         if options.page:
-+             page = SORTIE / (NOM + "_" + str(PERSONNES) + "_" + UNITES + ".html")
-+             ecrire_page(page, NOM + " pour " + str(PERSONNES) + " personnes", ingredients)
-+             print("écrit :", page)
-+
++++
+    if options.page:
+        page = SORTIE / (NOM + "_" + str(PERSONNES) + "_" + UNITES + ".html")
+        ecrire_page(page, NOM + " pour " + str(PERSONNES) + " personnes", ingredients)
+        print("écrit :", page)
+
++++
    68
    69 # Vrai quand le fichier est lancé par `python`, faux quand il est importé.
 ```
