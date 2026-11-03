@@ -1,0 +1,1355 @@
+
+<!DOCTYPE html>
+
+
+<html lang="fr" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>TD 2a — Configurer l’éditeur de code, et lancer un programme &#8212; Introduction à l&#39;informatique</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../../../_static/documentation_options.js?v=72dce1d2"></script>
+    <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../../../../_static/translations.js?v=e6b791cb"></script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cours1/notebook/td/2a_vscode_python/guide';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="../../../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Recherche" href="../../../../search.html" />
+    <link rel="next" title="TD 2b — Trois programmes fautifs" href="../2b_erreurs/guide.html" />
+    <link rel="prev" title="TD 1b — Un .odt est une archive ZIP (facultatif)" href="../1b_archive_odt/guide.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="fr"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../../../_static/searchtools.js"></script>
+    <script src="../../../../_static/language_data.js"></script>
+    <script src="../../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Passer au contenu principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Haut de page</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Alerte de version"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navigation dans le site">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="Sur cette page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction à l'informatique</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../index.html">
+                    Introduction à l’informatique
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Avant les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/poste.html">Premiers tests du poste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/donnees.html">Récupérer les fichiers d’une séance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/python.html">Anaconda et JupyterLab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/vscode.html">VS Code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Après les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../apres/sauvegarder.html">Sauvegarder son travail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../apres/s_entrainer.html">S’entraîner : jeux et exercices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours1_v2/index.html">Séance 1, version 2 — Logiciels, fichiers, terminal et premier programme</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/01_logiciels_stockage.html">Logiciels, fichiers et stockage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/02_terminal.html">Le terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/03_premier_programme.html">Premier programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/04_notebook.html">Un notebook et la syntaxe de Markdown</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours1_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 1, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/2a_terminal/guide.html">TD 2a — Les fichiers du TD 1a en ligne de commande</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/2b_programme/guide.html">TD 2b — Écrire et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/3a_notebook/guide.html">TD 3a — Un notebook dans JupyterLab</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours2_v2/index.html">Séance 2, version 2 — Éditeur de code, Markdown et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/01_editeur_de_code.html">L’éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/02_markdown.html">Une recette en Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/03_git_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/04_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours2_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/1a_vscode/guide.html">TD 1a — Configurer VS Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/1b_erreurs/guide.html">TD 1b — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/2a_markdown/guide.html">TD 2a — Une recette en Markdown, convertie par pandoc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/3a_depot_recette/guide.html">TD 3a — Un dépôt git pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours3/index.html">Séance 3 — Chemins, fichiers et ligne de commande</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/01_chemins_programmes.html">Chemins et programmes externes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/02_fichiers_encodage.html">Fichiers et encodage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/03_du_notebook_au_programme.html">Du notebook au programme</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours3/notebook/travaux_diriges.html">Travaux dirigés de la séance 3</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours3/notebook/td/3a_cli/guide.html">TD 3a — Une ligne de commande pour la recette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours3/notebook/td/3b_markdown/guide.html">TD 3b — Une recette en Markdown</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours4/index.html">Séance 4 — Du notebook au programme, en deux parcours</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours4/notebook/01_client_noyau.html">Le client et le noyau d’un notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours4/notebook/02_animation.html">Une animation en ligne de commande</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours4/notebook/travaux_diriges.html">Travaux dirigés du projet 4</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours4/notebook/td/4b_cli/guide.html">TD 4b — Une ligne de commande pour la recette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours4/notebook/td/4c_train/guide.html">TD 4c — La fenêtre du train</a></li>
+
+
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours5/index.html">Séance 5 — Matériel, réseau, mots de passe, clés SSH et secrets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/01_materiel.html">Le matériel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/02_reseau.html">Le réseau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/03_prouver_qui_lon_est.html">Prouver qui l’on est</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/04_secrets.html">Les secrets de vos programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/travaux_diriges.html">Travaux dirigés de la séance 5</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cours6/index.html">Séance 6 — La forge, sur le dépôt du projet 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cours7/index.html">Séance 7 — Une fonctionnalité de plus, par une pull request</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Annexes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/configuration/index.html">Configuration des postes de la salle</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/anaconda.html">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/jupyterlab.html">JupyterLab</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../annexes/configuration/vscode.html">VS Code</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_python.html">Python et environnement conda</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_notebooks.html">Notebooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_reglages.html">Fichiers de réglages</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/git.html">Git et Git Bash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/spyder.html">Spyder</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/poste_personnel/index.html">Configuration d’un ordinateur personnel</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/conda.html">Python et conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/vscode.html">VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/git_outils.html">Git et éditeurs de texte</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/notions/index.html">Notions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/outils.html">Choisir entre JupyterLab, Spyder et VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/notebooks.html">Les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/terminaux.html">Les terminaux en ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/variables_environnement.html">Variables d’environnement et recherche des programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/environnements.html">Les environnements conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/vscode_environnements.html">Comment VS Code gère les environnements Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/git_bash.html">Git Bash : une fenêtre, bash et des programmes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/faq.html">FAQ</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/reseau.html">Problèmes de réseau et de compte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/bureautique.html">Problèmes avec les logiciels de texte et de bureautique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/anaconda.html">Problèmes avec Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/jupyterlab.html">Problèmes avec JupyterLab et les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/vscode.html">Problèmes avec VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/git.html">Problèmes avec git</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/plus_loin/index.html">Pour aller plus loin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/gestionnaires.html">venv, uv et pixi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/cpp.html">C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/programme_interpreteur.html">Programme, application et interpréteur</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Archive 2026</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../../index.html">Séance 1, 2026 — Logiciel, programmation et formats de fichier</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../01_logiciels_et_formats.html">Logiciels et formats de fichier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../02_programmation.html">Programmation et éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../03_markdown_notebook.html">Markdown et notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_bibliotheques_environnements.html">Bibliothèques et environnements Python</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../../travaux_diriges.html">Travaux dirigés de la séance 1</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1b_archive_odt/guide.html">TD 1b — Un .odt est une archive ZIP (facultatif)</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">TD 2a — Configurer l’éditeur de code, et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../2b_erreurs/guide.html">TD 2b — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../2c_hello_cpp/guide.html">TD 2c — Le même programme en C++ (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../3a_markdown/guide.html">TD 3a — Mettre en forme une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../3b_notebooks/guide.html">TD 3b — Le notebook, ouvert de trois façons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../4a_recette/guide.html">TD 4a — Installer un projet Python, et décrire son installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../4b_noyaux/guide.html">TD 4b — Le client, le noyau, et où ils sont installés (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../4c_trajet/guide.html">TD 4c — Installer un projet en lisant son README (facultatif)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../05_comparer_versions.html">Annexe — Comparer deux versions d’un fichier</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours2/index.html">Séance 2, 2026 — Ligne de commande et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/01_ligne_de_commande.html">La ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/02_depot_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/03_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/04_lire_et_tenir_un_depot.html">Lire et tenir un dépôt</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/3a_premier_depot/guide.html">TD 3a — Un premier dépôt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/4a_branches/guide.html">TD 4a — Branches et fusions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/4b_annuler/guide.html">TD 4b — Annuler et remettre à jour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/4c_conflits/guide.html">TD 4c — Créer et résoudre un conflit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/6a_livrer/guide.html">TD 6a — Publier une version</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Thème">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Thème" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Clair"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Sombre"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="Paramètres système"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>Paramètres système</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Clair</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Sombre</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>TD 2a — Configurer l’éditeur de code, et lancer un programme</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lancer-vs-code-depuis-anaconda-navigator">1 · Lancer VS Code depuis Anaconda Navigator</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-dossier-du-td">Le dossier du TD</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anaconda-navigator">Anaconda Navigator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-fenetre-de-vs-code">La fenêtre de VS Code</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ouvrir-le-dossier-du-td-et-installer-l-extension-python">2 · Ouvrir le dossier du TD, et installer l’extension Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ouvrir-le-dossier">Ouvrir le dossier</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ouvrir-un-programme-avant-l-installation">Ouvrir un programme avant l’installation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installer-l-extension">Installer l’extension</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choisir-l-interpreteur-et-regler-le-terminal">3 · Choisir l’interpréteur, et régler le terminal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-palette-de-commandes-et-les-reglages">La palette de commandes et les réglages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choisir-l-interpreteur">Choisir l’interpréteur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ouvrir-un-terminal-active">Ouvrir un terminal activé</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regler-le-terminal">Régler le terminal</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lancer-le-programme-en-entier-puis-ligne-a-ligne">4 · Lancer le programme en entier, puis ligne à ligne</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-programme">Le programme</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lancer-le-programme-en-entier">Lancer le programme en entier</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#refaire-le-calcul-ligne-a-ligne">Refaire le calcul ligne à ligne</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#en-option-sans-vs-code-depuis-l-invite-de-commandes-d-anaconda">En option : sans VS Code, depuis l’invite de commandes d’Anaconda</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#executer-le-programme-pas-a-pas">5 · Exécuter le programme pas à pas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#poser-un-point-d-arret-et-lancer">Poser un point d’arrêt, et lancer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#avancer-et-lire-les-variables">Avancer, et lire les variables</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-le-td-fait-constater">Ce que le TD fait constater</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-1-vs-code-lance-depuis-navigator">Étape 1 : VS Code lancé depuis Navigator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-2-ce-qu-apporte-l-extension">Étape 2 : ce qu’apporte l’extension</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-3-la-palette-les-reglages-l-interpreteur">Étape 3 : la palette, les réglages, l’interpréteur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-4-en-entier-et-ligne-a-ligne">Étape 4 : en entier, et ligne à ligne</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-5-pas-a-pas">Étape 5 : pas à pas</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="td-2a-configurer-l-editeur-de-code-et-lancer-un-programme">
+<h1>TD 2a — Configurer l’éditeur de code, et lancer un programme<a class="headerlink" href="#td-2a-configurer-l-editeur-de-code-et-lancer-un-programme" title="Lien vers cette rubrique">#</a></h1>
+<p>Le TD prépare l’éditeur de code du module, Visual Studio Code (VS Code),
+puis s’en sert pour exécuter un petit programme Python de trois façons. VS
+Code sait éditer du texte dans n’importe quel langage, mais il ne sait pas
+d’avance quel interpréteur Python employer, ni comment lancer un programme :
+il faut lui ajouter l’extension Python et lui désigner l’interpréteur
+installé par Anaconda. Le TD dure environ vingt-cinq minutes.</p>
+<p>La configuration de VS Code se fait une fois par poste et par compte, et
+reste valable toute l’année. Le programme exécuté, <code class="docutils literal notranslate"><span class="pre">altitudes.py</span></code>, calcule la
+moyenne de trois altitudes : il est lancé en entier, puis son calcul est
+refait ligne à ligne dans une session interactive, puis son exécution est
+suivie pas à pas avec le débogueur. Le TD nécessite Anaconda Navigator, VS
+Code, et une connexion réseau pour installer l’extension.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Étape</p></th>
+<th class="head"><p>Ce qu’on fait</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>lancer VS Code depuis Anaconda Navigator</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>ouvrir le dossier du TD, et installer l’extension Python</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>choisir l’interpréteur, et régler le terminal</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>lancer le programme en entier, puis ligne à ligne</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>exécuter le programme pas à pas</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Chaque étape commence par un encadré qui la résume. Ce que chaque étape fait
+constater est expliqué à la fin du guide, dans « Ce que le TD fait
+constater » : faire l’étape d’abord, et noter ce qu’on observe, avant de lire
+l’explication.</p>
+<p>VS Code s’affiche en anglais, et le module ne demande pas d’en changer : les
+noms de menus et de commandes de ce guide sont ceux de l’interface anglaise.</p>
+<section id="lancer-vs-code-depuis-anaconda-navigator">
+<h2>1 · Lancer VS Code depuis Anaconda Navigator<a class="headerlink" href="#lancer-vs-code-depuis-anaconda-navigator" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> ouvrir Anaconda Navigator ; lire l’environnement affiché en
+haut ; lancer VS Code depuis sa fiche ; ouvrir un terminal et y taper
+<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">--version</span></code>.</p>
+<p><strong>À obtenir :</strong> VS Code ouvert, et un terminal en bas de sa fenêtre qui
+répond à <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">--version</span></code>.</p>
+</div></blockquote>
+<section id="le-dossier-du-td">
+<h3>Le dossier du TD<a class="headerlink" href="#le-dossier-du-td" title="Lien vers cette rubrique">#</a></h3>
+<p>Le dossier du TD est dans l’archive de la séance, extraite dans
+<code class="docutils literal notranslate"><span class="pre">C:\Users\eleve\Desktop\info01\</span></code> (la page « Récupérer les fichiers d’une
+séance » du site du cours détaille cette opération). Il contient :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>2a_vscode_python\
+├── altitudes.py                 la moyenne de trois altitudes
+├── bonjour.py                   un programme qui affiche une phrase
+├── README.md                    la présentation du TD
+├── td_2a_vscode_python.pdf      la feuille du TD
+└── guide_2a_vscode_python.pdf   ce guide
+</pre></div>
+</div>
+<p>Son chemin complet est
+<code class="docutils literal notranslate"><span class="pre">C:\Users\eleve\Desktop\info01\cours1\2a_vscode_python\</span></code>. Le TD ne modifie
+aucun de ces fichiers, et n’en crée pas : il n’a ni <code class="docutils literal notranslate"><span class="pre">depart\</span></code> ni
+<code class="docutils literal notranslate"><span class="pre">travail\</span></code>.</p>
+</section>
+<section id="anaconda-navigator">
+<h3>Anaconda Navigator<a class="headerlink" href="#anaconda-navigator" title="Lien vers cette rubrique">#</a></h3>
+<ol class="arabic simple">
+<li><p>Menu Démarrer, taper <code class="docutils literal notranslate"><span class="pre">anaconda</span> <span class="pre">navigator</span></code>, puis Entrée. Une fenêtre
+« Loading applications… » s’affiche, puis la page d’accueil. Le premier
+lancement de l’année peut prendre jusqu’à deux minutes : cliquer une
+seule fois, puis attendre.</p></li>
+<li><p>Si Navigator propose une mise à jour, répondre No.</p></li>
+<li><p>En haut de la page d’accueil, lire la liste déroulante des
+environnements, sans la changer.</p></li>
+<li><p>En dessous, une fiche par application, chacune avec son bouton Launch.
+Trouver la fiche VS Code, et cliquer sur Launch.</p></li>
+</ol>
+<p>Les fiches ne sont pas les mêmes d’un poste à l’autre. Une application qui
+n’est pas installée porte un bouton Install à la place de Launch. Seule la
+fiche VS Code sert dans ce TD.</p>
+<p><strong>À noter</strong> : ce que contient la liste déroulante du haut, et ce qui y est
+sélectionné.</p>
+</section>
+<section id="la-fenetre-de-vs-code">
+<h3>La fenêtre de VS Code<a class="headerlink" href="#la-fenetre-de-vs-code" title="Lien vers cette rubrique">#</a></h3>
+<p>VS Code s’ouvre, parfois sur une page de bienvenue qu’on peut fermer. Sa
+fenêtre a trois zones, qui servent toutes dans ce TD :</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Zone</p></th>
+<th class="head"><p>Où</p></th>
+<th class="head"><p>Ce qu’elle montre</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>l’arborescence</p></td>
+<td><p>à gauche</p></td>
+<td><p>les dossiers et les fichiers du dossier ouvert</p></td>
+</tr>
+<tr class="row-odd"><td><p>le code</p></td>
+<td><p>au centre</p></td>
+<td><p>le fichier ouvert, avec ses numéros de ligne</p></td>
+</tr>
+<tr class="row-even"><td><p>le terminal</p></td>
+<td><p>en bas</p></td>
+<td><p>une fenêtre de commandes, ouverte à la demande</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Ouvrir le terminal : menu Terminal, New Terminal. Le raccourci <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">ù</span></code>
+fait la même chose sur un clavier français. Dans le terminal, taper la
+commande suivante, puis Entrée :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python --version
+</pre></div>
+</div>
+<p>Si le terminal affiche, en rouge, un message qui contient <code class="docutils literal notranslate"><span class="pre">activate.ps1</span></code> et
+<code class="docutils literal notranslate"><span class="pre">running</span> <span class="pre">scripts</span> <span class="pre">is</span> <span class="pre">disabled</span> <span class="pre">on</span> <span class="pre">this</span> <span class="pre">system</span></code>, poursuivre : l’étape 3
+remplace ce terminal par un terminal qui n’affiche pas ce message.</p>
+<p><strong>À noter</strong> : la réponse de <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">--version</span></code>.</p>
+</section>
+</section>
+<section id="ouvrir-le-dossier-du-td-et-installer-l-extension-python">
+<h2>2 · Ouvrir le dossier du TD, et installer l’extension Python<a class="headerlink" href="#ouvrir-le-dossier-du-td-et-installer-l-extension-python" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> ouvrir le dossier <code class="docutils literal notranslate"><span class="pre">cours1\2a_vscode_python\</span></code> dans VS Code ;
+ouvrir <code class="docutils literal notranslate"><span class="pre">bonjour.py</span></code> ; installer l’extension <code class="docutils literal notranslate"><span class="pre">ms-python.python</span></code>.</p>
+<p><strong>À obtenir :</strong> l’extension Python installée ; en bas à droite de la
+fenêtre, le nom d’un interpréteur Python, ou une invitation à en choisir
+un.</p>
+</div></blockquote>
+<section id="ouvrir-le-dossier">
+<h3>Ouvrir le dossier<a class="headerlink" href="#ouvrir-le-dossier" title="Lien vers cette rubrique">#</a></h3>
+<ol class="arabic simple">
+<li><p>Menu File, Open Folder.</p></li>
+<li><p>Choisir <code class="docutils literal notranslate"><span class="pre">C:\Users\eleve\Desktop\info01\cours1\2a_vscode_python</span></code>, puis
+« Sélectionner un dossier ».</p></li>
+<li><p>À la première ouverture d’un dossier, VS Code demande si on fait
+confiance à ses auteurs. Répondre « Yes, I trust the authors ». Sans
+cette réponse, VS Code reste en « Restricted Mode », et l’extension
+Python ne se charge pas.</p></li>
+</ol>
+<p>VS Code travaille sur un dossier : le dossier ouvert devient le projet, et
+l’arborescence de gauche montre son contenu. Un fichier ouvert seul, par
+File, Open File, ne donne à l’éditeur aucun dossier de projet ; le terminal,
+en particulier, ne s’ouvrirait pas dans le dossier du fichier.</p>
+<p><strong>Vérification</strong> : l’arborescence montre <code class="docutils literal notranslate"><span class="pre">altitudes.py</span></code>, <code class="docutils literal notranslate"><span class="pre">bonjour.py</span></code>,
+<code class="docutils literal notranslate"><span class="pre">README.md</span></code> et la feuille du TD, sous le titre <code class="docutils literal notranslate"><span class="pre">2A_VSCODE_PYTHON</span></code>.</p>
+</section>
+<section id="ouvrir-un-programme-avant-l-installation">
+<h3>Ouvrir un programme avant l’installation<a class="headerlink" href="#ouvrir-un-programme-avant-l-installation" title="Lien vers cette rubrique">#</a></h3>
+<p>Cliquer sur <code class="docutils literal notranslate"><span class="pre">bonjour.py</span></code> dans l’arborescence. Le fichier s’ouvre dans la
+zone du code :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">"""Le plus petit programme Python qui fasse quelque chose de visible."""</span>
+
+<span class="n">nom</span> <span class="o">=</span> <span class="s2">"géomatique"</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Bonjour, </span><span class="si">{</span><span class="n">nom</span><span class="si">}</span><span class="s2"> !"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>À noter</strong> : si le texte est coloré, alors qu’aucune extension Python n’est
+encore installée.</p>
+</section>
+<section id="installer-l-extension">
+<h3>Installer l’extension<a class="headerlink" href="#installer-l-extension" title="Lien vers cette rubrique">#</a></h3>
+<ol class="arabic simple">
+<li><p>Ouvrir le panneau Extensions : <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">X</span></code>, ou l’icône des
+quatre carrés dans la barre de gauche.</p></li>
+<li><p>Dans la zone de recherche en haut du panneau, taper l’identifiant de
+l’extension, <code class="docutils literal notranslate"><span class="pre">ms-python.python</span></code>.</p></li>
+<li><p>L’extension « Python », publiée par Microsoft (le nom de l’éditeur est
+écrit sous celui de l’extension, avec une coche bleue), vient en tête de
+la liste. Cliquer dessus : sa page s’ouvre à droite.</p></li>
+<li><p>Vérifier son identifiant : à droite de la page, en bas de la colonne
+« Marketplace Info », la ligne « Identifier » doit indiquer
+<code class="docutils literal notranslate"><span class="pre">ms-python.python</span></code>.</p></li>
+<li><p>Cliquer sur Install, et attendre la fin de l’installation.</p></li>
+</ol>
+<p>Plusieurs extensions s’appellent « Python », et certaines ne viennent pas de
+Microsoft. Seul l’identifiant désigne sans ambiguïté la bonne, d’où la
+recherche par identifiant plutôt que par nom.</p>
+<p>L’installation télécharge l’extension depuis un serveur. Sans réseau, le
+panneau reste vide ou l’installation ne finit pas : vérifier que la session
+réseau est ouverte, puis recommencer. Une extension installée le reste pour
+les séances suivantes.</p>
+<p><strong>À noter</strong> : les extensions que la liste des extensions installées montre
+après l’installation, et ce qui apparaît en bas à droite de la fenêtre
+quand <code class="docutils literal notranslate"><span class="pre">bonjour.py</span></code> est affiché.</p>
+</section>
+</section>
+<section id="choisir-l-interpreteur-et-regler-le-terminal">
+<h2>3 · Choisir l’interpréteur, et régler le terminal<a class="headerlink" href="#choisir-l-interpreteur-et-regler-le-terminal" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> repérer la palette de commandes et les réglages ; choisir
+l’interpréteur d’Anaconda par « Python: Select Interpreter » ; ouvrir un
+nouveau terminal, et le régler s’il n’est pas activé.</p>
+<p><strong>À obtenir :</strong> un terminal dont l’invite commence par <code class="docutils literal notranslate"><span class="pre">(base)</span></code>.</p>
+</div></blockquote>
+<section id="la-palette-de-commandes-et-les-reglages">
+<h3>La palette de commandes et les réglages<a class="headerlink" href="#la-palette-de-commandes-et-les-reglages" title="Lien vers cette rubrique">#</a></h3>
+<p>Les commandes et les réglages de VS Code se cherchent par leur nom, sans
+parcourir les menus. Quatre raccourcis ouvrent les panneaux qui servent
+dans le module :</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Panneau</p></th>
+<th class="head"><p>Raccourci</p></th>
+<th class="head"><p>Ce qu’on y fait</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>la palette de commandes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">P</span></code></p></td>
+<td><p>taper le début du nom d’une commande, par exemple « Python: Select Interpreter »</p></td>
+</tr>
+<tr class="row-odd"><td><p>les réglages</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">,</span></code></p></td>
+<td><p>chercher un réglage par un mot, par exemple « render whitespace »</p></td>
+</tr>
+<tr class="row-even"><td><p>les extensions</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">X</span></code></p></td>
+<td><p>chercher une extension par son identifiant, <code class="docutils literal notranslate"><span class="pre">ms-python.python</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>le terminal</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">ù</span></code></p></td>
+<td><p>ouvrir, masquer, rouvrir le terminal</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Ouvrir les réglages (<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">,</span></code>), et taper <code class="docutils literal notranslate"><span class="pre">render</span> <span class="pre">whitespace</span></code> dans la
+zone de recherche en haut. Le réglage trouvé s’affiche sous le titre
+« Editor: Render Whitespace » ; son nom complet, <code class="docutils literal notranslate"><span class="pre">editor.renderWhitespace</span></code>,
+est fait de plusieurs parties séparées par des points. En haut de la page, deux
+onglets, User et Workspace, correspondent aux deux niveaux de réglages :
+User pour le compte sur ce poste, Workspace pour le dossier ouvert. Ne rien
+changer, et fermer l’onglet des réglages.</p>
+<p>Les mêmes réglages sont écrits dans un fichier texte, <code class="docutils literal notranslate"><span class="pre">settings.json</span></code>.
+Palette (<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">P</span></code>), taper « Preferences: Open User Settings
+(JSON) », puis Entrée : le fichier du compte s’ouvre dans la zone du code.
+Le regarder, puis le fermer, sans rien y écrire pour l’instant.</p>
+</section>
+<section id="choisir-l-interpreteur">
+<h3>Choisir l’interpréteur<a class="headerlink" href="#choisir-l-interpreteur" title="Lien vers cette rubrique">#</a></h3>
+<ol class="arabic simple">
+<li><p>Garder <code class="docutils literal notranslate"><span class="pre">bonjour.py</span></code> ouvert dans la zone du code.</p></li>
+<li><p>Palette (<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">P</span></code>), taper « Python: Select Interpreter »,
+puis Entrée.</p></li>
+<li><p>Une liste apparaît, avec pour chaque Python trouvé sur le poste son nom,
+son chemin et son type. Choisir la ligne <code class="docutils literal notranslate"><span class="pre">base</span></code>, de type Conda, dont le
+chemin contient <code class="docutils literal notranslate"><span class="pre">anaconda3</span></code> : sur les postes de la salle,
+<code class="docutils literal notranslate"><span class="pre">C:\ProgramData\anaconda3\python.exe</span></code>. Lire le chemin, et pas seulement
+le nom.</p></li>
+</ol>
+<p>Le nom de l’interpréteur choisi s’affiche en bas à droite de la fenêtre, et
+VS Code le retient pour ce dossier.</p>
+<p>Si la liste ne contient ni <code class="docutils literal notranslate"><span class="pre">base</span></code> ni aucun chemin avec <code class="docutils literal notranslate"><span class="pre">anaconda3</span></code>, choisir
+« Enter interpreter path… », puis « Find… », et désigner le fichier
+<code class="docutils literal notranslate"><span class="pre">C:\ProgramData\anaconda3\python.exe</span></code>.</p>
+</section>
+<section id="ouvrir-un-terminal-active">
+<h3>Ouvrir un terminal activé<a class="headerlink" href="#ouvrir-un-terminal-active" title="Lien vers cette rubrique">#</a></h3>
+<p>Menu Terminal, New Terminal. Un nouveau terminal s’ouvre en bas, dans le
+dossier du TD. L’extension Python y écrit et y exécute elle-même la commande
+qui active l’interpréteur choisi. Quand l’activation réussit, l’invite, la
+ligne qui attend une commande, commence par <code class="docutils literal notranslate"><span class="pre">(base)</span></code> :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>(base) C:\Users\eleve\Desktop\info01\cours1\2a_vscode_python&gt;
+</pre></div>
+</div>
+<p>Si l’invite commence par <code class="docutils literal notranslate"><span class="pre">(base)</span></code>, l’étape est finie. Si elle commence par
+<code class="docutils literal notranslate"><span class="pre">PS</span></code>, sans <code class="docutils literal notranslate"><span class="pre">(base)</span></code>, ou si le message <code class="docutils literal notranslate"><span class="pre">…</span> <span class="pre">activate.ps1</span> <span class="pre">cannot</span> <span class="pre">be</span> <span class="pre">loaded</span> <span class="pre">because</span> <span class="pre">running</span> <span class="pre">scripts</span> <span class="pre">is</span> <span class="pre">disabled</span> <span class="pre">on</span> <span class="pre">this</span> <span class="pre">system</span></code> s’affiche, le terminal
+est un PowerShell, et le poste lui interdit d’exécuter le script
+d’activation. Ce refus se produit toujours quand VS Code a été lancé depuis
+le menu Démarrer ou depuis le bureau, et il peut se produire aussi quand VS
+Code a été lancé depuis Navigator. La section suivante remplace PowerShell
+par l’invite de commandes <code class="docutils literal notranslate"><span class="pre">cmd</span></code>, sans demander de droits d’administrateur.</p>
+</section>
+<section id="regler-le-terminal">
+<h3>Régler le terminal<a class="headerlink" href="#regler-le-terminal" title="Lien vers cette rubrique">#</a></h3>
+<ol class="arabic">
+<li><p>Palette, « Preferences: Open User Settings (JSON) ».</p></li>
+<li><p>Si le fichier est vide, y recopier le bloc suivant en entier. S’il
+contient déjà des réglages, ajouter les lignes du milieu avant
+l’accolade fermante, en mettant une virgule à la fin de la ligne qui les
+précède.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"python.condaPath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C:\\ProgramData\\anaconda3\\Scripts\\conda.exe"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"python.defaultInterpreterPath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C:\\ProgramData\\anaconda3\\python.exe"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"python-envs.defaultEnvManager"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ms-python.python:conda"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"python-envs.defaultPackageManager"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ms-python.python:conda"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"terminal.integrated.profiles.windows"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"Anaconda Prompt"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C:\\Windows\\System32\\cmd.exe"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"/K"</span><span class="p">,</span><span class="w"> </span><span class="s2">"C:\\ProgramData\\anaconda3\\Scripts\\activate.bat"</span><span class="p">,</span><span class="w"> </span><span class="s2">"C:\\ProgramData\\anaconda3"</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"terminal.integrated.defaultProfile.windows"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anaconda Prompt"</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Enregistrer (<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">S</span></code>).</p></li>
+<li><p>Palette, « Developer: Reload Window ». La fenêtre se recharge.</p></li>
+<li><p>Fermer l’ancien terminal (l’icône de corbeille en haut à droite du
+panneau du terminal), puis menu Terminal, New Terminal.</p></li>
+</ol>
+<p>Les guillemets, les virgules et les doubles barres obliques inverses sont
+ceux du format JSON, et se recopient tels quels. VS Code souligne en rouge
+la ligne qui contient une erreur de recopie. Les dernières lignes décrivent
+à VS Code le terminal de l’invite de commandes d’Anaconda, un <code class="docutils literal notranslate"><span class="pre">cmd</span></code> déjà activé à
+l’ouverture, et en font le terminal par défaut ; les quatre premières
+indiquent à l’extension Python où est conda, et quel interpréteur employer
+tant qu’on n’en a pas choisi.</p>
+<p><strong>Vérification</strong> : l’onglet du terminal s’appelle « Anaconda Prompt », et
+l’invite commence par <code class="docutils literal notranslate"><span class="pre">(base)</span></code>.</p>
+<p>Les chemins <code class="docutils literal notranslate"><span class="pre">C:\ProgramData\anaconda3</span></code> sont ceux de l’installation de la
+salle. Sur un autre ordinateur, ils se lisent dans le raccourci de
+l’invite de commandes d’Anaconda : menu Démarrer, clic droit sur « Anaconda Prompt »,
+Ouvrir l’emplacement du fichier, puis clic droit sur le raccourci,
+Propriétés, champ Cible. Sous macOS et Linux, aucun de ces réglages n’est
+nécessaire : le terminal de VS Code y est un terminal ordinaire, que
+l’extension active sans difficulté.</p>
+<p><strong>À noter</strong> : le nom écrit entre parenthèses au début de l’invite.</p>
+</section>
+</section>
+<section id="lancer-le-programme-en-entier-puis-ligne-a-ligne">
+<h2>4 · Lancer le programme en entier, puis ligne à ligne<a class="headerlink" href="#lancer-le-programme-en-entier-puis-ligne-a-ligne" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> lancer <code class="docutils literal notranslate"><span class="pre">altitudes.py</span></code> dans le terminal ; refaire son calcul
+dans une session interactive de Python.</p>
+<p><strong>À obtenir :</strong> la moyenne affichée par le programme, puis la même valeur
+obtenue dans la session interactive.</p>
+</div></blockquote>
+<section id="le-programme">
+<h3>Le programme<a class="headerlink" href="#le-programme" title="Lien vers cette rubrique">#</a></h3>
+<p>Ouvrir <code class="docutils literal notranslate"><span class="pre">altitudes.py</span></code> dans la zone du code. Le fichier compte huit lignes :
+une chaîne de documentation, une ligne vide, puis six lignes de code.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">"""Moyenne d'une série d'altitudes, à la main plutôt qu'avec sum()."""</span>
+
+<span class="n">altitudes</span> <span class="o">=</span> <span class="p">[</span><span class="mf">128.4</span><span class="p">,</span> <span class="mf">131.0</span><span class="p">,</span> <span class="mf">127.6</span><span class="p">]</span>
+<span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">altitude</span> <span class="ow">in</span> <span class="n">altitudes</span><span class="p">:</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="n">altitude</span>
+<span class="n">moyenne</span> <span class="o">=</span> <span class="n">total</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">altitudes</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"moyenne : </span><span class="si">{</span><span class="n">moyenne</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> m"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Le programme range trois altitudes dans une liste, les additionne une à une
+dans <code class="docutils literal notranslate"><span class="pre">total</span></code>, divise la somme par le nombre d’altitudes, puis affiche le
+résultat arrondi à une décimale.</p>
+</section>
+<section id="lancer-le-programme-en-entier">
+<h3>Lancer le programme en entier<a class="headerlink" href="#lancer-le-programme-en-entier" title="Lien vers cette rubrique">#</a></h3>
+<ol class="arabic">
+<li><p>Vérifier que l’invite du terminal commence par <code class="docutils literal notranslate"><span class="pre">(base)</span></code> et se termine
+par <code class="docutils literal notranslate"><span class="pre">2a_vscode_python&gt;</span></code>. Sinon, reprendre l’étape 3.</p></li>
+<li><p>Taper la commande suivante, puis Entrée :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python altitudes.py
+</pre></div>
+</div>
+</li>
+</ol>
+<p>La sortie est :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>moyenne : 129.0 m
+</pre></div>
+</div>
+<p>Deux autres commandes de VS Code lancent le même programme : le bouton d’exécution, un
+triangle en haut à droite de la zone du code, et le menu Run, Run Without
+Debugging (<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">F5</span></code>). Les essayer après la commande tapée à la main, et
+regarder ce qu’ils écrivent dans le terminal avant d’exécuter le programme.</p>
+<p><strong>À noter</strong> : le nombre de lignes affichées par le programme ; ce qui change
+dans l’arborescence après son exécution.</p>
+</section>
+<section id="refaire-le-calcul-ligne-a-ligne">
+<h3>Refaire le calcul ligne à ligne<a class="headerlink" href="#refaire-le-calcul-ligne-a-ligne" title="Lien vers cette rubrique">#</a></h3>
+<p>Dans le même terminal, taper <code class="docutils literal notranslate"><span class="pre">python</span></code>, sans nom de fichier, puis Entrée.
+Python affiche sa version sur quelques lignes, puis son invite, trois
+chevrons <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code>. Taper ensuite les lignes suivantes, une par une, chacune
+suivie d’Entrée :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; altitudes = [128.4, 131.0, 127.6]
+&gt;&gt;&gt; total = 0
+&gt;&gt;&gt; for altitude in altitudes:
+...     total = total + altitude
+...
+&gt;&gt;&gt; total
+387.0
+&gt;&gt;&gt; total / len(altitudes)
+129.0
+&gt;&gt;&gt; exit()
+</pre></div>
+</div>
+<p>Les chevrons <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code> et les points <code class="docutils literal notranslate"><span class="pre">...</span></code> sont écrits par Python : ne pas les
+taper. Après la ligne <code class="docutils literal notranslate"><span class="pre">for</span></code>, Python affiche <code class="docutils literal notranslate"><span class="pre">...</span></code>, pour signaler que le bloc
+n’est pas fini : taper quatre espaces, puis <code class="docutils literal notranslate"><span class="pre">total</span> <span class="pre">=</span> <span class="pre">total</span> <span class="pre">+</span> <span class="pre">altitude</span></code>,
+Entrée, puis Entrée sur la ligne vide suivante pour terminer le bloc. Si
+Python a déjà placé le curseur en retrait après les <code class="docutils literal notranslate"><span class="pre">...</span></code>, ne pas ajouter
+d’espaces.
+<code class="docutils literal notranslate"><span class="pre">exit()</span></code> ferme la session, et l’invite du terminal revient.</p>
+<p>Pour aller plus loin, refaire la boucle en affichant <code class="docutils literal notranslate"><span class="pre">total</span></code> à chaque tour :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; total = 0
+&gt;&gt;&gt; for altitude in altitudes:
+...     total = total + altitude
+...     print(total)
+...
+</pre></div>
+</div>
+<p><strong>À noter</strong> : comment <code class="docutils literal notranslate"><span class="pre">total</span></code> s’affiche, alors qu’aucun <code class="docutils literal notranslate"><span class="pre">print</span></code> ne le
+demande ; la différence entre l’invite <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code> et celle du terminal.</p>
+</section>
+<section id="en-option-sans-vs-code-depuis-l-invite-de-commandes-d-anaconda">
+<h3>En option : sans VS Code, depuis l’invite de commandes d’Anaconda<a class="headerlink" href="#en-option-sans-vs-code-depuis-l-invite-de-commandes-d-anaconda" title="Lien vers cette rubrique">#</a></h3>
+<p>Cette partie est facultative, pour qui a fini en avance. Elle lance le même
+programme depuis l’invite de commandes d’Anaconda, sans passer par l’éditeur.</p>
+<ol class="arabic simple">
+<li><p>Menu Démarrer, taper <code class="docutils literal notranslate"><span class="pre">anaconda</span> <span class="pre">prompt</span></code>, puis Entrée. Une fenêtre noire
+s’ouvre, et l’invite commence par <code class="docutils literal notranslate"><span class="pre">(base)</span></code>.</p></li>
+<li><p>Taper <code class="docutils literal notranslate"><span class="pre">cd</span></code> suivi d’une espace, puis glisser le dossier <code class="docutils literal notranslate"><span class="pre">2a_vscode_python</span></code>
+depuis l’explorateur de fichiers dans la fenêtre : son chemin complet
+s’écrit à la suite. Appuyer sur Entrée.</p></li>
+<li><p>Taper <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">altitudes.py</span></code>, puis Entrée.</p></li>
+<li><p>Taper <code class="docutils literal notranslate"><span class="pre">python</span></code>, puis les lignes de la session interactive, et <code class="docutils literal notranslate"><span class="pre">exit()</span></code>.</p></li>
+</ol>
+<p>Si l’invite ne change pas à l’étape 2, le dossier est sur un autre disque
+que <code class="docutils literal notranslate"><span class="pre">C:</span></code> : refaire l’étape avec <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">/d</span></code> à la place de <code class="docutils literal notranslate"><span class="pre">cd</span></code>.</p>
+<p><strong>À noter</strong> : ce que l’invite affiche après l’étape 2 ; les sorties des
+étapes 3 et 4, comparées à celles obtenues dans VS Code.</p>
+</section>
+</section>
+<section id="executer-le-programme-pas-a-pas">
+<h2>5 · Exécuter le programme pas à pas<a class="headerlink" href="#executer-le-programme-pas-a-pas" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> poser un point d’arrêt sur la ligne 6 d”<code class="docutils literal notranslate"><span class="pre">altitudes.py</span></code> ;
+lancer le débogueur ; avancer ligne par ligne en lisant la valeur de
+<code class="docutils literal notranslate"><span class="pre">total</span></code>.</p>
+<p><strong>À obtenir :</strong> le programme arrêté sur la ligne 6, puis mené jusqu’à la
+fin, avec la moyenne affichée dans le terminal.</p>
+</div></blockquote>
+<p>Le débogueur exécute le programme et l’arrête sur une ligne choisie, pour
+qu’on puisse lire la valeur des variables sans modifier le code. Le repère
+posé sur la ligne où le programme doit s’arrêter est un <strong>point d’arrêt</strong>.</p>
+<section id="poser-un-point-d-arret-et-lancer">
+<h3>Poser un point d’arrêt, et lancer<a class="headerlink" href="#poser-un-point-d-arret-et-lancer" title="Lien vers cette rubrique">#</a></h3>
+<ol class="arabic simple">
+<li><p>Ouvrir <code class="docutils literal notranslate"><span class="pre">altitudes.py</span></code>. Passer la souris dans la marge, à gauche du numéro
+de la ligne 6, <code class="docutils literal notranslate"><span class="pre">total</span> <span class="pre">=</span> <span class="pre">total</span> <span class="pre">+</span> <span class="pre">altitude</span></code> : un point rouge pâle apparaît.
+Cliquer : le point devient rouge vif, et marque le point d’arrêt.</p></li>
+<li><p>Appuyer sur <code class="docutils literal notranslate"><span class="pre">F5</span></code>.</p></li>
+<li><p>Au premier lancement, VS Code demande en haut de la fenêtre quel
+débogueur employer : choisir « Python Debugger ». Il demande ensuite
+quelle configuration : choisir « Python File ». Si VS Code propose de
+créer un fichier <code class="docutils literal notranslate"><span class="pre">launch.json</span></code>, ne pas le créer.</p></li>
+<li><p>Le programme démarre, puis s’arrête : une ligne de la zone du code est
+surlignée en jaune.</p></li>
+<li><p>À gauche, le panneau Run and Debug s’ouvre de lui-même. S’il a été
+fermé, <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">D</span></code> le rouvre. Sa section Variables montre les
+variables du programme et leur valeur.</p></li>
+</ol>
+<p>En haut de la fenêtre, une barre de boutons est apparue. Chaque bouton a
+son raccourci :</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bouton</p></th>
+<th class="head"><p>Touche</p></th>
+<th class="head"><p>Ce qu’il fait</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Continue</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">F5</span></code></p></td>
+<td><p>reprend l’exécution jusqu’au prochain point d’arrêt, ou jusqu’à la fin</p></td>
+</tr>
+<tr class="row-odd"><td><p>Step Over</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">F10</span></code></p></td>
+<td><p>exécute la ligne surlignée, et s’arrête à la suivante</p></td>
+</tr>
+<tr class="row-even"><td><p>Step Into</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">F11</span></code></p></td>
+<td><p>entre dans la fonction appelée ; il ne sert pas dans ce TD</p></td>
+</tr>
+<tr class="row-odd"><td><p>Restart</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">F5</span></code></p></td>
+<td><p>recommence le programme depuis le début</p></td>
+</tr>
+<tr class="row-even"><td><p>Stop</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">F5</span></code></p></td>
+<td><p>arrête le programme</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>À noter</strong> : la ligne surlignée, et les variables affichées avec leur
+valeur, dont <code class="docutils literal notranslate"><span class="pre">total</span></code>.</p>
+</section>
+<section id="avancer-et-lire-les-variables">
+<h3>Avancer, et lire les variables<a class="headerlink" href="#avancer-et-lire-les-variables" title="Lien vers cette rubrique">#</a></h3>
+<p>La ligne surlignée est la prochaine ligne à exécuter : elle n’a pas encore
+été exécutée.</p>
+<ol class="arabic simple">
+<li><p>Avant chaque appui sur <code class="docutils literal notranslate"><span class="pre">F10</span></code>, prédire la valeur que <code class="docutils literal notranslate"><span class="pre">total</span></code> aura
+ensuite ; puis appuyer sur <code class="docutils literal notranslate"><span class="pre">F10</span></code>, et lire <code class="docutils literal notranslate"><span class="pre">total</span></code> dans Variables.</p></li>
+<li><p>Continuer avec <code class="docutils literal notranslate"><span class="pre">F10</span></code> : la ligne surlignée passe de la ligne 6 à la
+ligne 5, puis revient à la ligne 6, tant que la boucle n’est pas finie.
+S’arrêter quand la ligne 7 est surlignée.</p></li>
+<li><p>Appuyer sur <code class="docutils literal notranslate"><span class="pre">F5</span></code> : le programme s’exécute jusqu’à la fin.</p></li>
+<li><p>Cliquer sur le point rouge de la marge pour l’enlever.</p></li>
+</ol>
+<p><strong>À noter</strong> : les valeurs successives de <code class="docutils literal notranslate"><span class="pre">total</span></code> ; ce que le terminal
+affiche après <code class="docutils literal notranslate"><span class="pre">F5</span></code> ; ce qui s’est passé dans le fichier <code class="docutils literal notranslate"><span class="pre">altitudes.py</span></code>
+depuis la pose du point d’arrêt.</p>
+</section>
+</section>
+<section id="ce-que-le-td-fait-constater">
+<h2>Ce que le TD fait constater<a class="headerlink" href="#ce-que-le-td-fait-constater" title="Lien vers cette rubrique">#</a></h2>
+<p>Cette section se lit après avoir fait les étapes.</p>
+<section id="etape-1-vs-code-lance-depuis-navigator">
+<h3>Étape 1 : VS Code lancé depuis Navigator<a class="headerlink" href="#etape-1-vs-code-lance-depuis-navigator" title="Lien vers cette rubrique">#</a></h3>
+<p>La liste déroulante du haut de Navigator ne contient qu’une entrée,
+<code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">(root)</span></code>, déjà sélectionnée. <code class="docutils literal notranslate"><span class="pre">base</span></code> est le nom du Python livré avec
+Anaconda, et le seul installé tant qu’on n’en a pas créé d’autre ; ce
+qu’est un environnement, et comment on en fabrique un second, est l’objet
+de la partie 4 du cours et du TD 4a. VS Code lancé depuis Navigator emploie
+l’interpréteur de l’environnement sélectionné en haut de la page.</p>
+<p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">--version</span></code> répond par un numéro de version, <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">3.</span></code> suivi de
+deux nombres, sans message d’erreur. Le numéro exact dépend de la version
+d’Anaconda installée sur le poste.</p>
+<p>VS Code enregistre du texte brut, comme le Bloc-notes et Notepad++ du TD
+1a. Les couleurs et les numéros de ligne qu’il ajoute à l’écran ne sont pas
+enregistrés dans le fichier.</p>
+</section>
+<section id="etape-2-ce-qu-apporte-l-extension">
+<h3>Étape 2 : ce qu’apporte l’extension<a class="headerlink" href="#etape-2-ce-qu-apporte-l-extension" title="Lien vers cette rubrique">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">bonjour.py</span></code> est coloré dès son ouverture, avant toute installation : la
+coloration syntaxique des langages courants est fournie par VS Code lui-même.
+L’extension Python ajoute les autres fonctions : le choix de l’interpréteur,
+l’exécution du programme, le débogueur, et la vérification des règles
+d’écriture du langage par Pylance. Cette vérification porte sur l’écriture
+du programme et ne dit rien de ce qu’il calcule : un programme peut la
+satisfaire entièrement et calculer autre chose que ce qu’on voulait.</p>
+<p>D’autres extensions de Microsoft s’installent avec l’extension Python,
+dont Pylance et Python Debugger ; il n’y a qu’une extension à chercher. En
+bas à droite de la fenêtre, la barre d’état nomme un interpréteur Python,
+ou propose d’en choisir un.</p>
+<p>La même démarche installe la prise en charge des autres langages : panneau
+Extensions, identifiant de l’extension, Install. Le TD 2c l’applique au C++.</p>
+</section>
+<section id="etape-3-la-palette-les-reglages-l-interpreteur">
+<h3>Étape 3 : la palette, les réglages, l’interpréteur<a class="headerlink" href="#etape-3-la-palette-les-reglages-l-interpreteur" title="Lien vers cette rubrique">#</a></h3>
+<p>La palette de commandes et la recherche dans les réglages permettent de
+trouver une commande ou un réglage par son nom, sans savoir dans quel menu
+il se trouve. Les consignes du module désignent les commandes et les
+réglages par ce nom.</p>
+<p>Chaque réglage porte un nom en plusieurs parties séparées par des points,
+comme <code class="docutils literal notranslate"><span class="pre">editor.renderWhitespace</span></code> ou <code class="docutils literal notranslate"><span class="pre">terminal.integrated.defaultProfile.windows</span></code>,
+et sa valeur est rangée dans un fichier texte, <code class="docutils literal notranslate"><span class="pre">settings.json</span></code>. Ce fichier
+existe à deux niveaux :</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Niveau</p></th>
+<th class="head"><p>Portée</p></th>
+<th class="head"><p>Fichier</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>User</p></td>
+<td><p>le compte, pour tous les dossiers ouverts sur ce poste</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">C:\Users\&lt;nom&gt;\AppData\Roaming\Code\User\settings.json</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Workspace</p></td>
+<td><p>le dossier ouvert seulement</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.vscode\settings.json</span></code>, dans ce dossier</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Quand un réglage est présent aux deux niveaux, celui du dossier l’emporte.
+Un réglage écrit dans un fichier texte peut être transmis par écrit, comme
+dans ce guide, et enregistré avec un projet, au niveau Workspace.</p>
+<p>Plusieurs Python peuvent être installés sur une même machine, et « Python:
+Select Interpreter » désigne celui que VS Code emploie. Les terminaux ouverts
+ensuite dans VS Code sont activés pour ce même Python, et leur invite
+commence par <code class="docutils literal notranslate"><span class="pre">(base)</span></code>. Le nom écrit entre parenthèses au début de l’invite
+désigne le Python qui répondra à la commande <code class="docutils literal notranslate"><span class="pre">python</span></code> : c’est la seule
+marque visible de l’interpréteur actif, et il faut la relire avant
+d’installer un paquet. Un terminal qui emploie un autre Python que celui
+choisi dans l’éditeur produit, plus tard dans le module, des erreurs
+<code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError</span></code> sur des paquets pourtant installés.</p>
+<p>Le terminal PowerShell, celui que VS Code ouvre par défaut sous Windows,
+refuse d’exécuter le script d’activation d’Anaconda : sa stratégie
+d’exécution est <code class="docutils literal notranslate"><span class="pre">Restricted</span></code> par défaut, et les postes de la salle ne
+permettent pas de la changer. Le <code class="docutils literal notranslate"><span class="pre">cmd</span></code> n’est pas soumis à cette stratégie ;
+c’est lui que lance le raccourci « Anaconda Prompt » du menu Démarrer, et c’est
+lui que le réglage du terminal donne à VS Code.</p>
+</section>
+<section id="etape-4-en-entier-et-ligne-a-ligne">
+<h3>Étape 4 : en entier, et ligne à ligne<a class="headerlink" href="#etape-4-en-entier-et-ligne-a-ligne" title="Lien vers cette rubrique">#</a></h3>
+<p>Lancé en entier, le programme n’affiche qu’une ligne, <code class="docutils literal notranslate"><span class="pre">moyenne</span> <span class="pre">:</span> <span class="pre">129.0</span> <span class="pre">m</span></code>,
+celle du <code class="docutils literal notranslate"><span class="pre">print</span></code> final. Les valeurs intermédiaires de <code class="docutils literal notranslate"><span class="pre">total</span></code> ne sont pas
+visibles. La moyenne de 128,4, 131,0 et 127,6 vaut 129,0.</p>
+<p>Rien n’apparaît dans l’arborescence : exécuter un programme Python ne crée
+aucun fichier sur le disque. Le TD 2c, facultatif, montre qu’un programme
+C++ en crée un, l’exécutable produit par le compilateur.</p>
+<p>Le bouton d’exécution et le menu Run, Run Without Debugging écrivent leur
+commande dans le terminal avant de l’exécuter : c’est le chemin de
+l’interpréteur choisi, suivi du chemin du fichier. Ils emploient
+l’interpréteur sélectionné dans VS Code, et seule la lecture de cette
+commande indique lequel. La commande tapée à la main, <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">altitudes.py</span></code>,
+est la même sous Windows, macOS et Linux, et elle est courte à relire.</p>
+<p>Dans la session interactive, <code class="docutils literal notranslate"><span class="pre">total</span></code> et <code class="docutils literal notranslate"><span class="pre">total</span> <span class="pre">/</span> <span class="pre">len(altitudes)</span></code> s’affichent
+sans <code class="docutils literal notranslate"><span class="pre">print</span></code> : la session affiche la valeur de chaque expression tapée seule
+sur une ligne. Cet affichage permet de lire les valeurs intermédiaires du
+calcul. La
+boucle avec <code class="docutils literal notranslate"><span class="pre">print(total)</span></code> affiche <code class="docutils literal notranslate"><span class="pre">128.4</span></code>, puis <code class="docutils literal notranslate"><span class="pre">259.4</span></code>, puis <code class="docutils literal notranslate"><span class="pre">387.0</span></code>.</p>
+<p>Les trois chevrons <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code> sont l’invite de Python, et non celle du terminal.
+Une commande du système, comme <code class="docutils literal notranslate"><span class="pre">cd</span></code> ou <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">altitudes.py</span></code>, tapée derrière
+<code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code> produit une erreur <code class="docutils literal notranslate"><span class="pre">SyntaxError</span></code> ; il faut d’abord sortir de la session
+par <code class="docutils literal notranslate"><span class="pre">exit()</span></code>. Les trois points <code class="docutils literal notranslate"><span class="pre">...</span></code> signalent la suite d’un bloc commencé.</p>
+<p>Un programme enregistré se relance à l’identique, et n’affiche que ce que ses
+<code class="docutils literal notranslate"><span class="pre">print</span></code> demandent ; une session interactive affiche chaque résultat, mais
+rien de ce qui y a été tapé n’est conservé sur le disque à sa fermeture. Le
+notebook, vu dans la dernière partie
+du cours, est une session de ce type, dont les cellules et le texte qui les
+entoure sont conservés dans un fichier.</p>
+<p>Dans l’invite de commandes d’Anaconda, glisser le dossier dans la fenêtre colle son chemin
+complet, et <code class="docutils literal notranslate"><span class="pre">cd</span></code> fait de ce dossier le dossier courant : l’invite se termine
+ensuite par <code class="docutils literal notranslate"><span class="pre">2a_vscode_python&gt;</span></code>. Les sorties sont les mêmes que dans VS
+Code, <code class="docutils literal notranslate"><span class="pre">moyenne</span> <span class="pre">:</span> <span class="pre">129.0</span> <span class="pre">m</span></code> et <code class="docutils literal notranslate"><span class="pre">129.0</span></code>. Le terminal de VS Code et l’Anaconda
+Prompt lancent le même <code class="docutils literal notranslate"><span class="pre">python</span></code> ; VS Code ouvrait en plus le terminal
+directement dans le dossier du projet, ce que <code class="docutils literal notranslate"><span class="pre">cd</span></code> fait ici à la main.</p>
+</section>
+<section id="etape-5-pas-a-pas">
+<h3>Étape 5 : pas à pas<a class="headerlink" href="#etape-5-pas-a-pas" title="Lien vers cette rubrique">#</a></h3>
+<p>Au lancement, le programme s’arrête sur la ligne 6, surlignée en jaune,
+avant de l’avoir exécutée. Variables montre <code class="docutils literal notranslate"><span class="pre">altitudes</span></code>, la liste des trois
+valeurs, <code class="docutils literal notranslate"><span class="pre">total</span></code>, qui vaut <code class="docutils literal notranslate"><span class="pre">0</span></code>, et <code class="docutils literal notranslate"><span class="pre">altitude</span></code>, qui vaut <code class="docutils literal notranslate"><span class="pre">128.4</span></code>, la première
+valeur de la boucle.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Ligne surlignée après <code class="docutils literal notranslate"><span class="pre">F10</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">altitude</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">total</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>5</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">128.4</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">128.4</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">131.0</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">128.4</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">131.0</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">259.4</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">127.6</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">259.4</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">127.6</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">387.0</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>7</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">127.6</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">387.0</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">total</span></code> change chaque fois que la ligne 6 vient d’être exécutée : <code class="docutils literal notranslate"><span class="pre">128.4</span></code>,
+puis <code class="docutils literal notranslate"><span class="pre">259.4</span></code>, puis <code class="docutils literal notranslate"><span class="pre">387.0</span></code>. La ligne 5, <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">altitude</span> <span class="pre">in</span> <span class="pre">altitudes:</span></code>, est
+surlignée à chaque tour, parce que son exécution donne à <code class="docutils literal notranslate"><span class="pre">altitude</span></code> la
+valeur suivante de la liste, ou termine la boucle. Après <code class="docutils literal notranslate"><span class="pre">F5</span></code>, le programme se termine,
+et le terminal affiche <code class="docutils literal notranslate"><span class="pre">moyenne</span> <span class="pre">:</span> <span class="pre">129.0</span> <span class="pre">m</span></code>.</p>
+<p>Le point d’arrêt est conservé par l’éditeur : le fichier <code class="docutils literal notranslate"><span class="pre">altitudes.py</span></code> n’a
+pas changé. Tant qu’il n’est pas enlevé, un nouveau <code class="docutils literal notranslate"><span class="pre">F5</span></code> relance le
+programme et l’arrête au même endroit.</p>
+<p>Les deux premières façons d’exécuter montrent le début et la fin du calcul ;
+le pas à pas en montre le milieu, une ligne après l’autre. Pour savoir ce
+que fait un programme, poser un point d’arrêt évite d’ajouter dans le code
+des <code class="docutils literal notranslate"><span class="pre">print</span></code> qu’il faudrait ensuite retirer. Le débogage est repris au cours 2.</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../1b_archive_odt/guide.html"
+       title="page précédente">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">précédent</p>
+        <p class="prev-next-title">TD 1b — Un .odt est une archive ZIP (facultatif)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../2b_erreurs/guide.html"
+       title="page suivante">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">suivant</p>
+        <p class="prev-next-title">TD 2b — Trois programmes fautifs</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lancer-vs-code-depuis-anaconda-navigator">1 · Lancer VS Code depuis Anaconda Navigator</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-dossier-du-td">Le dossier du TD</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anaconda-navigator">Anaconda Navigator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-fenetre-de-vs-code">La fenêtre de VS Code</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ouvrir-le-dossier-du-td-et-installer-l-extension-python">2 · Ouvrir le dossier du TD, et installer l’extension Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ouvrir-le-dossier">Ouvrir le dossier</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ouvrir-un-programme-avant-l-installation">Ouvrir un programme avant l’installation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installer-l-extension">Installer l’extension</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choisir-l-interpreteur-et-regler-le-terminal">3 · Choisir l’interpréteur, et régler le terminal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-palette-de-commandes-et-les-reglages">La palette de commandes et les réglages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choisir-l-interpreteur">Choisir l’interpréteur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ouvrir-un-terminal-active">Ouvrir un terminal activé</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regler-le-terminal">Régler le terminal</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lancer-le-programme-en-entier-puis-ligne-a-ligne">4 · Lancer le programme en entier, puis ligne à ligne</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-programme">Le programme</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lancer-le-programme-en-entier">Lancer le programme en entier</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#refaire-le-calcul-ligne-a-ligne">Refaire le calcul ligne à ligne</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#en-option-sans-vs-code-depuis-l-invite-de-commandes-d-anaconda">En option : sans VS Code, depuis l’invite de commandes d’Anaconda</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#executer-le-programme-pas-a-pas">5 · Exécuter le programme pas à pas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#poser-un-point-d-arret-et-lancer">Poser un point d’arrêt, et lancer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#avancer-et-lire-les-variables">Avancer, et lire les variables</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-le-td-fait-constater">Ce que le TD fait constater</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-1-vs-code-lance-depuis-navigator">Étape 1 : VS Code lancé depuis Navigator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-2-ce-qu-apporte-l-extension">Étape 2 : ce qu’apporte l’extension</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-3-la-palette-les-reglages-l-interpreteur">Étape 3 : la palette, les réglages, l’interpréteur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-4-en-entier-et-ligne-a-ligne">Étape 4 : en entier, et ligne à ligne</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-5-pas-a-pas">Étape 5 : pas à pas</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par 1re année géomatique
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, module info01 — CC-BY-4.0.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

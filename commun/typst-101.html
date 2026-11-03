@@ -1,0 +1,730 @@
+
+<!DOCTYPE html>
+
+
+<html lang="fr" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Lire le typst de ce dépôt &#8212; Introduction à l&#39;informatique</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../_static/documentation_options.js?v=72dce1d2"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../_static/translations.js?v=e6b791cb"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'commun/typst-101';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="fr"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Passer au contenu principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Haut de page</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Alerte de version"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navigation dans le site">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="Sur cette page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction à l'informatique</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Introduction à l’informatique
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Avant les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../avant/poste.html">Premiers tests du poste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../avant/donnees.html">Récupérer les fichiers d’une séance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../avant/python.html">Anaconda, JupyterLab et VS Code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cours1/index.html">Séance 1 — Logiciel, programmation et formats de fichier</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cours1/notebook/01_logiciels_et_formats.html">Logiciels et formats de fichier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cours1/notebook/02_programmation.html">Programmation et éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cours1/notebook/03_markdown_notebook.html">Markdown et notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cours1/notebook/04_bibliotheques_environnements.html">Bibliothèques et environnements Python</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../cours1/notebook/travaux_diriges.html">Travaux dirigés de la séance 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cours1/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cours1/notebook/td/1b_archive_odt/guide.html">TD 1b — Un .odt est une archive ZIP (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cours1/notebook/td/2a_vscode_python/guide.html">TD 2a — Configurer l’éditeur de code, et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cours1/notebook/td/2b_erreurs/guide.html">TD 2b — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cours1/notebook/td/2c_hello_cpp/guide.html">TD 2c — Le même programme en C++ (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cours1/notebook/td/3a_markdown/guide.html">TD 3a — Mettre en forme une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cours1/notebook/td/3b_notebooks/guide.html">TD 3b — Le notebook, ouvert de trois façons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cours1/notebook/td/4a_recette/guide.html">TD 4a — Installer un projet Python, et décrire son installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cours1/notebook/td/4b_noyaux/guide.html">TD 4b — Le client, le noyau, et où ils sont installés (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cours1/notebook/td/4c_trajet/guide.html">TD 4c — Installer un projet en lisant son README (facultatif)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../cours1/notebook/05_comparer_versions.html">Annexe — Comparer deux versions d’un fichier</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../cours2/index.html">Séance 2 — Ligne de commande et git local</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cours3/index.html">Séance 3 — Chemins, fichiers, images et ligne de commande</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cours4/index.html">Séance 4 — Studio d’automatisation (animation vidéo)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cours5/index.html">Séance 5 — Matériel, réseau, mots de passe, clés SSH et secrets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cours6/index.html">Séance 6 — Forge, git en équipe et outil « trajectoire »</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cours7/index.html">Séance 7 — Benchmark image et rapport</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Annexes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../annexes/configuration/index.html">Configuration des postes de la salle</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../annexes/configuration/outils.html">Choisir entre JupyterLab, Spyder et VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../annexes/configuration/anaconda.html">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../annexes/configuration/jupyterlab.html">JupyterLab</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../annexes/configuration/vscode.html">VS Code</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../annexes/configuration/vscode_python.html">Python et environnement conda</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../annexes/configuration/vscode_notebooks.html">Notebooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../annexes/configuration/vscode_reglages.html">Fichiers de réglages</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../annexes/configuration/git.html">Git et Git Bash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../annexes/configuration/spyder.html">Spyder</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../annexes/poste_personnel.html">Installation sur un ordinateur personnel</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../annexes/notions/index.html">Notions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../annexes/notions/terminaux.html">Les terminaux en ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../annexes/notions/variables_environnement.html">Variables d’environnement et recherche des programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../annexes/notions/environnements.html">Les environnements conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../annexes/notions/vscode_environnements.html">Comment VS Code gère les environnements Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../annexes/notions/git_bash.html">Git Bash : une fenêtre, bash et des programmes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../annexes/faq.html">FAQ</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../annexes/problemes/reseau.html">Problèmes de réseau et de compte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../annexes/problemes/bureautique.html">Problèmes avec les logiciels de texte et de bureautique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../annexes/problemes/anaconda.html">Problèmes avec Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../annexes/problemes/jupyterlab.html">Problèmes avec JupyterLab et les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../annexes/problemes/vscode.html">Problèmes avec VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../annexes/problemes/git.html">Problèmes avec git</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../annexes/plus_loin/index.html">Pour aller plus loin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../annexes/plus_loin/venv_uv.html">venv et uv</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Thème">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Thème" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Clair"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Sombre"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="Paramètres système"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>Paramètres système</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Clair</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Sombre</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lire le typst de ce dépôt</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-seule-regle-a-comprendre-deux-modes">La seule règle à comprendre : deux modes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#le-fichier-ligne-a-ligne">Le fichier, ligne à ligne</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-font-les-gabarits-appeles">Ce que font les gabarits appelés</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definir-une-fonction">Définir une fonction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parametres-nommes-et-valeur-par-defaut">Paramètres nommés et valeur par défaut</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transmettre-des-arguments-sans-les-connaitre">Transmettre des arguments sans les connaître</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-et-jusqu-ou-il-agit"><code class="docutils literal notranslate"><span class="pre">set</span></code>, et jusqu’où il agit</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#le-reste-de-ce-qu-on-croise-dans-le-depot">Le reste de ce qu’on croise dans le dépôt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pour-aller-plus-loin">Pour aller plus loin</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="lire-le-typst-de-ce-depot">
+<h1>Lire le typst de ce dépôt<a class="headerlink" href="#lire-le-typst-de-ce-depot" title="Lien vers cette rubrique">#</a></h1>
+<p>De quoi relire les sources des diapositives sans avoir à apprendre typst.
+L’exemple est le début de
+<a class="reference download internal" download="" href="../_downloads/24d7fbca19f49fdcf2bf64ee88ce7ed0/00_ouverture.typ"><span class="xref download myst"><code class="docutils literal notranslate"><span class="pre">src/cours1/diapo/parties/00_ouverture.typ</span></code></span></a>,
+commenté ligne à ligne, puis ce que font les gabarits appelés.</p>
+<section id="la-seule-regle-a-comprendre-deux-modes">
+<h2>La seule règle à comprendre : deux modes<a class="headerlink" href="#la-seule-regle-a-comprendre-deux-modes" title="Lien vers cette rubrique">#</a></h2>
+<p>Un fichier typst est en <strong>mode balisage</strong> : ce qu’on écrit est du texte à
+composer. Le dièse bascule en <strong>mode code</strong> : ce qui suit est une expression à
+évaluer.</p>
+<blockquote>
+<div><p>« An expression is introduced with a hash (<code class="docutils literal notranslate"><span class="pre">#</span></code>) and normal markup parsing
+resumes after the expression is finished. »</p>
+</div></blockquote>
+<p>Deux conséquences, et elles expliquent presque toute la ponctuation du dépôt :</p>
+<ul class="simple">
+<li><p><strong>entre crochets <code class="docutils literal notranslate"><span class="pre">[…]</span></code></strong>, on est revenu en mode balisage, donc un appel de
+fonction y reprend un <code class="docutils literal notranslate"><span class="pre">#</span></code> ;</p></li>
+<li><p><strong>entre parenthèses <code class="docutils literal notranslate"><span class="pre">(…)</span></code></strong> d’un appel, on est en mode code, donc les noms
+d’arguments s’écrivent sans <code class="docutils literal notranslate"><span class="pre">#</span></code>.</p></li>
+</ul>
+<p>C’est pourquoi <code class="docutils literal notranslate"><span class="pre">#annonce[…]</span></code> porte un dièse et <code class="docutils literal notranslate"><span class="pre">columns:</span> <span class="pre">(1fr,</span> <span class="pre">1fr)</span></code> n’en porte
+pas, dans la même diapositive.</p>
+</section>
+<section id="le-fichier-ligne-a-ligne">
+<h2>Le fichier, ligne à ligne<a class="headerlink" href="#le-fichier-ligne-a-ligne" title="Lien vers cette rubrique">#</a></h2>
+<div class="highlight-typ notranslate"><div class="highlight"><pre><span></span>// Partie du cours 1 — incluse par `cours1.typ`…
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">//</span></code> ouvre un commentaire jusqu’à la fin de la ligne, <code class="docutils literal notranslate"><span class="pre">/*</span> <span class="pre">…</span> <span class="pre">*/</span></code> un commentaire
+sur plusieurs lignes. Ils n’apparaissent pas dans le PDF.</p>
+<div class="highlight-typ notranslate"><div class="highlight"><pre><span></span>#import "../../../commun/prelude.typ": *
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">#</span></code> parce qu’on est en tête de fichier, donc en mode balisage. Le chemin est
+relatif au fichier courant. <code class="docutils literal notranslate"><span class="pre">:</span> <span class="pre">*</span></code> importe <strong>tous</strong> les noms publics du fichier
+visé — ici <code class="docutils literal notranslate"><span class="pre">d</span></code>, <code class="docutils literal notranslate"><span class="pre">annonce</span></code>, <code class="docutils literal notranslate"><span class="pre">tableau</span></code>, <code class="docutils literal notranslate"><span class="pre">notes</span></code> et le reste. Sans cette ligne,
+aucun de ces noms n’existerait : un fichier inclus par <code class="docutils literal notranslate"><span class="pre">#include</span></code> n’hérite de
+rien de celui qui l’inclut.</p>
+<div class="highlight-typ notranslate"><div class="highlight"><pre><span></span>#separateur-module(
+  "Introduction à l'informatique",
+  annonce: "Objectifs, contenu et organisation du module",
+  auteur: "1re année géomatique",
+  date: "15 septembre",
+)
+</pre></div>
+</div>
+<p>Un appel de fonction. Le premier argument est <strong>positionnel</strong> : sa place suffit
+à l’identifier. Les trois autres sont <strong>nommés</strong>, <code class="docutils literal notranslate"><span class="pre">nom:</span> <span class="pre">valeur</span></code>, et leur ordre
+n’importe pas. La virgule finale est permise et évite les diffs inutiles quand
+on ajoute une ligne.</p>
+<div class="highlight-typ notranslate"><div class="highlight"><pre><span></span>#d("Objectif du cours")[
+  …
+]
+</pre></div>
+</div>
+<p>Le même mécanisme, avec une particularité qui déroute au début : le bloc entre
+crochets qui <strong>suit</strong> la parenthèse fermante est un argument de plus, passé en
+dernière position. Un « content block » est délimité par des crochets, contient
+du balisage quelconque, et vaut une valeur de type <code class="docutils literal notranslate"><span class="pre">content</span></code> — autrement dit,
+du contenu qu’on manipule comme une donnée.</p>
+<p><code class="docutils literal notranslate"><span class="pre">#d(&quot;Objectif</span> <span class="pre">du</span> <span class="pre">cours&quot;)[…]</span></code> et <code class="docutils literal notranslate"><span class="pre">#d(&quot;Objectif</span> <span class="pre">du</span> <span class="pre">cours&quot;,</span> <span class="pre">[…])</span></code> sont donc la
+même chose. La première forme se lit mieux quand le contenu fait vingt lignes.</p>
+<div class="highlight-typ notranslate"><div class="highlight"><pre><span></span>  #annonce[
+    Consolider ou acquérir les bases informatiques…
+  ]
+</pre></div>
+</div>
+<p>Dièse obligatoire : à l’intérieur du bloc de <code class="docutils literal notranslate"><span class="pre">d</span></code>, on est de retour en mode
+balisage. La fonction reçoit ici un seul argument, un bloc de contenu.</p>
+<div class="highlight-typ notranslate"><div class="highlight"><pre><span></span>  #tableau(
+    columns: (1fr, 1fr),
+    align: left + horizon,
+    [Demandé dans les autres cours], [(re)vu dans ce module],
+    [« ouvrez le projet fourni »], [travailler dans un éditeur de code…],
+    …
+  )
+</pre></div>
+</div>
+<p>Quatre choses à la fois :</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">(1fr,</span> <span class="pre">1fr)</span></code> est un <strong>tuple</strong>, écrit avec des parenthèses et des virgules.
+<code class="docutils literal notranslate"><span class="pre">fr</span></code> est une unité de fraction : les deux colonnes se partagent la largeur à
+parts égales. <code class="docutils literal notranslate"><span class="pre">(2fr,</span> <span class="pre">1fr)</span></code> donnerait deux tiers et un tiers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">left</span> <span class="pre">+</span> <span class="pre">horizon</span></code> : les alignements <strong>s’additionnent</strong>, l’un horizontal,
+l’autre vertical.</p></li>
+<li><p>Les cellules sont des <strong>blocs de contenu positionnels</strong>, donnés à la suite.
+On est en mode code entre les parenthèses, donc <code class="docutils literal notranslate"><span class="pre">[…]</span></code> s’écrit sans dièse.
+Le tableau les remplit ligne par ligne, de gauche à droite.</p></li>
+<li><p>Le retour à la ligne dans l’appel n’a aucun effet : seule la virgule sépare.</p></li>
+</ul>
+<div class="highlight-typ notranslate"><div class="highlight"><pre><span></span>  #notes[
+    Ces bases sont en partie connues…
+  ]
+</pre></div>
+</div>
+<p>Rien de neuf syntaxiquement. Ce que la fonction en fait est autre chose, et
+c’est la section suivante.</p>
+</section>
+<section id="ce-que-font-les-gabarits-appeles">
+<h2>Ce que font les gabarits appelés<a class="headerlink" href="#ce-que-font-les-gabarits-appeles" title="Lien vers cette rubrique">#</a></h2>
+<p>Les fonctions employées ci-dessus sont définies dans
+<a class="reference download internal" download="" href="../_downloads/ccc2e6d4ff4314f711736d703f06d453/theme.typ"><span class="xref download myst"><code class="docutils literal notranslate"><span class="pre">theme.typ</span></code></span></a>. Trois formes y suffisent.</p>
+<section id="definir-une-fonction">
+<h3>Définir une fonction<a class="headerlink" href="#definir-une-fonction" title="Lien vers cette rubrique">#</a></h3>
+<div class="highlight-typ notranslate"><div class="highlight"><pre><span></span>#let annonce(corps) = block(width: 100%, below: 0.8em)[
+  #set text(size: 17pt)
+  #corps
+]
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">#let</span> <span class="pre">nom(paramètres)</span> <span class="pre">=</span> <span class="pre">valeur</span></code> définit une fonction. Ici elle rend un <code class="docutils literal notranslate"><span class="pre">block</span></code>,
+c’est-à-dire un bloc de niveau paragraphe, dont le contenu est le bloc entre
+crochets. <code class="docutils literal notranslate"><span class="pre">#corps</span></code> insère l’argument reçu — dièse, puisqu’on est dans un bloc
+de contenu.</p>
+</section>
+<section id="parametres-nommes-et-valeur-par-defaut">
+<h3>Paramètres nommés et valeur par défaut<a class="headerlink" href="#parametres-nommes-et-valeur-par-defaut" title="Lien vers cette rubrique">#</a></h3>
+<div class="highlight-typ notranslate"><div class="highlight"><pre><span></span>#let d(titre-diapo, sous-titre: none, corps) = { … }
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">titre-diapo</span></code> et <code class="docutils literal notranslate"><span class="pre">corps</span></code> sont positionnels, <code class="docutils literal notranslate"><span class="pre">sous-titre</span></code> est nommé et vaut
+<code class="docutils literal notranslate"><span class="pre">none</span></code> si on ne le donne pas. <code class="docutils literal notranslate"><span class="pre">none</span></code> est une valeur, celle de « rien ». C’est
+<code class="docutils literal notranslate"><span class="pre">corps</span></code>, dernier paramètre positionnel, qui reçoit le bloc écrit après la
+parenthèse.</p>
+<p>Les tirets sont permis dans les noms : <code class="docutils literal notranslate"><span class="pre">titre-diapo</span></code> est un identifiant, pas
+une soustraction.</p>
+</section>
+<section id="transmettre-des-arguments-sans-les-connaitre">
+<h3>Transmettre des arguments sans les connaître<a class="headerlink" href="#transmettre-des-arguments-sans-les-connaitre" title="Lien vers cette rubrique">#</a></h3>
+<div class="highlight-typ notranslate"><div class="highlight"><pre><span></span>#let tableau(entete: true, ..args) = {
+  let contenu = table(
+    inset: (x: 9pt, y: 7pt),
+    …
+    ..args,
+  )
+  …
+}
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">..args</span></code> est un <strong>argument sink</strong> : il collecte tout ce que l’appelant a passé
+en plus — les colonnes, l’alignement, les cellules. <code class="docutils literal notranslate"><span class="pre">..args</span></code> à l’intérieur de
+<code class="docutils literal notranslate"><span class="pre">table(…)</span></code> fait l’inverse, le <strong>spreading</strong> : il les redistribue à la fonction
+appelée.</p>
+<p>C’est ce qui permet aux diapositives de ne donner que le contenu : tout le
+style des tableaux est écrit une fois dans <code class="docutils literal notranslate"><span class="pre">tableau</span></code>, et rien n’est répété.</p>
+</section>
+<section id="set-et-jusqu-ou-il-agit">
+<h3><code class="docutils literal notranslate"><span class="pre">set</span></code>, et jusqu’où il agit<a class="headerlink" href="#set-et-jusqu-ou-il-agit" title="Lien vers cette rubrique">#</a></h3>
+<div class="highlight-typ notranslate"><div class="highlight"><pre><span></span>#set text(size: 17pt)
+</pre></div>
+</div>
+<p>Un <strong>set rule</strong> change la valeur par défaut d’un paramètre pour tout ce qui
+suit. Sa portée est la clé :</p>
+<blockquote>
+<div><p>« When nested inside of a code or content block, it is only in effect until
+the end of that block. »</p>
+</div></blockquote>
+<p>Le <code class="docutils literal notranslate"><span class="pre">#set</span> <span class="pre">text(size:</span> <span class="pre">17pt)</span></code> d”<code class="docutils literal notranslate"><span class="pre">annonce</span></code> ne déborde donc pas sur le reste de la
+diapositive : il s’arrête au crochet fermant. Au premier niveau d’un fichier,
+le même <code class="docutils literal notranslate"><span class="pre">set</span></code> vaudrait jusqu’à la fin.</p>
+<p>Il existe aussi les <strong>show rules</strong>, <code class="docutils literal notranslate"><span class="pre">show</span> <span class="pre">raw:</span> <span class="pre">set</span> <span class="pre">text(font:</span> <span class="pre">police-code)</span></code>,
+qui appliquent un style à tous les éléments d’un type — ici tout le code en
+chasse fixe.</p>
+</section>
+</section>
+<section id="le-reste-de-ce-qu-on-croise-dans-le-depot">
+<h2>Le reste de ce qu’on croise dans le dépôt<a class="headerlink" href="#le-reste-de-ce-qu-on-croise-dans-le-depot" title="Lien vers cette rubrique">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Écrit</p></th>
+<th class="head"><p>Ce que c’est</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">21pt</span></code>, <code class="docutils literal notranslate"><span class="pre">18.5mm</span></code>, <code class="docutils literal notranslate"><span class="pre">0.8em</span></code></p></td>
+<td><p>longueurs : points, millimètres, et <code class="docutils literal notranslate"><span class="pre">em</span></code> = taille de police courante</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">100%</span></code>, <code class="docutils literal notranslate"><span class="pre">1fr</span></code></p></td>
+<td><p>proportion de l’espace disponible, et fraction de l’espace <strong>restant</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">accent.lighten(88%)</span></code></p></td>
+<td><p>une couleur, éclaircie ; les couleurs sont des valeurs avec des méthodes</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">#if</span> <span class="pre">notes-visibles</span> <span class="pre">{</span> <span class="pre">…</span> <span class="pre">}</span> <span class="pre">else</span> <span class="pre">{</span> <span class="pre">…</span> <span class="pre">}</span></code></p></td>
+<td><p>condition ; les accolades délimitent un bloc de code</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sys.inputs.at(&quot;notes&quot;,</span> <span class="pre">default:</span> <span class="pre">&quot;&quot;)</span></code></p></td>
+<td><p>lit <code class="docutils literal notranslate"><span class="pre">--input</span> <span class="pre">notes=…</span></code> passé à <code class="docutils literal notranslate"><span class="pre">typst</span> <span class="pre">compile</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">place(top</span> <span class="pre">+</span> <span class="pre">left,</span> <span class="pre">dx:</span> <span class="pre">…,</span> <span class="pre">…)</span></code></p></td>
+<td><p>pose du contenu <strong>hors du flux</strong> : il n’occupe aucune hauteur</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">context</span> <span class="pre">{</span> <span class="pre">…</span> <span class="pre">}</span></code></p></td>
+<td><p>ouvre un contexte où l’on peut interroger la mise en page</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">measure(x,</span> <span class="pre">width:</span> <span class="pre">w)</span></code></p></td>
+<td><p>mesure un contenu sans le composer ; demande un <code class="docutils literal notranslate"><span class="pre">context</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">layout(dispo</span> <span class="pre">=&gt;</span> <span class="pre">…)</span></code></p></td>
+<td><p>donne accès à la taille disponible ; <code class="docutils literal notranslate"><span class="pre">=&gt;</span></code> introduit une fonction anonyme</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">..items.map(f)</span></code></p></td>
+<td><p>méthode de tableau, comme en Python</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Deux pièges rencontrés dans ce dépôt, et qui coûtent du temps :</p>
+<p><strong>Une ligne de continuation qui commence par <code class="docutils literal notranslate"><span class="pre">-</span></code></strong> est lue comme une nouvelle
+expression, pas comme la suite de la précédente. Il faut entourer l’expression
+de parenthèses.</p>
+<p><strong>Un bloc mesuré dans le flux consomme de la hauteur</strong>, même s’il ne rend rien
+de visible : c’est ce qui déséquilibrait les ressorts du gabarit <code class="docutils literal notranslate"><span class="pre">d</span></code> et
+remontait le corps des diapositives.</p>
+</section>
+<section id="pour-aller-plus-loin">
+<h2>Pour aller plus loin<a class="headerlink" href="#pour-aller-plus-loin" title="Lien vers cette rubrique">#</a></h2>
+<p>La documentation officielle est courte et bien faite :
+<a class="reference external" href="https://typst.app/docs/reference/scripting/">scripting</a> pour les modes, les
+variables et les fonctions ; <a class="reference external" href="https://typst.app/docs/reference/styling/">styling</a>
+pour <code class="docutils literal notranslate"><span class="pre">set</span></code> et <code class="docutils literal notranslate"><span class="pre">show</span></code> ; <a class="reference external" href="https://typst.app/docs/reference/foundations/arguments/">arguments</a>
+pour les sinks et le spreading.</p>
+<p>Les gabarits propres à ce dépôt sont décrits dans
+<span class="xref myst"><code class="docutils literal notranslate"><span class="pre">src/cours1/diapo/README.md</span></code></span>.</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-seule-regle-a-comprendre-deux-modes">La seule règle à comprendre : deux modes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#le-fichier-ligne-a-ligne">Le fichier, ligne à ligne</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-font-les-gabarits-appeles">Ce que font les gabarits appelés</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definir-une-fonction">Définir une fonction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parametres-nommes-et-valeur-par-defaut">Paramètres nommés et valeur par défaut</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transmettre-des-arguments-sans-les-connaitre">Transmettre des arguments sans les connaître</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-et-jusqu-ou-il-agit"><code class="docutils literal notranslate"><span class="pre">set</span></code>, et jusqu’où il agit</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#le-reste-de-ce-qu-on-croise-dans-le-depot">Le reste de ce qu’on croise dans le dépôt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pour-aller-plus-loin">Pour aller plus loin</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par 1re année géomatique
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, module info01 — CC-BY-4.0.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

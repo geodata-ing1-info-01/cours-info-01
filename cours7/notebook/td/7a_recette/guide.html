@@ -1,0 +1,1506 @@
+
+<!DOCTYPE html>
+
+
+<html lang="fr" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>TD 7a — Compléter un projet GitHub, par des pull requests &#8212; Introduction à l&#39;informatique</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/modif.css?v=b5c10e7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../../../_static/documentation_options.js?v=72dce1d2"></script>
+    <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../../../../_static/translations.js?v=e6b791cb"></script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cours7/notebook/td/7a_recette/guide';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="../../../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Recherche" href="../../../../search.html" />
+    <link rel="next" title="TD 7b — Reprendre et compléter le projet d’un autre" href="../7b_train/guide.html" />
+    <link rel="prev" title="Séance 7 — Projet d’application 2" href="../../../index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="fr"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../../../_static/searchtools.js"></script>
+    <script src="../../../../_static/language_data.js"></script>
+    <script src="../../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Passer au contenu principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Haut de page</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Alerte de version"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navigation dans le site">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="Sur cette page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction à l'informatique</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../index.html">
+                    Introduction à l’informatique
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Avant les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/poste.html">Premiers tests du poste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/donnees.html">Récupérer les fichiers d’une séance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/python.html">Anaconda et JupyterLab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/vscode.html">VS Code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Après les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../apres/sauvegarder.html">Sauvegarder son travail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../apres/s_entrainer.html">S’entraîner : jeux et exercices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Séances</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours1_v2/index.html">Séance 1, version 2 — Logiciels, fichiers, terminal et premier programme</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/01_logiciels_stockage.html">Logiciels, fichiers et stockage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/02_terminal.html">Le terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/03_premier_programme.html">Premier programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/04_notebook.html">Un notebook et la syntaxe de Markdown</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours1_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 1, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1b_terminal/guide.html">TD 1b — Les fichiers du TD 1a en ligne de commande</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1c_programme/guide.html">TD 1c — Écrire et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1d_notebook/guide.html">TD 1d — Un notebook dans JupyterLab</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours2_v2/index.html">Séance 2, version 2 — Éditeur de code, Markdown et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/01_editeur_de_code.html">L’éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/02_markdown.html">Une recette en Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/03_git_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/04_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours2_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2, version 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/2a_vscode/guide.html">TD 2a — Configurer VS Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/2b_erreurs/guide.html">TD 2b — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/2c_markdown/guide.html">TD 2c — Une recette en Markdown, convertie par pandoc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/2d_depot_recette/guide.html">TD 2d — Un dépôt git pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours3/index.html">Séance 3 — Chemins, fichiers et ligne de commande</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/01_chemins_programmes.html">Chemins et programmes externes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/02_fichiers_encodage.html">Fichiers et encodage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/03_du_notebook_au_programme.html">Du notebook au programme</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours3/notebook/travaux_diriges.html">Travaux dirigés de la séance 3</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours3/notebook/td/3e_markdown/guide.html">TD 3e — Une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours3/notebook/td/3f_cli/guide.html">TD 3f — Une ligne de commande pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours4/index.html">Séance 4 — Projet d’application 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours4/notebook/travaux_diriges.html">Travaux dirigés du projet 4</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours4/notebook/td/4a_recette/guide.html">TD 4a — Un script Python, pas à pas</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours4/notebook/td/4b_paquet/guide.html">TD 4b — Un programme installable</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours5/index.html">Séance 5 — Matériel, réseau, mots de passe, clés SSH et secrets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/01_materiel.html">Le matériel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/02_reseau.html">Le réseau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/03_prouver_qui_lon_est.html">Prouver qui l’on est</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/04_secrets.html">Les secrets de vos programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/travaux_diriges.html">Travaux dirigés de la séance 5</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cours6/index.html">Séance 6 — La forge, sur le dépôt du projet 4</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../../index.html">Séance 7 — Projet d’application 2</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">TD 7a — Compléter un projet GitHub, par des pull requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../7b_train/guide.html">TD 7b — Reprendre et compléter le projet d’un autre</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Annexes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/configuration/index.html">Configuration des postes de la salle</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/anaconda.html">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/jupyterlab.html">JupyterLab</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../annexes/configuration/vscode.html">VS Code</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_python.html">Python et environnement conda</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_notebooks.html">Notebooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_reglages.html">Fichiers de réglages</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/git.html">Git et Git Bash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/spyder.html">Spyder</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/poste_personnel/index.html">Configuration d’un ordinateur personnel</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/conda.html">Python et conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/vscode.html">VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/git_outils.html">Git et éditeurs de texte</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/notions/index.html">Notions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/outils.html">Choisir entre JupyterLab, Spyder et VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/notebooks.html">Les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/terminaux.html">Les terminaux en ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/variables_environnement.html">Variables d’environnement et recherche des programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/environnements.html">Les environnements conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/vscode_environnements.html">Comment VS Code gère les environnements Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/git_bash.html">Git Bash : une fenêtre, bash et des programmes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/faq.html">FAQ</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/reseau.html">Problèmes de réseau et de compte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/bureautique.html">Problèmes avec les logiciels de texte et de bureautique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/anaconda.html">Problèmes avec Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/jupyterlab.html">Problèmes avec JupyterLab et les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/vscode.html">Problèmes avec VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/git.html">Problèmes avec git</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/plus_loin/index.html">Pour aller plus loin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/gestionnaires.html">venv, uv et pixi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/cpp.html">C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/programme_interpreteur.html">Programme, application et interpréteur</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Archive 2026</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours1/index.html">Séance 1, 2026 — Logiciel, programmation et formats de fichier</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/01_logiciels_et_formats.html">Logiciels et formats de fichier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/02_programmation.html">Programmation et éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/03_markdown_notebook.html">Markdown et notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/04_bibliotheques_environnements.html">Bibliothèques et environnements Python</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours1/notebook/travaux_diriges.html">Travaux dirigés de la séance 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1b_archive_odt/guide.html">TD 1b — Un .odt est une archive ZIP (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1c_vscode_python/guide.html">TD 1c — Configurer l’éditeur de code, et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1d_erreurs/guide.html">TD 1d — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1e_hello_cpp/guide.html">TD 1e — Le même programme en C++ (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1f_markdown/guide.html">TD 1f — Mettre en forme une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1g_notebooks/guide.html">TD 1g — Le notebook, ouvert de trois façons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1h_recette/guide.html">TD 1h — Installer un projet Python, et décrire son installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1i_noyaux/guide.html">TD 1i — Le client, le noyau, et où ils sont installés (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1j_trajet/guide.html">TD 1j — Installer un projet en lisant son README (facultatif)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/05_comparer_versions.html">Annexe — Comparer deux versions d’un fichier</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours2/index.html">Séance 2, 2026 — Ligne de commande et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/01_ligne_de_commande.html">La ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/02_depot_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/03_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/04_lire_et_tenir_un_depot.html">Lire et tenir un dépôt</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2a_premier_depot/guide.html">TD 2a — Un premier dépôt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2b_branches/guide.html">TD 2b — Branches et fusions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2c_annuler/guide.html">TD 2c — Annuler et remettre à jour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2d_conflits/guide.html">TD 2d — Créer et résoudre un conflit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2e_livrer/guide.html">TD 2e — Publier une version</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Thème">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Thème" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Clair"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Sombre"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="Paramètres système"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>Paramètres système</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Clair</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Sombre</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>TD 7a — Compléter un projet GitHub, par des pull requests</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#au-debut-de-la-seance">Au début de la séance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aide-memoire-python">Aide-mémoire Python</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d0-recuperer-le-projet-github-initial">D0 · Récupérer le projet GitHub initial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d1-generer-la-page-html-d-une-recette">D1 · Générer la page HTML d’une recette</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d1-1-ajouter-le-tableau-des-ingredients-au-texte-de-la-recette">D1.1 Ajouter le tableau des ingrédients au texte de la recette</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d1-2-generer-la-page-html-en-appelant-pandoc">D1.2 Générer la page HTML en appelant pandoc</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d2-soumettre-les-modifications-avec-une-pull-request">D2 · Soumettre les modifications avec une pull request</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d3-ajouter-une-option-pour-generer-toutes-les-recettes">D3 · Ajouter une option pour générer toutes les recettes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d3-1-obtenir-la-liste-des-noms-des-recettes">D3.1 Obtenir la liste des noms des recettes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d3-2-ajouter-l-option-toutes-qui-genere-la-page-de-chaque-recette">D3.2 Ajouter l’option <code class="docutils literal notranslate"><span class="pre">--toutes</span></code>, qui génère la page de chaque recette</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d4-generer-le-sommaire-des-recettes">D4 · Générer le sommaire des recettes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d5-bonus-publier-les-pages-sur-github-pages">D5 (bonus) · Publier les pages sur GitHub Pages</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="td-7a-completer-un-projet-github-par-des-pull-requests">
+<h1>TD 7a — Compléter un projet GitHub, par des pull requests<a class="headerlink" href="#td-7a-completer-un-projet-github-par-des-pull-requests" title="Lien vers cette rubrique">#</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Les fichiers des TD de la séance sont dans l’archive <a href="../../../../telechargements/info01-cours7.zip">info01-cours7.zip</a>.</p>
+</div>
+<p>Le TD part d’un dépôt GitHub publié par le module, <code class="docutils literal notranslate"><span class="pre">td7a-recette</span></code>, le même
+pour tous : il contient le programme <code class="docutils literal notranslate"><span class="pre">recette.py</span></code> du corrigé du TD 4a, avec
+son historique. Le TD ajoute de nouvelles fonctions à ce programme. Au
+départ, le programme calcule les ingrédients d’une recette pour un nombre de
+personnes et les écrit dans un fichier CSV. À la fin du TD, il
+écrit aussi, pour chaque recette, une page HTML qui réunit le texte de la
+recette et le tableau des quantités calculées, puis un sommaire qui relie
+ces pages, comme un livre de recettes.</p>
+<p><img alt="À la fin du TD : la page HTML d'une recette" src="../../../../_images/page.png" /></p>
+<p><img alt="Le sommaire, avec un lien vers chaque page" src="../../../../_images/sommaire.png" /></p>
+<p>Le TD ajoute ainsi deux fonctionnalités au programme : générer la page HTML
+d’une recette (étapes D1 et D2), puis générer les pages HTML de toutes les
+recettes et leur sommaire (étapes D3 et D4). Vous développez chacune sur sa
+propre branche, puis vous l’ajoutez à <code class="docutils literal notranslate"><span class="pre">master</span></code> par une pull request,
+fusionnée sur le site de GitHub.</p>
+<p>Le guide donne les modifications du programme par blocs. Les lignes en
+vert, entre deux lignes <code class="docutils literal notranslate"><span class="pre">+++</span></code>, sont à ajouter : les copier telles quelles,
+sans les lignes <code class="docutils literal notranslate"><span class="pre">+++</span></code>. Les lignes en rouge, entre deux lignes <code class="docutils literal notranslate"><span class="pre">---</span></code>, sont à
+supprimer. Les autres lignes ne changent pas et indiquent l’endroit : le
+nombre qui les précède est le numéro de la ligne dans VS Code, quand les
+modifications sont faites de haut en bas.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Étape</p></th>
+<th class="head"><p>Objectif</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#d0-recuperer-le-projet-github-initial">D0</a></p></td>
+<td><p>copier le dépôt de départ sur son poste puis son compte GitHub, lancer le programme (test)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#d1-generer-la-page-html-d-une-recette">D1</a></p></td>
+<td><p>écrire la page HTML d’une recette : ajout de la liste d’ingrédients, conversion HTML</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#d2-soumettre-les-modifications-avec-une-pull-request">D2</a></p></td>
+<td><p>proposer la branche par une pull request</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#d3-ajouter-une-option-pour-generer-toutes-les-recettes">D3</a></p></td>
+<td><p>générer les pages de toutes les recettes avec un seul appel de commande</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#d4-generer-le-sommaire-des-recettes">D4</a></p></td>
+<td><p>écrire une page d’index des recettes ; deuxième pull request</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#d5-bonus-publier-les-pages-sur-github-pages">D5</a> (bonus)</p></td>
+<td><p>publier les pages avec GitHub Pages</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="au-debut-de-la-seance">
+<h2>Au début de la séance<a class="headerlink" href="#au-debut-de-la-seance" title="Lien vers cette rubrique">#</a></h2>
+<ul class="simple">
+<li><p>Le compte GitHub du cours 6.</p></li>
+<li><p>L’archive <code class="docutils literal notranslate"><span class="pre">info01-cours7.zip</span></code>, copiée depuis <code class="docutils literal notranslate"><span class="pre">formationTemp</span></code> sur le
+Bureau, puis extraite : clic droit, Extraire tout, en effaçant la fin du
+dossier proposé, <code class="docutils literal notranslate"><span class="pre">\info01-cours7</span></code>. Le dossier extrait est
+<code class="docutils literal notranslate"><span class="pre">Desktop\cours7</span></code>.</p></li>
+</ul>
+<p>Ouvrir le dossier <code class="docutils literal notranslate"><span class="pre">cours7/7a_recette/</span></code> dans VS Code, puis un terminal Git Bash
+(menu Terminal, New Terminal ; flèche à côté du <code class="docutils literal notranslate"><span class="pre">+</span></code>, Git Bash).</p>
+<section id="aide-memoire-python">
+<h3>Aide-mémoire Python<a class="headerlink" href="#aide-memoire-python" title="Lien vers cette rubrique">#</a></h3>
+<p>Les tableaux suivants rappellent les instructions Python dont le TD a
+besoin, avec le TD où elles ont été vues et un lien vers la documentation
+officielle de Python. Chaque module s’importe en tête du programme :
+<code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">argparse</span></code>, <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">shutil</span></code>, <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">subprocess</span></code>,
+<code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">pathlib</span> <span class="pre">import</span> <span class="pre">Path</span></code>.</p>
+<p><strong>Chaînes de caractères</strong> (TD 3c, TD 3f, TD 4a). Documentation :
+<a class="reference external" href="https://docs.python.org/fr/3/tutorial/introduction.html#text">le texte, dans le tutoriel</a>,
+<a class="reference external" href="https://docs.python.org/fr/3/library/stdtypes.html#string-methods">les méthodes des chaînes</a>,
+<a class="reference external" href="https://docs.python.org/fr/3/library/functions.html#round"><code class="docutils literal notranslate"><span class="pre">round</span></code></a>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Instruction</p></th>
+<th class="head"><p>Effet</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;Pour</span> <span class="pre">&quot;</span> <span class="pre">+</span> <span class="pre">str(6)</span> <span class="pre">+</span> <span class="pre">&quot;</span> <span class="pre">personnes&quot;</span></code></p></td>
+<td><p>met les chaînes bout à bout : <code class="docutils literal notranslate"><span class="pre">&quot;Pour</span> <span class="pre">6</span> <span class="pre">personnes&quot;</span></code> ; <code class="docutils literal notranslate"><span class="pre">str</span></code> convertit d’abord le nombre en chaîne</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">texte</span> <span class="pre">=</span> <span class="pre">texte</span> <span class="pre">+</span> <span class="pre">ligne</span></code></p></td>
+<td><p>ajoute <code class="docutils literal notranslate"><span class="pre">ligne</span></code> à la fin de <code class="docutils literal notranslate"><span class="pre">texte</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;\n&quot;</span></code></p></td>
+<td><p>le caractère de fin de ligne</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">round(374.96,</span> <span class="pre">1)</span></code></p></td>
+<td><p>le nombre arrondi à un chiffre après la virgule : <code class="docutils literal notranslate"><span class="pre">375.0</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">texte.replace(&quot;##</span> <span class="pre">Ingrédients&quot;,</span> <span class="pre">nouveau)</span></code></p></td>
+<td><p>une copie de <code class="docutils literal notranslate"><span class="pre">texte</span></code>, où <code class="docutils literal notranslate"><span class="pre">nouveau</span></code> remplace chaque <code class="docutils literal notranslate"><span class="pre">##</span> <span class="pre">Ingrédients</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ligne.strip()</span></code></p></td>
+<td><p>une copie de <code class="docutils literal notranslate"><span class="pre">ligne</span></code> sans les espaces ni la fin de ligne, au début et à la fin</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ligne.lstrip(&quot;#</span> <span class="pre">&quot;)</span></code></p></td>
+<td><p>une copie de <code class="docutils literal notranslate"><span class="pre">ligne</span></code> sans les <code class="docutils literal notranslate"><span class="pre">#</span></code> ni les espaces du début : <code class="docutils literal notranslate"><span class="pre">&quot;Crêpes&quot;</span></code> pour <code class="docutils literal notranslate"><span class="pre">&quot;#</span> <span class="pre">Crêpes&quot;</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Chemins, module <code class="docutils literal notranslate"><span class="pre">pathlib</span></code></strong> (TD 3b). Documentation :
+<a class="reference external" href="https://docs.python.org/fr/3/library/pathlib.html"><code class="docutils literal notranslate"><span class="pre">pathlib</span></code></a>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Instruction</p></th>
+<th class="head"><p>Effet</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RACINE</span> <span class="pre">=</span> <span class="pre">Path(__file__).parent</span></code></p></td>
+<td><p>le dossier du programme : <code class="docutils literal notranslate"><span class="pre">__file__</span></code> est le chemin du programme</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RACINE</span> <span class="pre">/</span> <span class="pre">&quot;recettes&quot;</span> <span class="pre">/</span> <span class="pre">&quot;crepes.csv&quot;</span></code></p></td>
+<td><p>un chemin, construit dossier par dossier</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">chemin.name</span></code>, <code class="docutils literal notranslate"><span class="pre">chemin.stem</span></code>, <code class="docutils literal notranslate"><span class="pre">chemin.suffix</span></code></p></td>
+<td><p>pour <code class="docutils literal notranslate"><span class="pre">recettes/crepes.csv</span></code> : <code class="docutils literal notranslate"><span class="pre">&quot;crepes.csv&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;crepes&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;.csv&quot;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">chemin.with_suffix(&quot;.html&quot;)</span></code></p></td>
+<td><p>le même chemin, avec une autre extension : <code class="docutils literal notranslate"><span class="pre">recettes/crepes.html</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sorted(dossier.iterdir())</span></code></p></td>
+<td><p>les chemins du contenu de <code class="docutils literal notranslate"><span class="pre">dossier</span></code>, fichiers et dossiers, dans l’ordre alphabétique</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">dossier.mkdir(exist_ok=True)</span></code></p></td>
+<td><p>crée le dossier, s’il n’existe pas déjà</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Fichiers texte</strong> (TD 3c, TD 3f). Documentation :
+<a class="reference external" href="https://docs.python.org/fr/3/tutorial/inputoutput.html#reading-and-writing-files">lecture et écriture de fichiers</a>,
+<a class="reference external" href="https://docs.python.org/fr/3/library/pathlib.html#pathlib.Path.read_text"><code class="docutils literal notranslate"><span class="pre">read_text</span></code></a>,
+<a class="reference external" href="https://docs.python.org/fr/3/library/pathlib.html#pathlib.Path.write_text"><code class="docutils literal notranslate"><span class="pre">write_text</span></code></a>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Instruction</p></th>
+<th class="head"><p>Effet</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">open(chemin,</span> <span class="pre">encoding=&quot;utf-8&quot;)</span> <span class="pre">as</span> <span class="pre">fichier:</span></code></p></td>
+<td><p>ouvre le fichier en lecture ; Python le referme à la fin du bloc <code class="docutils literal notranslate"><span class="pre">with</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fichier.readline()</span></code></p></td>
+<td><p>la ligne suivante du fichier, fin de ligne comprise</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fichier.read()</span></code></p></td>
+<td><p>le texte du fichier, de la position de lecture jusqu’à la fin</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">chemin.read_text(encoding=&quot;utf-8&quot;)</span></code></p></td>
+<td><p>tout le texte du fichier, sans <code class="docutils literal notranslate"><span class="pre">open</span></code> ni <code class="docutils literal notranslate"><span class="pre">with</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">chemin.write_text(texte,</span> <span class="pre">encoding=&quot;utf-8&quot;)</span></code></p></td>
+<td><p>écrit <code class="docutils literal notranslate"><span class="pre">texte</span></code> dans le fichier, qui perd son ancien contenu</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Options de la ligne de commande, module <code class="docutils literal notranslate"><span class="pre">argparse</span></code></strong> (TD 3f, étape B6 du
+TD 4a). Documentation : <a class="reference external" href="https://docs.python.org/fr/3/howto/argparse.html">tutoriel <code class="docutils literal notranslate"><span class="pre">argparse</span></code></a>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Instruction</p></th>
+<th class="head"><p>Effet</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">analyseur</span> <span class="pre">=</span> <span class="pre">argparse.ArgumentParser()</span></code></p></td>
+<td><p>crée l’analyseur de la ligne de commande</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">analyseur.add_argument(&quot;nom&quot;)</span></code></p></td>
+<td><p>un argument positionnel, obligatoire : <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">recette.py</span> <span class="pre">crepes</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">analyseur.add_argument(&quot;-p&quot;,</span> <span class="pre">&quot;--personnes&quot;,</span> <span class="pre">type=int,</span> <span class="pre">default=4)</span></code></p></td>
+<td><p>une option avec une valeur, convertie en entier, 4 par défaut : <code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">6</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">analyseur.add_argument(&quot;--page&quot;,</span> <span class="pre">action=&quot;store_true&quot;)</span></code></p></td>
+<td><p>une option sans valeur, nouvelle dans ce TD : <code class="docutils literal notranslate"><span class="pre">True</span></code> quand la commande la porte, <code class="docutils literal notranslate"><span class="pre">False</span></code> sinon</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">options</span> <span class="pre">=</span> <span class="pre">analyseur.parse_args()</span></code></p></td>
+<td><p>lit la ligne de commande ; <code class="docutils literal notranslate"><span class="pre">options.nom</span></code>, <code class="docutils literal notranslate"><span class="pre">options.personnes</span></code> et <code class="docutils literal notranslate"><span class="pre">options.page</span></code> donnent les valeurs</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Programmes externes et copie de fichiers, modules <code class="docutils literal notranslate"><span class="pre">subprocess</span></code> et
+<code class="docutils literal notranslate"><span class="pre">shutil</span></code></strong> (TD 3b, TD 3f). Documentation :
+<a class="reference external" href="https://docs.python.org/fr/3/library/subprocess.html#subprocess.run"><code class="docutils literal notranslate"><span class="pre">subprocess.run</span></code></a>,
+<a class="reference external" href="https://docs.python.org/fr/3/library/shutil.html#shutil.copy"><code class="docutils literal notranslate"><span class="pre">shutil.copy</span></code></a>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Instruction</p></th>
+<th class="head"><p>Effet</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">subprocess.run([&quot;pandoc&quot;,</span> <span class="pre">&quot;a.md&quot;,</span> <span class="pre">&quot;-o&quot;,</span> <span class="pre">&quot;a.html&quot;],</span> <span class="pre">check=True)</span></code></p></td>
+<td><p>lance pandoc, comme la commande <code class="docutils literal notranslate"><span class="pre">pandoc</span> <span class="pre">a.md</span> <span class="pre">-o</span> <span class="pre">a.html</span></code> ; <code class="docutils literal notranslate"><span class="pre">check=True</span></code> arrête le programme si pandoc échoue</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">shutil.copy(source,</span> <span class="pre">destination)</span></code></p></td>
+<td><p>copie le fichier <code class="docutils literal notranslate"><span class="pre">source</span></code> vers <code class="docutils literal notranslate"><span class="pre">destination</span></code>, un fichier ou un dossier</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="d0-recuperer-le-projet-github-initial">
+<h2>D0 · Récupérer le projet GitHub initial<a class="headerlink" href="#d0-recuperer-le-projet-github-initial" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> créer sur votre compte GitHub un dépôt vide <code class="docutils literal notranslate"><span class="pre">td7a-recette</span></code> ; cloner dans <code class="docutils literal notranslate"><span class="pre">travail/recette/</span></code> le dépôt de départ du module, puis l’envoyer vers votre nouveau dépôt GitHub ; régler votre nom et votre adresse pour ce dépôt.</p>
+<p><strong>À obtenir :</strong> la page GitHub de votre dépôt <code class="docutils literal notranslate"><span class="pre">td7a-recette</span></code> affiche <code class="docutils literal notranslate"><span class="pre">recette.py</span></code> et les commits du TD 4a ; lancée depuis le dossier <code class="docutils literal notranslate"><span class="pre">travail/recette/</span></code>, la commande <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">recette.py</span> <span class="pre">crepes</span> <span class="pre">-p</span> <span class="pre">6</span></code> écrit <code class="docutils literal notranslate"><span class="pre">sortie/crepes_6_SI.csv</span></code>.</p>
+</div></blockquote>
+<p>Le dépôt de départ, <code class="docutils literal notranslate"><span class="pre">td7a-recette</span></code>, est sur le compte GitHub du module,
+<code class="docutils literal notranslate"><span class="pre">geodata-ing1-info-01</span></code>. Vous faites le TD dans une copie de ce dépôt, sur
+votre compte : vous y poussez vos branches et y fusionnez vos pull requests.</p>
+<p>Sur votre compte GitHub, créer un dépôt vide nommé <code class="docutils literal notranslate"><span class="pre">td7a-recette</span></code> (New
+repository, sans README). Puis, en remplaçant <code class="docutils literal notranslate"><span class="pre">&lt;compte&gt;</span></code> par le nom de votre
+compte GitHub :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd travail
+git clone git@github.com:geodata-ing1-info-01/td7a-recette.git recette
+cd recette
+git remote set-url origin git@github.com:&lt;compte&gt;/td7a-recette.git
+git push -u origin master
+</pre></div>
+</div>
+<p>Le dernier argument de <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code> nomme le dossier local <code class="docutils literal notranslate"><span class="pre">recette</span></code>.
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">set-url</span></code> change l’adresse du dépôt distant <code class="docutils literal notranslate"><span class="pre">origin</span></code> : les
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code> suivants envoient vos commits vers votre nouveau dépôt.</p>
+<p>Régler ensuite votre nom et votre adresse pour ce dépôt :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git config user.name "Prénom Nom"
+git config user.email "prenom.nom@exemple.fr"
+</pre></div>
+</div>
+<p><strong>Vérification</strong> : lancée depuis le dossier <code class="docutils literal notranslate"><span class="pre">travail/recette/</span></code>, la commande
+<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">recette.py</span> <span class="pre">crepes</span> <span class="pre">-p</span> <span class="pre">6</span></code> affiche</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>crepes pour 6 personnes, en unités SI
+Farine : 375.0 g
+Lait : 750.0 ml
+Œufs : 6.0 
+Sel : 3.0 g
+Beurre fondu : 75.0 g
+écrit : C:\Users\eleve\Desktop\cours7\7a_recette\travail\recette\sortie\crepes_6_SI.csv
+</pre></div>
+</div>
+</section>
+<section id="d1-generer-la-page-html-d-une-recette">
+<h2>D1 · Générer la page HTML d’une recette<a class="headerlink" href="#d1-generer-la-page-html-d-une-recette" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> sur une branche <code class="docutils literal notranslate"><span class="pre">page</span></code> : modifier le programme pour qu’il complète le texte de la recette par le tableau des ingrédients (D1.1), puis convertisse ce texte en page HTML en appelant pandoc, avec une feuille de style (D1.2) ; faire un commit à la fin de D1.1 et à la fin de D1.2.</p>
+<p><strong>À obtenir :</strong> <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">recette.py</span> <span class="pre">crepes</span> <span class="pre">-p</span> <span class="pre">6</span> <span class="pre">--page</span></code> écrit <code class="docutils literal notranslate"><span class="pre">sortie/crepes.md</span></code>, puis <code class="docutils literal notranslate"><span class="pre">sortie/crepes.html</span></code>, la page de la figure du début du guide.</p>
+</div></blockquote>
+<p>Au départ, <code class="docutils literal notranslate"><span class="pre">recette.py</span></code> écrit les quantités d’une recette dans un fichier
+CSV. L’étape D1 modifie ce programme pour qu’il écrive aussi la page HTML
+de la recette, celle de la figure du début du guide. Cette page réunit
+deux choses : le texte de la recette (le titre, le temps de préparation,
+les étapes), écrit à la main dans un fichier Markdown, et le tableau des
+ingrédients, que le programme calcule déjà. Les fichiers Markdown des
+recettes sont fournis dans le dossier <code class="docutils literal notranslate"><span class="pre">depart/recettes/</span></code> du TD,
+<code class="docutils literal notranslate"><span class="pre">cours7/7a_recette/depart/recettes/</span></code>, hors du projet.</p>
+<p>Les modifications à faire, dans l’ordre :</p>
+<ol class="arabic simple">
+<li><p>Copier le texte des recettes du dossier <code class="docutils literal notranslate"><span class="pre">depart/recettes/</span></code> du TD dans
+le dossier <code class="docutils literal notranslate"><span class="pre">recettes/</span></code> du projet, un fichier Markdown par recette. Ce
+texte sert de modèle : sa section <code class="docutils literal notranslate"><span class="pre">##</span> <span class="pre">Ingrédients</span></code> est vide, et le
+programme la remplit.</p></li>
+<li><p>Écrire une fonction, <code class="docutils literal notranslate"><span class="pre">tableau(ingredients)</span></code>, qui reçoit la liste des
+ingrédients et renvoie leur tableau Markdown, sous forme de texte.</p></li>
+<li><p>Écrire une fonction, <code class="docutils literal notranslate"><span class="pre">ecrire_markdown(nom,</span> <span class="pre">personnes,</span> <span class="pre">unites,</span> <span class="pre">ingredients)</span></code>. Elle reçoit le nom de la recette (<code class="docutils literal notranslate"><span class="pre">&quot;crepes&quot;</span></code>), le nombre
+de personnes et le système d’unités (<code class="docutils literal notranslate"><span class="pre">&quot;SI&quot;</span></code> ou <code class="docutils literal notranslate"><span class="pre">&quot;US&quot;</span></code>), qui servent au
+titre de la section, et la liste des ingrédients. Elle lit le texte de
+la recette, <code class="docutils literal notranslate"><span class="pre">recettes/&lt;nom&gt;.md</span></code>, place le tableau sous <code class="docutils literal notranslate"><span class="pre">##</span> <span class="pre">Ingrédients</span></code>,
+écrit le résultat dans <code class="docutils literal notranslate"><span class="pre">sortie/&lt;nom&gt;.md</span></code>, et renvoie le chemin de ce
+fichier.</p></li>
+<li><p>Modifier le programme principal pour qu’il écrive ce texte complété,
+seulement quand la commande porte une nouvelle option, <code class="docutils literal notranslate"><span class="pre">--page</span></code> :
+<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">recette.py</span> <span class="pre">crepes</span> <span class="pre">-p</span> <span class="pre">6</span> <span class="pre">--page</span></code>. Sans l’option, le programme fait
+ce qu’il faisait avant. Une option sans valeur, comme <code class="docutils literal notranslate"><span class="pre">--page</span></code>, est
+décrite dans la documentation d’argparse, partie
+<a class="reference external" href="https://docs.python.org/fr/3/howto/argparse.html#introducing-optional-arguments">« Introduction aux arguments optionnels »</a>.</p></li>
+<li><p>Écrire une fonction, <code class="docutils literal notranslate"><span class="pre">ecrire_page(markdown)</span></code>, qui reçoit le chemin du
+texte complété, le convertit en page HTML avec pandoc, et renvoie le
+chemin de la page.</p></li>
+<li><p>Ajouter une feuille de style, <code class="docutils literal notranslate"><span class="pre">style.css</span></code>, qui fixe la présentation de
+la page : polices, couleurs, largeur du texte, bordures du tableau.
+<code class="docutils literal notranslate"><span class="pre">ecrire_page</span></code> copie ce fichier dans <code class="docutils literal notranslate"><span class="pre">sortie/</span></code>, à côté de la page, avec la
+fonction <code class="docutils literal notranslate"><span class="pre">shutil.copy</span></code> (TD 3f), décrite dans la
+<a class="reference external" href="https://docs.python.org/fr/3/library/shutil.html#shutil.copy">documentation de <code class="docutils literal notranslate"><span class="pre">shutil.copy</span></code></a>.</p></li>
+</ol>
+<p>Les modifications 1 à 4 forment l’étape D1.1, les modifications 5 et 6
+l’étape D1.2. Créer d’abord une branche, <code class="docutils literal notranslate"><span class="pre">page</span></code>, pour y faire les six
+modifications :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git checkout -b page
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>Essayer avant de regarder la solution.</strong> Pour chaque modification,
+lire d’abord son explication, puis écrire le code soi-même avant de
+regarder le bloc qui indique la solution. Les cours précédents
+présentent tout ce dont ce code a besoin : la liste de tuples des ingrédients et les
+fonctions (TD 4a), la lecture et l’écriture d’un fichier texte (TD 3c),
+<code class="docutils literal notranslate"><span class="pre">argparse</span></code> (TD 3f, et étape B6 du TD 4a), pandoc lancé par
+<code class="docutils literal notranslate"><span class="pre">subprocess.run</span></code> et la copie d’un fichier par <code class="docutils literal notranslate"><span class="pre">shutil.copy</span></code> (TD 3f).
+L’aide-mémoire Python, au début du guide, résume ces instructions. La
+solution sert ensuite à vérifier votre code, ou à avancer si votre essai
+n’aboutit pas.</p>
+</div></blockquote>
+<section id="d1-1-ajouter-le-tableau-des-ingredients-au-texte-de-la-recette">
+<h3>D1.1 Ajouter le tableau des ingrédients au texte de la recette<a class="headerlink" href="#d1-1-ajouter-le-tableau-des-ingredients-au-texte-de-la-recette" title="Lien vers cette rubrique">#</a></h3>
+<p>Les deux nouvelles fonctions lisent le texte d’une recette, y ajoutent le
+tableau de ses ingrédients, et écrivent le texte complété. Les paragraphes
+suivants montrent ces données sur l’exemple des crêpes, pour 6 personnes en
+unités SI.</p>
+<p><strong>Le texte de la recette.</strong> Le texte de chaque recette est fourni dans le
+dossier <code class="docutils literal notranslate"><span class="pre">depart/recettes/</span></code> du TD, un fichier Markdown par recette. Le texte
+des crêpes :</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># Crêpes</span>
+
+<span class="ge">*10 minutes de préparation, 1 heure de repos.*</span>
+
+<span class="gu">## Ingrédients</span>
+
+<span class="gu">## Préparation</span>
+
+<span class="k">1.</span> Mélanger la farine et le sel dans un saladier.
+<span class="k">2.</span> Casser les œufs au centre et mélanger.
+<span class="k">3.</span> Verser le lait <span class="gs">**peu à peu**</span>, sans cesser de remuer.
+<span class="k">4.</span> Ajouter le beurre fondu.
+<span class="k">5.</span> Laisser reposer une heure.
+<span class="k">6.</span> Cuire dans une poêle chaude, une minute par face.
+
+<span class="k">&gt; </span><span class="ge">La pâte se conserve 24 heures au réfrigérateur.</span>
+</pre></div>
+</div>
+<p>Sa section <code class="docutils literal notranslate"><span class="pre">##</span> <span class="pre">Ingrédients</span></code> est vide : la fonction <code class="docutils literal notranslate"><span class="pre">ecrire_markdown</span></code> y
+placera le tableau des ingrédients.</p>
+<p><strong>La liste des ingrédients et son tableau Markdown.</strong> Dans le programme,
+les ingrédients d’une recette sont une liste de tuples, un tuple par
+ingrédient : son nom, sa quantité et son unité. <code class="docutils literal notranslate"><span class="pre">lire_ingredients</span></code> lit
+cette liste dans le fichier CSV, puis <code class="docutils literal notranslate"><span class="pre">adapter</span></code> et <code class="docutils literal notranslate"><span class="pre">convertir</span></code> en
+recalculent les quantités. Pour les crêpes, la liste <code class="docutils literal notranslate"><span class="pre">ingredients</span></code> vaut :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ingredients</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">"Farine"</span><span class="p">,</span> <span class="mf">375.0</span><span class="p">,</span> <span class="s2">"g"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"Lait"</span><span class="p">,</span> <span class="mf">750.0</span><span class="p">,</span> <span class="s2">"ml"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"Œufs"</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">,</span> <span class="s2">""</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"Sel"</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="s2">"g"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"Beurre fondu"</span><span class="p">,</span> <span class="mf">75.0</span><span class="p">,</span> <span class="s2">"g"</span><span class="p">),</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>L’appel <code class="docutils literal notranslate"><span class="pre">tableau(ingredients)</span></code> renvoie le tableau Markdown de cette liste :
+deux lignes d’en-tête, puis une ligne par ingrédient, la quantité et
+l’unité dans la seconde colonne :</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>| Ingrédient | Quantité |
+|---|---|
+| Farine | 375.0 g |
+| Lait | 750.0 ml |
+| Œufs | 6.0  |
+| Sel | 3.0 g |
+| Beurre fondu | 75.0 g |
+</pre></div>
+</div>
+<p>Pour écrire ce texte, <code class="docutils literal notranslate"><span class="pre">tableau</span></code> part des deux lignes d’en-tête, puis ajoute
+une ligne par ingrédient dans une boucle <code class="docutils literal notranslate"><span class="pre">for</span></code>. L’opérateur <code class="docutils literal notranslate"><span class="pre">+</span></code> met deux
+chaînes bout à bout : si <code class="docutils literal notranslate"><span class="pre">nom</span></code> vaut <code class="docutils literal notranslate"><span class="pre">&quot;Farine&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;|</span> <span class="pre">&quot;</span> <span class="pre">+</span> <span class="pre">nom</span> <span class="pre">+</span> <span class="pre">&quot;</span> <span class="pre">|&quot;</span></code> vaut
+<code class="docutils literal notranslate"><span class="pre">&quot;|</span> <span class="pre">Farine</span> <span class="pre">|&quot;</span></code>. Un nombre se convertit d’abord en chaîne avec <code class="docutils literal notranslate"><span class="pre">str</span></code> :
+<code class="docutils literal notranslate"><span class="pre">str(375.0)</span></code> vaut <code class="docutils literal notranslate"><span class="pre">&quot;375.0&quot;</span></code>. L’instruction <code class="docutils literal notranslate"><span class="pre">texte</span> <span class="pre">=</span> <span class="pre">texte</span> <span class="pre">+</span> <span class="pre">ligne</span></code> ajoute
+<code class="docutils literal notranslate"><span class="pre">ligne</span></code> à la fin de <code class="docutils literal notranslate"><span class="pre">texte</span></code>. Chaque ligne se termine par <code class="docutils literal notranslate"><span class="pre">&quot;\n&quot;</span></code>, le
+caractère de fin de ligne (TD 3c).</p>
+<p><strong>Le texte complété.</strong> Pour les crêpes, l’appel <code class="docutils literal notranslate"><span class="pre">ecrire_markdown(&quot;crepes&quot;,</span> <span class="pre">6,</span> <span class="pre">&quot;SI&quot;,</span> <span class="pre">ingredients)</span></code> lit le texte de la recette, <code class="docutils literal notranslate"><span class="pre">recettes/crepes.md</span></code>.
+Elle assemble ensuite le texte de remplacement : un titre,
+<code class="docutils literal notranslate"><span class="pre">##</span> <span class="pre">Ingrédients</span> <span class="pre">pour</span> <span class="pre">6</span> <span class="pre">personnes,</span> <span class="pre">en</span> <span class="pre">unités</span> <span class="pre">SI</span></code>, une ligne vide, puis le
+tableau. La méthode <code class="docutils literal notranslate"><span class="pre">replace</span></code> remplace la ligne <code class="docutils literal notranslate"><span class="pre">##</span> <span class="pre">Ingrédients</span></code> du texte
+de la recette par ce texte de remplacement. La fonction écrit le résultat
+dans <code class="docutils literal notranslate"><span class="pre">sortie/crepes.md</span></code>, puis renvoie ce chemin.
+Le début du texte complété :</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># Crêpes</span>
+
+<span class="ge">*10 minutes de préparation, 1 heure de repos.*</span>
+
+<span class="gu">## Ingrédients pour 6 personnes, en unités SI</span>
+
+| Ingrédient | Quantité |
+|---|---|
+| Farine | 375.0 g |
+| Lait | 750.0 ml |
+| Œufs | 6.0  |
+| Sel | 3.0 g |
+| Beurre fondu | 75.0 g |
+
+…
+</pre></div>
+</div>
+<p><strong>Modification 1, le texte des recettes.</strong> Copier dans <code class="docutils literal notranslate"><span class="pre">recettes/</span></code> le texte
+des quatre recettes qui ont déjà leur fichier CSV :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cp ../../depart/recettes/crepes.md ../../depart/recettes/pate_pizza.md recettes/
+cp ../../depart/recettes/mousse_chocolat.md ../../depart/recettes/cookies.md recettes/
+</pre></div>
+</div>
+<p>Chaque recette a maintenant deux fichiers : les ingrédients, en CSV, et le
+texte, en Markdown.</p>
+<p><strong>Modifications 2 et 3, les fonctions <code class="docutils literal notranslate"><span class="pre">tableau</span></code> et <code class="docutils literal notranslate"><span class="pre">ecrire_markdown</span></code>.</strong>
+Ajouter les deux fonctions avant le programme principal :</p>
+<div class="highlight-modif notranslate"><div class="highlight"><pre><span></span>   69
+   70
+<span class="gi">+++</span>
+<span class="gi">def tableau(ingredients):</span>
+<span class="gi">    """Le tableau Markdown des ingrédients, une ligne par ingrédient."""</span>
+<span class="gi">    texte = "| Ingrédient | Quantité |\n"</span>
+<span class="gi">    texte = texte + "|---|---|\n"</span>
+<span class="gi">    for nom, quantite, unite in ingredients:</span>
+<span class="gi">        texte = texte + "| " + nom + " | " + str(round(quantite, 1)) + " " + unite + " |\n"</span>
+<span class="gi">    return texte</span>
+
+
+<span class="gi">def ecrire_markdown(nom, personnes, unites, ingredients):</span>
+<span class="gi">    """Le texte de recettes/&lt;nom&gt;.md, avec le tableau des ingrédients sous « ## Ingrédients », écrit dans sortie/ ; renvoie son chemin."""</span>
+<span class="gi">    source = (DONNEES / (nom + ".md")).read_text(encoding="utf-8")</span>
+<span class="gi">    intitule = "## Ingrédients pour " + str(personnes) + " personnes, en unités " + unites</span>
+<span class="gi">    remplacement = intitule + "\n\n" + tableau(ingredients)</span>
+<span class="gi">    complete = source.replace("## Ingrédients", remplacement)</span>
+<span class="gi">    markdown = SORTIE / (nom + ".md")</span>
+<span class="gi">    markdown.write_text(complete, encoding="utf-8")</span>
+<span class="gi">    return markdown</span>
+
+
+<span class="gi">+++</span>
+   91 # ---- Le programme -------------------------------------------------------------
+   92
+</pre></div>
+</div>
+<p><strong>Modification 4, l’option <code class="docutils literal notranslate"><span class="pre">--page</span></code>.</strong> <code class="docutils literal notranslate"><span class="pre">action=&quot;store_true&quot;</span></code> fait de
+<code class="docutils literal notranslate"><span class="pre">--page</span></code> une option sans valeur : <code class="docutils literal notranslate"><span class="pre">options.page</span></code> vaut <code class="docutils literal notranslate"><span class="pre">True</span></code> quand la
+commande porte l’option, <code class="docutils literal notranslate"><span class="pre">False</span></code> sinon (documentation d’argparse, partie
+<a class="reference external" href="https://docs.python.org/fr/3/howto/argparse.html#introducing-optional-arguments">« Introduction aux arguments optionnels »</a>). Le programme
+principal n’appelle <code class="docutils literal notranslate"><span class="pre">ecrire_markdown</span></code> que si <code class="docutils literal notranslate"><span class="pre">options.page</span></code> vaut <code class="docutils literal notranslate"><span class="pre">True</span></code>,
+après l’écriture du fichier CSV :</p>
+<div class="highlight-modif notranslate"><div class="highlight"><pre><span></span>   96 analyseur.add_argument("-p", "--personnes", type=int, default=4, help="nombre de personnes (défaut : 4)")
+   97 analyseur.add_argument("-u", "--unites", choices=("SI", "US"), default="SI", help="système d'unités (défaut : SI)")
+<span class="gi">+++</span>
+<span class="gi">analyseur.add_argument("--page", action="store_true", help="écrit aussi la page de la recette : son texte complété, puis sa page HTML")</span>
+<span class="gi">+++</span>
+   99 options = analyseur.parse_args()
+  100 NOM = options.nom
+    …
+  118 ecrire_ingredients(fichier, ingredients)
+  119 print("écrit :", fichier)
+<span class="gi">+++</span>
+
+<span class="gi">if options.page:</span>
+<span class="gi">    markdown = ecrire_markdown(NOM, PERSONNES, UNITES, ingredients)</span>
+<span class="gi">    print("écrit :", markdown)</span>
+<span class="gi">+++</span>
+</pre></div>
+</div>
+<p><strong>Vérification</strong> : <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">recette.py</span> <span class="pre">crepes</span> <span class="pre">-p</span> <span class="pre">6</span> <span class="pre">--page</span></code> se termine par</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>écrit : C:\Users\eleve\Desktop\cours7\7a_recette\travail\recette\sortie\crepes.md
+</pre></div>
+</div>
+<p>Ouvrir <code class="docutils literal notranslate"><span class="pre">sortie/crepes.md</span></code> dans VS Code (<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">V</span></code> pour
+l’aperçu) : il commence par le texte complété montré plus haut.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git add recettes
+git commit -am "Le texte de la recette, complété par le tableau des ingrédients"
+</pre></div>
+</div>
+</section>
+<section id="d1-2-generer-la-page-html-en-appelant-pandoc">
+<h3>D1.2 Générer la page HTML en appelant pandoc<a class="headerlink" href="#d1-2-generer-la-page-html-en-appelant-pandoc" title="Lien vers cette rubrique">#</a></h3>
+<p>La modification 5 produit la page HTML avec pandoc. La modification 6 lui
+donne ensuite sa présentation, par une feuille de style.</p>
+<p><strong>La page HTML, par pandoc.</strong> pandoc convertit un fichier Markdown en page
+HTML, comme au cours 3. L’appel <code class="docutils literal notranslate"><span class="pre">ecrire_page(markdown)</span></code>, où <code class="docutils literal notranslate"><span class="pre">markdown</span></code> est
+le chemin <code class="docutils literal notranslate"><span class="pre">sortie/crepes.md</span></code> que renvoie <code class="docutils literal notranslate"><span class="pre">ecrire_markdown</span></code>, lance pandoc
+avec <code class="docutils literal notranslate"><span class="pre">subprocess.run</span></code>. pandoc écrit la page <code class="docutils literal notranslate"><span class="pre">sortie/crepes.html</span></code> : le même
+chemin, avec l’extension <code class="docutils literal notranslate"><span class="pre">.html</span></code> (<code class="docutils literal notranslate"><span class="pre">with_suffix(&quot;.html&quot;)</span></code>). <code class="docutils literal notranslate"><span class="pre">ecrire_page</span></code>
+renvoie ce chemin. Pour les crêpes, <code class="docutils literal notranslate"><span class="pre">ecrire_page</span></code> lance la même commande
+que celle-ci, tapée dans le terminal depuis le dossier du projet :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>pandoc sortie/crepes.md -o sortie/crepes.html --standalone --metadata pagetitle="Crêpes"
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">ecrire_page</span></code> construit cette commande pour n’importe quelle recette : elle
+calcule le chemin de la page et le titre à partir de <code class="docutils literal notranslate"><span class="pre">markdown</span></code>. Le titre
+de la page, <code class="docutils literal notranslate"><span class="pre">Crêpes</span></code>, vient de la première ligne du fichier, <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">Crêpes</span></code>.
+<code class="docutils literal notranslate"><span class="pre">readline</span></code> lit cette ligne, fin de ligne comprise (TD 3c) ; <code class="docutils literal notranslate"><span class="pre">strip()</span></code>
+retire la fin de ligne, puis <code class="docutils literal notranslate"><span class="pre">lstrip(&quot;#</span> <span class="pre">&quot;)</span></code> retire le <code class="docutils literal notranslate"><span class="pre">#</span></code> et l’espace du
+début.</p>
+<p><strong>La feuille de style.</strong> Une page HTML décrit son contenu : un titre, des
+paragraphes, un tableau. Sa présentation est décrite à part, dans une
+feuille de style CSS, comme au cours 1. La feuille <code class="docutils literal notranslate"><span class="pre">style.css</span></code>, fournie
+dans le dossier <code class="docutils literal notranslate"><span class="pre">depart/</span></code> du TD, met le texte dans une colonne centrée
+d’environ 70 caractères, sur un fond crème, souligne les titres de section
+et aligne à droite les quantités du tableau. Les dix pages et le sommaire
+partageront cette feuille : une modification de <code class="docutils literal notranslate"><span class="pre">style.css</span></code> changera la
+présentation de toutes les pages, sans toucher à leur contenu. L’option
+<code class="docutils literal notranslate"><span class="pre">--css</span> <span class="pre">style.css</span></code> de pandoc ajoute dans la page un lien vers <code class="docutils literal notranslate"><span class="pre">style.css</span></code>,
+à la place de la mise en forme que pandoc y met par défaut. Le navigateur
+cherche ce fichier à côté de la page : <code class="docutils literal notranslate"><span class="pre">ecrire_page</span></code> le copie donc dans
+<code class="docutils literal notranslate"><span class="pre">sortie/</span></code>. Tapées dans le terminal, la copie et la conversion seraient :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cp style.css sortie/
+pandoc sortie/crepes.md -o sortie/crepes.html --standalone --css style.css --metadata pagetitle="Crêpes"
+</pre></div>
+</div>
+<p><strong>Modification 5, l’appel de pandoc.</strong> Ajouter <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">subprocess</span></code>, une
+fonction <code class="docutils literal notranslate"><span class="pre">ecrire_page</span></code>, et son appel après celui de <code class="docutils literal notranslate"><span class="pre">ecrire_markdown</span></code> :</p>
+<div class="highlight-modif notranslate"><div class="highlight"><pre><span></span>    3 import argparse
+    4 import csv
+<span class="gi">+++</span>
+<span class="gi">import subprocess</span>
+<span class="gi">+++</span>
+    6 from pathlib import Path
+    7
+    …
+   90
+   91
+<span class="gi">+++</span>
+<span class="gi">def ecrire_page(markdown):</span>
+<span class="gi">    """La page HTML d'un fichier Markdown de sortie/, par pandoc ; renvoie son chemin."""</span>
+<span class="gi">    with open(markdown, encoding="utf-8") as fichier:</span>
+<span class="gi">        premiere_ligne = fichier.readline()</span>
+<span class="gi">    titre = premiere_ligne.strip()</span>
+<span class="gi">    titre = titre.lstrip("# ")</span>
+<span class="gi">    page = markdown.with_suffix(".html")</span>
+<span class="gi">    subprocess.run(["pandoc", str(markdown), "-o", str(page), "--standalone",</span>
+<span class="gi">                    "--metadata", "pagetitle=" + titre], check=True)</span>
+<span class="gi">    return page</span>
+
+
+<span class="gi">+++</span>
+  104 # ---- Le programme -------------------------------------------------------------
+  105
+    …
+  135     markdown = ecrire_markdown(NOM, PERSONNES, UNITES, ingredients)
+  136     print("écrit :", markdown)
+<span class="gi">+++</span>
+<span class="gi">    page = ecrire_page(markdown)</span>
+<span class="gi">    print("écrit :", page)</span>
+<span class="gi">+++</span>
+</pre></div>
+</div>
+<p><strong>Vérification</strong> : <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">recette.py</span> <span class="pre">crepes</span> <span class="pre">-p</span> <span class="pre">6</span> <span class="pre">--page</span></code> se termine par</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>écrit : C:\Users\eleve\Desktop\cours7\7a_recette\travail\recette\sortie\crepes.md
+écrit : C:\Users\eleve\Desktop\cours7\7a_recette\travail\recette\sortie\crepes.html
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">start</span> <span class="pre">sortie/crepes.html</span></code> ouvre la page dans le navigateur : le texte et
+le tableau de la recette, avec la mise en forme par défaut de pandoc.</p>
+<p><strong>Modification 6, la feuille de style.</strong> Copier la feuille de style dans
+le projet :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cp ../../depart/style.css .
+</pre></div>
+</div>
+<p>Puis, dans <code class="docutils literal notranslate"><span class="pre">ecrire_page</span></code>, copier <code class="docutils literal notranslate"><span class="pre">style.css</span></code> dans <code class="docutils literal notranslate"><span class="pre">sortie/</span></code> avec
+<code class="docutils literal notranslate"><span class="pre">shutil.copy</span></code> (<a class="reference external" href="https://docs.python.org/fr/3/library/shutil.html#shutil.copy">documentation</a>), et ajouter l’option <code class="docutils literal notranslate"><span class="pre">--css</span></code> à
+la commande de pandoc :</p>
+<div class="highlight-modif notranslate"><div class="highlight"><pre><span></span>    3 import argparse
+    4 import csv
+<span class="gi">+++</span>
+<span class="gi">import shutil</span>
+<span class="gi">+++</span>
+    6 import subprocess
+    7 from pathlib import Path
+    …
+   20 DONNEES = RACINE / "recettes"
+   21 SORTIE = RACINE / "sortie"
+<span class="gi">+++</span>
+<span class="gi">STYLE = RACINE / "style.css"</span>
+<span class="gi">+++</span>
+   23
+   24
+    …
+   93
+   94 def ecrire_page(markdown):
+<span class="gd">---</span>
+<span class="gd">   95     """La page HTML d'un fichier Markdown de sortie/, par pandoc ; renvoie son chemin."""</span>
+<span class="gd">---</span>
+<span class="gi">+++</span>
+<span class="gi">    """La page HTML d'un fichier Markdown de sortie/, par pandoc, avec la feuille de style ; renvoie son chemin."""</span>
+<span class="gi">+++</span>
+   96     with open(markdown, encoding="utf-8") as fichier:
+   97         premiere_ligne = fichier.readline()
+   98     titre = premiere_ligne.strip()
+   99     titre = titre.lstrip("# ")
+<span class="gi">+++</span>
+<span class="gi">    shutil.copy(STYLE, SORTIE / "style.css")</span>
+<span class="gi">+++</span>
+  101     page = markdown.with_suffix(".html")
+  102     subprocess.run(["pandoc", str(markdown), "-o", str(page), "--standalone",
+<span class="gd">---</span>
+<span class="gd">  103                     "--metadata", "pagetitle=" + titre], check=True)</span>
+<span class="gd">---</span>
+<span class="gi">+++</span>
+<span class="gi">                    "--css", "style.css", "--metadata", "pagetitle=" + titre], check=True)</span>
+<span class="gi">+++</span>
+  104     return page
+  105
+</pre></div>
+</div>
+<p><strong>Vérification</strong> : relancer <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">recette.py</span> <span class="pre">crepes</span> <span class="pre">-p</span> <span class="pre">6</span> <span class="pre">--page</span></code>, puis
+<code class="docutils literal notranslate"><span class="pre">start</span> <span class="pre">sortie/crepes.html</span></code> : la page a maintenant la présentation de la
+figure du début du guide.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git add style.css
+git commit -am "La page HTML de la recette, par pandoc"
+</pre></div>
+</div>
+</section>
+</section>
+<section id="d2-soumettre-les-modifications-avec-une-pull-request">
+<h2>D2 · Soumettre les modifications avec une pull request<a class="headerlink" href="#d2-soumettre-les-modifications-avec-une-pull-request" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> pousser la branche <code class="docutils literal notranslate"><span class="pre">page</span></code> ; ouvrir la pull request sur GitHub et la fusionner ; ramener <code class="docutils literal notranslate"><span class="pre">master</span></code> sur le poste.</p>
+<p><strong>À obtenir :</strong> sur GitHub, la pull request est fusionnée ; <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span> <span class="pre">--oneline</span> <span class="pre">--graph</span></code> montre le commit de fusion sur <code class="docutils literal notranslate"><span class="pre">master</span></code>.</p>
+</div></blockquote>
+<p>La branche <code class="docutils literal notranslate"><span class="pre">page</span></code> contient maintenant la nouvelle fonctionnalité, sur le
+poste seulement. Une pull request demande, sur GitHub, sa fusion dans
+<code class="docutils literal notranslate"><span class="pre">master</span></code>. Dans un projet à plusieurs, une autre personne relit alors
+les modifications avant la fusion ; ici, chacun fusionne la sienne, dans
+son dépôt.</p>
+<p>Les opérations, dans l’ordre :</p>
+<ol class="arabic simple">
+<li><p>Envoyer la branche <code class="docutils literal notranslate"><span class="pre">page</span></code> sur GitHub.</p></li>
+<li><p>Sur le site, ouvrir la pull request, puis la fusionner.</p></li>
+<li><p>Ramener sur le poste le <code class="docutils literal notranslate"><span class="pre">master</span></code> de GitHub, qui contient la fusion.</p></li>
+</ol>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git push -u origin page
+</pre></div>
+</div>
+<p>Sur la page du dépôt, GitHub affiche un bandeau « page had recent pushes » :
+bouton Compare &amp; pull request, puis Create pull request. La page de la pull
+request montre les commits et les modifications de la branche. Bouton Merge
+pull request, puis Confirm merge : la branche est fusionnée dans <code class="docutils literal notranslate"><span class="pre">master</span></code>,
+sur GitHub.</p>
+<p>Le <code class="docutils literal notranslate"><span class="pre">master</span></code> du poste n’a pas encore cette fusion :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git checkout master
+git pull
+git log --oneline --graph
+</pre></div>
+</div>
+<p><strong>Vérification</strong> : la dernière ligne du graphe est le commit <code class="docutils literal notranslate"><span class="pre">Merge</span> <span class="pre">pull</span> <span class="pre">request</span> <span class="pre">#1</span></code>, et <code class="docutils literal notranslate"><span class="pre">recette.py</span></code> contient <code class="docutils literal notranslate"><span class="pre">ecrire_page</span></code>.</p>
+</section>
+<section id="d3-ajouter-une-option-pour-generer-toutes-les-recettes">
+<h2>D3 · Ajouter une option pour générer toutes les recettes<a class="headerlink" href="#d3-ajouter-une-option-pour-generer-toutes-les-recettes" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> sur une branche <code class="docutils literal notranslate"><span class="pre">livre</span></code>, copier six recettes de plus dans le projet ; écrire une fonction qui renvoie la liste des noms des recettes (D3.1) ; ajouter l’option <code class="docutils literal notranslate"><span class="pre">--toutes</span></code>, qui génère la page de chaque recette de cette liste (D3.2) ; faire un commit.</p>
+<p><strong>À obtenir :</strong> <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">recette.py</span> <span class="pre">--toutes</span> <span class="pre">--page</span></code> écrit les pages des dix recettes dans <code class="docutils literal notranslate"><span class="pre">sortie/</span></code>.</p>
+</div></blockquote>
+<p>Jusqu’ici, une commande écrit la page d’une seule recette. Pour les quatre
+recettes du projet, quatre commandes restent faisables. Avec les six
+recettes que cette étape ajoute, il en faut dix, presque identiques, puis
+une de plus pour chaque nouvelle recette. Vous ajoutez donc au programme une
+option, <code class="docutils literal notranslate"><span class="pre">--toutes</span></code>, qui génère les pages de toutes les recettes de
+<code class="docutils literal notranslate"><span class="pre">recettes/</span></code> en une seule commande : <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">recette.py</span> <span class="pre">--toutes</span> <span class="pre">--page</span></code>.</p>
+<p>Les modifications à faire, dans l’ordre :</p>
+<ol class="arabic simple">
+<li><p>Copier les six autres recettes du dossier <code class="docutils literal notranslate"><span class="pre">depart/recettes/</span></code> du TD dans
+le dossier <code class="docutils literal notranslate"><span class="pre">recettes/</span></code> du projet : leur fichier CSV et leur texte.</p></li>
+<li><p>Écrire une fonction, <code class="docutils literal notranslate"><span class="pre">noms_des_recettes()</span></code>, qui renvoie la liste des
+noms des recettes de <code class="docutils literal notranslate"><span class="pre">recettes/</span></code> (D3.1).</p></li>
+<li><p>Ajouter au programme principal l’option <code class="docutils literal notranslate"><span class="pre">--toutes</span></code>, et placer dans une
+boucle les lignes qui calculent les quantités d’une recette et écrivent
+ses fichiers : le CSV et, avec <code class="docutils literal notranslate"><span class="pre">--page</span></code>, la page HTML. Avec <code class="docutils literal notranslate"><span class="pre">--toutes</span></code>,
+la boucle parcourt les noms de toutes les recettes ; sans l’option, elle
+ne traite que la recette nommée sur la ligne de commande (D3.2).</p></li>
+</ol>
+<p>Créer d’abord une branche, <code class="docutils literal notranslate"><span class="pre">livre</span></code>, pour y faire ces modifications, puis
+copier les six recettes :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git checkout -b livre
+cp ../../depart/recettes/*.csv ../../depart/recettes/*.md recettes/
+ls recettes
+</pre></div>
+</div>
+<p><strong>Vérification</strong> : <code class="docutils literal notranslate"><span class="pre">ls</span></code> liste dix fichiers <code class="docutils literal notranslate"><span class="pre">.csv</span></code> et dix fichiers <code class="docutils literal notranslate"><span class="pre">.md</span></code>.</p>
+<section id="d3-1-obtenir-la-liste-des-noms-des-recettes">
+<h3>D3.1 Obtenir la liste des noms des recettes<a class="headerlink" href="#d3-1-obtenir-la-liste-des-noms-des-recettes" title="Lien vers cette rubrique">#</a></h3>
+<p>Le nom d’une recette est celui de son fichier CSV, sans l’extension :
+<code class="docutils literal notranslate"><span class="pre">crepes</span></code> pour <code class="docutils literal notranslate"><span class="pre">crepes.csv</span></code>. Comme au TD 3b, <code class="docutils literal notranslate"><span class="pre">sorted(DONNEES.iterdir())</span></code>
+donne les chemins des fichiers de <code class="docutils literal notranslate"><span class="pre">recettes/</span></code>, dans l’ordre alphabétique.
+La fonction <code class="docutils literal notranslate"><span class="pre">noms_des_recettes</span></code> garde ceux dont l’extension, <code class="docutils literal notranslate"><span class="pre">suffix</span></code>, vaut
+<code class="docutils literal notranslate"><span class="pre">&quot;.csv&quot;</span></code>, et ajoute à une liste leur nom sans l’extension, <code class="docutils literal notranslate"><span class="pre">stem</span></code>. Elle
+renvoie la liste des dix noms, de <code class="docutils literal notranslate"><span class="pre">cookies</span></code> à <code class="docutils literal notranslate"><span class="pre">tarte_pommes</span></code>. Le
+commentaire du code indique une écriture plus courte, avec <code class="docutils literal notranslate"><span class="pre">glob</span></code>.</p>
+<div class="highlight-modif notranslate"><div class="highlight"><pre><span></span>  103                     "--css", "style.css", "--metadata", "pagetitle=" + titre], check=True)
+  104     return page
+<span class="gi">+++</span>
+
+
+<span class="gi">def noms_des_recettes():</span>
+<span class="gi">    """Le nom de chaque recette de recettes/ : ses fichiers .csv, sans l'extension."""</span>
+<span class="gi">    noms = []</span>
+<span class="gi">    # Plus court : sorted(DONNEES.glob("*.csv")) ne donne que les fichiers .csv, sans le test</span>
+<span class="gi">    for chemin in sorted(DONNEES.iterdir()):</span>
+<span class="gi">        if chemin.suffix == ".csv":</span>
+<span class="gi">            noms.append(chemin.stem)</span>
+<span class="gi">    return noms</span>
+<span class="gi">+++</span>
+</pre></div>
+</div>
+</section>
+<section id="d3-2-ajouter-l-option-toutes-qui-genere-la-page-de-chaque-recette">
+<h3>D3.2 Ajouter l’option <code class="docutils literal notranslate"><span class="pre">--toutes</span></code>, qui génère la page de chaque recette<a class="headerlink" href="#d3-2-ajouter-l-option-toutes-qui-genere-la-page-de-chaque-recette" title="Lien vers cette rubrique">#</a></h3>
+<p>Le programme traite une seule recette, celle de la variable <code class="docutils literal notranslate"><span class="pre">NOM</span></code>. Pour
+traiter toutes les recettes, placer les lignes qui calculent et écrivent les
+fichiers d’une recette dans une boucle <code class="docutils literal notranslate"><span class="pre">for</span></code>. Cette boucle parcourt une
+liste de noms : tous les noms avec <code class="docutils literal notranslate"><span class="pre">--toutes</span></code>, sinon le seul nom donné sur
+la ligne de commande.</p>
+<ol class="arabic simple">
+<li><p>Remplacer les lignes de <code class="docutils literal notranslate"><span class="pre">analyseur.add_argument(&quot;nom&quot;,</span> <span class="pre">…)</span></code> à
+<code class="docutils literal notranslate"><span class="pre">UNITES</span> <span class="pre">=</span> <span class="pre">options.unites</span></code> par celles du bloc ci-dessous, jusqu’à
+<code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">nom</span> <span class="pre">in</span> <span class="pre">noms:</span></code>. <code class="docutils literal notranslate"><span class="pre">nargs=&quot;?&quot;</span></code> rend le nom facultatif : avec
+<code class="docutils literal notranslate"><span class="pre">--toutes</span></code>, il n’est pas donné.</p></li>
+<li><p>Sélectionner les lignes suivantes, de <code class="docutils literal notranslate"><span class="pre">ingredients</span> <span class="pre">=</span> <span class="pre">lire_ingredients(…)</span></code>
+jusqu’à la fin du fichier, puis appuyer sur <code class="docutils literal notranslate"><span class="pre">Tab</span></code> : VS Code les indente
+d’un niveau, et elles forment le corps de la boucle.</p></li>
+<li><p>Dans ces lignes, remplacer <code class="docutils literal notranslate"><span class="pre">NOM</span></code> par <code class="docutils literal notranslate"><span class="pre">nom</span></code>, la variable de la boucle.</p></li>
+</ol>
+<p>Le programme devient :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Les valeurs viennent de la ligne de commande</span>
+<span class="n">analyseur</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">"Les ingrédients d'une recette pour un nombre de personnes, en unités SI ou US."</span><span class="p">)</span>
+<span class="n">analyseur</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">"nom"</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s2">"?"</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">"la recette : un fichier de recettes/, sans .csv"</span><span class="p">)</span>
+<span class="n">analyseur</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">"-p"</span><span class="p">,</span> <span class="s2">"--personnes"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">"nombre de personnes (défaut : 4)"</span><span class="p">)</span>
+<span class="n">analyseur</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">"-u"</span><span class="p">,</span> <span class="s2">"--unites"</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">(</span><span class="s2">"SI"</span><span class="p">,</span> <span class="s2">"US"</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="s2">"SI"</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">"système d'unités (défaut : SI)"</span><span class="p">)</span>
+<span class="n">analyseur</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">"--page"</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">"store_true"</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">"écrit aussi la page de la recette : son texte complété, puis sa page HTML"</span><span class="p">)</span>
+<span class="n">analyseur</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">"--toutes"</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">"store_true"</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">"toutes les recettes de recettes/, au lieu d'une seule"</span><span class="p">)</span>
+<span class="n">options</span> <span class="o">=</span> <span class="n">analyseur</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+<span class="n">PERSONNES</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">personnes</span>
+<span class="n">UNITES</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">unites</span>
+<span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">toutes</span><span class="p">:</span>
+    <span class="n">noms</span> <span class="o">=</span> <span class="n">noms_des_recettes</span><span class="p">()</span>
+<span class="k">elif</span> <span class="n">options</span><span class="o">.</span><span class="n">nom</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">noms</span> <span class="o">=</span> <span class="p">[</span><span class="n">options</span><span class="o">.</span><span class="n">nom</span><span class="p">]</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">analyseur</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">"donner le nom d'une recette, ou --toutes"</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">nom</span> <span class="ow">in</span> <span class="n">noms</span><span class="p">:</span>
+    <span class="n">ingredients</span> <span class="o">=</span> <span class="n">lire_ingredients</span><span class="p">(</span><span class="n">DONNEES</span> <span class="o">/</span> <span class="p">(</span><span class="n">nom</span> <span class="o">+</span> <span class="s2">".csv"</span><span class="p">))</span>
+    <span class="n">ingredients</span> <span class="o">=</span> <span class="n">adapter</span><span class="p">(</span><span class="n">ingredients</span><span class="p">,</span> <span class="n">PERSONNES_RECETTE</span><span class="p">,</span> <span class="n">PERSONNES</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">UNITES</span> <span class="o">==</span> <span class="s2">"US"</span><span class="p">:</span>
+        <span class="n">ingredients</span> <span class="o">=</span> <span class="n">convertir</span><span class="p">(</span><span class="n">ingredients</span><span class="p">,</span> <span class="n">VERS_US</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ingredients</span> <span class="o">=</span> <span class="n">convertir</span><span class="p">(</span><span class="n">ingredients</span><span class="p">,</span> <span class="n">VERS_SI</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">nom</span><span class="p">,</span> <span class="s2">"pour"</span><span class="p">,</span> <span class="n">PERSONNES</span><span class="p">,</span> <span class="s2">"personnes, en unités"</span><span class="p">,</span> <span class="n">UNITES</span><span class="p">)</span>
+    <span class="n">afficher</span><span class="p">(</span><span class="n">ingredients</span><span class="p">)</span>
+
+    <span class="c1"># Le résultat, dans sortie/</span>
+    <span class="n">SORTIE</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">fichier</span> <span class="o">=</span> <span class="n">SORTIE</span> <span class="o">/</span> <span class="p">(</span><span class="n">nom</span> <span class="o">+</span> <span class="s2">"_"</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">PERSONNES</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"_"</span> <span class="o">+</span> <span class="n">UNITES</span> <span class="o">+</span> <span class="s2">".csv"</span><span class="p">)</span>
+    <span class="n">ecrire_ingredients</span><span class="p">(</span><span class="n">fichier</span><span class="p">,</span> <span class="n">ingredients</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"écrit :"</span><span class="p">,</span> <span class="n">fichier</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">page</span><span class="p">:</span>
+        <span class="n">markdown</span> <span class="o">=</span> <span class="n">ecrire_markdown</span><span class="p">(</span><span class="n">nom</span><span class="p">,</span> <span class="n">PERSONNES</span><span class="p">,</span> <span class="n">UNITES</span><span class="p">,</span> <span class="n">ingredients</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"écrit :"</span><span class="p">,</span> <span class="n">markdown</span><span class="p">)</span>
+        <span class="n">page</span> <span class="o">=</span> <span class="n">ecrire_page</span><span class="p">(</span><span class="n">markdown</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"écrit :"</span><span class="p">,</span> <span class="n">page</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Vérification</strong> :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python recette.py --toutes --page
+</pre></div>
+</div>
+<p>affiche chaque recette, puis les fichiers écrits : 10 pages HTML
+en tout. Sans nom ni <code class="docutils literal notranslate"><span class="pre">--toutes</span></code>, le programme s’arrête avec ce message :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>recette.py: error: donner le nom d'une recette, ou --toutes
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git add recettes
+git commit -am "Toutes les recettes"
+</pre></div>
+</div>
+</section>
+</section>
+<section id="d4-generer-le-sommaire-des-recettes">
+<h2>D4 · Générer le sommaire des recettes<a class="headerlink" href="#d4-generer-le-sommaire-des-recettes" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> écrire une fonction, <code class="docutils literal notranslate"><span class="pre">ecrire_sommaire</span></code>, et l’appeler après la boucle ; faire un commit ; soumettre la branche <code class="docutils literal notranslate"><span class="pre">livre</span></code> avec une pull request.</p>
+<p><strong>À obtenir :</strong> <code class="docutils literal notranslate"><span class="pre">sortie/index.html</span></code> a un lien vers chaque page ; la branche <code class="docutils literal notranslate"><span class="pre">livre</span></code> est fusionnée dans <code class="docutils literal notranslate"><span class="pre">master</span></code> sur GitHub.</p>
+</div></blockquote>
+<p>Les dix pages ne sont reliées par aucun lien : pour ouvrir l’une d’elles,
+il faut connaître le nom de son fichier. Le sommaire, <code class="docutils literal notranslate"><span class="pre">sortie/index.html</span></code>,
+donne un lien vers chacune.</p>
+<p>Les modifications à faire, dans l’ordre :</p>
+<ol class="arabic simple">
+<li><p>Écrire une fonction, <code class="docutils literal notranslate"><span class="pre">ecrire_sommaire</span></code>, qui écrit le sommaire en
+Markdown, <code class="docutils literal notranslate"><span class="pre">sortie/index.md</span></code>, puis le convertit en page HTML par
+<code class="docutils literal notranslate"><span class="pre">ecrire_page</span></code>.</p></li>
+<li><p>Modifier le programme principal pour qu’il appelle cette fonction après
+la boucle, quand la commande porte <code class="docutils literal notranslate"><span class="pre">--page</span></code> et <code class="docutils literal notranslate"><span class="pre">--toutes</span></code>.</p></li>
+</ol>
+<p>Terminer ensuite la branche <code class="docutils literal notranslate"><span class="pre">livre</span></code> par un commit et une pull request,
+comme la branche <code class="docutils literal notranslate"><span class="pre">page</span></code> à l’étape D2.</p>
+<p><img alt="Le sommaire : un lien par recette" src="../../../../_images/sommaire.png" /></p>
+<p>Le sommaire est une page de plus, écrite comme les autres : un fichier
+Markdown, <code class="docutils literal notranslate"><span class="pre">sortie/index.md</span></code>, converti par <code class="docutils literal notranslate"><span class="pre">ecrire_page</span></code>. Il contient un
+titre, puis une liste Markdown, un lien par recette :
+<code class="docutils literal notranslate"><span class="pre">-</span> <span class="pre">[Crêpes](crepes.html)</span></code>. Le texte du lien est le titre de la recette, la
+première ligne de son fichier <code class="docutils literal notranslate"><span class="pre">.md</span></code> sans le <code class="docutils literal notranslate"><span class="pre">#</span> </code>, lue comme dans
+<code class="docutils literal notranslate"><span class="pre">ecrire_page</span></code>. <code class="docutils literal notranslate"><span class="pre">ecrire_sommaire</span></code> construit ce texte comme <code class="docutils literal notranslate"><span class="pre">tableau</span></code> : une
+chaîne de départ, le titre du sommaire, puis une ligne ajoutée par
+recette.</p>
+<div class="highlight-modif notranslate"><div class="highlight"><pre><span></span>  115
+  116
+<span class="gi">+++</span>
+<span class="gi">def ecrire_sommaire(noms):</span>
+<span class="gi">    """Le sommaire : sortie/index.md, un lien vers la page de chaque recette, puis sa page HTML ; renvoie son chemin."""</span>
+<span class="gi">    texte = "# Le livre de recettes\n\n"</span>
+<span class="gi">    for nom in noms:</span>
+<span class="gi">        with open(DONNEES / (nom + ".md"), encoding="utf-8") as fichier:</span>
+<span class="gi">            premiere_ligne = fichier.readline()</span>
+<span class="gi">        titre = premiere_ligne.strip()</span>
+<span class="gi">        titre = titre.lstrip("# ")</span>
+<span class="gi">        texte = texte + "- [" + titre + "](" + nom + ".html)\n"</span>
+<span class="gi">    markdown = SORTIE / "index.md"</span>
+<span class="gi">    markdown.write_text(texte, encoding="utf-8")</span>
+<span class="gi">    return ecrire_page(markdown)</span>
+
+
+<span class="gi">+++</span>
+  131 # ---- Le programme -------------------------------------------------------------
+  132
+    …
+  171         page = ecrire_page(markdown)
+  172         print("écrit :", page)
+<span class="gi">+++</span>
+
+<span class="gi"># Le sommaire des pages écrites</span>
+<span class="gi">if options.page and options.toutes:</span>
+<span class="gi">    sommaire = ecrire_sommaire(noms)</span>
+<span class="gi">    print("écrit :", sommaire)</span>
+<span class="gi">+++</span>
+</pre></div>
+</div>
+<p><strong>Vérification</strong> : <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">recette.py</span> <span class="pre">--toutes</span> <span class="pre">--page</span></code> se termine par</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>écrit : C:\Users\eleve\Desktop\cours7\7a_recette\travail\recette\sortie\index.html
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">start</span> <span class="pre">sortie/index.html</span></code> ouvre le sommaire ; chaque lien ouvre une page.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git commit -am "Le sommaire"
+git push -u origin livre
+</pre></div>
+</div>
+<p>Sur GitHub, ouvrir puis fusionner la pull request de la branche <code class="docutils literal notranslate"><span class="pre">livre</span></code>,
+comme à l’étape D2. Sur le poste, ramener ensuite <code class="docutils literal notranslate"><span class="pre">master</span></code> :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git checkout master
+git pull
+</pre></div>
+</div>
+</section>
+<section id="d5-bonus-publier-les-pages-sur-github-pages">
+<h2>D5 (bonus) · Publier les pages sur GitHub Pages<a class="headerlink" href="#d5-bonus-publier-les-pages-sur-github-pages" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>À faire :</strong> copier les pages dans un dossier <code class="docutils literal notranslate"><span class="pre">docs/</span></code> du dépôt ; régler GitHub Pages sur ce dossier.</p>
+<p><strong>À obtenir :</strong> le sommaire s’ouvre à l’adresse <code class="docutils literal notranslate"><span class="pre">https://&lt;compte&gt;.github.io/td7a-recette/</span></code>.</p>
+</div></blockquote>
+<p>GitHub Pages publie sur le web des pages rangées dans un dépôt GitHub : le
+livre de recettes devient lisible par tous, à une adresse en <code class="docutils literal notranslate"><span class="pre">github.io</span></code>.
+GitHub Pages ne publie que des fichiers versionnés, et <code class="docutils literal notranslate"><span class="pre">sortie/</span></code> ne l’est
+pas : copier les pages dans un dossier versionné, <code class="docutils literal notranslate"><span class="pre">docs/</span></code>.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mkdir docs
+cp sortie/*.html sortie/style.css docs/
+git add docs
+git commit -m "Les pages, publiées"
+git push
+</pre></div>
+</div>
+<p>Sur GitHub : Settings, Pages ; Source : Deploy from a branch ; Branch :
+<code class="docutils literal notranslate"><span class="pre">master</span></code>, dossier <code class="docutils literal notranslate"><span class="pre">/docs</span></code> ; Save. Une minute plus tard, la page Settings,
+Pages donne l’adresse du site.</p>
+<p><strong>Vérification</strong> : <code class="docutils literal notranslate"><span class="pre">https://&lt;compte&gt;.github.io/td7a-recette/</span></code> affiche le
+sommaire. Les pages publiées sont une copie : après une modification du
+programme, refaire la copie, le commit et le <code class="docutils literal notranslate"><span class="pre">push</span></code>.</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../../../index.html"
+       title="page précédente">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">précédent</p>
+        <p class="prev-next-title">Séance 7 — Projet d’application 2</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../7b_train/guide.html"
+       title="page suivante">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">suivant</p>
+        <p class="prev-next-title">TD 7b — Reprendre et compléter le projet d’un autre</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#au-debut-de-la-seance">Au début de la séance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aide-memoire-python">Aide-mémoire Python</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d0-recuperer-le-projet-github-initial">D0 · Récupérer le projet GitHub initial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d1-generer-la-page-html-d-une-recette">D1 · Générer la page HTML d’une recette</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d1-1-ajouter-le-tableau-des-ingredients-au-texte-de-la-recette">D1.1 Ajouter le tableau des ingrédients au texte de la recette</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d1-2-generer-la-page-html-en-appelant-pandoc">D1.2 Générer la page HTML en appelant pandoc</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d2-soumettre-les-modifications-avec-une-pull-request">D2 · Soumettre les modifications avec une pull request</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d3-ajouter-une-option-pour-generer-toutes-les-recettes">D3 · Ajouter une option pour générer toutes les recettes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d3-1-obtenir-la-liste-des-noms-des-recettes">D3.1 Obtenir la liste des noms des recettes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d3-2-ajouter-l-option-toutes-qui-genere-la-page-de-chaque-recette">D3.2 Ajouter l’option <code class="docutils literal notranslate"><span class="pre">--toutes</span></code>, qui génère la page de chaque recette</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d4-generer-le-sommaire-des-recettes">D4 · Générer le sommaire des recettes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d5-bonus-publier-les-pages-sur-github-pages">D5 (bonus) · Publier les pages sur GitHub Pages</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par 1re année géomatique
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, module info01 — CC-BY-4.0.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
