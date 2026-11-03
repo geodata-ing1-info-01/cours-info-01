@@ -63,3 +63,7 @@ livraison/
 # src/conf.py à chaque construction du book.
 src/cours*/notebook/td/*/illustrations/*.png
 src/cours*/notebook/td/*/depart/illustrations/*.png
+
+# Examen écrit : le sujet et son corrigé partagent un même source. Le dépôt est
+# public sur GitHub et les élèves le connaissent : rien de ce dossier n'y entre.
+examen/
