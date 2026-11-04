@@ -8,6 +8,11 @@
 // reformulées ; les diapositives nouvelles portent un commentaire
 // « nouveau (v2) » dans leur source.
 //
+// 04/11/2026 : l'introduction du module sort du cours 1 et attend dans
+// `a_reprendre/introduction_module.typ`. Trois diapositives de matériel sont
+// reprises du cours 5 de 2026, qui reste inchangé : les composants en partie 1,
+// le processeur en partie 3, avant la compilation.
+//
 //   python outils/compiler_diapos.py --cours 1_v2            # à projeter
 //   python outils/compiler_diapos.py --cours 1_v2 --notes    # notes de conduite
 //   python outils/compiler_diapos.py --cours 1_v2 --corrige  # corrigé des TD

@@ -16,7 +16,7 @@ TD fait constater.
 ## Terminal et premier programme
 
 - [TD 1b — Les fichiers du TD 1a en ligne de commande](td/1b_terminal/guide.md), 15 minutes
-- [TD 1c — Écrire et lancer un programme](td/1c_programme/guide.md), 20 minutes
+- [TD 1c — Lancer un programme](td/1c_programme/guide.md), 20 minutes
 
 ## Un notebook et la syntaxe de Markdown
 

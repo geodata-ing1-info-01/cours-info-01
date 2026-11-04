@@ -3,6 +3,7 @@
 //
 #import "../../../commun/prelude.typ": *
 #import "../schemas.typ": terminal, chaine-terminal
+#import "../../../cours5/diapo/schemas.typ": schema-processeur, schema-coeurs
 
 #separateur(
   "Programme Python et notebook",
@@ -56,6 +57,73 @@
     Le fichier est du texte : il s'ouvre dans le Bloc-notes (TD 1a). Son
     extension `.py` ne change rien à son contenu ; elle fait seulement
     reconnaître le fichier par Notepad++ et par l'explorateur.
+  ]
+]
+
+// --------------------------------------------
+// Repris du cours 5 le 04/11/2026 (`cours5/diapo/parties/01_materiel.typ`), qui
+// garde la sienne. Seuls les renvois changent : au cours 5, cette diapositive
+// ouvre une suite de cinq, jusqu'aux six cœurs du Ryzen 5 7530U. Elle prépare
+// « instructions machine » de la diapositive de compilation.
+#d("Le processeur : un cœur")[
+  #annonce[
+    Un cœur exécute les instructions du programme une par une, une par cycle.
+  ]
+
+  #schema-processeur(1)
+
+  #legende[
+    Une cadence de 2~GHz fait 2 milliards de cycles par seconde. 2~GHz est la
+    cadence de base de l'AMD Ryzen 5 7530U (2023), un processeur de portable.
+  ]
+
+  #notes[
+    Une instruction : lire une valeur en mémoire, multiplier, additionner,
+    comparer, sauter à une autre instruction. Une ligne de Python correspond à
+    des dizaines ou des centaines d'instructions.
+
+    Le compte suppose une instruction de calcul à chaque cycle ; il donne un
+    maximum.
+
+    Cadence de base : celle que le processeur tient sur tous ses cœurs à la
+    fois. Un cœur seul monte jusqu'à 4,5 GHz.
+  ]
+]
+
+// --------------------------------------------
+// D'après « Le processeur : six cœurs » du cours 5 (annonce et notes), le
+// 04/11/2026. Le schéma de cette diapositive-là multiplie des facteurs que le
+// cours 1 ne présente pas (instructions vectorielles, a × b + c) : celui-ci est
+// `schema-coeurs`, celui de la diapositive « Le processeur » du cours 5 avant
+// le 19/10/2026, toujours employé par la page de cours.
+#d("Le processeur : plusieurs cœurs")[
+  #annonce[
+    Chaque cœur suit sa file d'instructions ; un programme Python ordinaire
+    n'en occupe qu'un.
+  ]
+
+  #align(center, schema-coeurs())
+
+  #legende[
+    Deux cœurs sur les processeurs grand public depuis 2005 (AMD Athlon 64
+    X2, Intel Pentium D).
+  ]
+
+  #notes[
+    Les autres cœurs servent aux autres programmes ouverts.
+
+    Cœurs : 4 sur les postes de la salle (relevé au TD 5a), 4 à 8 sur un
+    portable, 32 à 128 sur un serveur de calcul.
+
+    Les cœurs se sont multipliés quand la fréquence a cessé de monter, vers
+    2005.
+
+    Un programme occupe plusieurs cœurs s'il découpe son travail en parties
+    indépendantes. numpy le fait pour le produit de matrices.
+
+    Le gestionnaire des tâches affiche pour le Ryzen 5 7530U 6 cœurs et 12
+    processeurs logiques : chaque cœur suit deux files d'instructions, qui se
+    partagent ses unités.
   ]
 ]
 
@@ -224,7 +292,7 @@
   #grid(
     columns: (0.85fr, 1.15fr), column-gutter: 18pt, align: top,
     chaine-terminal(
-      ("Notepad++", "écrire altitudes.py, l'enregistrer"),
+      ("Notepad++", "modifier altitudes.py, l'enregistrer"),
       ("Le terminal", "taper python altitudes.py"),
       ("L'interpréteur python", "lit le fichier enregistré, l'exécute"),
       ("Le terminal", "affiche moyenne : 129.0 m"),

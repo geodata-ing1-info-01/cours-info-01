@@ -144,7 +144,7 @@ tapées une à une dans une **session interactive**.
 :::{grid-item}
 **Un programme, écrit dans un éditeur de texte**
 
-1. écrire `altitudes.py` dans Notepad++, et l'enregistrer ;
+1. modifier `altitudes.py` dans Notepad++, et l'enregistrer ;
 2. taper `python altitudes.py` dans le terminal ;
 3. l'interpréteur lit le fichier enregistré, et l'exécute ;
 4. le terminal affiche `moyenne : 129.0 m`.
@@ -233,7 +233,7 @@ On choisit, pour une tâche, le plus simple des outils qui la font.
 
 ## TD de la partie
 
-- [TD 1c — Écrire et lancer un programme](td/1c_programme/guide.md), 20
+- [TD 1c — Lancer un programme](td/1c_programme/guide.md), 20
   minutes : voir quel `python` la commande lance ; régler conda dans Git
   Bash, une fois par poste ; ouvrir `altitudes.py` dans Notepad++, le
   lancer, le modifier et le relancer ; lancer `commandes.sh` si le temps le

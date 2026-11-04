@@ -1,5 +1,5 @@
 ---
-title: "TD 1c — Écrire et lancer un programme"
+title: "TD 1c — Lancer un programme"
 subtitle: Guide détaillé, étape par étape (version 2, proposition)
 jupytext:
   text_representation:

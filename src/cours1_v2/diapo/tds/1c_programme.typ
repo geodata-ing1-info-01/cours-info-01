@@ -1,4 +1,4 @@
-// TD 1c du cours 1 v2 — « Écrire et lancer un programme ».
+// TD 1c du cours 1 v2 — « Lancer un programme ».
 //
 // Reprend du TD 1b de 2026 le programme et la session interactive, sans
 // VS Code : le programme s'ouvre dans Notepad++ et se lance dans Git Bash.
@@ -22,7 +22,7 @@
 
 #let td = (
   numero: "1c",
-  titre: "Écrire et lancer un programme",
+  titre: "Lancer un programme",
   annonce: "Objectif : lancer un programme Python depuis le terminal, en sachant quel Python l'exécute, puis utiliser Python en interactif",
   dossier: "cours1/1c_programme/",
   duree: "20′",

@@ -7,12 +7,64 @@
 // noms (`grid`, `line`, `circle`, `content`…) masqueraient ceux de typst.
 #import "../../../cours1/diapo/schemas.typ": schema-ou-sexecute
 #import "../schemas.typ": schema-stockage-reseau, schema-entrees-sorties
+#import "../../../cours5/diapo/schemas.typ": schema-composants, photo-reperee
 
 // Nouveau (v2) : titre et annonce de la partie.
 #separateur(
-  "Logiciels, fichiers et stockage",
+  "Matériel, logiciels, fichiers et stockage",
   annonce: "Quelques définitions et rappels"
 )
+// -------------------------------- Matériel ----------------------------------
+
+// --------------------------------------------
+// Repris du cours 5 le 04/11/2026 (`cours5/diapo/parties/01_materiel.typ`), qui
+// garde la sienne. Seuls les renvois des notes changent.
+#d("Les composants d'un ordinateur")[
+  #if captures-disponibles {
+    grid(
+      columns: (auto, 1fr), column-gutter: 16pt, align: horizon,
+      scale(86%, reflow: true, schema-composants(dessous: true, numeros: true)),
+      [
+        #photo-reperee("/illustrations/cours5/boitier_ouvert.jpg", 1400 / 1275, (
+          (0.34, 0.50), (0.47, 0.42), (0.62, 0.53),
+          (0.30, 0.66), (0.185, 0.58), (0.23, 0.21),
+        ), hauteur: 262pt)
+        #legende[
+          Un PC de bureau des années 2010, panneau retiré. Photo
+          PantheraLeo1359531, Wikimedia Commons, CC BY 4.0.
+        ]
+      ],
+    )
+  } else {
+    align(center, schema-composants())
+  }
+
+  #notes[
+    Le processeur est détaillé à la partie 3, avant la compilation. La mémoire
+    vive et le disque sont repris sur « Entrées et sorties d'un logiciel » ;
+    leurs temps d'accès sont prévus au cours 3 v2.
+
+    Les numéros du schéma désignent les mêmes composants sur la photo. Le
+    processeur est sous le ventilateur (1). La carte réseau est intégrée à la
+    carte mère ; on n'en voit que la prise, parmi les connecteurs arrière (5).
+    Ce poste n'a pas de carte graphique séparée : le processeur gère
+    l'affichage. Les emplacements vides (4) permettent d'en ajouter une.
+
+    La carte mère relie les composants par des pistes de cuivre. Un ensemble de
+    pistes entre deux composants s'appelle un bus.
+
+    Carte graphique : conçue pour calculer l'image affichée, utilisée aujourd'hui
+    pour le calcul parallèle.
+
+    Carte réseau : câble ou Wi-Fi.
+
+    Alimentation : convertit le 230 V du secteur en 12 V, 5 V et 3,3 V.
+
+    Un portable et un téléphone ont les mêmes composants, soudés sur une seule
+    carte.
+  ]
+]
+
 // ------------------------------- Vocabulaire --------------------------------
 
 // --------------------------------------------
