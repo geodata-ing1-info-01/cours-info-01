@@ -172,9 +172,9 @@ Les captures ne sont pas versionnées, et leur fabrication est décrite dans
 
 ## Tournures corrigées en relecture
 
-Les relectures de septembre 2026 (cours 2, 3 et 5) et d'octobre 2026
-(cours 1 v2) ont corrigé les mêmes tournures, y compris dans des
-diapositives réécrites après une première correction. Elles s'ajoutent à la
+Les relectures de septembre 2026 (cours 2, 3 et 5), d'octobre 2026
+(cours 1 v2) et de novembre 2026 (cours 2 v2) ont corrigé les mêmes tournures,
+y compris dans des diapositives réécrites après une première correction. Elles s'ajoutent à la
 table précédente.
 
 | Tournure | Écrit | Corrigé |
@@ -191,6 +191,9 @@ table précédente.
 | Consigne reléguée en fin de phrase | « …une copie, dans un autre format, à enregistrer dans `travail/` » | « Enregistrer dans `travail\` », en tête de la consigne |
 | Généralité à la place des cas | « chaque export », « un autre format » | « en PDF », « en PNG » |
 | Titre en deux membres reliés par une relative | « La commande `python` et le fichier qu'elle lance » | « Exécution d'un programme Python » |
+| Annonce à effet qui répète le schéma | « Chaque outil a sa fenêtre. À chaque modification, il faut passer de l'une à l'autre. » | pas d'annonce ; dans les notes : « après une modification dans Notepad++, il faut enregistrer le fichier, revenir dans Git Bash et relancer `python altitudes.py` » |
+| Relative en fin de phrase, cause approximative | « LibreOffice Writer enregistre aussi la mise en forme, que Python ne peut pas lire. » | « Un programme écrit dans LibreOffice Writer est enregistré en `.odt`, et `python` ne peut pas exécuter ce fichier. » |
+| Annonce écrite pour remplir la place | « Un fichier `.py` écrit dans l'un de ces outils s'exécute dans les deux autres. » | pas d'annonce |
 
 Sur une diapositive de TD, ce que l'élève doit faire s'écrit en consignes
 numérotées (gabarit `consignes`) ou en pistes (`attendu-pistes`) : une
