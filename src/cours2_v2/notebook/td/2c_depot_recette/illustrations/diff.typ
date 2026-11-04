@@ -1,5 +1,5 @@
 // VS Code, panneau du contrôle de code source, et comparaison de
-// `recette.md` à l'étape 2 du TD 2d (les œufs passent de 4 à 3).
+// `recette.md` à l'étape 2 du TD 2c (les œufs passent de 4 à 3).
 #import "../../../../../commun/illustrations_td.typ": vscode-diff
 #set page(width: auto, height: auto, margin: 12pt, fill: white)
 #vscode-diff("travail", "recette.md", (

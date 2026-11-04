@@ -1,5 +1,5 @@
 ---
-title: "TD 2d — Un dépôt git pour la recette"
+title: "TD 2c — Un dépôt git pour la recette"
 subtitle: Guide détaillé, étape par étape (version 2, proposition)
 jupytext:
   text_representation:
@@ -13,8 +13,8 @@ kernelspec:
 *Version 2 du cours 2 : proposition de travail pour 2027-2028. Les TD joués
 en 2026 sont ceux de la séance 2, dans la partie « Archive 2026 ».*
 
-Ce guide détaille les étapes du TD 2d. Le TD versionne avec git la recette
-écrite en Markdown au TD 2c : un premier commit, des modifications
+Ce guide détaille les étapes du TD 2c. Le TD versionne avec git la recette
+écrite en Markdown : un premier commit, des modifications
 comparées, des fichiers produits par pandoc tenus hors du dépôt, puis une
 branche, une fusion et un conflit. Il dure une quarantaine de minutes.
 L'étape 7 est pour ceux qui ont fini.
@@ -86,34 +86,28 @@ par `-m` pour éviter cet écran.
 
 ## Étape 0 · Préparer le dossier
 
-> **À faire :** copier `recette.md` et `crepes.jpg` du TD 2c dans `2d_depot_recette/travail/` ; ouvrir `travail/` dans VS Code, avec un terminal Git Bash.
+> **À faire :** copier `recette.md` et `crepes.jpg` de `depart/` dans `2c_depot_recette/travail/` ; ouvrir `travail/` dans VS Code, avec un terminal Git Bash.
 >
-> **À obtenir :** l'explorateur de VS Code montre `crepes.jpg` et `recette.md` ; l'invite se termine par `2d_depot_recette/travail`.
+> **À obtenir :** l'explorateur de VS Code montre `crepes.jpg` et `recette.md` ; l'invite se termine par `2c_depot_recette/travail`.
 
-**Dossier de départ** : `cours2/2d_depot_recette/`, tel que décompressé
+**Dossier de départ** : `cours2/2c_depot_recette/`, tel que décompressé
 depuis l'archive.
 
 ```text
-2d_depot_recette/
+2c_depot_recette/
 ├── depart/
 │   ├── crepes.jpg
-│   └── recette.md       (la recette attendue au TD 2c)
+│   └── recette.md
 └── travail/             (vide)
 ```
 
 ### 0.1 Copier la recette
 
 Dans le terminal de VS Code, se placer dans le dossier du TD, puis copier
-la recette écrite au TD 2c et sa photo :
+la recette et sa photo :
 
 ```text
-cd ~/Desktop/info01/cours2/2d_depot_recette
-cp ../2c_markdown/travail/recette.md ../2c_markdown/travail/crepes.jpg travail/
-```
-
-Si le TD 2c n'est pas terminé, copier la recette de `depart/` à la place :
-
-```text
+cd ~/Desktop/info01/cours2/2c_depot_recette
 cp depart/recette.md depart/crepes.jpg travail/
 ```
 
@@ -121,12 +115,12 @@ cp depart/recette.md depart/crepes.jpg travail/
 
 ### 0.2 Ouvrir `travail/` dans VS Code
 
-File → Open Folder… → choisir `cours2\2d_depot_recette\travail`. VS Code se
+File → Open Folder… → choisir `cours2\2c_depot_recette\travail`. VS Code se
 rouvre sur ce dossier ; ouvrir un terminal (Terminal → New Terminal).
 
 **Vérification** : l'explorateur montre les deux fichiers ; dans le
 terminal, `pwd` affiche un chemin qui se termine par
-`2d_depot_recette/travail`.
+`2c_depot_recette/travail`.
 
 Le dépôt se crée dans le dossier courant du terminal. Si `pwd` affiche un
 autre dossier, `cd` jusqu'à `travail/` avant l'étape 1.
@@ -148,7 +142,7 @@ git affiche d'abord une dizaine de lignes qui commencent par `astuce:`
 dernière ligne est :
 
 ```text
-Dépôt Git vide initialisé dans …/2d_depot_recette/travail/.git/
+Dépôt Git vide initialisé dans …/2c_depot_recette/travail/.git/
 ```
 
 (« Initialized empty Git repository in … ».) Puis :
@@ -170,7 +164,7 @@ fichiers du dossier n'ont pas changé.
 
 **Vérification** : l'invite se termine maintenant par `(master)`.
 
-Si `git init` a été tapé dans un autre dossier (`2d_depot_recette/` par
+Si `git init` a été tapé dans un autre dossier (`2c_depot_recette/` par
 exemple), supprimer le `.git` créé par erreur (`rm -rf .git`, dans ce
 dossier-là), puis revenir dans `travail/` et recommencer.
 
@@ -411,7 +405,7 @@ restaurer que ce qui a été enregistré par un commit.
 
 ### 4.1 Produire la page et le document
 
-Les deux commandes du TD 2c :
+pandoc convertit un fichier Markdown, d'après l'extension demandée :
 
 ```text
 pandoc recette.md -o recette.html
@@ -844,7 +838,7 @@ fait.
 ```
 
 (« Cloning into 'copie'... done. ») `cd ..` remonte dans
-`2d_depot_recette/` ; `git clone` y crée `copie/`, à côté de `travail/`.
+`2c_depot_recette/` ; `git clone` y crée `copie/`, à côté de `travail/`.
 Pour copier le dépôt sur une clé USB, donner en second argument un dossier
 de la clé, par exemple `/e/recette` pour le lecteur `E:`.
 
@@ -880,8 +874,8 @@ git remote -v
 ```
 
 ```text
-origin	…/2d_depot_recette/travail (fetch)
-origin	…/2d_depot_recette/travail (push)
+origin	…/2c_depot_recette/travail (fetch)
+origin	…/2c_depot_recette/travail (push)
 ```
 
 La copie garde le chemin du dépôt dont elle vient, sous le nom `origin`.

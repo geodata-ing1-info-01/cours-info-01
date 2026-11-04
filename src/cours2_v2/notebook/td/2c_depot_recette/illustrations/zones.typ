@@ -1,5 +1,5 @@
 // Les trois zones de git et les commandes qui font passer de l'une à
-// l'autre, pour le guide du TD 2d.
+// l'autre, pour le guide du TD 2c.
 #import "../../../../../commun/theme.typ": accent, estompe, gris, brun, demi-gras, police-texte, police-code
 #set page(width: auto, height: auto, margin: 12pt, fill: white)
 #set text(font: police-texte, size: 11pt, fill: accent, lang: "fr")

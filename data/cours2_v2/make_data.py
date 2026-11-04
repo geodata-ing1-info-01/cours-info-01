@@ -4,7 +4,7 @@
 Les fichiers texte des TD sont versionnés dans leur dossier. Seule la photo
 de la recette vient d'ailleurs : `data/cours1/1f_markdown/fourni/crepes.jpg`
 (CC0, Wikimedia Commons), importée par `outils/ressources.py`. Ce script la
-recopie dans le `produit/depart/` des TD 2c et 2d.
+recopie dans le `produit/depart/` du TD 2c.
 
     python data/cours2_v2/make_data.py build
 """
@@ -17,7 +17,7 @@ from pathlib import Path
 
 ICI = Path(__file__).resolve().parent
 PHOTO = ICI.parent / "cours1" / "1f_markdown" / "fourni" / "crepes.jpg"
-TDS = ("2c_markdown", "2d_depot_recette")
+TDS = ("2c_depot_recette",)
 
 
 def build() -> None:

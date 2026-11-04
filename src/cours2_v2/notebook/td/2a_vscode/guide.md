@@ -75,7 +75,7 @@ ls cours2
 ```
 
 ```text
-2a_vscode/  2b_erreurs/  2c_markdown/  2d_depot_recette/
+2a_vscode/  2b_erreurs/  2c_depot_recette/
 ```
 
 Si `unzip` affiche `command not found`, décompresser à la souris : clic

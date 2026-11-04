@@ -5,11 +5,11 @@
 // enseignants. Le cours 2 joué en 2026 (portage du support de Florent
 // Geniet) reste dans `src/cours2/`, inchangé.
 //
-// Les diapositives reprises du cours 1 de 2026 (éditeur de code, Markdown)
-// sont copiées sans être reformulées. La partie git est réécrite sur le
+// Les diapositives reprises du cours 1 de 2026 (éditeur de code) sont copiées
+// sans être reformulées. La partie git est réécrite sur le
 // modèle des autres cours (titre, annonce, preuve visuelle) ; elle reprend
 // les schémas de `commun/schemas_git.typ`. Les sorties de git viennent du
-// rejeu du TD 2d : `src/cours2_v2/notebook/td/2d_depot_recette/rejeu/`.
+// rejeu du TD 2c : `src/cours2_v2/notebook/td/2c_depot_recette/rejeu/`.
 //
 //   python outils/compiler_diapos.py --cours 2_v2            # à projeter
 //   python outils/compiler_diapos.py --cours 2_v2 --notes    # notes de conduite
@@ -27,32 +27,29 @@
 
 #import "tds/2a_vscode.typ": td as td-2a
 #import "tds/2b_erreurs.typ": td as td-2b
-#import "tds/2c_markdown.typ": td as td-2c
-#import "tds/2d_depot_recette.typ": td as td-2d
+#import "tds/2c_depot_recette.typ": td as td-2c
 
 #include "parties/00_ouverture.typ"
 
-// L'éditeur est présenté, avec Markdown en fin de partie, puis configuré en
-// classe entière (TD 2a) et employé (TD 2b, TD 2c). Ordre du 28/09/2026 ;
-// `parties/01_vscode.typ` retiré.
+// L'éditeur est présenté, puis configuré en classe entière (TD 2a) et employé
+// (TD 2b). Ordre du 28/09/2026 ; `parties/01_vscode.typ` retiré.
+// 04/11/2026 : `parties/03_markdown.typ` et le TD Markdown sont retirés, la
+// syntaxe minimale est vue au cours 1 v2 ; l'ancien TD 2d devient le TD 2c ;
+// `parties/03b_vscode.typ` est fondu dans `parties/02_editeur.typ`.
 #include "parties/02_editeur.typ"
-#include "parties/03_markdown.typ"
-#include "parties/03b_vscode.typ"
 #if tds {
   include "tds/2a_vscode.typ"
   include "tds/2b_erreurs.typ"
-  include "tds/2c_markdown.typ"
 } else {
   sommaire-td(td-2a)
   sommaire-td(td-2b)
-  sommaire-td(td-2c)
 }
 
 #include "parties/04_git.typ"
 #if tds {
-  include "tds/2d_depot_recette.typ"
+  include "tds/2c_depot_recette.typ"
 } else {
-  sommaire-td(td-2d)
+  sommaire-td(td-2c)
 }
 
 #include "parties/99_cloture.typ"

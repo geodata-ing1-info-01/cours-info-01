@@ -6,9 +6,13 @@
 // terminal est Git Bash, configuré au cours 1, à la place du profil Anaconda
 // Prompt. Le guide détaillé est `src/cours2_v2/notebook/td/2a_vscode/guide.md`.
 //
+// 04/11/2026 : les tableaux « Ce qu'il faut faire / Ce que vous vérifiez »
+// deviennent des listes de consignes, comme au cours 1 v2.
+//
 // Inclus par `cours2_v2.typ` ; compilable seul par
 // `outils/compiler_tds.py --cours 2_v2`.
 #import "../../../commun/prelude.typ": *
+#import "../../../cours1_v2/diapo/schemas.typ": consignes, comment, commandes, constat
 
 #let td = (
   numero: "2a",
@@ -23,19 +27,17 @@
 // et ouvrir le dossier de la séance » fondues le 28/09/2026, avec le réglage
 // de conda pour les postes passés par l'invite d'Anaconda au cours 1.
 #d("Préparer la séance")[
-  #tableau(
-    columns: (auto, 1.3fr, 1fr),
-    align: left + horizon,
-    [], [Ce qu'il faut faire], [Ce que vous vérifiez],
-    [1], [copier `info01-cours2.zip` de `formationTemp` dans `info01`, sur le Bureau],
-      [l'archive est à côté de `cours1`],
-    [2], [Git Bash, `cd ~/Desktop/info01`, puis `unzip info01-cours2.zip`],
-      [la liste des fichiers extraits défile],
-    [3], [`ls cours2`], [`2a_vscode/`, `2b_erreurs/`, `2c_markdown/`, `2d_depot_recette/`],
-    [4], [sans `(base)` : `source /c/ProgramData/anaconda3/etc/profile.d/conda.sh`, `conda init bash`, rouvrir Git Bash],
-      [`(base)` au-dessus de l'invite],
-    [5], [VS Code, depuis le menu Démarrer ; File #sym.arrow.r Open Folder…, `Desktop\info01\cours2` ; « Yes, I trust the authors »],
-      [les quatre dossiers des TD, à gauche],
+  #consignes(
+    taille: 16pt,
+    [Copier l'archive `info01-cours2.zip` de `formationTemp` dans le dossier `info01` du Bureau.
+      #constat[L'archive est à côté de `cours1`.]],
+    [Décompresser l'archive dans Git Bash : #commandes("cd ~/Desktop/info01", "unzip info01-cours2.zip")
+      #constat[La liste des fichiers extraits défile.]],
+    [Lister le dossier de la séance : `ls cours2`.
+      #constat[`2a_vscode/`, `2b_erreurs/`, `2c_depot_recette/`.]],
+    [Si `(base)` n'est pas au-dessus de l'invite, régler conda, puis rouvrir Git Bash : #commandes("source /c/ProgramData/anaconda3/etc/profile.d/conda.sh", "conda init bash")],
+    [Lancer VS Code depuis le menu Démarrer, puis ouvrir le dossier de la séance : #comment[File, Open Folder…, `Desktop\info01\cours2`, puis « Yes, I trust the authors ».]
+      #constat[Les trois dossiers des TD, à gauche.]],
   )
 
   #legende[
@@ -48,7 +50,7 @@
     MinGit et Anaconda ne l'ont pas. À vérifier sur un poste de la salle
     (`which unzip`). Sinon, « Extraire tout… » à la souris.
 
-    Étape 4 : seulement sur les postes où le réglage du TD 1d a
+    Étape 4 : seulement sur les postes où le réglage du TD 1c a
     échoué ou n'a pas été fait (repli sur l'invite de commandes d'Anaconda).
     Mêmes commandes qu'au cours 1.
 
@@ -68,15 +70,13 @@
     identifiant. Il en faut une par langage.
   ]
 
-  #tableau(
-    columns: (1.1fr, 1fr),
-    align: left + horizon,
-    [Ce qu'il faut faire], [Ce que vous observez],
-    [ouvrir `2a_vscode/altitudes.py` avant toute installation],
-      reponse[le texte est déjà coloré : VS Code colore Python sans extension],
-    [`Ctrl` + `Maj` + `X`, chercher `ms-python.python`, installer],
-      reponse[Pylance et le débogueur s'installent avec, et la barre d'état
-              propose un interpréteur],
+  #consignes(
+    taille: 17pt,
+    [Ouvrir `2a_vscode/altitudes.py`, avant toute installation.
+      #constat[Le texte est déjà coloré : VS Code colore Python sans extension.]],
+    [Ouvrir le panneau Extensions : `Ctrl` + `Maj` + `X`.],
+    [Chercher l'identifiant `ms-python.python`, puis cliquer sur Install.
+      #constat[Pylance et le débogueur s'installent avec, et la barre d'état propose un interpréteur.]],
   )
 
   #legende[
@@ -94,7 +94,7 @@
     vérifie l'écriture, et le débogueur. Identifiants relevés sur le poste
     de préparation.
 
-    Deuxième ligne : la coloration est fournie d'origine pour les langages
+    Première consigne : la coloration est fournie d'origine pour les langages
     courants. L'extension ajoute l'interpréteur, l'exécution et la
     vérification des règles d'écriture. Cette vérification ne porte pas sur
     le sens du programme.
@@ -108,26 +108,26 @@
 ]
 
 // Nouveau (v2) : Git Bash, terminal par défaut.
-#d("Git Bash, terminal de VS Code")[
+#d("Choisir Git Bash comme terminal de VS Code")[
   #annonce[
     VS Code ouvre par défaut un terminal PowerShell. Un réglage lui fait
     ouvrir Git Bash, celui du cours 1.
   ]
 
-  #tableau(
-    columns: (auto, 1.2fr, 1fr),
-    align: left + horizon,
-    [], [Ce qu'il faut faire], [Ce que vous constatez],
-    [1], [`Ctrl` + `Maj` + `P`, « Terminal: Select Default Profile », puis « Git Bash »],
-      reponse[la palette se ferme ; rien d'autre ne change],
-    [2], [Terminal #sym.arrow.r New Terminal],
-      reponse[un terminal en bas, avec `(base)` et `MINGW64 ~/Desktop/info01/cours2`],
-    [3], [`python --version`], reponse[la version d'Anaconda, comme au cours 1],
+  #consignes(
+    taille: 17pt,
+    [Ouvrir la palette de commandes : `Ctrl` + `Maj` + `P`.],
+    [Choisir « Terminal: Select Default Profile », puis « Git Bash ».
+      #constat[La palette se ferme ; rien d'autre ne change.]],
+    [Ouvrir un terminal : #comment[menu Terminal, New Terminal.]
+      #constat[Un terminal en bas, avec `(base)` et `MINGW64 ~/Desktop/info01/cours2`.]],
+    [Vérifier le Python lancé : `python --version`.
+      #constat[La version d'Anaconda, comme au cours 1.]],
   )
 
   #legende[
-    Si « Git Bash » n'est pas proposé à l'étape 1 : fermer et relancer VS
-    Code. Sans `(base)` à l'étape 2 : refaire l'étape 4 de la préparation,
+    Si « Git Bash » n'est pas proposé à l'étape 2 : fermer et relancer VS
+    Code. Sans `(base)` à l'étape 3 : refaire l'étape 4 de la préparation,
     puis ouvrir un nouveau terminal.
   ]
 
@@ -149,16 +149,14 @@
     exécute les programmes avec celui qu'on lui désigne.
   ]
 
-  #tableau(
-    columns: (auto, 1.2fr, 1fr),
-    align: left + horizon,
-    [], [Ce qu'il faut faire], [Ce que vous constatez],
-    [1], [`Ctrl` + `Maj` + `P`, « Python: Select Interpreter »],
-      reponse[une liste de chemins ; celui d'Anaconda contient `anaconda3`],
-    [2], [choisir `base`, `C:\ProgramData\anaconda3\python.exe`],
-      reponse[`3.x ('base')` dans la barre d'état, en bas à droite],
-    [3], [ouvrir `2a_vscode/altitudes.py`, bouton #sym.triangle.filled.r en haut à droite],
-      reponse[la commande apparaît dans le terminal, puis `moyenne : 129.0 m`],
+  #consignes(
+    taille: 17pt,
+    [Ouvrir la palette de commandes, puis choisir « Python: Select Interpreter ».
+      #constat[Une liste de chemins ; celui d'Anaconda contient `anaconda3`.]],
+    [Choisir `base`, `C:\ProgramData\anaconda3\python.exe`.
+      #constat[`3.x ('base')` dans la barre d'état, en bas à droite.]],
+    [Ouvrir `2a_vscode/altitudes.py`, puis cliquer sur le bouton #sym.triangle.filled.r en haut à droite.
+      #constat[La commande apparaît dans le terminal, puis `moyenne : 129.0 m`.]],
   )
 
   #legende[
@@ -232,17 +230,16 @@
   ]
 ]
 
-#d("Deux réglages, puis leur fichier")[
-  #tableau(
-    columns: (auto, 1.2fr, 1fr),
-    align: left + horizon,
-    [], [Ce qu'il faut faire], [Ce que vous constatez],
-    [1], [`Ctrl` + `,`, onglet User, chercher « render whitespace », choisir `all`],
-      reponse[un point par espace dans le code],
-    [2], [chercher « auto save », choisir `afterDelay`],
-      reponse[plus de point blanc sur l'onglet d'un fichier modifié],
-    [3], [palette, « Preferences: Open User Settings (JSON) »],
-      reponse[trois lignes : les deux réglages, et le terminal Git Bash],
+#d("Modifier deux réglages, puis lire leur fichier")[
+  #consignes(
+    taille: 17pt,
+    [Ouvrir les réglages : `Ctrl` + `,`, onglet User.],
+    [Chercher « render whitespace », puis choisir `all`.
+      #constat[Un point par espace dans le code.]],
+    [Chercher « auto save », puis choisir `afterDelay`.
+      #constat[Plus de point blanc sur l'onglet d'un fichier modifié.]],
+    [Ouvrir le fichier des réglages : #comment[palette de commandes, « Preferences: Open User Settings (JSON) ».]
+      #constat[Trois lignes : les deux réglages, et le terminal Git Bash.]],
   )
 
   #legende[

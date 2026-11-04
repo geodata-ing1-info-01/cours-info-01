@@ -1,5 +1,5 @@
 // « Enregistrer une version : add, puis commit » (diapo/parties/04_git.typ) :
-// les deux premiers commits du TD 2d.
+// les deux premiers commits du TD 2c.
 #import "_gabarit.typ": *
 #import "_git.typ": *
 #show: schema-de-cours.with(largeur: auto)

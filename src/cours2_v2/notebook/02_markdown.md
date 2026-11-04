@@ -6,9 +6,7 @@ subtitle: Un format texte pour les documents d'un projet, converti par pandoc
 Cette partie présente Markdown comme le format des documents d'un projet :
 un fichier texte, écrit dans l'éditeur de code, que git compare ligne à
 ligne. Elle complète la syntaxe vue au cours 1 dans les cellules d'un
-notebook, puis présente la conversion d'un fichier Markdown par pandoc. Le
-[TD 2c](td/2c_markdown/guide.md) l'accompagne ; il est présenté en fin de
-page.
+notebook, puis présente la conversion d'un fichier Markdown par pandoc.
 
 ## Un format texte pour les documents
 
@@ -51,8 +49,8 @@ programme. Quelques signes y portent la mise en forme : `#` pour un titre,
 :::
 ::::
 
-La recette écrite en Markdown au TD 2c devient le premier projet versionné
-par git, au TD 2d. Ce format convient pour trois raisons :
+La recette en Markdown est le premier projet versionné par git, au TD 2c.
+Ce format convient pour trois raisons :
 
 - il s'écrit dans l’**éditeur de code**, comme un programme ;
 - **git compare ses lignes**, et `git diff` montre la ligne modifiée ;
@@ -73,7 +71,7 @@ sans avoir l'air balisé. Depuis 2014, CommonMark en fixe une spécification.
 ## Le tableau et l'image
 
 La syntaxe vue au cours 1 (titres, paragraphes, listes, gras, liens) sert
-toujours. Le TD 2c y ajoute le tableau et l'image.
+toujours. Cette page y ajoute le tableau et l'image.
 
 ```{list-table}
 :header-rows: 1
@@ -130,7 +128,7 @@ recette.html` ouvre la page, comme un double-clic.
 
 Le fichier `.md` est la **source** ; la page et le document sont des
 **fichiers produits**, qui se refont depuis elle par la même commande. Le
-TD 2d en tire une règle de git : la source se versionne, les fichiers
+TD 2c en tire une règle de git : la source se versionne, les fichiers
 produits ne se versionnent pas.
 
 :::{note}
@@ -143,12 +141,5 @@ Le **README** d'un projet, `README.md`, s'écrit de la même façon. La forge
 l'affiche en page d'accueil du dépôt (cours 6), et le cours 3 en donne le
 plan.
 
-## TD de la partie
-
-- [TD 2c — Une recette en Markdown, convertie par
-  pandoc](td/2c_markdown/guide.md), 12 minutes : mettre en forme un texte
-  brut en Markdown, avec l'aperçu de VS Code, puis le convertir en page web
-  et en document LibreOffice.
-
-Les TD des autres parties sont dans [Travaux dirigés de la séance 2,
+Les TD de la séance sont dans [Travaux dirigés de la séance 2,
 version 2](travaux_diriges.md).

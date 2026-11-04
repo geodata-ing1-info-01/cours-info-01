@@ -7,6 +7,7 @@
 // Inclus par `cours2_v2.typ` ; compilable seul par
 // `outils/compiler_tds.py --cours 2_v2`.
 #import "../../../commun/prelude.typ": *
+#import "../../../cours1_v2/diapo/schemas.typ": consignes, comment, commandes, constat
 
 #let td = (
   numero: "2b",
@@ -17,28 +18,24 @@
 )
 #separateur-td(..td)
 
+// 04/11/2026 : le tableau devient une liste de consignes, comme au cours 1 v2.
 // « Les caractères invisibles dans VS Code » fondue dans la légende de la
 // diapositive suivante le 28/09/2026 (le réglage est fait au TD 2a).
 #d("Corriger trois programmes")[
   #annonce[
     Chacun des trois fichiers de `depart/` porte une faute d'un genre
-    différent. Les copier dans `travail/`, lancer, lire le message, corriger,
-    relancer, dans le terminal de VS Code.
+    différent.
   ]
 
-  #tableau(
-    columns: (auto, 1.2fr, 1fr),
-    align: left + horizon,
-    [Fichier], [Ce que dit le message], [La faute],
-    [`surface.py`],
-      [`TabError: inconsistent use of tabs and spaces`, ligne 6],
-      reponse[la ligne 6 est indentée par une tabulation, la ligne 5 par des espaces],
-    [`moyenne.py`],
-      [`SyntaxError: expected ':'`, ligne 6],
-      reponse[il manque les deux-points à la fin du `for`],
-    [`chemin.py`],
-      [`FileNotFoundError: No such file or directory: 'C:/Users/alice/…'`],
-      reponse[le chemin est celui d'un autre poste ; écrire `../../cours1/1a_formats/depart/raven_une_ligne.txt`],
+  #consignes(
+    taille: 16pt,
+    [Aller dans le dossier du TD, et copier les trois programmes dans `travail/` : #commandes("cd 2b_erreurs", "cp depart/*.py travail/")],
+    [Lancer le premier programme : `python travail/surface.py`. Lire le message, corriger dans VS Code la ligne qu'il désigne, puis relancer.
+      #constat[`TabError: inconsistent use of tabs and spaces`, ligne 6 : la ligne 6 est indentée par une tabulation, la ligne 5 par des espaces.]],
+    [Faire de même avec `python travail/moyenne.py`.
+      #constat[`SyntaxError: expected ':'`, ligne 6 : il manque les deux-points à la fin du `for`.]],
+    [Faire de même avec `python travail/chemin.py`.
+      #constat[`FileNotFoundError: No such file or directory: 'C:/Users/alice/…'` : le chemin est celui d'un autre poste. Écrire `../../cours1/1a_formats/depart/raven_une_ligne.txt`.]],
   )
 
   #legende[

@@ -1,5 +1,5 @@
 #!/bin/bash
-# Rejeu du TD 2d_depot_recette (cours 2 v2) : les commandes du guide, dans
+# Rejeu du TD 2c_depot_recette (cours 2 v2) : les commandes du guide, dans
 # l'ordre, avec leurs sorties. git 2.43 et pandoc 3, en français. Les sorties
 # citées par le guide et les diapositives sont dans `sortie.txt`, relevée le
 # 26/09/2026, puis le 28/09/2026 (étape 4 sans commit du .odt, étape 7).
@@ -10,18 +10,18 @@
 #   bash rejeu.sh > sortie.txt
 set -u
 ICI=$(dirname "$(readlink -f "$0")")
-DEPART=$ICI/../../../../../../data/cours2_v2/2d_depot_recette/depart
+DEPART=$ICI/../../../../../../data/cours2_v2/2c_depot_recette/depart
 S=$(mktemp -d)   # dossier jetable du rejeu
 export LANG=fr_FR.UTF-8 LC_ALL=fr_FR.UTF-8 LANGUAGE=fr
 export HOME=$S/maison GIT_CONFIG_NOSYSTEM=1 GIT_PAGER=cat PAGER=cat
 T=1790000000
 horloge() { T=$((T+60)); export GIT_AUTHOR_DATE="@$T +0200" GIT_COMMITTER_DATE="@$T +0200"; }
 rm -rf "$S/maison" "$S/td"
-mkdir -p "$S/maison" "$S/td/2d_depot_recette/depart" "$S/td/2d_depot_recette/travail"
-cp "$DEPART/recette.md" "$S/td/2d_depot_recette/depart/"
+mkdir -p "$S/maison" "$S/td/2c_depot_recette/depart" "$S/td/2c_depot_recette/travail"
+cp "$DEPART/recette.md" "$S/td/2c_depot_recette/depart/"
 # La photo de la recette, remplacée par un aplat : son contenu ne change rien aux sorties.
-magick -size 64x48 xc:"#d9a441" "$S/td/2d_depot_recette/depart/crepes.jpg"
-cd "$S/td/2d_depot_recette"
+magick -size 64x48 xc:"#d9a441" "$S/td/2c_depot_recette/depart/crepes.jpg"
+cd "$S/td/2c_depot_recette"
 p() { echo; echo "\$ $*"; eval "$@" 2>&1; }
 remplace() { python3 - "$@" <<'PY'
 import sys; f, a, b = sys.argv[1:4]

@@ -1,4 +1,4 @@
-// Le graphe de l'étape 5 du TD 2d : la branche `sans-gluten`, avant et après
+// Le graphe de l'étape 5 du TD 2c : la branche `sans-gluten`, avant et après
 // sa fusion dans `master`. Identifiants du rejeu (rejeu/sortie.txt).
 #import "../../../../../commun/schemas_git.typ": graphe-git
 #import "../../../../../commun/theme.typ": accent, estompe, demi-gras, police-texte

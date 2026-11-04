@@ -1,4 +1,4 @@
-// `recette.md` ouvert dans VS Code pendant le conflit de l'étape 6 du TD 2d :
+// `recette.md` ouvert dans VS Code pendant le conflit de l'étape 6 du TD 2c :
 // les deux versions de la ligne, les marqueurs, et les actions proposées
 // au-dessus. Schéma, pas une capture : libellés de VS Code en anglais.
 #import "../../../../../commun/theme.typ": accent, estompe, gris, brun, demi-gras, police-texte, police-code

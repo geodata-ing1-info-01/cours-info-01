@@ -16,7 +16,7 @@ astuce: Les noms les plus utilisés à la place de 'master' sont 'main', 'trunk'
 astuce: 'development'. La branche nouvellement créée peut être rénommée avec :
 astuce: 
 astuce: 	git branch -m <nom>
-Dépôt Git vide initialisé dans /tmp/tmp.3DlEaXQ50u/td/2d_depot_recette/travail/.git/
+Dépôt Git vide initialisé dans /tmp/tmp.3DlEaXQ50u/td/2c_depot_recette/travail/.git/
 
 $ ls -a
 .
@@ -403,8 +403,8 @@ b6b9a34 Allonge le repos à deux heures
 c505059 Passe la recette à 18 crêpes
 
 $ git remote -v
-origin	/tmp/tmp.3DlEaXQ50u/td/2d_depot_recette/travail (fetch)
-origin	/tmp/tmp.3DlEaXQ50u/td/2d_depot_recette/travail (push)
+origin	/tmp/tmp.3DlEaXQ50u/td/2c_depot_recette/travail (fetch)
+origin	/tmp/tmp.3DlEaXQ50u/td/2c_depot_recette/travail (push)
 
 $ git config user.name
 
