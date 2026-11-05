@@ -172,7 +172,7 @@
 
     Les registres sont une mémoire de quelques octets dans le cœur, où une
     instruction lit ses nombres et écrit ses résultats. Cœur et instructions :
-    « Le processeur : un cœur », cours 1.
+    « Exécution des instructions machine : un cœur », cours 1.
 
     Le texte d'un programme suit le même chemin : `python` lit le fichier
     enregistré (cours 1).

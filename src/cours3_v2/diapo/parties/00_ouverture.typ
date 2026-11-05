@@ -10,9 +10,6 @@
 )
 
 // --------------------------------------------
-// Revue le 04/11/2026 : la chaîne des trois cours, un tableau sans `subprocess`,
-// avec les renvois de la version 2. « Contenu de la séance » et « Deux parcours »
-// sont retirées.
 #d("Objectifs de la séance")[
   #chaine(
     gabarit: bloc, pleins: (2,),

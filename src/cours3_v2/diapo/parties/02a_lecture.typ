@@ -14,7 +14,7 @@
   #annonce[
     Lire un fichier demande trois étapes : l'ouvrir avec la fonction `open`,
     le lire avec une méthode de l'objet fichier, puis le fermer avec la
-    méthode `close`. Le tableau résume les façons de lire un fichier ouvert.
+    méthode `close`.
   ]
 
   #code-commente(

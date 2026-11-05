@@ -1,10 +1,5 @@
 // Partie 1 du cours 3 v2 : la portabilité du code. Incluse par `cours3_v2.typ`.
 //
-// Réécrite le 04/11/2026 : deux motivations, les chemins de fichiers et les
-// paramètres en dur, puis `pathlib` et `argparse`, sur `altitudes.py`, le programme
-// du cours 1, et une trace GPS. Les diapositives qui présentaient le générateur
-// de recette, ses corrections et `subprocess` restent dans
-// `src/cours3/diapo/parties/01_programme.typ`.
 // Un fichier inclus n'hérite pas des imports de son appelant.
 #import "../../../commun/prelude.typ": *
 #import "../schemas.typ": *
