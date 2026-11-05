@@ -132,6 +132,8 @@ La partie A, étapes A1 à A3, dure 30 minutes. La partie B, étapes B1 à B6, d
 | VS Code et son terminal | cours 2 | A2 et les suivantes |
 | git : `init`, `add`, `commit`, `.gitignore` | cours 2 | A3 et les suivantes |
 | les messages d'erreur de Python | cours 2 | B1 |
+| `if` et `range`, dans le code fourni du TD 2c | cours 2 | B2 et B5 |
+| un README | cours 2 | B7 |
 | `argparse`, la lecture d'un fichier | cours 3 | B2 et B3 |
 | une fonction : `def`, `return` | présentée à l'étape B4 | B4 à B6 |
 
@@ -406,7 +408,7 @@ Solution : [étape B4](#@Solution de l'étape B4).
 > **Objectif :** écrire la fonction `distance_parcourue(liste_x, liste_y)`, qui calcule la somme des longueurs des segments, puis afficher le résultat final.
 
 La position 0 n'a pas de position précédente : la boucle commence donc à `i = 1`, et
-`liste_x[i - 1]` désigne la position précédente. Le TD 3a parcourait les altitudes de
+`liste_x[i - 1]` désigne la position précédente. Le TD 2c parcourait les altitudes de
 la même façon.
 
 **Consignes : écrire la fonction**
