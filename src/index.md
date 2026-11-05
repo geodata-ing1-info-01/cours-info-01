@@ -57,6 +57,13 @@ cours7/index
 
 ```{toctree}
 :maxdepth: 1
+:caption: Cours 4, version 2
+
+cours4_v2/notebook/td/4a_trace/guide
+```
+
+```{toctree}
+:maxdepth: 1
 :titlesonly:
 :caption: Annexes
 

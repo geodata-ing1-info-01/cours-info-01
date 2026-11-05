@@ -89,8 +89,8 @@ exclude_patterns = [
 # `GUIDES_DANS_LE_BOOK`, il est aussi une page du book, sous le titre « TD … ».
 # Les guides des autres cours ne sont pas encore relus pour le book (leurs
 # images sont cherchées dans `data/`, depuis `produit/`).
-# Les versions 2 des cours 1 et 2 (propositions 2027-2028) aussi.
-GUIDES_DANS_LE_BOOK = {"cours1", "cours2", "cours3", "cours4", "cours7", "cours1_v2", "cours2_v2"}
+# Les versions 2 des cours 1, 2 et 4 (propositions 2027-2028) aussi.
+GUIDES_DANS_LE_BOOK = {"cours1", "cours2", "cours3", "cours4", "cours7", "cours1_v2", "cours2_v2", "cours4_v2"}
 _SRC = Path(__file__).resolve().parent
 
 
