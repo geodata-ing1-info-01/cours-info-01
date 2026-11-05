@@ -123,7 +123,7 @@
     [Décompresser l'archive dans Git Bash : #commandes("cd ~/Desktop/info01", "unzip info01-cours2.zip")
       #constat[La liste des fichiers extraits défile.]],
     [Lister le dossier de la séance : `ls cours2`.
-      #constat[`2a_vscode/`, `2b_erreurs/`, `2c_depot_recette/`.]],
+      #constat[`2a_vscode/`, `2b_erreurs/`, `2c_depot_altitudes/`.]],
     [Lancer VS Code depuis le menu Démarrer, puis ouvrir le dossier de la séance : #comment[File, Open Folder…, `Desktop\info01\cours2`, puis « Yes, I trust the authors ».]
       #constat[Les trois dossiers des TD, à gauche.]],
   )

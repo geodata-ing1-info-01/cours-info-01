@@ -181,7 +181,7 @@ comme modifiées des lignes qui ne diffèrent que par leur fin.
 La fenêtre de VS Code a trois zones de travail, et une barre d'état en bas.
 
 ```{figure} figures/1_vscode.svg
-:alt: La fenêtre de VS Code, dessinée. À gauche, l'arborescence du dossier cours2 : 2a_vscode, qui contient altitudes.py, sélectionné, puis 2b_erreurs et 2c_depot_recette. Au centre, le fichier altitudes.py, coloré, avec les numéros de ligne et le bouton d'exécution. En bas, le terminal Git Bash : (base), l'invite eleve@POSTE MINGW64 ~/Desktop/info01/cours2, la commande python 2a_vscode/altitudes.py et la sortie moyenne : 129.0 m. En bas, la barre d'état : Ln 8, Col 1, Spaces: 4, UTF-8, LF, Python 3.x ('base').
+:alt: La fenêtre de VS Code, dessinée. À gauche, l'arborescence du dossier cours2 : 2a_vscode, qui contient altitudes.py, sélectionné, puis 2b_erreurs et 2c_depot_altitudes. Au centre, le fichier altitudes.py, coloré, avec les numéros de ligne et le bouton d'exécution. En bas, le terminal Git Bash : (base), l'invite eleve@POSTE MINGW64 ~/Desktop/info01/cours2, la commande python 2a_vscode/altitudes.py et la sortie moyenne : 129.0 m. En bas, la barre d'état : Ln 8, Col 1, Spaces: 4, UTF-8, LF, Python 3.x ('base').
 
 La fenêtre de VS Code après la configuration du TD 2a, dessinée.
 ```

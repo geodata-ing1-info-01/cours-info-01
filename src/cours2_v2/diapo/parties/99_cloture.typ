@@ -18,7 +18,6 @@
   )
 
   #notes[
-    Cours 3 : un environnement conda pour la séance ; les TD sont des dépôts
-    git, un commit par étape (syllabus v2).
+    Cours 3 : `altitudes.py` lit ses mesures dans un fichier.
   ]
 ]

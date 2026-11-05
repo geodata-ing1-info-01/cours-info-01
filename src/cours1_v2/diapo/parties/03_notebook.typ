@@ -3,8 +3,7 @@
 // son appelant.
 //
 // Reprend les diapositives 79 à 82 du cours 1 de 2026. La syntaxe de Markdown
-// est réduite à ce qu'une cellule de texte demande ; l'intention de Markdown,
-// la conversion par pandoc et le README sont au cours 2.
+// est réduite à ce qu'une cellule de texte demande ; le README est au cours 2.
 //
 // Seconde relecture du 19/10/2026 : plus de séparateur ; « Programmation
 // littérale » suit « Compilateur et interpréteur : changer de poste », dans la partie

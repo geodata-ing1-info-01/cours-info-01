@@ -8,7 +8,7 @@ successives d'un projet, et sa place parmi les systèmes de version. Elle
 décrit ensuite la commande `git` et ses sous-commandes, puis celles qui
 créent un dépôt, enregistrent une version, comparent et annulent une
 modification, et ignorent des fichiers. Les exemples sont ceux du [TD
-2c](td/2c_depot_recette/guide.md), qui versionne une recette ; il
+2c](td/2c_depot_altitudes/guide.md), qui versionne le programme `altitudes.py` ; il
 est présenté en fin de page.
 
 ## À quoi sert git
@@ -17,11 +17,11 @@ Sans outil, on garde les versions d'un travail en copiant le fichier sous
 un autre nom :
 
 ```text
-recette.md
-recette_v2.md
-recette_v2_corrigee.md
-recette_finale.md
-recette_finale_OK.md
+altitudes.py
+altitudes_v2.py
+altitudes_v2_corrige.py
+altitudes_final.py
+altitudes_final_OK.py
 ```
 
 Rien n'indique ce qui distingue deux copies, ni laquelle est la bonne.
@@ -33,13 +33,14 @@ revenir.
 :::
 
 **Git** est un logiciel de gestion de versions. Le dossier ne garde qu'un
-`recette.md`, et git garde la liste de ses versions :
+`altitudes.py`, et git garde la liste de ses versions :
 
 ```text
 $ git log --oneline
-28cbb91 Ignore les fichiers produits par pandoc
-fe4fe8b Réduit les œufs à trois
-a16d497 Ajoute la recette des crêpes
+02b563f Ignore le fichier du résultat
+9cd57cf Ajoute un README
+d2f927b Remplace la moyenne par les altitudes extrêmes
+4726396 Ajoute le calcul de la moyenne
 ```
 
 Chaque ligne est un **commit** : une version enregistrée, avec son
@@ -144,13 +145,13 @@ La forme est celle des commandes du cours 1, avec un mot de plus.
   - `init`
   -
   -
-* - `git add recette.md crepes.jpg`
+* - `git add altitudes.py README.md`
   - `add`
   -
-  - `recette.md`, `crepes.jpg`
-* - `git commit -m "Ajoute la recette"`
+  - `altitudes.py`, `README.md`
+* - `git commit -m "Ajoute un README"`
   - `commit`
-  - `-m "Ajoute la recette"`
+  - `-m "Ajoute un README"`
   -
 * - `git log --oneline`
   - `log`
@@ -188,17 +189,16 @@ caché, `.git`, qui contiendra l'historique. Le dossier courant se vérifie
 avant, par `pwd` ou dans l'invite de Git Bash.
 
 ```text
-$ cd ~/Desktop/info01/cours2/2c_depot_recette/travail
+$ cd ~/Desktop/info01/cours2/2c_depot_altitudes/travail
 $ pwd
-/c/Users/eleve/Desktop/info01/cours2/2c_depot_recette/travail
+/c/Users/eleve/Desktop/info01/cours2/2c_depot_altitudes/travail
 $ git init
-Dépôt Git vide initialisé dans …/2c_depot_recette/travail/.git/
+Dépôt Git vide initialisé dans …/2c_depot_altitudes/travail/.git/
 $ ls -a
 .
 ..
-crepes.jpg
+altitudes.py
 .git
-recette.md
 ```
 
 Les fichiers du dossier ne changent pas. Supprimer `.git` supprime
@@ -264,15 +264,14 @@ l'aide.
 ## Enregistrer une version : add, puis commit
 
 ```text
-$ git add recette.md crepes.jpg
-$ git commit -m "Ajoute la recette des crêpes"
-[master (commit racine) a16d497] Ajoute la recette des crêpes
- 2 files changed, 24 insertions(+)
- create mode 100644 crepes.jpg
- create mode 100644 recette.md
+$ git add altitudes.py
+$ git commit -m "Ajoute le calcul de la moyenne"
+[master (commit racine) 4726396] Ajoute le calcul de la moyenne
+ 1 file changed, 8 insertions(+)
+ create mode 100644 altitudes.py
 ```
 
-`a16d497` est le début de l’**identifiant** du commit, une empreinte de 40
+`4726396` est le début de l’**identifiant** du commit, une empreinte de 40
 caractères calculée à partir de son contenu (l'empreinte est présentée au
 cours 5). Les sept premiers suffisent à désigner un commit dans un dépôt.
 L'identifiant diffère sur chaque poste.
@@ -281,7 +280,7 @@ Chaque commit désigne son **parent**, le commit qui le précède. Après un
 second commit, l'historique forme une chaîne :
 
 ```{figure} figures/3_chaine.svg
-:alt: Deux commits, a16 puis fe4, reliés par une flèche de fe4 vers a16. Sous fe4, le cartouche master ; au-dessus, HEAD, qui désigne fe4.
+:alt: Deux commits, 472 puis d2f, reliés par une flèche de d2f vers 472. Sous d2f, le cartouche master ; au-dessus, HEAD, qui désigne d2f.
 
 Les deux premiers commits du TD 2c. La flèche va de chaque commit vers son
 parent.
@@ -289,8 +288,8 @@ parent.
 
 ```text
 $ git log --oneline
-fe4fe8b Réduit les œufs à trois
-a16d497 Ajoute la recette des crêpes
+d2f927b Remplace la moyenne par les altitudes extrêmes
+4726396 Ajoute le calcul de la moyenne
 ```
 
 - `master` est le nom de la **branche** ; il désigne le dernier commit, et
@@ -320,9 +319,9 @@ ignore.
   - rien
 * - `corrections`
   - rien, sans savoir lesquelles
-* - `Réduit les œufs à trois`
-  - la quantité d'œufs a changé
-* - `Ignore les fichiers produits par pandoc`
+* - `Remplace la moyenne par les altitudes extrêmes`
+  - le programme n'affiche plus la moyenne
+* - `Ignore le fichier du résultat`
   - d'où vient le `.gitignore`
 ```
 
@@ -333,32 +332,36 @@ utilisable.
 ## Ce qui a changé : git diff
 
 `git diff` montre les lignes modifiées depuis le dernier commit. Après le
-passage des œufs de 4 à 3 :
+remplacement de la moyenne par les altitudes extrêmes :
 
 ```text
 $ git diff
-diff --git a/recette.md b/recette.md
-index aae4747..45bc5f0 100644
---- a/recette.md
-+++ b/recette.md
-@@ -9,7 +9,7 @@
- | Ingrédient | Quantité |
- |---|---|
- | Farine | 250 g |
--| Œufs | 4 |
-+| Œufs | 3 |
- | Lait | 500 ml |
- | Sel | 1 pincée |
- | Beurre fondu | 50 g |
+diff --git a/altitudes.py b/altitudes.py
+index 613e856..1ad773e 100644
+--- a/altitudes.py
++++ b/altitudes.py
+@@ -1,8 +1,6 @@
+-"""Moyenne d'une série d'altitudes, à la main plutôt qu'avec sum()."""
++"""Altitudes extrêmes d'une série de mesures."""
+ 
+ altitudes = [128.4, 131.0, 127.6]
+-total = 0
+-for altitude in altitudes:
+-    total = total + altitude
+-moyenne = total / len(altitudes)
+-print(f"moyenne : {moyenne:.1f} m")
++print(f"altitude minimale : {min(altitudes):.1f} m")
++print(f"altitude maximale : {max(altitudes):.1f} m")
++print(f"max - min : {max(altitudes) - min(altitudes):.1f} m")
 ```
 
 - `a/` est la version du dernier commit, `b/` celle du disque.
-- La ligne qui commence par `-` est l'ancienne, celle qui commence par `+`
-  la nouvelle. Une ligne modifiée compte pour une ligne retirée et une ligne
-  ajoutée.
+- Les lignes qui commencent par `-` sont les anciennes, celles qui commencent
+  par `+` les nouvelles. Une ligne modifiée compte pour une ligne retirée et une
+  ligne ajoutée.
 - Les autres lignes sont le contexte, trois de chaque côté.
-- `@@ -9,7 +9,7 @@` : le passage commence à la ligne 9, et fait 7 lignes
-  avant comme après.
+- `@@ -1,8 +1,6 @@` : le passage commence à la ligne 1, et fait 8 lignes
+  avant et 6 lignes après.
 
 Dans Git Bash, les lignes `-` sont en rouge et les `+` en vert. VS Code
 montre le même écart côte à côte, dans le panneau du contrôle de code
@@ -370,11 +373,10 @@ source (`Ctrl` + `Maj` + `G`).
 
 ```text
 $ git diff
-@@ -21,4 +21,4 @@
- 5. Laisser reposer une heure.
--6. Cuire dans une poêle chaude, une minute par face.
-+6. Cuire.
-$ git restore recette.md
+@@ -2,5 +2,5 @@
+-print(f"altitude maximale : {max(altitudes):.1f} m")
++print(f"altitude maximale : {max(altitude):.1f} m")
+$ git restore altitudes.py
 $ git status
 Sur la branche master
 rien à valider, la copie de travail est propre
@@ -388,6 +390,31 @@ git ne restaure que ce qui a été enregistré par un commit : une raison de
 faire des commits souvent.
 :::
 
+## Le README d'un projet
+
+`README.md`, à la racine d'un projet, décrit ce qu'il fait et comment s'en
+servir. La forge l'affiche en page d'accueil du dépôt. Il s'écrit pour quelqu'un
+qui découvre le dossier : un camarade, un correcteur, soi-même dans six mois.
+
+```{list-table}
+:header-rows: 1
+
+* - Section
+  - Son contenu
+* - le titre et une phrase
+  - ce que fait le projet
+* - Installation
+  - ce qu'il faut installer, et la commande
+* - Utilisation
+  - la commande qui le lance, et ce qu'elle produit
+* - Données
+  - où sont les données, et d'où elles viennent
+```
+
+Le README du TD 2c a un titre, une phrase et une section Utilisation, avec la
+syntaxe des cellules de texte du cours 1. Celui du TD 4a décrit aussi le format
+des données.
+
 ## Ignorer des fichiers : .gitignore
 
 Certains fichiers du dossier n'ont pas leur place dans le dépôt.
@@ -400,7 +427,7 @@ Certains fichiers du dossier n'ont pas leur place dans le dépôt.
   - Motif
 * - les fichiers produits par une commande
   - ils se refont depuis leur source
-  - `*.html`, `__pycache__/`
+  - `resultat.txt`, `__pycache__/`
 * - les données de travail
   - chaque version resterait dans l'historique ; le projet n'en garde
     qu'un petit jeu d'essai
@@ -412,29 +439,28 @@ Certains fichiers du dossier n'ont pas leur place dans le dépôt.
 
 Un fichier **`.gitignore`**, à la racine du dépôt, liste des motifs de
 noms, un par ligne. `git status` n'affiche plus les fichiers qui y
-correspondent, et `git add` ne les ajoute pas. Au TD 2c, pandoc a produit
-`recette.html` et `recette.odt` :
+correspondent, et `git add` ne les ajoute pas. Au TD 2c, la commande
+`python altitudes.py > resultat.txt` écrit la sortie du programme dans un
+fichier :
 
 ```text
 $ git status
 Sur la branche master
 Fichiers non suivis:
   (utilisez "git add <fichier>..." pour inclure dans ce qui sera validé)
-	recette.html
-	recette.odt
+	resultat.txt
 
 aucune modification ajoutée à la validation mais des fichiers non suivis sont présents (utilisez "git add" pour les suivre)
 ```
 
-Le fichier `.gitignore` contient deux lignes :
+Le fichier `.gitignore` contient une ligne :
 
 ```text
-*.html
-*.odt
+resultat.txt
 ```
 
-Après le commit du `.gitignore`, les deux fichiers sont toujours dans le
-dossier, et absents de `git status` :
+Après le commit du `.gitignore`, le fichier est toujours dans le
+dossier, et absent de `git status` :
 
 ```text
 $ git status
@@ -442,8 +468,8 @@ Sur la branche master
 rien à valider, la copie de travail est propre
 ```
 
-Le `*` remplace n'importe quelle suite de caractères, comme dans Git Bash au
-cours 1. Le `.gitignore` se versionne avec le projet, pour que la règle
+Dans un motif, le `*` remplace n'importe quelle suite de caractères, comme dans
+Git Bash au cours 1. Le `.gitignore` se versionne avec le projet, pour que la règle
 vaille dans toutes les copies.
 
 :::{note}
@@ -453,10 +479,10 @@ Un fichier déjà suivi le reste, même s'il correspond à un motif :
 
 ## TD de la partie
 
-- [TD 2c — Un dépôt git pour la recette](td/2c_depot_recette/guide.md),
+- [TD 2c — Un dépôt git pour altitudes.py](td/2c_depot_altitudes/guide.md),
   40 minutes. Les étapes 0 à 4 appliquent cette page : le dépôt et le
-  premier commit, modifier, comparer et restaurer, ignorer les fichiers
-  produits par pandoc. Les étapes 5 à 7 appliquent la page suivante.
+  premier commit, modifier, comparer et restaurer, écrire un README, ignorer le
+  fichier du résultat. Les étapes 5 à 7 appliquent la page suivante.
 
 Pour s'entraîner à git après la séance, des jeux et des exercices sont
 réunis dans [S'entraîner : jeux et exercices](../../apres/s_entrainer.md),

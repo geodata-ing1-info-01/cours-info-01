@@ -9,7 +9,7 @@
 // sans être reformulées. La partie git est réécrite sur le
 // modèle des autres cours (titre, annonce, preuve visuelle) ; elle reprend
 // les schémas de `commun/schemas_git.typ`. Les sorties de git viennent du
-// rejeu du TD 2c : `src/cours2_v2/notebook/td/2c_depot_recette/rejeu/`.
+// rejeu du TD 2c : `src/cours2_v2/notebook/td/2c_depot_altitudes/rejeu/`.
 //
 //   python outils/compiler_diapos.py --cours 2_v2            # à projeter
 //   python outils/compiler_diapos.py --cours 2_v2 --notes    # notes de conduite
@@ -27,7 +27,7 @@
 
 #import "tds/2a_vscode.typ": td as td-2a
 #import "tds/2b_erreurs.typ": td as td-2b
-#import "tds/2c_depot_recette.typ": td as td-2c
+#import "tds/2c_depot_altitudes.typ": td as td-2c
 
 #include "parties/00_ouverture.typ"
 
@@ -47,7 +47,7 @@
 
 #include "parties/04_git.typ"
 #if tds {
-  include "tds/2c_depot_recette.typ"
+  include "tds/2c_depot_altitudes.typ"
 } else {
   sommaire-td(td-2c)
 }

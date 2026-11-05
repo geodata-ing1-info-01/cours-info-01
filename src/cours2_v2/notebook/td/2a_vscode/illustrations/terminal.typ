@@ -5,5 +5,5 @@
 #vscode-git-bash(
   "cours2",
   "(base)\neleve@POSTE MINGW64 ~/Desktop/info01/cours2\n$ python --version\nPython 3.x.x",
-  fichiers: ("2a_vscode", "2b_erreurs", "2c_depot_recette"),
+  fichiers: ("2a_vscode", "2b_erreurs", "2c_depot_altitudes"),
 )

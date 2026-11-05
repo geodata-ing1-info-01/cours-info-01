@@ -20,8 +20,8 @@
   )
 
   #notes[
-    Cours 2 : VS Code configuré en classe entière, Markdown complet, git
-    local. Le terminal du cours 2 est Git Bash, dans VS Code.
+    Cours 2 : VS Code configuré en classe entière, git local, un README en
+    Markdown. Le terminal du cours 2 est Git Bash, dans VS Code.
 
     Emporter son travail : à préciser (espace personnel, clé USB).
   ]

@@ -5,13 +5,13 @@
 
 #graphe-git(
   commits: (
-    (nom: "c6", col: 0, voie: 0, id: "eda"),
-    (nom: "c8", col: 1, voie: 0, id: "b6b", parents: ("c6",)),
-    (nom: "c7", col: 1, voie: 1, id: "c50", parents: ("c6",)),
+    (nom: "c6", col: 0, voie: 0, id: "6db"),
+    (nom: "c8", col: 1, voie: 0, id: "7e0", parents: ("c6",)),
+    (nom: "c7", col: 1, voie: 1, id: "6f7", parents: ("c6",)),
   ),
   branches: (
     (nom: "master", voie: 0, commit: "c8"),
-    (nom: "pour-18", voie: 1, commit: "c7"),
+    (nom: "mesure-4", voie: 1, commit: "c7"),
   ),
   echelle: 1.3,
   taille-etiquette: 10pt,

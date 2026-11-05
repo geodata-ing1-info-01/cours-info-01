@@ -28,7 +28,7 @@
 "cours2/                  un dossier par TD, dans l'ordre de la séance
 ├── 2a_vscode/
 ├── 2b_erreurs/
-└── 2c_depot_recette/")
+└── 2c_depot_altitudes/")
     ]
   ]
 

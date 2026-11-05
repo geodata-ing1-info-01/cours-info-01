@@ -1,5 +1,5 @@
 ---
-title: "Séance 2, version 2 — Éditeur de code, Markdown et git local"
+title: "Séance 2, version 2 — Éditeur de code et git local"
 ---
 
 :::{note}
@@ -27,14 +27,10 @@ Bash.
     (l'extension Python, l'interpréteur, Git Bash comme terminal, les
     réglages User et Workspace) ; trois programmes fautifs à corriger
   - 2a, en classe entière ; 2b
-* - [Une recette en Markdown](notebook/02_markdown.md)
-  - un format texte pour les documents d'un projet ; le tableau et l'image ;
-    la conversion par pandoc
-  - 
 * - [Git et le dépôt local](notebook/03_git_local.md)
   - les systèmes de version et les copies d'un dépôt ; la commande git et
     son aide ; le dépôt, l'index et le commit, `status`, `log`, `diff`,
-    `restore`, `.gitignore`
+    `restore`, le README, `.gitignore`
   - 2c, étapes 0 à 4
 * - [Branches, fusion et conflits](notebook/04_branches.md)
   - les branches, la fusion et les conflits ; l'organisation des branches
@@ -53,10 +49,9 @@ dans le dépôt :
 - la ligne de commande passe au cours 1, avec un TD ;
 - la configuration de VS Code arrive du cours 1, faite en classe entière,
   avec Git Bash comme terminal ;
-- Markdown arrive du cours 1, pour écrire la recette que git versionne,
-  convertie ensuite par pandoc ;
-- git se joue sur un seul dépôt, celui de la recette écrite en Markdown,
-  à la place des cinq TD sur le projet `projet_2` ;
+- git se joue sur un seul dépôt, celui d'`altitudes.py`, le programme du cours 1,
+  à la place des cinq TD sur le projet `projet_2` ; ce programme y gagne ses
+  calculs, et un README ;
 - `revert` et `rebase` restent dans la séance 2 de 2026, dans l'archive du
   book ; `tag` passe au projet 7 ;
   l'organisation main, develop, feature est gardée, en théorie ;
@@ -69,7 +64,6 @@ Les diapositives sont dans le dépôt, `src/cours2_v2/diapo/cours2_v2.pdf`.
 :maxdepth: 1
 
 notebook/01_editeur_de_code
-notebook/02_markdown
 notebook/03_git_local
 notebook/04_branches
 notebook/travaux_diriges

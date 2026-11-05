@@ -11,12 +11,12 @@ TD fait constater.
 
 - [TD 2a — Configurer VS Code](td/2a_vscode/guide.md), en classe entière, 25 minutes
 - [TD 2b — Trois programmes fautifs](td/2b_erreurs/guide.md), 10 minutes
-- [TD 2c — Un dépôt git pour la recette](td/2c_depot_recette/guide.md), 40 minutes
+- [TD 2c — Un dépôt git pour altitudes.py](td/2c_depot_altitudes/guide.md), 40 minutes
 
 ```{toctree}
 :hidden:
 
 td/2a_vscode/guide
 td/2b_erreurs/guide
-td/2c_depot_recette/guide
+td/2c_depot_altitudes/guide
 ```

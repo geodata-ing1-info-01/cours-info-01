@@ -4,6 +4,6 @@
 #set page(width: auto, height: auto, margin: 12pt, fill: white)
 #vscode-git-bash(
   "travail",
-  "(base)\neleve@POSTE MINGW64\n~/Desktop/info01/cours2/2c_depot_recette/travail\n$",
-  fichiers: ("crepes.jpg", "recette.md"),
+  "(base)\neleve@POSTE MINGW64\n~/Desktop/info01/cours2/2c_depot_altitudes/travail\n$",
+  fichiers: ("altitudes.py",),
 )

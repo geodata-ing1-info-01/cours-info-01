@@ -145,8 +145,8 @@
   )
 
   #legende[
-    Le texte tapé reste lisible sans être affiché mis en forme. Le cours 2
-    y ajoute les tableaux et les images.
+    Le texte tapé reste lisible sans être affiché mis en forme. Le TD 2c emploie
+    cette syntaxe pour écrire un README.
   ]
 
   #notes[

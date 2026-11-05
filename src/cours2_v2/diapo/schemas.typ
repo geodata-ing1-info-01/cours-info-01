@@ -56,7 +56,7 @@
         #_ligne-arbre([⌄ 2a_vscode], retrait: 1)
         #_ligne-arbre([altitudes.py #if reperes { h(6pt); box(baseline: 5pt, repere(1, taille: 18pt)) }], retrait: 2, courant: true)
         #_ligne-arbre([› 2b_erreurs], retrait: 1)
-        #_ligne-arbre([› 2c_depot_recette], retrait: 1)
+        #_ligne-arbre([› 2c_depot_altitudes], retrait: 1)
       ],
       grid(
         rows: (auto, auto),

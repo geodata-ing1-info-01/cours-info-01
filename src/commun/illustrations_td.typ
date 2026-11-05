@@ -99,7 +99,8 @@
 // commit, à droite le fichier modifié. `lignes` : des triplets
 // (texte à gauche, texte à droite, genre), le genre s'appliquant au côté
 // droit ; "ajout" met un fond hachuré à gauche ; "modifie" met l'ancienne
-// ligne en rouge à gauche et la nouvelle en vert à droite.
+// ligne en rouge à gauche et la nouvelle en vert à droite ; "suppression" met
+// la ligne en rouge à gauche et un fond hachuré à droite.
 #let vscode-diff(dossier, fichier, lignes) = {
   set text(font: police-texte, size: 10pt, fill: accent, lang: "fr")
   let bord = 0.8pt + accent.lighten(55%)
@@ -144,8 +145,8 @@
           block(width: 100%, inset: (x: 4pt, y: 3pt), stroke: (right: bord, bottom: bord))[#text(size: 8pt, fill: estompe)[dernier commit]],
           block(width: 100%, inset: (x: 4pt, y: 3pt), stroke: (bottom: bord))[#text(size: 8pt, fill: estompe)[fichier modifié]],
           ..lignes.map(((gauche, droite, genre)) => (
-            block(width: 100%, stroke: (right: bord), _ligne-diff(gauche, genre: if genre == "ajout" { "vide" } else if genre == "modifie" { "retrait" } else { "neutre" })),
-            _ligne-diff(droite, genre: if genre == "modifie" { "ajout" } else { genre }),
+            block(width: 100%, stroke: (right: bord), _ligne-diff(gauche, genre: if genre == "ajout" { "vide" } else if genre in ("modifie", "suppression") { "retrait" } else { "neutre" })),
+            _ligne-diff(droite, genre: if genre == "modifie" { "ajout" } else if genre == "suppression" { "vide" } else { genre }),
           )).flatten(),
         )
       ],

@@ -1,0 +1,455 @@
+=== étape 0
+
+$ cp depart/altitudes.py travail/
+
+$ cd travail
+
+$ python altitudes.py
+moyenne : 129.0 m
+=== étape 1
+
+$ git init
+astuce: Utilisation de 'master' comme nom de la branche initiale. Le nom de la branche
+astuce: par défaut peut changer. Pour configurer le nom de la branche initiale
+astuce: pour tous les nouveaux dépôts, et supprimer cet avertissement, lancez :
+astuce: 
+astuce: 	git config --global init.defaultBranch <nom>
+astuce: 
+astuce: Les noms les plus utilisés à la place de 'master' sont 'main', 'trunk' et
+astuce: 'development'. La branche nouvellement créée peut être rénommée avec :
+astuce: 
+astuce: 	git branch -m <nom>
+Dépôt Git vide initialisé dans …/2c_depot_altitudes/travail/.git/
+
+$ ls -a
+.
+..
+altitudes.py
+.git
+
+$ git config user.name "Alice Martin"
+
+$ git config user.email alice.martin@ensg.eu
+
+$ git config user.name
+Alice Martin
+
+$ git status
+Sur la branche master
+
+Aucun commit
+
+Fichiers non suivis:
+  (utilisez "git add <fichier>..." pour inclure dans ce qui sera validé)
+	altitudes.py
+
+aucune modification ajoutée à la validation mais des fichiers non suivis sont présents (utilisez "git add" pour les suivre)
+
+$ git add altitudes.py
+
+$ git status
+Sur la branche master
+
+Aucun commit
+
+Modifications qui seront validées :
+  (utilisez "git rm --cached <fichier>..." pour désindexer)
+	nouveau fichier : altitudes.py
+
+
+$ git commit -m "Ajoute le calcul de la moyenne"
+[master (commit racine) 4726396] Ajoute le calcul de la moyenne
+ 1 file changed, 8 insertions(+)
+ create mode 100644 altitudes.py
+
+$ git log --oneline
+4726396 Ajoute le calcul de la moyenne
+=== étape 2
+
+$ python altitudes.py
+altitude minimale : 127.6 m
+altitude maximale : 131.0 m
+max - min : 3.4 m
+
+$ git status
+Sur la branche master
+Modifications qui ne seront pas validées :
+  (utilisez "git add <fichier>..." pour mettre à jour ce qui sera validé)
+  (utilisez "git restore <fichier>..." pour annuler les modifications dans le répertoire de travail)
+	modifié :         altitudes.py
+
+aucune modification n'a été ajoutée à la validation (utilisez "git add" ou "git commit -a")
+
+$ git diff
+diff --git a/altitudes.py b/altitudes.py
+index 613e856..1ad773e 100644
+--- a/altitudes.py
++++ b/altitudes.py
+@@ -1,8 +1,6 @@
+-"""Moyenne d'une série d'altitudes, à la main plutôt qu'avec sum()."""
++"""Altitudes extrêmes d'une série de mesures."""
+ 
+ altitudes = [128.4, 131.0, 127.6]
+-total = 0
+-for altitude in altitudes:
+-    total = total + altitude
+-moyenne = total / len(altitudes)
+-print(f"moyenne : {moyenne:.1f} m")
++print(f"altitude minimale : {min(altitudes):.1f} m")
++print(f"altitude maximale : {max(altitudes):.1f} m")
++print(f"max - min : {max(altitudes) - min(altitudes):.1f} m")
+
+$ git add altitudes.py
+
+$ git commit -m "Remplace la moyenne par les altitudes extrêmes"
+[master d2f927b] Remplace la moyenne par les altitudes extrêmes
+ 1 file changed, 4 insertions(+), 6 deletions(-)
+
+$ git log --oneline
+d2f927b Remplace la moyenne par les altitudes extrêmes
+4726396 Ajoute le calcul de la moyenne
+
+$ git log
+commit d2f927b17cf905f093019effb823c252cf41435f
+Author: Alice Martin <alice.martin@ensg.eu>
+Date:   Mon Sep 21 16:15:20 2026 +0200
+
+    Remplace la moyenne par les altitudes extrêmes
+
+commit 47263963f8ec8f28c640c6d8384a80d576681872
+Author: Alice Martin <alice.martin@ensg.eu>
+Date:   Mon Sep 21 16:14:20 2026 +0200
+
+    Ajoute le calcul de la moyenne
+=== étape 3
+
+$ python altitudes.py
+altitude minimale : 127.6 m
+Traceback (most recent call last):
+  File "…/2c_depot_altitudes/travail/altitudes.py", line 5, in <module>
+    print(f"altitude maximale : {max(altitude):.1f} m")
+                                     ^^^^^^^^
+NameError: name 'altitude' is not defined. Did you mean: 'altitudes'?
+
+$ git diff
+diff --git a/altitudes.py b/altitudes.py
+index 1ad773e..4f93241 100644
+--- a/altitudes.py
++++ b/altitudes.py
+@@ -2,5 +2,5 @@
+ 
+ altitudes = [128.4, 131.0, 127.6]
+ print(f"altitude minimale : {min(altitudes):.1f} m")
+-print(f"altitude maximale : {max(altitudes):.1f} m")
++print(f"altitude maximale : {max(altitude):.1f} m")
+ print(f"max - min : {max(altitudes) - min(altitudes):.1f} m")
+
+$ git restore altitudes.py
+
+$ git status
+Sur la branche master
+rien à valider, la copie de travail est propre
+
+$ python altitudes.py
+altitude minimale : 127.6 m
+altitude maximale : 131.0 m
+max - min : 3.4 m
+=== étape 4
+
+$ cat README.md
+# Altitudes
+
+Ce programme affiche des statistiques sur une série d'altitudes, en mètres.
+
+## Utilisation
+
+Écrire les altitudes dans la liste `altitudes`, puis lancer `python altitudes.py`.
+
+$ git add README.md
+
+$ git commit -m "Ajoute un README"
+[master 9cd57cf] Ajoute un README
+ 1 file changed, 7 insertions(+)
+ create mode 100644 README.md
+
+$ python altitudes.py > resultat.txt
+
+$ cat resultat.txt
+altitude minimale : 127.6 m
+altitude maximale : 131.0 m
+max - min : 3.4 m
+
+$ git status
+Sur la branche master
+Fichiers non suivis:
+  (utilisez "git add <fichier>..." pour inclure dans ce qui sera validé)
+	resultat.txt
+
+aucune modification ajoutée à la validation mais des fichiers non suivis sont présents (utilisez "git add" pour les suivre)
+
+$ cat .gitignore
+resultat.txt
+
+$ git status
+Sur la branche master
+Fichiers non suivis:
+  (utilisez "git add <fichier>..." pour inclure dans ce qui sera validé)
+	.gitignore
+
+aucune modification ajoutée à la validation mais des fichiers non suivis sont présents (utilisez "git add" pour les suivre)
+
+$ git add .gitignore
+
+$ git commit -m "Ignore le fichier du résultat"
+[master 02b563f] Ignore le fichier du résultat
+ 1 file changed, 1 insertion(+)
+ create mode 100644 .gitignore
+
+$ git status
+Sur la branche master
+rien à valider, la copie de travail est propre
+
+$ ls
+altitudes.py
+README.md
+resultat.txt
+
+$ git log --oneline
+02b563f Ignore le fichier du résultat
+9cd57cf Ajoute un README
+d2f927b Remplace la moyenne par les altitudes extrêmes
+4726396 Ajoute le calcul de la moyenne
+=== étape 5
+
+$ git branch
+* master
+
+$ git checkout -b cumul
+Basculement sur la nouvelle branche 'cumul'
+
+$ python altitudes.py
+altitude minimale : 127.6 m
+altitude maximale : 131.0 m
+max - min : 3.4 m
+cumul en hausse : 2.6 m
+cumul en baisse : 3.4 m
+
+$ git add altitudes.py
+
+$ git commit -m "Ajoute le dénivelé cumulé"
+[cumul 18b88ab] Ajoute le dénivelé cumulé
+ 1 file changed, 11 insertions(+)
+
+$ git checkout master
+Basculement sur la branche 'master'
+
+$ python altitudes.py
+altitude minimale : 127.6 m
+altitude maximale : 131.0 m
+max - min : 3.4 m
+
+$ git add altitudes.py
+
+$ git commit -m "Complète la description du programme"
+[master 8624753] Complète la description du programme
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+$ git log --oneline --graph --all --decorate
+* 8624753 (HEAD -> master) Complète la description du programme
+| * 18b88ab (cumul) Ajoute le dénivelé cumulé
+|/  
+* 02b563f Ignore le fichier du résultat
+* 9cd57cf Ajoute un README
+* d2f927b Remplace la moyenne par les altitudes extrêmes
+* 4726396 Ajoute le calcul de la moyenne
+
+$ git merge cumul -m "Fusionne le dénivelé cumulé"
+Fusion automatique de altitudes.py
+Merge made by the 'ort' strategy.
+ altitudes.py | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+$ python altitudes.py
+altitude minimale : 127.6 m
+altitude maximale : 131.0 m
+max - min : 3.4 m
+cumul en hausse : 2.6 m
+cumul en baisse : 3.4 m
+
+$ head -1 altitudes.py
+"""Altitudes extrêmes et dénivelé cumulé d'une série de mesures."""
+
+$ git log --oneline --graph
+*   6dbc9b3 Fusionne le dénivelé cumulé
+|\  
+| * 18b88ab Ajoute le dénivelé cumulé
+* | 8624753 Complète la description du programme
+|/  
+* 02b563f Ignore le fichier du résultat
+* 9cd57cf Ajoute un README
+* d2f927b Remplace la moyenne par les altitudes extrêmes
+* 4726396 Ajoute le calcul de la moyenne
+=== étape 6
+
+$ git checkout -b mesure-4
+Basculement sur la nouvelle branche 'mesure-4'
+
+$ git add altitudes.py
+
+$ git commit -m "Ajoute la mesure 134.9"
+[mesure-4 6f72c61] Ajoute la mesure 134.9
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+$ git checkout master
+Basculement sur la branche 'master'
+
+$ git add altitudes.py
+
+$ git commit -m "Ajoute la mesure 136.7"
+[master 7e04ba9] Ajoute la mesure 136.7
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+$ git merge mesure-4
+Fusion automatique de altitudes.py
+CONFLIT (contenu) : Conflit de fusion dans altitudes.py
+La fusion automatique a échoué ; réglez les conflits et validez le résultat.
+
+$ git status
+Sur la branche master
+Vous avez des chemins non fusionnés.
+  (réglez les conflits puis lancez "git commit")
+  (utilisez "git merge --abort" pour annuler la fusion)
+
+Chemins non fusionnés :
+  (utilisez "git add <fichier>..." pour marquer comme résolu)
+	modifié des deux côtés :  altitudes.py
+
+aucune modification n'a été ajoutée à la validation (utilisez "git add" ou "git commit -a")
+
+$ sed -n 1,9p altitudes.py
+"""Altitudes extrêmes et dénivelé cumulé d'une série de mesures."""
+
+<<<<<<< HEAD
+altitudes = [128.4, 131.0, 127.6, 136.7]
+=======
+altitudes = [128.4, 131.0, 127.6, 134.9]
+>>>>>>> mesure-4
+print(f"altitude minimale : {min(altitudes):.1f} m")
+print(f"altitude maximale : {max(altitudes):.1f} m")
+
+$ python altitudes.py
+  File "…/2c_depot_altitudes/travail/altitudes.py", line 3
+    <<<<<<< HEAD
+    ^^
+SyntaxError: invalid syntax
+
+$ sed -n 1,4p altitudes.py
+"""Altitudes extrêmes et dénivelé cumulé d'une série de mesures."""
+
+altitudes = [128.4, 131.0, 127.6, 134.9, 136.7]
+print(f"altitude minimale : {min(altitudes):.1f} m")
+
+$ python altitudes.py
+altitude minimale : 127.6 m
+altitude maximale : 136.7 m
+max - min : 9.1 m
+cumul en hausse : 11.7 m
+cumul en baisse : 3.4 m
+
+$ git add altitudes.py
+
+$ git status
+Sur la branche master
+Tous les conflits sont réglés mais la fusion n'est pas terminée.
+  (utilisez "git commit" pour terminer la fusion)
+
+Modifications qui seront validées :
+	modifié :         altitudes.py
+
+
+$ git commit -m "Fusionne les deux mesures"
+[master 91c4702] Fusionne les deux mesures
+
+$ git log --oneline --graph --all --decorate
+*   91c4702 (HEAD -> master) Fusionne les deux mesures
+|\  
+| * 6f72c61 (mesure-4) Ajoute la mesure 134.9
+* | 7e04ba9 Ajoute la mesure 136.7
+|/  
+*   6dbc9b3 Fusionne le dénivelé cumulé
+|\  
+| * 18b88ab (cumul) Ajoute le dénivelé cumulé
+* | 8624753 Complète la description du programme
+|/  
+* 02b563f Ignore le fichier du résultat
+* 9cd57cf Ajoute un README
+* d2f927b Remplace la moyenne par les altitudes extrêmes
+* 4726396 Ajoute le calcul de la moyenne
+
+$ git branch
+  cumul
+* master
+  mesure-4
+=== étape 7
+
+$ cd ..
+
+$ git clone travail copie
+Clonage dans 'copie'...
+fait.
+
+$ cd copie
+
+$ ls -a
+.
+..
+altitudes.py
+.git
+.gitignore
+README.md
+
+$ git log --oneline -3
+91c4702 Fusionne les deux mesures
+7e04ba9 Ajoute la mesure 136.7
+6f72c61 Ajoute la mesure 134.9
+
+$ git remote -v
+origin	…/2c_depot_altitudes/travail (fetch)
+origin	…/2c_depot_altitudes/travail (push)
+
+$ git config user.name
+
+$ git config user.name "Alice Martin"
+
+$ git config user.email alice.martin@ensg.eu
+
+$ python altitudes.py
+altitude minimale : 127.6 m
+altitude maximale : 137.4 m
+max - min : 9.8 m
+cumul en hausse : 12.4 m
+cumul en baisse : 3.4 m
+
+$ git add altitudes.py
+
+$ git commit -m "Ajoute la mesure 137.4"
+[master fc37f53] Ajoute la mesure 137.4
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+$ cd ../travail
+
+$ git pull ../copie master
+Depuis ../copie
+ * branch            master     -> FETCH_HEAD
+Mise à jour 91c4702..fc37f53
+Fast-forward
+ altitudes.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+$ git log --oneline -3
+fc37f53 Ajoute la mesure 137.4
+91c4702 Fusionne les deux mesures
+7e04ba9 Ajoute la mesure 136.7
+
+$ sed -n 3p altitudes.py
+altitudes = [128.4, 131.0, 127.6, 134.9, 136.7, 137.4]

@@ -93,8 +93,8 @@ Deux pièges fréquents :
 :::
 
 Le texte tapé reste lisible sans être mis en forme, selon l'intention de
-John Gruber, qui a publié Markdown en 2004. Le cours 2 y ajoute les tableaux
-et les images.
+John Gruber, qui a publié Markdown en 2004. Le TD 2c emploie cette syntaxe pour
+écrire un README.
 
 Dans JupyterLab, `Maj` + `Entrée` affiche la cellule mise en forme, et un
 double-clic revient au texte tapé. Une cellule de texte n'a pas de numéro

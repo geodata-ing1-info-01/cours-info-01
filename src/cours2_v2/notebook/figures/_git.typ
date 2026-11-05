@@ -46,17 +46,16 @@
     text(size: 11pt, weight: demi-gras, fill: white)[#nom]),
 )
 
-// Le graphe de l'étape 5 : `28c`, puis `220` sur master et `939` sur
-// sans-gluten.
+// Le graphe de l'étape 5 : `02b`, puis `862` sur master et `18b` sur cumul.
 #let variante(tete: none, echelle: 1.15) = graphe-git(
   commits: (
-    (nom: "c3", col: 0, voie: 0, id: "28c"),
-    (nom: "c5", col: 1, voie: 0, id: "220", parents: ("c3",)),
-    (nom: "c4", col: 1, voie: 1, id: "939", parents: ("c3",)),
+    (nom: "c3", col: 0, voie: 0, id: "02b"),
+    (nom: "c5", col: 1, voie: 0, id: "862", parents: ("c3",)),
+    (nom: "c4", col: 1, voie: 1, id: "18b", parents: ("c3",)),
   ),
   branches: (
     (nom: "master", voie: 0, commit: "c5"),
-    (nom: "sans-gluten", voie: 1, commit: "c4"),
+    (nom: "cumul", voie: 1, commit: "c4"),
   ),
   echelle: echelle,
   taille-etiquette: 10pt,

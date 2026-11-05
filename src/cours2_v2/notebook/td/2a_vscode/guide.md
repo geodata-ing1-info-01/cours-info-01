@@ -100,7 +100,7 @@ ls cours2
 ```
 
 ```text
-2a_vscode/  2b_erreurs/  2c_depot_recette/
+2a_vscode/  2b_erreurs/  2c_depot_altitudes/
 ```
 
 Si `unzip` affiche `command not found`, décompresser à la souris : clic
@@ -130,7 +130,7 @@ fichiers, la recherche s'y fait, et le terminal s'y ouvre.
 VS Code s'affiche en anglais. Le guide donne les intitulés anglais.
 
 **Vérification** : l'explorateur affiche `2A_VSCODE`, `2B_ERREURS` et
-`2C_DEPOT_RECETTE` sous le titre `COURS2`.
+`2C_DEPOT_ALTITUDES` sous le titre `COURS2`.
 
 ## 3 · Installer l'extension Python
 

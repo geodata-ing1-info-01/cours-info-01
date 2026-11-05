@@ -18,8 +18,8 @@
   branches: (
     (nom: "master", voie: 0, commit: "c9"),
     (nom: "develop", voie: 1, commit: "c8"),
-    (nom: "conseil", voie: 2, commit: "c4"),
-    (nom: "sans-gluten", voie: -1, commit: "c7"),
+    (nom: "cumul", voie: 2, commit: "c4"),
+    (nom: "mesures", voie: -1, commit: "c7"),
   ),
   echelle: 1.1,
   taille-etiquette: 10pt,

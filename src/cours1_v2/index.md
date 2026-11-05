@@ -54,8 +54,9 @@ le dépôt :
 - le premier programme s'écrit dans Notepad++ et se lance dans Git Bash ;
 - le stockage (disque du poste, dossier partagé) devient une notion de la
   partie 1 ;
-- le binaire et le texte passent au cours 3 ; Markdown au cours 2, sauf la
-  syntaxe minimale d'une cellule de notebook ;
+- le binaire et le texte passent au cours 3 ; le cours 1 garde la syntaxe minimale
+  de Markdown, celle d'une cellule de notebook, et le cours 2 l'emploie pour un
+  README ;
 - les environnements passent au cours 3, par la pratique ;
 - l'indentation et le TD des programmes fautifs passent au cours 2 v2, où
   l'éditeur de code les souligne.

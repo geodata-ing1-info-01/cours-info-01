@@ -14,7 +14,7 @@
 // branches à plusieurs, en fin de partie.
 //
 // Toutes les sorties sont celles du rejeu du TD 2c (git 2.43, en français) :
-// `src/cours2_v2/notebook/td/2c_depot_recette/rejeu/sortie.txt`. Dans les
+// `src/cours2_v2/notebook/td/2c_depot_altitudes/rejeu/sortie.txt`. Dans les
 // graphes, chaque pastille porte le début de l'identifiant du commit.
 #import "../../../commun/prelude.typ": *
 #import "../../../commun/schemas_git.typ": graphe-git, marque-tete, marque-conflit, rouge-attention
@@ -85,10 +85,10 @@
 
   #face-a-face(
     panneau("Sans git : une copie par version")[
-      #console("recette.md\nrecette_v2.md\nrecette_v2_corrigee.md\nrecette_finale.md\nrecette_finale_OK.md")
+      #console("altitudes.py\naltitudes_v2.py\naltitudes_v2_corrige.py\naltitudes_final.py\naltitudes_final_OK.py")
     ],
     panneau("Avec git : un fichier et son historique")[
-      #console("$ git log --oneline\n28cbb91 Ignore les fichiers produits par pandoc\nfe4fe8b Réduit les œufs à trois\na16d497 Ajoute la recette des crêpes", taille: 14pt)
+      #console("$ git log --oneline\n02b563f Ignore le fichier du résultat\n9cd57cf Ajoute un README\nd2f927b Remplace la moyenne par les altitudes extrêmes\n4726396 Ajoute le calcul de la moyenne", taille: 13pt)
     ],
   )
 
@@ -224,8 +224,8 @@
     align: left + horizon,
     [Commande tapée], [Sous-commande], [Options], [Arguments],
     [`git init`], [`init`], [], [],
-    [`git add recette.md crepes.jpg`], [`add`], [], [`recette.md`, `crepes.jpg`],
-    [`git commit -m "Ajoute la recette"`], [`commit`], [`-m "Ajoute la recette"`], [],
+    [`git add altitudes.py README.md`], [`add`], [], [`altitudes.py`, `README.md`],
+    [`git commit -m "Ajoute un README"`], [`commit`], [`-m "Ajoute un README"`], [],
     [`git log --oneline`], [`log`], [`--oneline`], [],
     [`git add -h`], [`add`], [`-h`], [],
   )
@@ -292,7 +292,7 @@
     caché, `.git`, qui contiendra l'historique.
   ]
 
-  #console("$ cd ~/Desktop/info01/cours2/2c_depot_recette/travail\n$ pwd\n/c/Users/eleve/Desktop/info01/cours2/2c_depot_recette/travail\n$ git init\nDépôt Git vide initialisé dans …/2c_depot_recette/travail/.git/\n$ ls -a\n.\n..\ncrepes.jpg\n.git\nrecette.md", taille: 17pt)
+  #console("$ cd ~/Desktop/info01/cours2/2c_depot_altitudes/travail\n$ pwd\n/c/Users/eleve/Desktop/info01/cours2/2c_depot_altitudes/travail\n$ git init\nDépôt Git vide initialisé dans …/2c_depot_altitudes/travail/.git/\n$ ls -a\n.\n..\naltitudes.py\n.git", taille: 17pt)
 
   #legende[
     Les fichiers du dossier ne changent pas. Supprimer `.git` supprime
@@ -373,11 +373,11 @@
 
   #grid(
     columns: (1.5fr, 1fr), column-gutter: 20pt, align: horizon,
-    console("$ git add recette.md crepes.jpg\n$ git commit -m \"Ajoute la recette des crêpes\"\n[master (commit racine) a16d497] Ajoute la recette des crêpes\n 2 files changed, 24 insertions(+)\n create mode 100644 crepes.jpg\n create mode 100644 recette.md\n…\n$ git log --oneline\nfe4fe8b Réduit les œufs à trois\na16d497 Ajoute la recette des crêpes", taille: 14pt),
+    console("$ git add altitudes.py\n$ git commit -m \"Ajoute le calcul de la moyenne\"\n[master (commit racine) 4726396] Ajoute le calcul de la moyenne\n 1 file changed, 8 insertions(+)\n create mode 100644 altitudes.py\n…\n$ git log --oneline\nd2f927b Remplace la moyenne par les altitudes extrêmes\n4726396 Ajoute le calcul de la moyenne", taille: 13pt),
     align(center, graphe-git(
       commits: (
-        (nom: "c1", col: 0, voie: 0, id: "a16"),
-        (nom: "c2", col: 1, voie: 0, id: "fe4", parents: ("c1",)),
+        (nom: "c1", col: 0, voie: 0, id: "472"),
+        (nom: "c2", col: 1, voie: 0, id: "d2f", parents: ("c1",)),
       ),
       branches: ((nom: "master", voie: 0, commit: "c2"),),
       echelle: 1.4,
@@ -387,9 +387,9 @@
   )
 
   #legende[
-    `a16d497` est le début de l'identifiant du commit, calculé à partir de
-    son contenu. Chaque commit désigne son parent, d'où la flèche de `fe4`
-    vers `a16` ; `master` désigne le dernier commit, et avance à chaque
+    `4726396` est le début de l'identifiant du commit, calculé à partir de
+    son contenu. Chaque commit désigne son parent, d'où la flèche de `d2f`
+    vers `472` ; `master` désigne le dernier commit, et avance à chaque
     commit.
   ]
 
@@ -423,8 +423,8 @@
     [Message], [Ce qu'on en apprend dans six mois],
     [`modif`], [rien],
     [`corrections`], [rien : lesquelles ?],
-    [`Réduit les œufs à trois`], [la quantité d'œufs a changé],
-    [`Ignore les fichiers produits par pandoc`], [d'où vient le `.gitignore`],
+    [`Remplace la moyenne par les altitudes extrêmes`], [le programme n'affiche plus la moyenne],
+    [`Ignore le fichier du résultat`], [d'où vient le `.gitignore`],
   )
 
   #legende[
@@ -446,11 +446,11 @@
     l'ancienne version, en `+` la nouvelle, avec trois lignes de contexte.
   ]
 
-  #console("$ git diff\ndiff --git a/recette.md b/recette.md\nindex aae4747..45bc5f0 100644\n--- a/recette.md\n+++ b/recette.md\n@@ -9,7 +9,7 @@\n | Ingrédient | Quantité |\n |---|---|\n | Farine | 250 g |\n-| Œufs | 4 |\n+| Œufs | 3 |\n | Lait | 500 ml |\n | Sel | 1 pincée |\n | Beurre fondu | 50 g |", taille: 14pt)
+  #console("$ git diff\ndiff --git a/altitudes.py b/altitudes.py\nindex 613e856..1ad773e 100644\n--- a/altitudes.py\n+++ b/altitudes.py\n@@ -1,8 +1,6 @@\n-\"\"\"Moyenne d'une série d'altitudes, à la main plutôt qu'avec sum().\"\"\"\n+\"\"\"Altitudes extrêmes d'une série de mesures.\"\"\"\n \n altitudes = [128.4, 131.0, 127.6]\n-total = 0\n-for altitude in altitudes:\n-    total = total + altitude\n-moyenne = total / len(altitudes)\n-print(f\"moyenne : {moyenne:.1f} m\")\n+print(f\"altitude minimale : {min(altitudes):.1f} m\")\n+print(f\"altitude maximale : {max(altitudes):.1f} m\")\n+print(f\"max - min : {max(altitudes) - min(altitudes):.1f} m\")", taille: 12.5pt)
 
   #legende[
-    `@@ -9,7 +9,7 @@` : le passage commence à la ligne 9, et fait 7 lignes
-    avant comme après. VS Code montre le même écart côte à côte.
+    `@@ -1,8 +1,6 @@` : le passage commence à la ligne 1, et fait 8 lignes
+    avant et 6 lignes après. VS Code montre le même écart côte à côte.
   ]
 
   #notes[
@@ -471,10 +471,10 @@
 
   #face-a-face(
     panneau("Une ligne abîmée par erreur")[
-      #console("$ git diff\n@@ -21,4 +21,4 @@\n 5. Laisser reposer une heure.\n-6. Cuire dans une poêle chaude, une minute par face.\n+6. Cuire.", taille: 13pt)
+      #console("$ git diff\n@@ -2,5 +2,5 @@\n-print(f\"altitude maximale : {max(altitudes):.1f} m\")\n+print(f\"altitude maximale : {max(altitude):.1f} m\")", taille: 12.5pt)
     ],
     panneau("Remise en état")[
-      #console("$ git restore recette.md\n$ git status\nSur la branche master\nrien à valider, la copie de travail est propre", taille: 13pt)
+      #console("$ git restore altitudes.py\n$ git status\nSur la branche master\nrien à valider, la copie de travail est propre", taille: 13pt)
     ],
   )
 
@@ -494,6 +494,38 @@
 ]
 
 // --------------------------------------------
+// Retirée le 28/09/2026, reprise le 05/11/2026 : le TD 2c écrit un README.
+#d("Le README d'un projet")[
+  #annonce[
+    `README.md`, à la racine d'un projet, décrit ce qu'il fait et comment
+    s'en servir. La forge l'affiche en page d'accueil du dépôt.
+  ]
+
+  #tableau(
+    columns: (auto, 1fr),
+    align: left + horizon,
+    [Section], [Son contenu],
+    [le titre et une phrase], [ce que fait le projet],
+    [Installation], [ce qu'il faut installer, et la commande],
+    [Utilisation], [la commande qui le lance, et ce qu'elle produit],
+    [Données], [où sont les données, et d'où elles viennent],
+  )
+
+  #legende[
+    Le README du TD 2c a un titre, une phrase et une section Utilisation. Celui
+    du TD 4a décrit aussi le format des données.
+  ]
+
+  #notes[
+    Le README s'écrit pour quelqu'un qui découvre le dossier : un camarade,
+    un correcteur, soi-même dans six mois.
+
+    La syntaxe est celle des cellules de texte du cours 1. La forge (cours 6) le
+    convertit en page web.
+  ]
+]
+
+// --------------------------------------------
 // Reprend le second tableau de « Quand employer git » et l'avertissement sur
 // les données de la partie Markdown (28/09/2026).
 #d("Ignorer des fichiers : .gitignore")[
@@ -506,7 +538,7 @@
     columns: (auto, 1fr, auto),
     align: left + horizon,
     [Ce qu'on ne versionne pas], [Pourquoi], [Motif],
-    [les fichiers produits par une commande], [ils se refont depuis leur source], [`*.html`],
+    [les fichiers produits par une commande], [ils se refont depuis leur source], [`resultat.txt`],
     [les données de travail], [chaque version resterait dans l'historique], [`donnees/`],
     [les mots de passe et les clés], [toute copie du dépôt les contiendrait], [`.env`],
   )
@@ -514,8 +546,8 @@
   #v(0.3em)
   #grid(
     columns: (0.6fr, 0.8fr, 1.6fr), column-gutter: 14pt,
-    panneau[`.gitignore`][#console("*.html\n*.odt", taille: 13pt)],
-    panneau[`ls`][#console("crepes.jpg\nrecette.html\nrecette.md\nrecette.odt", taille: 13pt)],
+    panneau[`.gitignore`][#console("resultat.txt", taille: 13pt)],
+    panneau[`ls`][#console("altitudes.py\nREADME.md\nresultat.txt", taille: 13pt)],
     panneau[`git status`][#console("Sur la branche master\nrien à valider, la copie de\ntravail est propre", taille: 13pt)],
   )
 
@@ -524,6 +556,9 @@
   ]
 
   #notes[
+    `resultat.txt` : la sortie du programme, écrite par `>` à l'étape 4 du TD. La
+    même commande le refait.
+
     Un fichier déjà suivi le reste : `git rm --cached fichier` le retire du
     dépôt et le laisse sur le disque.
 
@@ -549,19 +584,19 @@
     columns: (1fr, 1.2fr), column-gutter: 20pt, align: horizon,
     align(center, graphe-git(
       commits: (
-        (nom: "c3", col: 0, voie: 0, id: "28c"),
-        (nom: "c5", col: 1, voie: 0, id: "220", parents: ("c3",)),
-        (nom: "c4", col: 1, voie: 1, id: "939", parents: ("c3",)),
+        (nom: "c3", col: 0, voie: 0, id: "02b"),
+        (nom: "c5", col: 1, voie: 0, id: "862", parents: ("c3",)),
+        (nom: "c4", col: 1, voie: 1, id: "18b", parents: ("c3",)),
       ),
       branches: (
         (nom: "master", voie: 0, commit: "c5"),
-        (nom: "sans-gluten", voie: 1, commit: "c4"),
+        (nom: "cumul", voie: 1, commit: "c4"),
       ),
       echelle: 1.4,
       taille-etiquette: 10pt,
       extra: (pos, d) => marque-tete(d, pos("c5"), dx: 1.0, dy: 0.9),
     )),
-    console("$ git checkout -b sans-gluten\nBasculement sur la nouvelle branche 'sans-gluten'\n…\n$ git checkout master\n…\n$ git log --oneline --graph --all --decorate\n* 22060f2 (HEAD -> master) Ajoute un conseil…\n| * 9399bb0 (sans-gluten) Remplace la farine…\n|/\n* 28cbb91 Ignore les fichiers produits…", taille: 12.5pt),
+    console("$ git checkout -b cumul\nBasculement sur la nouvelle branche 'cumul'\n…\n$ git checkout master\n…\n$ git log --oneline --graph --all --decorate\n* 8624753 (HEAD -> master) Complète la description…\n| * 18b88ab (cumul) Ajoute le dénivelé cumulé\n|/\n* 02b563f Ignore le fichier du résultat", taille: 12.5pt),
   )
 
   #legende[
@@ -589,13 +624,13 @@
 // Le graphe de « Les branches », avec HEAD sur l'une ou l'autre branche.
 #let _variante(tete) = graphe-git(
   commits: (
-    (nom: "c3", col: 0, voie: 0, id: "28c"),
-    (nom: "c5", col: 1, voie: 0, id: "220", parents: ("c3",)),
-    (nom: "c4", col: 1, voie: 1, id: "939", parents: ("c3",)),
+    (nom: "c3", col: 0, voie: 0, id: "02b"),
+    (nom: "c5", col: 1, voie: 0, id: "862", parents: ("c3",)),
+    (nom: "c4", col: 1, voie: 1, id: "18b", parents: ("c3",)),
   ),
   branches: (
     (nom: "master", voie: 0, commit: "c5"),
-    (nom: "sans-gluten", voie: 1, commit: "c4"),
+    (nom: "cumul", voie: 1, commit: "c4"),
   ),
   echelle: 1.15,
   taille-etiquette: 10pt,
@@ -613,25 +648,25 @@
     panneau("Sur master")[
       #align(center, _variante("c5"))
       #v(0.3em)
-      #console("| Farine | 250 g |", taille: 14pt)
+      #console("$ python altitudes.py\n…\nmax - min : 3.4 m", taille: 13pt)
     ],
-    panneau[Après `git checkout sans-gluten`][
+    panneau[Après `git checkout cumul`][
       #align(center, _variante("c4"))
       #v(0.3em)
-      #console("| Farine de sarrasin | 250 g |", taille: 14pt)
+      #console("$ python altitudes.py\n…\nmax - min : 3.4 m\ncumul en hausse : 2.6 m\ncumul en baisse : 3.4 m", taille: 13pt)
     ],
   )
 
   #legende[
-    Sous chaque graphe, la ligne de la farine dans `recette.md`, ouvert
-    dans VS Code.
+    Sous chaque graphe, la fin de ce qu'affiche le programme. Le cumul n'existe
+    que sur la branche `cumul`.
   ]
 
   #notes[
     `git checkout` s'arrête avec un message si une modification non validée
     serait écrasée : faire un commit, ou `git restore`, avant.
 
-    Les autres fichiers du dossier, non suivis ou ignorés (`recette.html`),
+    Les autres fichiers du dossier, non suivis ou ignorés (`resultat.txt`),
     ne bougent pas.
   ]
 ]
@@ -645,39 +680,39 @@
   ]
 
   #face-a-face(
-    panneau("Seule sans-gluten a avancé")[
+    panneau("Seule cumul a avancé")[
       #align(center, graphe-git(
         commits: (
-          (nom: "c3", col: 0, voie: 0, id: "28c"),
-          (nom: "c4", col: 1, voie: 0, id: "939", parents: ("c3",), place: "dessus"),
+          (nom: "c3", col: 0, voie: 0, id: "02b"),
+          (nom: "c4", col: 1, voie: 0, id: "18b", parents: ("c3",), place: "dessus"),
         ),
         branches: ((nom: "master", voie: 0, commit: "c4"),),
         echelle: 0.95,
         taille-etiquette: 10pt,
-        extra: (pos, d) => _cartouche(d, pos("c4"), "sans-gluten", brun),
+        extra: (pos, d) => _cartouche(d, pos("c4"), "cumul", brun),
       ))
       #text(size: 14pt, fill: estompe)[`master` avance jusqu'au commit de la branche (avance rapide).]
     ],
     panneau("Les deux branches ont avancé")[
       #align(center, graphe-git(
         commits: (
-          (nom: "c3", col: 0, voie: 0, id: "28c"),
-          (nom: "c5", col: 1, voie: 0, id: "220", parents: ("c3",)),
-          (nom: "c4", col: 1, voie: 1, id: "939", parents: ("c3",)),
-          (nom: "c6", col: 2, voie: 0, id: "eda", parents: ("c5", "c4")),
+          (nom: "c3", col: 0, voie: 0, id: "02b"),
+          (nom: "c5", col: 1, voie: 0, id: "862", parents: ("c3",)),
+          (nom: "c4", col: 1, voie: 1, id: "18b", parents: ("c3",)),
+          (nom: "c6", col: 2, voie: 0, id: "6db", parents: ("c5", "c4")),
         ),
         branches: (
           (nom: "master", voie: 0, commit: "c6"),
-          (nom: "sans-gluten", voie: 1, commit: "c4"),
+          (nom: "cumul", voie: 1, commit: "c4"),
         ),
         echelle: 0.95,
         taille-etiquette: 10pt,
       ))
-      #text(size: 14pt, fill: estompe)[`eda`, le commit de fusion, a deux parents (double trait).]
+      #text(size: 14pt, fill: estompe)[`6db`, le commit de fusion, a deux parents (double trait).]
     ],
   )
 
-  #console("$ git merge sans-gluten -m \"Fusionne la variante sans gluten\"\nFusion automatique de recette.md\nMerge made by the 'ort' strategy.", taille: 13pt)
+  #console("$ git merge cumul -m \"Fusionne le dénivelé cumulé\"\nFusion automatique de altitudes.py\nMerge made by the 'ort' strategy.", taille: 13pt)
 
   #notes[
     La fusion se lance depuis la branche qui reçoit, ici `master`.
@@ -705,13 +740,13 @@
     columns: (0.75fr, 1.6fr), column-gutter: 18pt, align: horizon,
     align(center, graphe-git(
       commits: (
-        (nom: "c6", col: 0, voie: 0, id: "eda"),
-        (nom: "c8", col: 1, voie: 0, id: "b6b", parents: ("c6",)),
-        (nom: "c7", col: 1, voie: 1, id: "c50", parents: ("c6",)),
+        (nom: "c6", col: 0, voie: 0, id: "6db"),
+        (nom: "c8", col: 1, voie: 0, id: "7e0", parents: ("c6",)),
+        (nom: "c7", col: 1, voie: 1, id: "6f7", parents: ("c6",)),
       ),
       branches: (
         (nom: "master", voie: 0, commit: "c8"),
-        (nom: "pour-18", voie: 1, commit: "c7"),
+        (nom: "mesure-4", voie: 1, commit: "c7"),
       ),
       echelle: 1.1,
       taille-etiquette: 10pt,
@@ -726,20 +761,19 @@
     tableau(
       columns: (auto, 1fr),
       align: left + horizon,
-      [Commit], [La troisième ligne de `recette.md`],
-      [`eda`, avant], [#text(size: 18pt)[#raw("*Pour 12 crêpes — …, 1 heure de repos.*")]],
-      [`c50`, `pour-18`], [#text(size: 18pt)[#raw("*Pour ")#underline(raw("18"))#raw(" crêpes — …, 1 heure de repos.*")]],
-      [`b6b`, `master`], [#text(size: 18pt)[#raw("*Pour 12 crêpes — …, ")#underline(raw("2 heures"))#raw(" de repos.*")]],
+      [Commit], [La troisième ligne d'`altitudes.py`],
+      [`6db`, avant], [#text(size: 18pt)[#raw("altitudes = [128.4, 131.0, 127.6]")]],
+      [`6f7`, `mesure-4`], [#text(size: 18pt)[#raw("altitudes = [128.4, 131.0, 127.6, ")#underline(raw("134.9"))#raw("]")]],
+      [`7e0`, `master`], [#text(size: 18pt)[#raw("altitudes = [128.4, 131.0, 127.6, ")#underline(raw("136.7"))#raw("]")]],
     ),
   )
 
   #v(0.3em)
-  #console("$ git merge pour-18\nFusion automatique de recette.md\nCONFLIT (contenu) : Conflit de fusion dans recette.md", taille: 14pt)
+  #console("$ git merge mesure-4\nFusion automatique de altitudes.py\nCONFLIT (contenu) : Conflit de fusion dans altitudes.py", taille: 14pt)
 
   #legende[
-    `pour-18` a changé le nombre de crêpes, `master` le temps de repos : la
-    même ligne, modifiée des deux côtés depuis `eda`. La partie modifiée est
-    soulignée, et « … » abrège « 10 minutes de préparation ».
+    `mesure-4` et `master` ont chacune ajouté une mesure à la même ligne, modifiée
+    des deux côtés depuis `6db`. La partie modifiée est soulignée.
   ]
 
   #notes[
@@ -748,7 +782,7 @@
     la sortie.
 
     Deux modifications sur deux lignes différentes se fusionnent sans
-    conflit (la farine et le conseil, diapositive précédente).
+    conflit (le cumul et la description du programme, diapositive précédente).
   ]
 ]
 
@@ -762,23 +796,21 @@
   ]
 
   #face-a-face(
-    panneau[`recette.md` après `git merge`][
-      #console("# Crêpes\n\n<<<<<<< HEAD\n*Pour 12 crêpes — 10 minutes de\npréparation, 2 heures de repos.*\n=======\n*Pour 18 crêpes — 10 minutes de\npréparation, 1 heure de repos.*\n>>>>>>> pour-18", taille: 14pt)
+    panneau[`altitudes.py` après `git merge`][
+      #console("<<<<<<< HEAD\naltitudes = [128.4, 131.0, 127.6, 136.7]\n=======\naltitudes = [128.4, 131.0, 127.6, 134.9]\n>>>>>>> mesure-4", taille: 14pt)
     ],
     panneau[La ligne écrite, puis la fin de la fusion][
-      #console("*Pour 18 crêpes — 10 minutes de\npréparation, 2 heures de repos.*\n$ git add recette.md\n$ git commit -m \"Fusionne la version\npour 18 crêpes\"\n[master e87b68f] Fusionne la version\npour 18 crêpes", taille: 14pt)
+      #console("altitudes = [128.4, 131.0, 127.6, 134.9, 136.7]\n$ git add altitudes.py\n$ git commit -m \"Fusionne les deux mesures\"\n[master 91c4702] Fusionne les deux mesures", taille: 14pt)
     ],
   )
 
   #legende[
     Entre `<<<<<<< HEAD` et `=======`, la ligne de la branche courante ; entre
     `=======` et `>>>>>>>`, celle de la branche fusionnée. La bonne ligne
-    prend un morceau de chacune.
+    garde les deux mesures.
   ]
 
   #notes[
-    Les lignes longues sont coupées pour tenir dans la colonne.
-
     VS Code affiche au-dessus du conflit « Accept Current Change », « Accept
     Incoming Change », « Accept Both Changes ». Ici, aucune ne convient.
 
@@ -823,15 +855,15 @@
     branches: (
       (nom: "master", voie: 0, commit: "c9"),
       (nom: "develop", voie: 1, commit: "c8"),
-      (nom: "conseil", voie: 2, commit: "c4"),
-      (nom: "sans-gluten", voie: -1, commit: "c7"),
+      (nom: "cumul", voie: 2, commit: "c4"),
+      (nom: "mesures", voie: -1, commit: "c7"),
     ),
     echelle: 1.0,
     taille-etiquette: 10pt,
   ))
 
   #legende[
-    Alice fait le conseil, Bruno la variante sans gluten, chacun dans sa
+    Alice écrit le calcul du cumul, Bruno ajoute des mesures, chacun dans sa
     copie du dépôt. `c6` et `c8` fusionnent les tâches dans `develop` ;
     `c9` porte la version terminée dans `master`.
   ]

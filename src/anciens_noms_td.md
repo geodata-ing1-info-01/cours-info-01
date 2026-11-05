@@ -62,7 +62,7 @@ Le TD `4c_trajet` portait le numéro 5a sur son ouverture ; il devient le TD 1j.
 | TD 1a | TD 2a | `2a_vscode/` |  |
 | TD 1b | TD 2b | `2b_erreurs/` |  |
 | TD 2a | retiré le 04/11/2026 | `2c_markdown/` |  |
-| TD 3a, puis TD 2d | TD 2c | `2c_depot_recette/` |  |
+| TD 3a, puis TD 2d | TD 2c | `2c_depot_altitudes/` |  |
 
 ## Cours 3
 

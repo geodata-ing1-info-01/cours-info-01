@@ -8,7 +8,7 @@ sans toucher à la version principale, puis la fusion, qui réunit deux
 branches, et le conflit, quand deux branches ont modifié la même ligne.
 Elle se termine par l'organisation des branches quand on travaille à
 plusieurs. Les exemples sont ceux des étapes 5 et 6 du [TD
-2c](td/2c_depot_recette/guide.md) ; il est présenté en fin de page.
+2c](td/2c_depot_altitudes/guide.md) ; il est présenté en fin de page.
 
 ## Les branches
 
@@ -16,15 +16,15 @@ Une **branche** est un nom posé sur un commit. Elle avance d'un commit à
 chaque commit fait sur elle. **HEAD** désigne la branche courante.
 
 ```{figure} figures/4_branches.svg
-:alt: Le commit 28c, puis deux commits qui en partent : 220 sur la branche master, 939 sur la branche sans-gluten, au-dessus. HEAD désigne 220.
+:alt: Le commit 02b, puis deux commits qui en partent : 862 sur la branche master, 18b sur la branche cumul, au-dessus. HEAD désigne 862.
 
-Deux branches partent de `28c` : `master` a reçu le conseil (`220`),
-`sans-gluten` a reçu la farine de sarrasin (`939`). HEAD est sur `master`.
+Deux branches partent de `02b` : `master` a reçu la description complétée
+(`862`), `cumul` a reçu le dénivelé cumulé (`18b`). HEAD est sur `master`.
 ```
 
 Une branche fait évoluer une **variante** sans toucher à la version
-principale : ici, une recette sans gluten, pendant que `master` reçoit un
-conseil de conservation.
+principale : ici, le calcul du dénivelé cumulé, pendant que `master` reçoit une
+description complétée.
 
 ```{list-table}
 :header-rows: 1
@@ -40,14 +40,14 @@ conseil de conservation.
 ```
 
 ```text
-$ git checkout -b sans-gluten
-Basculement sur la nouvelle branche 'sans-gluten'
+$ git checkout -b cumul
+Basculement sur la nouvelle branche 'cumul'
 ```
 
 La branche créée par `git init` s'appelle `master` sur les postes
 (git 2.43) ; GitHub nomme la sienne `main`. Git Bash affiche la branche
 courante à la fin de l'invite, entre parenthèses : `~/…/travail
-(sans-gluten)`.
+(cumul)`.
 
 :::{note}
 `git switch <branche>` fait la même chose que `git checkout <branche>` pour
@@ -60,14 +60,13 @@ les branches. Les cours 2, 3 et 4 emploient `git checkout`.
 de la branche choisie.
 
 ```{figure} figures/4_checkout.svg
-:alt: Deux panneaux. À gauche, sur master : le graphe avec HEAD sur 220, et la ligne | Farine | 250 g |. À droite, après git checkout sans-gluten : le même graphe avec HEAD sur 939, et la ligne | Farine de sarrasin | 250 g |.
+:alt: Deux panneaux. À gauche, sur master : le graphe avec HEAD sur 862, et la fin de la sortie du programme, sans le cumul. À droite, après git checkout cumul : le même graphe avec HEAD sur 18b, et la fin de la sortie, avec le cumul.
 
-La ligne de la farine dans `recette.md`, ouvert dans VS Code, selon la
-branche courante.
+La fin de ce qu'affiche `python altitudes.py`, selon la branche courante.
 ```
 
-La variante reste enregistrée sur `sans-gluten` quand on revient sur
-`master`. Les fichiers non suivis ou ignorés, comme `recette.html`, ne
+Le calcul reste enregistré sur `cumul` quand on revient sur
+`master`. Les fichiers non suivis ou ignorés, comme `resultat.txt`, ne
 changent pas.
 
 :::{warning}
@@ -83,7 +82,7 @@ d'erreur.
 l'autre branche. La fusion se lance donc depuis la branche qui reçoit.
 
 ```{figure} figures/4_fusion.svg
-:alt: Deux panneaux. À gauche, seule sans-gluten a avancé : 28c puis 939, avec master et sans-gluten tous deux sur 939. À droite, les deux branches ont avancé : 28c, puis 220 sur master et 939 sur sans-gluten, puis eda, qui a deux parents, 220 et 939 ; master est sur eda.
+:alt: Deux panneaux. À gauche, seule cumul a avancé : 02b puis 18b, avec master et cumul tous deux sur 18b. À droite, les deux branches ont avancé : 02b, puis 862 sur master et 18b sur cumul, puis 6db, qui a deux parents, 862 et 18b ; master est sur 6db.
 
 Les deux cas d'une fusion.
 ```
@@ -96,20 +95,20 @@ Deux cas se présentent :
 - **les deux branches ont avancé** : git crée un **commit de fusion**, qui a
   deux parents, le dernier commit de chaque branche.
 
-Au TD 2c, `master` a reçu le conseil et `sans-gluten` la farine de
-sarrasin. La fusion crée le commit `edae9b6` :
+Au TD 2c, `master` a reçu la description complétée et `cumul` le dénivelé
+cumulé. La fusion crée le commit `6dbc9b3` :
 
 ```text
 $ git checkout master
-$ git merge sans-gluten -m "Fusionne la variante sans gluten"
-Fusion automatique de recette.md
+$ git merge cumul -m "Fusionne le dénivelé cumulé"
+Fusion automatique de altitudes.py
 Merge made by the 'ort' strategy.
- recette.md | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ altitudes.py | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 ```
 
-Le fichier fusionné a la farine de sarrasin et le conseil, parce que les
-deux modifications portent sur des lignes différentes.
+Le fichier fusionné a le dénivelé cumulé et la description complétée, parce que
+les deux modifications portent sur des lignes différentes.
 
 :::{note}
 Sans `-m`, `git merge` ouvre l'éditeur vim pour le message du commit de
@@ -123,51 +122,51 @@ différentes, git ne peut pas choisir entre elles. La fusion s'arrête sur un
 **conflit**, et git écrit les deux versions dans le fichier.
 
 ```{figure} figures/4_conflit.svg
-:alt: Le commit eda, puis deux commits qui en partent : b6b sur master, c50 sur pour-18, au-dessus. Deux traits pointillés rouges partent de b6b et de c50 vers une étoile marquée Conflit.
+:alt: Le commit 6db, puis deux commits qui en partent : 7e0 sur master, 6f7 sur mesure-4, au-dessus. Deux traits pointillés rouges partent de 7e0 et de 6f7 vers une étoile marquée Conflit.
 
-La fusion de `pour-18` dans `master` s'arrête sur un conflit.
+La fusion de `mesure-4` dans `master` s'arrête sur un conflit.
 ```
 
-À l'étape 6 du TD 2c, la troisième ligne de `recette.md` est modifiée des
-deux côtés depuis `eda` :
+À l'étape 6 du TD 2c, la troisième ligne d'`altitudes.py` est modifiée des
+deux côtés depuis `6db` :
 
 ```{list-table}
 :header-rows: 1
 
 * - Commit
-  - La troisième ligne de `recette.md`
-* - `eda`, avant
-  - `*Pour 12 crêpes — 10 minutes de préparation, 1 heure de repos.*`
-* - `c50`, sur `pour-18`
-  - `*Pour 18 crêpes — 10 minutes de préparation, 1 heure de repos.*`
-* - `b6b`, sur `master`
-  - `*Pour 12 crêpes — 10 minutes de préparation, 2 heures de repos.*`
+  - La troisième ligne d'`altitudes.py`
+* - `6db`, avant
+  - `altitudes = [128.4, 131.0, 127.6]`
+* - `6f7`, sur `mesure-4`
+  - `altitudes = [128.4, 131.0, 127.6, 134.9]`
+* - `7e0`, sur `master`
+  - `altitudes = [128.4, 131.0, 127.6, 136.7]`
 ```
 
-`pour-18` a changé le nombre de crêpes, `master` le temps de repos.
+`mesure-4` et `master` ont chacune ajouté une mesure à la même ligne.
 
 ```text
-$ git merge pour-18
-Fusion automatique de recette.md
-CONFLIT (contenu) : Conflit de fusion dans recette.md
+$ git merge mesure-4
+Fusion automatique de altitudes.py
+CONFLIT (contenu) : Conflit de fusion dans altitudes.py
 La fusion automatique a échoué ; réglez les conflits et validez le résultat.
 ```
 
-Le début de `recette.md` est alors :
+Le début d'`altitudes.py` est alors :
 
 ```text
-# Crêpes
+"""Altitudes extrêmes et dénivelé cumulé d'une série de mesures."""
 
 <<<<<<< HEAD
-*Pour 12 crêpes — 10 minutes de préparation, 2 heures de repos.*
+altitudes = [128.4, 131.0, 127.6, 136.7]
 =======
-*Pour 18 crêpes — 10 minutes de préparation, 1 heure de repos.*
->>>>>>> pour-18
+altitudes = [128.4, 131.0, 127.6, 134.9]
+>>>>>>> mesure-4
 ```
 
 - Entre `<<<<<<< HEAD` et `=======` : la ligne de la **branche courante**,
   `master`.
-- Entre `=======` et `>>>>>>> pour-18` : celle de la **branche fusionnée**.
+- Entre `=======` et `>>>>>>> mesure-4` : celle de la **branche fusionnée**.
 
 :::{warning}
 Les marqueurs sont des lignes de texte ordinaires. Laissés dans un fichier
@@ -177,24 +176,24 @@ Python, ils provoquent une `SyntaxError`.
 ### Résoudre un conflit
 
 1. Écrire la ligne voulue à la place des deux versions et des marqueurs.
-   Ici, la bonne ligne prend un morceau de chacune :
-   `*Pour 18 crêpes — 10 minutes de préparation, 2 heures de repos.*`
+   Ici, la bonne ligne garde les deux mesures :
+   `altitudes = [128.4, 131.0, 127.6, 134.9, 136.7]`
 2. Vérifier qu'il ne reste aucun marqueur : `Ctrl` + `F` dans VS Code,
    chercher `<<<<`.
 3. `git add` puis `git commit` terminent la fusion.
 
 ```text
-$ git add recette.md
+$ git add altitudes.py
 $ git status
 Sur la branche master
 Tous les conflits sont réglés mais la fusion n'est pas terminée.
   (utilisez "git commit" pour terminer la fusion)
 
 Modifications qui seront validées :
-	modifié :         recette.md
+	modifié :         altitudes.py
 
-$ git commit -m "Fusionne la version pour 18 crêpes"
-[master e87b68f] Fusionne la version pour 18 crêpes
+$ git commit -m "Fusionne les deux mesures"
+[master 91c4702] Fusionne les deux mesures
 ```
 
 VS Code affiche au-dessus du conflit « Accept Current Change », « Accept
@@ -213,9 +212,9 @@ suivent une organisation connue de toute l'équipe. La plus répandue,
 appelée *git flow*, sépare trois sortes de branches.
 
 ```{figure} figures/4_organisation.svg
-:alt: Quatre lignes de commits. En bas, master, avec c1 puis c9. Au-dessus, develop, avec c2, c6 et c8. En haut, la branche conseil, avec c3 et c4, fusionnée dans develop en c6. En bas, la branche sans-gluten, avec c5 et c7, fusionnée dans develop en c8. c9, sur master, fusionne develop.
+:alt: Quatre lignes de commits. En bas, master, avec c1 puis c9. Au-dessus, develop, avec c2, c6 et c8. En haut, la branche cumul, avec c3 et c4, fusionnée dans develop en c6. En bas, la branche mesures, avec c5 et c7, fusionnée dans develop en c8. c9, sur master, fusionne develop.
 
-Alice fait le conseil, Bruno la variante sans gluten. `c6` et `c8`
+Alice écrit le calcul du cumul, Bruno ajoute des mesures. `c6` et `c8`
 fusionnent les tâches dans `develop` ; `c9` porte la version terminée dans
 `master`.
 ```
@@ -239,7 +238,7 @@ la version rendue.
 
 ## TD de la partie
 
-- [TD 2c — Un dépôt git pour la recette](td/2c_depot_recette/guide.md),
+- [TD 2c — Un dépôt git pour altitudes.py](td/2c_depot_altitudes/guide.md),
   40 minutes. Les étapes 5 et 6 appliquent cette page : une branche
   fusionnée, puis un conflit résolu ; le graphe du dépôt se dessine sur
   papier avant d'être comparé à `git log --oneline --graph --all
