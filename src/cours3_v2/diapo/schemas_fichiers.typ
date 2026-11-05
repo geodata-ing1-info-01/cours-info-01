@@ -9,7 +9,7 @@
 #import "../../commun/prelude.typ": *
 #import "@preview/cetz:0.4.2"
 #import cetz.draw: *
-#import "../../cours5/diapo/schemas.typ": _disque, _memoire, _processeur, _fleche, _etiquette as _etiquette-composant
+#import "../../cours5/diapo/schemas.typ": _disque, _memoire, _processeur, _fleche, repere
 
 // Le début de `trace.csv`, un caractère par case ; `⏎` note le retour à la
 // ligne, `…` la suite du fichier. Le `é` de `durée` sert aux schémas d'encodage.
@@ -151,22 +151,23 @@
   _note(xn, 0.31)[13 caractères : `c3` donne `Ã`, `a9` donne `©`]
 })
 
-// La même ligne écrite sous Linux et sous Windows : les octets diffèrent par
-// la fin de ligne, le texte lu en mode texte est le même.
+// La même ligne écrite sous Linux et sous Windows : les fichiers diffèrent par
+// la fin de ligne, le texte lu en mode texte est le même. Les cases portent des
+// caractères : ce schéma vient avant la diapositive qui définit l'octet.
 #let schema-fin-de-ligne() = cetz.canvas(length: 1cm, {
   let xr = 5.4
-  let xn = xr + 15 * _octet + 0.5
-  let lettres = (("d", 1), ("u", 1), ("r", 1), ("é", 2)) + _lettres-fin
+  let xn = xr + 14 * _octet + 0.5
+  let lettres = ("d", "u", "r", "é", "e", ",", "x", ",", "y", ",", "z").map(c => (c, 1))
 
   _etiquette(xr - 0.3, 4.6)[Linux, macOS]
-  _cases(xr, 4.6, _octets-hex(_octets-entete + ("0a", "30"), vifs: (12,)))
-  _note(xn, 4.91)[14 octets]
+  _cases(xr, 4.6, lettres + (("\\n", 1, true), ("0", 1)))
+  _note(xn, 4.91)[13 caractères]
   _etiquette(xr - 0.3, 3.8)[texte lu]
   _cases(xr, 3.8, lettres + (("\\n", 1, true), ("0", 1)))
 
   _etiquette(xr - 0.3, 1.9)[Windows]
-  _cases(xr, 1.9, _octets-hex(_octets-entete + ("0d", "0a", "30"), vifs: (12, 13)))
-  _note(xn, 2.21)[15 octets]
+  _cases(xr, 1.9, lettres + (("\\r", 1, true), ("\\n", 1, true), ("0", 1)))
+  _note(xn, 2.21)[14 caractères]
   _etiquette(xr - 0.3, 1.1)[texte lu]
   _cases(xr, 1.1, lettres + (("\\n", 2, true), ("0", 1)))
 
@@ -254,36 +255,76 @@
 })
 
 // ---------------------------------------------------------------------------
-// La lecture d'un fichier, du disque au processeur (04/11/2026)
+// La lecture d'un fichier, du disque au processeur (04/11/2026, repris le 05/11)
+//
+// Trois composants, et ce que chacun contient au fil de deux lignes de code :
+// 1. `f.read()` copie le fichier du disque vers la mémoire vive ;
+// 2. pour `upper`, le processeur copie `texte` dans son cache, puis ses registres ;
+// 3. le résultat est écrit en mémoire vive, sous un autre nom.
 //
 // Le disque, la mémoire vive et le processeur sont les dessins de « Les
 // composants d'un ordinateur », au cours 1 v2. Les temps d'accès sont ceux de
 // « Hiérarchie des mémoires ».
 #let schema-lecture-memoire() = cetz.canvas(length: 1cm, {
-  let y = 3
-  let etape(x, code, acces) = {
-    content((x, y + 0.5), {
-      set smartquote(enabled: false)
-      text(size: 14pt, font: police-code, fill: accent)[#code]
+  let (bas, haut) = (0.3, 4.55)
+  let (r1, r2) = (2.35, 0.95)                    // les deux rangées de contenus
+  let largeur = 4.4
+  let (xd, xm, xp) = (0, 9.4, 20.6)              // bord gauche des composants
+  let demi = 1.7                                 // demi-largeur d'un contenu
+
+  let composant(x0, nom, note) = {
+    rect((x0, bas), (x0 + largeur, haut), radius: 0.12,
+         stroke: 0.9pt + accent.lighten(30%), fill: gris.lighten(72%))
+    content((x0 + largeur / 2, haut + 0.38), text(size: 15pt, weight: demi-gras, fill: accent)[#nom])
+    content((x0 + largeur / 2, bas - 0.32), text(size: 12pt, fill: estompe)[#note])
+  }
+  // Le dessin d'un composant, réduit pour laisser la place aux contenus.
+  let dessin(x, trace) = group({
+    set-origin((x, 3.6))
+    scale(0.55)
+    trace
+  })
+  // Un contenu : un fichier ou une variable en code, une mémoire en texte.
+  let contenu(cx, y, corps, code: true, vif: false) = {
+    rect((cx - demi, y - 0.36), (cx + demi, y + 0.36), radius: 0.06,
+         stroke: 0.9pt + accent, fill: if vif { attention.lighten(80%) } else { white })
+    content((cx, y), if code {
+      text(size: 12pt, font: police-code, fill: if vif { attention } else { encre })[#corps]
+    } else {
+      text(size: 13pt, fill: encre)[#corps]
     })
-    content((x, y - 0.75), align(center, text(size: 13pt, fill: estompe)[
-      copie \ accès : #acces
-    ]))
   }
-  _disque(3, y)
-  _fleche((4.5, y), (9.9, y))
-  etape(7.2, "texte = f.read()", [0,1 à 10 ms])
-  _memoire(11.5, y)
-  _fleche((13.1, y), (18.5, y))
-  etape(15.8, "texte.upper()", [100 ns])
-  _processeur(20, y)
-  // Le thème réduit les `raw` en ligne ; ici le code garde presque la taille de
-  // la légende.
-  let role(corps) = {
-    show raw: set text(size: 12.5pt)
-    corps
+  // Le numéro sur la flèche, le code au-dessus, le temps dessous.
+  let etape(n, a, b, code: none, dessous: none) = {
+    _fleche(a, b)
+    let (mx, my) = ((a.at(0) + b.at(0)) / 2, a.at(1))
+    content((mx, my), repere(n, taille: 17pt))
+    if code != none {
+      content((mx, my + 0.58), {
+        set smartquote(enabled: false)
+        text(size: 11.5pt, font: police-code, fill: accent)[#code]
+      })
+    }
+    if dessous != none { content((mx, my - 0.54), text(size: 12.5pt, fill: estompe)[#dessous]) }
   }
-  _etiquette-composant((3, y - 1.5), "Disque", role[`trace.csv`, conservé à l'extinction], largeur: 5.4cm)
-  _etiquette-composant((11.5, y - 1.5), "Mémoire vive", role[`texte`, effacé à la fin du programme], largeur: 5.4cm)
-  _etiquette-composant((20, y - 1.5), "Processeur", [le cache, puis les registres], largeur: 5.4cm)
+
+  composant(xd, [Disque], [conservé à l'extinction])
+  composant(xm, [Mémoire vive], [effacé à la fin du programme])
+  composant(xp, [Processeur], [mémoires du processeur])
+
+  let (cd, cm, cp) = (xd + largeur / 2, xm + largeur / 2, xp + largeur / 2)
+  dessin(cd, _disque(0, 0))
+  dessin(cm, _memoire(0, 0))
+  dessin(cp, _processeur(0, 0))
+
+  contenu(cd, r1, "trace.csv")
+  contenu(cm, r1, "texte")
+  contenu(cm, r2, "majuscules", vif: true)
+  contenu(cp, r1, [cache], code: false)
+  contenu(cp, r2, [registres], code: false)
+
+  etape(1, (cd + demi, r1), (cm - demi, r1), code: "texte = f.read()", dessous: [accès : 0,1 à 10 ms])
+  etape(2, (cm + demi, r1), (cp - demi, r1), code: "majuscules = texte.upper()", dessous: [accès : 100 ns])
+  _fleche((cp, r1 - 0.36), (cp, r2 + 0.36))
+  etape(3, (cp - demi, r2), (cm + demi, r2), dessous: [résultat écrit en mémoire vive])
 })

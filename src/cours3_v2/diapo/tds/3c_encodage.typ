@@ -34,8 +34,8 @@
   )
 
   #notes[
-    Les trois fichiers ouverts restent ouverts jusqu'à `exit()` : sans importance
-    dans une session courte, à éviter dans un programme.
+    Les trois fichiers ouverts restent ouverts jusqu'à `exit()`. Dans un programme,
+    employer `with`.
 
     À vérifier sur un poste de la salle : dans le terminal de VS Code, `é` et
     `Ã©` s'affichent correctement.

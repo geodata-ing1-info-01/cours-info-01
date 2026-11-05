@@ -29,18 +29,18 @@
     align: left + horizon,
     [Vu aux cours 1 et 2], [Aujourd'hui, en Python],
     [chemin relatif, chemin absolu], [`Path`, `/`, `resolve()`, `Path.cwd()`],
-    [fichier texte], [`open(file_path, encoding="utf-8")`, `fichier.write(..)`],
+    [fichier texte], [`open(chemin, encoding="utf-8")`, `f.write(texte)`],
     [disque et mémoire vive], [`f.read()`, du disque à la mémoire vive],
     [lancer un programme au terminal], [`argparse`, dans un programme qu'on écrit],
   )
 
   #notes[
-    Les notions sont connues des cours précédent. 
-    Ici on les revoit et on étudie comment les manipuler avec les fonctionnalités de la librairie standard Python.
+    Les notions sont connues des cours précédents. La séance les reprend avec la
+    bibliothèque standard de Python.
 
     Séance 3, à annoncer à l'oral (relecture du 04/11/2026). L'exposé d'abord,
     puis trois TD, sur une trace GPS, dans VS Code. Chaque TD a son dossier dans
-    l'archive `cours3/`. TD 3a, dénivelé d'une trace, 30 min ; TD 3b, chemins et
+    l'archive `cours3/`. TD 3a, lire les altitudes dans un fichier, 20 min ; TD 3b, chemins et
     paramètres, 30 min ; TD 3c, encodage et écriture, 20 min.
 
     Les TD du cours 3 de 2026, leurs notebooks et les deux parcours restent dans

@@ -5,8 +5,11 @@ Deux traces inventées, sans lien avec un parcours réel : la graine est fixée,
 et le script redonne les mêmes fichiers. Les colonnes sont `durée` (secondes
 depuis le départ), `x` et `y` (Lambert-93, en mètres) et `z` (altitude, en
 mètres). Les trois premières altitudes de `trace.csv` sont celles du programme
-`altitudes.py` du cours 1. Les programmes des TD et leurs corrigés sont
-versionnés à côté.
+`altitudes.py` du cours 1, et les cinq premières celles du corrigé du TD 2c. Les
+programmes des TD, leurs corrigés et `altitudes.txt` sont versionnés à côté.
+
+Le programme de départ du TD 3a est une copie du corrigé du TD 2c : le script
+signale par une ligne `! …` qu'ils diffèrent, et `outils/livrer_tds.py` s'arrête.
 
     python data/cours3_v2/make_data.py build
 """
@@ -54,6 +57,10 @@ def build() -> None:
             cible = ICI / td / "depart" / nom
             cible.write_text(traces[nom], encoding="utf-8", newline="\n")
             print(f"✓ {cible.relative_to(ICI.parent.parent)}")
+    depart = ICI / "3a_denivele" / "depart" / "altitudes.py"
+    corrige = ICI.parent / "cours2_v2" / "corriges" / "2c_depot_altitudes" / "altitudes.py"
+    if depart.read_text(encoding="utf-8") != corrige.read_text(encoding="utf-8"):
+        print(f"! {depart.relative_to(ICI.parent.parent)} diffère de {corrige.relative_to(ICI.parent.parent)}")
 
 
 if __name__ == "__main__":

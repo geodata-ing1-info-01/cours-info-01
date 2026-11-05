@@ -1,4 +1,4 @@
-"""Altitudes et dénivelé cumulé d'une trace GPS."""
+"""Altitudes extrêmes et dénivelé cumulé d'une série de mesures."""
 
 altitudes = []
 with open("trace.csv", encoding="utf-8") as fichier:
@@ -19,6 +19,5 @@ for i in range(1, len(altitudes)):
         hausse = hausse + ecart
     else:
         baisse = baisse - ecart
-
 print(f"cumul en hausse : {hausse:.1f} m")
 print(f"cumul en baisse : {baisse:.1f} m")

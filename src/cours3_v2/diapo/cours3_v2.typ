@@ -30,7 +30,7 @@
 )
 #let partie-2 = (
   titre: "Fichiers et encodage",
-  annonce: "Lire et écrire un fichier ; fichier texte ou binaire et encodage ; stockage des fichiers et mémoire",
+  annonce: "Lire un fichier ; stockage des fichiers et mémoire ; fichier texte ou binaire et encodage ; écrire un fichier ; pathlib et argparse",
 )
 
 #include "parties/00_ouverture.typ"
@@ -43,6 +43,7 @@
 #include "parties/02a_lecture.typ"
 #include "parties/02b_encodage.typ"
 #include "parties/02c_fichiers.typ"
+#include "parties/02d_chemins_arguments.typ"
 
 // Les trois TD, sur la même trace GPS.
 #if tds {

@@ -1,96 +1,67 @@
-// Partie 2 du cours 3, fin : `with`, les modes d'écriture `"w"` et `"a"`,
-// puis les lignes d'`altitudes.py` qui lisent et écrivent un fichier.
+// Partie 2 du cours 3 v2, suite : le récapitulatif sur les fichiers.
 //
 // Incluse par `cours3_v2.typ`, après `02b_encodage.typ`.
 // Un fichier inclus n'hérite pas des imports de son appelant.
 #import "../../../commun/prelude.typ": *
 #import "../schemas.typ": *
-#import "../schemas_fichiers.typ": schema-modes-ecriture
 
 // --------------------------------------------
-#d("with : fermeture automatique")[
-  #annonce[
-    Un fichier ouvert doit être fermé. Le bloc `with` le ferme à la sortie
-    du bloc indenté, y compris en cas d'erreur.
-  ]
-
-  #face-a-face(
-    panneau("open, puis close")[
-      #sortie("f = open(chemin, encoding=\"utf-8\")\ntexte = f.read()\nf.close()", taille: 12pt)
-    ],
-    panneau("with")[
-      #sortie("with open(chemin, encoding=\"utf-8\") as f:\n    texte = f.read()\n# ici, f est fermé", taille: 12pt)
-    ],
-  )
-
-  #v(0.3em)
-  #tableau(
-    columns: (1fr, 1fr, 1fr),
-    align: left + horizon,
-    [Situation], [`open`, puis `close()`], [`with`],
-    [une erreur survient pendant la lecture], [reste ouvert : `close()` n'est pas atteint], [fermé],
-    [`close()` oublié], [reste ouvert jusqu'à la fin du programme], [aucun `close()` à écrire],
-  )
-
-  #notes[
-    `as f` donne le nom de l'objet fichier ; le bloc indenté est la durée
-    d'ouverture. Forme à employer, et celle des fonctions utiles.
-  ]
-]
-
-// --------------------------------------------
-#d("Modes d'écriture : \"w\" et \"a\"")[
-  #annonce[
-    Le mode `"w"` vide le fichier à l'ouverture, puis écrit depuis le début.
-    Le mode `"a"` conserve le contenu et écrit à la fin. Dans les deux modes,
-    un fichier absent est créé.
-  ]
-
-  #align(center, schema-modes-ecriture())
-
-  #legende[
-    Le trait bleu marque la position d'écriture ; les cases en couleur sont
-    les caractères écrits par `write`.
-  ]
-
-  #notes[
-    Le TD 3c écrit `resume.txt` en `"w"`, puis le complète en `"a"`. Le mode
-    `"x"` lève `FileExistsError` si le fichier existe.
-  ]
-]
-
-// --------------------------------------------
-// Revue le 04/11/2026 : les lignes d'`altitudes.py`, corrigé du TD 3c.
-#d("Fichiers texte : les lignes du programme")[
-  #annonce[
-    Le programme `altitudes.py` lit la trace ligne par ligne, puis ajoute son
-    résumé à un fichier.
-  ]
-
-  #code-commente(
-    taille-code: 12.5pt, taille-texte: 12pt,
-    ("with open(FICHIER, encoding=\"utf-8\") as fichier:", "ouvrir, et fermer à la fin du bloc"),
-    ("    fichier.readline()", "la ligne d'en-tête, ignorée"),
-    ("    for ligne in fichier:", "une ligne à la fois"),
-    ("        duree, x, y, z = ligne.strip().split(\",\")", "les quatre valeurs de la ligne"),
-    ("        altitudes.append(float(z))", "l'altitude, convertie en nombre"),
-    ("with open(\"resume.txt\", \"a\", encoding=\"utf-8\") as sortie:", "mode `\"a\"` : le fichier est créé ou complété"),
-    ("    sortie.write(texte)", "écrire la chaîne"),
-  )
-
-  #tableau(
-    columns: (auto, 1fr, 1fr, 1fr),
-    align: left + horizon,
-    [Mode], [Ce qu'il fait], [Fichier absent], [Fichier présent],
-    [`"r"`], [lire (défaut)], [erreur], [lu],
-    [`"w"`], [écrire], [créé], [vidé, puis réécrit],
-    [`"a"`], [ajouter à la fin], [créé], [conservé, complété],
-  )
+// Récapitulatif (05/11/2026), à partir du tableau « Méthodes de lecture d'un
+// fichier ». Exemple exécuté sur `trace.csv`, Python 3.12.
+#d("Fichiers en Python : récapitulatif")[
+  #{
+    // Un titre de rubrique ; `block` fixe les écarts, qu'une `stack` refermerait.
+    let rubrique(titre) = block(above: 10pt, below: 5pt, {
+      show raw: set text(size: 12.5pt)
+      text(size: 13.5pt, weight: demi-gras, fill: estompe)[#titre]
+    })
+    let lignes(..paires) = code-commente(taille-code: 11pt, taille-texte: 12pt, ..paires)
+    grid(
+      columns: (0.9fr, 1.1fr), column-gutter: 16pt, align: top,
+      [
+        #rubrique[Ouvrir]
+        #{
+          show raw: set text(size: 11pt)
+          block(below: 6pt, raw(lang: "python", "with open(chemin, mode, encoding=\"utf-8\") as f:"))
+        }
+        #lignes(
+          ("\"r\"", "lire du texte (mode par défaut)"),
+          ("\"w\"", "vider le fichier, puis écrire"),
+          ("\"a\"", "écrire à la fin du fichier"),
+          ("\"rb\", \"wb\"", "lire, écrire des octets, sans `encoding`"),
+        )
+        #rubrique[Lire]
+        #lignes(
+          ("f.read()", "une chaîne : tout le fichier"),
+          ("f.readline()", "une chaîne : la ligne suivante"),
+          ("f.readlines()", "une liste de chaînes, une par ligne"),
+          ("for ligne in f:", "une chaîne à chaque itération"),
+        )
+        #rubrique[Écrire]
+        #lignes(
+          ("f.write(texte)", "écrit la chaîne, sans fin de ligne"),
+        )
+        #rubrique[Traiter une ligne]
+        #lignes(
+          ("ligne.strip()", "enlève la fin de ligne"),
+          ("ligne.split(\",\")", "découpe la ligne aux virgules"),
+        )
+      ],
+      [
+        #rubrique[Exemple, sur `trace.csv`]
+        #script("# Lire une ligne à la fois\naltitudes = []\nwith open(\"trace.csv\", encoding=\"utf-8\") as f:\n    f.readline()\n    for ligne in f:\n        duree, x, y, z = ligne.strip().split(\",\")\n        altitudes.append(float(z))\n\n# Vider le fichier, puis écrire\nwith open(\"resume.txt\", \"w\", encoding=\"utf-8\") as sortie:\n    sortie.write(f\"minimum : {min(altitudes)}\\n\")\n\n# Écrire à la fin du fichier\nwith open(\"resume.txt\", \"a\", encoding=\"utf-8\") as sortie:\n    sortie.write(f\"maximum : {max(altitudes)}\\n\")", taille: 10.5pt)
+        #rubrique[`resume.txt`, après l'exécution]
+        #script("minimum : 120.6\nmaximum : 165.3", taille: 10.5pt, lang: none)
+      ],
+    )
+  }
 
   #notes[
-    `sortie.write(texte)` abrège la ligne du corrigé, qui écrit le nom du fichier,
-    le seuil et les deux cumuls.
+    `read` et `readlines` copient tout le fichier en mémoire vive. `readline` et la
+    boucle `for` copient une ligne à la fois.
 
-    Rappel : sans `encoding="utf-8"`, « é » devient « Ã© ».
+    Sur un fichier de plusieurs gigaoctets (un nuage de points LiDAR en
+    texte), `read()` échoue faute de mémoire ; la boucle `for` le traite, et
+    `break` arrête la lecture.
   ]
 ]

@@ -145,3 +145,78 @@
     liste(pistes, i => [#str(i + 1).]),
   )
 }
+
+// ---------------------------------------------------------------------------
+// Les versions du script, partie 1 (05/11/2026)
+//
+// Le script à gauche ; à droite, ce qu'il fait sur deux postes ; dessous, ce
+// qu'une autre personne fait pour traiter ses données.
+
+// Un script entier, une bande par ligne. Les lignes de `vives`, comptées à
+// partir de 1, ont un fond bleu clair : ce sont celles qui changent d'une
+// version à l'autre.
+#let script(texte, vives: (), taille: 11pt, lang: "python") = block(
+  width: 100%, inset: 7pt, fill: gris, above: 0pt, below: 0pt,
+)[
+  // Le thème réduit les `raw` en ligne ; celle-ci, posée plus près, fixe la taille.
+  #show raw: set text(size: taille)
+  #stack(..texte.split("\n").enumerate().map(((i, ligne)) => block(
+    width: 100%, height: taille * 1.38, inset: (x: 3pt), above: 0pt, below: 0pt,
+    fill: if (i + 1) in vives { attention.lighten(72%) },
+    align(horizon, raw(lang: lang, ligne)),
+  )))
+]
+
+// Un poste : son nom, le dossier du script, ses fichiers, puis une commande et
+// sa sortie. `erreur: true` met le cadre et la sortie en orange.
+#let poste(nom, dossier, fichiers, terminal, erreur: false) = {
+  let couleur = if erreur { alerte } else { accent }
+  block(
+    width: 100%, stroke: 1pt + couleur, radius: 3pt, inset: (x: 9pt, y: 6pt),
+    breakable: false,
+  )[
+    #set par(leading: 0.4em)
+    #text(size: 14pt, weight: demi-gras, fill: couleur)[#nom]
+    #h(0.6em)
+    #text(size: 10.5pt, font: police-code, fill: estompe)[#dossier]
+    #linebreak()
+    #text(size: 10.5pt, font: police-code, fill: estompe)[#fichiers]
+    #block(width: 100%, inset: (x: 7pt, y: 5pt), fill: gris, above: 0.35em, below: 0pt)[
+      #show raw: set text(size: 11pt, fill: couleur)
+      #raw(block: true, terminal)
+    ]
+  ]
+}
+
+// La diapositive d'une version : `donnees`, le contenu du fichier lu, s'il faut
+// le montrer ; `lien` nomme ce qui passe du poste d'Alice à l'autre poste ;
+// `adapter` donne les opérations d'une autre personne.
+#let version-script(code, vives: (), donnees: none, alice, lien, autre, adapter) = {
+  grid(
+    columns: (1fr, 1fr), column-gutter: 16pt,
+    stack(
+      spacing: 5pt,
+      text(size: 15pt, fill: estompe, weight: demi-gras)[altitudes.py],
+      script(code, vives: vives),
+      ..if donnees != none {(
+        v(3pt),
+        text(size: 15pt, fill: estompe, weight: demi-gras)[altitudes.txt],
+        script(donnees, lang: none),
+      )},
+    ),
+    stack(
+      spacing: 4pt,
+      alice,
+      align(center, text(size: 13pt, fill: estompe)[#sym.arrow.b #lien]),
+      autre,
+    ),
+  )
+  block(
+    width: 100%, above: 0.6em, below: 0pt, inset: (x: 12pt, y: 7pt),
+    fill: attention.lighten(90%), stroke: (left: 3pt + attention),
+  )[
+    #set text(size: 14pt)
+    #show raw: set text(size: 12.5pt)
+    #text(fill: attention, weight: demi-gras)[Pour traiter d'autres données.] #adapter
+  ]
+}

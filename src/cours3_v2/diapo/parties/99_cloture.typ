@@ -7,12 +7,12 @@
     entete: false,
     columns: (auto, 1fr),
     align: left + horizon,
-    [Un chemin relatif], [part du dossier courant : celui du notebook, ou celui du terminal],
+    [Un chemin relatif], [part du dossier courant, celui du terminal],
     [`Path(__file__)`], [le chemin du script ; `/` construit les chemins à partir de son dossier],
     [`encoding="utf-8"`], [dans chaque lecture et chaque écriture de texte],
     [`f.read()`], [copie le contenu du fichier du disque vers la mémoire vive],
-    [Un caractère], [un nombre ; ASCII en a 128, sur un octet ; UTF-8 écrit les autres sur deux à quatre],
-    [`argparse`], [les valeurs sur la ligne de commande, vérifiées, et l'aide de `--help`],
+    [Un caractère], [un ou plusieurs octets : un pour les 128 caractères d'ASCII, deux à quatre pour les autres en UTF-8],
+    [`argparse`], [lit les valeurs de la ligne de commande, les vérifie et produit l'aide `--help`],
   )
 
   #notes[
