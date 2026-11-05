@@ -50,8 +50,8 @@ Cause
   ([Variables d'environnement](../notions/variables_environnement.md)).
 
 Remède
-: Taper la commande dans l'invite de commandes d'Anaconda ({ref}`A1 <dep-a1>`). Dans VS
-  Code, faire le réglage du terminal, qui ouvre un `cmd` activé
+: Taper la commande dans l'invite de commandes d'Anaconda ({ref}`A1 <dep-a1>`). Dans Git
+  Bash : {ref}`G4 <dep-g4>`. Dans VS Code, faire le réglage du terminal
   ({ref}`V5 <dep-v5>`).
 
 (dep-a3)=
@@ -162,10 +162,11 @@ Cause
   PowerShell passe par un script.
 
 Remède
-: Employer un `cmd` à la place de PowerShell : `activate.bat` n'est pas un
-  script PowerShell et n'est pas concerné. C'est ce que fait l'Anaconda
-  Prompt ([Les terminaux](../notions/terminaux.md)), et ce que le réglage
-  du terminal donne à VS Code ({ref}`V5 <dep-v5>`).
+: Employer un autre terminal que PowerShell : Git Bash, ou un `cmd`. Leurs
+  scripts d'activation ne sont pas des scripts PowerShell, et ne sont pas
+  concernés. L'Anaconda Prompt ouvre un `cmd` ([Les
+  terminaux](../notions/terminaux.md)), et le réglage du terminal donne
+  Git Bash à VS Code ({ref}`V5 <dep-v5>`).
 
   Le compte peut aussi changer la stratégie pour lui-même, sans droits
   d'administration, si aucune stratégie de groupe ne l'impose. Dans un

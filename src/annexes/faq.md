@@ -8,8 +8,8 @@ le traite, dans les pages de problèmes listées en bas de cette page. Quand
 plusieurs entrées sont citées, lire la première d'abord.
 
 Avant de chercher, relever deux choses : la dernière ligne du message
-d'erreur, recopiée telle quelle, et la fenêtre où elle apparaît (Anaconda
-Prompt, `cmd`, PowerShell, terminal de VS Code, cellule de notebook). Le
+d'erreur, recopiée telle quelle, et la fenêtre où elle apparaît (Git Bash,
+Anaconda Prompt, `cmd`, PowerShell, terminal de VS Code, cellule de notebook). Le
 même message a parfois deux causes selon la fenêtre.
 
 ## Réseau et compte
@@ -65,6 +65,7 @@ même message a parfois deux causes selon la fenêtre.
 | `sys.executable` dans le notebook n'est pas le même que dans le terminal | {ref}`J4 <dep-j4>` |
 | Un `import` réussit dans le terminal et échoue dans le notebook | {ref}`J4 <dep-j4>`, {ref}`V8 <dep-v8>` |
 | JupyterLab affiche une adresse `localhost:8888` mais aucune page ne s'ouvre | {ref}`J5 <dep-j5>` |
+| Le panneau de JupyterLab ne montre pas le dossier voulu, ou le disque `D:` | {ref}`J6 <dep-j6>` |
 
 ## VS Code
 
@@ -82,11 +83,17 @@ même message a parfois deux causes selon la fenêtre.
 | `Ctrl` + `ù` n'ouvre pas le terminal | {ref}`V9 <dep-v9>` |
 | « Unable to write into user settings » ; une ligne rouge dans `settings.json` | {ref}`V10 <dep-v10>` |
 | « Error loading webview: Could not register service worker » à l'aperçu Markdown ou dans un notebook | {ref}`V11 <dep-v11>` |
+| « Git Bash » n'est pas proposé parmi les terminaux de VS Code | {ref}`V12 <dep-v12>` |
 
-## git (séance 2)
+## Git Bash et git
 
 | Ce qu'on voit | Entrée |
 |---|---|
+| L'invite de Git Bash ne commence pas par `(base)` ; `conda: command not found` | {ref}`G4 <dep-g4>` |
+| `python` lance une autre version dans Git Bash | {ref}`G4 <dep-g4>` |
+| `source` affiche `No such file or directory` en réglant conda | {ref}`G5 <dep-g5>` |
+| `conda init bash` écrit `needs sudo`, ou Windows demande des droits | {ref}`G6 <dep-g6>` |
+| Chaque nouveau Git Bash affiche `Usage: cygpath …` | {ref}`G7 <dep-g7>` |
 | `'git' n'est pas reconnu` ; VS Code affiche « Git not found » | {ref}`G1 <dep-g1>` |
 | `Author identity unknown` au premier commit | {ref}`G2 <dep-g2>` |
 | `warning: … LF will be replaced by CRLF` | {ref}`G3 <dep-g3>` |

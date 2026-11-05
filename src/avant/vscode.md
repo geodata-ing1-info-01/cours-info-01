@@ -1,6 +1,6 @@
 ---
 title: VS Code
-subtitle: Autoriser les scripts, installer les extensions Python et Jupyter, recopier les réglages du compte
+subtitle: Installer l'extension Python, choisir l'interpréteur, faire de Git Bash le terminal
 ---
 
 :::{note}
@@ -9,11 +9,11 @@ premier programme s'écrit dans Notepad++ et se lance dans un terminal, sans
 VS Code.
 :::
 
-Ces réglages sont faits et expliqués pendant la séance 2. Ils sont réunis
-ici pour les séances suivantes : sur un poste qui n'a pas encore servi, on
-les refait dans l'ordre de la page. La session réseau doit être ouverte
-avant ([Premiers tests du poste](poste.md)), et Anaconda testé ([Anaconda
-et JupyterLab](python.md)).
+Ces réglages sont faits et expliqués pendant la séance 2, au [TD
+2a](../cours2_v2/notebook/td/2a_vscode/guide.md). Ils sont réunis ici pour les
+séances suivantes : sur un poste qui n'a pas encore servi, on les refait dans
+l'ordre de la page. La session réseau doit être ouverte avant ([Premiers tests
+du poste](poste.md)), et Anaconda testé ([Anaconda et JupyterLab](python.md)).
 
 :::{warning}
 Le premier lancement de l'année de VS Code peut être long : il crée ses
@@ -22,95 +22,84 @@ fois, puis attendre, jusqu'à deux minutes. Les lancements suivants sont
 plus rapides.
 :::
 
-Quatre étapes, dans cet ordre. Les réglages sont enregistrés dans le
-compte : ils sont à refaire sur un poste où l'on ne s'est jamais connecté.
+## Ce qu'il faut configurer
 
-## Autoriser les scripts dans PowerShell
+VS Code n'est lié à aucun langage, et ne contient ni interpréteur ni
+compilateur. Pour écrire et lancer du Python, il faut configurer quatre
+choses :
 
-Le terminal de VS Code est un PowerShell. À son ouverture, il affiche
-`… cannot be loaded because running scripts is disabled on this system`
-({ref}`A7 <dep-a7>`) : PowerShell refuse le script qui active
-l'environnement d'Anaconda. Le compte peut l'autoriser pour lui-même, sans
-droits d'administration.
+| Quoi | Pourquoi |
+|---|---|
+| L'extension Python | Elle apporte l'exécution et la vérification du code. Elle se télécharge : il faut une connexion internet. |
+| L'interpréteur | L'extension lance le Python qu'on lui désigne : celui d'Anaconda. |
+| Le terminal | VS Code ouvre par défaut PowerShell, qui refuse le script d'activation de conda sur les postes de la salle. Le module emploie Git Bash. |
+| conda dans Git Bash | Sans conda activé, `python` lance un autre Python que celui d'Anaconda, ou aucun. |
 
-Menu Démarrer, taper `powershell`, Entrée. Taper la commande suivante,
-puis Entrée :
-
-```
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-```
-
-Répondre `O`, puis fermer la fenêtre. Si la réponse est un message
-d'erreur, le poste impose sa stratégie : passer à la suite, les dernières
-lignes des réglages du compte, plus bas, remplacent PowerShell par un
-`cmd` déjà activé.
+Ces réglages sont enregistrés dans le compte : ils sont à refaire sur un poste
+où l'on ne s'est jamais connecté.
 
 ## Ouvrir VS Code sur le dossier de la séance
 
-Dans Navigator, fiche VS Code, bouton Launch (ou menu Démarrer, taper
-`visual studio code`, Entrée). Puis menu File, Open Folder, et choisir
-`Bureau\info01\cours2`, ou le dossier de la séance.
+Menu Démarrer, taper `visual studio code`, Entrée. Puis menu File, Open Folder,
+et choisir `Bureau\info01\cours2`, ou le dossier de la séance.
 
 À la première ouverture d'un dossier, VS Code demande si on fait confiance
 à ses auteurs. Répondre « Yes, I trust the authors » ; sinon, l'extension
 Python ne se charge pas ({ref}`V4 <dep-v4>`).
 
-## Installer les extensions Python et Jupyter
+## Installer l'extension Python
 
-Panneau Extensions (`Ctrl` + `Maj` + `X`). Taper `python` dans la zone de
-recherche, choisir « Python », de Microsoft, et cliquer Install. Puis de
-même avec `jupyter` et l'extension « Jupyter », de Microsoft.
+Panneau Extensions : bouton à quatre carrés dans la barre de gauche, ou
+`Ctrl` + `Maj` + `X`. Taper `python` dans la zone de recherche, choisir
+« Python », de Microsoft (le nom de l'éditeur est écrit sous celui de
+l'extension, avec une coche bleue), et cliquer Install. Si l'installation ne se
+fait pas : {ref}`V3 <dep-v3>`.
 
-Plusieurs extensions portent ces noms. Les bonnes se reconnaissent à leur
-identifiant, écrit dans le volet de droite, ligne « Identifier » :
-`ms-python.python` et `ms-toolsai.jupyter`. Si l'installation ne se fait
-pas : {ref}`V3 <dep-v3>`.
+```{figure} ../annexes/configuration/captures/vscode_extensions_python.png
+:alt: Le panneau Extensions avec python dans la zone de recherche ; l'extension Python de Microsoft est en tête de liste, et son volet de détail est ouvert
+:width: 100%
 
-## Recopier les réglages du compte
-
-Palette (`Ctrl` + `Maj` + `P`), « Preferences: Open User Settings
-(JSON) ». Si le fichier est vide, y recopier le bloc suivant en entier.
-S'il contient déjà des réglages, ajouter les lignes du bloc entre les
-accolades, après une virgule.
-
-```json
-{
-  "python.condaPath": "C:\\ProgramData\\anaconda3\\Scripts\\conda.exe",
-  "python.defaultInterpreterPath": "C:\\ProgramData\\anaconda3\\python.exe",
-  "python-envs.defaultEnvManager": "ms-python.python:conda",
-  "python-envs.defaultPackageManager": "ms-python.python:conda",
-  "terminal.integrated.profiles.windows": {
-    "Anaconda Prompt": {
-      "path": "C:\\Windows\\System32\\cmd.exe",
-      "args": ["/K", "C:\\ProgramData\\anaconda3\\Scripts\\activate.bat", "C:\\ProgramData\\anaconda3"]
-    },
-    "Git Bash": {
-      "path": "C:\\Program Files\\Git\\bin\\bash.exe",
-      "args": ["--login", "-i"]
-    }
-  },
-  "terminal.integrated.defaultProfile.windows": "Anaconda Prompt",
-  "editor.renderWhitespace": "all",
-  "files.autoSave": "afterDelay"
-}
+Le panneau Extensions après avoir tapé `python` ; ici l'extension est déjà
+installée, d'où les boutons Disable et Uninstall à la place d'Install
+(documentation VS Code, CC BY 3.0 US).
 ```
 
-Enregistrer (`Ctrl` + `S`), puis palette, « Developer: Reload Window ».
-Les lignes `terminal` décrivent à VS Code deux terminaux : l'invite de
-commandes d'Anaconda, ouverte par défaut, déjà activée, sans dépendre de
-l'extension Python, et Git Bash. conda est disponible dans Git Bash après
-`conda init bash` ({ref}`Anaconda, section Git Bash <conda-git-bash>`).
-Ce que fait chaque ligne est expliqué dans [Fichiers de
-réglages](../annexes/configuration/vscode_reglages.md).
+## Choisir l'interpréteur
+
+Palette (`Ctrl` + `Maj` + `P`), « Python: Select Interpreter », puis la ligne
+`base`, de chemin `C:\ProgramData\anaconda3\python.exe`. Si elle n'est pas dans
+la liste : {ref}`V6 <dep-v6>`.
+
+## Faire de Git Bash le terminal
+
+Palette, « Terminal: Select Default Profile », puis « Git Bash ». S'il n'est
+pas proposé : {ref}`V12 <dep-v12>`. Puis menu Terminal, New Terminal.
+
+La flèche à droite du `+`, en haut à droite du panneau du terminal, liste les
+terminaux ({ref}`Choisir le terminal à ouvrir <vscode-terminal-choisir>`).
+
+L'invite doit commencer par `(base)`. Sinon, taper dans ce terminal :
+
+```text
+source /c/ProgramData/anaconda3/etc/profile.d/conda.sh
+conda init bash
+```
+
+Fermer ensuite le terminal (icône de corbeille, en haut à droite du panneau),
+puis en ouvrir un nouveau. Si un message d'erreur s'affiche : {ref}`G4
+<dep-g4>`, {ref}`G5 <dep-g5>`, {ref}`G6 <dep-g6>`, {ref}`G7 <dep-g7>`.
 
 ## Vérifier
 
 | Ce qu'on fait | Ce qu'on doit voir | Sinon |
 |---|---|---|
-| Palette, « Python: Select Interpreter » | une ligne `base`, type Conda, chemin `C:\ProgramData\anaconda3\python.exe`, cochée | {ref}`V6 <dep-v6>` |
-| Menu Terminal, New Terminal | un onglet « Anaconda Prompt », une invite `(base) C:\…>` | {ref}`V5 <dep-v5>` |
-| Flèche à côté du `+`, « Git Bash » | un onglet « Git Bash », une invite qui commence par `(base)` et se termine par `$` | {ref}`Anaconda, section Git Bash <conda-git-bash>` |
-| Dans ce terminal, `python -c "import sys; print(sys.executable)"` | `C:\ProgramData\anaconda3\python.exe` | {ref}`V7 <dep-v7>` |
-| Ouvrir un `.ipynb`, bouton « Select Kernel », « Python Environments… » | `base` en tête de liste | {ref}`J1 <dep-j1>` |
+| Regarder en bas à droite de la fenêtre | `3.x ('base')` | {ref}`V6 <dep-v6>` |
+| Menu Terminal, New Terminal | une invite qui commence par `(base)` et se termine par `$` | {ref}`G4 <dep-g4>`, {ref}`V5 <dep-v5>` |
+| Dans ce terminal, `which python` | `/c/ProgramData/anaconda3/python` | {ref}`G4 <dep-g4>`, {ref}`V7 <dep-v7>` |
+| Ouvrir un fichier `.py`, puis cliquer sur le triangle en haut à droite | la commande dans le terminal, puis ce que le programme affiche | {ref}`V8 <dep-v8>` |
 
-Le détail de VS Code est dans l'annexe [VS Code](../annexes/configuration/vscode.md).
+Le détail de VS Code est dans l'annexe [VS
+Code](../annexes/configuration/vscode.md), et les réglages complets, prêts à
+recopier, dans [Fichiers de réglages](../annexes/configuration/vscode_reglages.md).
+Les notebooks dans VS Code demandent en plus l'extension Jupyter
+([Notebooks](../annexes/configuration/vscode_notebooks.md)).

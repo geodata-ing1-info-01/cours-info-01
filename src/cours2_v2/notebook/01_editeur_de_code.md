@@ -229,8 +229,8 @@ anglais.
 Le TD 2a se fait en classe entière : toute la salle fait la même étape en
 même temps. Il règle VS Code une fois par poste :
 
-1. **installer l'extension Python**, en cherchant son identifiant,
-   `ms-python.python`, dans le panneau des extensions ;
+1. **installer l'extension Python**, en tapant `python` dans le panneau des
+   extensions, puis en choisissant celle de Microsoft ;
 2. faire de **Git Bash** le terminal de VS Code, celui du cours 1 ;
 3. **choisir l'interpréteur** Python, celui d'Anaconda (`base`) ;
 4. régler l'affichage des espaces et l'enregistrement automatique.
@@ -267,7 +267,7 @@ parcourir les menus.
   - un mot : « render whitespace »
 * - les extensions
   - `Ctrl` + `Maj` + `X`
-  - un identifiant : `ms-python.python`
+  - un nom : `python`
 * - le terminal
   - `Ctrl` + `ù`
   - ouvrir, masquer, rouvrir

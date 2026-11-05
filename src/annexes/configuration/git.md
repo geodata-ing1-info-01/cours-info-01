@@ -3,8 +3,9 @@ title: Git et Git Bash
 subtitle: Ouvrir Git Bash, y avoir conda, régler git, et les solutions de secours quand Git Bash n'est pas installé
 ---
 
-Le cours 2 se fait dans un terminal bash. Il y faut deux choses : les
-commandes git (`git init`, `add`, `commit`, `status`, `log`, `diff`,
+Git Bash est le terminal du module, à partir du [TD
+1b](../../cours1_v2/notebook/td/1b_terminal/guide.md). Le module y emploie deux
+choses : les commandes git (`git init`, `add`, `commit`, `status`, `log`, `diff`,
 `branch`, `merge`, `restore`…) et les commandes unix des diapositives
 (`ls`, `cd`, `pwd`, `cp`, `mv`, `rm`, `touch`, `mkdir`). Sous Windows, les
 deux viennent d'un seul logiciel, Git for Windows, qui contient git, bash et
@@ -35,11 +36,38 @@ Git Bash s'ouvre de deux façons :
 | Taper `ls -a` dans le dossier d'une séance | la liste des fichiers, `.` et `..` compris | le terminal n'est pas celui de cette page |
 | Dans bash, l'invite | `eleve@POSTE MINGW64 ~/Desktop/info01 $` ; `$` en fin de ligne | l'onglet ouvert est un `cmd` |
 
+(conda-git-bash)=
 ## conda dans Git Bash
 
-Git Bash ne connaît pas la commande `conda` à son ouverture. La
-configuration, à faire une fois par `conda init bash`, est décrite dans
-{ref}`Anaconda, section Git Bash <conda-git-bash>`.
+À son ouverture, Git Bash ne connaît pas conda : `conda` n'est pas reconnu,
+et `python` lance un autre Python que celui d'Anaconda, ou aucun. Le [TD
+1c](../../cours1_v2/notebook/td/1c_programme/guide.md) fait cette
+configuration. Deux commandes, tapées une fois dans Git Bash, le configurent :
+
+```text
+source /c/ProgramData/anaconda3/etc/profile.d/conda.sh
+conda init bash
+```
+
+`source` exécute le script `conda.sh` dans le terminal ouvert, ce qui y
+définit la commande `conda`. `conda init bash` écrit une instruction
+équivalente dans le fichier `~/.bash_profile`, que Git Bash lit à chaque
+ouverture. Il affiche une ligne par fichier examiné, `no change` ou
+`modified`. Fermer ensuite Git Bash, puis le rouvrir.
+
+| Ce qu'on fait | Ce qu'on doit voir | Sinon |
+|---|---|---|
+| Ouvrir Git Bash | l'invite commence par `(base)` | {ref}`G4 <dep-g4>` |
+| Taper `which python` | `/c/ProgramData/anaconda3/python` | {ref}`G4 <dep-g4>` |
+| Taper `conda --version` | `conda 25.x` ou `conda 24.x` | {ref}`G4 <dep-g4>` |
+
+Le réglage est écrit dans le dossier personnel du compte. Il reste d'une
+séance à l'autre sur le même poste, et se refait sur un autre poste. Il
+vaut aussi pour le Git Bash ouvert dans VS Code, qui lit le même fichier
+({ref}`VS Code, section Git dans VS Code <vscode-git>`).
+
+Quand une de ces commandes échoue, ou qu'un message s'affiche à chaque
+ouverture : {ref}`G5 <dep-g5>`, {ref}`G6 <dep-g6>`, {ref}`G7 <dep-g7>`.
 
 ## Le nom et l'adresse des commits
 

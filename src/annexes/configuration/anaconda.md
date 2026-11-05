@@ -7,7 +7,8 @@ Anaconda est une distribution Python : un ensemble qui réunit Python, des
 centaines de bibliothèques déjà installées, l'outil `conda` qui gère les
 environnements, et des applications (Anaconda Navigator, Spyder,
 JupyterLab). Sur les postes de la salle, il est installé pour tous les
-utilisateurs, dans `C:\ProgramData\anaconda3`.
+utilisateurs, dans `C:\ProgramData\anaconda3`. Sur un ordinateur personnel, le
+module conseille Miniforge ([Python et conda](../poste_personnel/conda.md)).
 
 On se sert d'Anaconda de deux façons : en ligne de commande, avec la
 commande `conda` et le Python de la distribution tapés dans un terminal, ou
@@ -39,7 +40,7 @@ d'Anaconda :
 | Terminal | Script d'activation | Mise en place |
 |---|---|---|
 | Invite de commandes d'Anaconda (`cmd`) | `Scripts\activate.bat` | faite par le raccourci du menu Démarrer |
-| Git Bash (`bash`) | `etc/profile.d/conda.sh` | par `conda init bash`, une fois sur le poste |
+| Git Bash (`bash`) | `etc/profile.d/conda.sh` | par `conda init bash`, une fois sur le poste : {ref}`Git et Git Bash, section conda <conda-git-bash>` |
 | PowerShell | `shell\condabin\conda-hook.ps1` | bloquée sur les postes de la salle ({ref}`A7 <dep-a7>`) |
 
 ### L'invite de commandes d'Anaconda
@@ -73,66 +74,6 @@ de commandes d'Anaconda fonctionne donc sans réglage.
 | `conda --version` | `conda 25.x` ou `conda 24.x` |
 | `where python` | en première ligne, `C:\ProgramData\anaconda3\python.exe` |
 
-(conda-git-bash)=
-### Git Bash
-
-Git Bash est le terminal du module à partir du [TD 1c](../../cours1_v2/notebook/td/1b_terminal/guide.md), qui fait cette
-configuration. À son ouverture, Git Bash ne connaît pas conda. Deux
-commandes, tapées une fois dans Git Bash, le configurent :
-
-```text
-source /c/ProgramData/anaconda3/etc/profile.d/conda.sh
-conda init bash
-```
-
-`source` exécute le script `conda.sh` dans le terminal ouvert, ce qui y
-définit la commande `conda`. `conda init bash` écrit une instruction
-équivalente dans le fichier `~/.bash_profile`, que Git Bash lit à chaque
-ouverture. Il affiche une ligne par fichier examiné, `no change` ou
-`modified`. Fermer ensuite Git Bash, puis le rouvrir.
-
-| Ce qu'on fait | Ce qu'on doit voir |
-|---|---|
-| Ouvrir Git Bash | l'invite commence par `(base)` |
-| Taper `which python` | `/c/ProgramData/anaconda3/python` |
-| Taper `conda --version` | `conda 25.x` ou `conda 24.x` |
-
-Le réglage est écrit dans le dossier personnel du compte. Il reste d'une
-séance à l'autre sur le même poste, et se refait sur un autre poste. Il
-vaut aussi pour le Git Bash ouvert dans VS Code, qui lit le même fichier
-([Git et Git Bash](git.md)).
-
-Quand la configuration échoue :
-
-`source` affiche `No such file or directory`
-: Anaconda est installé dans un autre dossier. Sur un ordinateur
-  personnel, essayer `source /c/Users/$USERNAME/anaconda3/etc/profile.d/conda.sh`,
-  ou `source ~/miniforge3/etc/profile.d/conda.sh` avec Miniforge
-  ([Python et conda](../poste_personnel/conda.md)).
-
-`conda init bash` écrit `needs sudo`, ou Windows demande des droits d'administrateur
-: Refuser, puis écrire la ligne à la main dans `~/.bash_profile`, et
-  rouvrir Git Bash :
-
-  ```text
-  echo 'eval "$(/c/ProgramData/anaconda3/Scripts/conda.exe shell.bash hook)"' >> ~/.bash_profile
-  ```
-
-Chaque nouveau Git Bash affiche l'aide de `cygpath` (`Usage: cygpath …`), puis `bash: : No such file or directory`
-: Anaconda fournit son propre `cygpath`, dans
-  `C:\ProgramData\anaconda3\Library\usr\bin`, qui échoue sous Git Bash ;
-  une fois `base` activé, ce dossier passe avant ceux de Git dans le `PATH`.
-  L'environnement est activé, mais le script d'OpenSSL d'Anaconda n'est pas
-  chargé, et `SSL_CERT_FILE` n'est pas posée. Taper une fois la commande
-  suivante, puis rouvrir Git Bash :
-
-  ```text
-  sed -i '1i cygpath() { /usr/bin/cygpath "$@"; }' ~/.bash_profile
-  ```
-
-  Elle ajoute en tête de `~/.bash_profile` une fonction `cygpath`, qui passe
-  avant le `PATH` et appelle toujours celui de Git.
-
 ## Les environnements
 
 Un environnement est un dossier qui contient un Python et les paquets
@@ -158,8 +99,8 @@ change l'activation est expliqué dans
 Une application lancée depuis un terminal est cherchée dans
 l'environnement actif, et démarre avec lui. Navigator fait de même avec
 l'environnement choisi en haut de sa page. Le lancement de chaque
-application est décrit dans sa page : [JupyterLab](jupyterlab.md),
-[Spyder](spyder.md), [VS Code](vscode.md).
+application est décrit dans sa page : [VS Code](vscode.md),
+[Spyder](spyder.md), [JupyterLab](jupyterlab.md).
 
 (config-depots)=
 ## Configuration des dépôts
@@ -249,6 +190,19 @@ affiché en haut. Quand Navigator est lent ou ne s'ouvre pas
 aussi depuis un terminal, comme l'indique sa page. Un Navigator bloqué au
 démarrage, dont l'icône reste à l'écran, s'arrête depuis le Gestionnaire
 des tâches ({ref}`A13 <dep-a13>`).
+
+### Les fiches Notebook et JupyterLab
+
+Navigator propose deux fiches, « Notebook » et « JupyterLab ». Ce sont
+deux clients web du même projet Jupyter : Notebook est le plus ancien, une
+page par notebook ; JupyterLab est le plus complet, avec un explorateur
+de fichiers, plusieurs onglets et un terminal. Depuis 2023, Notebook est
+construit sur les mêmes composants que JupyterLab. Les deux ouvrent les
+mêmes fichiers `.ipynb` et lancent le même serveur ; aucun ne remplace
+l'autre, et le choix ne change rien au fichier.
+
+VS Code est un troisième client, qui ouvre les notebooks sans serveur
+([Les notebooks](../notions/notebooks.md)).
 
 ## Documentation officielle
 

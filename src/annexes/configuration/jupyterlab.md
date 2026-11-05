@@ -1,10 +1,12 @@
 ---
-title: JupyterLab
-subtitle: Tester JupyterLab, le lancer depuis un terminal, les fiches Notebook et JupyterLab
+title: JupyterLab hors Anaconda
+subtitle: Lancer JupyterLab seul, dans un terminal, sans Anaconda Navigator
 ---
 
 JupyterLab est un client de notebooks, livré avec Anaconda, qui s'affiche
-dans le navigateur. Ce qu'est un notebook, son noyau et ses clients sont
+dans le navigateur. Il se lance aussi seul, dans un terminal, sans passer
+par Anaconda Navigator : le [TD 1d](../../cours1_v2/notebook/td/1d_notebook/guide.md)
+le lance ainsi. Ce qu'est un notebook, son noyau et ses clients sont
 expliqués dans [Les notebooks](../notions/notebooks.md).
 
 ## Tester JupyterLab
@@ -58,18 +60,27 @@ navigateur n'arrête pas le serveur : c'est `Ctrl` + `C` dans la fenêtre,
 deux fois, qui l'arrête, ou le menu File, Shut Down dans JupyterLab. Un
 serveur oublié occupe le port 8888, et le suivant s'ouvre sur 8889.
 
-## Les fiches Notebook et JupyterLab
+## Les fichiers accessibles
 
-Navigator propose deux fiches, « Notebook » et « JupyterLab ». Ce sont
-deux clients web du même projet Jupyter : Notebook est le plus ancien, une
-page par notebook ; JupyterLab est le plus complet, avec un explorateur
-de fichiers, plusieurs onglets et un terminal. Depuis 2023, Notebook est
-construit sur les mêmes composants que JupyterLab. Les deux ouvrent les
-mêmes fichiers `.ipynb` et lancent le même serveur ; aucun ne remplace
-l'autre, et le choix ne change rien au fichier.
+JupyterLab montre le dossier d'où on le lance, et ce qu'il contient. Le panneau
+de gauche ne remonte pas au-dessus de ce dossier, et n'a aucun bouton pour changer
+de disque. La fenêtre noire affiche ce dossier, à la ligne `Serving notebooks from
+local directory`.
 
-VS Code est un troisième client, qui ouvre les notebooks sans serveur
-([Les notebooks](../notions/notebooks.md)).
+Pour travailler dans un autre dossier ou sur le disque `D:`, arrêter JupyterLab,
+se placer dans ce dossier, puis relancer :
+
+| Terminal | Commandes |
+|---|---|
+| Git Bash | `cd /d/mon_dossier`, puis `jupyter lab` |
+| Invite de commandes d'Anaconda | `cd /d D:\mon_dossier`, puis `jupyter lab` |
+
+Cette limite ne vaut que pour le panneau de fichiers. Le code d'un notebook peut
+lire un fichier ailleurs sur le poste : `open("D:/mon_dossier/fichier.csv")`. Les
+autres cas sont dans {ref}`J6 <dep-j6>`.
+
+Les fiches Notebook et JupyterLab de Navigator sont décrites dans
+[Anaconda](anaconda.md).
 
 ## Documentation officielle
 

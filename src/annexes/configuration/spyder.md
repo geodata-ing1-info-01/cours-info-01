@@ -157,6 +157,23 @@ et le module n'en a pas besoin.
 | Dans la console, `import sys; print(sys.executable)` puis Entrée | le chemin d'Anaconda, le même que dans l'invite de commandes d'Anaconda | {ref}`A12 <dep-a12>` |
 | Menu Consoles, « Nouvelle console dans l'environnement » | `base`, et les environnements créés par le compte | {ref}`A11 <dep-a11>` |
 
+(spyder-git)=
+## Git avec Spyder
+
+Spyder n'a pas de terminal intégré. Le plus simple est de garder une fenêtre Git
+Bash à côté de Spyder ([Git et Git Bash](git.md)) : les commandes git des TD ne
+changent pas, et `git` ne dépend pas de conda. Spyder écrit et lance les
+programmes (`F5`), sans réglage. Cette organisation convient à un élève que la
+configuration de VS Code bloque.
+
+Spyder offre aussi trois moyens moins complets :
+
+| Moyen | Ce qu'il donne | Limite |
+|---|---|---|
+| Clic droit dans le volet Fichiers (Files) ou Projets (Projects) | Commit ouvre `git-cola` ou `git gui`, et Browse ouvre `gitk`, dans leurs propres fenêtres | `git` et `gitk` doivent être dans le `PATH` : `where gitk` dans un `cmd` [à vérifier sur un poste] |
+| `!git status` dans la console | le résultat de la commande, dans la console | seulement pour une commande qui ne pose pas de question : `git commit` sans `-m` ne convient pas |
+| L'extension `spyder-terminal` | un terminal dans Spyder | `cmd` ou PowerShell sous Windows d'après sa documentation, et un environnement dédié : `base` n'est pas modifiable sur les postes ({ref}`A8 <dep-a8>`) |
+
 ## Documentation officielle
 
 - [Tour de l'interface](https://docs.spyder-ide.org/current/quickstart.html)

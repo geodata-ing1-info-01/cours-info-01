@@ -113,3 +113,51 @@ Remède
 : Copier l'adresse complète, avec le `token`, de la fenêtre noire dans la
   barre d'adresse de Firefox. Ne pas fermer la fenêtre noire tant qu'on
   travaille : c'est le serveur. `Ctrl` + `C` dans cette fenêtre l'arrête.
+
+(dep-j6)=
+### J6. JupyterLab ne montre pas le dossier voulu, ou le disque `D:`
+
+Ce qu'on voit
+: Le panneau de gauche ne contient pas le dossier cherché. On ne peut ni remonter
+  au-dessus du dossier affiché, ni changer de disque.
+
+Cause
+: JupyterLab montre le dossier d'où il a été lancé, et ce qu'il contient. Son
+  serveur refuse tout chemin en dehors (`outside root contents directory`). Lancé
+  depuis le menu Démarrer ou depuis Navigator, il part en général du dossier du
+  compte, `C:\Users\<nom>`. [À vérifier sur un poste, ainsi que l'emplacement de
+  `Documents`, qui peut être sur `D:`.]
+
+Vérifier
+: Dans la fenêtre noire, la ligne `Serving notebooks from local directory` donne
+  ce dossier.
+
+Remède
+: Arrêter JupyterLab (`Ctrl` + `C`, deux fois, dans la fenêtre noire), se placer
+  dans le dossier voulu, puis relancer. Dans Git Bash :
+
+  ```text
+  cd /d/mon_dossier
+  jupyter lab
+  ```
+
+  Dans l'invite de commandes d'Anaconda :
+
+  ```text
+  cd /d D:\mon_dossier
+  jupyter lab
+  ```
+
+  `cd /d D:\`, dans l'invite de commandes, montre tout le disque. Le code d'un
+  notebook n'est pas limité : `open("D:/mon_dossier/fichier.csv")` lit le fichier.
+
+  Sur un ordinateur personnel, un réglage rend ce dossier permanent, y compris
+  depuis Navigator. `jupyter lab --generate-config` crée le fichier
+  `~/.jupyter/jupyter_lab_config.py` ; y écrire, avec des `/` :
+
+  ```python
+  c.ServerApp.root_dir = "D:/mon_dossier"
+  ```
+
+  Ce réglage est à éviter sur les postes de la salle : le compte est commun, et
+  JupyterLab refuse de démarrer si le dossier n'existe pas (`No such directory`).

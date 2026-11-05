@@ -1,13 +1,13 @@
 ---
-title: Problèmes avec git
-subtitle: À partir de la séance 2
+title: Problèmes avec git et Git Bash
+subtitle: Git Bash à partir de la séance 1, git à partir de la séance 2
 ---
 
-Cette page sera complétée après la séance 2, avec les messages réellement
-rencontrés.
+L'ouverture et la configuration de Git Bash sont dans [Git et Git
+Bash](../configuration/git.md).
 
 (dep-git)=
-## Problèmes
+## Problèmes avec git
 
 (dep-g1)=
 ### G1. « 'git' n'est pas reconnu en tant que commande interne ou externe »
@@ -70,3 +70,90 @@ Cause
 Remède
 : Rien à faire pour le module. Pour ne plus voir le message :
   `git config --global core.autocrlf false`.
+
+## Problèmes avec Git Bash
+
+(dep-g4)=
+### G4. L'invite de Git Bash ne commence pas par `(base)`
+
+Ce qu'on voit
+: Pas de ligne `(base)` au-dessus de l'invite. `conda` répond `command not
+  found`. `python` répond `command not found`, ou lance une autre version
+  que celle d'Anaconda.
+
+Cause
+: conda n'est pas configuré dans Git Bash pour ce compte, ou le terminal a
+  été ouvert avant la configuration.
+
+Vérifier
+: `which python` : le chemin doit contenir `anaconda3`.
+
+Remède
+: Taper une fois les deux commandes suivantes, puis fermer Git Bash et le
+  rouvrir. Dans VS Code, fermer le terminal (icône de corbeille, en haut à
+  droite du panneau), puis en ouvrir un nouveau.
+
+  ```text
+  source /c/ProgramData/anaconda3/etc/profile.d/conda.sh
+  conda init bash
+  ```
+
+  Si le réglage échoue, quelle qu'en soit la raison, employer l'invite de
+  commandes d'Anaconda : menu Démarrer, « Anaconda Prompt ». conda y est
+  actif sans réglage, et les chemins s'y écrivent avec des `\`. Dans VS
+  Code, le même terminal est le profil « Anaconda Prompt » ([Python et
+  environnement conda](../configuration/vscode_python.md)).
+
+(dep-g5)=
+### G5. `source` affiche `No such file or directory`
+
+Ce qu'on voit
+: `bash: /c/ProgramData/anaconda3/etc/profile.d/conda.sh: No such file or
+  directory`.
+
+Cause
+: Anaconda est installé dans un autre dossier.
+
+Remède
+: Sur un ordinateur personnel, essayer `source
+  /c/Users/$USERNAME/anaconda3/etc/profile.d/conda.sh`, ou `source
+  ~/miniforge3/etc/profile.d/conda.sh` avec Miniforge ([Python et
+  conda](../poste_personnel/conda.md)).
+
+(dep-g6)=
+### G6. `conda init bash` écrit `needs sudo`, ou Windows demande des droits d'administrateur
+
+Ce qu'on voit
+: `needs sudo` dans la liste des fichiers examinés, ou une fenêtre de
+  Windows qui demande des droits d'administrateur.
+
+Remède
+: Refuser, puis écrire la ligne à la main dans `~/.bash_profile`, et
+  rouvrir Git Bash :
+
+  ```text
+  echo 'eval "$(/c/ProgramData/anaconda3/Scripts/conda.exe shell.bash hook)"' >> ~/.bash_profile
+  ```
+
+(dep-g7)=
+### G7. Chaque nouveau Git Bash affiche l'aide de `cygpath`
+
+Ce qu'on voit
+: `Usage: cygpath …`, puis `bash: : No such file or directory`.
+
+Cause
+: Anaconda fournit son propre `cygpath`, dans
+  `C:\ProgramData\anaconda3\Library\usr\bin`, qui échoue sous Git Bash ;
+  une fois `base` activé, ce dossier passe avant ceux de Git dans le `PATH`.
+  L'environnement est activé, mais le script d'OpenSSL d'Anaconda n'est pas
+  chargé, et `SSL_CERT_FILE` n'est pas posée.
+
+Remède
+: Taper une fois la commande suivante, puis rouvrir Git Bash :
+
+  ```text
+  sed -i '1i cygpath() { /usr/bin/cygpath "$@"; }' ~/.bash_profile
+  ```
+
+  Elle ajoute en tête de `~/.bash_profile` une fonction `cygpath`, qui passe
+  avant le `PATH` et appelle toujours celui de Git.

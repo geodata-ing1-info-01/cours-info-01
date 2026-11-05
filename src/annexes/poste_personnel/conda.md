@@ -1,12 +1,19 @@
 ---
 title: Python et conda
-subtitle: Installer Miniforge, régler les canaux, créer l'environnement du module
+subtitle: Installer Miniforge, ou Anaconda si besoin, régler les canaux, créer l'environnement du module
 ---
 
 Le module emploie conda pour installer Python et les outils des TD. Sur un
 ordinateur personnel, on installe Miniforge, une distribution de conda
 publiée par la communauté conda-forge. Les commandes sont les mêmes que
 dans la salle : `conda create`, `conda activate`, `conda install`.
+
+:::{warning}
+Sur un ordinateur personnel, le module conseille d'installer **Miniforge**, sous
+Windows comme sous Ubuntu : {ref}`Installer Miniforge <installer-miniforge>`.
+Anaconda reste possible, avec les réserves de {ref}`Installer Anaconda
+<installer-anaconda>`.
+:::
 
 ## Choisir l'installateur
 
@@ -18,7 +25,7 @@ Quatre installateurs donnent la commande `conda` ou un équivalent :
 | Canal par défaut | `defaults`, les canaux d'Anaconda | `defaults` | `conda-forge`, seul | aucun, à choisir |
 | Contenu de `base` | Python, des centaines de bibliothèques, Navigator, Spyder, JupyterLab | Python et conda | Python, conda et mamba | pas de `base`, pas de Python |
 | Commande | `conda` | `conda` | `conda`, ou `mamba` | `micromamba` |
-| Conditions d'utilisation | gratuit pour les étudiants dans le cadre des cours, payant pour une organisation de 200 personnes ou plus | les mêmes qu'Anaconda | aucune | aucune |
+| Conditions d'utilisation | gratuit pour les étudiants dans le cadre des cours, payant pour une organisation de plus de 200 personnes | les mêmes qu'Anaconda | aucune | aucune |
 
 Le module conseille Miniforge. Son installation pèse quelques centaines de
 Mo, contre plusieurs Go pour Anaconda. Il est gratuit pour tout le monde,
@@ -30,6 +37,7 @@ micromamba est un seul programme, sans environnement `base`. Sa commande
 diffère de celle de la salle, et il sert surtout à préparer des
 environnements sur des serveurs d'intégration continue.
 
+(installer-miniforge)=
 ## Installer Miniforge
 
 ### Sous Windows
@@ -42,7 +50,7 @@ environnements sur des serveurs d'intégration continue.
 3. Menu Démarrer, taper `miniforge`, choisir « Miniforge Prompt ». Une
    fenêtre noire s'ouvre, et l'invite commence par `(base)`.
 
-### Sous macOS et Linux
+### Sous Ubuntu, les autres Linux et macOS
 
 Dans le Terminal :
 
@@ -66,6 +74,33 @@ Dans la Miniforge Prompt, ou dans le Terminal :
 | `conda --version` | `conda` suivi d'un numéro de version |
 | `conda config --show channels` | `conda-forge`, seul |
 | `python -c "import sys; print(sys.executable)"` | un chemin dans le dossier `miniforge3` |
+
+(installer-anaconda)=
+## Installer Anaconda
+
+Le module conseille Miniforge. Anaconda sert à retrouver chez soi Navigator et
+Spyder, déjà installés, comme dans la salle, au prix de plusieurs Go. Il est
+gratuit pour un usage personnel non commercial et dans le cadre des cours, et
+payant dans une organisation de plus de 200 personnes (conditions du 15 juillet
+2025). Sous Windows :
+
+1. Sur <https://www.anaconda.com/download>, créer un compte ou se connecter, puis
+   choisir l'installateur graphique Windows 64 bits.
+2. Lancer l'installateur depuis le dossier Téléchargements, sans le mode
+   administrateur.
+3. Garder « Just Me », qui ne demande pas de droits d'administrateur.
+4. Garder le dossier proposé, `C:\Users\<nom>\anaconda3`, si le nom du compte ne
+   contient ni espace ni accent. Sinon, choisir un dossier sans espace ni accent,
+   par exemple `C:\anaconda`. Ne pas installer dans `C:\Program Files` : la
+   documentation d'Anaconda écarte les chemins qui contiennent une espace.
+5. Laisser décochée l'option qui ajoute Anaconda au `PATH`.
+6. Menu Démarrer, taper `anaconda`, choisir « Anaconda Prompt ». L'invite commence
+   par `(base)`.
+
+Dans la salle, Anaconda est installé pour tous les comptes, dans
+`C:\ProgramData\anaconda3`, ce qui demande des droits d'administrateur. Chez soi,
+les chemins des pages de la salle sont à remplacer par le dossier choisi
+({ref}`G5 <dep-g5>`), et les canaux à régler (section suivante).
 
 ## Les canaux
 
@@ -128,7 +163,7 @@ commandes d'Anaconda dans la salle ({ref}`Anaconda, section conda dans un
 terminal <conda-terminal>`). Pour les autres terminaux :
 
 - Git Bash : les commandes de la salle, avec le chemin de Miniforge, puis
-  fermer et rouvrir Git Bash ({ref}`Anaconda, section Git Bash
+  fermer et rouvrir Git Bash ({ref}`Git et Git Bash, section conda
   <conda-git-bash>`) :
 
   ```text

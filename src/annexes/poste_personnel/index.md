@@ -3,6 +3,11 @@ title: Configuration d'un ordinateur personnel
 subtitle: Installer chez soi les outils du module, et ce qui change par rapport à la salle
 ---
 
+:::{warning}
+Le module conseille d'installer **Miniforge**, sous Windows comme sous Ubuntu :
+[Python et conda](conda.md).
+:::
+
 Les pages sur la configuration des postes de la salle valent aussi chez soi
 pour l'usage des outils. Sur un ordinateur personnel, on a les droits
 d'administrateur, il n'y a pas de session réseau à ouvrir, et le système

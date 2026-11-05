@@ -109,7 +109,7 @@
     de VSCode le dit pour le C++ : « The C/C++ extension doesn't include a C++
     compiler or debugger, since VS Code as an editor relies on command-line
     tools for the development workflow. » Les environnements sont au
-    cours 3.
+    cours 5.
 
     Sur les langages : un IDE donne « special support for one or
     more programming languages », et le support des autres langages passe le

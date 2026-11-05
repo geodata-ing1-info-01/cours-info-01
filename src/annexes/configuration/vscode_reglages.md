@@ -11,14 +11,14 @@ comment ouvrir les fichiers : {ref}`VS Code, section Les réglages
 <vscode-reglages>`.
 
 Ils obtiennent quatre choses : la liste des environnements conda dans
-« Python: Select Interpreter » et dans le sélecteur de noyau, un `cmd` déjà
-activé comme terminal par défaut, Git Bash comme second terminal, et `base`
+« Python: Select Interpreter » et dans le sélecteur de noyau, Git Bash comme
+terminal par défaut, un `cmd` déjà activé comme terminal de secours, et `base`
 comme noyau des notebooks sans rien installer. Les réglages Python et le
 profil « Anaconda Prompt » ont été vérifiés le 21 septembre 2026 sur un
 poste de la salle, avec VS Code 1.124, l'extension Python 2026.4, Python
 Environments 1.36 et Jupyter 2025.9. Le profil « Git Bash » et les deux
-réglages de l'éditeur ont été ajoutés le 27 septembre 2026 [à vérifier sur
-un poste].
+réglages de l'éditeur ont été ajoutés le 27 septembre 2026, et Git Bash est
+le terminal par défaut depuis le 5 novembre 2026 [à vérifier sur un poste].
 
 ## Réglages du compte
 
@@ -46,7 +46,7 @@ accolades, après une virgule.
       "args": ["--login", "-i"]
     }
   },
-  "terminal.integrated.defaultProfile.windows": "Anaconda Prompt",
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
   "editor.renderWhitespace": "all",
   "files.autoSave": "afterDelay"
 }
@@ -60,9 +60,9 @@ Enregistrer (`Ctrl` + `S`), puis palette, « Developer: Reload Window ».
 | `python.defaultInterpreterPath` | `base` est l'interpréteur d'un dossier tant qu'on n'en a pas choisi un autre, et le noyau proposé en premier |
 | `python-envs.defaultEnvManager` | « Create Environment » crée un environnement conda, pas un `venv` |
 | `python-envs.defaultPackageManager` | « Install Package » passe par conda, pas par pip |
-| `terminal.integrated.profiles.windows`, « Anaconda Prompt » | décrit le terminal de l'invite de commandes d'Anaconda : un `cmd` qui lance `activate.bat` à l'ouverture |
-| `terminal.integrated.profiles.windows`, « Git Bash » | décrit le terminal Git Bash de `C:\Program Files\Git`. VS Code le trouve seul à cet endroit, et le profil écrit en entier le garde dans la liste même s'il ne le trouve pas. conda y est disponible après `conda init bash` ({ref}`Anaconda, section Git Bash <conda-git-bash>`) |
-| `terminal.integrated.defaultProfile.windows` | l'invite de commandes d'Anaconda est le terminal qu'ouvre New Terminal, déjà activé, sans dépendre de l'extension Python. Avec la valeur `"Git Bash"`, New Terminal ouvre Git Bash |
+| `terminal.integrated.profiles.windows`, « Anaconda Prompt » | décrit le terminal de secours, l'invite de commandes d'Anaconda : un `cmd` qui lance `activate.bat` à l'ouverture |
+| `terminal.integrated.profiles.windows`, « Git Bash » | décrit le terminal Git Bash de `C:\Program Files\Git`. VS Code le trouve seul à cet endroit, et le profil écrit en entier le garde dans la liste même s'il ne le trouve pas. conda y est disponible après `conda init bash` ({ref}`Git et Git Bash, section conda <conda-git-bash>`) |
+| `terminal.integrated.defaultProfile.windows` | Git Bash est le terminal qu'ouvre New Terminal. Avec la valeur `"Anaconda Prompt"`, New Terminal ouvre l'invite de commandes d'Anaconda, déjà activée, sans dépendre de l'extension Python |
 | `editor.renderWhitespace` | un point gris marque chaque espace, comme dans Notepad++ |
 | `files.autoSave` | le fichier s'enregistre une seconde après la dernière frappe |
 
@@ -96,8 +96,8 @@ Deux différences avec le fichier du compte :
 | Ce qu'on fait | Ce qu'on doit voir | Sinon |
 |---|---|---|
 | Palette, « Python: Select Interpreter » | une ligne `base`, type Conda, chemin `C:\ProgramData\anaconda3\python.exe`, cochée | {ref}`V6 <dep-v6>` |
-| Menu Terminal, New Terminal | un onglet « Anaconda Prompt », une invite `(base) C:\…>` | {ref}`V5 <dep-v5>` |
-| Flèche à côté du `+`, « Git Bash » | un onglet « Git Bash », une invite qui commence par `(base)` et se termine par `$` | {ref}`Anaconda, section Git Bash <conda-git-bash>` |
+| Menu Terminal, New Terminal | une invite qui commence par `(base)` et se termine par `$` | {ref}`G4 <dep-g4>`, {ref}`V5 <dep-v5>` |
+| Flèche à côté du `+`, « Anaconda Prompt » | un onglet « Anaconda Prompt », une invite `(base) C:\…>` | {ref}`V5 <dep-v5>` |
 | Dans ce terminal, `python -c "import sys; print(sys.executable)"` | `C:\ProgramData\anaconda3\python.exe` | {ref}`V7 <dep-v7>` |
 | Ouvrir un `.ipynb`, bouton « Select Kernel », « Python Environments… » | `base` en tête de liste | {ref}`J1 <dep-j1>` |
 | Exécuter une cellule `import sys; sys.executable` | `C:\ProgramData\anaconda3\python.exe`, sans proposition d'installer `ipykernel` | {ref}`J2 <dep-j2>` |

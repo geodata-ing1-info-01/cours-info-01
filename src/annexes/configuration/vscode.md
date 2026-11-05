@@ -9,6 +9,18 @@ Jupyter. Une extension est un module qu'on ajoute à VS Code. Cette page
 décrit ce qui sert dans tous les cas ; les deux pages suivantes décrivent
 la configuration pour Python et pour les notebooks.
 
+## Ce qu'il faut configurer
+
+VS Code n'est lié à aucun langage, et ne contient ni interpréteur ni
+compilateur. Il faut le configurer pour chaque langage employé, et lui
+désigner son terminal. La marche à suivre, en une page, est dans [VS
+Code](../../avant/vscode.md), parmi les pages à lire avant les séances.
+
+| Objectif | Étapes | Détail |
+|---|---|---|
+| Écrire et lancer un langage | installer son extension, avec une connexion internet ; indiquer le chemin de son interpréteur ou de son compilateur ; lancer un programme pour vérifier | [Python et environnement conda](vscode_python.md) |
+| Avoir le bon terminal | choisir Git Bash comme terminal de VS Code ; y activer conda ; vérifier `(base)` et `which python` | [Python et environnement conda](vscode_python.md), {ref}`Git et Git Bash, section conda <conda-git-bash>` |
+
 ## Lancer VS Code et ouvrir un dossier
 
 Menu Démarrer, taper `visual studio code`, Entrée. Puis menu File, Open
@@ -134,9 +146,9 @@ Le terminal est une fenêtre de commandes à l'intérieur de VS Code
 ([Les terminaux](../notions/terminaux.md)). Menu
 Terminal, New Terminal l'ouvre en bas de la fenêtre (le raccourci clavier
 dépend du clavier, {ref}`V9 <dep-v9>`). Par défaut, c'est un PowerShell.
-Sur les postes de la salle, deux terminaux le remplacent : l'invite de
-commandes d'Anaconda, ouverte par défaut, et Git Bash. Leur réglage est
-décrit dans [Python et environnement conda](vscode_python.md).
+Sur les postes de la salle, Git Bash le remplace, et l'invite de commandes
+d'Anaconda sert de secours. Leur réglage est décrit dans [Python et
+environnement conda](vscode_python.md).
 
 (vscode-terminal-choisir)=
 ### Choisir le terminal à ouvrir
@@ -218,9 +230,8 @@ ajoute de lui-même « Git Bash » à la liste de ses profils de terminal
 ({ref}`Choisir le terminal à ouvrir <vscode-terminal-choisir>`). Le
 terminal Git Bash de VS Code lit le même fichier `~/.bash_profile` que la
 fenêtre Git Bash : conda y est disponible une fois `conda init bash` fait
-({ref}`Anaconda, section Git Bash <conda-git-bash>`). Son réglage avec
-l'invite de commandes d'Anaconda est décrit dans [Python et environnement
-conda](vscode_python.md).
+({ref}`Git et Git Bash, section conda <conda-git-bash>`). Son réglage est
+décrit dans [Python et environnement conda](vscode_python.md).
 
 Avec les solutions de secours, VS Code ne propose pas « Git Bash ». Le
 profil s'écrit à la main, et pointe sur le `bash.exe` du même dossier que

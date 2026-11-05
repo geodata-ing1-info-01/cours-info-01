@@ -102,9 +102,14 @@ Cause
   postes.
 
 Remède
-: Faire le réglage du terminal, profil « Anaconda Prompt » ([Python et
-  environnement conda](../configuration/vscode_python.md)). S'il est fait
-  et que l'erreur reste : vérifier que le fichier a été enregistré, que
+: Faire de Git Bash le terminal par défaut : palette, « Terminal: Select
+  Default Profile », « Git Bash », puis fermer ce terminal et en ouvrir un
+  nouveau ([Python et environnement
+  conda](../configuration/vscode_python.md)). Si l'invite ne commence pas
+  par `(base)` : {ref}`G4 <dep-g4>`.
+
+  Avec le profil de secours « Anaconda Prompt », si l'erreur reste :
+  vérifier que le fichier a été enregistré, que
   l'onglet du terminal s'appelle « Anaconda Prompt », que les chemins sont
   ceux du raccourci « Anaconda Prompt », et faire palette, « Developer: Reload
   Window ». Si le fichier de réglages est souligné en rouge :
@@ -125,8 +130,11 @@ Cause
   est resté en cache.
 
 Remède
-: Cliquer « Enter interpreter path… », puis « Find… », et choisir le fichier
-  `C:\ProgramData\anaconda3\python.exe`. Pour que la liste devienne
+: Cliquer « Enter interpreter path… », puis coller le chemin
+  `C:\ProgramData\anaconda3\python.exe`, et appuyer sur Entrée. « Find… » ouvre
+  une fenêtre de choix, qui n'affiche pas `C:\ProgramData`, un dossier masqué.
+  Si la recherche a échoué une fois : palette, « Python: Clear Cache and Reload
+  Window ». Pour que la liste devienne
   complète (avec les environnements du TD 1h) : le réglage
   `python.condaPath`, décrit dans [Python et environnement
   conda](../configuration/vscode_python.md), puis « Developer: Reload
@@ -148,14 +156,14 @@ Cause
   ([Variables d'environnement](../notions/variables_environnement.md)).
 
 Vérifier
-: `where python` dans le terminal liste tous les `python.exe` trouvés,
-  dans l'ordre. `python -c "import sys; print(sys.executable)"` dit lequel
+: `where python` dans un `cmd`, ou `which -a python` dans Git Bash, liste
+  tous les `python.exe` trouvés, dans l'ordre. `python -c "import sys; print(sys.executable)"` dit lequel
   répond.
 
 Remède
-: Employer un terminal `cmd` activé, par le réglage du terminal ([Python et
-  environnement conda](../configuration/vscode_python.md)). Le bouton Run
-  n'est pas concerné : il lance l'interpréteur choisi, par son chemin
+: Employer le terminal Git Bash, avec conda activé ({ref}`G4 <dep-g4>`,
+  [Python et environnement conda](../configuration/vscode_python.md)). Le
+  bouton Run n'est pas concerné : il lance l'interpréteur choisi, par son chemin
   complet.
 
 (dep-v8)=
@@ -259,3 +267,25 @@ Remède
   l'aperçu. Si l'erreur reste, un antivirus ou une stratégie empêche
   l'écriture dans `Service Worker` : lancer `code --verbose` depuis un
   `cmd` affiche le refus dans la console.
+
+(dep-v12)=
+### V12. « Git Bash » n'est pas proposé parmi les terminaux de VS Code
+
+Ce qu'on voit
+: « Terminal: Select Default Profile » ne propose que PowerShell et Command
+  Prompt.
+
+Cause
+: VS Code cherche les terminaux à son démarrage. Il ne devine le chemin de
+  Git Bash que si Git for Windows est installé dans un dossier nommé `Git`
+  ([Git Bash : une fenêtre, bash et des programmes](../notions/git_bash.md)).
+
+Vérifier
+: Dans un `cmd`, `dir "C:\Program Files\Git\bin\bash.exe"`.
+
+Remède
+: Fermer VS Code et le relancer. S'il reste absent et que le fichier existe,
+  recopier le profil « Git Bash » de [Fichiers de
+  réglages](../configuration/vscode_reglages.md). Si le fichier n'existe pas,
+  voir les solutions de secours de [Git et Git
+  Bash](../configuration/git.md).
