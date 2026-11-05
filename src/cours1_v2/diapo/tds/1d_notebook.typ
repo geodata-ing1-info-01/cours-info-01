@@ -11,9 +11,13 @@
 // texte. Elles sont donc aussi sur la feuille du TD, et ne sont plus dans la
 // version sans les TD.
 //
+// 05/11/2026 : les tableaux « Ce qu'il faut faire / Ce que vous constatez »
+// deviennent des listes de consignes, comme aux TD 1a, 1b et 1c.
+//
 // Inclus par `cours1_v2.typ` ; compilable seul par
 // `outils/compiler_tds.py --cours 1_v2`.
 #import "../../../commun/prelude.typ": *
+#import "../schemas.typ": consignes, comment, commandes, constat
 
 #let td = (
   numero: "1d",
@@ -60,6 +64,7 @@
   )
 
   #legende[
+    JupyterLab montre le dossier d'où on le lance, et ce qu'il contient.
     Le navigateur s'ouvre sur `localhost:8888`, le poste lui-même : le
     serveur de JupyterLab tourne sur le poste, et le terminal reste occupé
     tant qu'il tourne. `Ctrl` + `C` l'arrête. Le cours 5 y revient.
@@ -76,6 +81,9 @@
     (« Anaconda Prompt »).
 
     Le client et le serveur d'un notebook sont au cours 5 (syllabus v2).
+
+    Pas de `D:` dans le panneau de gauche : se placer dans le dossier voulu avant
+    `jupyter lab` (annexes, « Problèmes avec JupyterLab », J6).
   ]
 ]
 
@@ -86,18 +94,17 @@
     Pour exécuter une cellule, cliquer dedans, puis taper `Maj` + `Entrée`.
   ]
 
-  #tableau(
-    columns: (auto, 1.2fr, 1fr),
-    align: left + horizon,
-    [], [Ce qu'il faut faire], [Ce que vous constatez],
-    [1], [invite de commandes d'Anaconda, `cd Desktop\info01\cours1\1d_notebook`, `jupyter lab` ; ouvrir `altitudes.ipynb`],
-      reponse[les cellules de code n'ont pas encore de numéro],
-    [2], [exécuter les cellules une à une, de haut en bas],
-      reponse[`[1]`, `[2]`… à gauche, dans l'ordre ; la moyenne vaut `129.0`],
-    [3], [exécuter une seconde fois la cellule de la boucle, puis celle de la moyenne],
-      reponse[`258.0` : le noyau a gardé `total`, la boucle l'a encore augmenté],
-    [4], [Kernel #sym.arrow.r Restart Kernel and Run All Cells],
-      reponse[les numéros repartent de `[1]`, la moyenne revient à `129.0`],
+  #consignes(
+    taille: 16pt,
+    [Lancer JupyterLab dans l'invite de commandes d'Anaconda : #commandes("cd Desktop\\info01\\cours1\\1d_notebook", "jupyter lab")],
+    [Ouvrir `altitudes.ipynb`. #comment[Double-clic sur son nom, dans le panneau de gauche.]
+      #constat[Les cellules de code n'ont pas encore de numéro.]],
+    [Exécuter les cellules une à une, de haut en bas.
+      #constat[`[1]`, `[2]`… à gauche, dans l'ordre ; la moyenne vaut `129.0`.]],
+    [Exécuter une seconde fois la cellule de la boucle, puis celle de la moyenne.
+      #constat[`258.0` : le noyau a gardé `total`, la boucle l'a encore augmenté.]],
+    [Redémarrer le noyau et tout exécuter : #comment[menu Kernel, Restart Kernel and Run All Cells.]
+      #constat[Les numéros repartent de `[1]`, la moyenne revient à `129.0`.]],
   )
 
   #legende[
@@ -106,7 +113,7 @@
   ]
 
   #notes[
-    Étape 3 : `total` passe de 387,0 à 774,0, et la moyenne à 258,0. Le
+    Étape 4 : `total` passe de 387,0 à 774,0, et la moyenne à 258,0. Le
     notebook sépare `total = 0` de la boucle pour que ce soit visible (le
     notebook du TD 1g de 2026 remettait `total` à zéro dans la même cellule,
     et la relance ne changeait rien).
@@ -166,21 +173,20 @@
     que fait le programme.
   ]
 
-  #tableau(
-    columns: (auto, 1.2fr, 1fr),
-    align: left + horizon,
-    [], [Ce qu'il faut faire], [Ce que vous constatez],
-    [1], [cliquer sur la première cellule, touche `Échap`, puis `A`],
-      reponse[une cellule vide apparaît au-dessus],
-    [2], [touche `M`, ou « Markdown » dans la liste en haut de la page],
-      reponse[le `[ ]` disparaît : une cellule de texte n'a pas de numéro],
-    [3], [y écrire un titre, une phrase, la liste des données, un lien],
-      reponse[le texte reste brut tant qu'on l'édite],
-    [4], [`Maj` + `Entrée` ; double-clic pour revenir au texte],
-      reponse[titre, liste et lien mis en forme],
-    [5], [`Ctrl` + `S`], reponse[le notebook est enregistré],
-    [6], [si le temps le permet : `Ctrl` + `C` dans l'invite, puis `jupyter lab` depuis Git Bash],
-      reponse[le notebook rouvert garde la cellule de texte],
+  #consignes(
+    taille: 16pt,
+    [Ajouter une cellule au-dessus de la première : #comment[cliquer sur la première cellule, touche `Échap`, puis `A`.]
+      #constat[Une cellule vide apparaît au-dessus.]],
+    [Passer cette cellule en Markdown : #comment[touche `M`, ou « Markdown » dans la liste en haut de la page.]
+      #constat[Le `[ ]` disparaît : une cellule de texte n'a pas de numéro.]],
+    [Y écrire un titre, une phrase, la liste des données et un lien.
+      #constat[Le texte reste brut tant qu'on l'édite.]],
+    [Afficher la cellule mise en forme : `Maj` + `Entrée`. #comment[Double-clic pour revenir au texte.]
+      #constat[Titre, liste et lien mis en forme.]],
+    [Enregistrer le notebook : `Ctrl` + `S`.
+      #constat[Le notebook est enregistré.]],
+    [Si le temps le permet, relancer JupyterLab depuis Git Bash : #comment[`Ctrl` + `C` dans l'invite, puis `jupyter lab` dans Git Bash.]
+      #constat[Le notebook rouvert garde la cellule de texte.]],
   )
 
   #notes[

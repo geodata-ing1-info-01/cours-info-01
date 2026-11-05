@@ -3,7 +3,7 @@
 // Inclus par `cours1_v2.typ` ; compilable seul par
 // `outils/compiler_tds.py --cours 1_v2`.
 #import "../../../commun/prelude.typ": *
-#import "../schemas.typ": consignes, commandes, constat, git-bash-ouvert
+#import "../schemas.typ": consignes, comment, constat, git-bash-ouvert, terminal-etapes, etape-terminal
 
 #let td = (
   numero: "1b",
@@ -13,6 +13,30 @@
   duree: "15′",
 )
 #separateur-td(..td)
+
+// 05/11/2026 : les commandes à taper sortent des phrases, dans un bloc de
+// terminal. « Copier, renommer, ouvrir », « Un espace dans un nom de fichier » et
+// « Copier plusieurs fichiers d'un coup » passent en deux temps : les consignes,
+// sans les commandes, à côté de la liste des commandes possibles, puis la
+// solution sur la diapositive suivante. Les deux dernières réunissent leurs
+// consignes sur une diapositive.
+//
+// Les lignes de ce tableau sont celles de « Les commandes de base » (partie 2).
+#let _rappel-commandes = panneau[Commandes possibles][
+  #show table.cell: set text(size: 14pt)
+  #show raw: set text(size: 1.15em)
+  #tableau(
+    entete: false,
+    columns: (auto, 0.75fr, auto, 1.25fr),
+    align: left + horizon,
+    [`ls dossier`], [liste le dossier nommé],
+    [`mkdir nom`], [crée un dossier],
+    [`cp source destination`], [copie un fichier],
+    [`rm fichier`], [supprime, sans passer par la corbeille],
+    [`mv source destination`], [déplace ou renomme],
+    [`start fichier`], [ouvre avec le logiciel associé],
+  )
+]
 
 #d("Ouvrir Git Bash dans le dossier du TD")[
   #consignes(
@@ -45,21 +69,34 @@
     Taper chaque commande dans Git Bash, puis appuyer sur Entrée.
   ]
 
-  #consignes(
-    taille: 16pt,
-    [Afficher le dossier courant : `pwd`.
-      #constat[`/c/Users/eleve/Desktop/info01/cours1/1b_terminal`]],
-    [Lister le contenu du dossier courant : `ls`.
-      #constat[`depart/`, `travail/` et les PDF du TD. Le `/` final marque un dossier.]],
-    [Lister le contenu de `depart` : `ls depart`.
-      #constat[Les fichiers des deux textes, `raven.odt` compris.]],
-    [Lister le contenu de `travail`, entrées cachées comprises : `ls -a travail`.
-      #constat[`./` et `../` seulement : le dossier est vide, à part ces deux entrées cachées.]],
-    [Entrer dans `depart` : `cd depart`. Taper ensuite `pwd`, et relire l'invite.
-      #constat[Le dossier courant est maintenant `depart`, et l'invite le montre.]],
-    [Revenir dans `1b_terminal` : `cd ..`.],
-    [Sans quitter `1b_terminal`, lister les fichiers exportés au TD 1a : `ls ../1a_formats/travail`.
-      #constat[`raven.pdf` et `raven.png`, si les exports du TD 1a sont faits.]],
+  #grid(
+    columns: (1.8fr, 1fr), column-gutter: 14pt, align: top,
+    consignes(
+      taille: 15pt,
+      [Afficher le dossier courant.
+        #constat[`/c/Users/eleve/Desktop/info01/cours1/1b_terminal`]],
+      [Lister le contenu du dossier courant.
+        #constat[`depart/`, `travail/` et les PDF du TD. Le `/` final marque un dossier.]],
+      [Lister le contenu de `depart`.
+        #constat[Les fichiers des deux textes, `raven.odt` compris.]],
+      [Lister le contenu de `travail`, entrées cachées comprises.
+        #constat[`./` et `../` seulement : le dossier est vide, à part ces deux entrées cachées.]],
+      [Entrer dans `depart`. Afficher le dossier courant, et relire l'invite.
+        #constat[Le dossier courant est maintenant `depart`, et l'invite le montre.]],
+      [Revenir dans `1b_terminal`.],
+      [Sans quitter `1b_terminal`, lister les fichiers exportés au TD 1a.
+        #constat[`raven.pdf` et `raven.png`, si les exports du TD 1a sont faits.]],
+    ),
+    terminal-etapes(
+      taille: 18pt,
+      etape-terminal("pwd"),
+      etape-terminal("ls"),
+      etape-terminal("ls depart"),
+      etape-terminal("ls -a travail"),
+      etape-terminal("cd depart", "pwd"),
+      etape-terminal("cd .."),
+      etape-terminal("ls ../1a_formats/travail"),
+    ),
   )
 
   #legende[
@@ -77,24 +114,40 @@
 ]
 
 #d("Copier, renommer, ouvrir")[
-  #annonce[
-    `cp` copie, `mv` renomme, `start` ouvre un fichier avec le logiciel que
-    Windows associe à son extension, comme un double-clic.
-  ]
-
   #consignes(
     taille: 16pt,
-    [Copier `raven.odt` dans `travail` : `cp depart/raven.odt travail/`.],
-    [Renommer la copie en `raven_odt.pdf` : `mv travail/raven.odt travail/raven_odt.pdf`.],
-    [Ouvrir le fichier renommé : `start travail/raven_odt.pdf`. Noter le logiciel qui s'ouvre et ce qu'il affiche.
-      #constat[Un lecteur PDF s'ouvre, et signale une erreur : le contenu du fichier n'est pas du PDF.]],
-    [Copier `raven.odt` sous le nom `riri.fifi.loulou.odt`, puis ouvrir la copie : #commandes("cp depart/raven.odt travail/riri.fifi.loulou.odt", "start travail/riri.fifi.loulou.odt")
-      #constat[Writer ouvre le texte : seule la fin du nom compte.]],
-    [Copier `raven.odt` sous le nom `raven.loulou`, puis ouvrir la copie. Si Windows demande un logiciel, choisir LibreOffice Writer. #commandes("cp depart/raven.odt travail/raven.loulou", "start travail/raven.loulou")
-      #constat[Windows ne connaît pas l'extension `.loulou` et demande quel logiciel employer. Writer ouvre le texte.]],
+    [Copier `raven.odt` de `depart` dans `travail`.],
+    [Renommer la copie en `raven_odt.pdf`.],
+    [Ouvrir le fichier renommé. Noter le logiciel qui s'ouvre et ce qu'il affiche.],
+    [Copier `raven.odt` sous le nom `riri.fifi.loulou.odt`, puis ouvrir la copie.],
+    [Copier `raven.odt` sous le nom `raven.loulou`, puis ouvrir la copie. Si Windows demande un logiciel, choisir LibreOffice Writer.],
+  )
+
+  #v(0.5em)
+  #_rappel-commandes
+
+  #notes[
+    Laisser chercher avant de passer à la solution : les commandes de la
+    liste suffisent, et le chemin de la source se lit dans l'invite et par
+    `ls`.
+  ]
+]
+
+#d("Copier, renommer, ouvrir : solution")[
+  #terminal-etapes(
+    etape-terminal("cp depart/raven.odt travail/"),
+    etape-terminal("mv travail/raven.odt travail/raven_odt.pdf"),
+    etape-terminal("start travail/raven_odt.pdf",
+      constat: [Un lecteur PDF s'ouvre, et signale une erreur : le contenu du fichier n'est pas du PDF.]),
+    etape-terminal("cp depart/raven.odt travail/riri.fifi.loulou.odt", "start travail/riri.fifi.loulou.odt",
+      constat: [Writer ouvre le texte : seule la fin du nom compte.]),
+    etape-terminal("cp depart/raven.odt travail/raven.loulou", "start travail/raven.loulou",
+      constat: [Windows ne connaît pas l'extension `.loulou` et demande quel logiciel employer. Writer ouvre le texte.]),
   )
 
   #legende[
+    `start` ouvre un fichier avec le logiciel que Windows associe à son
+    extension, comme un double-clic.
     #reponse[
       Le système ne regarde que le nom. `mv` a changé le nom ; le contenu
       est le même, octet pour octet.
@@ -114,22 +167,54 @@
   ]
 ]
 
-#d("Un espace dans un nom de fichier")[
+#d([Espace dans un nom et motif `*`])[
+  #grid(
+    columns: (1.15fr, 1fr), column-gutter: 20pt,
+    panneau[Un espace dans un nom de fichier][
+      #consignes(
+        taille: 16pt,
+        [Copier `raven_une_ligne.txt` de `depart` dans `travail`, sous le nom `le corbeau.txt`, sans guillemets. Lire le message.],
+        [Refaire la copie, avec le nom entre guillemets.],
+        [Lister le contenu de `travail`.],
+        [Ouvrir la copie. #comment[Avec `start`, écrire `""` avant un nom entre guillemets.]],
+      )
+    ],
+    panneau[Copier plusieurs fichiers d'un coup avec `*`][
+      #consignes(
+        taille: 16pt,
+        [Créer un dossier `textes` dans `travail`.],
+        [Copier dans ce dossier tous les fichiers `.txt` de `depart`.],
+        [Lister le contenu de `textes`.],
+        [Lister les fichiers `.odt` de `depart`.],
+        [Supprimer l'une des copies, puis lister de nouveau `textes`.],
+      )
+    ],
+  )
+
+  #_rappel-commandes
+
+  #notes[
+    Laisser chercher. Solutions aux deux diapositives suivantes.
+
+    Le motif `*` est sur « Fichiers cachés et motif `*` », en fin de partie 2.
+  ]
+]
+
+#d("Espace dans un nom : solution")[
   #annonce[
     L'interpréteur coupe la ligne aux espaces. Un nom qui en contient s'écrit
     entre guillemets.
   ]
 
-  #consignes(
-    taille: 16pt,
-    [Copier `raven_une_ligne.txt` sous le nom `le corbeau.txt`, sans guillemets, puis lire le message : #commandes("cp depart/raven_une_ligne.txt travail/le corbeau.txt")
-      #constat[Un message d'erreur : `cp` a reçu trois noms, dont `travail/le` et `corbeau.txt`.]],
-    [Refaire la copie, avec le nom entre guillemets : #commandes("cp depart/raven_une_ligne.txt \"travail/le corbeau.txt\"")
-      #constat[Aucun message : la copie est faite.]],
-    [Lister le contenu de `travail` : `ls travail`.
-      #constat[`'le corbeau.txt'`, entre apostrophes, parmi les fichiers.]],
-    [Ouvrir la copie : `start "" "travail/le corbeau.txt"`.
-      #constat[Le poème s'ouvre dans le Bloc-notes.]],
+  #terminal-etapes(
+    etape-terminal("cp depart/raven_une_ligne.txt travail/le corbeau.txt",
+      constat: [Un message d'erreur : `cp` a reçu trois noms, dont `travail/le` et `corbeau.txt`.]),
+    etape-terminal("cp depart/raven_une_ligne.txt \"travail/le corbeau.txt\"",
+      constat: [Aucun message : la copie est faite.]),
+    etape-terminal("ls travail",
+      constat: [`'le corbeau.txt'`, entre apostrophes, parmi les fichiers.]),
+    etape-terminal("start \"\" \"travail/le corbeau.txt\"",
+      constat: [Le poème s'ouvre dans le Bloc-notes.]),
   )
 
   #legende[
@@ -148,25 +233,25 @@
   ]
 ]
 
-#d([Copier plusieurs fichiers d'un coup avec `*`])[
-  #consignes(
-    taille: 16pt,
-    [Créer un dossier `textes` dans `travail` : `mkdir travail/textes`.],
-    [Copier dans ce dossier tous les fichiers `.txt` de `depart` : `cp depart/*.txt travail/textes/`.
-      #constat[Aucun message.]],
-    [Lister le contenu de `textes` : `ls travail/textes`.
-      #constat[`auld_lang_syne_une_ligne.txt  raven_une_ligne.txt`]],
-    [Lister les fichiers `.odt` de `depart` : `ls depart/*.odt`.
-      #constat[`depart/auld_lang_syne.odt  depart/raven.odt`]],
-    [Supprimer l'une des copies, puis lister de nouveau `textes` : #commandes("rm travail/textes/auld_lang_syne_une_ligne.txt", "ls travail/textes")
-      #constat[Le fichier a disparu. `rm` ne le met pas dans la corbeille.]],
+#d([Motif `*` : solution])[
+  #terminal-etapes(
+    etape-terminal("mkdir travail/textes"),
+    etape-terminal("cp depart/*.txt travail/textes/",
+      constat: [Aucun message.]),
+    etape-terminal("ls travail/textes",
+      constat: [`auld_lang_syne_une_ligne.txt  raven_une_ligne.txt`]),
+    etape-terminal("ls depart/*.odt",
+      constat: [`depart/auld_lang_syne.odt  depart/raven.odt`]),
+    etape-terminal("rm travail/textes/auld_lang_syne_une_ligne.txt", "ls travail/textes",
+      constat: [Le fichier a disparu. `rm` ne le met pas dans la corbeille.]),
   )
 
   #notes[
     `*` est remplacé par Git Bash avant que `cp` ne démarre : `cp` reçoit
     les deux noms. Diapositive « Le motif `*` ».
 
-    Sorties relevées sur le dossier livré, le 19/10/2026.
+    Sorties relevées sur le dossier livré, le 19/10/2026, et de nouveau le
+    05/11/2026.
   ]
 ]
 

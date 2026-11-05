@@ -11,7 +11,8 @@
 // 04/11/2026 : l'introduction du module sort du cours 1 et attend dans
 // `a_reprendre/introduction_module.typ`. Trois diapositives de matériel sont
 // reprises du cours 5 de 2026, qui reste inchangé : les composants en partie 1,
-// le processeur en partie 3, avant la compilation.
+// le processeur en partie 3, après la compilation (ordre du 05/11/2026). La
+// température et la consommation s'y ajoutent en partie 1, le 05/11/2026.
 //
 //   python outils/compiler_diapos.py --cours 1_v2            # à projeter
 //   python outils/compiler_diapos.py --cours 1_v2 --notes    # notes de conduite
@@ -59,8 +60,8 @@
 }
 
 #include "parties/02b_programme.typ"
-// 19/10/2026 : « Programmation littérale » suit « Exécution d'un programme
-// Python », avant les TD 1c et 1d, qui s'enchaînent.
+// 19/10/2026 : « Programmation littérale » suit l'exposé sur l'exécution d'un
+// programme Python, avant les TD 1c et 1d, qui s'enchaînent.
 #include "parties/03_notebook.typ"
 #if tds {
   include "tds/1c_programme.typ"

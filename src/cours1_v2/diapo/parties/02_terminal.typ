@@ -5,7 +5,7 @@
 #import "../schemas.typ": explorateur-copie, git-bash-copie, chaine-terminal, git-bash-ls
 
 #separateur(
-  "Le terminal",
+  "Interface en ligne de commande / terminal",
   annonce: "Se déplacer dans les dossiers et agir sur les fichiers en tapant des commandes.",
 )
 
@@ -46,6 +46,64 @@
 // Relecture du 19/10/2026 : « Une opération sur 120 fichiers » et
 // « Comparaison des deux interfaces » sont retirées. La page de cours
 // `02_terminal.md` garde la comparaison.
+
+// --------------------------------------------
+// Nouveau (05/11/2026) : les raisons de voir la ligne de commande dans ce module, en une
+// diapositive. Les trois commandes ont été exécutées le 05/11/2026 (GDAL 3.4.1, Python
+// 3.12 ; la dernière sur le corrigé du TD 3b).
+#let _interet(titre, detail, commande) = grid(
+  columns: (1.25fr, 1fr), column-gutter: 16pt, align: horizon,
+  [
+    #text(size: 18pt, weight: demi-gras)[#titre] \
+    // Le code passe de 0,78 à 0,9 fois le texte : `*` serait illisible à sa taille.
+    #show raw: set text(size: 1.15em)
+    #text(size: 14pt, fill: estompe)[#detail]
+  ],
+  block(width: 100%, fill: gris, inset: (x: 10pt, y: 9pt), text(size: 17pt, raw(commande))),
+)
+
+#d("Intérêt de la ligne de commande")[
+  #stack(
+    dir: ttb, spacing: 22pt,
+    _interet(
+      "Logiciels sans interface graphique",
+      [logiciels scientifiques, comme GDAL pour les données géographiques ; accès distant à des serveurs de calcul (sans interface graphique)],
+      "$ gdal_translate carte.png carte.tif",
+    ),
+    _interet(
+      "Opérations répétées",
+      [Cette commande copie d'un coup tous les fichiers `.txt` de `depart`. On peut la relancer plus tard, ou l'enregistrer dans un script.],
+      "$ cp depart/*.txt travail/textes/",
+    ),
+    _interet(
+      "Programmes plus simples à écrire",
+      [Le cours 3 construit ce programme. Avec une interface graphique, il faudrait aussi programmer les fenêtres, les boutons et leur comportement.],
+      "$ python altitudes.py trace.csv -s 2",
+    ),
+  )
+
+  #notes[
+    Outils du module en ligne de commande : `python` à la partie suivante, `conda` au
+    TD 1c, `git` au cours 2.
+
+    L'interface graphique reste adaptée pour découvrir un logiciel et pour une
+    opération ponctuelle. MIT, _The Missing Semester_ : « These are great for 80% of
+    use-cases ».
+
+    Logiciels : `gdal_translate` convertit une image. PDAL pour les nuages de points ;
+    MicMac, de l'IGN et de l'ENSG, par la commande `mm3d`. QGIS propose des fenêtres
+    pour une partie de GDAL. Software Carpentry, _The Unix Shell_ : « some tools and
+    resources such as cloud computing systems usually require users to be familiar
+    with the shell ». Serveurs : accès par `ssh`, aux cours 5 et 6.
+
+    Répétition : le TD 1b fait cette copie. Software Carpentry : « excels at making
+    repetitive tasks automatic and fast ». Exemple de la page de cours, 120 images :
+    `magick mogrify -path travail -resize 640 depart/*.png`.
+
+    Programmes : `argparse` fournit aussi `--help` et le message d'erreur. Un programme
+    en ligne de commande se lance aussi depuis un autre programme (`subprocess`, cours 5).
+  ]
+]
 
 // --------------------------------------------
 #d("Le terminal et l'interpréteur de commandes")[

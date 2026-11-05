@@ -186,25 +186,18 @@
 ]
 
 // --------------------------------------------
+// 05/11/2026 : le tableau devient une liste de consignes. La solution sort de sa colonne,
+// et passe sous chaque consigne, dans le corrigé seulement.
 #d("Quels formats permettent la manipulation du texte ?")[
-  #annonce[
-    Rouvrir les trois fichiers, et essayer dans chacun de sélectionner une
-    ligne du poème, puis de chercher un mot avec `Ctrl` + `F`.
-  ]
-
-  #tableau(
-    columns: (auto, auto, 1fr),
-    align: left + horizon,
-    [Fichier], [Origine], [Le texte est-il encore du texte ?],
-    [`depart/raven.odt`], [le document de départ], reponse[oui, et il reste modifiable],
-    [`travail/raven.pdf`], [l'export en PDF], reponse[oui : il se sélectionne et se cherche],
-    [`travail/raven.png`], [l'export en image], reponse[non : des pixels, et la première page seulement],
+  #consignes(
+    [Rouvrir `raven.odt`, le document de départ, dans LibreOffice : #comment[dans `depart\`.]],
+    [Sélectionner une ligne du poème, puis chercher un mot avec `Ctrl` + `F`. Le texte est-il encore du texte ?
+      #constat[oui, et il reste modifiable]],
+    [Recommencer avec `raven.pdf`, l'export en PDF : #comment[dans `travail\`.]
+      #constat[oui : il se sélectionne et se cherche]],
+    [Recommencer avec `raven.png`, l'export en image : #comment[dans `travail\`. Le `.png` s'ouvre dans Draw, comme une image posée sur une page.]
+      #constat[non : des pixels, et la première page seulement]],
   )
-
-  #legende[
-    Rouvrir les trois dans LibreOffice : le `.png` s'ouvre dans Draw, comme une
-    image posée sur une page.
-  ]
 
   #notes[
     Nommer ici la différence entre une page décrite (PDF, texte

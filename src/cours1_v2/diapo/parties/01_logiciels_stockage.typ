@@ -6,7 +6,7 @@
 // Import nominatif, et non `: *` : `schemas.typ` ouvre `cetz.draw`, dont les
 // noms (`grid`, `line`, `circle`, `content`…) masqueraient ceux de typst.
 #import "../../../cours1/diapo/schemas.typ": schema-ou-sexecute
-#import "../schemas.typ": schema-stockage-reseau, schema-entrees-sorties
+#import "../schemas.typ": schema-stockage-reseau, schema-entrees-sorties, schema-couches-logiciels, explorateur
 #import "../../../cours5/diapo/schemas.typ": schema-composants, photo-reperee
 
 // Nouveau (v2) : titre et annonce de la partie.
@@ -41,7 +41,7 @@
 
   #notes[
     Le processeur est détaillé à la partie 3, avant la compilation. La mémoire
-    vive et le disque sont repris sur « Entrées et sorties d'un logiciel » ;
+    vive et le disque sont repris sur « Exécution de programmes et stockage de données » ;
     leurs temps d'accès sont prévus au cours 3 v2.
 
     Les numéros du schéma désignent les mêmes composants sur la photo. Le
@@ -65,59 +65,160 @@
   ]
 ]
 
-// ------------------------------- Vocabulaire --------------------------------
-
 // --------------------------------------------
-#d("Logiciel : définition et termes courants")[
-  #bloc-titre("Définition : logiciel")[
-    #set text(size: 19pt)
-    Ensemble des programmes, procédés et règles, et éventuellement de la
-    documentation, relatifs au fonctionnement d'un ensemble de traitement de
-    données.
-  ]
-  #legende[
-    Source : _Journal officiel_ du 22/09/2000 (vocabulaire de l'informatique).
-    Le seul de ces mots à avoir une définition officielle.
+// Reprises du cours 5 le 05/11/2026 (`cours5/diapo/parties/01_materiel.typ`), qui garde
+// les siennes. La cadence n'est présentée qu'à la partie « Exécuter un programme » :
+// « baisse sa fréquence » devient « ralentit ».
+#d("Température du processeur")[
+  #v(1em)
+  #question("?")[
+    Quelle température atteint un processeur pendant un calcul intensif de
+    plusieurs minutes ?
   ]
 
-  #v(0.6em)
-  #annonce[
-    Autres termes courants, qui désignent chacun un type de logiciel.
-  ]
+  #v(1.5em)
   #grid(
-    columns: (1fr,) * 5, gutter: 12pt,
-    ..("application", "app", "webapp", "OS", "driver").map(terme => block(
-      width: 100%, inset: (x: 8pt, y: 13pt), fill: gris,
-      stroke: 0.8pt + accent.lighten(50%),
-    )[
-      #align(center, text(size: 19pt, weight: demi-gras)[#terme])
-    ]),
+    columns: (1fr, 1fr, 1fr, 1fr),
+    gutter: 14pt,
+    etiquette("40 °C"), etiquette("60 °C"), etiquette("90 °C"), etiquette("150 °C"),
   )
 
-  #legende[
-    Les définitions d'usage : Grand dictionnaire terminologique de l'OQLF.
-  ]
-
   #notes[
-    Les cinq termes servent à interroger la salle, à tester les
-    connaissances des étudiants et à ouvrir une discussion sur leur sens.
+    Faire voter à main levée, puis passer aux réponses.
 
-    Ce qu'il faut en tirer : aucun de ces mots n'a de définition arrêtée, et
-    tous désignent des logiciels. « App » est l'abréviation anglaise
-    d'application, répandue par les magasins d'applications des téléphones ; le
-    mot ne désigne pas une technologie particulière, le même logiciel existant
-    souvent en site web, en programme de bureau et en application mobile.
-
-    OS et driver ramènent à la vieille partition du vocabulaire officiel :
-    logiciel de base, qui fait fonctionner la machine et donne accès au
-    matériel (Windows, macOS, Linux, et les pilotes), contre logiciel
-    d'application, qui sert à accomplir une tâche (LibreOffice, Firefox, un
-    lecteur de musique).
+    Les réponses se partagent souvent entre 40 et 60 °C, la température
+    ressentie du boîtier.
   ]
 ]
 
 // --------------------------------------------
-#d("Le système d'exploitation")[
+#d("Température du processeur — réponses")[
+  #annonce[
+    Pendant un calcul intensif, un processeur travaille entre 60 et 100 °C.
+  ]
+
+  #tableau(
+    columns: (1fr, auto),
+    align: (left + horizon, right + horizon),
+    [Situation], [Température de la puce],
+    [au repos, bureautique], [30 à 50 °C],
+    [calcul intensif, poste de bureau], [60 à 90 °C],
+    [calcul intensif, portable fin], [80 à 100 °C],
+    [limite du fabricant, où le processeur ralentit], [95 °C (AMD), 100 °C (Intel)],
+  )
+
+  #legende[
+    Ordres de grandeur ; limites des Ryzen 7000 et des Core de 13#super[e]
+    génération, données par les fabricants.
+  ]
+
+  #notes[
+    À la limite fixée par le fabricant, le processeur ralentit de lui-même pour ne
+    pas s'abîmer. Sans radiateur ni ventilateur, il atteint cette limite en quelques
+    secondes.
+
+    Puissance : 65 à 250 W sur 1 à 2,5 cm², soit 50 à 100 W par cm². Une plaque
+    de cuisson : moins de 10 W par cm².
+
+    Cette limite a arrêté la montée en fréquence vers 2005 (« Évolution des
+    processeurs de 1990 à 2022 », cours 5). Un portable qui ralentit pendant un long
+    calcul baisse sa fréquence pour rester sous la limite.
+
+    AMD (2022) : 95 °C pendant un calcul intensif est le fonctionnement prévu des Ryzen 7000.
+
+    Le gestionnaire des tâches de Windows n'affiche pas la température du
+    processeur ; il faut l'outil du fabricant.
+  ]
+]
+
+// --------------------------------------------
+// D'après « Puissance de calcul et consommation » du cours 5, le 05/11/2026 : sans la
+// colonne des opérations par seconde. La ligne d'ASCI Red est remplacée par un serveur
+// GPU, et l'annonce par la comparaison avec ce serveur. NVIDIA DGX H100 : huit H100,
+// 10,2 kW au maximum (guide d'utilisation de NVIDIA) ; 10,2 kW × 8 760 h = 89 000 kWh.
+#d("Consommation électrique des appareils")[
+  #annonce[
+    À pleine puissance, un serveur GPU pour l'IA générative consomme en quelques
+    heures l'électricité d'un ordinateur portable pendant un an.
+  ]
+
+  #tableau(
+    columns: (1.4fr, auto, auto),
+    align: (left + horizon, right + horizon, right + horizon),
+    [Appareil], [Puissance], [Électricité par an],
+    [téléphone à touches], [0,01 à 0,5 W], [0,1 kWh],
+    [smartphone], [1 à 5 W], [5 à 7 kWh],
+    [ordinateur portable], [15 à 45 W], [30 à 60 kWh],
+    [PC de bureau et carte graphique], [100 à 400 W], [200 à 400 kWh],
+    [serveur, en continu], [300 à 800 W], [3 000 à 7 000 kWh],
+    [serveur GPU pour l'IA générative, en continu], [10 000 W], [90 000 kWh],
+  )
+
+  #legende[
+    Ordres de grandeur ; portable 8 h par jour. GPU : carte graphique, _graphics
+    processing unit_. Serveur GPU : NVIDIA DGX H100, huit cartes, 10,2 kW au maximum,
+    à pleine puissance toute l'année.
+  ]
+
+  #notes[
+    Hypothèses de la dernière colonne : téléphone à touches rechargé une fois
+    par semaine (batterie de 3 Wh), smartphone chaque jour (15 Wh), portable
+    8 h par jour, serveur en continu.
+
+    Serveur GPU : 10,2 kW × 8 760 h = 89 000 kWh, un maximum. Un portable consomme
+    30 à 60 kWh par an, soit 3 à 6 h de ce serveur. Une carte H100 seule : jusqu'à
+    700 W (fiche de NVIDIA). Le cours 5 donne la consommation d'une question à un
+    assistant d'IA et celle des centres de données.
+
+    Le téléphone à touches consomme quelques dizaines de milliwatts : sa
+    batterie tient dix jours.
+
+    Un smartphone a les composants d'un PC sur une puce de 2 cm, limités à 5 W
+    par la batterie et l'absence de ventilateur.
+  ]
+]
+
+// ------------------------------- Vocabulaire --------------------------------
+
+// --------------------------------------------
+// 05/11/2026 : fusion de « Logiciel : définition et termes courants » et de « Entrées et
+// sorties d'un logiciel ». La définition passe dans les notes, les termes webapp et driver
+// sur « Le système d'exploitation », et la phrase sur l'utilité d'un fichier sur « Fichier,
+// extension et type de fichier ».
+#d("Exécution de programmes et stockage de données")[
+  #annonce[
+    Deux fonctions principales d'un ordinateur sont l'exécution de programmes et le
+    stockage de données.
+  ]
+
+  #align(center, scale(92%, reflow: true, schema-entrees-sorties()))
+
+  #notes[
+    Les entrées et sorties d'un programme sont des fichiers ou des flux échangés
+    avec les périphériques.
+
+    Lire le schéma à l'horizontale, puis à la verticale. Ce qu'un programme
+    garde en mémoire vive disparaît quand il s'arrête. Pas de sauvegarde en
+    RAM. Le fichier enregistré sur le disque est pérenne, et peut se rouvrir plus tard.
+
+    Le réseau est du côté des périphériques, en entrée comme en sortie :
+    pour le logiciel, c'est un flux qu'on lit ou qu'on écrit sans qu'il
+    reste, comme le clavier ou l'écran. Sur la flèche de copie, le réseau
+    transporte un flux, et le fichier est sur un disque à chaque bout.
+
+    Logiciel, définition officielle à citer si besoin : « Ensemble des programmes,
+    procédés et règles, et éventuellement de la documentation, relatifs au fonctionnement
+    d'un ensemble de traitement de données » (_Journal officiel_ du 22/09/2000, vocabulaire
+    de l'informatique). Le seul mot de cette partie à avoir une définition officielle.
+
+    Transition vers la suite de la partie : les logiciels, puis les fichiers.
+  ]
+]
+
+// --------------------------------------------
+// 05/11/2026 : la question sur la webapp et le driver est ajoutée, en bas, à celle sur le
+// téléphone. La diapositive suivante y répond.
+#d("Couches matérielles et logicielles")[
   #annonce[
     Un programme ne s'adresse pas directement au matériel : il passe par le système (OS).
   ]
@@ -141,7 +242,9 @@
     width: 100%, inset: (x: 14pt, y: 7pt), above: 0.5em,
     fill: gris, stroke: (left: 3pt + accent),
   )[
-    #text(size: 18pt)[Quel système d'exploitation tourne sur votre téléphone ?]
+    #text(size: 17pt)[
+      Où placer une webapp et un driver sur ce schéma ? Quel OS tourne sur votre téléphone ?
+    ]
   ]
 
   #notes[
@@ -152,44 +255,49 @@
     de fichiers ne s'écrivent pas pareil d'un système à l'autre, et les
     outils installés diffèrent.
 
-    La question sert à faire constater que le schéma vaut aussi pour les smartphones.
-    Réponse attendue : Android ou iOS.
+    Les questions servent à interroger la salle et à ouvrir une discussion sur le sens
+    de ces mots. Faire répondre à l'oral, puis passer aux réponses.
+
+    La question sur le téléphone sert à faire constater que le schéma vaut aussi pour
+    les smartphones. Réponse attendue : Android ou iOS.
     Éventuellement évoquer le lien entre Linux et Android.
   ]
 ]
 
-#d("Entrées et sorties d'un logiciel")[
+// --------------------------------------------
+// 05/11/2026 : la pile de la diapositive précédente, avec les applications web, les
+// pilotes et les systèmes des téléphones.
+#d("Couches matérielles et logicielles — réponses")[
   #annonce[
-    Les entrées et sorties d'un logiciel sont des fichiers ou des flux
-    échangés avec les périphériques. Un fichier conserve un résultat, que
-    l'on peut ensuite ouvrir avec un autre logiciel, copier sur une autre
-    machine ou remettre à quelqu'un d'autre.
+    Un programme ne s'adresse pas directement au matériel : il passe par le système (OS).
   ]
 
-  #align(center, schema-entrees-sorties())
+  #schema-couches-logiciels()
 
   #notes[
-    Lire le schéma à l'horizontale, puis à la verticale. Ce qu'un programme
-    garde en mémoire vive disparaît quand il s'arrête. Pas de sauvegarde en
-    RAM. Le fichier enregistré sur le disque est pérenne, et peut se rouvrir plus tard.
+    Ce qu'il faut en tirer : aucun de ces mots n'a de définition arrêtée, et
+    tous désignent des logiciels. « App » est l'abréviation anglaise
+    d'application, répandue par les magasins d'applications des téléphones ; le
+    mot ne désigne pas une technologie particulière, le même logiciel existant
+    souvent en site web, en programme de bureau et en application mobile.
 
-    Le réseau est du côté des périphériques, en entrée comme en sortie :
-    pour le logiciel, c'est un flux qu'on lit ou qu'on écrit sans qu'il
-    reste, comme le clavier ou l'écran. Sur la flèche de copie, le réseau
-    transporte un flux, et le fichier est sur un disque à chaque bout.
+    Les définitions d'usage : Grand dictionnaire terminologique de l'OQLF.
 
-    Exemples d'usage d'un fichier, à donner à l'oral : relire dans une
-    semaine ce que le programme a produit ; un tableau (tableur) écrit par un
-    logiciel, puis importé ou ouvert dans un autre ; un transfert entre
-    postes (et vers un stockage externe, comme une clé USB).
+    Une application web s'utilise dans le navigateur, et une partie de ses calculs
+    se fait en général sur un serveur.
 
-    Un format de fichier est un moyen d'échange et d'interaction entre
-    logiciels.
+    Le système transmet une demande générale au pilote, et le pilote commande le
+    composant en détail. Les pilotes font partie du système : plus de 70 % du code de
+    Linux en 2001 (Arpaci-Dusseau, _Operating Systems: Three Easy Pieces_, chap. 36).
 
-    Transition vers la suite de la partie : reconnaître le type d'un
-    fichier, et savoir sur quel disque il est enregistré.
+    OS et driver ramènent à la vieille partition du vocabulaire officiel :
+    logiciel de base, qui fait fonctionner la machine et donne accès au
+    matériel (Windows, macOS, Linux, et les pilotes), contre logiciel
+    d'application, qui sert à accomplir une tâche (LibreOffice, Firefox, un
+    lecteur de musique).
   ]
 ]
+
 // ------------------------------ Fichiers -----------------------------------
 // --------------------------------------------
 // Masquée à la relecture du 19/10/2026 : le lieu d'exécution d'une
@@ -222,21 +330,42 @@
 // --------------------------------------------
 #d("Fichier, extension et type de fichier")[
   #annonce[
-    Le type d'un fichier (texte, vidéo…) est indiqué par son *extension*. Le
-    système s'en sert pour choisir le logiciel à lancer.
+    Un fichier conserve un résultat. On peut l'ouvrir avec un autre logiciel ou le
+    copier sur une autre machine.
   ]
 
-  #align(center)[
-    #grid(
-      columns: (auto, auto),
-      row-gutter: 9pt,
-      align: center,
-      text(font: police-code, size: 27pt, fill: estompe)[releve\_2026],
-      text(font: police-code, size: 27pt, fill: accent, weight: "bold")[.csv],
-      text(size: 13pt, fill: estompe)[le nom, que vous choisissez],
-      text(size: 13pt, fill: accent)[l'extension],
-    )
-  ]
+  #grid(
+    columns: (1fr, 1fr), column-gutter: 26pt, align: top,
+    [
+      #{
+        // Sans cet espacement, le corps de `fenetre` commence par une ligne vide.
+        set block(spacing: 0pt)
+        explorateur(
+          [C:\\Users\\alice\\Documents],
+          ("altitudes.py", "carte.png", "raven.odt", "releve_2026.csv"),
+          choisi: 3,
+        )
+      }
+      #legende[L'explorateur affiche ce qui est stocké sur le disque.]
+    ],
+    [
+      #annonce[
+        Le type d'un fichier (texte, vidéo…) est indiqué par son *extension*. Le
+        système s'en sert pour choisir le logiciel à lancer.
+      ]
+      #align(center)[
+        #grid(
+          columns: (auto, auto),
+          row-gutter: 9pt,
+          align: center,
+          text(font: police-code, size: 27pt, fill: estompe)[releve\_2026],
+          text(font: police-code, size: 27pt, fill: accent, weight: "bold")[.csv],
+          text(size: 13pt, fill: estompe)[le nom, que vous choisissez],
+          text(size: 13pt, fill: accent)[l'extension],
+        )
+      ]
+    ],
+  )
   #avertissement[
     Windows masque les extensions qu'il connaît : `raven.odt` s'affiche
     `raven`. Réglage à changer une fois, avant le TD 1a.
@@ -255,6 +384,14 @@
     connus par défaut, et le réglage se trouve dans Explorateur > Affichage >
     Afficher > Extensions de noms de fichiers. Sous macOS, Finder > Réglages >
     Avancé > « Afficher tous les suffixes de fichiers ». 
+
+    Exemples d'usage d'un fichier, à donner à l'oral : relire dans une
+    semaine ce que le programme a produit ; un tableau (tableur) écrit par un
+    logiciel, puis importé ou ouvert dans un autre ; un transfert entre
+    postes (et vers un stockage externe, comme une clé USB).
+
+    Un format de fichier est un moyen d'échange et d'interaction entre
+    logiciels.
   ]
 ]
 // --------------------------------------------

@@ -83,7 +83,8 @@ cellules de code. Les cellules de code n'ont pas encore de sortie.
 4. La fenêtre de l'invite reste occupée tant que JupyterLab tourne : elle
    doit rester ouverte.
 5. Le panneau de gauche de JupyterLab est une arborescence de fichiers. Elle
-   part du dossier où `jupyter lab` a été lancé, `1d_notebook`.
+   part du dossier où `jupyter lab` a été lancé, `1d_notebook`, et ne montre
+   que ce dossier et ce qu'il contient ({ref}`J6 <dep-j6>`).
    Double-cliquer sur `altitudes.ipynb`.
 
 Si le navigateur ne s'ouvre pas, l'invite affiche une adresse qui commence

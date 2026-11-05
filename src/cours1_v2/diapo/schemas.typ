@@ -18,7 +18,10 @@
 #import "../../cours5/diapo/schemas.typ": _etiquette, _fleche, _ecran, _clavier, _disque, _portable, _boitier-reseau, _nuage, _serveur, _cadenas
 
 // ---------------------------------------------------------------------------
-// Entrées et sorties d'un logiciel
+// Exécution de programmes et stockage de données
+//
+// 05/11/2026 : les deux fonctions de l'ordinateur sont nommées sur le schéma, en tête
+// de chaque cadre. Le cadre du disque monte pour porter son titre.
 //
 // Relecture du 19/10/2026 : remplace les quatre boîtes « entrée / sortie,
 // fichier / périphérique » du cours 1 de 2026. Dans votre ordinateur, des
@@ -94,42 +97,44 @@
     pos, anchor: anchor, text(size: 15pt, fill: accent)[#corps])
 
   // votre ordinateur, et les logiciels qui s'y exécutent
-  rect((5.3, 0), (18.1, 7.6), radius: 0.15, stroke: 1.6pt + accent)
+  rect((5.3, 0), (18.1, 8.2), radius: 0.15, stroke: 1.6pt + accent)
   _etiquette((11.7, -0.1), "Votre ordinateur", none, largeur: 5cm)
-  rect((5.9, 3.7), (17.5, 7.3), fill: accent.lighten(88%),
+  rect((5.9, 4.3), (17.5, 7.9), fill: accent.lighten(88%),
        stroke: 1pt + accent.lighten(40%))
-  content((11.7, 7.15), anchor: "north",
-          text(size: 17pt, weight: demi-gras, fill: accent)[Un logiciel en cours d'exécution])
-  _icone-tableur(8.4, 5.4)
-  _etiquette((8.4, 4.45), "LibreOffice", none, largeur: 3.2cm)
-  _icone-navigateur(11.7, 5.4)
-  _etiquette((11.7, 4.45), "Navigateur", none, largeur: 3.2cm)
-  _icone-script(15.0, 5.4)
-  _etiquette((15.0, 4.45), "Programme", none, largeur: 3.2cm)
+  content((11.7, 7.75), anchor: "north",
+          text(size: 17pt, weight: demi-gras, fill: accent)[Exécution de programmes])
+  _icone-tableur(8.4, 6.0)
+  _etiquette((8.4, 5.05), "LibreOffice", none, largeur: 3.2cm)
+  _icone-navigateur(11.7, 6.0)
+  _etiquette((11.7, 5.05), "Navigateur", none, largeur: 3.2cm)
+  _icone-script(15.0, 6.0)
+  _etiquette((15.0, 5.05), "Votre script", none, largeur: 3.2cm)
 
   // les flux, échangés avec les périphériques
-  _clavier(2.3, 5.4)
-  _etiquette((2.3, 4.75), "Clavier, souris", none, largeur: 3.8cm)
-  _fleche((3.95, 5.4), (5.85, 5.4))
-  action((4.6, 5.6), "flux")
+  _clavier(2.3, 6.0)
+  _etiquette((2.3, 5.35), "Clavier, souris", none, largeur: 3.8cm)
+  _fleche((3.95, 6.0), (5.85, 6.0))
+  action((4.6, 6.2), "flux")
 
-  _ecran(23.4, 4.85)
-  _etiquette((23.4, 4.1), "Écran, son", none, largeur: 3.8cm)
-  _fleche((17.55, 5.4), (21.9, 5.4))
-  action((19.7, 5.6), "flux")
+  _ecran(23.4, 5.45)
+  _etiquette((23.4, 4.7), "Écran, son", none, largeur: 3.8cm)
+  _fleche((17.55, 6.0), (21.9, 6.0))
+  action((19.7, 6.2), "flux")
 
   // le disque, et les fichiers qu'il conserve
-  rect((6.7, 0.25), (16.1, 2.6), radius: 0.1, fill: gris.lighten(50%),
+  rect((6.7, 0.25), (16.1, 3.15), radius: 0.1, fill: gris.lighten(50%),
        stroke: 1pt + accent.lighten(40%))
+  content((11.7, 3.05), anchor: "north",
+          text(size: 17pt, weight: demi-gras, fill: accent)[Stockage de données])
   _disque(11.7, 1.75)
   _etiquette((11.7, 0.95), "Disque", none, largeur: 2.4cm)
   _fichier(8.4, 1.75, "releve.csv")
   _fichier(15.0, 1.75, "carte.png")
 
-  _fleche((8.4, 2.4), (8.4, 3.65))
-  action((8.2, 3.0), "ouvrir", anchor: "east")
-  _fleche((15.0, 3.65), (15.0, 2.4))
-  action((15.2, 3.0), "enregistrer", anchor: "west")
+  _fleche((8.4, 2.4), (8.4, 4.25))
+  action((8.2, 3.72), "ouvrir", anchor: "east")
+  _fleche((15.0, 4.25), (15.0, 2.4))
+  action((15.2, 3.72), "enregistrer", anchor: "west")
 
   // la copie d'un fichier sur un autre ordinateur, et retour
   line((15.55, 1.75), (22.05, 1.75), stroke: 1.4pt + accent,
@@ -140,6 +145,51 @@
   _portable(23.4, 0.75)
   _etiquette((23.4, -0.1), "Un autre ordinateur", none, largeur: 5.6cm)
 })
+
+// ---------------------------------------------------------------------------
+// Les couches de logiciels, du matériel aux applications web
+//
+// 05/11/2026 : la pile de « Couches matérielles et logicielles », complétée pour répondre
+// à la question posée sur cette diapositive. Le navigateur est un programme : la
+// couche des programmes est coupée en deux, et les applications web sont posées sur le
+// navigateur seul. Les pilotes sont la partie basse du système : dans son cadre, juste
+// au-dessus du matériel (OSTEP, chap. 36 : « At the lowest level, a piece of software in
+// the OS must know in detail how a device works. »).
+
+#let _case-programmes(icone, titre, exemples) = std.grid.cell(
+  fill: accent.lighten(90%), stroke: 1pt + accent.lighten(35%), inset: (x: 14pt, y: 5pt),
+  std.grid(
+    columns: (34pt, 1fr), column-gutter: 14pt, align: left + horizon,
+    icone,
+    [
+      #text(size: 19pt, weight: "semibold")[#titre]
+      #linebreak()
+      #text(size: 14pt, fill: estompe)[#exemples]
+    ],
+  ),
+)
+
+#let schema-couches-logiciels() = stack(
+  dir: ttb, spacing: 5pt,
+  std.grid(
+    columns: (1fr, 1fr),
+    [],
+    _case-programmes(icone-fenetre(taille: 26pt), "Applications web", [webapp : Géoportail, Google Docs]),
+    _case-programmes(icone-fenetre(taille: 26pt), "Programmes", [application, app : LibreOffice, votre script]),
+    _case-programmes(
+      cetz.canvas(length: 0.55cm, { _icone-navigateur(0, 0) }),
+      "Navigateur", [Firefox, Chrome],
+    ),
+  ),
+  liaison("« ouvre releve.csv »", "le contenu"),
+  stack(
+    dir: ttb,
+    couche(icone-engrenage(taille: 26pt), "Système d'exploitation", [OS : Windows, macOS, Linux, Android, iOS]),
+    couche([], "Pilotes", [driver : carte graphique, imprimante, carte réseau]),
+  ),
+  liaison("« écris ces octets »", "les octets lus sur le disque"),
+  couche(icone-puce(taille: 26pt), "Matériel", "processeur, mémoire, disque, réseau"),
+)
 
 // ---------------------------------------------------------------------------
 // Les emplacements de stockage sur le réseau
@@ -474,12 +524,149 @@
 // Les lignes d'invite (`eleve@…`) sont estompées, les commandes et les
 // sorties à la taille du texte. `raw` est à 0,78 em du texte qui l'entoure :
 // `taille` est donc celle du texte, pas celle du code affiché.
-#let terminal(titre: "Git Bash", taille: 19pt, ..lignes) = fenetre(titre, code: true)[
-  #set par(leading: 0.45em)
-  #for ligne in lignes.pos() [
-    #text(size: taille, fill: if ligne.starts-with("eleve@") { estompe } else { accent }, raw(ligne)) \
+#let terminal(titre: "Git Bash", taille: 19pt, ..lignes) = {
+  // Sans cet espacement, le corps de `fenetre` commence par une ligne vide.
+  set block(spacing: 0pt)
+  fenetre(titre, code: true)[
+    #set par(leading: 0.45em)
+    #for ligne in lignes.pos() [
+      #text(size: taille, fill: if ligne.starts-with("eleve@") { estompe } else { accent }, raw(ligne)) \
+    ]
   ]
+}
+
+// Les commandes d'une étape de TD, dans une fenêtre de terminal
+//
+// 05/11/2026 : au TD 1b, les commandes à taper sortent des phrases de consignes.
+// Chaque numéro renvoie à la consigne de même numéro ; plusieurs commandes se
+// suivent sous un seul numéro, et `numero:` saute les consignes sans commande.
+// `constat` s'affiche sous ses commandes, dans le
+// corrigé seulement (STYLE.md, « TD et corrigé »).
+//
+//   #terminal-etapes(
+//     etape-terminal("pwd"),
+//     etape-terminal("cd depart", "pwd", constat: [L'invite montre `depart`.]),
+//   )
+#let etape-terminal(..commandes, constat: none, numero: none) = (
+  commandes: commandes.pos(), constat: constat, numero: numero,
+)
+
+#let terminal-etapes(titre: "Git Bash", taille: 19pt, ..etapes) = {
+  // Sans cet espacement, le corps de `fenetre` commence par une ligne vide.
+  set block(spacing: 0pt)
+  fenetre(titre, code: true, std.grid(
+    columns: (auto, 1fr), column-gutter: 10pt, row-gutter: 9pt, align: left,
+    ..etapes.pos().enumerate().map(((i, e)) => (
+      text(size: taille * 0.78, fill: estompe, str(if e.numero != none { e.numero } else { i + 1 })),
+      stack(
+        dir: ttb, spacing: 6pt,
+        ..e.commandes.map(c => text(size: taille, raw("$ " + c))),
+        ..if e.constat != none and corrige-visible {
+          (text(font: police-texte, size: taille * 0.75, fill: attention, e.constat),)
+        },
+      ),
+    )).flatten(),
+  ))
+}
+
+// ---------------------------------------------------------------------------
+// Trois lignes, et le moment où chacune est traduite
+//
+// 05/11/2026, refait après relecture : un programme de trois lignes, une opération
+// par ligne, et non une boucle que l'élève n'a pas vue à ce moment de la séance.
+// Le gris marque la traduction, le bleu l'exécution par le processeur. Les deux
+// colonnes viennent de « Compile Time V.S. Run Time » (Stanford CS106L). La largeur
+// des cases ne suit aucune échelle.
+
+#let _bleu-execution = attention.lighten(72%)
+
+#let _case-traduction(corps, largeur: auto) = box(
+  width: largeur, height: 40pt, fill: gris, stroke: 0.8pt + estompe.lighten(30%),
+  inset: (x: 5pt), align(center + horizon, text(size: 13pt, corps)),
+)
+
+#let _case-execution(corps, hauteur: 40pt) = box(
+  height: hauteur, fill: _bleu-execution, stroke: 0.8pt + attention,
+  inset: (x: 6pt), align(center + horizon, text(size: 13pt, corps)),
+)
+
+#let _resultat-traduction = box(height: 40pt, inset: (left: 6pt), align(
+  horizon, text(size: 15pt, weight: demi-gras, "129.0"),
+))
+
+#let programme-trois-lignes() = block(
+  width: 100%, fill: gris.lighten(45%), inset: (x: 12pt, y: 7pt),
+)[
+  #set block(spacing: 6pt)
+  #text(size: 14pt, weight: demi-gras, fill: estompe)[Un programme de trois lignes, en Python]
+  #std.grid(
+    columns: (auto, auto, auto), column-gutter: 14pt, row-gutter: 3pt, align: left + horizon,
+    text(size: 14pt, fill: estompe, "1"), text(size: 18pt, raw("total = 128.4 + 131.0 + 127.6")), _case-execution(hauteur: 22pt)[additionne],
+    text(size: 14pt, fill: estompe, "2"), text(size: 18pt, raw("moyenne = total / 3")), _case-execution(hauteur: 22pt)[divise],
+    text(size: 14pt, fill: estompe, "3"), text(size: 18pt, raw("print(moyenne)")), _case-execution(hauteur: 22pt)[affiche],
+  )
 ]
+
+#let schema-moment-traduction() = {
+  let colonne(corps) = text(size: 14pt, weight: demi-gras, fill: estompe, corps)
+  let ligne(numero) = _case-traduction[traduit \ ligne #numero]
+  std.grid(
+    columns: (auto, 165pt, 1fr), column-gutter: 12pt, row-gutter: 8pt, align: left + horizon,
+    stroke: (x, y) => if x == 2 {
+      (left: (paint: accent.lighten(30%), thickness: 1pt, dash: "dashed"))
+    },
+    inset: (x, y) => if x == 2 { (left: 10pt) } else { 0pt },
+    [],
+    colonne[Avant le lancement],
+    colonne[Pendant l'exécution #sym.arrow.r],
+
+    [#text(size: 17pt, weight: demi-gras)[Compilateur] \ #text(size: 13pt, fill: estompe)[le même programme, en C++]],
+    _case-traduction(largeur: 100%)[traduit les lignes 1, 2, 3, enregistre l'exécutable],
+    stack(
+      dir: ltr, spacing: 3pt,
+      _case-execution[additionne], _case-execution[divise], _case-execution[affiche],
+      _resultat-traduction,
+    ),
+
+    [#text(size: 17pt, weight: demi-gras)[Interpréteur] \ #text(size: 13pt, fill: estompe)[Python]],
+    text(size: 13pt, fill: estompe)[aucune étape],
+    stack(
+      dir: ltr, spacing: 2pt,
+      ligne(1), _case-execution[additionne], h(3pt),
+      ligne(2), _case-execution[divise], h(3pt),
+      ligne(3), _case-execution[affiche],
+      _resultat-traduction,
+    ),
+  )
+}
+
+// ---------------------------------------------------------------------------
+// Modifier un programme, puis le relancer
+//
+// 05/11/2026 : reprend la chaîne de l'ancienne « Exécution d'un programme Python »
+// (`chaine-terminal`), à l'horizontale, à côté de celle d'un programme compilé. La
+// colonne « Compiler » reste vide pour Python : l'étape en moins se voit.
+
+#let schema-modifier-relancer() = {
+  let colonne(corps) = align(center, text(size: 14pt, weight: demi-gras, fill: estompe, corps))
+  let f = align(center + horizon, text(size: 20pt, fill: accent, sym.arrow.r))
+  let code(corps) = text(size: 14pt, raw(corps))
+  std.grid(
+    columns: (auto, 0.75fr, 18pt, 1.5fr, 18pt, 1fr),
+    column-gutter: 3pt, row-gutter: 5pt, align: left + horizon,
+    [], colonne[Modifier, enregistrer], [], colonne[Compiler], [], colonne[Lancer],
+
+    text(size: 15pt, weight: demi-gras)[Compilé : \ C++],
+    etape("Notepad++", code("altitudes.cpp"), hauteur: 48pt), f,
+    etape("Le compilateur", code("g++ altitudes.cpp -o altitudes.exe"), hauteur: 48pt), f,
+    etape("Le programme", code("./altitudes.exe"), hauteur: 48pt),
+
+    text(size: 15pt, weight: demi-gras)[Interprété : \ Python],
+    etape("Notepad++", code("altitudes.py"), hauteur: 48pt), f,
+    align(center + horizon, text(size: 13pt, fill: estompe)[aucune étape]), f,
+    etape("L'interpréteur", code("python altitudes.py"), hauteur: 48pt),
+  )
+}
 
 // ---------------------------------------------------------------------------
 // La recherche d'une commande dans PATH, avant et après `conda activate`
@@ -570,7 +757,8 @@
 //
 //   #consignes([Lister `depart` : `ls depart`. #constat[les fichiers des deux textes]])
 #let constat(corps) = reponse(block(
-  above: 3pt, below: 0pt,
+  // Mesuré depuis la ligne de base du texte au-dessus : à moins, ses jambages touchent.
+  above: 4.5pt, below: 0pt,
   text(size: 0.85em, fill: attention)[#corps],
 ))
 

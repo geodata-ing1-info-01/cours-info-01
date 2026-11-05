@@ -7,8 +7,8 @@
 // la conversion par pandoc et le README sont au cours 2.
 //
 // Seconde relecture du 19/10/2026 : plus de séparateur ; « Programmation
-// littérale » suit « Exécution d'un programme Python », dans la partie
-// « Programme Python et notebook » ouverte dans `02b_programme.typ`, avant
+// littérale » suit « Compilateur et interpréteur : changer de poste », dans la partie
+// « Exécuter un programme » ouverte dans `02b_programme.typ`, avant
 // les TD 1c et 1d (ordre des inclusions dans `cours1_v2.typ`).
 //
 // Relecture du 19/10/2026 : « Lancer JupyterLab » ouvre le TD 1d, et « La
