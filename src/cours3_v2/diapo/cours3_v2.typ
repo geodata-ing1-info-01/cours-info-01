@@ -26,11 +26,11 @@
 
 #let partie-1 = (
   titre: "Portabilité du code",
-  annonce: "faciliter l'utilisation de son code par une autre personne : chemin de fichier, et interface en ligne de commande",
+  annonce: "Faciliter l'utilisation de son code par une autre personne : chemin de fichier, et interface en ligne de commande",
 )
 #let partie-2 = (
   titre: "Fichiers et encodage",
-  annonce: "Lire et écrire un fichier ; fichier texte ou binaire et eoncodage; stockage des fichier et mémoire",
+  annonce: "Lire et écrire un fichier ; fichier texte ou binaire et encodage ; stockage des fichiers et mémoire",
 )
 
 #include "parties/00_ouverture.typ"
