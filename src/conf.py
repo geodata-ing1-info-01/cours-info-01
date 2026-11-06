@@ -105,7 +105,7 @@ _SRC = Path(__file__).resolve().parent
 # `outils/compiler_guides.py`), le PNG à côté du guide est versionné, à
 # 144 ppi ; celui de `produit/` est à 110 ppi. Il n'est donc recopié que s'il
 # manque : sinon chaque construction du book réécrirait le fichier versionné.
-ILLUSTRATIONS_VERSIONNEES = {"cours1_v2", "cours2_v2"}
+ILLUSTRATIONS_VERSIONNEES = {"cours1_v2", "cours2_v2", "cours4_v2"}
 
 
 def _images_des_guides() -> None:

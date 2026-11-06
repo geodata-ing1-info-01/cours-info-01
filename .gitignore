@@ -63,6 +63,11 @@ livraison/
 # src/conf.py à chaque construction du book.
 src/cours*/notebook/td/*/illustrations/*.png
 src/cours*/notebook/td/*/depart/illustrations/*.png
+# Sauf dans les cours de `ILLUSTRATIONS_VERSIONNEES` (src/conf.py et
+# outils/compiler_guides.py), où le PNG est versionné à côté de sa source.
+!src/cours1_v2/notebook/td/*/illustrations/*.png
+!src/cours2_v2/notebook/td/*/illustrations/*.png
+!src/cours4_v2/notebook/td/*/illustrations/*.png
 
 # Examen écrit : le sujet et son corrigé partagent un même source. Le dépôt est
 # public sur GitHub et les élèves le connaissent : rien de ce dossier n'y entre.

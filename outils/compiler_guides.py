@@ -16,8 +16,8 @@ cherchées à partir de `produit/` du TD, où
 `make_data.py` les dépose : un chemin comme
 `depart/illustrations/programme_montre.png` vaut pour le guide livré à la
 racine du dossier du TD comme pour la conversion. Elles sont cherchées
-ensuite à côté de `guide.md` : les guides du book (versions 2 des cours 1
-et 2) y gardent leurs images versionnées, que la page du book affiche. Les deux fichiers sont
+ensuite à côté de `guide.md` : les guides du book (versions 2 des cours 1,
+2 et 4) y gardent leurs images versionnées, que la page du book affiche. Les deux fichiers sont
 déposés dans `produit/` du TD, que `outils/livrer_tds.py` met à
 plat dans le dossier livré : l'étudiant trouve le guide à côté de `depart/`.
 
@@ -140,7 +140,7 @@ def sans_premier_titre(texte: str) -> str:
 # Cours dont les guides sont des pages du book avec leurs images : le PNG de
 # chaque illustration est aussi écrit à côté de sa source, et versionné, pour
 # que le book se construise sans typst (comme les SVG de `notebook/figures/`).
-ILLUSTRATIONS_VERSIONNEES = {"cours1_v2", "cours2_v2"}
+ILLUSTRATIONS_VERSIONNEES = {"cours1_v2", "cours2_v2", "cours4_v2"}
 
 
 def illustrer(source: Path, produit: Path) -> int:
