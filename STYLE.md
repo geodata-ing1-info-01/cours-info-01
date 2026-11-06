@@ -206,6 +206,11 @@ table précédente.
 | Procédure dans un tableau | « Ce qu'on fait / Ce qu'on doit voir / Sinon » | « 2. Taper `conda --version`, Entrée. La fenêtre affiche `conda 25.x` ou `conda 24.x`. Sinon : A2. » |
 | Renvois sans leur cas | « A1, A3 » | « Si le menu ne propose pas « Anaconda Prompt » : A1. Sans `(base)` : A3. » |
 | Historique du dépôt dans une page élève | « Le profil « Git Bash » et les deux réglages de l'éditeur ont été ajoutés le 27 septembre 2026 » | supprimé |
+| Annonce qui résume des panneaux, verbe vague | « Un import et deux appels s'y ajoutent, et le poste de développement doit d'abord recevoir ce que ces lignes appellent » | pas d'annonce ; légende : « En bleu, les lignes ajoutées au programme du cours 4. » |
+| Cellule de tableau sans verbe | « les tuiles du fond, le zoom » | « récupérer les tuiles de fond, gérer le zoom » |
+| Sujet abstrait, verbe vague | « Beaucoup de besoins sont déjà couverts par des outils existants » | « Un programme peut appeler des outils écrits et testés par d'autres » |
+| Chiasme, parallélisme à effet | « au cours 3, une autre personne utilise votre code ; ici, votre code utilise celui des autres » ; « Une correction y coûte une ligne, alors qu'elle coûte aujourd'hui une refonte » | « Cours 3 : une autre personne utilise le code. Cours 5 : le code appelle des outils écrits par d'autres. » |
+| Image dans une note | « Le fichier de projet raccourcit le chemin sur le nouveau poste » | « Avec le fichier de projet, le nouveau poste compte moins d'étapes » |
 
 Sur une diapositive de TD, ce que l'élève doit faire s'écrit en consignes
 numérotées (gabarit `consignes`) ou en pistes (`attendu-pistes`) : une
@@ -217,7 +222,9 @@ l'action.
 Une restructuration réécrit des phrases : le texte nouveau repasse par ces
 deux tables, et un texte déjà relu se déplace sans être reformulé.
 `python outils/verifier_style.py` relève les tournures repérables
-automatiquement dans les lignes ajoutées depuis le dernier commit.
+automatiquement dans les lignes ajoutées depuis le dernier commit. Il n'en voit
+qu'une partie : relire ces deux tables juste avant d'écrire, puis comparer à ces
+tables chaque phrase nouvelle, une par une, avant de rendre le texte.
 
 ## Encadrés
 
