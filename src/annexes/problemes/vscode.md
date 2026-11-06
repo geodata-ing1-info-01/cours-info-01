@@ -2,10 +2,9 @@
 title: Problèmes avec VS Code
 ---
 
-La configuration de VS Code est dans [Installation et
-configuration](../configuration/vscode.md) : [généralités](../configuration/vscode.md),
-[Python et environnement conda](../configuration/vscode_python.md),
-[notebooks](../configuration/vscode_notebooks.md).
+La configuration de VS Code est dans [VS Code](../configuration/vscode.md),
+[Python et environnement conda](../configuration/vscode_python.md) et
+[VS Code : notebooks](../configuration/vscode_notebooks.md).
 
 (dep-vscode)=
 ## Problèmes
@@ -14,17 +13,17 @@ configuration](../configuration/vscode.md) : [généralités](../configuration/v
 ### V1. VS Code n'est pas dans le menu Démarrer
 
 Ce qu'on voit
-: Rien ne répond à `visual studio code` ni à `code`.
+: Le menu Démarrer ne propose rien pour `visual studio code` ni pour `code`.
 
 Vérifier
 : Dans un `cmd`, `dir "%LOCALAPPDATA%\Programs\Microsoft VS Code\Code.exe"`
   puis `dir "%ProgramFiles%\Microsoft VS Code\Code.exe"`.
 
-Remède
+Solution
 : Si l'un des deux fichiers existe, double-cliquer dessus dans
   l'explorateur, puis clic droit sur l'icône de la barre des tâches,
   « Épingler à la barre des tâches ». Si aucun n'existe, VS Code n'est pas
-  sur le poste : le signaler.
+  sur le poste : prévenir l'enseignant.
 
 (dep-v2)=
 ### V2. VS Code ne trouve pas Python selon d'où on l'a lancé
@@ -40,7 +39,7 @@ Cause
   Code une liste qui contient Anaconda ; le menu Démarrer transmet celle du
   compte, qui ne le contient pas ({ref}`A2 <dep-a2>`).
 
-Remède
+Solution
 : Toujours lancer VS Code depuis le menu Démarrer, une fois l'interpréteur
   et le terminal réglés ([Python et environnement
   conda](../configuration/vscode_python.md)). Le résultat ne dépend alors ni de Navigator ni d'une fenêtre
@@ -61,7 +60,7 @@ Cause
 Vérifier
 : Ouvrir <https://marketplace.visualstudio.com> dans Firefox.
 
-Remède
+Solution
 : Ouvrir la session réseau et relancer l'installation. Sans réseau, une
   extension s'installe depuis un fichier `.vsix` : panneau Extensions,
   bouton `…` en haut, « Install from VSIX… ». L'extension Python en
@@ -80,7 +79,7 @@ Cause
 : Le dossier ouvert n'a pas été approuvé, et l'extension Python ne se
   charge que dans un dossier approuvé.
 
-Remède
+Solution
 : Cliquer sur « Restricted Mode » en bas de la fenêtre, puis « Trust ». Ou
   palette, « Workspaces: Manage Workspace Trust ».
 
@@ -95,13 +94,13 @@ Ce qu'on voit
   activate'`. L'invite ne commence pas par `(base)`.
 
 Cause
-: Le terminal est un PowerShell, qui ne peut pas activer l'environnement
-  sur les postes de la salle. Ou c'est un « Command Prompt » ordinaire, où
-  l'extension Python tape `conda activate base` : cette commande ne marche
-  dans un `cmd` qu'après un `conda init cmd.exe`, rarement fait sur les
-  postes.
+: Le terminal est un PowerShell, qui refuse par défaut le script d'activation
+  sur les postes de la salle ({ref}`A7 <dep-a7>`). Ou le terminal est un
+  « Command Prompt » ordinaire, où l'extension Python tape `conda activate base` :
+  cette commande ne fonctionne dans un `cmd` qu'après un `conda init cmd.exe`,
+  rarement fait sur les postes.
 
-Remède
+Solution
 : Faire de Git Bash le terminal par défaut : palette, « Terminal: Select
   Default Profile », « Git Bash », puis fermer ce terminal et en ouvrir un
   nouveau ([Python et environnement
@@ -129,7 +128,7 @@ Cause
   ailleurs, ou quand la recherche a échoué une fois et que son résultat
   est resté en cache.
 
-Remède
+Solution
 : Cliquer « Enter interpreter path… », puis coller le chemin
   `C:\ProgramData\anaconda3\python.exe`, et appuyer sur Entrée. « Find… » ouvre
   une fenêtre de choix, qui n'affiche pas `C:\ProgramData`, un dossier masqué.
@@ -157,10 +156,10 @@ Cause
 
 Vérifier
 : `where python` dans un `cmd`, ou `which -a python` dans Git Bash, liste
-  tous les `python.exe` trouvés, dans l'ordre. `python -c "import sys; print(sys.executable)"` dit lequel
-  répond.
+  tous les `python.exe` trouvés, dans l'ordre. `python -c "import sys; print(sys.executable)"` affiche
+  celui qui s'exécute.
 
-Remède
+Solution
 : Employer le terminal Git Bash, avec conda activé ({ref}`G4 <dep-g4>`,
   [Python et environnement conda](../configuration/vscode_python.md)). Le
   bouton Run n'est pas concerné : il lance l'interpréteur choisi, par son chemin
@@ -183,7 +182,7 @@ Vérifier
   doivent être identiques. `conda list -n <env> <paquet>` dit dans quel
   environnement le paquet est.
 
-Remède
+Solution
 : Choisir le même environnement aux trois endroits ([Python et
   environnement conda](../configuration/vscode_python.md),
   {ref}`J4 <dep-j4>`), ou installer le paquet dans celui qui s'exécute :
@@ -199,7 +198,7 @@ Cause
 : Le raccourci dépend de la disposition du clavier, et le poste n'a pas
   forcément celle attendue.
 
-Remède
+Solution
 : Menu Terminal, New Terminal. Ou palette, « Terminal: Create New
   Terminal ».
 
@@ -220,7 +219,7 @@ Vérifier
 : Palette, « Preferences: Open User Settings (JSON) ». Le panneau Problems
   (`Ctrl` + `Maj` + `M`) indique la ligne.
 
-Remède
+Solution
 : Corriger la ligne indiquée. Chaque réglage est séparé du suivant par une
   virgule ; le dernier n'en a pas ; les chemins s'écrivent avec `\\`. En
   cas de doute, passer par l'interface : palette, « Preferences: Open
@@ -242,16 +241,16 @@ Cause
   du compte, `C:\Users\<nom>\AppData\Roaming\Code\Service Worker`. Quand
   il a été écrit par une version antérieure de VS Code, la version en
   place ne parvient plus à l'enregistrer. Sur les postes de la salle, le
-  profil date de la création de l'image et a traversé plusieurs mises à
-  jour de VS Code.
+  profil date de la création de l'image, et VS Code a été mis à jour plusieurs
+  fois depuis.
 
 Vérifier
 : Dans l'explorateur de fichiers, la date de modification du dossier
   `Service Worker` est antérieure au dernier démarrage de VS Code.
 
-Remède
-: D'abord palette, « Developer: Reload Webviews », qui suffit parfois pour
-  la session. Sinon, fermer VS Code entièrement, puis dans un `cmd`
+Solution
+: D'abord palette, « Developer: Reload Webviews », qui corrige parfois l'erreur
+  pour la session. Sinon, fermer VS Code entièrement, puis dans un `cmd`
   supprimer les caches, que VS Code recrée au démarrage suivant :
 
   ```
@@ -283,7 +282,7 @@ Cause
 Vérifier
 : Dans un `cmd`, `dir "C:\Program Files\Git\bin\bash.exe"`.
 
-Remède
+Solution
 : Fermer VS Code et le relancer. S'il reste absent et que le fichier existe,
   recopier le profil « Git Bash » de [Fichiers de
   réglages](../configuration/vscode_reglages.md). Si le fichier n'existe pas,

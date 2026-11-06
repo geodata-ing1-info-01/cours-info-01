@@ -6,9 +6,8 @@ subtitle: L'éditeur de code scientifique d'Anaconda ; fichiers et cellules, env
 Spyder est un éditeur de code pour Python, livré avec Anaconda et installé
 sur les postes de la salle, dans l'environnement `base`. Le module ne
 l'emploie pas en séance (VS Code et JupyterLab), mais d'autres cours
-l'emploient. Cette page dit comment Spyder exécute du code, quel Python il
-utilise, et ce qu'il fait d'un notebook. Son test est en fin de page ; le choix entre les trois outils, dans
-[Choisir entre JupyterLab, Spyder et VS Code](../notions/outils.md).
+l'emploient. Son test est dans la section « Vérifier », et le choix entre les
+trois outils dans [Choisir entre JupyterLab, Spyder et VS Code](../notions/outils.md).
 
 Spyder se lance depuis le menu Démarrer (taper `spyder`), depuis la fiche
 Spyder de Navigator, ou en tapant `spyder` dans l'invite de commandes d'Anaconda. Le
@@ -34,16 +33,20 @@ La barre d'état, en bas, affiche l'environnement Python de la console.
 
 ## Exécuter un fichier, ou une cellule
 
-Trois façons d'exécuter du code, toutes dans la console :
+Ces touches exécutent le code dans la console :
 
-| Ce qu'on fait | Ce qui s'exécute | Après |
-|---|---|---|
-| `F5`, ou le bouton triangle vert (Exécuter le fichier, Run file) | le fichier entier, du début à la fin | ses variables sont dans l'explorateur de variables, ses figures dans Graphiques |
-| `Ctrl` + `Entrée` (Exécuter la cellule, Run cell) | la cellule où est le curseur | idem ; `Maj` + `Entrée` passe à la cellule suivante |
-| `F9` | la ligne, ou le texte sélectionné | idem |
+| Touche | Code exécuté |
+|---|---|
+| `F5`, ou le triangle vert (Exécuter le fichier, Run file) | le fichier entier |
+| `Ctrl` + `Entrée` (Exécuter la cellule, Run cell) | la cellule où est le curseur |
+| `Maj` + `Entrée` | cette cellule, puis le curseur passe à la suivante |
+| `F9` | la ligne, ou le texte sélectionné |
 
-Une cellule est un bloc du fichier qui commence par une ligne `# %%`. Pour
-Python, c'est un commentaire ; pour Spyder, c'est un séparateur. Un fichier
+Les variables créées apparaissent dans l'explorateur de variables, et les
+figures dans Graphiques.
+
+Une cellule est un bloc du fichier qui commence par une ligne `# %%`. Python lit
+cette ligne comme un commentaire, et Spyder comme un séparateur. Un fichier
 découpé ainsi s'exécute par morceaux, comme un notebook, et reste un
 programme ordinaire : `python fichier.py` l'exécute en entier. Les
 résultats ne sont pas enregistrés dans le fichier ; ils sont dans la
@@ -67,10 +70,9 @@ afficher le chemin d'Anaconda ({ref}`A12 <dep-a12>`).
 
 ### Une console dans un autre environnement
 
-Spyder ne crée pas d'environnement : c'est le travail de conda, dans
-l'invite de commandes d'Anaconda ([Les environnements](anaconda.md#les-environnements),
-TD 1h). Une fois l'environnement créé, Spyder peut y ouvrir une console, à
-une condition : le paquet `spyder-kernels` doit y être installé, à la
+Créer l'environnement avec conda, dans l'invite de commandes d'Anaconda ([Les
+environnements](anaconda.md#les-environnements), TD 1h). Spyder peut ensuite y
+ouvrir une console si le paquet `spyder-kernels` y est installé, à la
 version qui correspond à celle de Spyder (menu Aide, À propos de Spyder) :
 
 ```
@@ -87,7 +89,7 @@ conda create -n recette -c conda-forge python spyder-kernels=3.1 pandoc
 Puis, dans Spyder, au choix :
 
 - menu Consoles, « Nouvelle console dans l'environnement » (New console in
-  environment) : la liste des environnements que conda connaît, `base` et
+  environment) : la liste des environnements de conda, `base` et
   ceux créés par le compte. Choisir l'environnement ouvre une console
   dedans ; les autres consoles ne changent pas ;
 - menu Outils (Tools), Préférences, rubrique « Interpréteur Python »,
@@ -114,13 +116,11 @@ Elles se tapent dans l'invite de commandes d'Anaconda.
 Spyder édite des fichiers `.py`. Un fichier `.ipynb` ouvert dans son éditeur
 s'affiche tel qu'il est écrit sur le disque : du JSON, le format interne du
 notebook, montré dans le [cours 1](../../cours1/notebook/03_markdown_notebook.md).
-Pour l'exécuter, deux possibilités.
 
-### Convertir le notebook en fichier Python
-
-Clic droit dans l'éditeur, ou clic droit sur le fichier dans le volet
-Fichiers, puis « Convertir en fichier Python » (Convert to Python file).
-Spyder ouvre un nouveau fichier, non enregistré :
+Pour l'exécuter, le convertir en fichier Python : clic droit dans l'éditeur, ou
+clic droit sur le fichier dans le volet Fichiers, puis « Convertir en fichier
+Python » (Convert to Python file). Spyder ouvre un nouveau fichier, non
+enregistré :
 
 - chaque cellule de code devient une cellule du fichier, séparée par une
   ligne `# In[1]:`, `# In[2]:`… que Spyder traite comme `# %%` ;
@@ -133,29 +133,17 @@ Python ne redevient pas un notebook. Le notebook d'un cours peut donc être
 suivi dans Spyder de cette façon ; l'ouvrir dans JupyterLab ou dans VS Code
 est plus direct.
 
-### Le plugin spyder-notebook
-
-`spyder-notebook` est une extension de Spyder qui affiche et exécute de
-vrais notebooks dans un onglet de Spyder, avec l'interface de Jupyter
-Notebook ; le noyau est le Python de l'environnement de Spyder. Elle
-s'installe avec conda, dans l'environnement où Spyder est installé :
-
-```
-conda install -c conda-forge spyder-notebook
-```
-
-La version 0.7 demande Spyder 6.1. Sur les postes de la salle, cette
-installation n'est pas possible pour un compte élève : `base` n'y est pas
-modifiable. Sur un ordinateur personnel, elle l'est ; elle peut être longue,
-et le module n'en a pas besoin.
-
 ## Vérifier
 
-| Ce qu'on fait | Ce qu'on doit voir | Sinon |
-|---|---|---|
-| Menu Démarrer, taper `spyder`, Entrée, puis attendre | la fenêtre de Spyder : l'éditeur à gauche, la console en bas à droite | {ref}`A12 <dep-a12>` |
-| Dans la console, `import sys; print(sys.executable)` puis Entrée | le chemin d'Anaconda, le même que dans l'invite de commandes d'Anaconda | {ref}`A12 <dep-a12>` |
-| Menu Consoles, « Nouvelle console dans l'environnement » | `base`, et les environnements créés par le compte | {ref}`A11 <dep-a11>` |
+1. Menu Démarrer, taper `spyder`, Entrée, puis attendre. La fenêtre de Spyder
+   s'ouvre, avec l'éditeur à gauche et la console en bas à droite. Sinon :
+   {ref}`A12 <dep-a12>`.
+2. Dans la console, taper `import sys; print(sys.executable)`, Entrée. Le même
+   chemin que dans l'invite de commandes d'Anaconda s'affiche. Sinon :
+   {ref}`A12 <dep-a12>`.
+3. Menu Consoles, « Nouvelle console dans l'environnement ». La liste affiche
+   `base`, et les environnements créés par le compte. Sinon :
+   {ref}`A11 <dep-a11>`.
 
 (spyder-git)=
 ## Git avec Spyder
@@ -166,14 +154,6 @@ changent pas, et `git` ne dépend pas de conda. Spyder écrit et lance les
 programmes (`F5`), sans réglage. Cette organisation convient à un élève que la
 configuration de VS Code bloque.
 
-Spyder offre aussi trois moyens moins complets :
-
-| Moyen | Ce qu'il donne | Limite |
-|---|---|---|
-| Clic droit dans le volet Fichiers (Files) ou Projets (Projects) | Commit ouvre `git-cola` ou `git gui`, et Browse ouvre `gitk`, dans leurs propres fenêtres | `git` et `gitk` doivent être dans le `PATH` : `where gitk` dans un `cmd` [à vérifier sur un poste] |
-| `!git status` dans la console | le résultat de la commande, dans la console | seulement pour une commande qui ne pose pas de question : `git commit` sans `-m` ne convient pas |
-| L'extension `spyder-terminal` | un terminal dans Spyder | `cmd` ou PowerShell sous Windows d'après sa documentation, et un environnement dédié : `base` n'est pas modifiable sur les postes ({ref}`A8 <dep-a8>`) |
-
 ## Documentation officielle
 
 - [Tour de l'interface](https://docs.spyder-ide.org/current/quickstart.html)
@@ -181,5 +161,3 @@ Spyder offre aussi trois moyens moins complets :
 - [FAQ de Spyder](https://docs.spyder-ide.org/current/faq.html) (en
   anglais), questions « How do I get Spyder to work with my existing Python
   packages/environment? » et « How do I use code cells in Spyder? ».
-- [Spyder Notebook](https://docs.spyder-ide.org/current/plugins/notebook.html)
-  (en anglais) : le plugin.

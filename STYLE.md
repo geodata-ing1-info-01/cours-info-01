@@ -105,6 +105,12 @@ s'écrit donc en **phrases complètes et déclaratives**.
 enseignant, où ils codent une information réelle (exposé / TD) et
 répétée. Ailleurs, ils sont décoratifs — donc supprimés.
 
+**Sur les procédures et les tableaux** : une suite d'actions s'écrit en liste
+numérotée, avec une action par étape, son résultat, puis le renvoi en cas
+d'échec. Un renvoi nomme son cas quand il y en a plusieurs. Un tableau présente
+des données à deux dimensions, sans ordre de lecture : comparaison,
+correspondance, réglages, chemins.
+
 ## TD et corrigé
 
 Ce qu'un TD fait constater n'apparaît que dans le corrigé. La colonne
@@ -173,7 +179,8 @@ Les captures ne sont pas versionnées, et leur fabrication est décrite dans
 ## Tournures corrigées en relecture
 
 Les relectures de septembre 2026 (cours 2, 3 et 5), d'octobre 2026
-(cours 1 v2) et de novembre 2026 (cours 2 v2) ont corrigé les mêmes tournures,
+(cours 1 v2) et de novembre 2026 (cours 2 v2, pages de configuration du site)
+ont corrigé les mêmes tournures,
 y compris dans des diapositives réécrites après une première correction. Elles s'ajoutent à la
 table précédente.
 
@@ -194,6 +201,11 @@ table précédente.
 | Annonce à effet qui répète le schéma | « Chaque outil a sa fenêtre. À chaque modification, il faut passer de l'une à l'autre. » | pas d'annonce ; dans les notes : « après une modification dans Notepad++, il faut enregistrer le fichier, revenir dans Git Bash et relancer `python altitudes.py` » |
 | Relative en fin de phrase, cause approximative | « LibreOffice Writer enregistre aussi la mise en forme, que Python ne peut pas lire. » | « Un programme écrit dans LibreOffice Writer est enregistré en `.odt`, et `python` ne peut pas exécuter ce fichier. » |
 | Annonce écrite pour remplir la place | « Un fichier `.py` écrit dans l'un de ces outils s'exécute dans les deux autres. » | pas d'annonce |
+| Annonce par décompte | « Deux façons de les modifier, au choix : » | « Les réglages se modifient dans l'interface ou dans le fichier : » |
+| Titre de colonne en relative | « Ce qu'il obtient » | « Effet » |
+| Procédure dans un tableau | « Ce qu'on fait / Ce qu'on doit voir / Sinon » | « 2. Taper `conda --version`, Entrée. La fenêtre affiche `conda 25.x` ou `conda 24.x`. Sinon : A2. » |
+| Renvois sans leur cas | « A1, A3 » | « Si le menu ne propose pas « Anaconda Prompt » : A1. Sans `(base)` : A3. » |
+| Historique du dépôt dans une page élève | « Le profil « Git Bash » et les deux réglages de l'éditeur ont été ajoutés le 27 septembre 2026 » | supprimé |
 
 Sur une diapositive de TD, ce que l'élève doit faire s'écrit en consignes
 numérotées (gabarit `consignes`) ou en pistes (`attendu-pistes`) : une
@@ -233,6 +245,7 @@ Pas d'encadré « à retenir » qui recopie le paragraphe précédent.
 - [ ] Aucun paragraphe d'une seule phrase courte destiné à faire effet.
 - [ ] Le gras ne marque que des termes définis.
 - [ ] Aucun encadré ne répète le paragraphe voisin.
+- [ ] Une suite d'actions est une liste numérotée, et un tableau ne contient que des données à deux dimensions.
 - [ ] Les commandes montrées ont été exécutées.
 - [ ] Ce que le TD fait constater est dans `reponse[…]`.
 - [ ] Un TD nouveau est un fichier de `tds/` nommé comme son dossier, avec son dictionnaire `td` en tête, importé et inclus par `cours<n>.typ`.
@@ -250,3 +263,6 @@ Pas d'encadré « à retenir » qui recopie le paragraphe précédent.
   [synthèse](https://www.hartford.edu/faculty-staff/faculty/fcld/_files/12%20Principles%20of%20Multimedia%20Learning.pdf)
 - Synthèse des études comparatives :
   [scottjallen.net/sjablog/assertion-evidence](https://www.scottjallen.net/sjablog/assertion-evidence)
+- Google developer documentation style guide, procédures et tableaux :
+  [procedures](https://developers.google.com/style/procedures) et
+  [tables](https://developers.google.com/style/tables)

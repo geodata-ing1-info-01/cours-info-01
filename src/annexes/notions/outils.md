@@ -71,7 +71,7 @@ aux autres langages que les élèves rencontrent dans d'autres cours. Les
 | | JupyterLab | Spyder | VS Code |
 |---|---|---|---|
 | Fichiers `.py` | éditeur simple, exécution dans un terminal de JupyterLab | exécution par `F5`, ou par cellules `# %%` | exécution avec l'extension Python |
-| Notebooks `.ipynb` | ouverture et exécution | conversion en fichier `.py`, ou plugin `spyder-notebook` | ouverture et exécution avec l'extension Jupyter |
+| Notebooks `.ipynb` | ouverture et exécution | conversion en fichier `.py` | ouverture et exécution avec l'extension Jupyter |
 | Autres langages | par un autre noyau (R, Julia), hors module | aucun | une extension par langage |
 
 Chaque outil choisit l'environnement conda d'une façon différente. La page

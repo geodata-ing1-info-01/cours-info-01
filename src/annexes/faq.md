@@ -7,9 +7,9 @@ Chaque ligne décrit ce qui s'affiche à l'écran et renvoie à l'entrée qui
 le traite, dans les pages de problèmes listées en bas de cette page. Quand
 plusieurs entrées sont citées, lire la première d'abord.
 
-Avant de chercher, relever deux choses : la dernière ligne du message
-d'erreur, recopiée telle quelle, et la fenêtre où elle apparaît (Git Bash,
-Anaconda Prompt, `cmd`, PowerShell, terminal de VS Code, cellule de notebook). Le
+Avant de chercher, relever la dernière ligne du message d'erreur, recopiée
+telle quelle, et la fenêtre où elle apparaît (Git Bash, invite de commandes
+d'Anaconda, `cmd`, PowerShell, terminal de VS Code, cellule de notebook). Le
 même message a parfois deux causes selon la fenêtre.
 
 ## Réseau et compte
@@ -17,11 +17,11 @@ même message a parfois deux causes selon la fenêtre.
 | Ce qu'on voit | Entrée |
 |---|---|
 | Firefox affiche une page de connexion, ou aucune page ne charge | {ref}`R1 <dep-r1>` |
-| `conda` répond `CONNECTION FAILED` ; le panneau Extensions de VS Code est vide | {ref}`R1 <dep-r1>`, {ref}`R2 <dep-r2>` |
+| `conda` affiche `CONNECTION FAILED` ; le panneau Extensions de VS Code est vide | {ref}`R1 <dep-r1>`, {ref}`R2 <dep-r2>` |
 | Ça marchait au début de la séance, plus maintenant | {ref}`R1 <dep-r1>` |
 | Les pages web s'ouvrent, mais conda ou VS Code n'atteignent rien (`407`, `SSL`, `ProxyError`) | {ref}`R2 <dep-r2>` |
 | Windows demande un mot de passe d'administrateur | {ref}`R3 <dep-r3>` |
-| Qu'est-ce que je peux installer ou modifier sur le poste ? | {ref}`R3 <dep-r3>` |
+| Je cherche ce que je peux installer ou modifier sur le poste | {ref}`R3 <dep-r3>` |
 
 ## Bloc-notes, Notepad++, explorateur, LibreOffice
 
@@ -43,7 +43,7 @@ même message a parfois deux causes selon la fenêtre.
 | Je clique sur Anaconda Navigator et rien ne se passe pendant des minutes | {ref}`A4 <dep-a4>` |
 | Navigator affiche « offline mode » | {ref}`A4 <dep-a4>` |
 | « There is an instance of Anaconda Navigator already running », sans fenêtre | {ref}`A5 <dep-a5>` |
-| L'icône de démarrage de Navigator reste à l'écran : comment arrêter Navigator | {ref}`A13 <dep-a13>` |
+| L'icône de démarrage de Navigator reste à l'écran, sans fenêtre | {ref}`A13 <dep-a13>` |
 | Navigator propose une mise à jour, ou affiche « updating packages » sans avancer | {ref}`A6 <dep-a6>` |
 | `… activate.ps1 cannot be loaded because running scripts is disabled on this system` | {ref}`A7 <dep-a7>` |
 | Même message pour `conda-hook.ps1` ou `profile.ps1` | {ref}`A7 <dep-a7>` |
@@ -53,7 +53,7 @@ même message a parfois deux causes selon la fenêtre.
 | Mon environnement n'apparaît pas dans VS Code, Navigator, ou `conda env list` | {ref}`A11 <dep-a11>` |
 | Spyder met du temps à s'ouvrir, ou ne s'ouvre pas | {ref}`A12 <dep-a12>` |
 | `'pandoc' n'est pas reconnu` (ou `typst`, `magick`, `ffmpeg`) après un `conda install` réussi | {ref}`X1 <dep-x1>` |
-| `convert` parle de disques ou de systèmes de fichiers | {ref}`X2 <dep-x2>` |
+| `convert` affiche un message sur les disques ou les systèmes de fichiers | {ref}`X2 <dep-x2>` |
 
 ## JupyterLab et notebooks
 

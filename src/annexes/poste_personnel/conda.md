@@ -4,38 +4,22 @@ subtitle: Installer Miniforge, ou Anaconda si besoin, régler les canaux, créer
 ---
 
 Le module emploie conda pour installer Python et les outils des TD. Sur un
-ordinateur personnel, on installe Miniforge, une distribution de conda
-publiée par la communauté conda-forge. Les commandes sont les mêmes que
-dans la salle : `conda create`, `conda activate`, `conda install`.
-
-:::{warning}
-Sur un ordinateur personnel, le module conseille d'installer **Miniforge**, sous
-Windows comme sous Ubuntu : {ref}`Installer Miniforge <installer-miniforge>`.
+ordinateur personnel, il conseille d'installer Miniforge, sous Windows comme
+sous Ubuntu : {ref}`Installer Miniforge <installer-miniforge>`. Miniforge est une
+distribution de conda publiée par la communauté conda-forge. Les commandes sont
+les mêmes que dans la salle : `conda create`, `conda activate`, `conda install`.
 Anaconda reste possible, avec les réserves de {ref}`Installer Anaconda
 <installer-anaconda>`.
-:::
 
 ## Choisir l'installateur
 
-Quatre installateurs donnent la commande `conda` ou un équivalent :
-
-| | Anaconda | Miniconda | Miniforge | micromamba |
-|---|---|---|---|---|
-| Publié par | Anaconda, Inc. | Anaconda, Inc. | la communauté conda-forge | le projet mamba |
-| Canal par défaut | `defaults`, les canaux d'Anaconda | `defaults` | `conda-forge`, seul | aucun, à choisir |
-| Contenu de `base` | Python, des centaines de bibliothèques, Navigator, Spyder, JupyterLab | Python et conda | Python, conda et mamba | pas de `base`, pas de Python |
-| Commande | `conda` | `conda` | `conda`, ou `mamba` | `micromamba` |
-| Conditions d'utilisation | gratuit pour les étudiants dans le cadre des cours, payant pour une organisation de plus de 200 personnes | les mêmes qu'Anaconda | aucune | aucune |
-
-Le module conseille Miniforge. Son installation pèse quelques centaines de
-Mo, contre plusieurs Go pour Anaconda. Il est gratuit pour tout le monde,
+Miniforge pèse quelques centaines de Mo à l'installation, contre plusieurs Go
+pour Anaconda. Il est gratuit pour tout le monde,
 y compris après les études, en stage ou chez un employeur. Son seul canal
 est conda-forge, celui que le module emploie dans la salle : il n'y a ni
-fichier `.condarc` à écrire, ni conditions d'utilisation à accepter.
-
-micromamba est un seul programme, sans environnement `base`. Sa commande
-diffère de celle de la salle, et il sert surtout à préparer des
-environnements sur des serveurs d'intégration continue.
+fichier `.condarc` à écrire, ni conditions d'utilisation à accepter. Les autres
+installateurs sont comparés dans {ref}`Les installateurs de conda
+<installateurs-conda>`.
 
 (installer-miniforge)=
 ## Installer Miniforge
@@ -69,18 +53,17 @@ Homebrew.
 
 Dans la Miniforge Prompt, ou dans le Terminal :
 
-| Ce qu'on tape | Ce qu'on doit voir |
-|---|---|
-| `conda --version` | `conda` suivi d'un numéro de version |
-| `conda config --show channels` | `conda-forge`, seul |
-| `python -c "import sys; print(sys.executable)"` | un chemin dans le dossier `miniforge3` |
+1. Taper `conda --version`. La commande affiche `conda`, suivi d'un numéro de
+   version.
+2. Taper `conda config --show channels`. La commande affiche `conda-forge`, seul.
+3. Taper `python -c "import sys; print(sys.executable)"`. Le chemin affiché est
+   dans le dossier `miniforge3`.
 
 (installer-anaconda)=
 ## Installer Anaconda
 
-Le module conseille Miniforge. Anaconda sert à retrouver chez soi Navigator et
-Spyder, déjà installés, comme dans la salle, au prix de plusieurs Go. Il est
-gratuit pour un usage personnel non commercial et dans le cadre des cours, et
+Anaconda installe aussi Navigator et Spyder, comme dans la salle, et occupe
+plusieurs Go. Il est gratuit pour un usage personnel non commercial et dans le cadre des cours, et
 payant dans une organisation de plus de 200 personnes (conditions du 15 juillet
 2025). Sous Windows :
 
@@ -117,7 +100,7 @@ de la liste qui le fournit, si on ajoute un canal plus tard :
 conda config --set channel_priority strict
 ```
 
-Avec Anaconda ou Miniconda déjà installé, trois commandes font passer
+Avec Anaconda ou Miniconda déjà installé, ces commandes font passer
 conda à conda-forge, dans l'invite de commandes d'Anaconda ou dans le
 Terminal :
 

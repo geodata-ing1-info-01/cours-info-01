@@ -3,52 +3,59 @@ title: VS Code
 subtitle: L'éditeur de code du module ; ouvrir un dossier, la palette, les extensions, les réglages
 ---
 
-VS Code est l'éditeur de code du module. Seul, il ne sait pas exécuter du
-Python : il lui faut l'extension Python, et pour les notebooks l'extension
-Jupyter. Une extension est un module qu'on ajoute à VS Code. Cette page
-décrit ce qui sert dans tous les cas ; les deux pages suivantes décrivent
-la configuration pour Python et pour les notebooks.
+VS Code est l'éditeur de code du module. Pour exécuter du Python, il lui faut
+l'extension Python, et pour les notebooks l'extension Jupyter. Une extension est
+un module qu'on ajoute à VS Code. Cette page décrit ce qui sert dans tous les
+cas ; les deux pages suivantes décrivent la configuration pour Python et pour
+les notebooks.
 
-## Ce qu'il faut configurer
+## La configuration
 
 VS Code n'est lié à aucun langage, et ne contient ni interpréteur ni
 compilateur. Il faut le configurer pour chaque langage employé, et lui
 désigner son terminal. La marche à suivre, en une page, est dans [VS
 Code](../../avant/vscode.md), parmi les pages à lire avant les séances.
 
-| Objectif | Étapes | Détail |
-|---|---|---|
-| Écrire et lancer un langage | installer son extension, avec une connexion internet ; indiquer le chemin de son interpréteur ou de son compilateur ; lancer un programme pour vérifier | [Python et environnement conda](vscode_python.md) |
-| Avoir le bon terminal | choisir Git Bash comme terminal de VS Code ; y activer conda ; vérifier `(base)` et `which python` | [Python et environnement conda](vscode_python.md), {ref}`Git et Git Bash, section conda <conda-git-bash>` |
+Configurer un langage :
+
+1. Installer son extension, avec une connexion internet.
+2. Indiquer le chemin de son interpréteur ou de son compilateur.
+3. Lancer un programme pour vérifier.
+
+Configurer le terminal :
+
+1. Choisir Git Bash comme terminal de VS Code.
+2. Y activer conda ({ref}`Git et Git Bash, section conda <conda-git-bash>`).
+3. Vérifier `(base)` et `which python`.
+
+Le détail pour Python est dans [Python et environnement conda](vscode_python.md).
 
 ## Lancer VS Code et ouvrir un dossier
 
-Menu Démarrer, taper `visual studio code`, Entrée. Puis menu File, Open
-Folder, et choisir le dossier du TD. VS Code ouvre toujours un dossier, pas
-un fichier isolé : le dossier est le projet, et l'explorateur de gauche en
-montre le contenu.
+1. Menu Démarrer, taper `visual studio code`, Entrée.
+2. Menu File, Open Folder, et choisir le dossier du TD.
+3. À la première ouverture d'un dossier, VS Code demande si on fait confiance
+   à ses auteurs. Répondre « Yes, I trust the authors ». Sans cette réponse,
+   VS Code reste en « Restricted Mode » et l'extension Python ne se charge pas
+   ({ref}`V4 <dep-v4>`).
 
-À la première ouverture d'un dossier, VS Code demande si on fait confiance
-à ses auteurs. Répondre « Yes, I trust the authors ». Sans cette réponse,
-VS Code reste en « Restricted Mode » et l'extension Python ne se charge pas
-({ref}`V4 <dep-v4>`).
+Le dossier ouvert est le projet : l'explorateur montre ses fichiers, la
+recherche s'y fait, et le terminal s'y ouvre.
 
 ## Lancer VS Code depuis l'invite de commandes d'Anaconda
 
-Quand Navigator est lent ou ne s'ouvre pas, VS Code se lance aussi depuis
-l'invite de commandes d'Anaconda. Taper `code` suivi d'une espace, puis glisser le dossier
-du TD depuis l'explorateur dans la fenêtre, ce qui écrit son chemin, puis
-Entrée :
+VS Code se lance aussi depuis l'invite de commandes d'Anaconda. Taper `code`
+suivi d'une espace, puis glisser le dossier du TD depuis l'explorateur dans la
+fenêtre, ce qui écrit son chemin, puis Entrée :
 
 ```
 (base) C:\Users\eleve>code "C:\Users\eleve\Desktop\cours1\1c_vscode_python"
 ```
 
-VS Code s'ouvre sur ce dossier. Lancé ainsi, il connaît l'environnement
-actif dans la fenêtre, ce qui aide au choix de l'interpréteur
-({ref}`V6 <dep-v6>`) ; le réglage du terminal reste nécessaire
-([Python et environnement conda](vscode_python.md)). Si la réponse est
-`'code' n'est pas reconnu`, taper le chemin complet de la commande à la
+VS Code s'ouvre sur ce dossier. Lancé ainsi, il reçoit les variables de la
+fenêtre, ce qui aide au choix de l'interpréteur ({ref}`V6 <dep-v6>`) ; le réglage
+du terminal reste nécessaire ([Python et environnement conda](vscode_python.md)).
+Si la fenêtre affiche `'code' n'est pas reconnu`, taper le chemin complet de la commande à la
 place de `code` : `"C:\Program Files\Microsoft VS Code\bin\code.cmd"`, ou
 `"%LOCALAPPDATA%\Programs\Microsoft VS Code\bin\code.cmd"` selon
 l'installation ({ref}`V1 <dep-v1>`).
@@ -57,14 +64,14 @@ l'installation ({ref}`V1 <dep-v1>`).
 
 `Ctrl` + `Maj` + `P` (ou `F1`) ouvre une zone de saisie en haut de la
 fenêtre. On y tape le début du nom d'une commande et on la choisit dans la
-liste. Toutes les consignes du module passent par elle, par exemple
-« Python: Select Interpreter » ou « Developer: Reload Window ».
+liste. Le module s'en sert souvent, par exemple pour « Python: Select
+Interpreter » ou « Developer: Reload Window ».
 
 ## Le panneau Extensions
 
 `Ctrl` + `Maj` + `X` ouvre le panneau Extensions sur la gauche. On y tape
 le nom d'une extension (`python`), on la choisit dans la liste, et on
-clique Install.
+clique sur Install.
 
 :::{warning}
 Installer une extension demande une connexion réseau qui fonctionne : les
@@ -84,7 +91,7 @@ Tout ce qui se règle dans VS Code est enregistré dans des fichiers
   sur ce poste. Le fichier est
   `C:\Users\<nom>\AppData\Roaming\Code\User\settings.json` ;
 - Workspace : les réglages du dossier ouvert. Le fichier est
-  `.vscode\settings.json` dans ce dossier ; il voyage avec le dossier, par
+  `.vscode\settings.json` dans ce dossier. Il est copié avec le dossier, par
   exemple dans l'archive d'un TD.
 
 Quand un réglage est présent aux deux niveaux, celui du dossier l'emporte.
@@ -97,16 +104,16 @@ Le fichier `.vscode\settings.json` d'un dossier, dans l'explorateur et
 dans l'éditeur (documentation VS Code, CC BY 3.0 US).
 ```
 
-Deux façons de les modifier, au choix :
+Les réglages se modifient dans l'interface ou dans le fichier :
 
 - l'interface : palette (`Ctrl` + `Maj` + `P`), « Preferences: Open
-  Settings (UI) », ou `Ctrl` + `,`. Une zone de recherche en haut, deux
-  onglets User et Workspace, et un champ par réglage. Ce qu'on y écrit est
-  enregistré aussitôt ;
+  Settings (UI) », ou `Ctrl` + `,`. La page affiche une zone de recherche en
+  haut, deux onglets User et Workspace, et un champ par réglage. Chaque valeur
+  saisie est enregistrée aussitôt ;
 - le fichier : palette, « Preferences: Open User Settings (JSON) » ou
-  « Preferences: Open Workspace Settings (JSON) ». C'est le même contenu,
-  en texte ; c'est la forme qu'on recopie depuis une page comme
-  celle-ci.
+  « Preferences: Open Workspace Settings (JSON) ». Il contient les mêmes
+  réglages, en texte. Les pages du module donnent les réglages à recopier sous
+  cette forme.
 
 ```{figure} captures/vscode_settings_user_tab.png
 :alt: La page des réglages : zone de recherche en haut, onglets User et Workspace, puis les réglages par catégorie
@@ -145,7 +152,7 @@ Une erreur dans ce fichier se voit à une ligne soulignée en rouge
 Le terminal est une fenêtre de commandes à l'intérieur de VS Code
 ([Les terminaux](../notions/terminaux.md)). Menu
 Terminal, New Terminal l'ouvre en bas de la fenêtre (le raccourci clavier
-dépend du clavier, {ref}`V9 <dep-v9>`). Par défaut, c'est un PowerShell.
+dépend du clavier, {ref}`V9 <dep-v9>`). Par défaut, VS Code ouvre un PowerShell.
 Sur les postes de la salle, Git Bash le remplace, et l'invite de commandes
 d'Anaconda sert de secours. Leur réglage est décrit dans [Python et
 environnement conda](vscode_python.md).
@@ -155,7 +162,7 @@ environnement conda](vscode_python.md).
 
 En haut à droite du panneau du terminal, le bouton `+` ouvre un nouveau
 terminal, du type par défaut. La petite flèche juste à sa droite ouvre la
-liste des types de terminal que VS Code connaît, ses profils :
+liste des types de terminal que VS Code propose, ses profils :
 PowerShell, Command Prompt (le `cmd`), Git Bash quand il est installé
 ([Git et Git Bash](git.md)). Cliquer sur un nom ouvre un nouveau terminal
 de ce type.
@@ -190,16 +197,16 @@ La liste des terminaux ouverts, à droite du panneau. Ici, `pwsh`
 relie dans la liste indique (documentation VS Code, CC BY 3.0 US).
 ```
 
-L'invite dit aussi dans quel terminal on se trouve : celle de PowerShell
+L'invite indique aussi le terminal : celle de PowerShell
 commence par `PS`, celle du `cmd` se termine par `>`, et celle de Git Bash
 par `$`.
 
 (vscode-git)=
 ## Git dans VS Code
 
-VS Code fait deux choses distinctes avec git, réglées séparément : le
-panneau Source Control, et le terminal Git Bash. Git Bash hors de VS Code
-est décrit dans [Git et Git Bash](git.md).
+Dans VS Code, git passe par le panneau Source Control et par le terminal Git
+Bash, réglés séparément. Git Bash hors de VS Code est décrit dans [Git et Git
+Bash](git.md).
 
 ### Le panneau Source Control
 
@@ -210,7 +217,7 @@ sans terminal. Il le cherche dans cet ordre : le réglage `git.path` ;
 tel qu'il était quand VS Code a été lancé. Sur les postes de la salle, Git
 for Windows est dans `C:\Program Files\Git`, et VS Code le trouve sans
 réglage. Avec une des solutions de secours de [Git et Git
-Bash](git.md), git n'est à aucun des deux premiers endroits : donner son
+Bash](git.md), git n'est dans aucun de ces dossiers : donner son
 chemin dans les réglages User ({ref}`Les réglages <vscode-reglages>`),
 puis « Developer: Reload Window » :
 
@@ -219,9 +226,9 @@ puis « Developer: Reload Window » :
 ```
 
 Pour Cmder, le chemin est `<Cmder>\vendor\git-for-windows\cmd\git.exe` ;
-pour l'archive portable, `<dossier>\PortableGit\cmd\git.exe`. Autre
-solution, sans réglage : lancer VS Code depuis l'invite de commandes d'Anaconda où
-`outils` est activé (`code <dossier>`), git est alors dans son PATH.
+pour l'archive portable, `<dossier>\PortableGit\cmd\git.exe`. Sans réglage,
+lancer VS Code depuis l'invite de commandes d'Anaconda où `outils` est activé
+(`code <dossier>`) : git est alors dans son PATH.
 
 ### Le terminal Git Bash
 
@@ -247,11 +254,10 @@ profil s'écrit à la main, et pointe sur le `bash.exe` du même dossier que
 ```
 
 Menu Terminal, New Terminal, puis la flèche à côté du `+` pour choisir
-« Git Bash », et vérifier dans la liste des terminaux que c'est lui qui
-est affiché ({ref}`Choisir le terminal à ouvrir
-<vscode-terminal-choisir>`). VS Code ne connaît aucune commande de bash : il lance
-`bash.exe`, et bash trouve `git`, `ls` et les autres tout seul
-([Git Bash : une fenêtre, bash et des programmes](../notions/git_bash.md)).
+« Git Bash ». Vérifier dans la liste des terminaux que ce terminal est
+affiché ({ref}`Choisir le terminal à ouvrir <vscode-terminal-choisir>`).
+VS Code lance `bash.exe`, et bash trouve ensuite `git`, `ls` et les autres
+commandes ([Git Bash : une fenêtre, bash et des programmes](../notions/git_bash.md)).
 
 ## Fichiers utiles
 

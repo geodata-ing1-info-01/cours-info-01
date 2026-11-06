@@ -20,14 +20,14 @@ Vérifier
 : Dans un `cmd`, `dir "C:\Program Files\Git\cmd\git.exe"` puis
   `dir "%LOCALAPPDATA%\Programs\Git\cmd\git.exe"`.
 
-Remède
+Solution
 : Si l'un des deux fichiers existe : dans VS Code, palette, « Preferences:
   Open Settings (UI) », chercher `git.path` et y écrire ce chemin. Si aucun
-  n'existe, git s'obtient sans droits d'administrateur de trois façons,
-  Cmder, un environnement conda (`conda create -n outils -c conda-forge
-  git`) ou l'archive portable de Git for Windows : [Git et Git
-  Bash](../configuration/git.md), qui donne aussi le `git.path` de
-  chacune.
+  n'existe, git s'obtient sans droits d'administrateur avec Cmder, un
+  environnement conda (`conda create -n outils -c conda-forge git`) ou l'archive
+  portable de Git for Windows : [Git et Git Bash](../configuration/git.md). Le
+  `git.path` de chacune est dans {ref}`VS Code, section Git dans VS Code
+  <vscode-git>`.
 
 (dep-g2)=
 ### G2. « Author identity unknown » au premier commit
@@ -37,23 +37,22 @@ Ce qu'on voit
   commandes à taper.
 
 Cause
-: Chaque commit porte un nom et une adresse. git ne les connaît pas tant
-  qu'on ne les lui a pas donnés.
+: Chaque commit porte un nom et une adresse, qui ne sont pas encore réglés.
 
-Remède
+Solution
 : Dans le terminal, dans le dossier du dépôt :
 
-```
-git config user.name "Prénom Nom"
-git config user.email "prenom.nom@exemple.fr"
-```
+  ```
+  git config user.name "Prénom Nom"
+  git config user.email "prenom.nom@exemple.fr"
+  ```
 
-Sans `--global`, le réglage ne vaut que pour ce dépôt. Sur un poste de la
-salle, dont le compte Windows est commun à plusieurs élèves, il ne reste
-donc pas pour l'élève suivant ([Git et Git Bash](../configuration/git.md)).
-`git config user.name`, sans valeur, affiche ce qui est enregistré. Sur un
-ordinateur personnel, `git config --global user.name "Prénom Nom"`
-l'enregistre une fois pour tous les dépôts du compte.
+  Sans `--global`, le réglage ne vaut que pour ce dépôt. Sur un poste de la
+  salle, dont le compte Windows est commun à plusieurs élèves, il ne reste
+  donc pas pour l'élève suivant ([Git et Git Bash](../configuration/git.md)).
+  `git config user.name`, sans valeur, affiche ce qui est enregistré. Sur un
+  ordinateur personnel, `git config --global user.name "Prénom Nom"`
+  l'enregistre une fois pour tous les dépôts du compte.
 
 (dep-g3)=
 ### G3. « warning: … LF will be replaced by CRLF »
@@ -65,9 +64,9 @@ Ce qu'on voit
 Cause
 : Windows termine les lignes d'un fichier texte par deux caractères
   (CR LF), macOS et Linux par un seul (LF). git prévient qu'il convertira.
-  C'est un avertissement ; le commit a bien eu lieu.
+  Cet avertissement n'empêche pas le commit.
 
-Remède
+Solution
 : Rien à faire pour le module. Pour ne plus voir le message :
   `git config --global core.autocrlf false`.
 
@@ -77,8 +76,8 @@ Remède
 ### G4. L'invite de Git Bash ne commence pas par `(base)`
 
 Ce qu'on voit
-: Pas de ligne `(base)` au-dessus de l'invite. `conda` répond `command not
-  found`. `python` répond `command not found`, ou lance une autre version
+: Pas de ligne `(base)` au-dessus de l'invite. `conda` affiche `command not
+  found`. `python` affiche `command not found`, ou lance une autre version
   que celle d'Anaconda.
 
 Cause
@@ -88,7 +87,7 @@ Cause
 Vérifier
 : `which python` : le chemin doit contenir `anaconda3`.
 
-Remède
+Solution
 : Taper une fois les deux commandes suivantes, puis fermer Git Bash et le
   rouvrir. Dans VS Code, fermer le terminal (icône de corbeille, en haut à
   droite du panneau), puis en ouvrir un nouveau.
@@ -114,7 +113,7 @@ Ce qu'on voit
 Cause
 : Anaconda est installé dans un autre dossier.
 
-Remède
+Solution
 : Sur un ordinateur personnel, essayer `source
   /c/Users/$USERNAME/anaconda3/etc/profile.d/conda.sh`, ou `source
   ~/miniforge3/etc/profile.d/conda.sh` avec Miniforge ([Python et
@@ -127,7 +126,7 @@ Ce qu'on voit
 : `needs sudo` dans la liste des fichiers examinés, ou une fenêtre de
   Windows qui demande des droits d'administrateur.
 
-Remède
+Solution
 : Refuser, puis écrire la ligne à la main dans `~/.bash_profile`, et
   rouvrir Git Bash :
 
@@ -148,7 +147,7 @@ Cause
   L'environnement est activé, mais le script d'OpenSSL d'Anaconda n'est pas
   chargé, et `SSL_CERT_FILE` n'est pas posée.
 
-Remède
+Solution
 : Taper une fois la commande suivante, puis rouvrir Git Bash :
 
   ```text

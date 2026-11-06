@@ -48,6 +48,8 @@ REGLES = [
         r"en fait|justement|magique|la clé|au passage|d'un coup d'œil)\b", re.I)),
     ("méta-commentaire", re.compile(r"\b(à retenir de la|le moment|l'idée centrale|important de)\b", re.I)),
     ("image : « vit », « tient », « se suit seul »", re.compile(r"\b(vit dans|vivent dans|tient dans|se suit seul|se suivent seuls)\b", re.I)),
+    ("annonce par décompte", re.compile(r"\b(deux|trois|quatre) (façons|choses|moyens|possibilités|solutions)\b", re.I)),
+    ("titre de colonne en relative", re.compile(r"^\|(?:[^|]*\|)*\s*Ce qu(?:e |')")),
 ]
 
 

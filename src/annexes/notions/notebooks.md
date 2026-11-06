@@ -76,9 +76,16 @@ haut en bas : redémarrer le noyau (Restart), puis tout exécuter (Run All).
 ## Les outils qui ouvrent un notebook
 
 Les postes de la salle ont trois clients de notebooks : JupyterLab et
-Notebook, les deux fiches de Navigator décrites dans la page
-[JupyterLab](../configuration/jupyterlab.md), et VS Code avec l'extension
+Notebook, les deux fiches de Navigator, et VS Code avec l'extension
 Jupyter.
+
+Navigator propose deux fiches, « Notebook » et « JupyterLab ». Ce sont
+deux clients web du même projet Jupyter : Notebook est le plus ancien, une
+page par notebook ; JupyterLab est le plus complet, avec un explorateur
+de fichiers, plusieurs onglets et un terminal. Depuis 2023, Notebook est
+construit sur les mêmes composants que JupyterLab. Les deux ouvrent les
+mêmes fichiers `.ipynb` et lancent le même serveur ; aucun ne remplace
+l'autre, et le choix ne change rien au fichier.
 
 VS Code ouvre le même fichier, mais sans serveur : il démarre `ipykernel`
 lui-même, dans l'environnement choisi comme noyau. Un environnement
@@ -93,10 +100,9 @@ Deux clients, le même noyau (schéma du cours 1).
 ```
 
 La configuration des notebooks dans VS Code est dans [VS Code :
-notebooks](../configuration/vscode_notebooks.md). Spyder n'est pas un
-client de notebooks : il affiche le JSON du fichier, et la page
-[Spyder](../configuration/spyder.md) donne deux façons de l'exécuter
-quand même.
+notebooks](../configuration/vscode_notebooks.md). Spyder affiche le JSON du
+fichier, sans l'exécuter : la page [Spyder](../configuration/spyder.md) explique
+comment le convertir en fichier Python.
 
 ## Notebook ou fichier Python
 

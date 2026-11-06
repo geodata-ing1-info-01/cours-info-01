@@ -5,16 +5,19 @@ subtitle: Git et Git Bash, Notepad++, LibreOffice
 
 ## git
 
-Windows : <https://git-scm.com>, options par défaut. L'installateur de
-Git for Windows met alors git, Git Bash et le profil « Git Bash » de VS Code
-en place sans rien régler. macOS : taper `git`
-dans le Terminal ; s'il manque, macOS propose de l'installer. Linux : le
-paquet `git` de la distribution. Dans tous les cas, `conda install -c
-conda-forge git` dans un environnement fonctionne aussi. Git Bash est
-décrit dans [Git et Git Bash](../configuration/git.md), et ce que VS Code
-fait de git dans {ref}`VS Code, section Git dans VS Code <vscode-git>`.
+- Sous Windows, installer Git for Windows depuis <https://git-scm.com>, avec
+  les options par défaut. L'installateur met alors git, Git Bash et le profil
+  « Git Bash » de VS Code en place sans rien régler.
+- Sous macOS, taper `git` dans le Terminal ; s'il manque, macOS propose de
+  l'installer.
+- Sous Linux, installer le paquet `git` de la distribution.
 
-Pour que conda réponde dans Git Bash, voir [Python et conda](conda.md),
+Dans tous les cas, `conda install -c conda-forge git` dans un environnement
+fonctionne aussi. Git Bash est décrit dans [Git et Git
+Bash](../configuration/git.md), et l'emploi de git dans VS Code dans
+{ref}`VS Code, section Git dans VS Code <vscode-git>`.
+
+Pour employer conda dans Git Bash, voir [Python et conda](conda.md),
 section conda dans les autres terminaux.
 
 ## Éditeurs et bureautique

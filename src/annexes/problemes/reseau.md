@@ -27,7 +27,7 @@ Vérifier
   `curl.exe -sS -I -m 10 https://repo.anaconda.com` doit répondre par une
   ligne `HTTP/… 200`.
 
-Remède
+Solution
 : Lancer le raccourci d'authentification du bureau [à compléter : nom
   exact], se connecter, puis relancer ce qui avait échoué. Une commande qui
   échoue en fin de séance alors qu'elle passait au début a la même cause.
@@ -36,38 +36,39 @@ Remède
 ### R2. Firefox fonctionne, mais conda ou VS Code n'atteignent rien
 
 Ce qu'on voit
-: Les pages web s'ouvrent, mais conda répond `ProxyError`, `HTTP 407` ou
+: Les pages web s'ouvrent, mais conda affiche `ProxyError`, `HTTP 407` ou
   une erreur `SSL`, et le panneau Extensions de VS Code reste vide.
 
 Cause
-: Le réseau passe par un proxy, un serveur intermédiaire. Firefox le
-  connaît, parce que Windows le lui indique ; conda et VS Code ne le
-  connaissent pas tant qu'on ne le leur a pas indiqué.
+: Le réseau passe par un proxy, un serveur intermédiaire. Windows l'indique à
+  Firefox, et conda et VS Code ne l'emploient pas tant qu'on ne le leur a pas
+  indiqué.
 
 Vérifier
-: Paramètres Windows, Réseau et Internet, Proxy : une adresse y est-elle
-  écrite ? Dans un `cmd`, `netsh winhttp show proxy`.
+: Ouvrir Paramètres Windows, Réseau et Internet, Proxy, et regarder si une
+  adresse y est écrite. Dans un `cmd`, taper `netsh winhttp show proxy`.
 
-Remède
+Solution
 : [à compléter selon la salle]. Pour conda, écrire dans le fichier
   `C:\Users\<nom>\.condarc` (le créer avec le Bloc-notes s'il n'existe
   pas) :
 
-```yaml
-proxy_servers:
-  http: http://<proxy>:<port>
-  https: http://<proxy>:<port>
-```
+  ```yaml
+  proxy_servers:
+    http: http://<proxy>:<port>
+    https: http://<proxy>:<port>
+  ```
 
-Pour VS Code : palette, « Preferences: Open Settings (UI) », chercher
-`http.proxy`, et y écrire la même adresse.
+  Pour VS Code : palette, « Preferences: Open Settings (UI) », chercher
+  `http.proxy`, et y écrire la même adresse.
 
 (dep-r3)=
 ### R3. Windows demande un mot de passe d'administrateur
 
 Ce qu'on voit
-: Un installateur demande un mot de passe qu'on n'a pas. conda répond
-  `EnvironmentNotWritableError` ({ref}`A8 <dep-a8>`). `Set-ExecutionPolicy` dans PowerShell répond « Accès refusé ».
+: Un installateur demande un mot de passe qu'on n'a pas. conda affiche
+  `EnvironmentNotWritableError` ({ref}`A8 <dep-a8>`). `Set-ExecutionPolicy`
+  sans `-Scope CurrentUser` affiche « Accès refusé » ({ref}`A7 <dep-a7>`).
 
 Cause
 : Les comptes élèves n'ont pas les droits d'administrateur. Anaconda est
@@ -77,9 +78,9 @@ Cause
 Ce qui reste possible
 : Créer ses propres environnements conda (ils vont dans
   `C:\Users\<nom>\.conda\envs`), installer des extensions VS Code, modifier
-  ses propres fichiers de réglages.
+  ses propres fichiers de réglages, changer le réglage de PowerShell pour son
+  compte ({ref}`A7 <dep-a7>`).
 
 Ce qui ne l'est pas
-: Modifier ou mettre à jour `base` et Navigator ; changer le réglage de
-  PowerShell ({ref}`A7 <dep-a7>`) ; installer un logiciel dans
+: Modifier ou mettre à jour `base` et Navigator ; installer un logiciel dans
   `Program Files`.

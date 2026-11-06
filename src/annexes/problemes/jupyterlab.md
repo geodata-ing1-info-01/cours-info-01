@@ -2,10 +2,11 @@
 title: Problèmes avec JupyterLab et les notebooks
 ---
 
-Le noyau et le client d'un notebook, le test de JupyterLab et son
-lancement depuis l'invite de commandes d'Anaconda sont dans
-[JupyterLab](../configuration/jupyterlab.md) ; la configuration des
-notebooks dans VS Code, dans
+Le noyau et le client d'un notebook sont expliqués dans [Les
+notebooks](../notions/notebooks.md), le test de JupyterLab dans [Anaconda et
+JupyterLab](../../avant/python.md), et son lancement depuis un terminal dans
+[JupyterLab hors Anaconda](../configuration/jupyterlab.md). La configuration des
+notebooks dans VS Code est dans
 [VS Code : notebooks](../configuration/vscode_notebooks.md).
 
 (dep-jupyter)=
@@ -28,7 +29,7 @@ Cause
   JupyterLab, en général `base` ; les autres environnements n'y
   apparaissent pas.
 
-Remède
+Solution
 : Dans VS Code : « Select Another Kernel… », puis « Python Environments… ».
   Si la liste est vide, attendre dix secondes et rouvrir. Si
   l'environnement n'apparaît nulle part : {ref}`V6 <dep-v6>`, puisque
@@ -48,11 +49,11 @@ Cause
   exécute le notebook. `base` l'a ; un environnement créé au TD 1h ne l'a
   que si on l'y a installé.
 
-Remède
+Solution
 : Si l'environnement est celui du TD, cliquer Install, ou taper dans
   l'invite de commandes d'Anaconda `conda install -n <env> -c conda-forge ipykernel`. Si
-  le message concerne `base`, l'installation échouera ({ref}`A8 <dep-a8>`)
-  : le noyau choisi n'est pas celui qu'on croit, rouvrir la liste
+  le message concerne `base`, l'installation échouera ({ref}`A8 <dep-a8>`),
+  car le noyau choisi n'est pas le bon. Rouvrir alors la liste
   ({ref}`J1 <dep-j1>`).
 
 (dep-j3)=
@@ -72,7 +73,7 @@ Vérifier
 : Dans VS Code, panneau Output (`Ctrl` + `Maj` + `U`), liste déroulante
   « Jupyter » : lire les lignes qui suivent `ipykernel_launcher`.
 
-Remède
+Solution
 : Cliquer Restart et réessayer une fois. Si le message cite un chemin qui
   n'existe pas, rechoisir le noyau ({ref}`J1 <dep-j1>`). Une cellule qui
   ne finit pas s'arrête par le bouton Interrupt, puis Restart.
@@ -87,10 +88,10 @@ Ce qu'on voit
 
 Cause
 : Le noyau du notebook se choisit à part, indépendamment de l'interpréteur
-  des fichiers `.py` et du terminal ({ref}`V8 <dep-v8>`). C'est le sujet du
-  TD 1i.
+  des fichiers `.py` et du terminal ({ref}`V8 <dep-v8>`). Le TD 1i traite ce
+  sujet.
 
-Remède
+Solution
 : Bouton du noyau en haut à droite, choisir l'environnement voulu, puis
   Restart et « Run All ». Les cellules s'exécutent dans l'ordre où on les
   lance, qui peut différer de l'ordre où elles sont affichées : après un
@@ -109,10 +110,10 @@ Cause
   navigateur par défaut de s'ouvrir sur son adresse, et sur certains postes
   aucun navigateur n'est défini par défaut.
 
-Remède
+Solution
 : Copier l'adresse complète, avec le `token`, de la fenêtre noire dans la
-  barre d'adresse de Firefox. Ne pas fermer la fenêtre noire tant qu'on
-  travaille : c'est le serveur. `Ctrl` + `C` dans cette fenêtre l'arrête.
+  barre d'adresse de Firefox. La fenêtre noire exécute le serveur : la garder
+  ouverte pendant le travail. `Ctrl` + `C` dans cette fenêtre l'arrête.
 
 (dep-j6)=
 ### J6. JupyterLab ne montre pas le dossier voulu, ou le disque `D:`
@@ -132,7 +133,7 @@ Vérifier
 : Dans la fenêtre noire, la ligne `Serving notebooks from local directory` donne
   ce dossier.
 
-Remède
+Solution
 : Arrêter JupyterLab (`Ctrl` + `C`, deux fois, dans la fenêtre noire), se placer
   dans le dossier voulu, puis relancer. Dans Git Bash :
 

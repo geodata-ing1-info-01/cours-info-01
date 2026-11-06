@@ -10,18 +10,15 @@ JupyterLab). Sur les postes de la salle, il est installé pour tous les
 utilisateurs, dans `C:\ProgramData\anaconda3`. Sur un ordinateur personnel, le
 module conseille Miniforge ([Python et conda](../poste_personnel/conda.md)).
 
-On se sert d'Anaconda de deux façons : en ligne de commande, avec la
-commande `conda` et le Python de la distribution tapés dans un terminal, ou
-par Anaconda Navigator, une interface graphique qui lance les
-applications. Le module emploie surtout la ligne de commande, et se sert de
-Navigator en secours. Le test des deux est dans [Anaconda et
+Le module emploie Anaconda surtout en ligne de commande, avec `conda` et le
+Python de la distribution. Anaconda Navigator, une interface graphique qui
+lance les applications, sert de secours. Le test des deux est dans [Anaconda et
 JupyterLab](../../avant/python.md).
 
 (conda-terminal)=
 ## conda dans un terminal
 
-Un terminal ordinaire ne connaît ni la commande `conda` ni le Python
-d'Anaconda. Dans un `cmd` ouvert depuis le menu Démarrer, ou dans un Git
+Dans un `cmd` ouvert depuis le menu Démarrer, ou dans un Git
 Bash qui n'a pas été configuré, `conda` n'est pas reconnu
 ({ref}`A2 <dep-a2>`), et `python` désigne un autre Python, ou aucun.
 
@@ -41,7 +38,7 @@ d'Anaconda :
 |---|---|---|
 | Invite de commandes d'Anaconda (`cmd`) | `Scripts\activate.bat` | faite par le raccourci du menu Démarrer |
 | Git Bash (`bash`) | `etc/profile.d/conda.sh` | par `conda init bash`, une fois sur le poste : {ref}`Git et Git Bash, section conda <conda-git-bash>` |
-| PowerShell | `shell\condabin\conda-hook.ps1` | bloquée sur les postes de la salle ({ref}`A7 <dep-a7>`) |
+| PowerShell | `shell\condabin\conda-hook.ps1` | bloquée par défaut sur les postes de la salle ({ref}`A7 <dep-a7>`) |
 
 ### L'invite de commandes d'Anaconda
 
@@ -67,12 +64,11 @@ Une commande tapée dans l'invite de commandes d'Anaconda, et sa réponse.
 
 Le raccourci ouvre un `cmd` et y exécute `activate.bat`
 ([Les terminaux en ligne de commande](../notions/terminaux.md)). L'invite
-de commandes d'Anaconda fonctionne donc sans réglage.
+de commandes d'Anaconda fonctionne donc sans réglage. Pour le vérifier :
 
-| Ce qu'on tape | Ce qu'on doit voir |
-|---|---|
-| `conda --version` | `conda 25.x` ou `conda 24.x` |
-| `where python` | en première ligne, `C:\ProgramData\anaconda3\python.exe` |
+1. Taper `conda --version`. La commande affiche `conda 25.x` ou `conda 24.x`.
+2. Taper `where python`. La première ligne affiche
+   `C:\ProgramData\anaconda3\python.exe`.
 
 ## Les environnements
 
@@ -81,7 +77,7 @@ installés avec lui. `base` est celui d'Anaconda. Sur les postes de la
 salle, son dossier n'est pas modifiable par un compte élève : on n'y
 installe rien. Chaque TD qui a besoin d'un paquet crée son propre
 environnement, qui va dans `C:\Users\<nom>\.conda\envs`. Le TD 1h fait
-créer le premier ; les commandes, dans l'invite de commandes d'Anaconda :
+créer le premier, avec ces commandes, dans l'invite de commandes d'Anaconda :
 
 ```
 conda create -n recette -c conda-forge python pandoc
@@ -123,9 +119,7 @@ cours 1).
 ```
 
 Le module prend ses paquets sur conda-forge, d'où le `-c conda-forge` des
-commandes. Deux réglages, à faire une fois par compte dans l'Anaconda
-Prompt, rendent ce choix permanent et évitent les questions que conda
-pose sinon.
+commandes. Le fichier `.condarc` rend ce choix permanent, une fois par compte.
 
 ### Canal conda-forge par défaut
 
@@ -141,7 +135,7 @@ channel_priority: strict
 
 Avec ce fichier, `conda create -n recette python pandoc` prend tout sur
 conda-forge, sans `-c`, et les canaux d'Anaconda ne sont plus consultés,
-y compris quand c'est VS Code qui lance `conda create`
+y compris quand VS Code lance `conda create`
 ([Comment VS Code gère les environnements](../notions/vscode_environnements.md)).
 Vérifier : `conda config --show channels` affiche `conda-forge` seul.
 
@@ -150,22 +144,21 @@ Vérifier : `conda config --show channels` affiche `conda-forge` seul.
 Depuis Anaconda 2025.06, conda demande une fois par compte d'accepter
 les conditions d'utilisation des canaux d'Anaconda avant de s'en servir
 ({ref}`A10 <dep-a10>`). La question n'est posée que dans un terminal ;
-lancé par VS Code, conda ne peut pas la poser et échoue. Faire le test une
-fois, dans l'invite de commandes d'Anaconda :
+lancé par VS Code, conda ne peut pas la poser et échoue. Avec le fichier
+`.condarc` ci-dessus, les canaux d'Anaconda ne sont plus consultés et la
+question ne se pose plus. Sans ce fichier, faire le test une fois, dans
+l'invite de commandes d'Anaconda :
 
 ```
 conda tos
 ```
 
-La réponse est un tableau des canaux avec, pour chacun, accepté ou non.
+La commande affiche un tableau des canaux avec, pour chacun, accepté ou non.
 S'il reste des canaux non acceptés et qu'on compte s'en servir :
 
 ```
 conda tos accept
 ```
-
-Avec le fichier `.condarc` ci-dessus, les canaux d'Anaconda ne sont plus
-consultés et la question ne se pose plus.
 
 ## Anaconda Navigator
 
@@ -185,24 +178,11 @@ La page d'accueil d'Anaconda Navigator.
 ```
 
 Le bouton Launch d'une fiche lance l'application dans l'environnement
-affiché en haut. Quand Navigator est lent ou ne s'ouvre pas
-({ref}`A4 <dep-a4>`, {ref}`A5 <dep-a5>`), chaque application se lance
+affiché en haut. Quand Navigator est lent ({ref}`A4 <dep-a4>`) ou ne s'ouvre
+pas ({ref}`A5 <dep-a5>`), chaque application se lance
 aussi depuis un terminal, comme l'indique sa page. Un Navigator bloqué au
 démarrage, dont l'icône reste à l'écran, s'arrête depuis le Gestionnaire
 des tâches ({ref}`A13 <dep-a13>`).
-
-### Les fiches Notebook et JupyterLab
-
-Navigator propose deux fiches, « Notebook » et « JupyterLab ». Ce sont
-deux clients web du même projet Jupyter : Notebook est le plus ancien, une
-page par notebook ; JupyterLab est le plus complet, avec un explorateur
-de fichiers, plusieurs onglets et un terminal. Depuis 2023, Notebook est
-construit sur les mêmes composants que JupyterLab. Les deux ouvrent les
-mêmes fichiers `.ipynb` et lancent le même serveur ; aucun ne remplace
-l'autre, et le choix ne change rien au fichier.
-
-VS Code est un troisième client, qui ouvre les notebooks sans serveur
-([Les notebooks](../notions/notebooks.md)).
 
 ## Documentation officielle
 

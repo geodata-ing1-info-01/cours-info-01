@@ -3,10 +3,8 @@ title: Configuration d'un ordinateur personnel
 subtitle: Installer chez soi les outils du module, et ce qui change par rapport à la salle
 ---
 
-:::{warning}
-Le module conseille d'installer **Miniforge**, sous Windows comme sous Ubuntu :
+Le module conseille d'installer Miniforge, sous Windows comme sous Ubuntu :
 [Python et conda](conda.md).
-:::
 
 Les pages sur la configuration des postes de la salle valent aussi chez soi
 pour l'usage des outils. Sur un ordinateur personnel, on a les droits
@@ -17,10 +15,10 @@ s'installent dans cet ordre :
 
 1. [Python et conda](conda.md) : Miniforge, les canaux, l'environnement du
    module, et conda dans les terminaux ;
-2. [VS Code](vscode.md) : l'installation, le terminal selon le système, les
-   chemins à changer dans les réglages ;
-3. [Git et éditeurs de texte](git_outils.md) : git et Git Bash, Notepad++,
-   LibreOffice.
+2. [Git et éditeurs de texte](git_outils.md) : git et Git Bash, Notepad++,
+   LibreOffice ;
+3. [VS Code](vscode.md) : l'installation, le terminal selon le système, les
+   chemins à changer dans les réglages.
 
 ## Correspondance avec la salle
 
@@ -44,6 +42,6 @@ Les TD qui ont leur propre environnement le créent depuis leur fichier
 :maxdepth: 1
 
 conda
-vscode
 git_outils
+vscode
 ```

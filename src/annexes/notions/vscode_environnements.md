@@ -138,7 +138,7 @@ L'extension Jupyter ne cherche pas les environnements elle-même : elle
 prend la liste de l'extension Python. La rubrique « Python
 Environments… » du sélecteur de noyau montre donc ce que « Python: Select
 Interpreter » montre, ni plus ni moins. Si `base` manque dans l'un, il
-manque dans l'autre, et le remède est celui de l'extension Python
+manque dans l'autre, et la solution est celle de l'extension Python
 (`python.condaPath`, puis « Python: Clear Cache and Reload Window »).
 
 `ipykernel` n'est pas exigé pour figurer dans la liste. Au moment du

@@ -30,18 +30,19 @@ Miniforge Prompt, affiche le chemin complet) :
       "args": ["/K", "C:\\Users\\<nom>\\miniforge3\\Scripts\\activate.bat", "C:\\Users\\<nom>\\miniforge3"]
     }
   },
-  "terminal.integrated.defaultProfile.windows": "Miniforge Prompt",
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
   "editor.renderWhitespace": "all",
   "files.autoSave": "afterDelay"
 }
 ```
 
 `python.defaultInterpreterPath` désigne le Python de `info01`,
-l'environnement du module ([Python et conda](conda.md)). Le profil
-« Miniforge Prompt » reprend la cible du raccourci du même nom, dans le
-menu Démarrer. Git Bash n'a pas besoin de profil : l'installateur de Git
-for Windows le place dans `C:\Program Files\Git`, où VS Code le trouve
-seul ([Git et éditeurs de texte](git_outils.md)).
+l'environnement du module ([Python et conda](conda.md)). Git Bash est le
+terminal par défaut, comme dans la salle, et n'a pas besoin de profil :
+l'installateur de Git for Windows le place dans `C:\Program Files\Git`, où
+VS Code le trouve seul ([Git et éditeurs de texte](git_outils.md)). Le profil
+« Miniforge Prompt » sert de secours, et reprend la cible du raccourci du même
+nom, dans le menu Démarrer.
 
 ## Le terminal selon le système
 
@@ -52,16 +53,16 @@ Il n'y a rien à régler. L'extension Python trouve en général conda dans
 `/Users/<nom>/miniforge3/bin/conda` sous macOS,
 `/home/<nom>/miniforge3/bin/conda` sous Linux.
 
-Sous Windows, le terminal par défaut de VS Code est un PowerShell. Le
-profil « Miniforge Prompt » ci-dessus le remplace. Pour garder PowerShell,
-il faut autoriser les scripts pour le compte et initialiser conda, comme le
-décrit [Python et conda](conda.md), section conda dans les autres
-terminaux. Sans cela, le terminal affiche `activate.ps1 cannot be loaded
+Sous Windows, le terminal par défaut de VS Code est un PowerShell, et le réglage
+ci-dessus le remplace par Git Bash. Pour y activer conda, taper une fois les
+commandes de [Python et conda](conda.md), section conda dans les autres
+terminaux. Pour garder PowerShell, il faut autoriser les scripts pour le compte
+et initialiser conda, comme le décrit la même section. Sans cela, le terminal affiche `activate.ps1 cannot be loaded
 because running scripts is disabled` ({ref}`A7 <dep-a7>`).
 
 ## L'alias python du Microsoft Store
 
-Sous Windows, si `python` répond « Python n'a pas été trouvé ; exécutez
+Sous Windows, si `python` affiche « Python n'a pas été trouvé ; exécutez
 sans arguments pour l'installer à partir du Microsoft Store »
 ({ref}`V7 <dep-v7>`), Windows lance un raccourci vers le Microsoft Store au
 lieu du Python de conda. Pour le désactiver : Paramètres, Applications,

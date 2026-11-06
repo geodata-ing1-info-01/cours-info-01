@@ -3,8 +3,8 @@ title: Problèmes avec Anaconda
 subtitle: Invite de commandes d'Anaconda, conda, Navigator, outils installés dans un environnement
 ---
 
-Les deux façons de lancer Anaconda, et ses fichiers, sont dans
-[Installation et configuration](../configuration/anaconda.md).
+Le lancement d'Anaconda et ses fichiers sont décrits dans
+[Anaconda](../configuration/anaconda.md).
 
 (dep-anaconda)=
 ## Problèmes
@@ -26,15 +26,16 @@ Vérifier
   « Fichier introuvable », essayer `dir %USERPROFILE%\anaconda3` puis
   `dir C:\anaconda3`.
 
-Remède
+Solution
 : Dans le `cmd`, taper, avec le chemin trouvé :
 
-```
-call C:\ProgramData\anaconda3\Scripts\activate.bat C:\ProgramData\anaconda3
-```
+  ```
+  call C:\ProgramData\anaconda3\Scripts\activate.bat C:\ProgramData\anaconda3
+  ```
 
-L'invite passe à `(base)`. La fenêtre est alors une invite de commandes d'Anaconda. Si
-aucun chemin n'existe, Anaconda n'est pas sur le poste : le signaler.
+  L'invite passe à `(base)`. La fenêtre est alors une invite de commandes
+  d'Anaconda. Si aucun chemin n'existe, Anaconda n'est pas sur le poste :
+  prévenir l'enseignant.
 
 (dep-a2)=
 ### A2. « 'conda' n'est pas reconnu en tant que commande interne ou externe »
@@ -45,11 +46,11 @@ Ce qu'on voit
   properly configured to use 'conda activate' ».
 
 Cause
-: La commande `conda` n'est connue que de l'invite de commandes d'Anaconda. Un `cmd` ou
-  un PowerShell ordinaire ne la connaît pas
+: La commande `conda` n'est disponible que dans l'invite de commandes
+  d'Anaconda. Un `cmd` ou un PowerShell ordinaire ne la trouve pas
   ([Variables d'environnement](../notions/variables_environnement.md)).
 
-Remède
+Solution
 : Taper la commande dans l'invite de commandes d'Anaconda ({ref}`A1 <dep-a1>`). Dans Git
   Bash : {ref}`G4 <dep-g4>`. Dans VS Code, faire le réglage du terminal
   ({ref}`V5 <dep-v5>`).
@@ -69,8 +70,8 @@ Vérifier
 : `python -c "import sys; print(sys.executable)"` : le chemin doit
   contenir `anaconda3`.
 
-Remède
-: Si `conda` répond dans cette fenêtre, taper `conda activate base`. Sinon,
+Solution
+: Si `conda` fonctionne dans cette fenêtre, taper `conda activate base`. Sinon,
   ouvrir une invite de commandes d'Anaconda ({ref}`A1 <dep-a1>`). Dans VS Code, voir
   {ref}`V5 <dep-v5>`.
 
@@ -96,7 +97,7 @@ Vérifier
   Navigator se lance. S'il est présent depuis plus de cinq minutes sans
   fenêtre, il est bloqué.
 
-Remède
+Solution
 : Cliquer une seule fois, puis attendre deux minutes, avec la session
   réseau ouverte. Répondre No à une proposition de mise à jour
   ({ref}`A6 <dep-a6>`). Pour arrêter un Navigator bloqué, voir
@@ -120,7 +121,7 @@ Vérifier
 : Gestionnaire des tâches (`Ctrl` + `Maj` + `Échap`), onglet Processus :
   chercher « Anaconda Navigator » ou `pythonw.exe`.
 
-Remède
+Solution
 : Si le premier clic date de moins de deux minutes, attendre. Sinon, dans
   le Gestionnaire des tâches, arrêter le processus ({ref}`A13 <dep-a13>`),
   puis relancer Navigator une seule fois. Si le message revient alors
@@ -140,7 +141,7 @@ Cause
   élève. La mise à jour ne peut pas se faire, et Navigator ne le détecte
   pas.
 
-Remède
+Solution
 : Répondre No, et cocher « Don't show again » si la case est proposée. Si
   la mise à jour a été acceptée et que Navigator ne va plus loin, terminer
   le processus ({ref}`A5 <dep-a5>`). Dans Preferences, cocher « Hide update
@@ -161,26 +162,30 @@ Cause
   valeur par défaut de Windows. L'activation d'un environnement dans
   PowerShell passe par un script.
 
-Remède
+Solution
 : Employer un autre terminal que PowerShell : Git Bash, ou un `cmd`. Leurs
   scripts d'activation ne sont pas des scripts PowerShell, et ne sont pas
-  concernés. L'Anaconda Prompt ouvre un `cmd` ([Les
+  concernés. L'invite de commandes d'Anaconda ouvre un `cmd` ([Les
   terminaux](../notions/terminaux.md)), et le réglage du terminal donne
   Git Bash à VS Code ({ref}`V5 <dep-v5>`).
 
-  Le compte peut aussi changer la stratégie pour lui-même, sans droits
-  d'administration, si aucune stratégie de groupe ne l'impose. Dans un
-  terminal PowerShell, `Get-ExecutionPolicy -List` le dit : les lignes
-  `MachinePolicy` et `UserPolicy` doivent être à `Undefined`. Alors :
+  Sur les postes de la salle, le compte peut aussi changer la stratégie pour
+  lui-même, sans droits d'administration. Dans un terminal PowerShell, taper :
 
   ```
   Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
   ```
 
   Répondre `O`, fermer et rouvrir le terminal. `RemoteSigned` autorise les
-  scripts du poste et exige une signature pour ceux téléchargés. Le
-  réglage suit le compte, pas le poste ; sur une machine virtuelle remise
-  à zéro, il est à refaire.
+  scripts du poste et exige une signature pour ceux téléchargés. Le réglage
+  est enregistré dans le compte. Sur une machine virtuelle remise à zéro, il
+  faut le refaire.
+
+  Beaucoup de solutions trouvées en ligne omettent `-Scope CurrentUser` : la
+  commande vise alors toute la machine, et affiche « Accès refusé » sans droits
+  d'administration. Sur un autre poste, une stratégie de groupe peut interdire
+  ce changement : dans `Get-ExecutionPolicy -List`, les lignes `MachinePolicy`
+  et `UserPolicy` ne sont alors pas à `Undefined`.
 
 (dep-a8)=
 ### A8. « EnvironmentNotWritableError » à `conda install`
@@ -193,16 +198,16 @@ Ce qu'on voit
 Cause
 : La commande visait `base`, que le compte élève ne peut pas modifier.
 
-Remède
+Solution
 : Créer son propre environnement et y installer ce dont on a besoin :
 
-```
-conda create -n recette -c conda-forge python pandoc
-conda activate recette
-```
+  ```
+  conda create -n recette -c conda-forge python pandoc
+  conda activate recette
+  ```
 
-Cet environnement va dans `C:\Users\<nom>\.conda\envs\recette`, où le
-compte a tous les droits. C'est ce que fait le TD 1h.
+  Cet environnement va dans `C:\Users\<nom>\.conda\envs\recette`, où le
+  compte a tous les droits. Le TD 1h fait de même.
 
 (dep-a9)=
 ### A9. « CondaHTTPError » à `conda create`, ou « Solving environment » très long
@@ -225,7 +230,7 @@ Vérifier
 : Dans un `cmd`, `curl.exe -sS -I -m 10 https://conda.anaconda.org` doit
   répondre par une ligne `HTTP/… 200`.
 
-Remède
+Solution
 : Ouvrir la session réseau et relancer la commande. Si le message contient
   `JSONDecodeError` ou `Invalid index`, taper `conda clean --index-cache`
   puis relancer. N'indiquer qu'un canal, `-c conda-forge` : la résolution
@@ -245,19 +250,19 @@ Cause
   les conditions d'utilisation des canaux d'Anaconda. Ces canaux sont
   consultés par défaut, même avec `-c conda-forge`.
 
-Remède
+Solution
 : Répondre `a` à la question. Ou, une fois pour toutes, taper :
 
-```
-conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main --channel https://repo.anaconda.com/pkgs/r
-```
+  ```
+  conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main --channel https://repo.anaconda.com/pkgs/r
+  ```
 
-Autre possibilité : ne pas consulter ces canaux. `conda create -n recette
---override-channels -c conda-forge python pandoc` n'emploie que
-conda-forge, qui n'a pas de conditions à accepter ; et le fichier
-`.condarc` décrit dans [Anaconda, section
-Configuration](../configuration/anaconda.md) rend ce choix permanent, y
-compris pour un `conda create` lancé par VS Code.
+  Autre possibilité : ne pas consulter ces canaux. `conda create -n recette
+  --override-channels -c conda-forge python pandoc` n'emploie que
+  conda-forge, qui n'a pas de conditions à accepter ; et le fichier
+  `.condarc` décrit dans {ref}`Anaconda, section Configuration des dépôts
+  <config-depots>` rend ce choix permanent, y compris pour un `conda create`
+  lancé par VS Code.
 
 (dep-a11)=
 ### A11. Un environnement créé n'apparaît pas dans la liste
@@ -275,12 +280,12 @@ Cause
 Vérifier
 : `conda env list` dans l'invite de commandes d'Anaconda.
 
-Remède
-: Si conda connaît l'environnement : dans VS Code, palette
+Solution
+: Si `conda env list` cite l'environnement : dans VS Code, palette
   (`Ctrl` + `Maj` + `P`), « Python: Clear Cache and Reload Window » ou
   « Python Environments: Refresh Environment Managers » ; dans Navigator,
-  onglet Environments, bouton « Update index ». Si conda ne le connaît
-  pas : l'activer une fois par son chemin, `conda activate
+  onglet Environments, bouton « Update index ». Sinon, l'activer une fois
+  par son chemin, `conda activate
   C:\Users\<nom>\.conda\envs\<nom>`, ce qui l'ajoute à la liste.
 
 (dep-a12)=
@@ -300,7 +305,7 @@ Vérifier
 : Dans l'invite de commandes d'Anaconda, taper `spyder` puis Entrée : la fenêtre
   affiche ce que Spyder écrit, et une erreur y reste lisible.
 
-Remède
+Solution
 : Attendre une minute au premier lancement. Si Spyder ne s'ouvre pas
   depuis l'invite de commandes d'Anaconda non plus, taper `spyder --reset`, qui remet ses
   réglages à zéro, puis relancer. Si la console affiche un autre chemin
@@ -327,7 +332,7 @@ Vérifier
   Navigator est le `pythonw.exe` dont la ligne de commande contient
   `anaconda-navigator`.
 
-Remède
+Solution
 : Clic droit sur ce processus, « Fin de l'arborescence du processus » :
   les commandes `conda` qu'il a lancées s'arrêtent avec lui, et l'icône
   disparaît. Dans l'invite de commandes d'Anaconda, une seule commande fait
@@ -346,7 +351,7 @@ Remède
 ## Outils installés dans un environnement
 
 Le module installe pandoc, typst, ImageMagick et ffmpeg avec conda, dans
-l'environnement du TD. Ces outils ne répondent que dans une fenêtre où cet
+l'environnement du TD. Ces outils ne fonctionnent que dans une fenêtre où cet
 environnement est activé.
 
 (dep-x1)=
@@ -365,22 +370,21 @@ Vérifier
 : `conda list -n <env> pandoc` dit dans quel environnement il est.
   `where pandoc` dans la fenêtre dit s'il y est visible.
 
-Remède
+Solution
 : `conda activate <env>` dans la fenêtre. Dans VS Code, choisir cet
   environnement comme interpréteur ({ref}`V6 <dep-v6>`), puis ouvrir un
   nouveau terminal.
 
 (dep-x2)=
-### X2. `convert` répond « Format de lecteur non valide »
+### X2. `convert` affiche « Format de lecteur non valide »
 
 Ce qu'on voit
-: `convert image.png image.jpg` répond `Format de lecteur non valide` ou
-  affiche une aide sur les systèmes de fichiers.
+: `convert image.png image.jpg` affiche `Format de lecteur non valide`, ou une
+  aide sur les systèmes de fichiers.
 
 Cause
 : `convert.exe` est aussi le nom d'un utilitaire de Windows, qui convertit
   des disques, et Windows le trouve avant celui d'ImageMagick.
 
-Remède
-: Employer `magick` : `magick image.png image.jpg`. C'est la commande
-  d'ImageMagick 7, et la seule que le module emploie.
+Solution
+: Employer `magick`, la commande d'ImageMagick 7 : `magick image.png image.jpg`.

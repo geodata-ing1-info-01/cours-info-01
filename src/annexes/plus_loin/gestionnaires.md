@@ -129,3 +129,20 @@ Pour un projet personnel, hors des contraintes des postes de la salle, uv
 convient quand tous les paquets sont sur PyPI, et pixi quand il faut aussi
 des programmes de conda-forge. Tous deux recréent l'environnement à
 l'identique depuis les fichiers du projet.
+
+(installateurs-conda)=
+## Les installateurs de conda
+
+Ces installateurs donnent la commande `conda` ou un équivalent :
+
+| | Anaconda | Miniconda | Miniforge | micromamba |
+|---|---|---|---|---|
+| Publié par | Anaconda, Inc. | Anaconda, Inc. | la communauté conda-forge | le projet mamba |
+| Canal par défaut | `defaults`, les canaux d'Anaconda | `defaults` | `conda-forge`, seul | aucun, à choisir |
+| Contenu de `base` | Python, des centaines de bibliothèques, Navigator, Spyder, JupyterLab | Python et conda | Python, conda et mamba | pas de `base`, pas de Python |
+| Commande | `conda` | `conda` | `conda`, ou `mamba` | `micromamba` |
+| Conditions d'utilisation | gratuit pour les étudiants dans le cadre des cours, payant pour une organisation de plus de 200 personnes | les mêmes qu'Anaconda | aucune | aucune |
+
+micromamba est un seul programme, sans environnement `base`. Sa commande
+diffère de celle de la salle, et il sert surtout à préparer des
+environnements sur des serveurs d'intégration continue.

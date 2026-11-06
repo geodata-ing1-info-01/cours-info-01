@@ -25,12 +25,10 @@ Chaque étape est détaillée plus bas, dans les {ref}`instructions
 détaillées <instructions-detaillees>`.
 
 :::{warning}
-**Ne pas travailler dans le dossier partagé.**
-
-`formationTemp` est le même dossier pour tous les élèves. Un fichier
-enregistré là est visible par tous, et il peut être écrasé par un autre
-élève, ou effacé avant la séance suivante. À la séance 1, du travail a été
-perdu de cette façon.
+Ne pas travailler dans le dossier partagé. `formationTemp` est le même dossier
+pour tous les élèves. Un fichier enregistré là est visible par tous, et il peut
+être écrasé par un autre élève, ou effacé avant la séance suivante. À la
+séance 1, du travail a été perdu de cette façon.
 
 Avant d'ouvrir un fichier, regarder la barre d'adresse de l'explorateur :
 elle doit commencer par `C:\Users\eleve\Desktop\info01`. Si elle commence
@@ -51,7 +49,7 @@ par `\\` ou par une autre lettre que `C:`, on est dans le dossier partagé.
 
 ### Copier l'archive dans un dossier du Bureau
 
-L'archive se copie dans un dossier `info01`, sur le Bureau du poste. Le
+Copier l'archive dans un dossier `info01`, sur le Bureau du poste. Le
 Bureau se retrouve sans chercher et son chemin est court ; le dossier
 `info01` réunit les séances du module, `cours1`, `cours2`…, et se copie en
 une fois en fin de séance. Le chemin complet est
@@ -74,8 +72,8 @@ celui qu'on lit dans un chemin ou dans un terminal, est `Desktop`.
 ### Décompresser l'archive
 
 Un fichier `.zip` est un seul fichier, qui contient des dossiers et des
-fichiers compressés. L'explorateur de Windows l'affiche comme un dossier :
-un double-clic l'ouvre, et montre son contenu. Ce n'est pas un dossier :
+fichiers compressés. L'explorateur de Windows l'affiche comme un dossier,
+mais une archive se comporte autrement :
 
 - un fichier ouvert par double-clic depuis l'archive est d'abord extrait
   dans un dossier temporaire ; ce qu'on y enregistre reste dans ce dossier
@@ -112,13 +110,16 @@ dans `info01` de la même façon ; il n'y a rien à décompresser.
 
 ## Vérifier
 
-| Ce qu'on fait | Ce qu'on doit voir |
-|---|---|
-| Ouvrir `info01` puis `cours1` sur le Bureau, et lire la barre d'adresse de l'explorateur | `C:\Users\eleve\Desktop\info01\cours1`, ou « Ce PC > Bureau > info01 > cours1 » |
-| Dans `cours1`, ouvrir un dossier de TD | un fichier `td_….pdf`, et les fichiers du TD |
-| Dans VS Code, Fichier, « Ouvrir le dossier… », choisir `Bureau\info01\cours1` | les dossiers des TD dans le panneau de gauche |
+1. Sur le Bureau, ouvrir `info01` puis `cours1`, et lire la barre d'adresse de
+   l'explorateur. Elle affiche `C:\Users\eleve\Desktop\info01\cours1`, ou
+   « Ce PC > Bureau > info01 > cours1 ».
+2. Dans `cours1`, ouvrir un dossier de TD. Il contient un fichier `td_….pdf`,
+   et les fichiers du TD.
+3. À partir de la séance 2, dans VS Code, menu File, Open Folder, choisir
+   `Bureau\info01\cours2`. Les dossiers des TD s'affichent dans le panneau de
+   gauche.
 
 ## À la fin de la séance
 
-Le travail de la séance se copie dans le dossier personnel avant de quitter
-le poste, comme le décrit [Sauvegarder son travail](../apres/sauvegarder.md).
+Avant de quitter le poste, copier le travail de la séance dans le dossier
+personnel, comme le décrit [Sauvegarder son travail](../apres/sauvegarder.md).

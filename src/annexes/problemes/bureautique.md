@@ -13,7 +13,7 @@ poste](../../avant/poste.md).
 ### B1. Le Bloc-notes ou Notepad++ n'est pas dans le menu Démarrer
 
 Ce qu'on voit
-: Rien ne répond au nom tapé dans le menu Démarrer.
+: Le menu Démarrer ne propose rien pour le nom tapé.
 
 Vérifier
 : `Win` + `R`, taper `notepad`, Entrée : le Bloc-notes fait partie de
@@ -21,24 +21,24 @@ Vérifier
   `dir "C:\Program Files\Notepad++"`. « Fichier introuvable » veut dire
   qu'il n'est pas installé sur ce poste.
 
-Remède
+Solution
 : Menu Démarrer, taper le début du nom (`bloc`, `notepad`), Entrée. Pour
   ouvrir un fichier donné dans l'un ou l'autre : clic droit sur le fichier,
   « Ouvrir avec », « Choisir une autre application ». Si Notepad++ manque,
-  le Bloc-notes suffit au TD 1a.
+  le TD 1a peut se faire avec le Bloc-notes.
 
 (dep-b2)=
 ### B2. L'explorateur cache les extensions de fichiers
 
 Ce qu'on voit
-: Le fichier `raven.txt` s'affiche sous le nom `raven`. Renommer un fichier
+: Le fichier `raven_une_ligne.txt` s'affiche sous le nom `raven_une_ligne`. Renommer un fichier
   en `raven.donnees` produit en réalité `raven.donnees.txt`.
 
 Cause
-: Par défaut, l'explorateur cache l'extension des types de fichiers qu'il
-  connaît.
+: Par défaut, l'explorateur cache l'extension des types de fichiers connus de
+  Windows.
 
-Remède
+Solution
 : Windows 11 : menu Affichage, Afficher, cocher « Extensions de noms de
   fichiers ». Windows 10 : onglet Affichage, cocher « Extensions de noms de
   fichiers ». Au même endroit, « Éléments masqués » montre les dossiers
@@ -53,11 +53,10 @@ Ce qu'on voit
   programmes au lieu d'ouvrir le fichier.
 
 Cause
-: Aucun programme n'a déclaré cette extension. C'est le comportement
-  normal de Windows. L'extension est une convention de nommage ; elle ne
-  dit pas ce que contient le fichier, et c'est le sujet du TD 1a.
+: Aucun programme n'a déclaré cette extension, et Windows affiche alors cette
+  liste. Le TD 1a étudie le lien entre extension et contenu.
 
-Remède
+Solution
 : Choisir le Bloc-notes ou Notepad++ dans la liste, sans cocher « Toujours
   utiliser cette application » : le TD fait ouvrir un même fichier avec
   plusieurs programmes.
