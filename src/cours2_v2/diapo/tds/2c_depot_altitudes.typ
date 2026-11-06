@@ -35,7 +35,11 @@
   #raw(block: true, lang: "python", texte)
 ]
 
-#d("Étape 0 · Copier le programme")[
+#d("Étape 0 · Copie du programme")[
+  #objectif[
+    copier `altitudes.py` dans `travail/`, ouvrir ce dossier dans VS Code, et lancer le programme.
+  ]
+
   #consignes(
     taille: 17pt,
     [Aller dans le dossier du TD, et copier le programme dans `travail/` : #commandes("cd ~/Desktop/info01/cours2/2c_depot_altitudes", "cp depart/altitudes.py travail/")],
@@ -54,7 +58,11 @@
   ]
 ]
 
-#d("Étape 1 · Créer le dépôt et le premier commit")[
+#d("Étape 1 · Dépôt et premier commit")[
+  #objectif[
+    créer un dépôt git dans `travail/`, et y enregistrer `altitudes.py` par un premier commit.
+  ]
+
   #consignes(
     taille: 16pt,
     [Créer le dépôt : `git init`, puis lister le dossier : `ls -a`.
@@ -74,7 +82,11 @@
   ]
 ]
 
-#d("Étape 2 · Modifier le programme")[
+#d("Étape 2 · Modification du programme")[
+  #objectif[
+    remplacer dans `altitudes.py` le calcul de la moyenne par les altitudes extrêmes.
+  ]
+
   #consignes(
     taille: 16pt,
     [Dans `altitudes.py`, remplacer la première ligne par : #commandes("\"\"\"Altitudes extrêmes d'une série de mesures.\"\"\"")],
@@ -92,7 +104,11 @@
   ]
 ]
 
-#d("Étape 2 · Comparer, puis enregistrer")[
+#d("Étape 2 · Comparaison et commit")[
+  #objectif[
+    afficher les modifications de `altitudes.py`, puis les enregistrer par un commit.
+  ]
+
   #consignes(
     taille: 17pt,
     [Afficher les modifications : `git status`, puis `git diff`.
@@ -111,7 +127,11 @@
   ]
 ]
 
-#d("Étape 3 · Annuler une modification")[
+#d("Étape 3 · Annulation d'une modification")[
+  #objectif[
+    introduire une erreur dans `altitudes.py`, puis revenir à la version du dernier commit.
+  ]
+
   #consignes(
     taille: 17pt,
     [Dans `altitudes.py`, à la ligne `altitude maximale`, remplacer `max(altitudes)` par `max(altitude)`, puis enregistrer le fichier.],
@@ -125,10 +145,9 @@
   )
 ]
 
-#d("Étape 4 · Écrire un README")[
-  #annonce[
-    `README.md`, à la racine d'un projet, décrit ce qu'il fait et comment
-    s'en servir.
+#d("Étape 4 · Fichier README")[
+  #objectif[
+    décrire le programme dans un fichier `README.md`, et l'enregistrer par un commit.
   ]
 
   #consignes(
@@ -143,6 +162,10 @@
     [Créer un commit : #commandes("git add README.md", "git commit -m \"Ajoute un README\"")],
   )
 
+  #legende[
+    `README.md`, à la racine d'un projet, décrit ce qu'il fait et comment s'en servir.
+  ]
+
   #notes[
     La syntaxe est celle des cellules de texte du cours 1 : titres et code en ligne.
 
@@ -152,10 +175,9 @@
 
 // Sans pandoc depuis le 05/11/2026 : le fichier produit est la sortie du programme,
 // comme `resume.txt` au TD 4a.
-#d("Étape 4 · Ignorer un fichier produit")[
-  #annonce[
-    Le signe `>` écrit la sortie d'une commande dans un fichier, à la place du
-    terminal.
+#d("Étape 4 · Fichier à ignorer")[
+  #objectif[
+    écrire le résultat du programme dans `resultat.txt`, et exclure ce fichier des commits.
   ]
 
   #consignes(
@@ -166,9 +188,13 @@
       #constat[`resultat.txt` non suivi.]],
     [Créer le fichier `.gitignore`, avec la ligne `resultat.txt`. Afficher de nouveau l'état du dépôt.
       #constat[Seul `.gitignore` est non suivi.]],
-    [Créer un commit : #commandes("git add .gitignore", "git commit -m \"Ignore le fichier du résultat\"")
+    [Créer un commit, puis afficher l'état du dépôt : #commandes("git add .gitignore", "git commit -m \"Ignore le fichier du résultat\"", "git status")
       #constat[« rien à valider », alors que `resultat.txt` est dans le dossier.]],
   )
+
+  #legende[
+    Le signe `>` écrit la sortie d'une commande dans un fichier, à la place du terminal.
+  ]
 
   #notes[
     `resultat.txt` se refait par la même commande : il n'a pas à être versionné.
@@ -179,10 +205,9 @@
 ]
 
 // Calcul et légende repris du TD 3a du cours 3 v2 (05/11/2026).
-#d("Étape 5 · Créer une branche")[
-  #annonce[
-    Le dénivelé cumulé est la somme des écarts d'altitude d'un point au suivant,
-    avec un total pour les hausses et un total pour les baisses.
+#d("Étape 5 · Création d'une branche")[
+  #objectif[
+    ajouter le calcul du dénivelé cumulé à `altitudes.py`, sur une nouvelle branche, `cumul`.
   ]
 
   #grid(
@@ -199,6 +224,11 @@
     code("hausse = 0\nbaisse = 0\nfor i in range(1, len(altitudes)):\n    ecart = altitudes[i] - altitudes[i - 1]\n    if ecart > 0:\n        hausse = hausse + ecart\n    else:\n        baisse = baisse - ecart\nprint(f\"cumul en hausse : {hausse:.1f} m\")\nprint(f\"cumul en baisse : {baisse:.1f} m\")", taille: 11pt),
   )
 
+  #legende[
+    Le dénivelé cumulé est la somme des écarts d'altitude d'un point au suivant, avec un total pour
+    les hausses et un total pour les baisses.
+  ]
+
   #notes[
     Le code est fourni : `if` et `range` n'ont pas été vus. Le TD porte sur git.
 
@@ -209,7 +239,11 @@
   ]
 ]
 
-#d("Étape 5 · Revenir sur master, puis fusionner")[
+#d("Étape 5 · Fusion de la branche")[
+  #objectif[
+    modifier `altitudes.py` sur `master`, puis y fusionner la branche `cumul`.
+  ]
+
   #consignes(
     taille: 16pt,
     [Revenir sur `master` : `git checkout master`, puis lancer le programme.
@@ -222,7 +256,11 @@
   )
 ]
 
-#d("Étape 6 · Modifier la même ligne sur deux branches")[
+#d("Étape 6 · Même ligne sur deux branches")[
+  #objectif[
+    modifier la même ligne de `altitudes.py` sur `master` et sur une nouvelle branche, `mesure-4`.
+  ]
+
   #consignes(
     taille: 16pt,
     [Créer la branche `mesure-4` : `git checkout -b mesure-4`.],
@@ -238,7 +276,11 @@
   ]
 ]
 
-#d("Étape 6 · Résoudre le conflit")[
+#d("Étape 6 · Résolution du conflit")[
+  #objectif[
+    fusionner `mesure-4` dans `master`, et garder les deux altitudes ajoutées.
+  ]
+
   #consignes(
     taille: 16pt,
     [Fusionner la branche : `git merge mesure-4`.
@@ -253,7 +295,11 @@
   )
 ]
 
-#d("Étape 6 · Lire le graphe")[
+#d("Étape 6 · Graphe du dépôt")[
+  #objectif[
+    dessiner le graphe du dépôt, puis le comparer à celui que git affiche.
+  ]
+
   #consignes(
     taille: 18pt,
     [Dessiner sur papier le graphe du dépôt.],

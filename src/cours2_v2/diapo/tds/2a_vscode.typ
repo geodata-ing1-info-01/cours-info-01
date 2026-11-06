@@ -66,7 +66,7 @@
 // Nouveau (05/11/2026) ; les deux listes, « Configurer un langage » et « Configurer le
 // terminal », réunies le même jour. Extension C/C++ et compilateur : documentation de VS
 // Code, « C/C++ for Visual Studio Code ». Les numéros sont ceux des diapositives suivantes.
-#d("Configurer VS Code : étapes")[
+#d("Configuration de VS Code : étapes")[
   #face-a-face(
     panneau[Un langage, ici Python][
       #consignes(
@@ -99,7 +99,7 @@
 
     VS Code ouvre un terminal installé sur le poste. Le module emploie Git Bash, celui du
     cours 1. Sans conda activé, `python` lance dans Git Bash un autre Python que celui
-    d'Anaconda, ou aucun : TD 1c, « Quel programme python la commande lance ».
+    d'Anaconda, ou aucun : TD 1c, « Programme lancé par la commande python ».
 
     PowerShell, le terminal par défaut, n'exécute pas le script d'activation de conda sur
     les postes de la salle (relevé en 2026).
@@ -110,10 +110,10 @@
 
 // « Copier et décompresser les fichiers dans Git Bash » et « Lancer VS Code
 // et ouvrir le dossier de la séance » fondues le 28/09/2026.
-#d("Préparer la séance")[
-  #annonce[
-    Copier les fichiers du TD sur le Bureau, lancer VS Code, puis ouvrir le dossier de la
-    séance : `info01\cours2`, depuis le Bureau.
+#d("Préparation de la séance")[
+  #objectif[
+    copier les fichiers du TD sur le Bureau, lancer VS Code, puis ouvrir le dossier de la séance,
+    `info01\cours2`.
   ]
 
   #consignes(
@@ -150,10 +150,9 @@
 // Reprise de la diapositive 50 du cours 1 de 2026, chemin mis à jour. 05/11/2026 : la
 // recherche se fait par le nom, `python`, comme le font les utilisateurs, avec le schéma
 // du bouton Extensions, et la capture de la liste sur la diapositive suivante.
-#d("Python, étape 1 : installer l'extension")[
-  #annonce[
-    Une extension s'installe depuis le panneau Extensions, avec une connexion internet.
-    Il en faut une par langage.
+#d("Python, étape 1 : extension")[
+  #objectif[
+    installer dans VS Code l'extension « Python », de Microsoft.
   ]
 
   #grid(
@@ -172,6 +171,8 @@
   )
 
   #legende[
+    Une extension s'installe depuis le panneau Extensions, avec une connexion internet. Il en faut
+    une par langage.
     Une extension installée le reste, pour les séances suivantes et les autres cours.
   ]
 
@@ -260,9 +261,9 @@
   ]
 }
 
-#d("Python, étape 2 : choisir l'interpréteur")[
-  #annonce[
-    L'extension Python exécute les programmes avec le Python qu'on lui désigne.
+#d("Python, étape 2 : interpréteur")[
+  #objectif[
+    désigner à l'extension le Python d'Anaconda, `C:\ProgramData\anaconda3\python.exe`.
   ]
 
   #consignes(
@@ -285,6 +286,7 @@
   )
 
   #legende[
+    L'extension Python exécute les programmes avec le Python qu'on lui désigne.
     Capture de la documentation de VS Code (CC BY 3.0 US), sur un autre poste : `base` y est
     dans `miniconda3`. Si la ligne `base` manque : diapositive suivante.
   ]
@@ -305,8 +307,8 @@
 // Nouveau (05/11/2026). Discovery et réglages : documentation de VS Code, « Python
 // environments ». Coller le chemin plutôt que « Find… » : `C:\ProgramData` est masqué.
 #d("Python, étape 2 : dépannage")[
-  #annonce[
-    Si la ligne `base` manque, il faut indiquer à VS Code le chemin du Python d'Anaconda.
+  #objectif[
+    indiquer à VS Code le chemin du Python d'Anaconda, si la ligne `base` manque.
   ]
 
   #consignes(
@@ -354,10 +356,9 @@
 
 // Nouveau (v2) : Git Bash, terminal par défaut. 05/11/2026 : le schéma de la liste des
 // terminaux, avec sa consigne ; des élèves ne trouvaient pas ce bouton en 2026.
-#d("Terminal, étape 2 : choisir Git Bash")[
-  #annonce[
-    VS Code ouvre par défaut un terminal PowerShell. Un réglage lui fait
-    ouvrir Git Bash, celui du cours 1.
+#d("Terminal, étape 2 : Git Bash")[
+  #objectif[
+    faire ouvrir Git Bash par VS Code, à la place de PowerShell.
   ]
 
   #grid(
@@ -397,7 +398,11 @@
 
 // Nouveau (05/11/2026) : la vérification du terminal, et le réglage de conda, venu de
 // « Préparer la séance ».
-#d("Terminal, étapes 3 et 4 : activer conda, vérifier")[
+#d("Terminal, étapes 3 et 4 : conda et vérification")[
+  #objectif[
+    vérifier que le terminal de VS Code active conda, et lance le Python d'Anaconda.
+  ]
+
   #consignes(
     taille: 17pt,
     [Vérifier la première ligne de l'invite.
@@ -424,7 +429,11 @@
 // Étape 3 de « Configurer un langage : étapes », après le terminal, où elle s'exécute.
 // Fenêtre dessinée, avec des points de suspension dans les chemins, dont la forme exacte
 // est à relever sur un poste.
-#d("Python, étape 3 : lancer un programme")[
+#d("Python, étape 3 : lancement d'un programme")[
+  #objectif[
+    lancer `2a_vscode/altitudes.py` avec le bouton de VS Code.
+  ]
+
   #consignes(
     taille: 16pt,
     [Ouvrir `2a_vscode/altitudes.py`, dans l'arborescence.],
@@ -432,15 +441,12 @@
       #constat[La commande apparaît dans le terminal, puis `moyenne : 93.7 m`.]],
   )
 
-  #v(0.2em)
   #fenetre-vscode(hauteur: 206pt, reperes: true, commande: "…/anaconda3/python.exe …/2a_vscode/altitudes.py", lignes: (4, 8))
 
-  #legende[
+  #notes[
     Le bouton écrit dans le terminal la commande qu'on taperait soi-même :
     `python` suivi du chemin du fichier.
-  ]
 
-  #notes[
     Ce lancement vérifie les deux parties : l'extension et l'interpréteur fournissent le
     bouton et le chemin de `python`, et la commande s'exécute dans Git Bash. D'où sa place
     après le réglage du terminal.
@@ -481,7 +487,7 @@
 
 // Reprise de la diapositive 54 du cours 1 de 2026. « Deux niveaux de
 // réglages » y est fondue le 28/09/2026.
-#d("La palette de commandes et les réglages")[
+#d("Palette de commandes et réglages")[
   #annonce[
     Les commandes et les réglages se cherchent par leur nom. Un réglage vaut
     pour le compte (User) ou pour le dossier ouvert (Workspace), qui
@@ -534,7 +540,12 @@
   ]
 ]
 
-#d("Modifier deux réglages, puis lire leur fichier")[
+#d("Réglages de VS Code : interface et fichier")[
+  #objectif[
+    modifier deux réglages dans l'interface de VS Code, puis retrouver ces réglages dans leur
+    fichier.
+  ]
+
   #consignes(
     taille: 17pt,
     [Ouvrir les réglages : `Ctrl` + `,`, onglet User.],

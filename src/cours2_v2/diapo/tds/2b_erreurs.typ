@@ -21,10 +21,9 @@
 // 04/11/2026 : le tableau devient une liste de consignes, comme au cours 1 v2.
 // « Les caractères invisibles dans VS Code » fondue dans la légende de la
 // diapositive suivante le 28/09/2026 (le réglage est fait au TD 2a).
-#d("Corriger trois programmes")[
-  #annonce[
-    Chacun des trois fichiers de `depart/` porte une faute d'un genre
-    différent.
+#d("Messages d'erreur de Python : trois programmes")[
+  #objectif[
+    corriger `surface.py`, `moyenne.py` et `chemin.py` à partir de leurs messages d'erreur.
   ]
 
   #consignes(
@@ -39,6 +38,7 @@
   )
 
   #legende[
+    Chacun des trois fichiers de `depart/` porte une faute d'un genre différent.
     VS Code dessine un point par espace et une flèche par tabulation (réglage
     du TD 2a) ; la barre d'état, en bas à droite, indique l'indentation et
     la fin de ligne, `LF` ou `CRLF`. Une fois corrigés, les trois programmes
