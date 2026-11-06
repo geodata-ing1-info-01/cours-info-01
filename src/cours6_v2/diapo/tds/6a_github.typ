@@ -29,7 +29,11 @@
   liste, commandes-td,
 )
 
-#d("Créer un compte GitHub")[
+#d("Compte GitHub")[
+  #objectif[
+    créer un compte GitHub avec son adresse de l'ENSG, et s'y connecter.
+  ]
+
   #consignes(
     [Aller sur github.com. Saisir son adresse e-mail de l'ENSG, puis cliquer sur « Inscrivez-vous sur GitHub ».],
     [Remplir le formulaire, puis finaliser l'inscription.],
@@ -45,9 +49,9 @@
   ]
 ]
 
-#d("Créer un token")[
-  #annonce[
-    Le token remplace le mot de passe du compte pour `git clone` et `git push`.
+#d("Token d'accès")[
+  #objectif[
+    créer un token limité aux dépôts, et le copier dans un fichier hors de tout dépôt.
   ]
 
   #consignes(
@@ -60,6 +64,7 @@
   )
 
   #legende[
+    Le token remplace le mot de passe du compte pour `git clone` et `git push`.
     Dans la documentation de GitHub, ce menu s'atteint aussi par Settings, Developer
     settings, Personal access tokens.
   ]
@@ -78,7 +83,11 @@
   ]
 ]
 
-#d("Créer un dépôt sur GitHub et le cloner")[
+#d("Dépôt sur GitHub et clone")[
+  #objectif[
+    créer un dépôt privé sur GitHub, puis le cloner sur le poste.
+  ]
+
   #_etape(
     consignes(
       taille: 16pt,
@@ -103,7 +112,12 @@
   ]
 ]
 
-#d("Pousser une nouvelle branche")[
+#d("Branche créée sur le poste")[
+  #objectif[
+    créer la branche `develop` sur le poste, y décrire le projet dans `README.md`, et la pousser
+    sur GitHub.
+  ]
+
   #_etape(
     consignes(
       taille: 16pt,
@@ -124,7 +138,11 @@
   )
 ]
 
-#d("Créer une branche sur GitHub et la récupérer")[
+#d("Branche créée sur GitHub")[
+  #objectif[
+    créer une branche sur GitHub, et y ajouter `src/calcul_distances.py` sur le poste.
+  ]
+
   #_etape(
     consignes(
       taille: 16pt,
@@ -148,10 +166,9 @@
   ]
 ]
 
-#d("Fusionner par une pull request")[
-  #annonce[
-    Une pull request demande de fusionner une branche dans une autre, et montre les
-    différences avant la fusion.
+#d("Pull request")[
+  #objectif[
+    fusionner `calcul_de_distances` dans `develop` par une pull request.
   ]
 
   #consignes(
@@ -160,12 +177,21 @@
     [Fusionner : #comment[Create pull request, puis Merge pull request.]],
   )
 
+  #legende[
+    Une pull request demande de fusionner une branche dans une autre, et montre les différences
+    avant la fusion.
+  ]
+
   #notes[
     La revue par un camarade vient au projet 7, avec un collaborateur ajouté au dépôt.
   ]
 ]
 
-#d("Pousser après une modification distante")[
+#d("Push après une modification distante")[
+  #objectif[
+    pousser `src/calcul_perimetre.py` sur `develop`, sans la dernière fusion de GitHub.
+  ]
+
   #_etape(
     consignes(
       taille: 15pt,
@@ -193,7 +219,12 @@
   ]
 ]
 
-#d("Résoudre un conflit")[
+#d("Résolution d'un conflit")[
+  #objectif[
+    modifier la même ligne de `src/calcul_perimetre.py` sur GitHub et sur le poste, puis résoudre
+    le conflit.
+  ]
+
   #_etape(
     consignes(
       taille: 16pt,
@@ -216,9 +247,9 @@
   ]
 ]
 
-#d("Supprimer le dépôt et le token")[
-  #annonce[
-    Un token oublié reste valable jusqu'à son expiration.
+#d("Suppression du dépôt et du token")[
+  #objectif[
+    supprimer sur GitHub le dépôt et le token du TD, puis le fichier du token.
   ]
 
   #consignes(
@@ -226,6 +257,10 @@
     [Supprimer le token : #comment[menu utilisateur, Settings, Credentials, Personal access tokens (classic), Delete.]],
     [Supprimer le fichier texte qui contient le token.],
   )
+
+  #legende[
+    Un token oublié reste valable jusqu'à son expiration.
+  ]
 
   #notes[
     La suppression du dépôt termine le TP de 2026. Celle du token est ajoutée pour la
