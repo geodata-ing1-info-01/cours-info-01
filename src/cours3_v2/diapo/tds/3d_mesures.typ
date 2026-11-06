@@ -4,6 +4,7 @@
 // stockage. Inclus par `cours3_v2.typ`, qui porte les réglages globaux et importe `td`
 // pour le sommaire des TD ; compilable seul par `outils/compiler_tds.py --cours 3_v2`.
 #import "../../../commun/prelude.typ": *
+#import "../../../cours1_v2/diapo/schemas.typ": consignes, commandes
 
 #let td = (
   numero: "3d",
@@ -16,9 +17,16 @@
 #separateur-td(..td)
 
 #d("Relevé dans le gestionnaire des tâches")[
-  #annonce[
-    `Ctrl` + `Maj` + `Échap`, onglet Performance. Relever quatre valeurs.
+  #objectif[
+    relever dans le gestionnaire des tâches le processeur, la mémoire, le disque et le lien réseau
+    du poste.
   ]
+
+  #consignes(
+    taille: 17pt,
+    [Ouvrir le gestionnaire des tâches : `Ctrl` + `Maj` + `Échap`, onglet Performance.],
+    [Relever les quatre valeurs du tableau.],
+  )
 
   #tableau(
     columns: (auto, 1fr, 1fr),
@@ -44,23 +52,32 @@
   ]
 ]
 
-#d("Quatre mesures en Python")[
-  #annonce[
-    Dans le terminal de VS Code, depuis `cours3/3d_mesures/` : `python mesures.py`.
-    Reporter les six lignes de résultat.
+#d("Mesures de vitesse en Python")[
+  #objectif[
+    mesurer les vitesses du processeur, de la mémoire, du disque et du réseau avec `mesures.py`.
   ]
 
-  #tableau(
-    columns: (auto, 110pt, 1fr),
-    align: (left + horizon, left + horizon, left + horizon),
-    [Mesure], [Sur votre poste], [Ce que vous constatez],
-    [10 millions d'additions], [], reponse[30 à 100 ns par addition],
-    [copier 100 Mo en mémoire], [], reponse[quelques Go/s],
-    [écrire 100 Mo sur le disque], [], reponse[100 à 500 Mo/s : dix fois moins que la mémoire],
-    [relire les mêmes 100 Mo], [], reponse[plus rapide : copie gardée en mémoire vive],
-    [un aller-retour vers github.com], [], reponse[10 à 80 ms : Europe ou États-Unis],
-    [télécharger 10 Mo], [], reponse[quelques centaines de Mbit/s],
+  #consignes(
+    taille: 17pt,
+    [Dans le terminal de VS Code, aller dans le dossier du TD, puis lancer le programme : #commandes("cd ../../3d_mesures", "python mesures.py")],
+    [Reporter les six lignes de résultat.],
   )
+
+  #{
+    show table.cell: set text(size: 15pt)
+    tableau(
+      columns: (auto, 125pt, 1fr),
+      align: (left + horizon, left + horizon, left + horizon),
+      inset: (x: 8pt, y: 5pt),
+      [Mesure], [Sur votre poste], [Ce que vous constatez],
+      [10 millions d'additions], [], reponse[30 à 100 ns par addition],
+      [copier 100 Mo en mémoire], [], reponse[quelques Go/s],
+      [écrire 100 Mo sur le disque], [], reponse[100 à 500 Mo/s : dix fois moins que la mémoire],
+      [relire les mêmes 100 Mo], [], reponse[plus rapide : copie gardée en mémoire vive],
+      [un aller-retour vers github.com], [], reponse[10 à 80 ms : Europe ou États-Unis],
+      [télécharger 10 Mo], [], reponse[quelques centaines de Mbit/s],
+    )
+  }
 
   #notes[
     Le script mesure chaque opération avec `time.perf_counter()` avant et après.

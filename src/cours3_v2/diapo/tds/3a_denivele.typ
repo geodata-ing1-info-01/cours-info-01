@@ -25,7 +25,12 @@
 )
 #separateur-td(..td)
 
-#d("Préparer la séance")[
+#d("Préparation de la séance")[
+  #objectif[
+    copier et décompresser `info01-cours3.zip`, puis ouvrir le dossier `cours3` et un terminal dans
+    VS Code.
+  ]
+
   #consignes(
     taille: 17pt,
     [Copier l'archive `info01-cours3.zip` de `formationTemp` dans le dossier `info01` du Bureau.],
@@ -47,7 +52,12 @@
   ]
 ]
 
-#d("Copier le programme et les altitudes")[
+#d("Programme et altitudes du TD")[
+  #objectif[
+    copier les fichiers du TD dans `travail/`, lancer `altitudes.py`, et comparer ses altitudes à
+    celles de `altitudes.txt`.
+  ]
+
   #consignes(
     taille: 17pt,
     [Aller dans le dossier du TD, et copier ses fichiers dans `travail/` : #commandes("cd 3a_denivele", "cp depart/* travail/", "cd travail")],
@@ -63,7 +73,12 @@
   ]
 ]
 
-#d("Lire les altitudes dans un fichier")[
+#d("Lecture des altitudes dans un fichier")[
+  #objectif[
+    modifier `altitudes.py` pour qu'il lise ses altitudes dans `altitudes.txt`, puis ajouter une
+    altitude à ce fichier.
+  ]
+
   #consignes(
     taille: 16pt,
     [Dans `travail/altitudes.py`, remplacer la ligne `altitudes = [79.6, 103.2, 98.3, 92.5, 123.7]` par ces lignes, suivies d'une ligne vide :
@@ -84,14 +99,17 @@
   ]
 ]
 
-#d("Lire les altitudes d'une trace GPS")[
+#d("Lecture des altitudes d'une trace GPS")[
+  #objectif[
+    modifier `altitudes.py` pour qu'il lise ses altitudes dans la colonne `ele` de `trace.csv`.
+  ]
+
   #grid(
     columns: (1.2fr, 1fr), column-gutter: 14pt, align: top,
     consignes(
       taille: 16pt,
       [Ouvrir `travail/trace.csv` dans VS Code.],
       [Dans `travail/altitudes.py`, remplacer les lignes de `altitudes = []` jusqu'à `altitudes.append(float(ligne))` par ces lignes :
-        #v(2pt)
         #sortie("altitudes = []\nwith open(\"trace.csv\", encoding=\"utf-8\") as fichier:\n    fichier.readline()\n    for ligne in fichier:\n        x, y, ele, time = ligne.strip().split(\",\")\n        altitudes.append(float(ele))", taille: 11pt)],
       [Enregistrer le fichier, puis lancer le programme : `python altitudes.py`.
         #constat[`78.8`, `129.5`, `50.7`, `98.4` et `50.3`.]],

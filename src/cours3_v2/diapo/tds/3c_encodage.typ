@@ -20,7 +20,11 @@
 )
 #separateur-td(..td)
 
-#d("Lire une ligne selon l'encodage")[
+#d("Lecture d'une ligne selon l'encodage")[
+  #objectif[
+    comparer la première ligne de `parcours.txt` en UTF-8, en cp1252 et sans décodage.
+  ]
+
   #consignes(
     taille: 16pt,
     [Aller dans le dossier du TD, copier ses fichiers, puis ouvrir une session interactive : #commandes("cd ../../3c_encodage", "cp depart/* travail/", "cd travail", "python")],
@@ -42,7 +46,12 @@
   ]
 ]
 
-#d("Écrire le résumé dans un fichier")[
+#d("Écriture du résumé dans un fichier")[
+  #objectif[
+    écrire le résumé de `altitudes.py` dans `resume.txt`, et comparer les modes d'ouverture `"w"`
+    et `"a"`.
+  ]
+
   #consignes(
     taille: 16pt,
     [À la fin de `travail/altitudes.py`, ajouter ces lignes :

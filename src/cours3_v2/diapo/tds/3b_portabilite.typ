@@ -20,10 +20,14 @@
 )
 #separateur-td(..td)
 
-#d("Lancer le programme d'Alice")[
+#d("Programme d'Alice")[
   #annonce[
     Alice a ajouté un seuil à `altitudes.py` : une variation d'altitude plus
     petite que le seuil n'est pas comptée, ce qui écarte le bruit du GPS.
+  ]
+
+  #objectif[
+    lancer le programme d'Alice, `altitudes.py`, sur le poste, et déterminer s'il fonctionne.
   ]
 
   #consignes(
@@ -42,7 +46,12 @@
   ]
 ]
 
-#d("Construire le chemin avec pathlib")[
+#d("Chemin construit avec pathlib")[
+  #objectif[
+    faire trouver `trace.csv` à `altitudes.py`, quel que soit le dossier du terminal, avec
+    `pathlib`.
+  ]
+
   #consignes(
     taille: 16pt,
     [Dans `travail/altitudes.py`, remplacer la ligne `FICHIER = …` par ces deux lignes : #commandes("from pathlib import Path", "FICHIER = Path.cwd() / \"trace.csv\"")],
@@ -61,14 +70,16 @@
   ]
 ]
 
-#d("Passer le fichier et le seuil en paramètres")[
+#d("Fichier et seuil en paramètres")[
+  #objectif[
+    remplacer `FICHIER` et `SEUIL` de `altitudes.py` par des arguments lus par `argparse`.
+  ]
+
   #consignes(
     taille: 16pt,
-    [Revenir dans `travail/` : `cd travail`.],
     [Dans `travail/altitudes.py`, remplacer les lignes `from pathlib…`, `FICHIER = …` et `SEUIL = …` par ces lignes :
-      #v(2pt)
-      #sortie("import argparse\nfrom pathlib import Path\n\nanalyseur = argparse.ArgumentParser(description=\"Altitudes et cumul d'une trace GPS.\")\nanalyseur.add_argument(\"fichier\", help=\"le fichier CSV de la trace\")\nanalyseur.add_argument(\"-s\", \"--seuil\", type=float, default=0,\n                       help=\"variation ignorée sous ce seuil, en mètres\")\noptions = analyseur.parse_args()\n\nFICHIER = Path(options.fichier)\nSEUIL = options.seuil", taille: 11.5pt)],
-    [Enregistrer le fichier, puis lancer le programme, sans puis avec un seuil : #commandes("python altitudes.py trace.csv", "python altitudes.py trace.csv -s 2")
+      #sortie("import argparse\nfrom pathlib import Path\n\nanalyseur = argparse.ArgumentParser(description=\"Altitudes et cumul d'une trace GPS.\")\nanalyseur.add_argument(\"fichier\", help=\"le fichier CSV de la trace\")\nanalyseur.add_argument(\"-s\", \"--seuil\", type=float, default=0,\n                       help=\"variation ignorée sous ce seuil, en mètres\")\noptions = analyseur.parse_args()\n\nFICHIER = Path(options.fichier)\nSEUIL = options.seuil", taille: 11pt)],
+    [Enregistrer le fichier, revenir dans `travail/`, puis lancer le programme, sans puis avec un seuil : #commandes("cd travail", "python altitudes.py trace.csv", "python altitudes.py trace.csv -s 2")
       #constat[`cumul en hausse` : `98.4`, puis `88.7`.]],
   )
 
@@ -78,7 +89,12 @@
   ]
 ]
 
-#d("Essayer l'interface du programme")[
+#d("Interface du programme")[
+  #objectif[
+    lancer `altitudes.py` sur `trace_2.csv` sans modifier le code, puis avec des arguments
+    manquants ou faux, et lire son aide.
+  ]
+
   #consignes(
     taille: 17pt,
     [Lancer le programme sur la seconde trace, sans modifier le code : #commandes("python altitudes.py trace_2.csv", "python altitudes.py trace_2.csv -s 2")
