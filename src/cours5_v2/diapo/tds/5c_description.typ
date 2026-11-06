@@ -46,7 +46,11 @@
   ]
 ]
 
-#d("Écrire le fichier environment.yml")[
+#d("Fichier environment.yml")[
+  #objectif[
+    décrire l'environnement `carte` dans `travail/environment.yml`.
+  ]
+
   #consignes(
     taille: 16pt,
     [Aller dans le dossier du TD, et copier ses fichiers dans `travail/` : #commandes("cd ../../5c_description", "cp depart/* travail/", "cd travail")],
@@ -61,7 +65,11 @@
   ]
 ]
 
-#d("Écrire le fichier README.md")[
+#d("Fichier README.md")[
+  #objectif[
+    écrire dans `travail/README.md` les commandes d'installation et d'utilisation.
+  ]
+
   #consignes(
     taille: 16pt,
     [Dans VS Code, créer le fichier `README.md` dans `travail/`, avec ces lignes : #comment[File, New File…]
@@ -79,7 +87,11 @@
   ]
 ]
 
-#d("Supprimer l'environnement")[
+#d("Suppression de l'environnement")[
+  #objectif[
+    supprimer l'environnement `carte`, pour le recréer ensuite à partir de `environment.yml`.
+  ]
+
   #consignes(
     taille: 17pt,
     [Désactiver l'environnement : `conda deactivate`.
@@ -99,7 +111,12 @@
   ]
 ]
 
-#d("Recréer l'environnement dans un autre dossier")[
+#d("Recréation de l'environnement")[
+  #objectif[
+    copier le projet dans `nouveau_poste/`, y recréer `carte` à partir de `environment.yml`, et y
+    lancer `carte_trace.py`.
+  ]
+
   #consignes(
     taille: 15pt,
     [Créer le dossier `nouveau_poste/`, et y copier les fichiers du projet : #commandes("mkdir ../nouveau_poste", "cp carte_trace.py stats_trace.py trace_2.gpx environment.yml README.md ../nouveau_poste/", "cd ../nouveau_poste")],
@@ -122,7 +139,11 @@
   ]
 ]
 
-#d("Écrire le fichier pyproject.toml, étape facultative")[
+#d("Fichier pyproject.toml, étape facultative")[
+  #objectif[
+    décrire le projet dans `nouveau_poste/pyproject.toml`, puis l'installer avec `pip`.
+  ]
+
   #consignes(
     taille: 16pt,
     [Dans VS Code, créer le fichier `pyproject.toml` dans `nouveau_poste/`, avec ces lignes : #comment[File, New File…]

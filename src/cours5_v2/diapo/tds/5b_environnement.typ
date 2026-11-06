@@ -30,7 +30,7 @@
     ("Vérifier", "l'environnement créé"),
     ("Activer", "l'environnement dans le terminal"),
     ("Lancer", "le programme, puis ouvrir la carte"),
-    ("Désactiver", "l'environnement, puis constater l'erreur"),
+    ("Désactiver", "l'environnement, puis relancer le programme"),
   )
 
   #notes[
@@ -39,7 +39,12 @@
   ]
 ]
 
-#d("Vérifier l'environnement créé")[
+#d("Environnement créé")[
+  #objectif[
+    attendre la fin de `conda create`, puis vérifier que l'environnement `carte` contient `ogr2ogr`
+    et `folium`.
+  ]
+
   #consignes(
     taille: 16pt,
     [Revenir au second terminal, et attendre la fin de `conda create` : #comment[cliquer sur son nom, dans la liste des terminaux.]
@@ -63,10 +68,13 @@
   ]
 ]
 
-#d("Activer l'environnement")[
+#d("Activation de l'environnement")[
+  #objectif[
+    activer `carte`, puis déterminer quels `python` et `ogr2ogr` le terminal lance.
+  ]
+
   #consignes(
     taille: 16pt,
-    [Aller dans le dossier du TD, et copier ses fichiers dans `travail/` : #commandes("cd ../../5b_environnement", "cp depart/* travail/", "cd travail")],
     [Activer l'environnement : `conda activate carte`.
       #constat[`(carte)` à la place de `(base)`.]],
     [Afficher le chemin des deux commandes : #commandes("which python", "which ogr2ogr")
@@ -83,9 +91,15 @@
   ]
 ]
 
-#d("Lancer le programme")[
+#d("Programme dans l'environnement")[
+  #objectif[
+    lancer `carte_trace.py` sur `trace_2.gpx` dans l'environnement `carte`, puis ouvrir la carte
+    `trace_2.html`.
+  ]
+
   #consignes(
-    taille: 17pt,
+    taille: 16pt,
+    [Aller dans le dossier du TD, et copier ses fichiers dans `travail/` : #commandes("cd ../../5b_environnement", "cp depart/* travail/", "cd travail")],
     [Lancer le programme : `python carte_trace.py trace_2.gpx`.
       #constat[Les altitudes, `distance parcourue : 632.3 m`, `vitesse moyenne : 1.29 m/s, soit 4.6 km/h`, puis `carte écrite : trace_2.html`.]],
     [Lister les fichiers écrits : `ls`.
@@ -102,7 +116,11 @@
   ]
 ]
 
-#d("Désactiver l'environnement")[
+#d("Programme sans activation")[
+  #objectif[
+    déterminer si `carte_trace.py` fonctionne sans activer `carte`.
+  ]
+
   #consignes(
     taille: 17pt,
     [Désactiver l'environnement : `conda deactivate`.

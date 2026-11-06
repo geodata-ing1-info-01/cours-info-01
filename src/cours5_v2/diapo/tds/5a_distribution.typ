@@ -19,7 +19,12 @@
 )
 #separateur-td(..td)
 
-#d("Préparer la séance")[
+#d("Préparation de la séance")[
+  #objectif[
+    copier et décompresser `info01-cours5.zip`, puis ouvrir le dossier `cours5` et un terminal dans
+    VS Code.
+  ]
+
   #consignes(
     taille: 17pt,
     [Copier l'archive `info01-cours5.zip` de `formationTemp` dans le dossier `info01` du Bureau.],
@@ -35,7 +40,11 @@
 ]
 
 // Nouveau, 06/11/2026 : l'installation dure plusieurs minutes, et se termine avant le TD 5b.
-#d("Lancer la création de l'environnement")[
+#d("Création de l'environnement : lancement")[
+  #objectif[
+    lancer dès maintenant, dans un second terminal, l'installation des outils du TD~5b.
+  ]
+
   #consignes(
     taille: 16pt,
     [Ouvrir un second terminal : #comment[menu Terminal, New Terminal.]
@@ -61,7 +70,11 @@
   ]
 ]
 
-#d("Lancer le programme")[
+#d("Programme sur le poste")[
+  #objectif[
+    lancer `carte_trace.py` sur `trace_2.gpx`, et chercher le programme `ogr2ogr`.
+  ]
+
   #consignes(
     taille: 17pt,
     [Aller dans le dossier du TD, et copier ses fichiers dans `travail/` : #commandes("cd 5a_distribution", "cp depart/* travail/", "cd travail")],
@@ -79,7 +92,11 @@
   ]
 ]
 
-#d("Trouver les fichiers de Python")[
+#d("Fichiers de Python sur le poste")[
+  #objectif[
+    relever les chemins de l'interpréteur, des modules `argparse` et `numpy`, et de `pandoc`.
+  ]
+
   #consignes(
     taille: 15pt,
     [Afficher le chemin de l'interpréteur : #commandes("python -c \"import sys; print(sys.executable)\"")

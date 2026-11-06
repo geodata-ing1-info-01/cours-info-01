@@ -29,7 +29,7 @@
 
   #chaine(
     ecart: 18pt,
-    ("Constater", "l'erreur dans le notebook"),
+    ("Exécuter", "le notebook avec le noyau de base"),
     ("Déclarer", "le noyau de l'environnement"),
     ("Choisir", "ce noyau dans JupyterLab"),
     ("Arrêter", "le serveur"),
@@ -41,7 +41,12 @@
   ]
 ]
 
-#d("Constater l'erreur dans le notebook")[
+#d("Notebook avec le noyau de base")[
+  #objectif[
+    exécuter `carte.ipynb` dans JupyterLab, avec le noyau de `base`, et déterminer si la cellule
+    aboutit.
+  ]
+
   #consignes(
     taille: 16pt,
     [Revenir à `base`, aller dans le dossier du TD, et copier ses fichiers dans `travail/` : #commandes("conda deactivate", "cd ../../5d_noyau", "cp depart/* travail/", "cd travail")
@@ -62,7 +67,11 @@
   ]
 ]
 
-#d("Déclarer le noyau de l'environnement")[
+#d("Déclaration du noyau de l'environnement")[
+  #objectif[
+    déclarer à JupyterLab le noyau de l'environnement `carte`, dans le second terminal.
+  ]
+
   #consignes(
     taille: 16pt,
     [Revenir au second terminal : #comment[cliquer sur son nom, dans la liste des terminaux.]
@@ -80,7 +89,11 @@
   ]
 ]
 
-#d("Choisir le noyau dans JupyterLab")[
+#d("Choix du noyau dans JupyterLab")[
+  #objectif[
+    exécuter `carte.ipynb` avec le noyau `carte`, puis arrêter le serveur de JupyterLab.
+  ]
+
   #consignes(
     taille: 16pt,
     [Recharger la page de JupyterLab : `F5`.],
