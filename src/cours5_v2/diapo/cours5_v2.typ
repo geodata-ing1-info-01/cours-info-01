@@ -3,8 +3,9 @@
 // 06/11/2026 : même organisation que le cours 3 v2. La partie 1 pose le problème sans détail
 // de Python : réutiliser des outils existants, et les réinstaller sur un autre poste. Les
 // parties 2 et 3 traitent les deux cas, un programme et une bibliothèque. La partie 4 traite
-// l'environnement et le fichier de projet. La partie 5, en bonus, JupyterLab et le noyau. Le
-// TD vient après l'exposé.
+// l'environnement et le fichier de projet. La partie 5, en bonus, JupyterLab et le noyau. Les
+// TD sont répartis dans l'exposé : le TD 5a après la partie 3, les TD 5b et 5c après la partie
+// 4, le TD 5d, facultatif, après la partie 5.
 //
 // Le cours 5 de 2026 reste inchangé dans `src/cours5/`. Les schémas viennent de là, et ne
 // sont pas recopiés. Le matériel sort de la séance, voir `a_reprendre/materiel.typ`, et le TD
@@ -27,6 +28,9 @@
 #let tds = sys.inputs.at("tds", default: "") != "false"
 
 #import "tds/5a_distribution.typ": td as td-5a
+#import "tds/5b_environnement.typ": td as td-5b
+#import "tds/5c_description.typ": td as td-5c
+#import "tds/5d_noyau.typ": td as td-5d
 
 #let partie-1 = (
   titre: "Réutiliser des programmes et des bibliothèques",
@@ -61,17 +65,29 @@
 #separateur(partie-3.titre, annonce: partie-3.annonce)
 #include "parties/03_bibliotheques.typ"
 
-#separateur(partie-4.titre, annonce: partie-4.annonce)
-#include "parties/04_environnement.typ"
-
-#separateur(partie-5.titre, annonce: partie-5.annonce)
-#include "parties/05_jupyter.typ"
-
-// Les TD, après l'exposé.
 #if tds {
   include "tds/5a_distribution.typ"
 } else {
   sommaire-td(td-5a)
+}
+
+#separateur(partie-4.titre, annonce: partie-4.annonce)
+#include "parties/04_environnement.typ"
+
+#if tds {
+  include "tds/5b_environnement.typ"
+  include "tds/5c_description.typ"
+} else {
+  sommaire-td(td-5b, td-5c)
+}
+
+#separateur(partie-5.titre, annonce: partie-5.annonce)
+#include "parties/05_jupyter.typ"
+
+#if tds {
+  include "tds/5d_noyau.typ"
+} else {
+  sommaire-td(td-5d)
 }
 
 #include "parties/99_cloture.typ"

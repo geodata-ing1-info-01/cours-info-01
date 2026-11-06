@@ -1,9 +1,9 @@
 // TD 5a du cours 5 v2 — « Le dossier de votre Python ».
 //
-// Nouveau (v2), 06/11/2026 : constater les deux erreurs de `carte_trace.py`, puis relever
-// sur le poste les chemins de la partie « Le dossier d'une distribution ». Les sorties
-// attendues viennent de la disposition d'Anaconda sous Windows, et restent à relever sur un
-// poste de la salle.
+// Nouveau (v2), 06/11/2026 : lancer la création de l'environnement du TD 5b, constater les deux
+// erreurs de `carte_trace.py`, puis relever sur le poste les chemins de la diapositive « Dossier
+// d'une distribution Python ». Les sorties attendues viennent de la disposition d'Anaconda sous
+// Windows, et restent à relever sur un poste de la salle.
 //
 // Inclus par `cours5_v2.typ` ; compilable seul par
 // `outils/compiler_tds.py --cours 5_v2`.
@@ -31,6 +31,33 @@
 
   #notes[
     Mêmes étapes qu'au TD 3a.
+  ]
+]
+
+// Nouveau, 06/11/2026 : l'installation dure plusieurs minutes, et se termine avant le TD 5b.
+#d("Lancer la création de l'environnement")[
+  #consignes(
+    taille: 16pt,
+    [Ouvrir un second terminal : #comment[menu Terminal, New Terminal.]
+      #constat[`(base)` et `MINGW64 ~/Desktop/info01/cours5`.]],
+    [Lancer la création de l'environnement `carte` : #commandes("conda create -y -n carte -c conda-forge python=3.12 gdal folium")
+      #constat[`Collecting package metadata`, puis le téléchargement des paquets.]],
+    [Laisser cette commande tourner, et revenir au premier terminal : #comment[cliquer sur son nom, dans la liste des terminaux.]],
+  )
+
+  #legende[
+    Cette commande dure plusieurs minutes. Son explication vient à la partie 4, et ce terminal sert de
+    nouveau au TD 5b.
+  ]
+
+  #notes[
+    `-y` répond oui à la question de confirmation : le téléchargement démarre sans attendre.
+
+    Environnement résolu pour Windows le 06/11/2026 : 91 paquets, 221 Mo à télécharger. Durée à relever
+    sur un poste de la salle.
+
+    Si `conda create` s'arrête sur `CondaHTTPError` : annexe « Session réseau, proxy, droits du
+    compte ».
   ]
 ]
 

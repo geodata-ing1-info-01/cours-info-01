@@ -97,7 +97,8 @@
     d'un programme : globale ou locale »). `pip install`, dans un environnement activé, écrit dans
     ce dossier.
 
-    Ne pas lancer la création en séance : elle prend plusieurs minutes.
+    Ne pas relancer la création devant la salle : elle prend plusieurs minutes. La commande lancée au
+    TD 5a se termine pendant cette partie.
 
     Dossier complet, dans la salle : `C:\Users\<nom>\.conda\envs\carte`.
 
