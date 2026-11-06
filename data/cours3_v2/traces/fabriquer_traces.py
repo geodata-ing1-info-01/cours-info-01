@@ -156,7 +156,7 @@ def convertir(gpx: Path, csv: Path) -> None:
     """Le CSV en Lambert-93, par la commande du cours 5."""
     subprocess.run(["ogr2ogr", "-f", "CSV", str(csv), str(gpx), "track_points",
                     "-t_srs", "EPSG:2154", "-lco", "GEOMETRY=AS_XY",
-                    "-select", "ele,time", "-xyRes", "0.1", "-overwrite"], check=True)
+                    "-select", "ele,time", "-xyRes", "0.1"], check=True)
 
 
 def main() -> None:
