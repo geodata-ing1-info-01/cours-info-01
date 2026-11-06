@@ -20,17 +20,14 @@
 
   #v(0.3em)
   #annonce[
-    Lancer un autre programme depuis Python.\
+    Obtenir le résumé et la carte d'une trace GPX, avec un programme et une bibliothèque.\
+    Savoir où Python et le terminal cherchent ce dont un programme dépend.\
     Décrire l'environnement d'un projet, pour le recréer sur un autre poste.\
-    Savoir comment le terminal trouve une commande.\
     Installer son programme comme une commande.
   ]
 
   #notes[
     Le déroulé reste à établir. Avec le réseau, le contenu dépasse une séance : choisir
     ce qui reste du cours 5 de 2026.
-
-    Le TD 4b du parcours avancé applique déjà `pyproject.toml` et `subprocess`, avant
-    cette séance.
   ]
 ]

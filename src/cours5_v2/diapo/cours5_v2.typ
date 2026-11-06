@@ -1,5 +1,9 @@
 // Cours 5, version 2 — fichier d'assemblage. PROPOSITION DE TRAVAIL (WIP).
 //
+// 06/11/2026 : la séance part d'un objectif, le résumé et la carte d'une trace GPX
+// (`parties/01_probleme.typ`). La suite reste à reprendre dans cet ordre : dossier d'une
+// distribution, PATH, environnement, dépendances, paquet, noyau, réseau.
+//
 // 05/11/2026 : le cours porte d'abord sur l'installation et la distribution d'un
 // programme Python, après le cours 3 sur la portabilité. En tête, `subprocess` (cours 3
 // de 2026) et les environnements (cours 1 de 2026) ; puis `PATH` et les variables
@@ -24,7 +28,7 @@
 
 #include "parties/00_ouverture.typ"
 
-#include "parties/01_subprocess.typ"
+#include "parties/01_probleme.typ"
 #include "parties/02_environnements.typ"
 #include "parties/03_path.typ"
 #include "parties/04_paquet.typ"
