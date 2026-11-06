@@ -30,7 +30,12 @@
 #separateur-td(..td)
 
 // Nouveau (v2), 27/09 : la commande et le fichier qu'elle lance.
-#d("Quel programme python la commande lance")[
+#d("Programme lancé par la commande python")[
+  #objectif[
+    déterminer quel fichier la commande `python` lance dans Git Bash, puis lancer le Python
+    d'Anaconda par son chemin.
+  ]
+
   #grid(
     columns: (2fr, 1fr), column-gutter: 16pt, align: (top, horizon),
     consignes(
@@ -64,10 +69,9 @@
 
 // Déplacée de la fin du TD 1b le 27/09 : le réglage se fait au moment où
 // `python` sert pour la première fois.
-#d("Python dans Git Bash, une fois par poste")[
-  #annonce[
-    `conda init bash` règle Git Bash pour qu'il active conda à chaque
-    ouverture.
+#d("Configuration de conda dans Git Bash")[
+  #objectif[
+    régler Git Bash, une fois par poste, pour que `python` lance le Python d'Anaconda.
   ]
 
   #consignes(
@@ -82,11 +86,10 @@
   )
 
   #v(2pt)
-  #align(center, box(width: 62%, git-bash-ouvert(dossier: "1c_programme", base: true, taille: 11pt)))
+  #align(center, box(width: 72%, git-bash-ouvert(dossier: "1c_programme", base: true, taille: 11pt)))
 
   #legende[
-    Si le réglage échoue : invite de commandes d'Anaconda, dans le menu
-    Démarrer.
+    Si le réglage échoue : invite de commandes d'Anaconda, dans le menu Démarrer.
   ]
 
   #notes[
@@ -169,7 +172,12 @@
 ]
 
 // Nouveau (v2) : remplace « Lancer le programme » du TD 1b de 2026 (VS Code).
-#d("Lancer, modifier, relancer")[
+#d("Cycle d'édition d'un programme")[
+  #objectif[
+    modifier `altitudes.py` dans Notepad++, et déterminer à quel moment `python` prend en compte la
+    modification.
+  ]
+
   #consignes(
     taille: 16pt,
     [Ouvrir `altitudes.py` dans Notepad++ : #comment[Fichier, Ouvrir, puis `cours1\1c_programme\altitudes.py`.]
@@ -197,6 +205,11 @@
 ]
 
 #d("Python en interactif")[
+  #objectif[
+    exécuter les premières lignes de `altitudes.py` une à une, dans une session interactive, puis
+    afficher `total` et la moyenne.
+  ]
+
   #grid(
     columns: (1fr, 1.1fr), column-gutter: 18pt, align: top,
     consignes(
@@ -260,10 +273,14 @@
 // retirée du cours le 19/10/2026 ; la page de cours `03_premier_programme.md`
 // garde la section, et l'annonce reprend sa définition. Facultatif depuis le
 // 28/09.
-#d("Lancer le script, si le temps le permet")[
+#d("Script de commandes, si le temps le permet")[
   #annonce[
     Un script est un fichier texte qui contient des commandes. `bash` les
     exécute dans l'ordre, comme si on les tapait.
+  ]
+
+  #objectif[
+    lire `commandes.sh`, le lancer, puis déterminer s'il peut se relancer sans erreur.
   ]
 
   #consignes(
@@ -276,9 +293,8 @@
       #constat[La même sortie, sans erreur : `mkdir -p` accepte un dossier qui existe.]],
   )
 
-  #v(4pt)
   #panneau[`commandes.sh`][
-    #text(size: 18pt)[```bash
+    #text(size: 15pt)[```bash
     # Commandes du TD 1b, puis le programme du TD 1c.
     # Lancer depuis 1c_programme : bash commandes.sh
     mkdir -p copies
@@ -288,13 +304,10 @@
     ```]
   ]
 
-  #legende[
-    Le même script pour l'invite de commandes, `commandes.bat` : annexe du
-    guide.
-  ]
-
   #notes[
-    La moyenne est celle de l'étape 5 de « Lancer, modifier, relancer »,
+    Le même script pour l'invite de commandes, `commandes.bat` : annexe du guide.
+
+    La moyenne est celle de l'étape 5 de « Cycle d'édition d'un programme »,
     avec quatre altitudes. Sortie de `bash commandes.sh` relevée sous Linux, sur
     une copie de l'archive.
 

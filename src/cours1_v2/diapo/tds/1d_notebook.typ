@@ -32,16 +32,18 @@
 // Nouveau (v2) : remplace « Lancer JupyterLab depuis Anaconda » ; Navigator
 // était lent à démarrer sur les postes en 2026. 27/09 : l'invite de commandes
 // d'Anaconda d'abord, Git Bash ensuite.
-#d("Lancer JupyterLab")[
+#d("Lancement de JupyterLab")[
   #annonce[
-    JupyterLab est installé avec Anaconda, et se lance dans un terminal où
-    conda est actif. Le module donne deux terminaux, pour ne pas être bloqué
-    si le réglage de Git Bash manque sur un poste.
+    JupyterLab est installé avec Anaconda, et se lance dans un terminal où conda est actif.
+  ]
+
+  #objectif[
+    lancer JupyterLab dans `cours1/1d_notebook`, et ouvrir `altitudes.ipynb`.
   ]
 
   #face-a-face(
     panneau("Depuis l'invite de commandes d'Anaconda")[
-      #text(size: 16pt)[```console
+      #text(size: 15pt)[```console
       (base) …>cd Desktop\info01\cours1\1d_notebook
       (base) …>jupyter lab
       ```]
@@ -52,7 +54,7 @@
       ]
     ],
     panneau("Depuis Git Bash")[
-      #text(size: 16pt)[```console
+      #text(size: 15pt)[```console
       $ cd ~/Desktop/info01/cours1/1d_notebook
       $ jupyter lab
       ```]
@@ -63,14 +65,24 @@
     ],
   )
 
+  #consignes(
+    taille: 16pt,
+    [Lancer JupyterLab dans l'invite de commandes d'Anaconda, avec les commandes de gauche.],
+    [Ouvrir `altitudes.ipynb`. #comment[Double-clic sur son nom, dans le panneau de gauche.]
+      #constat[Les cellules de code n'ont pas encore de numéro.]],
+  )
+
   #legende[
-    JupyterLab montre le dossier d'où on le lance, et ce qu'il contient.
-    Le navigateur s'ouvre sur `localhost:8888`, le poste lui-même : le
-    serveur de JupyterLab tourne sur le poste, et le terminal reste occupé
-    tant qu'il tourne. `Ctrl` + `C` l'arrête. Le cours 5 y revient.
+    JupyterLab montre le dossier d'où on le lance, et ce qu'il contient. Le terminal reste occupé
+    tant que le serveur tourne : `Ctrl` + `C` l'arrête.
   ]
 
   #notes[
+    Deux terminaux, pour ne pas être bloqué si le réglage de Git Bash manque sur un poste.
+
+    Le navigateur s'ouvre sur `localhost:8888`, le poste lui-même : le serveur de JupyterLab tourne
+    sur le poste. Le cours 5 y revient.
+
     En 2026, Navigator a mis plusieurs minutes à s'ouvrir sur les postes, et
     répondait parfois « already running » sans fenêtre. Il reste le dernier
     secours : page d'accueil, fiche JupyterLab, bouton Launch.
@@ -88,18 +100,15 @@
 ]
 
 
-#d("Exécuter les cellules")[
-  #annonce[
-    `altitudes.ipynb` contient le programme du TD 1c, découpé en cellules.
-    Pour exécuter une cellule, cliquer dedans, puis taper `Maj` + `Entrée`.
+#d("Exécution des cellules")[
+  #objectif[
+    exécuter les cellules de `altitudes.ipynb` dans plusieurs ordres, et déterminer ce que le noyau
+    garde d'une cellule à l'autre.
   ]
 
   #consignes(
     taille: 16pt,
-    [Lancer JupyterLab dans l'invite de commandes d'Anaconda : #commandes("cd Desktop\\info01\\cours1\\1d_notebook", "jupyter lab")],
-    [Ouvrir `altitudes.ipynb`. #comment[Double-clic sur son nom, dans le panneau de gauche.]
-      #constat[Les cellules de code n'ont pas encore de numéro.]],
-    [Exécuter les cellules une à une, de haut en bas.
+    [Exécuter les cellules une à une, de haut en bas. #comment[Cliquer dans une cellule, puis `Maj` + `Entrée`.]
       #constat[`[1]`, `[2]`… à gauche, dans l'ordre ; la moyenne vaut `93.7`.]],
     [Exécuter une seconde fois la cellule de la boucle, puis celle de la moyenne.
       #constat[`258.0` : le noyau a gardé `total`, la boucle l'a encore augmenté.]],
@@ -108,8 +117,8 @@
   )
 
   #legende[
-    Le numéro entre crochets donne l'ordre dans lequel les cellules ont été
-    exécutées.
+    `altitudes.ipynb` contient le programme du TD 1c, découpé en cellules. Le numéro entre crochets
+    donne l'ordre dans lequel les cellules ont été exécutées.
   ]
 
   #notes[
@@ -167,10 +176,10 @@
   ]
 ]
 
-#d("Ajouter une cellule de texte")[
-  #annonce[
-    Une cellule de texte en tête du notebook, écrite en Markdown, décrit ce
-    que fait le programme.
+#d("Cellule de texte dans un notebook")[
+  #objectif[
+    ajouter en tête de `altitudes.ipynb` une cellule de texte, écrite en Markdown, qui décrit le
+    programme.
   ]
 
   #consignes(

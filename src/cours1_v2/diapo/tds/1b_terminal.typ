@@ -38,7 +38,11 @@
   )
 ]
 
-#d("Ouvrir Git Bash dans le dossier du TD")[
+#d("Git Bash dans le dossier du TD")[
+  #objectif[
+    ouvrir Git Bash dans le dossier du TD, `cours1\1b_terminal`, à partir de l'explorateur.
+  ]
+
   #consignes(
     [Dans l'explorateur, ouvrir le dossier `cours1\1b_terminal`. Il contient les dossiers `depart` et `travail`.],
     [Faire un clic droit sur un endroit vide de la fenêtre. Choisir « Afficher d'autres options », puis « Open Git Bash here ».],
@@ -64,9 +68,10 @@
   ]
 ]
 
-#d("Se déplacer et lister le contenu d'un dossier")[
-  #annonce[
-    Taper chaque commande dans Git Bash, puis appuyer sur Entrée.
+#d("Déplacements et contenu d'un dossier")[
+  #objectif[
+    afficher le dossier courant, lister `depart` et `travail`, et passer d'un dossier à l'autre en
+    ligne de commande.
   ]
 
   #grid(
@@ -100,6 +105,7 @@
   )
 
   #legende[
+    Taper chaque commande dans Git Bash, puis appuyer sur Entrée.
     Pour retrouver une commande déjà tapée, appuyer sur la flèche vers le
     haut. Pour compléter un nom commencé, appuyer sur `Tab`.
   ]
@@ -113,7 +119,12 @@
   ]
 ]
 
-#d("Copier, renommer, ouvrir")[
+#d("Copie et renommage d'un fichier")[
+  #objectif[
+    copier et renommer `raven.odt` en ligne de commande, et déterminer quel logiciel ouvre chaque
+    copie selon son nom.
+  ]
+
   #consignes(
     taille: 16pt,
     [Copier `raven.odt` de `depart` dans `travail`.],
@@ -133,7 +144,7 @@
   ]
 ]
 
-#d("Copier, renommer, ouvrir : solution")[
+#d("Copie et renommage d'un fichier : solution")[
   #terminal-etapes(
     etape-terminal("cp depart/raven.odt travail/"),
     etape-terminal("mv travail/raven.odt travail/raven_odt.pdf"),
@@ -167,40 +178,28 @@
   ]
 ]
 
-#d([Espace dans un nom et motif `*`])[
-  #grid(
-    columns: (1.15fr, 1fr), column-gutter: 20pt,
-    panneau[Un espace dans un nom de fichier][
-      #consignes(
-        taille: 16pt,
-        [Copier `raven_une_ligne.txt` de `depart` dans `travail`, sous le nom `le corbeau.txt`, sans guillemets. Lire le message.],
-        [Refaire la copie, avec le nom entre guillemets.],
-        [Lister le contenu de `travail`.],
-        [Ouvrir la copie. #comment[Avec `start`, écrire `""` avant un nom entre guillemets.]],
-      )
-    ],
-    panneau[Copier plusieurs fichiers d'un coup avec `*`][
-      #consignes(
-        taille: 16pt,
-        [Créer un dossier `textes` dans `travail`.],
-        [Copier dans ce dossier tous les fichiers `.txt` de `depart`.],
-        [Lister le contenu de `textes`.],
-        [Lister les fichiers `.odt` de `depart`.],
-        [Supprimer l'une des copies, puis lister de nouveau `textes`.],
-      )
-    ],
+#d("Espace dans un nom de fichier")[
+  #objectif[
+    copier `raven_une_ligne.txt` dans `travail` sous le nom `le corbeau.txt`, qui contient un espace,
+    puis ouvrir la copie.
+  ]
+
+  #consignes(
+    taille: 17pt,
+    [Copier `raven_une_ligne.txt` de `depart` dans `travail`, sous le nom `le corbeau.txt`, sans guillemets. Lire le message.],
+    [Refaire la copie, avec le nom entre guillemets.],
+    [Lister le contenu de `travail`.],
+    [Ouvrir la copie. #comment[Avec `start`, écrire `""` avant un nom entre guillemets.]],
   )
 
   #_rappel-commandes
 
   #notes[
-    Laisser chercher. Solutions aux deux diapositives suivantes.
-
-    Le motif `*` est sur « Fichiers cachés et motif `*` », en fin de partie 2.
+    Laisser chercher. Solution à la diapositive suivante.
   ]
 ]
 
-#d("Espace dans un nom : solution")[
+#d("Espace dans un nom de fichier : solution")[
   #annonce[
     L'interpréteur coupe la ligne aux espaces. Un nom qui en contient s'écrit
     entre guillemets.
@@ -233,7 +232,31 @@
   ]
 ]
 
-#d([Motif `*` : solution])[
+#d("Copie de plusieurs fichiers avec un motif")[
+  #objectif[
+    employer le motif `*` pour copier d'un coup les fichiers `.txt` de `depart` dans un nouveau
+    dossier, `travail/textes`, et pour lister les fichiers `.odt`.
+  ]
+
+  #consignes(
+    taille: 17pt,
+    [Créer un dossier `textes` dans `travail`.],
+    [Copier dans ce dossier tous les fichiers `.txt` de `depart`.],
+    [Lister le contenu de `textes`.],
+    [Lister les fichiers `.odt` de `depart`.],
+    [Supprimer l'une des copies, puis lister de nouveau `textes`.],
+  )
+
+  #_rappel-commandes
+
+  #notes[
+    Laisser chercher. Solution à la diapositive suivante.
+
+    Le motif `*` est sur « Fichiers cachés et motif `*` », en fin de partie 2.
+  ]
+]
+
+#d("Copie de plusieurs fichiers : solution")[
   #terminal-etapes(
     etape-terminal("mkdir travail/textes"),
     etape-terminal("cp depart/*.txt travail/textes/",
