@@ -243,10 +243,9 @@
 ]
 
 // --------------------------------------------
-#d("Étape A1 · Créer le dossier du projet")[
-  #annonce[
-    Objectif : créer le dossier du projet par des commandes, en copiant les
-    fichiers livrés.
+#d("Étape A1 · Dossier du projet")[
+  #objectif[
+    créer le dossier du projet par des commandes, en copiant les fichiers livrés.
   ]
 
   #deux-colonnes(
@@ -313,10 +312,9 @@
 ]
 
 // --------------------------------------------
-#d("Étape A2 · Ouvrir le projet dans VS Code")[
-  #annonce[
-    Objectif : ouvrir le dossier du projet dans VS Code, avec un terminal Git Bash
-    dans ce dossier.
+#d("Étape A2 · Projet dans VS Code")[
+  #objectif[
+    ouvrir le dossier du projet dans VS Code, avec un terminal Git Bash dans ce dossier.
   ]
 
   #consignes(
@@ -351,9 +349,9 @@
 ]
 
 // --------------------------------------------
-#d("Étape A3 · Créer le dépôt git")[
-  #annonce[
-    Objectif : enregistrer l'état de départ du projet dans un premier commit.
+#d("Étape A3 · Dépôt git")[
+  #objectif[
+    enregistrer l'état de départ du projet dans un premier commit.
   ]
 
   #deux-colonnes(
@@ -404,10 +402,10 @@
 ]
 
 // --------------------------------------------
-#d("Étape B1 · Corriger le programme de départ")[
-  #annonce[
-    Objectif : lire un message d'erreur de Python et corriger la ligne qu'il
-    désigne. Le programme de départ contient deux erreurs.
+#d("Étape B1 · Correction du programme de départ")[
+  #objectif[
+    lire un message d'erreur de Python et corriger la ligne qu'il désigne. Le programme de départ
+    contient deux erreurs.
   ]
 
   #deux-colonnes(
@@ -454,10 +452,10 @@
 ]
 
 // --------------------------------------------
-#d("Étape B2 · Ajouter l'option de distance")[
-  #annonce[
-    Objectif : ajouter l'option `--distance`, qui affiche pour l'instant un message.
-    Le calcul est écrit aux étapes B3 à B5, qui se testent avec la même commande.
+#d("Étape B2 · Option de distance")[
+  #objectif[
+    ajouter l'option `--distance`, qui affiche pour l'instant un message. Le calcul est écrit aux
+    étapes B3 à B5, qui se testent avec la même commande.
   ]
 
   #deux-colonnes(
@@ -494,10 +492,9 @@
 ]
 
 // --------------------------------------------
-#d("Étape B3 · Lire les positions de la trace")[
-  #annonce[
-    Objectif : garder les colonnes `x` et `y` de la trace dans deux listes, et
-    contrôler les valeurs lues.
+#d("Étape B3 · Positions de la trace")[
+  #objectif[
+    garder les colonnes `x` et `y` de la trace dans deux listes, et contrôler les valeurs lues.
   ]
 
   #deux-colonnes(
@@ -581,10 +578,9 @@
 ]
 
 // --------------------------------------------
-#d("Étape B4 · Écrire la fonction distance_entre")[
-  #annonce[
-    Objectif : écrire `distance_entre(x1, y1, x2, y2)`, qui renvoie la distance entre
-    deux points.
+#d("Étape B4 · Fonction distance_entre")[
+  #objectif[
+    écrire `distance_entre(x1, y1, x2, y2)`, qui renvoie la distance entre deux points.
   ]
 
   #consignes(
@@ -606,10 +602,10 @@
 ]
 
 // --------------------------------------------
-#d("Étape B4 · Essayer la fonction")[
-  #annonce[
-    Objectif : essayer la fonction sur un cas dont le résultat est connu, puis sur les
-    deux premières positions de la trace.
+#d("Étape B4 · Essai de la fonction")[
+  #objectif[
+    essayer la fonction sur un cas dont le résultat est connu, puis sur les deux premières
+    positions de la trace.
   ]
 
   #deux-colonnes(
@@ -655,10 +651,10 @@
 ]
 
 // --------------------------------------------
-#d("Étape B5 · Écrire la fonction distance_parcourue")[
-  #annonce[
-    Objectif : additionner les longueurs des segments. La position 0 n'a pas de
-    position précédente : la boucle commence donc à `i = 1`.
+#d("Étape B5 · Fonction distance_parcourue")[
+  #objectif[
+    additionner les longueurs des segments. La position 0 n'a pas de position précédente : la
+    boucle commence donc à `i = 1`.
   ]
 
   #consignes(
@@ -682,9 +678,9 @@
 ]
 
 // --------------------------------------------
-#d("Étape B5 · Appeler la fonction")[
-  #annonce[
-    Objectif : contrôler le total après chaque segment.
+#d("Étape B5 · Appel de la fonction")[
+  #objectif[
+    contrôler le total après chaque segment.
   ]
 
   #deux-colonnes(
@@ -713,9 +709,9 @@
 ]
 
 // --------------------------------------------
-#d("Étape B5 · Afficher le résultat final")[
-  #annonce[
-    Objectif : retirer l'affichage provisoire, une fois les valeurs contrôlées.
+#d("Étape B5 · Résultat final")[
+  #objectif[
+    retirer l'affichage provisoire, une fois les valeurs contrôlées.
   ]
 
   #deux-colonnes(
@@ -745,10 +741,10 @@
 ]
 
 // --------------------------------------------
-#d("Étape B6 · Ajouter l'option de vitesse")[
-  #annonce[
-    Objectif : ajouter l'option `--vitesse`, dans le même ordre que pour la distance :
-    l'option, le calcul intermédiaire, puis le résultat.
+#d("Étape B6 · Option de vitesse")[
+  #objectif[
+    ajouter l'option `--vitesse`, dans le même ordre que pour la distance : l'option, le calcul
+    intermédiaire, puis le résultat.
   ]
 
   #deux-colonnes(
@@ -802,10 +798,10 @@
 ]
 
 // --------------------------------------------
-#d("Étape B6 · Écrire la fonction secondes_ecoulees")[
-  #annonce[
-    Objectif : écrire `secondes_ecoulees(debut, fin)`, qui renvoie le temps en secondes
-    entre deux valeurs de la colonne `time`.
+#d("Étape B6 · Fonction secondes_ecoulees")[
+  #objectif[
+    écrire `secondes_ecoulees(debut, fin)`, qui renvoie le temps en secondes entre deux valeurs de
+    la colonne `time`.
   ]
 
   #deux-colonnes(
@@ -837,10 +833,9 @@
 ]
 
 // --------------------------------------------
-#d("Étape B6 · Calculer le temps total")[
-  #annonce[
-    Objectif : calculer le temps total, entre la première et la dernière valeur de la
-    colonne `time`.
+#d("Étape B6 · Temps total")[
+  #objectif[
+    calculer le temps total, entre la première et la dernière valeur de la colonne `time`.
   ]
 
   #deux-colonnes(
@@ -866,10 +861,9 @@
 ]
 
 // --------------------------------------------
-#d("Étape B6 · Calculer la vitesse moyenne")[
-  #annonce[
-    Objectif : afficher la vitesse moyenne, la distance parcourue divisée par le
-    temps total.
+#d("Étape B6 · Vitesse moyenne")[
+  #objectif[
+    afficher la vitesse moyenne, la distance parcourue divisée par le temps total.
   ]
 
   #deux-colonnes(
@@ -909,10 +903,9 @@
 ]
 
 // --------------------------------------------
-#d("Étape B7 (bonus) · Écrire un README et poser une étiquette")[
-  #annonce[
-    Objectif : permettre à une autre personne de lancer le programme, et nommer la
-    version finale.
+#d("Étape B7 (bonus) · README et étiquette")[
+  #objectif[
+    permettre à une autre personne de lancer le programme, et nommer la version finale.
   ]
 
   #consignes(
