@@ -140,7 +140,7 @@ def sans_premier_titre(texte: str) -> str:
 # Cours dont les guides sont des pages du book avec leurs images : le PNG de
 # chaque illustration est aussi écrit à côté de sa source, et versionné, pour
 # que le book se construise sans typst (comme les SVG de `notebook/figures/`).
-ILLUSTRATIONS_VERSIONNEES = {"cours1_v2", "cours2_v2", "cours4_v2"}
+ILLUSTRATIONS_VERSIONNEES = {"cours1_v2", "cours2_v2", "cours4_v2", "cours5_v2"}
 
 
 def illustrer(source: Path, produit: Path) -> int:

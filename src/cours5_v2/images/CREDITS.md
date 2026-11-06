@@ -20,3 +20,7 @@ Les refaire :
    `chromium --headless --window-size=1100,430 --virtual-time-budget=25000 --screenshot=<fichier>`.
 4. Couper la barre d'état, qui affiche « Connecting » pendant une capture : hauteur 336 px pour
    `jupyter_base.png`, 236 px pour `jupyter_noyau_carte.png`.
+
+Les guides des TD gardent une copie de ces images à côté de `guide.md`, dans
+`src/cours5_v2/notebook/td/<td>/illustrations/` : `carte_trace_2.png` pour le TD 5b, les deux captures
+de JupyterLab pour le TD 5d.

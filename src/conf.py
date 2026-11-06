@@ -78,6 +78,7 @@ exclude_patterns = [
     "**/propositions/**",
     "**/rejeu/**",           # script de rejeu d'un TD et ses sorties, lus dans le dépôt
     "**/images/**/*.md",     # crédits des images, lus dans le dépôt
+    "**/images/*.md",        # le motif précédent demande un sous-dossier
     "commun/typst-101.md",     # mode d'emploi des sources typst, lu dans le dépôt
     "Thumbs.db",
     ".DS_Store",
@@ -89,8 +90,8 @@ exclude_patterns = [
 # `GUIDES_DANS_LE_BOOK`, il est aussi une page du book, sous le titre « TD … ».
 # Les guides des autres cours ne sont pas encore relus pour le book (leurs
 # images sont cherchées dans `data/`, depuis `produit/`).
-# Les versions 2 des cours 1, 2 et 4 (propositions 2027-2028) aussi.
-GUIDES_DANS_LE_BOOK = {"cours1", "cours2", "cours3", "cours4", "cours7", "cours1_v2", "cours2_v2", "cours4_v2"}
+# Les versions 2 des cours 1, 2, 4 et 5 (propositions 2027-2028) aussi.
+GUIDES_DANS_LE_BOOK = {"cours1", "cours2", "cours3", "cours4", "cours7", "cours1_v2", "cours2_v2", "cours4_v2", "cours5_v2"}
 _SRC = Path(__file__).resolve().parent
 
 
@@ -105,7 +106,7 @@ _SRC = Path(__file__).resolve().parent
 # `outils/compiler_guides.py`), le PNG à côté du guide est versionné, à
 # 144 ppi ; celui de `produit/` est à 110 ppi. Il n'est donc recopié que s'il
 # manque : sinon chaque construction du book réécrirait le fichier versionné.
-ILLUSTRATIONS_VERSIONNEES = {"cours1_v2", "cours2_v2", "cours4_v2"}
+ILLUSTRATIONS_VERSIONNEES = {"cours1_v2", "cours2_v2", "cours4_v2", "cours5_v2"}
 
 
 def _images_des_guides() -> None:
