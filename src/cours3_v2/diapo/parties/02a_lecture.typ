@@ -91,7 +91,7 @@
 
   #notes[
     `print(f)` affiche l'objet, `<_io.TextIOWrapper name='trace.csv'
-    mode='r' encoding='utf-8'>`, sans le contenu. `trace.csv` : 1 803
+    mode='r' encoding='utf-8'>`, sans le contenu. `trace.csv` : 2 857
     caractères.
   ]
 ]
@@ -114,6 +114,8 @@
   ]
 
   #notes[
+    Première ligne de `parcours.txt`, le fichier du TD 3c.
+
     `\r` seul (anciens Mac) est aussi lu comme `\n`. `newline=""` supprime la
     conversion : le module `csv` le demande.
 

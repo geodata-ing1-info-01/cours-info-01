@@ -6,8 +6,8 @@
 
 #graphe-git(
   commits: (
-    (nom: "c1", col: 0, voie: 0, id: "472"),
-    (nom: "c2", col: 1, voie: 0, id: "d2f", parents: ("c1",)),
+    (nom: "c1", col: 0, voie: 0, id: "64e"),
+    (nom: "c2", col: 1, voie: 0, id: "726", parents: ("c1",)),
   ),
   branches: ((nom: "master", voie: 0, commit: "c2"),),
   echelle: 1.4,

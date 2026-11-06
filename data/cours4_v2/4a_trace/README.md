@@ -8,7 +8,7 @@ GPS. Un test et un commit par étape.
 | Dossier | Contenu |
 |---|---|
 | `depart/stats_trace.py` | le programme de départ, avec deux erreurs de syntaxe à corriger à l'étape B1 |
-| `depart/trace.csv`, `depart/trace_2.csv` | deux traces GPS, de 61 et 121 positions |
+| `depart/trace.csv`, `depart/trace_2.csv` | deux traces GPS, de 60 et 50 positions |
 | `depart/modeles/README.md` | un modèle de README à adapter et compléter, étape B7 |
 | `travail/` | vide : le dossier du projet y est créé à l'étape A1 |
 
@@ -29,5 +29,5 @@ indentations.
 | B3 | les positions de la trace, lues dans deux listes | 5 |
 | B4 | la fonction `distance_entre` | 6 |
 | B5 | la fonction `distance_parcourue` : le résultat final | 7 |
-| B6 | l'option `--vitesse` et la fonction `vitesse_moyenne` | 8 |
+| B6 | l'option `--vitesse` et la fonction `secondes_ecoulees` | 8 |
 | B7 (bonus) | un README, l'étiquette `v1.0` | 9 |

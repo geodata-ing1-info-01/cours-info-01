@@ -1,28 +1,29 @@
 #!/usr/bin/env python3
 """Traces GPS des TD du cours 3, version 2 (proposition 2027-2028).
 
-Deux traces inventées, sans lien avec un parcours réel : la graine est fixée,
-et le script redonne les mêmes fichiers. Les colonnes sont `durée` (secondes
-depuis le départ), `x` et `y` (Lambert-93, en mètres) et `z` (altitude, en
-mètres). Les trois premières altitudes de `trace.csv` sont celles du programme
-`altitudes.py` du cours 1, et les cinq premières celles du corrigé du TD 2c. Les
-programmes des TD, leurs corrigés et `altitudes.txt` sont versionnés à côté.
+Copie dans les dossiers des TD les deux traces de `traces/` : `trace.csv` (forêt de
+Fontainebleau, gorges de Franchard) et `trace_2.csv` (de la gare de Noisy-Champs à
+Geodata Paris). Elles viennent d'un chemin et d'altitudes réels, et simulent une marche
+(`traces/fabriquer_traces.py`). Leurs colonnes sont celles qu'écrit `ogr2ogr` : `X`, `Y`
+(Lambert-93, en mètres), `ele` (altitude, en mètres) et `time` (heure UTC). Les programmes
+des TD, leurs corrigés et `altitudes.txt` sont versionnés à côté.
 
-Le programme de départ du TD 3a est une copie du corrigé du TD 2c : le script
-signale par une ligne `! …` qu'ils diffèrent, et `outils/livrer_tds.py` s'arrête.
+`altitudes.txt` et les listes des cours 1 et 2 sont une altitude sur 12 de `trace.csv`, soit
+une toutes les 6 minutes. Le programme de départ du TD 3a est une copie du corrigé du TD 2c.
+Le script signale par une ligne `! …` un écart à l'une de ces deux règles, et
+`outils/livrer_tds.py` s'arrête.
 
     python data/cours3_v2/make_data.py build
 """
 
 from __future__ import annotations
 
-import math
-import random
+import csv
+import shutil
 import sys
 from pathlib import Path
 
 ICI = Path(__file__).resolve().parent
-ENTETE = "durée,x,y,z\n"
 DEPARTS = {
     "3a_denivele": ("trace.csv",),
     "3b_portabilite": ("trace.csv", "trace_2.csv"),
@@ -30,33 +31,27 @@ DEPARTS = {
 }
 
 
-def trace(graine: int, points: int, base: float, relief: float, bruit: float,
-          debut: tuple[float, ...] = ()) -> str:
-    """Le texte d'une trace : un point toutes les 30 secondes, à environ 1,2 m/s."""
-    hasard = random.Random(graine)
-    x, y = 673120.5, 6860840.2
-    cap = hasard.uniform(0, 2 * math.pi)
-    lignes = [ENTETE]
-    for i in range(points):
-        forme = math.sin(math.pi * i / (points - 1)) ** 2 + 0.25 * math.sin(6 * math.pi * i / (points - 1))
-        z = debut[i] if i < len(debut) else base + relief * forme + hasard.gauss(0, bruit)
-        lignes.append(f"{30 * i},{x:.1f},{y:.1f},{z:.1f}\n")
-        cap += hasard.gauss(0, 0.25)
-        x += 36 * math.cos(cap) + hasard.gauss(0, 1.5)
-        y += 36 * math.sin(cap) + hasard.gauss(0, 1.5)
-    return "".join(lignes)
+def verifier_listes() -> None:
+    """`altitudes.txt` et le corrigé du TD 2c contiennent une altitude sur 12 de `trace.csv`."""
+    with open(ICI / "traces" / "trace.csv", encoding="utf-8") as fichier:
+        altitudes = [ligne["ele"] for ligne in csv.DictReader(fichier)]
+    attendues = altitudes[::12][:5]
+    texte = ICI / "3a_denivele" / "depart" / "altitudes.txt"
+    if texte.read_text(encoding="utf-8").split() != attendues:
+        print(f"! {texte.relative_to(ICI.parent.parent)} diffère de {attendues}")
+    corrige = ICI.parent / "cours2_v2" / "corriges" / "2c_depot_altitudes" / "altitudes.py"
+    liste = f"altitudes = [{', '.join(attendues)}]"
+    if liste not in corrige.read_text(encoding="utf-8"):
+        print(f"! {corrige.relative_to(ICI.parent.parent)} ne contient pas {liste}")
 
 
 def build() -> None:
-    traces = {
-        "trace.csv": trace(2026, 61, 128.0, 32.0, 0.7, debut=(128.4, 131.0, 127.6)),
-        "trace_2.csv": trace(2027, 121, 112.0, 90.0, 1.2),
-    }
     for td, noms in DEPARTS.items():
         for nom in noms:
             cible = ICI / td / "depart" / nom
-            cible.write_text(traces[nom], encoding="utf-8", newline="\n")
+            shutil.copyfile(ICI / "traces" / nom, cible)
             print(f"✓ {cible.relative_to(ICI.parent.parent)}")
+    verifier_listes()
     depart = ICI / "3a_denivele" / "depart" / "altitudes.py"
     corrige = ICI.parent / "cours2_v2" / "corriges" / "2c_depot_altitudes" / "altitudes.py"
     if depart.read_text(encoding="utf-8") != corrige.read_text(encoding="utf-8"):

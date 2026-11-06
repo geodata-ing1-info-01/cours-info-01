@@ -88,7 +88,7 @@
       #console("altitudes.py\naltitudes_v2.py\naltitudes_v2_corrige.py\naltitudes_final.py\naltitudes_final_OK.py")
     ],
     panneau("Avec git : un fichier et son historique")[
-      #console("$ git log --oneline\n02b563f Ignore le fichier du résultat\n9cd57cf Ajoute un README\nd2f927b Remplace la moyenne par les altitudes extrêmes\n4726396 Ajoute le calcul de la moyenne", taille: 13pt)
+      #console("$ git log --oneline\n2cc998a Ignore le fichier du résultat\n4097d87 Ajoute un README\n726d93f Remplace la moyenne par les altitudes extrêmes\n64ed213 Ajoute le calcul de la moyenne", taille: 13pt)
     ],
   )
 
@@ -373,11 +373,11 @@
 
   #grid(
     columns: (1.5fr, 1fr), column-gutter: 20pt, align: horizon,
-    console("$ git add altitudes.py\n$ git commit -m \"Ajoute le calcul de la moyenne\"\n[master (commit racine) 4726396] Ajoute le calcul de la moyenne\n 1 file changed, 8 insertions(+)\n create mode 100644 altitudes.py\n…\n$ git log --oneline\nd2f927b Remplace la moyenne par les altitudes extrêmes\n4726396 Ajoute le calcul de la moyenne", taille: 13pt),
+    console("$ git add altitudes.py\n$ git commit -m \"Ajoute le calcul de la moyenne\"\n[master (commit racine) 64ed213] Ajoute le calcul de la moyenne\n 1 file changed, 8 insertions(+)\n create mode 100644 altitudes.py\n…\n$ git log --oneline\n726d93f Remplace la moyenne par les altitudes extrêmes\n64ed213 Ajoute le calcul de la moyenne", taille: 13pt),
     align(center, graphe-git(
       commits: (
-        (nom: "c1", col: 0, voie: 0, id: "472"),
-        (nom: "c2", col: 1, voie: 0, id: "d2f", parents: ("c1",)),
+        (nom: "c1", col: 0, voie: 0, id: "64e"),
+        (nom: "c2", col: 1, voie: 0, id: "726", parents: ("c1",)),
       ),
       branches: ((nom: "master", voie: 0, commit: "c2"),),
       echelle: 1.4,
@@ -387,9 +387,9 @@
   )
 
   #legende[
-    `4726396` est le début de l'identifiant du commit, calculé à partir de
-    son contenu. Chaque commit désigne son parent, d'où la flèche de `d2f`
-    vers `472` ; `master` désigne le dernier commit, et avance à chaque
+    `64ed213` est le début de l'identifiant du commit, calculé à partir de
+    son contenu. Chaque commit désigne son parent, d'où la flèche de `726`
+    vers `64e` ; `master` désigne le dernier commit, et avance à chaque
     commit.
   ]
 
@@ -446,7 +446,7 @@
     l'ancienne version, en `+` la nouvelle, avec trois lignes de contexte.
   ]
 
-  #console("$ git diff\ndiff --git a/altitudes.py b/altitudes.py\nindex 613e856..1ad773e 100644\n--- a/altitudes.py\n+++ b/altitudes.py\n@@ -1,8 +1,6 @@\n-\"\"\"Moyenne d'une série d'altitudes, à la main plutôt qu'avec sum().\"\"\"\n+\"\"\"Altitudes extrêmes d'une série de mesures.\"\"\"\n \n altitudes = [128.4, 131.0, 127.6]\n-total = 0\n-for altitude in altitudes:\n-    total = total + altitude\n-moyenne = total / len(altitudes)\n-print(f\"moyenne : {moyenne:.1f} m\")\n+print(f\"altitude minimale : {min(altitudes):.1f} m\")\n+print(f\"altitude maximale : {max(altitudes):.1f} m\")\n+print(f\"max - min : {max(altitudes) - min(altitudes):.1f} m\")", taille: 12.5pt)
+  #console("$ git diff\ndiff --git a/altitudes.py b/altitudes.py\nindex 81bd4a3..6e3cc79 100644\n--- a/altitudes.py\n+++ b/altitudes.py\n@@ -1,8 +1,6 @@\n-\"\"\"Moyenne d'une série d'altitudes, à la main plutôt qu'avec sum().\"\"\"\n+\"\"\"Altitudes extrêmes d'une série de mesures.\"\"\"\n \n altitudes = [79.6, 103.2, 98.3]\n-total = 0\n-for altitude in altitudes:\n-    total = total + altitude\n-moyenne = total / len(altitudes)\n-print(f\"moyenne : {moyenne:.1f} m\")\n+print(f\"altitude minimale : {min(altitudes):.1f} m\")\n+print(f\"altitude maximale : {max(altitudes):.1f} m\")\n+print(f\"max - min : {max(altitudes) - min(altitudes):.1f} m\")", taille: 12.5pt)
 
   #legende[
     `@@ -1,8 +1,6 @@` : le passage commence à la ligne 1, et fait 8 lignes
@@ -584,9 +584,9 @@
     columns: (1fr, 1.2fr), column-gutter: 20pt, align: horizon,
     align(center, graphe-git(
       commits: (
-        (nom: "c3", col: 0, voie: 0, id: "02b"),
-        (nom: "c5", col: 1, voie: 0, id: "862", parents: ("c3",)),
-        (nom: "c4", col: 1, voie: 1, id: "18b", parents: ("c3",)),
+        (nom: "c3", col: 0, voie: 0, id: "2cc"),
+        (nom: "c5", col: 1, voie: 0, id: "b3e", parents: ("c3",)),
+        (nom: "c4", col: 1, voie: 1, id: "c56", parents: ("c3",)),
       ),
       branches: (
         (nom: "master", voie: 0, commit: "c5"),
@@ -596,7 +596,7 @@
       taille-etiquette: 10pt,
       extra: (pos, d) => marque-tete(d, pos("c5"), dx: 1.0, dy: 0.9),
     )),
-    console("$ git checkout -b cumul\nBasculement sur la nouvelle branche 'cumul'\n…\n$ git checkout master\n…\n$ git log --oneline --graph --all --decorate\n* 8624753 (HEAD -> master) Complète la description…\n| * 18b88ab (cumul) Ajoute le dénivelé cumulé\n|/\n* 02b563f Ignore le fichier du résultat", taille: 12.5pt),
+    console("$ git checkout -b cumul\nBasculement sur la nouvelle branche 'cumul'\n…\n$ git checkout master\n…\n$ git log --oneline --graph --all --decorate\n* b3e9e18 (HEAD -> master) Complète la description…\n| * c563389 (cumul) Ajoute le dénivelé cumulé\n|/\n* 2cc998a Ignore le fichier du résultat", taille: 12.5pt),
   )
 
   #legende[
@@ -624,9 +624,9 @@
 // Le graphe de « Les branches », avec HEAD sur l'une ou l'autre branche.
 #let _variante(tete) = graphe-git(
   commits: (
-    (nom: "c3", col: 0, voie: 0, id: "02b"),
-    (nom: "c5", col: 1, voie: 0, id: "862", parents: ("c3",)),
-    (nom: "c4", col: 1, voie: 1, id: "18b", parents: ("c3",)),
+    (nom: "c3", col: 0, voie: 0, id: "2cc"),
+    (nom: "c5", col: 1, voie: 0, id: "b3e", parents: ("c3",)),
+    (nom: "c4", col: 1, voie: 1, id: "c56", parents: ("c3",)),
   ),
   branches: (
     (nom: "master", voie: 0, commit: "c5"),
@@ -648,12 +648,12 @@
     panneau("Sur master")[
       #align(center, _variante("c5"))
       #v(0.3em)
-      #console("$ python altitudes.py\n…\nmax - min : 3.4 m", taille: 13pt)
+      #console("$ python altitudes.py\n…\nmax - min : 23.6 m", taille: 13pt)
     ],
     panneau[Après `git checkout cumul`][
       #align(center, _variante("c4"))
       #v(0.3em)
-      #console("$ python altitudes.py\n…\nmax - min : 3.4 m\ncumul en hausse : 2.6 m\ncumul en baisse : 3.4 m", taille: 13pt)
+      #console("$ python altitudes.py\n…\nmax - min : 23.6 m\ncumul en hausse : 23.6 m\ncumul en baisse : 4.9 m", taille: 13pt)
     ],
   )
 
@@ -683,8 +683,8 @@
     panneau("Seule cumul a avancé")[
       #align(center, graphe-git(
         commits: (
-          (nom: "c3", col: 0, voie: 0, id: "02b"),
-          (nom: "c4", col: 1, voie: 0, id: "18b", parents: ("c3",), place: "dessus"),
+          (nom: "c3", col: 0, voie: 0, id: "2cc"),
+          (nom: "c4", col: 1, voie: 0, id: "c56", parents: ("c3",), place: "dessus"),
         ),
         branches: ((nom: "master", voie: 0, commit: "c4"),),
         echelle: 0.95,
@@ -696,10 +696,10 @@
     panneau("Les deux branches ont avancé")[
       #align(center, graphe-git(
         commits: (
-          (nom: "c3", col: 0, voie: 0, id: "02b"),
-          (nom: "c5", col: 1, voie: 0, id: "862", parents: ("c3",)),
-          (nom: "c4", col: 1, voie: 1, id: "18b", parents: ("c3",)),
-          (nom: "c6", col: 2, voie: 0, id: "6db", parents: ("c5", "c4")),
+          (nom: "c3", col: 0, voie: 0, id: "2cc"),
+          (nom: "c5", col: 1, voie: 0, id: "b3e", parents: ("c3",)),
+          (nom: "c4", col: 1, voie: 1, id: "c56", parents: ("c3",)),
+          (nom: "c6", col: 2, voie: 0, id: "17a", parents: ("c5", "c4")),
         ),
         branches: (
           (nom: "master", voie: 0, commit: "c6"),
@@ -708,7 +708,7 @@
         echelle: 0.95,
         taille-etiquette: 10pt,
       ))
-      #text(size: 14pt, fill: estompe)[`6db`, le commit de fusion, a deux parents (double trait).]
+      #text(size: 14pt, fill: estompe)[`17a`, le commit de fusion, a deux parents (double trait).]
     ],
   )
 
@@ -740,9 +740,9 @@
     columns: (0.75fr, 1.6fr), column-gutter: 18pt, align: horizon,
     align(center, graphe-git(
       commits: (
-        (nom: "c6", col: 0, voie: 0, id: "6db"),
-        (nom: "c8", col: 1, voie: 0, id: "7e0", parents: ("c6",)),
-        (nom: "c7", col: 1, voie: 1, id: "6f7", parents: ("c6",)),
+        (nom: "c6", col: 0, voie: 0, id: "17a"),
+        (nom: "c8", col: 1, voie: 0, id: "c07", parents: ("c6",)),
+        (nom: "c7", col: 1, voie: 1, id: "f68", parents: ("c6",)),
       ),
       branches: (
         (nom: "master", voie: 0, commit: "c8"),
@@ -762,9 +762,9 @@
       columns: (auto, 1fr),
       align: left + horizon,
       [Commit], [La troisième ligne d'`altitudes.py`],
-      [`6db`, avant], [#text(size: 18pt)[#raw("altitudes = [128.4, 131.0, 127.6]")]],
-      [`6f7`, `mesure-4`], [#text(size: 18pt)[#raw("altitudes = [128.4, 131.0, 127.6, ")#underline(raw("134.9"))#raw("]")]],
-      [`7e0`, `master`], [#text(size: 18pt)[#raw("altitudes = [128.4, 131.0, 127.6, ")#underline(raw("136.7"))#raw("]")]],
+      [`17a`, avant], [#text(size: 18pt)[#raw("altitudes = [79.6, 103.2, 98.3]")]],
+      [`f68`, `mesure-4`], [#text(size: 18pt)[#raw("altitudes = [79.6, 103.2, 98.3, ")#underline(raw("92.5"))#raw("]")]],
+      [`c07`, `master`], [#text(size: 18pt)[#raw("altitudes = [79.6, 103.2, 98.3, ")#underline(raw("123.7"))#raw("]")]],
     ),
   )
 
@@ -773,7 +773,7 @@
 
   #legende[
     `mesure-4` et `master` ont chacune ajouté une mesure à la même ligne, modifiée
-    des deux côtés depuis `6db`. La partie modifiée est soulignée.
+    des deux côtés depuis `17a`. La partie modifiée est soulignée.
   ]
 
   #notes[
@@ -797,10 +797,10 @@
 
   #face-a-face(
     panneau[`altitudes.py` après `git merge`][
-      #console("<<<<<<< HEAD\naltitudes = [128.4, 131.0, 127.6, 136.7]\n=======\naltitudes = [128.4, 131.0, 127.6, 134.9]\n>>>>>>> mesure-4", taille: 14pt)
+      #console("<<<<<<< HEAD\naltitudes = [79.6, 103.2, 98.3, 123.7]\n=======\naltitudes = [79.6, 103.2, 98.3, 92.5]\n>>>>>>> mesure-4", taille: 14pt)
     ],
     panneau[La ligne écrite, puis la fin de la fusion][
-      #console("altitudes = [128.4, 131.0, 127.6, 134.9, 136.7]\n$ git add altitudes.py\n$ git commit -m \"Fusionne les deux mesures\"\n[master 91c4702] Fusionne les deux mesures", taille: 14pt)
+      #console("altitudes = [79.6, 103.2, 98.3, 92.5, 123.7]\n$ git add altitudes.py\n$ git commit -m \"Fusionne les deux mesures\"\n[master 83a406f] Fusionne les deux mesures", taille: 14pt)
     ],
   )
 

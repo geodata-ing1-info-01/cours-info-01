@@ -5,11 +5,11 @@
 #set page(width: auto, height: auto, margin: 12pt, fill: white)
 #set text(font: police-texte, lang: "fr")
 #let base = (
-  (nom: "c4", col: 0, voie: 0, id: "02b"),
-  (nom: "c5", col: 1, voie: 1, id: "18b", parents: ("c4",)),
-  (nom: "c6", col: 1, voie: 0, id: "862", parents: ("c4",), place: "dessous"),
+  (nom: "c4", col: 0, voie: 0, id: "2cc"),
+  (nom: "c5", col: 1, voie: 1, id: "c56", parents: ("c4",)),
+  (nom: "c6", col: 1, voie: 0, id: "b3e", parents: ("c4",), place: "dessous"),
 )
-#let fusion = (nom: "c7", col: 2, voie: 0, id: "6db", parents: ("c6", "c5"))
+#let fusion = (nom: "c7", col: 2, voie: 0, id: "17a", parents: ("c6", "c5"))
 #let titre(t) = text(size: 12pt, weight: demi-gras, fill: accent)[#t]
 #grid(
   columns: 2, column-gutter: 1.4cm, row-gutter: 0.35cm,
@@ -26,8 +26,8 @@
 )
 #v(0.2cm)
 #block(width: 16cm, text(size: 10pt, fill: estompe)[
-  Dans chaque pastille, le début de l'identifiant du commit. `02b` : « Ignore
-  le fichier du résultat » ; `18b` : le dénivelé cumulé, sur `cumul` ; `862` : la
-  description du programme, sur `master` ; `6db` : le commit de fusion, qui a deux
+  Dans chaque pastille, le début de l'identifiant du commit. `2cc` : « Ignore
+  le fichier du résultat » ; `c56` : le dénivelé cumulé, sur `cumul` ; `b3e` : la
+  description du programme, sur `master` ; `17a` : le commit de fusion, qui a deux
   parents (double trait). Les identifiants diffèrent sur chaque poste.
 ])

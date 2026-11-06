@@ -43,7 +43,7 @@
     [Ouvrir un terminal : #comment[menu Terminal, New Terminal.]
       #constat[Le terminal de VS Code s'ouvre dans `travail`.]],
     [Lancer le programme : `python altitudes.py`.
-      #constat[`moyenne : 129.0 m`.]],
+      #constat[`moyenne : 93.7 m`.]],
   )
 
   #notes[
@@ -81,7 +81,7 @@
     [Remplacer les lignes de `total = 0` jusqu'au `print` par ces trois lignes :
       #code("print(f\"altitude minimale : {min(altitudes):.1f} m\")\nprint(f\"altitude maximale : {max(altitudes):.1f} m\")\nprint(f\"max - min : {max(altitudes) - min(altitudes):.1f} m\")", taille: 13pt)],
     [Enregistrer le fichier, puis lancer le programme : `python altitudes.py`.
-      #constat[`127.6`, `131.0` et `3.4`.]],
+      #constat[`79.6`, `103.2` et `23.6`.]],
   )
 
   #notes[
@@ -193,7 +193,7 @@
         #constat[L'invite affiche `(cumul)`.]],
       [À la fin de `altitudes.py`, ajouter les lignes ci-contre. #comment[Les copier depuis le guide en HTML : copié depuis le PDF, le code perd ses indentations.]],
       [Enregistrer le fichier, puis lancer le programme : `python altitudes.py`.
-        #constat[`cumul en hausse : 2.6 m` et `cumul en baisse : 3.4 m`.]],
+        #constat[`cumul en hausse : 23.6 m` et `cumul en baisse : 4.9 m`.]],
       [Créer un commit : #commandes("git add altitudes.py", "git commit -m \"Ajoute le dénivelé cumulé\"")],
     ),
     code("hausse = 0\nbaisse = 0\nfor i in range(1, len(altitudes)):\n    ecart = altitudes[i] - altitudes[i - 1]\n    if ecart > 0:\n        hausse = hausse + ecart\n    else:\n        baisse = baisse - ecart\nprint(f\"cumul en hausse : {hausse:.1f} m\")\nprint(f\"cumul en baisse : {baisse:.1f} m\")", taille: 11pt),
@@ -202,7 +202,7 @@
   #notes[
     Le code est fourni : `if` et `range` n'ont pas été vus. Le TD porte sur git.
 
-    Sur 128.4, 131.0 et 127.6 : une hausse de 2.6 m, puis une baisse de 3.4 m.
+    Sur 79.6, 103.2 et 98.3 : une hausse de 23.6 m, puis une baisse de 4.9 m.
 
     La branche courante s'affiche entre parenthèses à la fin de l'invite de
     Git Bash.
@@ -226,9 +226,9 @@
   #consignes(
     taille: 16pt,
     [Créer la branche `mesure-4` : `git checkout -b mesure-4`.],
-    [Dans `altitudes.py`, ajouter `134.9` à la fin de la liste, puis créer un commit : #commandes("git add altitudes.py", "git commit -m \"Ajoute la mesure 134.9\"")],
+    [Dans `altitudes.py`, ajouter `92.5` à la fin de la liste, puis créer un commit : #commandes("git add altitudes.py", "git commit -m \"Ajoute la mesure 92.5\"")],
     [Revenir sur `master` : `git checkout master`.],
-    [Dans `altitudes.py`, ajouter `136.7` à la fin de la liste, puis créer un commit : #commandes("git add altitudes.py", "git commit -m \"Ajoute la mesure 136.7\"")
+    [Dans `altitudes.py`, ajouter `123.7` à la fin de la liste, puis créer un commit : #commandes("git add altitudes.py", "git commit -m \"Ajoute la mesure 123.7\"")
       #constat[Deux commits, un sur chaque branche.]],
   )
 
@@ -245,9 +245,9 @@
       #constat[`CONFLIT (contenu)` ; les marqueurs dans `altitudes.py`.]],
     [Lancer le programme : `python altitudes.py`.
       #constat[`SyntaxError` : les marqueurs ne sont pas du Python.]],
-    [Dans `altitudes.py`, écrire la ligne `altitudes = [128.4, 131.0, 127.6, 134.9, 136.7]`, puis retirer les marqueurs et enregistrer.],
+    [Dans `altitudes.py`, écrire la ligne `altitudes = [79.6, 103.2, 98.3, 92.5, 123.7]`, puis retirer les marqueurs et enregistrer.],
     [Lancer le programme.
-      #constat[`136.7`, `9.1`, `11.7` et `3.4`.]],
+      #constat[`123.7`, `44.1`, `54.8` et `10.7`.]],
     [Terminer la fusion : #commandes("git add altitudes.py", "git commit -m \"Fusionne les deux mesures\"")
       #constat[Un commit de fusion.]],
   )
@@ -282,16 +282,16 @@
 
     #align(center, graphe-git(
       commits: (
-        (nom: "c1", col: 0, voie: 0, id: "472"),
-        (nom: "c2", col: 1, voie: 0, id: "d2f", parents: ("c1",)),
-        (nom: "c3", col: 2, voie: 0, id: "9cd", parents: ("c2",)),
-        (nom: "c4", col: 3, voie: 0, id: "02b", parents: ("c3",)),
-        (nom: "c5", col: 4, voie: 1, id: "18b", parents: ("c4",)),
-        (nom: "c6", col: 4, voie: 0, id: "862", parents: ("c4",)),
-        (nom: "c7", col: 5, voie: 0, id: "6db", parents: ("c6", "c5")),
-        (nom: "c8", col: 6, voie: 1, id: "6f7", parents: ("c7",)),
-        (nom: "c9", col: 6, voie: 0, id: "7e0", parents: ("c7",)),
-        (nom: "c10", col: 7, voie: 0, id: "91c", parents: ("c9", "c8")),
+        (nom: "c1", col: 0, voie: 0, id: "64e"),
+        (nom: "c2", col: 1, voie: 0, id: "726", parents: ("c1",)),
+        (nom: "c3", col: 2, voie: 0, id: "409", parents: ("c2",)),
+        (nom: "c4", col: 3, voie: 0, id: "2cc", parents: ("c3",)),
+        (nom: "c5", col: 4, voie: 1, id: "c56", parents: ("c4",)),
+        (nom: "c6", col: 4, voie: 0, id: "b3e", parents: ("c4",)),
+        (nom: "c7", col: 5, voie: 0, id: "17a", parents: ("c6", "c5")),
+        (nom: "c8", col: 6, voie: 1, id: "f68", parents: ("c7",)),
+        (nom: "c9", col: 6, voie: 0, id: "c07", parents: ("c7",)),
+        (nom: "c10", col: 7, voie: 0, id: "83a", parents: ("c9", "c8")),
       ),
       branches: (
         (nom: "master", voie: 0, commit: "c10"),

@@ -2,7 +2,10 @@
 
 import argparse
 import math
+from datetime import datetime
 from pathlib import Path
+
+FORMAT_TEMPS = "%Y/%m/%d %H:%M:%S+00"
 
 
 def distance_entre(x1, y1, x2, y2):
@@ -19,9 +22,11 @@ def distance_parcourue(liste_x, liste_y):
     return total
 
 
-def vitesse_moyenne(distance, temps):
-    """La vitesse moyenne en m/s, pour une distance en mètres et un temps en secondes."""
-    return distance / temps
+def secondes_ecoulees(debut, fin):
+    """Le temps en secondes entre deux valeurs de la colonne time."""
+    date_debut = datetime.strptime(debut, FORMAT_TEMPS)
+    date_fin = datetime.strptime(fin, FORMAT_TEMPS)
+    return (date_fin - date_debut).total_seconds()
 
 
 analyseur = argparse.ArgumentParser(description="Statistiques d'une trace GPS.")
@@ -40,15 +45,15 @@ SEUIL = options.seuil
 altitudes = []
 liste_x = []
 liste_y = []
-durees = []
+temps = []
 with open(FICHIER, encoding="utf-8") as fichier:
     fichier.readline()
     for ligne in fichier:
-        duree, x, y, z = ligne.strip().split(",")
-        altitudes.append(float(z))
+        x, y, ele, time = ligne.strip().split(",")
+        altitudes.append(float(ele))
         liste_x.append(float(x))
         liste_y.append(float(y))
-        durees.append(float(duree))
+        temps.append(time)
 
 print(f"altitude minimale : {min(altitudes):.1f} m")
 print(f"altitude maximale : {max(altitudes):.1f} m")
@@ -77,7 +82,7 @@ if options.distance:
     print(f"distance parcourue : {distance:.1f} m")
 
 if options.vitesse:
-    temps_total = durees[-1] - durees[0]
+    temps_total = secondes_ecoulees(temps[0], temps[-1])
     distance = distance_parcourue(liste_x, liste_y)
-    vitesse = vitesse_moyenne(distance, temps_total)
+    vitesse = distance / temps_total
     print(f"vitesse moyenne : {vitesse:.2f} m/s, soit {vitesse * 3.6:.1f} km/h")

@@ -194,7 +194,7 @@ vide, puis six lignes de code.
 ```python
 """Moyenne d'une série d'altitudes, à la main plutôt qu'avec sum()."""
 
-altitudes = [128.4, 131.0, 127.6]
+altitudes = [79.6, 103.2, 98.3]
 total = 0
 for altitude in altitudes:
     total = total + altitude
@@ -209,7 +209,7 @@ de la fenêtre de Notepad++.
 
 > **À faire :** placer Git Bash dans `1c_programme/` ; `python altitudes.py`.
 >
-> **À obtenir :** `moyenne : 129.0 m`.
+> **À obtenir :** `moyenne : 93.7 m`.
 
 Dans Git Bash, rouvert dans `1c_programme/` à l'étape 2 :
 
@@ -222,11 +222,11 @@ python altitudes.py
 l'interpréteur Python, qui lit le fichier et l'exécute :
 
 ```text
-moyenne : 129.0 m
+moyenne : 93.7 m
 ```
 
 Le programme n'écrit qu'une ligne, celle du `print` final. La moyenne de
-128,4, 131,0 et 127,6 vaut bien 129,0.
+79,6, 103,2 et 98,3 vaut bien 93,7.
 
 **Vérification** : `ls` après l'exécution affiche les deux mêmes
 fichiers. Lancer un programme Python ne crée aucun fichier.
@@ -240,12 +240,12 @@ l'invite, et refaire le `cd`.
 
 > **À faire :** ajouter une altitude à la liste, relancer sans enregistrer, puis enregistrer et relancer.
 >
-> **À obtenir :** `moyenne : 130.1 m` après l'enregistrement.
+> **À obtenir :** `moyenne : 93.4 m` après l'enregistrement.
 
-1. Dans Notepad++, ajouter `133.2` à la liste :
+1. Dans Notepad++, ajouter `92.5` à la liste :
 
    ```python
-   altitudes = [128.4, 131.0, 127.6, 133.2]
+   altitudes = [79.6, 103.2, 98.3, 92.5]
    ```
 
    Ne pas enregistrer. L'onglet du fichier porte une disquette rouge : le
@@ -264,7 +264,7 @@ l'invite, et refaire le `cd`.
 **Vérification** :
 
 ```text
-moyenne : 130.1 m
+moyenne : 93.4 m
 ```
 
 La moyenne des quatre altitudes vaut 130,05, arrondie à une décimale par
@@ -307,7 +307,7 @@ copiés, puis la moyenne de l'étape 5.
 
 ```text
 auld_lang_syne_une_ligne.txt  raven_une_ligne.txt
-moyenne : 130.1 m
+moyenne : 93.4 m
 ```
 
 Relancer la commande, par la flèche vers le haut puis `Entrée` : la sortie
@@ -319,7 +319,7 @@ qu'il le faut. L'équivalent pour l'invite de commandes est un fichier
 
 > **À faire :** ouvrir une session interactive de Python ; y refaire le calcul ligne à ligne ; la quitter.
 >
-> **À obtenir :** `129.0` affiché par la session, puis le retour à l'invite de Git Bash.
+> **À obtenir :** `93.7` affiché par la session, puis le retour à l'invite de Git Bash.
 
 Dans Git Bash, taper `python` sans nom de fichier : l'interpréteur ouvre une
 session interactive. Chaque ligne tapée est lue, exécutée, et son résultat
@@ -328,15 +328,15 @@ affiché aussitôt.
 ```text
 $ python
 Python 3.12.14 (main, Sep  2 2026, 23:27:36) [GCC 15.3.0] on linux
->>> altitudes = [128.4, 131.0, 127.6]
+>>> altitudes = [79.6, 103.2, 98.3]
 >>> total = 0
 >>> for altitude in altitudes:
 ...     total = total + altitude
 ...
 >>> total
-387.0
+281.1
 >>> total / len(altitudes)
-129.0
+93.7
 >>> exit()
 ```
 

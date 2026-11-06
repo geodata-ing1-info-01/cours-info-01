@@ -22,13 +22,13 @@
 // --------------------------------------------
 #d("Données écrites dans le script")[
   #version-script(
-    "altitudes = [128.4, 131.0, 127.6, 134.9, 136.7]\n\nprint(\"minimum :\", min(altitudes))\nprint(\"maximum :\", max(altitudes))",
+    "altitudes = [79.6, 103.2, 98.3, 92.5, 123.7]\n\nprint(\"minimum :\", min(altitudes))\nprint(\"maximum :\", max(altitudes))",
     vives: (1,),
     poste("Poste d'Alice", "C:/Users/alice/cours3/", "altitudes.py",
-      "$ python altitudes.py\nminimum : 127.6\nmaximum : 136.7"),
+      "$ python altitudes.py\nminimum : 79.6\nmaximum : 123.7"),
     [copie du script],
     poste("Autre poste", "C:/Users/eleve/projet/", "altitudes.py",
-      "$ python altitudes.py\nminimum : 127.6\nmaximum : 136.7"),
+      "$ python altitudes.py\nminimum : 79.6\nmaximum : 123.7"),
     [Ouvrir `altitudes.py`, puis remplacer les valeurs de la liste `altitudes`.],
   )
 
@@ -55,9 +55,9 @@
   #version-script(
     "FICHIER = \"C:/Users/alice/cours3/altitudes.txt\"\n\n" + lecture.replace("CHEMIN", "FICHIER"),
     vives: (1,),
-    donnees: "128.4\n131.0\n…\n136.7",
+    donnees: "79.6\n103.2\n…\n123.7",
     poste("Poste d'Alice", "C:/Users/alice/cours3/", "altitudes.py, altitudes.txt",
-      "$ python altitudes.py\nminimum : 127.6\nmaximum : 136.7"),
+      "$ python altitudes.py\nminimum : 79.6\nmaximum : 123.7"),
     [copie du dossier],
     poste("Autre poste", "C:/Users/eleve/projet/", "altitudes.py, altitudes.txt",
       "$ python altitudes.py\nFileNotFoundError: [Errno 2] No such file or\ndirectory: 'C:/Users/alice/cours3/altitudes.txt'",
@@ -87,10 +87,10 @@
     "from pathlib import Path\n\nDOSSIER = Path(__file__).parent\nFICHIER = DOSSIER / \"altitudes.txt\"\n\n" + lecture.replace("CHEMIN", "FICHIER"),
     vives: (1, 3, 4),
     poste("Poste d'Alice", "C:/Users/alice/cours3/", "altitudes.py, altitudes.txt",
-      "$ python altitudes.py\nminimum : 127.6\nmaximum : 136.7"),
+      "$ python altitudes.py\nminimum : 79.6\nmaximum : 123.7"),
     [copie du dossier],
     poste("Autre poste", "C:/Users/eleve/projet/", "altitudes.py, altitudes.txt",
-      "$ python altitudes.py\nminimum : 127.6\nmaximum : 136.7"),
+      "$ python altitudes.py\nminimum : 79.6\nmaximum : 123.7"),
     [Copier son fichier dans le dossier du script. Ouvrir `altitudes.py`, puis remplacer `altitudes.txt` par le nom de son fichier.],
   )
 
@@ -111,7 +111,7 @@
     "import argparse\n\nanalyseur = argparse.ArgumentParser()\nanalyseur.add_argument(\"fichier\")\noptions = analyseur.parse_args()\n\n" + lecture.replace("CHEMIN", "options.fichier"),
     vives: (1, 3, 4, 5, 8),
     poste("Poste d'Alice", "C:/Users/alice/cours3/", "altitudes.py, altitudes.txt",
-      "$ python altitudes.py altitudes.txt\nminimum : 127.6\nmaximum : 136.7"),
+      "$ python altitudes.py altitudes.txt\nminimum : 79.6\nmaximum : 123.7"),
     [copie du script],
     poste("Autre poste", "C:/Users/eleve/projet/", "altitudes.py, mes_altitudes.txt",
       "$ python altitudes.py mes_altitudes.txt\nminimum : 111.8\nmaximum : 118.9"),
@@ -181,7 +181,7 @@
     [fichiers CSV], [`csv`], [`csv.reader(f)`],
     [moyenne, médiane], [`statistics`], [`statistics.mean(altitudes)`],
     [fonctions mathématiques], [`math`], [`math.sqrt(x)`],
-    [dates et durées], [`datetime`], [`datetime.date.today()`],
+    [dates et durées], [`datetime`], [`datetime.strptime(texte, format)`],
   )
 
   #legende[
@@ -189,9 +189,9 @@
   ]
 
   #notes[
-    `pathlib` et `argparse` : partie suivante.
+    `pathlib` et `argparse` : partie suivante. `datetime` : étape B6 du TD 4a.
 
     Le programme du cours 1 calcule une moyenne avec une boucle, pour écrire une
-    boucle. `statistics.mean` renvoie le même résultat, 129.0 sur sa liste.
+    boucle. `statistics.mean` renvoie le même résultat, 93.7 sur sa liste.
   ]
 ]

@@ -64,7 +64,7 @@ Writer, enregistre en plus la mise en forme du document, et l'interpréteur
 ne peut plus lire le programme.
 
 ```{figure} ../../cours1/notebook/figures/2_texte_brut.svg
-:alt: Trois panneaux. À gauche, enregistré par un traitement de texte : les deux lignes de code, altitude = 128.4 et print(altitude), entourées de balises text:p avec un nom de style. Au milieu, le fichier d'un programme : les deux lignes seules, sans couleur. À droite, les mêmes deux lignes affichées par l'éditeur de code, avec le nombre et le nom de la fonction en couleur.
+:alt: Trois panneaux. À gauche, enregistré par un traitement de texte : les deux lignes de code, altitude = 79.6 et print(altitude), entourées de balises text:p avec un nom de style. Au milieu, le fichier d'un programme : les deux lignes seules, sans couleur. À droite, les mêmes deux lignes affichées par l'éditeur de code, avec le nombre et le nom de la fonction en couleur.
 
 Les mêmes deux lignes de code, dans un fichier de traitement de texte, dans
 le fichier d'un programme, et affichées par l'éditeur de code.
@@ -97,7 +97,7 @@ lancer le programme, comme un correcteur orthographique souligne un mot mal
 écrit.
 
 ```{figure} ../../cours1/notebook/figures/2_soulignement.svg
-:alt: Trois lignes de Python : altitudes = [128.4, 131.0], puis for altitude in altitudes, puis print(altitude) indenté. Le mot altitudes de la deuxième ligne est souligné d'un trait ondulé.
+:alt: Trois lignes de Python : altitudes = [79.6, 103.2], puis for altitude in altitudes, puis print(altitude) indenté. Le mot altitudes de la deuxième ligne est souligné d'un trait ondulé.
 
 La faute soulignée par l'éditeur : le deux-points manque à la fin de la
 ligne `for`.
@@ -181,7 +181,7 @@ comme modifiées des lignes qui ne diffèrent que par leur fin.
 La fenêtre de VS Code a trois zones de travail, et une barre d'état en bas.
 
 ```{figure} figures/1_vscode.svg
-:alt: La fenêtre de VS Code, dessinée. À gauche, l'arborescence du dossier cours2 : 2a_vscode, qui contient altitudes.py, sélectionné, puis 2b_erreurs et 2c_depot_altitudes. Au centre, le fichier altitudes.py, coloré, avec les numéros de ligne et le bouton d'exécution. En bas, le terminal Git Bash : (base), l'invite eleve@POSTE MINGW64 ~/Desktop/info01/cours2, la commande python 2a_vscode/altitudes.py et la sortie moyenne : 129.0 m. En bas, la barre d'état : Ln 8, Col 1, Spaces: 4, UTF-8, LF, Python 3.x ('base').
+:alt: La fenêtre de VS Code, dessinée. À gauche, l'arborescence du dossier cours2 : 2a_vscode, qui contient altitudes.py, sélectionné, puis 2b_erreurs et 2c_depot_altitudes. Au centre, le fichier altitudes.py, coloré, avec les numéros de ligne et le bouton d'exécution. En bas, le terminal Git Bash : (base), l'invite eleve@POSTE MINGW64 ~/Desktop/info01/cours2, la commande python 2a_vscode/altitudes.py et la sortie moyenne : 93.7 m. En bas, la barre d'état : Ln 8, Col 1, Spaces: 4, UTF-8, LF, Python 3.x ('base').
 
 La fenêtre de VS Code après la configuration du TD 2a, dessinée.
 ```

@@ -3,8 +3,9 @@
 // l'encodage, ASCII et UTF-8.
 //
 // Incluse par `cours3_v2.typ`, entre `02a_lecture.typ` et `02c_fichiers.typ`.
-// Exemple passé de la recette à la trace GPS le 04/11/2026 : le `é` de `durée`, sur
-// la première ligne de `trace.csv`, tient la place du `ê` de `Crêpes`.
+// Exemple passé de la recette à la trace GPS le 04/11/2026 ; passé le 06/11/2026 à la
+// première ligne de `parcours.txt`, avec le `ê` de `Forêt` : la première ligne de
+// `trace.csv`, écrite par `ogr2ogr`, n'a pas d'accent.
 // Mode binaire et modes d'écriture placés avant l'encodage le 05/11/2026.
 // Un fichier inclus n'hérite pas des imports de son appelant.
 #import "../../../commun/prelude.typ": *
@@ -77,7 +78,7 @@
 
   #notes[
     Même fichier que la diapositive de la fin de ligne, écrit sous Windows. Les
-    deux octets de `é` : expliqués à « Encodage d'un fichier texte ».
+    deux octets de `ê` : expliqués à « Encodage d'un fichier texte ».
     `read(n)` lit au plus `n` octets. `chemin.read_bytes()` équivaut à
     `open(chemin, "rb")` puis `read()`.
   ]
@@ -117,8 +118,8 @@
 
   #legende[
     `⏎` représente le retour à la ligne. Sans l'argument
-    `encoding`, Python sous Windows décode en cp1252, et `durée` s'affiche
-    `durÃ©e`.
+    `encoding`, Python sous Windows décode en cp1252, et `Forêt` s'affiche
+    `ForÃªt`.
   ]
 
   #notes[

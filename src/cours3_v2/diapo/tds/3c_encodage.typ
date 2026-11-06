@@ -1,8 +1,8 @@
 // TD 3c du cours 3 v2 — « Encodage et écriture d'un fichier ».
 //
-// Nouveau (v2), 04/11/2026 : la partie 2 de l'exposé, sur la première ligne de la
-// trace, dont le `é` de `durée` occupe deux octets ; puis l'écriture d'un résumé,
-// en mode `"w"` et `"a"`. Corrigé : `data/cours3_v2/corriges/3c_encodage/`.
+// Nouveau (v2), 04/11/2026 : la partie 2 de l'exposé, sur la première ligne de
+// `parcours.txt`, dont le `ê` de `Forêt` occupe deux octets ; puis l'écriture d'un
+// résumé, en mode `"w"` et `"a"`. Corrigé : `data/cours3_v2/corriges/3c_encodage/`.
 // Sorties relevées sur ce corrigé, Python 3.12.
 //
 // Inclus par `cours3_v2.typ` ; compilable seul par
@@ -24,12 +24,12 @@
   #consignes(
     taille: 16pt,
     [Aller dans le dossier du TD, copier ses fichiers, puis ouvrir une session interactive : #commandes("cd ../../3c_encodage", "cp depart/* travail/", "cd travail", "python")],
-    [Lire la première ligne de la trace en UTF-8 : #commandes("f = open(\"trace.csv\", encoding=\"utf-8\")", "f.readline()")
-      #constat[`'durée,x,y,z\n'`]],
-    [Lire la même ligne en cp1252 : #commandes("f = open(\"trace.csv\", encoding=\"cp1252\")", "f.readline()")
-      #constat[`'durÃ©e,x,y,z\n'` : les deux octets de `é` sont lus comme deux caractères.]],
-    [Lire la même ligne sans la décoder : #commandes("f = open(\"trace.csv\", \"rb\")", "f.readline()")
-      #constat[`b'dur\xc3\xa9e,x,y,z\n'` : le `é` occupe les octets `c3` et `a9`.]],
+    [Lire la première ligne de `parcours.txt` en UTF-8 : #commandes("f = open(\"parcours.txt\", encoding=\"utf-8\")", "f.readline()")
+      #constat[`'Forêt,2 km\n'`]],
+    [Lire la même ligne en cp1252 : #commandes("f = open(\"parcours.txt\", encoding=\"cp1252\")", "f.readline()")
+      #constat[`'ForÃªt,2 km\n'` : les deux octets de `ê` sont lus comme deux caractères.]],
+    [Lire la même ligne sans la décoder : #commandes("f = open(\"parcours.txt\", \"rb\")", "f.readline()")
+      #constat[`b'For\xc3\xaat,2 km\n'` : le `ê` occupe les octets `c3` et `aa`.]],
     [Quitter la session : `exit()`.],
   )
 
@@ -37,8 +37,8 @@
     Les trois fichiers ouverts restent ouverts jusqu'à `exit()`. Dans un programme,
     employer `with`.
 
-    À vérifier sur un poste de la salle : dans le terminal de VS Code, `é` et
-    `Ã©` s'affichent correctement.
+    À vérifier sur un poste de la salle : dans le terminal de VS Code, `ê` et
+    `Ãª` s'affichent correctement.
   ]
 ]
 

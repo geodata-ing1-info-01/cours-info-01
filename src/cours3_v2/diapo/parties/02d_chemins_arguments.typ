@@ -150,8 +150,8 @@
     `type=float` convertit la valeur : sans lui, `options.seuil` vaut la chaîne `'2'`.
 
     Le seuil : une variation d'altitude plus petite n'est pas comptée, ce qui
-    écarte le bruit du GPS. Sur `trace.csv`, le cumul en hausse passe de 58,4 m
-    à 55,4 m avec `-s 2`.
+    écarte le bruit du GPS. Sur `trace.csv`, le cumul en hausse passe de 98,4 m
+    à 88,7 m avec `-s 2`.
 
     `choices`, non employé ici, limite les valeurs à une liste. Option sans valeur :
     `action="store_true"`, au TD 4a du cours 4.

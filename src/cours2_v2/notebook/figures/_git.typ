@@ -46,12 +46,12 @@
     text(size: 11pt, weight: demi-gras, fill: white)[#nom]),
 )
 
-// Le graphe de l'étape 5 : `02b`, puis `862` sur master et `18b` sur cumul.
+// Le graphe de l'étape 5 : `2cc`, puis `b3e` sur master et `c56` sur cumul.
 #let variante(tete: none, echelle: 1.15) = graphe-git(
   commits: (
-    (nom: "c3", col: 0, voie: 0, id: "02b"),
-    (nom: "c5", col: 1, voie: 0, id: "862", parents: ("c3",)),
-    (nom: "c4", col: 1, voie: 1, id: "18b", parents: ("c3",)),
+    (nom: "c3", col: 0, voie: 0, id: "2cc"),
+    (nom: "c5", col: 1, voie: 0, id: "b3e", parents: ("c3",)),
+    (nom: "c4", col: 1, voie: 1, id: "c56", parents: ("c3",)),
   ),
   branches: (
     (nom: "master", voie: 0, commit: "c5"),

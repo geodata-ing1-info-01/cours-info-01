@@ -6,7 +6,7 @@
 #vscode-diff("travail", "altitudes.py", (
   ("\"\"\"Moyenne d'une série d'altitu…", "\"\"\"Altitudes extrêmes d'une sér…", "modifie"),
   ("", "", "neutre"),
-  ("altitudes = [128.4, 131.0, 127.6]", "altitudes = [128.4, 131.0, 127.6]", "neutre"),
+  ("altitudes = [79.6, 103.2, 98.3]", "altitudes = [79.6, 103.2, 98.3]", "neutre"),
   ("total = 0", "print(f\"altitude minimale : {mi…", "modifie"),
   ("for altitude in altitudes:", "print(f\"altitude maximale : {ma…", "modifie"),
   ("    total = total + altitude", "print(f\"max - min : {max(altitu…", "modifie"),

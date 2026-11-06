@@ -203,16 +203,16 @@
     // sans quoi la comparaison ne montrerait plus rien.
     panneau("Enregistré par un traitement de texte")[
       #raw(
-        "<text:p text:style-name=\"P1\">\naltitude = 128.4</text:p>\n<text:p>print(altitude)</text:p>",
+        "<text:p text:style-name=\"P1\">\naltitude = 79.6</text:p>\n<text:p>print(altitude)</text:p>",
         block: true,
       )
     ],
     panneau("Le fichier d'un programme")[
-      #raw("altitude = 128.4\nprint(altitude)", block: true)
+      #raw("altitude = 79.6\nprint(altitude)", block: true)
     ],
     panneau("Affiché par l'éditeur de code")[
       ```python
-      altitude = 128.4
+      altitude = 79.6
       print(altitude)
       ```
     ],
@@ -231,7 +231,7 @@
     )[
       #set text(size: 21pt)
       #set align(left)
-      #raw("altitudes = [128.4, 131.0]") \
+      #raw("altitudes = [79.6, 103.2]") \
       #raw("for altitude in ")#souligne-ondule[#raw("altitudes")] \
       #raw("    print(altitude)")
     ],

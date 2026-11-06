@@ -47,7 +47,7 @@
     taille: 16pt,
     [Dans `travail/altitudes.py`, remplacer la ligne `FICHIER = …` par ces deux lignes : #commandes("from pathlib import Path", "FICHIER = Path.cwd() / \"trace.csv\"")],
     [Enregistrer le fichier, puis lancer le programme : `python altitudes.py`.
-      #constat[`cumul en hausse : 55.4 m` et `cumul en baisse : 56.4 m`.]],
+      #constat[`cumul en hausse : 88.7 m` et `cumul en baisse : 39.9 m`.]],
     [Lancer le programme depuis le dossier du TD : #commandes("cd ..", "python travail/altitudes.py")
       #constat[`FileNotFoundError` : `Path.cwd()` est maintenant `3b_portabilite/`, et `trace.csv` n'y est pas.]],
     [Remplacer la ligne `FICHIER = …` par : #commandes("FICHIER = Path(__file__).parent / \"trace.csv\"")],
@@ -69,7 +69,7 @@
       #v(2pt)
       #sortie("import argparse\nfrom pathlib import Path\n\nanalyseur = argparse.ArgumentParser(description=\"Altitudes et cumul d'une trace GPS.\")\nanalyseur.add_argument(\"fichier\", help=\"le fichier CSV de la trace\")\nanalyseur.add_argument(\"-s\", \"--seuil\", type=float, default=0,\n                       help=\"variation ignorée sous ce seuil, en mètres\")\noptions = analyseur.parse_args()\n\nFICHIER = Path(options.fichier)\nSEUIL = options.seuil", taille: 11.5pt)],
     [Enregistrer le fichier, puis lancer le programme, sans puis avec un seuil : #commandes("python altitudes.py trace.csv", "python altitudes.py trace.csv -s 2")
-      #constat[`cumul en hausse` : `58.4`, puis `55.4`.]],
+      #constat[`cumul en hausse` : `98.4`, puis `88.7`.]],
   )
 
   #notes[
@@ -82,7 +82,7 @@
   #consignes(
     taille: 17pt,
     [Lancer le programme sur la seconde trace, sans modifier le code : #commandes("python altitudes.py trace_2.csv", "python altitudes.py trace_2.csv -s 2")
-      #constat[`cumul en hausse` : `175.1`, puis `159.4`.]],
+      #constat[`cumul en hausse` : `29.2`, puis `11.4`.]],
     [Lancer le programme sans argument : `python altitudes.py`.
       #constat[`the following arguments are required: fichier`.]],
     [Donner un seuil qui n'est pas un nombre : `python altitudes.py trace.csv -s deux`.
@@ -92,6 +92,9 @@
   )
 
   #notes[
+    `trace_2.csv` : de la gare de Noisy-Champs à Geodata Paris. Le terrain varie de
+    8,4 m : la plus grande partie du cumul sans seuil vient du bruit.
+
     L'aide est produite à partir des `add_argument`, sans rien écrire d'autre.
   ]
 ]

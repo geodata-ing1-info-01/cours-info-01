@@ -4,8 +4,8 @@ altitudes = []
 with open("trace.csv", encoding="utf-8") as fichier:
     fichier.readline()
     for ligne in fichier:
-        duree, x, y, z = ligne.strip().split(",")
-        altitudes.append(float(z))
+        x, y, ele, time = ligne.strip().split(",")
+        altitudes.append(float(ele))
 
 print(f"altitude minimale : {min(altitudes):.1f} m")
 print(f"altitude maximale : {max(altitudes):.1f} m")

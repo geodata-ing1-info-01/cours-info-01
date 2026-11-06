@@ -22,7 +22,7 @@ est l'ordre dans lequel elle a été exécutée, et non sa place dans la page.
 ## Les données
 
 ```{code-cell} ipython3
-altitudes = [128.4, 131.0, 127.6]
+altitudes = [79.6, 103.2, 98.3]
 altitudes
 ```
 

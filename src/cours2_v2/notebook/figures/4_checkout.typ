@@ -7,11 +7,11 @@
   panneau("Sur master")[
     #align(center, variante(tete: "c5"))
     #v(0.3em)
-    #raw("$ python altitudes.py\n…\nmax - min : 3.4 m", block: true)
+    #raw("$ python altitudes.py\n…\nmax - min : 23.6 m", block: true)
   ],
   panneau[Après `git checkout cumul`][
     #align(center, variante(tete: "c4"))
     #v(0.3em)
-    #raw("$ python altitudes.py\n…\nmax - min : 3.4 m\ncumul en hausse : 2.6 m\ncumul en baisse : 3.4 m", block: true)
+    #raw("$ python altitudes.py\n…\nmax - min : 23.6 m\ncumul en hausse : 23.6 m\ncumul en baisse : 4.9 m", block: true)
   ],
 )

@@ -100,11 +100,11 @@
     [Ouvrir `altitudes.ipynb`. #comment[Double-clic sur son nom, dans le panneau de gauche.]
       #constat[Les cellules de code n'ont pas encore de numéro.]],
     [Exécuter les cellules une à une, de haut en bas.
-      #constat[`[1]`, `[2]`… à gauche, dans l'ordre ; la moyenne vaut `129.0`.]],
+      #constat[`[1]`, `[2]`… à gauche, dans l'ordre ; la moyenne vaut `93.7`.]],
     [Exécuter une seconde fois la cellule de la boucle, puis celle de la moyenne.
       #constat[`258.0` : le noyau a gardé `total`, la boucle l'a encore augmenté.]],
     [Redémarrer le noyau et tout exécuter : #comment[menu Kernel, Restart Kernel and Run All Cells.]
-      #constat[Les numéros repartent de `[1]`, la moyenne revient à `129.0`.]],
+      #constat[Les numéros repartent de `[1]`, la moyenne revient à `93.7`.]],
   )
 
   #legende[
@@ -113,7 +113,7 @@
   ]
 
   #notes[
-    Étape 4 : `total` passe de 387,0 à 774,0, et la moyenne à 258,0. Le
+    Étape 4 : `total` passe de 281,1 à 774,0, et la moyenne à 258,0. Le
     notebook sépare `total = 0` de la boucle pour que ce soit visible (le
     notebook du TD 1g de 2026 remettait `total` à zéro dans la même cellule,
     et la relance ne changeait rien).
@@ -192,7 +192,7 @@
   #notes[
     Exemple à ne projeter qu'en fin de TD :
     `# Moyenne des altitudes`, une ligne vide, `Calcule la moyenne de trois
-    altitudes, en mètres.`, puis `- 128.4`, `- 131.0`, `- 127.6`, puis
+    altitudes, en mètres.`, puis `- 79.6`, `- 103.2`, `- 98.3`, puis
     `[Jupyter](https://jupyter.org)`.
 
     `A` insère au-dessus, `B` au-dessous, en mode commande (`Échap`).

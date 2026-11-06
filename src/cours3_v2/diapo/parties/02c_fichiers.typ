@@ -49,9 +49,9 @@
       ],
       [
         #rubrique[Exemple, sur `trace.csv`]
-        #script("# Lire une ligne à la fois\naltitudes = []\nwith open(\"trace.csv\", encoding=\"utf-8\") as f:\n    f.readline()\n    for ligne in f:\n        duree, x, y, z = ligne.strip().split(\",\")\n        altitudes.append(float(z))\n\n# Vider le fichier, puis écrire\nwith open(\"resume.txt\", \"w\", encoding=\"utf-8\") as sortie:\n    sortie.write(f\"minimum : {min(altitudes)}\\n\")\n\n# Écrire à la fin du fichier\nwith open(\"resume.txt\", \"a\", encoding=\"utf-8\") as sortie:\n    sortie.write(f\"maximum : {max(altitudes)}\\n\")", taille: 10.5pt)
+        #script("# Lire une ligne à la fois\naltitudes = []\nwith open(\"trace.csv\", encoding=\"utf-8\") as f:\n    f.readline()\n    for ligne in f:\n        x, y, ele, time = ligne.strip().split(\",\")\n        altitudes.append(float(ele))\n\n# Vider le fichier, puis écrire\nwith open(\"resume.txt\", \"w\", encoding=\"utf-8\") as sortie:\n    sortie.write(f\"minimum : {min(altitudes)}\\n\")\n\n# Écrire à la fin du fichier\nwith open(\"resume.txt\", \"a\", encoding=\"utf-8\") as sortie:\n    sortie.write(f\"maximum : {max(altitudes)}\\n\")", taille: 10.5pt)
         #rubrique[`resume.txt`, après l'exécution]
-        #script("minimum : 120.6\nmaximum : 165.3", taille: 10.5pt, lang: none)
+        #script("minimum : 78.8\nmaximum : 129.5", taille: 10.5pt, lang: none)
       ],
     )
   }

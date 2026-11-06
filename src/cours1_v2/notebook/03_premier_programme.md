@@ -24,7 +24,7 @@ terminal où Python est disponible convient :
 ```text
 $ cd ~/Desktop/info01/cours1/1c_programme
 $ python altitudes.py
-moyenne : 129.0 m
+moyenne : 93.7 m
 ```
 :::
 
@@ -34,7 +34,7 @@ moyenne : 129.0 m
 ```text
 (base) …>cd Desktop\info01\cours1\1c_programme
 (base) …\1c_programme>python altitudes.py
-moyenne : 129.0 m
+moyenne : 93.7 m
 ```
 :::
 
@@ -147,7 +147,7 @@ tapées une à une dans une **session interactive**.
 1. modifier `altitudes.py` dans Notepad++, et l'enregistrer ;
 2. taper `python altitudes.py` dans le terminal ;
 3. l'interpréteur lit le fichier enregistré, et l'exécute ;
-4. le terminal affiche `moyenne : 129.0 m`.
+4. le terminal affiche `moyenne : 93.7 m`.
 :::
 
 :::{grid-item}
@@ -156,8 +156,8 @@ tapées une à une dans une **session interactive**.
 ```text
 $ python
 Python 3.12.14 (main, Sep  2 2026, 23:27:36) [GCC 15.3.0] on linux
->>> 128.4 + 131.0
-259.4
+>>> 79.6 + 103.2
+182.8
 >>> exit()
 ```
 :::
@@ -204,7 +204,7 @@ python altitudes.py
 ```text
 $ bash commandes.sh
 auld_lang_syne_une_ligne.txt  raven_une_ligne.txt
-moyenne : 129.0 m
+moyenne : 93.7 m
 ```
 :::
 

@@ -5,4 +5,4 @@
 #import "../../../../../commun/theme.typ": police-texte
 #set page(width: auto, height: auto, margin: 12pt, fill: white)
 #set text(font: police-texte, size: 11pt)
-#schema-segments(echelle: 3.4pt, taille: 11pt)
+#schema-segments(echelle: 1.45pt, taille: 11pt)

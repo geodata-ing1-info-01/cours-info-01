@@ -1,6 +1,6 @@
 """Moyenne d'une série d'altitudes, à la main plutôt qu'avec sum()."""
 
-altitudes = [128.4, 131.0, 127.6]
+altitudes = [79.6, 103.2, 98.3]
 total = 0
 for altitude in altitudes:
     total = total + altitude

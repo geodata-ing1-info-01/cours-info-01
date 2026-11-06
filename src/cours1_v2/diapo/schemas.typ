@@ -591,7 +591,7 @@
 )
 
 #let _resultat-traduction = box(height: 40pt, inset: (left: 6pt), align(
-  horizon, text(size: 15pt, weight: demi-gras, "129.0"),
+  horizon, text(size: 15pt, weight: demi-gras, "93.7"),
 ))
 
 #let programme-trois-lignes() = block(
@@ -601,7 +601,7 @@
   #text(size: 14pt, weight: demi-gras, fill: estompe)[Un programme de trois lignes, en Python]
   #std.grid(
     columns: (auto, auto, auto), column-gutter: 14pt, row-gutter: 3pt, align: left + horizon,
-    text(size: 14pt, fill: estompe, "1"), text(size: 18pt, raw("total = 128.4 + 131.0 + 127.6")), _case-execution(hauteur: 22pt)[additionne],
+    text(size: 14pt, fill: estompe, "1"), text(size: 18pt, raw("total = 79.6 + 103.2 + 98.3")), _case-execution(hauteur: 22pt)[additionne],
     text(size: 14pt, fill: estompe, "2"), text(size: 18pt, raw("moyenne = total / 3")), _case-execution(hauteur: 22pt)[divise],
     text(size: 14pt, fill: estompe, "3"), text(size: 18pt, raw("print(moyenne)")), _case-execution(hauteur: 22pt)[affiche],
   )

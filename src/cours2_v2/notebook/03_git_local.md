@@ -37,10 +37,10 @@ revenir.
 
 ```text
 $ git log --oneline
-02b563f Ignore le fichier du résultat
-9cd57cf Ajoute un README
-d2f927b Remplace la moyenne par les altitudes extrêmes
-4726396 Ajoute le calcul de la moyenne
+2cc998a Ignore le fichier du résultat
+4097d87 Ajoute un README
+726d93f Remplace la moyenne par les altitudes extrêmes
+64ed213 Ajoute le calcul de la moyenne
 ```
 
 Chaque ligne est un **commit** : une version enregistrée, avec son
@@ -266,12 +266,12 @@ l'aide.
 ```text
 $ git add altitudes.py
 $ git commit -m "Ajoute le calcul de la moyenne"
-[master (commit racine) 4726396] Ajoute le calcul de la moyenne
+[master (commit racine) 64ed213] Ajoute le calcul de la moyenne
  1 file changed, 8 insertions(+)
  create mode 100644 altitudes.py
 ```
 
-`4726396` est le début de l’**identifiant** du commit, une empreinte de 40
+`64ed213` est le début de l’**identifiant** du commit, une empreinte de 40
 caractères calculée à partir de son contenu (l'empreinte est présentée au
 cours 5). Les sept premiers suffisent à désigner un commit dans un dépôt.
 L'identifiant diffère sur chaque poste.
@@ -288,8 +288,8 @@ parent.
 
 ```text
 $ git log --oneline
-d2f927b Remplace la moyenne par les altitudes extrêmes
-4726396 Ajoute le calcul de la moyenne
+726d93f Remplace la moyenne par les altitudes extrêmes
+64ed213 Ajoute le calcul de la moyenne
 ```
 
 - `master` est le nom de la **branche** ; il désigne le dernier commit, et
@@ -337,14 +337,14 @@ remplacement de la moyenne par les altitudes extrêmes :
 ```text
 $ git diff
 diff --git a/altitudes.py b/altitudes.py
-index 613e856..1ad773e 100644
+index 81bd4a3..6e3cc79 100644
 --- a/altitudes.py
 +++ b/altitudes.py
 @@ -1,8 +1,6 @@
 -"""Moyenne d'une série d'altitudes, à la main plutôt qu'avec sum()."""
 +"""Altitudes extrêmes d'une série de mesures."""
  
- altitudes = [128.4, 131.0, 127.6]
+ altitudes = [79.6, 103.2, 98.3]
 -total = 0
 -for altitude in altitudes:
 -    total = total + altitude

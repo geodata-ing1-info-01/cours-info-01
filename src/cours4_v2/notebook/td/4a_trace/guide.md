@@ -42,24 +42,24 @@ Une fois corrigées les deux erreurs du programme de départ, le programme affic
 
 ```text
 $ python stats_trace.py trace.csv
-altitude minimale : 120.6 m
-altitude maximale : 165.3 m
-max - min : 44.7 m
-cumul en hausse : 58.4 m
-cumul en baisse : 59.9 m
+altitude minimale : 78.8 m
+altitude maximale : 129.5 m
+max - min : 50.7 m
+cumul en hausse : 98.4 m
+cumul en baisse : 50.3 m
 ```
 
 À la fin du TD, deux options de la ligne de commande ajoutent les deux résultats :
 
 ```text
 $ python stats_trace.py trace.csv --distance --vitesse
-altitude minimale : 120.6 m
-altitude maximale : 165.3 m
-max - min : 44.7 m
-cumul en hausse : 58.4 m
-cumul en baisse : 59.9 m
-distance parcourue : 2166.4 m
-vitesse moyenne : 1.20 m/s, soit 4.3 km/h
+altitude minimale : 78.8 m
+altitude maximale : 129.5 m
+max - min : 50.7 m
+cumul en hausse : 98.4 m
+cumul en baisse : 50.3 m
+distance parcourue : 1906.7 m
+vitesse moyenne : 1.08 m/s, soit 3.9 km/h
 ```
 
 ### La trace GPS
@@ -67,16 +67,18 @@ vitesse moyenne : 1.20 m/s, soit 4.3 km/h
 `trace.csv` contient une position toutes les 30 secondes :
 
 ```text
-durée,x,y,z
-0,673120.5,6860840.2,128.4
-30,673152.9,6860856.3,131.0
-60,673186.9,6860870.9,127.6
+X,Y,ele,time
+670307.7,6812407.3,79.6,2026/10/04 08:00:00+00
+670295.1,6812393.4,78.8,2026/10/04 08:00:30+00
+670319.7,6812356.2,79.9,2026/10/04 08:01:00+00
 …
-1800,673627.7,6859286.4,126.9
+671847.8,6812231.5,127.7,2026/10/04 08:29:30+00
 ```
 
-`durée` : secondes depuis le départ. `x`, `y` : Lambert-93, en mètres. `z` :
-altitude, en mètres.
+`X`, `Y` : Lambert-93, en mètres. `ele` : altitude, en mètres. `time` : date et heure
+UTC. La trace simule une marche sur un chemin des gorges de Franchard, en forêt de
+Fontainebleau : le chemin et les altitudes viennent de l'IGN, la vitesse et le bruit
+de mesure sont simulés.
 
 Deux positions successives forment un **segment**. La distance parcourue est la somme
 des longueurs des segments, et la vitesse moyenne est cette distance divisée par le
@@ -100,9 +102,9 @@ se termine ainsi :
 | À la fin de l'étape | Lignes après `cumul en baisse` |
 |----|------------------------|
 | B2 | `distance : calcul manquant` |
-| B3 | `positions lues : 61`, `position 0 : 673120.5 6860840.2`, `distance : calcul manquant` |
-| B4 | `essai, 5.0 attendu : 5.0`, `premier segment : 36.2 m`, `distance : calcul manquant` |
-| B5 | `distance parcourue : 2166.4 m` |
+| B3 | `positions lues : 60`, `position 0 : 670307.7 6812407.3`, `distance : calcul manquant` |
+| B4 | `essai, 5.0 attendu : 5.0`, `premier segment : 18.8 m`, `distance : calcul manquant` |
+| B5 | `distance parcourue : 1906.7 m` |
 
 Allen Downey décrit cette méthode dans
 [*Think Python*, section 5.2](https://greenteapress.com/thinkpython/html/chap05.html),
@@ -152,6 +154,7 @@ La partie A, étapes A1 à A3, dure 30 minutes. La partie B, étapes B1 à B6, d
 | un README | cours 2 | B7 |
 | `argparse`, la lecture d'un fichier | cours 3 | B2 et B3 |
 | une fonction : `def`, `return` | présentée à l'étape B4 | B4 à B6 |
+| la bibliothèque standard : `math`, `datetime` | cours 3 | B4 et B6 |
 
 # Énoncé
 
@@ -274,11 +277,11 @@ Solution : [étape A3](#solution-de-létape-a3).
 
 ```text
 $ python stats_trace.py trace.csv
-altitude minimale : 120.6 m
-altitude maximale : 165.3 m
-max - min : 44.7 m
-cumul en hausse : 58.4 m
-cumul en baisse : 59.9 m
+altitude minimale : 78.8 m
+altitude maximale : 129.5 m
+max - min : 50.7 m
+cumul en hausse : 98.4 m
+cumul en baisse : 50.3 m
 ```
 
 `git log --oneline` affiche trois lignes, une par commit.
@@ -315,11 +318,11 @@ Avec l'option, le message s'affiche à la fin de la sortie :
 
 ```text
 $ python stats_trace.py trace.csv --distance
-altitude minimale : 120.6 m
-altitude maximale : 165.3 m
-max - min : 44.7 m
-cumul en hausse : 58.4 m
-cumul en baisse : 59.9 m
+altitude minimale : 78.8 m
+altitude maximale : 129.5 m
+max - min : 50.7 m
+cumul en hausse : 98.4 m
+cumul en baisse : 50.3 m
 distance : calcul manquant
 ```
 
@@ -345,13 +348,13 @@ Solution : [étape B2](#solution-de-létape-b2).
 
 > **Objectif :** garder les colonnes `x` et `y` de la trace dans deux listes, et contrôler les valeurs lues.
 
-Le programme découpe déjà chaque ligne de la trace en `duree`, `x`, `y` et `z`, mais
-il ne garde que `z`, dans la liste `altitudes`.
+Le programme découpe déjà chaque ligne de la trace en `x`, `y`, `ele` et `time`, mais
+il ne garde que `ele`, dans la liste `altitudes`.
 
 **Consignes**
 
 1. Sous la ligne `altitudes = []`, créer deux listes vides, `liste_x` et `liste_y`.
-2. Dans la boucle de lecture, sous la ligne `altitudes.append(float(z))`, convertir `x` et `y` en nombres avec `float`, puis les ajouter à `liste_x` et à `liste_y`.
+2. Dans la boucle de lecture, sous la ligne `altitudes.append(float(ele))`, convertir `x` et `y` en nombres avec `float`, puis les ajouter à `liste_x` et à `liste_y`.
 3. Dans le bloc `if options.distance:`, au-dessus du message, afficher provisoirement `positions lues : `, suivi de `len(liste_x)`.
 4. Sous cette ligne, afficher provisoirement `position 0 : `, suivi de `liste_x[0]` et de `liste_y[0]`.
 5. Enregistrer le fichier.
@@ -360,20 +363,20 @@ il ne garde que `z`, dans la liste `altitudes`.
 
 ```text
 $ python stats_trace.py trace.csv --distance
-altitude minimale : 120.6 m
-altitude maximale : 165.3 m
-max - min : 44.7 m
-cumul en hausse : 58.4 m
-cumul en baisse : 59.9 m
-positions lues : 61
-position 0 : 673120.5 6860840.2
+altitude minimale : 78.8 m
+altitude maximale : 129.5 m
+max - min : 50.7 m
+cumul en hausse : 98.4 m
+cumul en baisse : 50.3 m
+positions lues : 60
+position 0 : 670307.7 6812407.3
 distance : calcul manquant
 ```
 
 Ouvrir `trace.csv` dans VS Code, puis vérifier que la ligne 2 commence par
-`0,673120.5,6860840.2` et que la dernière position est à la ligne 62.
+`670307.7,6812407.3` et que la dernière position est à la ligne 61.
 
-`python stats_trace.py trace_2.csv --distance` affiche `positions lues : 121`.
+`python stats_trace.py trace_2.csv --distance` affiche `positions lues : 50`.
 
 **Commit**
 
@@ -392,7 +395,7 @@ Solution : [étape B3](#solution-de-létape-b3).
 `def` permet d'en écrire de nouvelles. Les paramètres d'une fonction reçoivent les
 valeurs données à l'appel, et `return` renvoie le résultat à l'endroit de l'appel.
 Une fonction s'écrit avant son premier appel, car Python exécute le fichier de haut
-en bas. Ce programme affiche `ecart : 2.6 m` :
+en bas. Ce programme affiche `ecart : 23.6 m` :
 
 ```python
 def ecart(a, b):
@@ -400,7 +403,7 @@ def ecart(a, b):
     return b - a
 
 
-resultat = ecart(128.4, 131.0)
+resultat = ecart(79.6, 103.2)
 print(f"ecart : {resultat:.1f} m")
 ```
 
@@ -423,18 +426,18 @@ puissance : `3 ** 2` vaut `9`. `math.sqrt` donne la racine carrée, après `impo
 
 ```text
 $ python stats_trace.py trace.csv --distance
-altitude minimale : 120.6 m
-altitude maximale : 165.3 m
-max - min : 44.7 m
-cumul en hausse : 58.4 m
-cumul en baisse : 59.9 m
+altitude minimale : 78.8 m
+altitude maximale : 129.5 m
+max - min : 50.7 m
+cumul en hausse : 98.4 m
+cumul en baisse : 50.3 m
 essai, 5.0 attendu : 5.0
-premier segment : 36.2 m
+premier segment : 18.8 m
 distance : calcul manquant
 ```
 
-Sur les deux premières lignes de la trace, `x2 - x1` vaut 32,4 et `y2 - y1` vaut
-16,1. À la calculatrice, √(32,4² + 16,1²) donne 36,2.
+Sur les deux premières lignes de la trace, `x2 - x1` vaut -12,6 et `y2 - y1` vaut
+-13,9. À la calculatrice, √(12,6² + 13,9²) donne 18,8.
 
 Si la sortie diffère, ce tableau donne les causes les plus fréquentes :
 
@@ -483,22 +486,22 @@ la même façon.
 
 ```text
 $ python stats_trace.py trace.csv --distance
-altitude minimale : 120.6 m
-altitude maximale : 165.3 m
-max - min : 44.7 m
-cumul en hausse : 58.4 m
-cumul en baisse : 59.9 m
-position 1, cumul : 36.2
-position 2, cumul : 73.2
-position 3, cumul : 108.5
+altitude minimale : 78.8 m
+altitude maximale : 129.5 m
+max - min : 50.7 m
+cumul en hausse : 98.4 m
+cumul en baisse : 50.3 m
+position 1, cumul : 18.8
+position 2, cumul : 63.4
+position 3, cumul : 105.6
 …
-position 60, cumul : 2166.4
-distance parcourue : 2166.4 m
+position 59, cumul : 1906.7
+distance parcourue : 1906.7 m
 ```
 
 La première valeur est celle du premier segment, à l'étape B4. La valeur augmente
-ensuite d'environ 36 m à chaque ligne. Si la sortie s'arrête à `position 1`, avec
-`distance parcourue : 36.2 m`, le `return` est dans la boucle.
+ensuite d'environ 32 m à chaque ligne. Si la sortie s'arrête à `position 1`, avec
+`distance parcourue : 18.8 m`, le `return` est dans la boucle.
 
 **Consignes : retirer l'affichage provisoire**
 
@@ -509,19 +512,19 @@ ensuite d'environ 36 m à chaque ligne. Si la sortie s'arrête à `position 1`, 
 
 ```text
 $ python stats_trace.py trace.csv --distance
-altitude minimale : 120.6 m
-altitude maximale : 165.3 m
-max - min : 44.7 m
-cumul en hausse : 58.4 m
-cumul en baisse : 59.9 m
-distance parcourue : 2166.4 m
+altitude minimale : 78.8 m
+altitude maximale : 129.5 m
+max - min : 50.7 m
+cumul en hausse : 98.4 m
+cumul en baisse : 50.3 m
+distance parcourue : 1906.7 m
 ```
 
-La trace compte 60 segments d'environ 36 m, et 60 × 36 = 2160 : le résultat a le bon
+La trace compte 59 segments d'environ 32 m, et 59 × 32 = 1888 : le résultat a le bon
 ordre de grandeur.
 
 `python stats_trace.py trace_2.csv --distance` se termine par
-`distance parcourue : 4327.6 m`.
+`distance parcourue : 632.3 m`.
 
 **Commit**
 
@@ -536,9 +539,26 @@ Solution : [étape B5](#solution-de-létape-b5).
 
 > **Objectif :** ajouter l'option `--vitesse`, qui affiche la vitesse moyenne, dans le même ordre que pour la distance : l'option, le calcul intermédiaire, puis le résultat.
 
-La vitesse moyenne est la distance parcourue divisée par le temps total. Le temps
-total est la dernière valeur de la colonne `durée` moins la première. `durees[-1]`
-désigne le dernier élément de la liste `durees`. Une vitesse en m/s, multipliée par
+La vitesse moyenne est la distance parcourue divisée par le temps total. La colonne
+`time` contient la date et l'heure de chaque position, sous forme de texte, et Python
+ne peut pas soustraire deux textes. Le module `datetime`, de la bibliothèque standard
+livrée avec Python (cours 3), convertit un texte en date avec `datetime.strptime`. La
+différence de deux dates est une durée, et sa méthode `total_seconds` renvoie le
+nombre de secondes. Ce programme affiche `30.0` :
+
+```python
+from datetime import datetime
+
+FORMAT_TEMPS = "%Y/%m/%d %H:%M:%S+00"
+
+debut = datetime.strptime("2026/10/04 08:00:00+00", FORMAT_TEMPS)
+fin = datetime.strptime("2026/10/04 08:00:30+00", FORMAT_TEMPS)
+print((fin - debut).total_seconds())
+```
+
+`FORMAT_TEMPS` décrit le texte de la colonne `time` : `%Y` désigne l'année, `%m` le
+mois, `%d` le jour, `%H` l'heure, `%M` les minutes et `%S` les secondes. `+00` indique
+l'heure UTC, et s'écrit tel quel dans le format. Une vitesse en m/s, multipliée par
 3,6, donne des km/h.
 
 **Consignes : déclarer l'option**
@@ -552,53 +572,72 @@ désigne le dernier élément de la liste `durees`. Une vitesse en m/s, multipli
 `python stats_trace.py trace.csv --vitesse` se termine par
 `vitesse : calcul manquant`.
 
-**Consignes : calculer le temps total**
+**Consignes : écrire la fonction**
 
-1. Sous la ligne `liste_y = []`, créer une liste vide, `durees`.
-2. Dans la boucle de lecture, convertir `duree` en nombre avec `float`, puis l'ajouter à `durees`.
-3. Dans le bloc `if options.vitesse:`, au-dessus du message, calculer `temps_total`, la dernière durée moins la première.
-4. Sous cette ligne, afficher provisoirement `temps total : `, suivi de `temps_total` sans chiffre après la virgule (`:.0f`), puis ` s`.
-5. Enregistrer le fichier.
+1. Sous la ligne `import math`, ajouter la ligne `from datetime import datetime`.
+2. Sous les lignes `import`, ajouter la ligne `FORMAT_TEMPS = "%Y/%m/%d %H:%M:%S+00"`.
+3. Sous `distance_parcourue`, écrire la fonction `secondes_ecoulees(debut, fin)`, qui convertit `debut` et `fin` en dates, puis renvoie le temps qui les sépare, en secondes.
+4. Dans le bloc `if options.vitesse:`, au-dessus du message, garder dans `essai` le résultat de `secondes_ecoulees("2026/10/04 08:00:00+00", "2026/10/04 08:00:30+00")`.
+5. Sous cette ligne, afficher provisoirement `essai, 30.0 attendu : `, suivi de `essai`.
+6. Enregistrer le fichier.
 
 **Test**
 
 `python stats_trace.py trace.csv --vitesse` se termine par ces deux lignes :
 
 ```text
-temps total : 1800 s
+essai, 30.0 attendu : 30.0
 vitesse : calcul manquant
 ```
 
-La dernière ligne de `trace.csv` commence par `1800`.
+**Consignes : calculer le temps total**
+
+1. Sous la ligne `liste_y = []`, créer une liste vide, `temps`.
+2. Dans la boucle de lecture, ajouter `time` à `temps`, sans le convertir.
+3. Dans le bloc `if options.vitesse:`, retirer les deux lignes de l'essai.
+4. À leur place, calculer `temps_total` avec `secondes_ecoulees`, sur `temps[0]` et `temps[-1]`.
+5. Sous cette ligne, afficher provisoirement `temps total : `, suivi de `temps_total` sans chiffre après la virgule (`:.0f`), puis ` s`.
+6. Enregistrer le fichier.
+
+**Test**
+
+`python stats_trace.py trace.csv --vitesse` se termine par ces deux lignes :
+
+```text
+temps total : 1770 s
+vitesse : calcul manquant
+```
+
+`temps[-1]` désigne le dernier élément de la liste `temps`. La première position de
+`trace.csv` finit par `08:00:00+00`, et la dernière par `08:29:30+00`, soit 29 min 30 s.
 
 **Consignes : calculer la vitesse**
 
-1. Sous `distance_parcourue`, écrire la fonction `vitesse_moyenne(distance, temps)`, qui renvoie la vitesse en m/s.
-2. Dans le bloc `if options.vitesse:`, retirer les deux `print`.
-3. Sous le calcul de `temps_total`, écrire `distance = distance_parcourue(liste_x, liste_y)`.
-4. Appeler `vitesse_moyenne` avec `distance` et `temps_total`, et garder le résultat dans la variable `vitesse`.
-5. Afficher `vitesse moyenne : `, suivi de `vitesse` avec deux chiffres après la virgule, puis ` m/s, soit `, suivi de `vitesse * 3.6` avec un chiffre après la virgule, puis ` km/h`.
-6. Enregistrer le fichier.
+1. Dans le bloc `if options.vitesse:`, retirer les deux `print`.
+2. Sous le calcul de `temps_total`, écrire `distance = distance_parcourue(liste_x, liste_y)`.
+3. Diviser `distance` par `temps_total`, et garder le résultat dans la variable `vitesse`.
+4. Afficher `vitesse moyenne : `, suivi de `vitesse` avec deux chiffres après la virgule, puis ` m/s, soit `, suivi de `vitesse * 3.6` avec un chiffre après la virgule, puis ` km/h`.
+5. Enregistrer le fichier.
 
 **Test**
 
 ```text
 $ python stats_trace.py trace.csv --distance --vitesse
-altitude minimale : 120.6 m
-altitude maximale : 165.3 m
-max - min : 44.7 m
-cumul en hausse : 58.4 m
-cumul en baisse : 59.9 m
-distance parcourue : 2166.4 m
-vitesse moyenne : 1.20 m/s, soit 4.3 km/h
+altitude minimale : 78.8 m
+altitude maximale : 129.5 m
+max - min : 50.7 m
+cumul en hausse : 98.4 m
+cumul en baisse : 50.3 m
+distance parcourue : 1906.7 m
+vitesse moyenne : 1.08 m/s, soit 3.9 km/h
 ```
 
 `python stats_trace.py trace.csv --vitesse`, sans `--distance`, se termine par la même
 ligne `vitesse moyenne`.
 
-À la calculatrice, 2166,4 / 1800 donne 1,20. La seconde trace a été fabriquée à la
-même vitesse : `python stats_trace.py trace_2.csv --vitesse` se termine aussi par
-cette ligne.
+À la calculatrice, 1906,7 / 1770 donne 1,08.
+`python stats_trace.py trace_2.csv --vitesse` se termine par
+`vitesse moyenne : 1.29 m/s, soit 4.6 km/h`.
 
 **Commit**
 
@@ -768,8 +807,8 @@ termine par `:`. Corriger la ligne 18 et enregistrer :
 +++
     for ligne in fichier:
 +++
-   19         duree, x, y, z = ligne.strip().split(",")
-   20 		altitudes.append(float(z))
+   19         x, y, ele, time = ligne.strip().split(",")
+   20 		altitudes.append(float(ele))
 ```
 
 ```text
@@ -782,7 +821,7 @@ git commit -m "Correction : le deux-points de la boucle"
 ```text
 $ python stats_trace.py trace.csv
   File "C:\Users\eleve\Desktop\info01\cours4\4a_trace\travail\stats_trace\stats_trace.py", line 20
-    altitudes.append(float(z))
+    altitudes.append(float(ele))
 TabError: inconsistent use of tabs and spaces in indentation
 ```
 
@@ -793,12 +832,12 @@ espaces :
 
 ```modif
    18     for ligne in fichier:
-   19         duree, x, y, z = ligne.strip().split(",")
+   19         x, y, ele, time = ligne.strip().split(",")
 ---
-   20 		altitudes.append(float(z))
+   20 		altitudes.append(float(ele))
 ---
 +++
-        altitudes.append(float(z))
+        altitudes.append(float(ele))
 +++
    21
    22 print(f"altitude minimale : {min(altitudes):.1f} m")
@@ -859,8 +898,8 @@ niveau d'indentation que `altitudes.append`. `float` convertit le texte lu en
 nombre, comme pour `z`.
 
 ```modif
-   23         duree, x, y, z = ligne.strip().split(",")
-   24         altitudes.append(float(z))
+   23         x, y, ele, time = ligne.strip().split(",")
+   24         altitudes.append(float(ele))
 +++
         liste_x.append(float(x))
         liste_y.append(float(y))
@@ -988,17 +1027,17 @@ Le premier test montre le total après chaque segment :
 
 ```text
 $ python stats_trace.py trace.csv --distance
-altitude minimale : 120.6 m
-altitude maximale : 165.3 m
-max - min : 44.7 m
-cumul en hausse : 58.4 m
-cumul en baisse : 59.9 m
-position 1, cumul : 36.2
-position 2, cumul : 73.2
-position 3, cumul : 108.5
+altitude minimale : 78.8 m
+altitude maximale : 129.5 m
+max - min : 50.7 m
+cumul en hausse : 98.4 m
+cumul en baisse : 50.3 m
+position 1, cumul : 18.8
+position 2, cumul : 63.4
+position 3, cumul : 105.6
 …
-position 60, cumul : 2166.4
-distance parcourue : 2166.4 m
+position 59, cumul : 1906.7
+distance parcourue : 1906.7 m
 ```
 
 **Retirer l'affichage provisoire.** Une fois les valeurs contrôlées, supprimer le
@@ -1042,74 +1081,112 @@ if options.vitesse:
 +++
 ```
 
-**Créer la liste des durées.** Créer `durees` à côté des deux listes de l'étape B3.
+**Importer le module.** `datetime` s'importe sans installation, comme `math`.
+`FORMAT_TEMPS` s'écrit en majuscules, comme `FICHIER` et `SEUIL`.
 
 ```modif
-   36 liste_x = []
-   37 liste_y = []
+    3 import argparse
+    4 import math
 +++
-durees = []
+from datetime import datetime
 +++
-   39 with open(FICHIER, encoding="utf-8") as fichier:
-   40     fichier.readline()
+    6 from pathlib import Path
++++
+
+FORMAT_TEMPS = "%Y/%m/%d %H:%M:%S+00"
++++
+    9
+   10
 ```
 
-**Remplir la liste.** Ajouter la ligne dans la boucle de lecture. La variable `duree`
-existe depuis le TD 3a, sans avoir servi jusqu'ici.
+**Écrire la fonction.** Elle convertit les deux textes en dates, puis renvoie en
+secondes la durée qui les sépare.
 
 ```modif
-   44         liste_x.append(float(x))
-   45         liste_y.append(float(y))
+   21         total = total + segment
+   22     return total
 +++
-        durees.append(float(duree))
+
+
+def secondes_ecoulees(debut, fin):
+    """Le temps en secondes entre deux valeurs de la colonne time."""
+    date_debut = datetime.strptime(debut, FORMAT_TEMPS)
+    date_fin = datetime.strptime(fin, FORMAT_TEMPS)
+    return (date_fin - date_debut).total_seconds()
 +++
-   47
-   48 print(f"altitude minimale : {min(altitudes):.1f} m")
+   30
+   31
 ```
 
-**Calculer le temps total.** `durees[-1]` désigne la dernière durée, et `durees[0]`
-la première. Le format `:.0f` affiche le nombre sans chiffre après la virgule.
+**Essayer la fonction.** Deux valeurs à 30 secondes d'écart donnent un résultat connu.
 
 ```modif
-   73
-   74 if options.vitesse:
+   81
+   82 if options.vitesse:
 +++
-    temps_total = durees[-1] - durees[0]
+    essai = secondes_ecoulees("2026/10/04 08:00:00+00", "2026/10/04 08:00:30+00")
+    print(f"essai, 30.0 attendu : {essai}")
++++
+   85     print("vitesse : calcul manquant")
+```
+
+**Créer la liste des temps.** Créer `temps` à côté des deux listes de l'étape B3.
+
+```modif
+   46 liste_x = []
+   47 liste_y = []
++++
+temps = []
++++
+   49 with open(FICHIER, encoding="utf-8") as fichier:
+   50     fichier.readline()
+```
+
+**Remplir la liste.** Ajouter la ligne dans la boucle de lecture. La variable `time`
+existe depuis le TD 3a, sans avoir servi jusqu'ici. Le texte reste tel quel, et
+`secondes_ecoulees` le convertit.
+
+```modif
+   54         liste_x.append(float(x))
+   55         liste_y.append(float(y))
++++
+        temps.append(time)
++++
+   57
+   58 print(f"altitude minimale : {min(altitudes):.1f} m")
+```
+
+**Calculer le temps total.** `temps[-1]` désigne la dernière valeur, et `temps[0]` la
+première. Le format `:.0f` affiche le nombre sans chiffre après la virgule.
+
+```modif
+   83
+   84 if options.vitesse:
+---
+   85     essai = secondes_ecoulees("2026/10/04 08:00:00+00", "2026/10/04 08:00:30+00")
+   86     print(f"essai, 30.0 attendu : {essai}")
+---
++++
+    temps_total = secondes_ecoulees(temps[0], temps[-1])
     print(f"temps total : {temps_total:.0f} s")
 +++
-   77     print("vitesse : calcul manquant")
-```
-
-**Écrire la fonction.** Elle divise la distance par le temps.
-
-```modif
-   18         total = total + segment
-   19     return total
-+++
-
-
-def vitesse_moyenne(distance, temps):
-    """La vitesse moyenne en m/s, pour une distance en mètres et un temps en secondes."""
-    return distance / temps
-+++
-   25
-   26
+   87     print("vitesse : calcul manquant")
 ```
 
 **Afficher le résultat final.** Le bloc appelle `distance_parcourue` sans recopier sa
-boucle, puis passe le résultat à `vitesse_moyenne`. `vitesse * 3.6` convertit la
-vitesse en km/h pour l'affichage.
+boucle, puis divise la distance par le temps. `vitesse * 3.6` convertit la vitesse en
+km/h pour l'affichage.
 
 ```modif
-   79 if options.vitesse:
-   80     temps_total = durees[-1] - durees[0]
+   84 if options.vitesse:
+   85     temps_total = secondes_ecoulees(temps[0], temps[-1])
 ---
-   81     print(f"temps total : {temps_total:.0f} s")
-   82     print("vitesse : calcul manquant")
+   86     print(f"temps total : {temps_total:.0f} s")
+   87     print("vitesse : calcul manquant")
 ---
 +++
     distance = distance_parcourue(liste_x, liste_y)
-    vitesse = vitesse_moyenne(distance, temps_total)
+    vitesse = distance / temps_total
     print(f"vitesse moyenne : {vitesse:.2f} m/s, soit {vitesse * 3.6:.1f} km/h")
 +++
 ```
@@ -1141,7 +1218,10 @@ git log --oneline
 
 import argparse
 import math
+from datetime import datetime
 from pathlib import Path
+
+FORMAT_TEMPS = "%Y/%m/%d %H:%M:%S+00"
 
 
 def distance_entre(x1, y1, x2, y2):
@@ -1158,9 +1238,11 @@ def distance_parcourue(liste_x, liste_y):
     return total
 
 
-def vitesse_moyenne(distance, temps):
-    """La vitesse moyenne en m/s, pour une distance en mètres et un temps en secondes."""
-    return distance / temps
+def secondes_ecoulees(debut, fin):
+    """Le temps en secondes entre deux valeurs de la colonne time."""
+    date_debut = datetime.strptime(debut, FORMAT_TEMPS)
+    date_fin = datetime.strptime(fin, FORMAT_TEMPS)
+    return (date_fin - date_debut).total_seconds()
 
 
 analyseur = argparse.ArgumentParser(description="Statistiques d'une trace GPS.")
@@ -1179,15 +1261,15 @@ SEUIL = options.seuil
 altitudes = []
 liste_x = []
 liste_y = []
-durees = []
+temps = []
 with open(FICHIER, encoding="utf-8") as fichier:
     fichier.readline()
     for ligne in fichier:
-        duree, x, y, z = ligne.strip().split(",")
-        altitudes.append(float(z))
+        x, y, ele, time = ligne.strip().split(",")
+        altitudes.append(float(ele))
         liste_x.append(float(x))
         liste_y.append(float(y))
-        durees.append(float(duree))
+        temps.append(time)
 
 print(f"altitude minimale : {min(altitudes):.1f} m")
 print(f"altitude maximale : {max(altitudes):.1f} m")
@@ -1216,8 +1298,8 @@ if options.distance:
     print(f"distance parcourue : {distance:.1f} m")
 
 if options.vitesse:
-    temps_total = durees[-1] - durees[0]
+    temps_total = secondes_ecoulees(temps[0], temps[-1])
     distance = distance_parcourue(liste_x, liste_y)
-    vitesse = vitesse_moyenne(distance, temps_total)
+    vitesse = distance / temps_total
     print(f"vitesse moyenne : {vitesse:.2f} m/s, soit {vitesse * 3.6:.1f} km/h")
 ```

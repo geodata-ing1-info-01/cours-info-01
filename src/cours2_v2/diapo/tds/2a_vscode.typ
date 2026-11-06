@@ -429,7 +429,7 @@
     taille: 16pt,
     [Ouvrir `2a_vscode/altitudes.py`, dans l'arborescence.],
     [Cliquer sur le bouton #sym.triangle.filled.r en haut à droite du fichier.
-      #constat[La commande apparaît dans le terminal, puis `moyenne : 129.0 m`.]],
+      #constat[La commande apparaît dans le terminal, puis `moyenne : 93.7 m`.]],
   )
 
   #v(0.2em)

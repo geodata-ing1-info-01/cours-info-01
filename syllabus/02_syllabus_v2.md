@@ -48,7 +48,7 @@ Le module suit un seul programme des cours 1 à 4 : `altitudes.py`, renommé `st
 | 1 | lancer, modifier, relancer | une liste de trois valeurs, la moyenne | non |
 | 2 | git ; `min`, `max`, `if` et `range`, dans du code fourni | les altitudes extrêmes, leur écart, le dénivelé cumulé, sur une liste | tout le TD 2c |
 | 3 | `open`, `with`, `pathlib`, `argparse`, encodage, `write` | les données lues dans `altitudes.txt`, puis `trace.csv` ; le fichier et un seuil en arguments ; un résumé écrit dans un fichier | non |
-| 4 | `def`, `return`, `math`, `action="store_true"` | la distance et la vitesse, à partir des colonnes `x`, `y` et `durée` | un commit par étape |
+| 4 | `def`, `return`, `math`, `datetime`, `action="store_true"` | la distance et la vitesse, à partir des colonnes `X`, `Y` et `time` | un commit par étape |
 
 L'animation (cours 6 et 7, et l'ancien projet 4) reste décrite plus bas, et reste à trancher.
 

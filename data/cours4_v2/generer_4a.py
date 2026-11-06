@@ -60,8 +60,8 @@ altitudes = []
 with open(FICHIER, encoding="utf-8") as fichier:
     fichier.readline()
     for ligne in fichier
-        duree, x, y, z = ligne.strip().split(",")
-\t\taltitudes.append(float(z))
+        x, y, ele, time = ligne.strip().split(",")
+\t\taltitudes.append(float(ele))
 
 print(f"altitude minimale : {min(altitudes):.1f} m")
 print(f"altitude maximale : {max(altitudes):.1f} m")
@@ -103,7 +103,7 @@ if options.distance:
     print("distance : calcul manquant")\n''')],
     # B3 : les positions, et deux affichages provisoires
     "b3.1": [("altitudes = []\n", "altitudes = []\nliste_x = []\nliste_y = []\n")],
-    "b3.2": [("        altitudes.append(float(z))\n", """        altitudes.append(float(z))
+    "b3.2": [("        altitudes.append(float(ele))\n", """        altitudes.append(float(ele))
         liste_x.append(float(x))
         liste_y.append(float(y))
 """)],
@@ -156,21 +156,33 @@ analyseur.add_argument("--vitesse", action="store_true",
 
 if options.vitesse:
     print("vitesse : calcul manquant")\n''')],
-    "b6.3": [("liste_y = []\n", "liste_y = []\ndurees = []\n")],
-    "b6.4": [("        liste_y.append(float(y))\n", "        liste_y.append(float(y))\n        durees.append(float(duree))\n")],
+    "b6.3": [("import math\n", "import math\nfrom datetime import datetime\n"),
+             ("from pathlib import Path\n\n\ndef distance_entre", '''from pathlib import Path
+
+FORMAT_TEMPS = "%Y/%m/%d %H:%M:%S+00"
+
+
+def distance_entre''')],
+    "b6.4": [("    return total\n", '''    return total
+
+
+def secondes_ecoulees(debut, fin):
+    """Le temps en secondes entre deux valeurs de la colonne time."""
+    date_debut = datetime.strptime(debut, FORMAT_TEMPS)
+    date_fin = datetime.strptime(fin, FORMAT_TEMPS)
+    return (date_fin - date_debut).total_seconds()\n''')],
     "b6.5": [('''if options.vitesse:\n''', '''if options.vitesse:
-    temps_total = durees[-1] - durees[0]
+    essai = secondes_ecoulees("2026/10/04 08:00:00+00", "2026/10/04 08:00:30+00")
+    print(f"essai, 30.0 attendu : {essai}")\n''')],
+    "b6.6": [("liste_y = []\n", "liste_y = []\ntemps = []\n")],
+    "b6.7": [("        liste_y.append(float(y))\n", "        liste_y.append(float(y))\n        temps.append(time)\n")],
+    "b6.8": [('''    essai = secondes_ecoulees("2026/10/04 08:00:00+00", "2026/10/04 08:00:30+00")
+    print(f"essai, 30.0 attendu : {essai}")\n''', '''    temps_total = secondes_ecoulees(temps[0], temps[-1])
     print(f"temps total : {temps_total:.0f} s")\n''')],
-    "b6.6": [("    return total\n", '''    return total
-
-
-def vitesse_moyenne(distance, temps):
-    """La vitesse moyenne en m/s, pour une distance en mètres et un temps en secondes."""
-    return distance / temps\n''')],
-    "b6.7": [('''    print(f"temps total : {temps_total:.0f} s")
+    "b6.9": [('''    print(f"temps total : {temps_total:.0f} s")
     print("vitesse : calcul manquant")\n''',
               '''    distance = distance_parcourue(liste_x, liste_y)
-    vitesse = vitesse_moyenne(distance, temps_total)
+    vitesse = distance / temps_total
     print(f"vitesse moyenne : {vitesse:.2f} m/s, soit {vitesse * 3.6:.1f} km/h")\n''')],
 }
 

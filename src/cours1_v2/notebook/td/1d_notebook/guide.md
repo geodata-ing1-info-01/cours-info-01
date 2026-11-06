@@ -136,7 +136,7 @@ Markdown qu'il contient, dont la syntaxe est celle de la partie 3 du cours ;
 
 **Vérification** : chaque cellule de code a un numéro à gauche, `[1]` à
 `[5]`, la cellule de la boucle affiche trois valeurs, et la moyenne vaut
-`129.0 m`.
+`93.7 m`.
 
 **À noter** : ce qu'affiche la cellule des données, qui n'appelle pas
 `print`, et ce qu'affiche la cellule `total = 0`.
@@ -171,7 +171,7 @@ Menu Kernel, « Restart Kernel and Run All Cells… », puis confirmer par
 Restart.
 
 **Vérification** : les cellules sont numérotées `[1]` à `[5]` dans l'ordre de
-la page, `total` vaut `387.0`, et la moyenne `129.0 m`.
+la page, `total` vaut `281.1`, et la moyenne `93.7 m`.
 
 ## 4 · Ajouter une cellule de texte
 
@@ -269,11 +269,11 @@ ont la distribution Anaconda, qui installe JupyterLab dans `base`.
 
 | Cellule | Sortie |
 |---|---|
-| les données | `[128.4, 131.0, 127.6]` |
+| les données | `[79.6, 103.2, 98.3]` |
 | `total = 0` | rien |
-| la boucle | `128.4`, puis `259.4`, puis `387.0` |
-| la moyenne | `moyenne : 129.0 m` |
-| `total` | `387.0` |
+| la boucle | `79.6`, puis `182.8`, puis `281.1` |
+| la moyenne | `moyenne : 93.7 m` |
+| `total` | `281.1` |
 
 La dernière expression d'une cellule s'affiche sans `print`, comme dans la
 session interactive du TD 1c : la cellule des données affiche la liste,
@@ -312,7 +312,7 @@ Une cellule de texte possible, ligne par ligne :
 |---|---|
 | `# Moyenne des altitudes` | un titre, en gros caractères |
 | une ligne vide, puis `Calcule la moyenne de trois altitudes, en mètres.` | un paragraphe |
-| une ligne vide, puis `- 128.4`, `- 131.0` et `- 127.6`, un par ligne | une liste de trois puces |
+| une ligne vide, puis `- 79.6`, `- 103.2` et `- 98.3`, un par ligne | une liste de trois puces |
 | une ligne vide, puis `[Jupyter](https://jupyter.org)` | le mot Jupyter, souligné, qui ouvre jupyter.org au clic |
 
 Le `#` et le `-` sont suivis d'un espace. Tant que la cellule est en cours
@@ -332,7 +332,7 @@ montre chaque cellule avec son type et ses lignes :
    "cell_type": "code",
    …
    "source": [
-    "altitudes = [128.4, 131.0, 127.6]\n",
+    "altitudes = [79.6, 103.2, 98.3]\n",
     "altitudes"
    ]
 ```

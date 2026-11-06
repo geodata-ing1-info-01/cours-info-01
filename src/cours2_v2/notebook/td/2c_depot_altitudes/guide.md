@@ -33,7 +33,7 @@ Pour chaque étape, le guide donne :
 Les sorties de ce guide ont été relevées avec git 2.43 en français. Sur un
 poste où git parle anglais, les messages sont les mêmes, en anglais : le
 guide donne entre parenthèses les phrases anglaises à reconnaître. Les
-identifiants de commit (`4726396`…) sont différents sur chaque poste.
+identifiants de commit (`64ed213`…) sont différents sur chaque poste.
 
 | Étape | Objectif | Ce qu'on fait | Commits à la fin |
 |---|---|---|---|
@@ -93,7 +93,7 @@ par `-m` pour éviter cet écran.
 
 > **À faire :** copier `altitudes.py` de `depart/` dans `2c_depot_altitudes/travail/` ; ouvrir `travail/` dans VS Code, avec un terminal Git Bash ; lancer le programme.
 >
-> **À obtenir :** l'explorateur de VS Code montre `altitudes.py` ; l'invite se termine par `2c_depot_altitudes/travail` ; le programme affiche `moyenne : 129.0 m`.
+> **À obtenir :** l'explorateur de VS Code montre `altitudes.py` ; l'invite se termine par `2c_depot_altitudes/travail` ; le programme affiche `moyenne : 93.7 m`.
 
 **Dossier de départ** : `cours2/2c_depot_altitudes/`, tel que décompressé
 depuis l'archive.
@@ -136,7 +136,7 @@ python altitudes.py
 ```
 
 ```text
-moyenne : 129.0 m
+moyenne : 93.7 m
 ```
 
 Ce programme est celui du cours 1, déjà lancé au TD 2a.
@@ -244,12 +244,12 @@ git commit -m "Ajoute le calcul de la moyenne"
 ```
 
 ```text
-[master (commit racine) 4726396] Ajoute le calcul de la moyenne
+[master (commit racine) 64ed213] Ajoute le calcul de la moyenne
  1 file changed, 8 insertions(+)
  create mode 100644 altitudes.py
 ```
 
-`4726396` est le début de l'identifiant du commit ; le vôtre est différent.
+`64ed213` est le début de l'identifiant du commit ; le vôtre est différent.
 
 **Vérification** :
 
@@ -258,7 +258,7 @@ git log --oneline
 ```
 
 ```text
-4726396 Ajoute le calcul de la moyenne
+64ed213 Ajoute le calcul de la moyenne
 ```
 
 Si `git commit` affiche `Please tell me who you are`, l'étape 1.2 n'a pas
@@ -268,7 +268,7 @@ Si `git commit` affiche `Please tell me who you are`, l'étape 1.2 n'a pas
 
 > **À faire :** remplacer la moyenne par les altitudes extrêmes dans `altitudes.py` ; lire `git status` et `git diff` ; faire un commit.
 >
-> **À obtenir :** le programme affiche `127.6`, `131.0` et `3.4` ; `git log --oneline` affiche deux lignes.
+> **À obtenir :** le programme affiche `79.6`, `103.2` et `23.6` ; `git log --oneline` affiche deux lignes.
 
 ### 2.1 Modifier le programme
 
@@ -295,9 +295,9 @@ python altitudes.py
 ```
 
 ```text
-altitude minimale : 127.6 m
-altitude maximale : 131.0 m
-max - min : 3.4 m
+altitude minimale : 79.6 m
+altitude maximale : 103.2 m
+max - min : 23.6 m
 ```
 
 ### 2.2 Ce que git voit
@@ -328,14 +328,14 @@ git diff
 
 ```text
 diff --git a/altitudes.py b/altitudes.py
-index 613e856..1ad773e 100644
+index 81bd4a3..6e3cc79 100644
 --- a/altitudes.py
 +++ b/altitudes.py
 @@ -1,8 +1,6 @@
 -"""Moyenne d'une série d'altitudes, à la main plutôt qu'avec sum()."""
 +"""Altitudes extrêmes d'une série de mesures."""
  
- altitudes = [128.4, 131.0, 127.6]
+ altitudes = [79.6, 103.2, 98.3]
 -total = 0
 -for altitude in altitudes:
 -    total = total + altitude
@@ -364,7 +364,7 @@ git commit -m "Remplace la moyenne par les altitudes extrêmes"
 ```
 
 ```text
-[master d2f927b] Remplace la moyenne par les altitudes extrêmes
+[master 726d93f] Remplace la moyenne par les altitudes extrêmes
  1 file changed, 4 insertions(+), 6 deletions(-)
 ```
 
@@ -379,8 +379,8 @@ git log --oneline
 ```
 
 ```text
-d2f927b Remplace la moyenne par les altitudes extrêmes
-4726396 Ajoute le calcul de la moyenne
+726d93f Remplace la moyenne par les altitudes extrêmes
+64ed213 Ajoute le calcul de la moyenne
 ```
 
 Le commit le plus récent est en haut. `git log`, sans option, donne aussi
@@ -403,7 +403,7 @@ python altitudes.py
 ```
 
 ```text
-altitude minimale : 127.6 m
+altitude minimale : 79.6 m
 Traceback (most recent call last):
   File "…/2c_depot_altitudes/travail/altitudes.py", line 5, in <module>
     print(f"altitude maximale : {max(altitude):.1f} m")
@@ -419,12 +419,12 @@ git diff
 
 ```text
 diff --git a/altitudes.py b/altitudes.py
-index 1ad773e..4f93241 100644
+index 6e3cc79..688525d 100644
 --- a/altitudes.py
 +++ b/altitudes.py
 @@ -2,5 +2,5 @@
  
- altitudes = [128.4, 131.0, 127.6]
+ altitudes = [79.6, 103.2, 98.3]
  print(f"altitude minimale : {min(altitudes):.1f} m")
 -print(f"altitude maximale : {max(altitudes):.1f} m")
 +print(f"altitude maximale : {max(altitude):.1f} m")
@@ -482,7 +482,7 @@ git commit -m "Ajoute un README"
 ```
 
 ```text
-[master 9cd57cf] Ajoute un README
+[master 4097d87] Ajoute un README
  1 file changed, 7 insertions(+)
  create mode 100644 README.md
 ```
@@ -498,9 +498,9 @@ cat resultat.txt
 ```
 
 ```text
-altitude minimale : 127.6 m
-altitude maximale : 131.0 m
-max - min : 3.4 m
+altitude minimale : 79.6 m
+altitude maximale : 103.2 m
+max - min : 23.6 m
 ```
 
 ```text
@@ -561,7 +561,7 @@ git commit -m "Ignore le fichier du résultat"
 ```
 
 ```text
-[master 02b563f] Ignore le fichier du résultat
+[master 2cc998a] Ignore le fichier du résultat
  1 file changed, 1 insertion(+)
  create mode 100644 .gitignore
 ```
@@ -646,15 +646,15 @@ python altitudes.py
 ```
 
 ```text
-altitude minimale : 127.6 m
-altitude maximale : 131.0 m
-max - min : 3.4 m
-cumul en hausse : 2.6 m
-cumul en baisse : 3.4 m
+altitude minimale : 79.6 m
+altitude maximale : 103.2 m
+max - min : 23.6 m
+cumul en hausse : 23.6 m
+cumul en baisse : 4.9 m
 ```
 
-Sur les trois altitudes, 128.4, 131.0 et 127.6 : une hausse de 2.6 m, puis une
-baisse de 3.4 m.
+Sur les trois altitudes, 79.6, 103.2 et 98.3 : une hausse de 23.6 m, puis une
+baisse de 4.9 m.
 
 ```text
 git add altitudes.py
@@ -662,7 +662,7 @@ git commit -m "Ajoute le dénivelé cumulé"
 ```
 
 ```text
-[cumul 18b88ab] Ajoute le dénivelé cumulé
+[cumul c563389] Ajoute le dénivelé cumulé
  1 file changed, 11 insertions(+)
 ```
 
@@ -687,9 +687,9 @@ python altitudes.py
 ```
 
 ```text
-altitude minimale : 127.6 m
-altitude maximale : 131.0 m
-max - min : 3.4 m
+altitude minimale : 79.6 m
+altitude maximale : 103.2 m
+max - min : 23.6 m
 ```
 
 ### 5.4 Un commit sur `master`
@@ -708,17 +708,17 @@ git log --oneline --graph --all --decorate
 ```
 
 ```text
-* 8624753 (HEAD -> master) Complète la description du programme
-| * 18b88ab (cumul) Ajoute le dénivelé cumulé
+* b3e9e18 (HEAD -> master) Complète la description du programme
+| * c563389 (cumul) Ajoute le dénivelé cumulé
 |/  
-* 02b563f Ignore le fichier du résultat
-* 9cd57cf Ajoute un README
-* d2f927b Remplace la moyenne par les altitudes extrêmes
-* 4726396 Ajoute le calcul de la moyenne
+* 2cc998a Ignore le fichier du résultat
+* 4097d87 Ajoute un README
+* 726d93f Remplace la moyenne par les altitudes extrêmes
+* 64ed213 Ajoute le calcul de la moyenne
 ```
 
 Chaque `*` est un commit ; les traits dessinent les deux branches, parties
-du même commit `02b563f`. `HEAD -> master` : la branche courante est
+du même commit `2cc998a`. `HEAD -> master` : la branche courante est
 `master`.
 
 ### 5.5 Fusionner
@@ -747,15 +747,15 @@ git log --oneline --graph
 ```
 
 ```text
-*   6dbc9b3 Fusionne le dénivelé cumulé
+*   17ac578 Fusionne le dénivelé cumulé
 |\  
-| * 18b88ab Ajoute le dénivelé cumulé
-* | 8624753 Complète la description du programme
+| * c563389 Ajoute le dénivelé cumulé
+* | b3e9e18 Complète la description du programme
 |/  
-* 02b563f Ignore le fichier du résultat
-* 9cd57cf Ajoute un README
-* d2f927b Remplace la moyenne par les altitudes extrêmes
-* 4726396 Ajoute le calcul de la moyenne
+* 2cc998a Ignore le fichier du résultat
+* 4097d87 Ajoute un README
+* 726d93f Remplace la moyenne par les altitudes extrêmes
+* 64ed213 Ajoute le calcul de la moyenne
 ```
 
 ![Le graphe avant et après la fusion](illustrations/graphe_fusion.png)
@@ -765,19 +765,19 @@ fusion : `Échap`, puis `:wq` et `Entrée` gardent le message proposé.
 
 ## Étape 6 · Un conflit
 
-> **À faire :** sur une branche `mesure-4`, ajouter la mesure `134.9` à la liste ; sur `master`, ajouter la mesure `136.7` à la même ligne ; fusionner, puis résoudre le conflit.
+> **À faire :** sur une branche `mesure-4`, ajouter la mesure `92.5` à la liste ; sur `master`, ajouter la mesure `123.7` à la même ligne ; fusionner, puis résoudre le conflit.
 >
-> **À obtenir :** la ligne `altitudes = [128.4, 131.0, 127.6, 134.9, 136.7]`, sans marqueur ; `git log --oneline --graph` montre deux fusions.
+> **À obtenir :** la ligne `altitudes = [79.6, 103.2, 98.3, 92.5, 123.7]`, sans marqueur ; `git log --oneline --graph` montre deux fusions.
 
 ### 6.1 Deux modifications de la même ligne
 
 La troisième ligne d'`altitudes.py` est :
 
 ```python
-altitudes = [128.4, 131.0, 127.6]
+altitudes = [79.6, 103.2, 98.3]
 ```
 
-Sur une nouvelle branche, ajouter `134.9` à la fin de la liste :
+Sur une nouvelle branche, ajouter `92.5` à la fin de la liste :
 
 ```text
 git checkout -b mesure-4
@@ -787,15 +787,15 @@ Modifier la ligne, enregistrer, puis :
 
 ```text
 git add altitudes.py
-git commit -m "Ajoute la mesure 134.9"
+git commit -m "Ajoute la mesure 92.5"
 ```
 
 ```text
-[mesure-4 6f72c61] Ajoute la mesure 134.9
+[mesure-4 f687eaa] Ajoute la mesure 92.5
  1 file changed, 1 insertion(+), 1 deletion(-)
 ```
 
-Sur `master`, ajouter `136.7` à la fin de la liste, sur la même ligne :
+Sur `master`, ajouter `123.7` à la fin de la liste, sur la même ligne :
 
 ```text
 git checkout master
@@ -805,11 +805,11 @@ Modifier la ligne, enregistrer, puis :
 
 ```text
 git add altitudes.py
-git commit -m "Ajoute la mesure 136.7"
+git commit -m "Ajoute la mesure 123.7"
 ```
 
 ```text
-[master 7e04ba9] Ajoute la mesure 136.7
+[master c07169c] Ajoute la mesure 123.7
  1 file changed, 1 insertion(+), 1 deletion(-)
 ```
 
@@ -856,9 +856,9 @@ Le début d'`altitudes.py` est maintenant :
 """Altitudes extrêmes et dénivelé cumulé d'une série de mesures."""
 
 <<<<<<< HEAD
-altitudes = [128.4, 131.0, 127.6, 136.7]
+altitudes = [79.6, 103.2, 98.3, 123.7]
 =======
-altitudes = [128.4, 131.0, 127.6, 134.9]
+altitudes = [79.6, 103.2, 98.3, 92.5]
 >>>>>>> mesure-4
 ```
 
@@ -889,7 +889,7 @@ telle quelle. Remplacer les cinq lignes du bloc (marqueurs compris) par la seule
 ligne :
 
 ```python
-altitudes = [128.4, 131.0, 127.6, 134.9, 136.7]
+altitudes = [79.6, 103.2, 98.3, 92.5, 123.7]
 ```
 
 Enregistrer. Vérifier qu'il ne reste aucun marqueur : `Ctrl` + `F` dans
@@ -901,11 +901,11 @@ python altitudes.py
 ```
 
 ```text
-altitude minimale : 127.6 m
-altitude maximale : 136.7 m
-max - min : 9.1 m
-cumul en hausse : 11.7 m
-cumul en baisse : 3.4 m
+altitude minimale : 79.6 m
+altitude maximale : 123.7 m
+max - min : 44.1 m
+cumul en hausse : 54.8 m
+cumul en baisse : 10.7 m
 ```
 
 ### 6.5 Terminer la fusion
@@ -929,7 +929,7 @@ git commit -m "Fusionne les deux mesures"
 ```
 
 ```text
-[master 91c4702] Fusionne les deux mesures
+[master 83a406f] Fusionne les deux mesures
 ```
 
 ### 6.6 Le graphe du dépôt
@@ -944,20 +944,20 @@ git log --oneline --graph --all --decorate
 ```
 
 ```text
-*   91c4702 (HEAD -> master) Fusionne les deux mesures
+*   83a406f (HEAD -> master) Fusionne les deux mesures
 |\  
-| * 6f72c61 (mesure-4) Ajoute la mesure 134.9
-* | 7e04ba9 Ajoute la mesure 136.7
+| * f687eaa (mesure-4) Ajoute la mesure 92.5
+* | c07169c Ajoute la mesure 123.7
 |/  
-*   6dbc9b3 Fusionne le dénivelé cumulé
+*   17ac578 Fusionne le dénivelé cumulé
 |\  
-| * 18b88ab (cumul) Ajoute le dénivelé cumulé
-* | 8624753 Complète la description du programme
+| * c563389 (cumul) Ajoute le dénivelé cumulé
+* | b3e9e18 Complète la description du programme
 |/  
-* 02b563f Ignore le fichier du résultat
-* 9cd57cf Ajoute un README
-* d2f927b Remplace la moyenne par les altitudes extrêmes
-* 4726396 Ajoute le calcul de la moyenne
+* 2cc998a Ignore le fichier du résultat
+* 4097d87 Ajoute un README
+* 726d93f Remplace la moyenne par les altitudes extrêmes
+* 64ed213 Ajoute le calcul de la moyenne
 ```
 
 git dessine le graphe de haut en bas, le commit le plus récent en haut.
@@ -1016,9 +1016,9 @@ README.md
 ```
 
 ```text
-91c4702 Fusionne les deux mesures
-7e04ba9 Ajoute la mesure 136.7
-6f72c61 Ajoute la mesure 134.9
+83a406f Fusionne les deux mesures
+c07169c Ajoute la mesure 123.7
+f687eaa Ajoute la mesure 92.5
 ```
 
 La copie a son propre dossier `.git`, avec les mêmes commits et les mêmes
@@ -1049,20 +1049,20 @@ git config user.name "Prénom Nom"
 git config user.email "prenom.nom@ensg.eu"
 ```
 
-Ouvrir `copie/altitudes.py` dans VS Code (File → Open File…), ajouter `137.4` à la
+Ouvrir `copie/altitudes.py` dans VS Code (File → Open File…), ajouter `127.7` à la
 fin de la liste, puis enregistrer :
 
 ```python
-altitudes = [128.4, 131.0, 127.6, 134.9, 136.7, 137.4]
+altitudes = [79.6, 103.2, 98.3, 92.5, 123.7, 127.7]
 ```
 
 ```text
 git add altitudes.py
-git commit -m "Ajoute la mesure 137.4"
+git commit -m "Ajoute la mesure 127.7"
 ```
 
 ```text
-[master fc37f53] Ajoute la mesure 137.4
+[master 3425cef] Ajoute la mesure 127.7
  1 file changed, 1 insertion(+), 1 deletion(-)
 ```
 
@@ -1078,7 +1078,7 @@ git pull ../copie master
 ```text
 Depuis ../copie
  * branch            master     -> FETCH_HEAD
-Mise à jour 91c4702..fc37f53
+Mise à jour 83a406f..3425cef
 Fast-forward
  altitudes.py | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
@@ -1096,12 +1096,12 @@ git log --oneline -3
 ```
 
 ```text
-fc37f53 Ajoute la mesure 137.4
-91c4702 Fusionne les deux mesures
-7e04ba9 Ajoute la mesure 136.7
+3425cef Ajoute la mesure 127.7
+83a406f Fusionne les deux mesures
+c07169c Ajoute la mesure 123.7
 ```
 
-Le même identifiant, `fc37f53`, dans les deux dépôts. Dans VS Code,
+Le même identifiant, `3425cef`, dans les deux dépôts. Dans VS Code,
 la liste de `travail/altitudes.py` se termine par la mesure ajoutée dans la copie.
 
 ## Ce que le TD fait constater

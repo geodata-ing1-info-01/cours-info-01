@@ -1,8 +1,8 @@
 #!/bin/bash
 # Rejeu du TD 2c_depot_altitudes (cours 2 v2) : les commandes du guide, dans
-# l'ordre, avec leurs sorties. git 2.43 en français, Python 3.12. Les sorties
+# l'ordre, avec leurs sorties. git 2.34 en français, Python 3.12. Les sorties
 # citées par le guide et les diapositives sont dans `sortie.txt`, relevée le
-# 05/11/2026. Les dates des commits sont fixées : les identifiants se retrouvent à
+# 06/11/2026. Les dates des commits sont fixées : les identifiants se retrouvent à
 # chaque rejeu. À la fin de l'étape 6, le programme doit être celui du corrigé.
 #
 #   conda activate info01          # python
@@ -124,23 +124,23 @@ p head -1 altitudes.py
 p git log --oneline --graph
 echo "=== étape 6"
 p git checkout -b mesure-4
-remplace altitudes.py 'altitudes = [128.4, 131.0, 127.6]' 'altitudes = [128.4, 131.0, 127.6, 134.9]'
+remplace altitudes.py 'altitudes = [79.6, 103.2, 98.3]' 'altitudes = [79.6, 103.2, 98.3, 92.5]'
 p git add altitudes.py
-horloge; p git commit -m '"Ajoute la mesure 134.9"'
+horloge; p git commit -m '"Ajoute la mesure 92.5"'
 p git checkout master
-remplace altitudes.py 'altitudes = [128.4, 131.0, 127.6]' 'altitudes = [128.4, 131.0, 127.6, 136.7]'
+remplace altitudes.py 'altitudes = [79.6, 103.2, 98.3]' 'altitudes = [79.6, 103.2, 98.3, 123.7]'
 p git add altitudes.py
-horloge; p git commit -m '"Ajoute la mesure 136.7"'
+horloge; p git commit -m '"Ajoute la mesure 123.7"'
 horloge; p git merge mesure-4
 p git status
 p sed -n 1,9p altitudes.py
 p python altitudes.py
 remplace altitudes.py '<<<<<<< HEAD
-altitudes = [128.4, 131.0, 127.6, 136.7]
+altitudes = [79.6, 103.2, 98.3, 123.7]
 =======
-altitudes = [128.4, 131.0, 127.6, 134.9]
+altitudes = [79.6, 103.2, 98.3, 92.5]
 >>>>>>> mesure-4
-' 'altitudes = [128.4, 131.0, 127.6, 134.9, 136.7]
+' 'altitudes = [79.6, 103.2, 98.3, 92.5, 123.7]
 '
 p sed -n 1,4p altitudes.py
 p python altitudes.py
@@ -160,10 +160,10 @@ p git remote -v
 p git config user.name
 p git config user.name '"Alice Martin"'
 p git config user.email alice.martin@ensg.eu
-remplace altitudes.py '134.9, 136.7]' '134.9, 136.7, 137.4]'
+remplace altitudes.py '92.5, 123.7]' '92.5, 123.7, 127.7]'
 p python altitudes.py
 p git add altitudes.py
-horloge; p git commit -m '"Ajoute la mesure 137.4"'
+horloge; p git commit -m '"Ajoute la mesure 127.7"'
 p cd ../travail
 p git pull ../copie master
 p git log --oneline -3

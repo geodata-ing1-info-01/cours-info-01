@@ -15,7 +15,7 @@
       ```python
       """Moyenne d'une série d'altitudes."""
 
-      altitudes = [128.4, 131.0, 127.6]
+      altitudes = [79.6, 103.2, 98.3]
       total = 0
       for altitude in altitudes:
           total = total + altitude
@@ -30,7 +30,7 @@
         (base) \
         #text(fill: rgb("#2f9e44"))[eleve\@POSTE-12] #text(fill: rgb("#9c36b5"))[MINGW64] #text(fill: rgb("#b08800"))[\~/Desktop/info01/cours1/1c_programme] \
         \$ python altitudes.py #repere(2) \
-        moyenne : 129.0 m #repere(3) \
+        moyenne : 93.7 m #repere(3) \
         \
         (base) \
         #text(fill: rgb("#2f9e44"))[eleve\@POSTE-12] #text(fill: rgb("#9c36b5"))[MINGW64] #text(fill: rgb("#b08800"))[\~/Desktop/info01/cours1/1c_programme] \

@@ -12,8 +12,8 @@
 #import "../../cours5/diapo/schemas.typ": _disque, _memoire, _processeur, _fleche, repere
 
 // Le début de `trace.csv`, un caractère par case ; `⏎` note le retour à la
-// ligne, `…` la suite du fichier. Le `é` de `durée` sert aux schémas d'encodage.
-#let _caracteres = ("d", "u", "r", "é", "e", ",", "x", ",", "y", ",", "z", "⏎", "0", ",", "…")
+// ligne, `…` la suite du fichier.
+#let _caracteres = ("X", ",", "Y", ",", "e", "l", "e", ",", "t", "i", "m", "e", "⏎", "6", "…")
 #let _case = 0.62
 
 #let _code(x, y, texte) = content((x, y), anchor: "west", {
@@ -59,7 +59,7 @@
   let xn = xr + fin * _case + 0.4                // début des notes
 
   // L'éditeur : numéros de ligne, texte, `⏎` en couleur en fin de ligne.
-  let lignes = ("durée,x,y,z", "0,673120.5,…", "30,673152.9,…")
+  let lignes = ("X,Y,ele,time", "670307.7,…", "670295.1,…")
   let (x0, y0, h) = (0.6, 4.1, 0.55)
   rect((x0, y0), (x0 + 5.6, y0 + 3 * h + 0.3), stroke: 0.7pt + estompe.lighten(40%), fill: gris.lighten(50%))
   content((x0, y0 + 3 * h + 0.55), anchor: "west", text(size: 11pt, fill: estompe)[à l'écran])
@@ -75,7 +75,7 @@
   let yc = y0 + (3 * h + 0.3) / 2 - 0.31
   line((x0 + 5.8, yc + 0.31), (xr - 0.2, yc + 0.31), stroke: 0.9pt + estompe, mark: (end: ">", fill: estompe))
   content((xr, yc + 1.0), anchor: "west", text(size: 11pt, fill: estompe)[dans le fichier])
-  _rangee(xr, yc, none, vifs: (11,))
+  _rangee(xr, yc, none, vifs: (12,))
   _note(xn, yc + 0.31)[une suite de caractères]
 
   _code(0, 2.6, "f = open(chemin, encoding=\"utf-8\")")
@@ -83,7 +83,7 @@
   _note(xn, 2.6)[rien n'est lu]
 
   _code(0, 1.3, "ligne = f.readline()")
-  _rangee(xr, 1.0, 12)
+  _rangee(xr, 1.0, 13)
   _note(xn, 1.3)[la première ligne, ⏎ compris]
 
   _code(0, 0.0, "reste = f.read()")
@@ -128,50 +128,50 @@
 #let _octets-hex(liste, vifs: ()) = liste.enumerate().map(((i, o)) =>
   (o, 1, i in vifs))
 
-// Décoder les octets de `durée,x,y,z⏎` : en UTF-8, `c3 a9` donne `é` ; en
-// cp1252, chacun des deux octets donne un caractère.
-#let _octets-entete = ("64", "75", "72", "c3", "a9", "65", "2c", "78", "2c", "79", "2c", "7a")
-#let _lettres-fin = (("e", 1), (",", 1), ("x", 1), (",", 1), ("y", 1), (",", 1), ("z", 1))
+// Décoder les octets de `Forêt,2 km⏎`, la première ligne de `parcours.txt` : en
+// UTF-8, `c3 aa` donne `ê` ; en cp1252, chacun des deux octets donne un caractère.
+#let _octets-entete = ("46", "6f", "72", "c3", "aa", "74", "2c", "32", "20", "6b", "6d")
+#let _lettres-fin = (("t", 1), (",", 1), ("2", 1), (" ", 1), ("k", 1), ("m", 1))
 
 #let schema-decodage() = cetz.canvas(length: 1cm, {
   let xr = 6.4
-  let xn = xr + 13 * _octet + 0.5
+  let xn = xr + 12 * _octet + 0.5
   let hex = _octets-entete + ("0a",)
 
   _etiquette(xr - 0.3, 3.2)[octets du fichier]
   _cases(xr, 3.2, _octets-hex(hex, vifs: (3, 4)))
-  _note(xn, 3.51)[13 octets]
+  _note(xn, 3.51)[12 octets]
 
   _etiquette(xr - 0.3, 1.6, "encoding=\"utf-8\"", code: true)
-  _cases(xr, 1.6, (("d", 1), ("u", 1), ("r", 1), ("é", 2, true)) + _lettres-fin + (("⏎", 1),))
-  _note(xn, 1.91)[12 caractères : `c3 a9` donne `é`]
+  _cases(xr, 1.6, (("F", 1), ("o", 1), ("r", 1), ("ê", 2, true)) + _lettres-fin + (("⏎", 1),))
+  _note(xn, 1.91)[11 caractères : `c3 aa` donne `ê`]
 
   _etiquette(xr - 0.3, 0, "encoding=\"cp1252\"", code: true)
-  _cases(xr, 0, (("d", 1), ("u", 1), ("r", 1), ("Ã", 1, true), ("©", 1, true)) + _lettres-fin + (("⏎", 1),))
-  _note(xn, 0.31)[13 caractères : `c3` donne `Ã`, `a9` donne `©`]
+  _cases(xr, 0, (("F", 1), ("o", 1), ("r", 1), ("Ã", 1, true), ("ª", 1, true)) + _lettres-fin + (("⏎", 1),))
+  _note(xn, 0.31)[12 caractères : `c3` donne `Ã`, `aa` donne `ª`]
 })
 
-// La même ligne écrite sous Linux et sous Windows : les fichiers diffèrent par
+// La première ligne de `parcours.txt`, écrite sous Linux et sous Windows : les fichiers diffèrent par
 // la fin de ligne, le texte lu en mode texte est le même. Les cases portent des
 // caractères : ce schéma vient avant la diapositive qui définit l'octet.
 #let schema-fin-de-ligne() = cetz.canvas(length: 1cm, {
   let xr = 5.4
-  let xn = xr + 14 * _octet + 0.5
-  let lettres = ("d", "u", "r", "é", "e", ",", "x", ",", "y", ",", "z").map(c => (c, 1))
+  let xn = xr + 13 * _octet + 0.5
+  let lettres = ("F", "o", "r", "ê", "t", ",", "2", " ", "k", "m").map(c => (c, 1))
 
   _etiquette(xr - 0.3, 4.6)[Linux, macOS]
-  _cases(xr, 4.6, lettres + (("\\n", 1, true), ("0", 1)))
-  _note(xn, 4.91)[13 caractères]
+  _cases(xr, 4.6, lettres + (("\\n", 1, true), ("É", 1)))
+  _note(xn, 4.91)[12 caractères]
   _etiquette(xr - 0.3, 3.8)[texte lu]
-  _cases(xr, 3.8, lettres + (("\\n", 1, true), ("0", 1)))
+  _cases(xr, 3.8, lettres + (("\\n", 1, true), ("É", 1)))
 
   _etiquette(xr - 0.3, 1.9)[Windows]
-  _cases(xr, 1.9, lettres + (("\\r", 1, true), ("\\n", 1, true), ("0", 1)))
-  _note(xn, 2.21)[14 caractères]
+  _cases(xr, 1.9, lettres + (("\\r", 1, true), ("\\n", 1, true), ("É", 1)))
+  _note(xn, 2.21)[13 caractères]
   _etiquette(xr - 0.3, 1.1)[texte lu]
-  _cases(xr, 1.1, lettres + (("\\n", 2, true), ("0", 1)))
+  _cases(xr, 1.1, lettres + (("\\n", 2, true), ("É", 1)))
 
-  _note(xr, 0.4)[dans les deux cas, la chaîne `'durée,x,y,z\n0'`]
+  _note(xr, 0.4)[dans les deux cas, la chaîne `'Forêt,2 km\nÉ'`]
 })
 
 // Le fichier de Windows ouvert en `"rb"` : la position compte des octets,
@@ -194,15 +194,15 @@
 
   _code(0, 3.4, "debut = f.read(3)")
   rangee(3.1, 3)
-  _note(xn, 3.4)[`b'dur'` : 3 octets]
+  _note(xn, 3.4)[`b'For'` : 3 octets]
 
   _code(0, 1.8, "suite = f.read(2)")
   rangee(1.5, 5)
-  _note(xn, 1.8)[`b'\xc3\xa9'` : les octets de `é`]
+  _note(xn, 1.8)[`b'\xc3\xaa'` : les octets de `ê`]
 
   _code(0, 0.2, "reste = f.read()")
   rangee(-0.1, n + 1, nom: "fin")
-  _note(xn, 0.2)[jusqu'à la fin : `b'e,x,y,z\r\n0,…'`]
+  _note(xn, 0.2)[jusqu'à la fin : `b't,2 km\r\n…'`]
 })
 
 // Les modes `"w"` et `"a"` sur un fichier qui contient `un⏎` : le contenu

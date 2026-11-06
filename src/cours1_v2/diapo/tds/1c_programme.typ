@@ -131,7 +131,7 @@
   #face-a-face(
     panneau[`altitudes.py`][
       ```python
-      altitudes = [128.4, 131.0, 127.6]
+      altitudes = [79.6, 103.2, 98.3]
       total = 0
       for altitude in altitudes:
           total = total + altitude
@@ -142,7 +142,7 @@
     panneau("Lancé en entier")[
       ```console
       $ python altitudes.py
-      moyenne : 129.0 m
+      moyenne : 93.7 m
       ```
       #v(0.4em)
       #text(size: 14pt, fill: estompe)[
@@ -153,8 +153,8 @@
   )
 
   #legende[
-    Sortie réelle, Python 3.12. La moyenne de 128,4, 131,0 et 127,6 vaut bien
-    129,0.
+    Sortie réelle, Python 3.12. La moyenne de 79,6, 103,2 et 98,3 vaut bien
+    93,7.
   ]
 
   #notes[
@@ -175,12 +175,12 @@
     [Ouvrir `altitudes.py` dans Notepad++ : #comment[Fichier, Ouvrir, puis `cours1\1c_programme\altitudes.py`.]
       #constat[Le code en couleur : Notepad++ reconnaît l'extension `.py`.]],
     [Lancer le programme dans Git Bash : `python altitudes.py`.
-      #constat[`moyenne : 129.0 m`]],
-    [Dans Notepad++, ajouter `133.2` à la liste, sans enregistrer : #commandes("altitudes = [128.4, 131.0, 127.6, 133.2]")],
+      #constat[`moyenne : 93.7 m`]],
+    [Dans Notepad++, ajouter `92.5` à la liste, sans enregistrer : #commandes("altitudes = [79.6, 103.2, 98.3, 92.5]")],
     [Relancer le programme dans Git Bash. #comment[Flèche vers le haut, puis Entrée.]
-      #constat[Toujours `129.0` : python lit le fichier enregistré.]],
+      #constat[Toujours `93.7` : python lit le fichier enregistré.]],
     [Enregistrer dans Notepad++ (`Ctrl` + `S`), puis relancer le programme.
-      #constat[`moyenne : 130.1 m`]],
+      #constat[`moyenne : 93.4 m`]],
   )
 
   #notes[
@@ -212,15 +212,15 @@
       taille: 14pt,
       "$ python",
       "Python 3.12.14 (main, Sep  2 2026, 23:27:36) [GCC 15.3.0] on linux",
-      ">>> altitudes = [128.4, 131.0, 127.6]",
+      ">>> altitudes = [79.6, 103.2, 98.3]",
       ">>> total = 0",
       ">>> for altitude in altitudes:",
       "...     total = total + altitude",
       "...",
       ">>> total",
-      "387.0",
+      "281.1",
       ">>> total / len(altitudes)",
-      "129.0",
+      "93.7",
       ">>> exit()",
     ),
   )
@@ -245,7 +245,7 @@
 
     La session donne accès à `total`, que le script ne montrait pas. Si la
     salle suit, refaire la boucle en affichant `total` à chaque tour :
-    128,4 puis 259,4 puis 387,0.
+    79,6 puis 182,8 puis 281,1.
 
     Un script se relance à l'identique et ne laisse rien à l'écran ; une
     session montre tout et ne laisse rien sur le disque. Deux usages, pas
@@ -271,7 +271,7 @@
     [Ouvrir `commandes.sh` dans Notepad++, et lire ses six lignes, reproduites ci-dessous.
       #constat[Deux commentaires, qui commencent par `#`, puis quatre commandes. Notepad++ reconnaît l'extension `.sh`.]],
     [Lancer le script dans Git Bash : `bash commandes.sh`.
-      #constat[Les deux fichiers `.txt` copiés dans `copies/`, puis `moyenne : 130.1 m`.]],
+      #constat[Les deux fichiers `.txt` copiés dans `copies/`, puis `moyenne : 93.4 m`.]],
     [Relancer le script : #comment[flèche vers le haut, puis Entrée.]
       #constat[La même sortie, sans erreur : `mkdir -p` accepte un dossier qui existe.]],
   )

@@ -18,9 +18,9 @@
     #text(size: 8.5pt, fill: estompe)[Accept Current Change | Accept Incoming Change | Accept Both Changes | Compare Changes]
   ]
   #ligne("<<<<<<< HEAD (Current Change)", fond: rgb("#d7efd7"))
-  #ligne("altitudes = [128.4, 131.0, 127.6, 136.7]", fond: rgb("#e8f6e8"))
+  #ligne("altitudes = [79.6, 103.2, 98.3, 123.7]", fond: rgb("#e8f6e8"))
   #ligne("=======", fond: gris.lighten(20%))
-  #ligne("altitudes = [128.4, 131.0, 127.6, 134.9]", fond: rgb("#e3eef8"))
+  #ligne("altitudes = [79.6, 103.2, 98.3, 92.5]", fond: rgb("#e3eef8"))
   #ligne(">>>>>>> mesure-4 (Incoming Change)", fond: rgb("#cfe1f3"))
   #ligne("print(f\"altitude minimale : {min(altitudes):.1f} m\")")
 ]

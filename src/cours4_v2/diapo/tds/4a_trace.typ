@@ -65,39 +65,40 @@
   ]
 
   #grid(
-    columns: (0.62fr, 1fr), column-gutter: 16pt, align: top,
+    columns: (0.8fr, 1fr), column-gutter: 14pt, align: top,
     panneau[La trace GPS : `trace.csv`][
       #set block(spacing: 0pt)
-      #sortie("durée,x,y,z\n0,673120.5,6860840.2,128.4\n30,673152.9,6860856.3,131.0\n60,673186.9,6860870.9,127.6\n…\n1800,673627.7,6859286.4,126.9", taille: 12.5pt)
+      #sortie("X,Y,ele,time\n670307.7,6812407.3,79.6,2026/10/04 08:00:00+00\n670295.1,6812393.4,78.8,2026/10/04 08:00:30+00\n670319.7,6812356.2,79.9,2026/10/04 08:01:00+00\n…\n671847.8,6812231.5,127.7,2026/10/04 08:29:30+00", taille: 9.5pt)
     ],
     stack(
       spacing: 10pt,
       test(
         titre: [Au départ : `altitudes.py` du TD 3c, renommé `stats_trace.py`],
         "$ python stats_trace.py trace.csv",
-        "altitude minimale : 120.6 m",
+        "altitude minimale : 78.8 m",
         "…",
-        "cumul en baisse : 59.9 m",
+        "cumul en baisse : 50.3 m",
       ),
       test(
         titre: [À la fin du TD],
         "$ python stats_trace.py trace.csv --distance --vitesse",
         "…",
-        "cumul en baisse : 59.9 m",
-        "distance parcourue : 2166.4 m",
-        "vitesse moyenne : 1.20 m/s, soit 4.3 km/h",
+        "cumul en baisse : 50.3 m",
+        "distance parcourue : 1906.7 m",
+        "vitesse moyenne : 1.08 m/s, soit 3.9 km/h",
       ),
     ),
   )
 
   #legende[
-    `durée` : secondes depuis le départ. `x`, `y` : Lambert-93, en mètres. `z` : altitude,
-    en mètres.
+    `X`, `Y` : Lambert-93, en mètres. `ele` : altitude, en mètres. `time` : date et heure UTC.
   ]
 
   #notes[
-    Trace inventée : `data/cours3_v2/make_data.py`. Les deux traces ont la même
-    vitesse de fabrication, 1,2 m/s.
+    Marche simulée sur un chemin des gorges de Franchard, en forêt de Fontainebleau. Chemin
+    et altitudes de l'IGN, vitesse et bruit simulés :
+    `data/cours3_v2/traces/fabriquer_traces.py`. `trace_2.csv` : de la gare de
+    Noisy-Champs à Geodata Paris.
   ]
 ]
 
@@ -114,7 +115,7 @@
     [Fichier], [Emplacement], [Usage],
     [`guide_4a_trace.pdf`, `.html`, `guide.ipynb`], [`cours4/4a_trace/`], [l'énoncé et les solutions, le code à copier],
     [`stats_trace.py`], [`depart/`], [le programme de départ, avec deux erreurs de syntaxe à corriger],
-    [`trace.csv`, `trace_2.csv`], [`depart/`], [deux traces GPS, de 61 et 121 positions],
+    [`trace.csv`, `trace_2.csv`], [`depart/`], [deux traces GPS, de 60 et 50 positions],
     [`README.md`], [`depart/modeles/`], [un modèle de README à adapter et compléter (étape B7)],
   )
 
@@ -137,8 +138,8 @@
     [B2], [ajouter l'option `--distance`, sans le calcul], [le script affiche `distance : calcul manquant`],
     [B3], [lire les positions de la trace], [le script affiche `positions lues : 61`],
     [B4], [écrire la fonction `distance_entre`], [le script affiche `premier segment : 36.2 m`],
-    [B5], [écrire la fonction `distance_parcourue`], [le script affiche `distance parcourue : 2166.4 m`],
-    [B6], [ajouter l'option `--vitesse`], [le script affiche `vitesse moyenne : 1.20 m/s`],
+    [B5], [écrire la fonction `distance_parcourue`], [le script affiche `distance parcourue : 1906.7 m`],
+    [B6], [ajouter l'option `--vitesse`], [le script affiche `vitesse moyenne : 1.08 m/s`],
   )
 
   #legende[
@@ -422,11 +423,11 @@
       spacing: 10pt,
       test(
         "$ python stats_trace.py trace.csv",
-        "altitude minimale : 120.6 m",
-        "altitude maximale : 165.3 m",
+        "altitude minimale : 78.8 m",
+        "altitude maximale : 129.5 m",
         "max - min : 44.7 m",
-        "cumul en hausse : 58.4 m",
-        "cumul en baisse : 59.9 m",
+        "cumul en hausse : 98.4 m",
+        "cumul en baisse : 50.3 m",
       ),
       commit("Correction : …"),
     ),
@@ -470,9 +471,9 @@
       spacing: 10pt,
       test(
         "$ python stats_trace.py trace.csv --distance",
-        "altitude minimale : 120.6 m",
+        "altitude minimale : 78.8 m",
         "…",
-        "cumul en baisse : 59.9 m",
+        "cumul en baisse : 50.3 m",
         "distance : calcul manquant",
       ),
       commit("L'option --distance, sans le calcul"),
@@ -503,7 +504,7 @@
     consignes(
       taille: 16pt,
       [Sous la ligne `altitudes = []`, créer deux listes vides, `liste_x` et `liste_y`.],
-      [Dans la boucle de lecture, sous la ligne `altitudes.append(float(z))`, convertir `x` et `y` en nombres avec `float`, puis les ajouter à `liste_x` et à `liste_y`.],
+      [Dans la boucle de lecture, sous la ligne `altitudes.append(float(ele))`, convertir `x` et `y` en nombres avec `float`, puis les ajouter à `liste_x` et à `liste_y`.],
       [Dans le bloc `if options.distance:`, au-dessus du message, afficher provisoirement les deux lignes du test, avec `len(liste_x)`, `liste_x[0]` et `liste_y[0]`.],
       [Enregistrer le fichier, puis lancer le test.],
     ),
@@ -512,8 +513,8 @@
       test(
         "$ python stats_trace.py trace.csv --distance",
         "…",
-        "positions lues : 61",
-        "position 0 : 673120.5 6860840.2",
+        "positions lues : 60",
+        "position 0 : 670307.7 6812407.3",
         "distance : calcul manquant",
       ),
       commit("Les positions de la trace"),
@@ -522,7 +523,7 @@
 
   #legende[
     Ouvrir `trace.csv` dans VS Code, puis vérifier que la ligne 2 commence par
-    `0,673120.5,6860840.2`. Solution : guide, étape B3.
+    `670307.7,6812407.3`. Solution : guide, étape B3.
   ]
 
   #notes[
@@ -551,7 +552,7 @@
     Les coordonnées Lambert-93 sont en mètres : la formule s'applique directement.
     La distance ne tient pas compte de l'altitude.
 
-    Valeurs de la figure : les cumuls affichés à l'étape B5, 36.2, 73.2, 108.5, 142.0.
+    Valeurs de la figure : les cumuls affichés à l'étape B5, 18.8, 63.4, 105.6, 140.9.
   ]
 ]
 
@@ -567,8 +568,8 @@
     ("    \"\"\"La différence entre deux valeurs.\"\"\"", "décrit la fonction"),
     ("    return b - a", "le corps est indenté ; `return` renvoie le résultat"),
     ("", ""),
-    ("resultat = ecart(128.4, 131.0)", "appelle la fonction : `a` reçoit `128.4`, `b` reçoit `131.0`"),
-    ("print(f\"ecart : {resultat:.1f} m\")", "affiche `ecart : 2.6 m`"),
+    ("resultat = ecart(79.6, 103.2)", "appelle la fonction : `a` reçoit `79.6`, `b` reçoit `103.2`"),
+    ("print(f\"ecart : {resultat:.1f} m\")", "affiche `ecart : 23.6 m`"),
   )
 
   #notes[
@@ -625,7 +626,7 @@
         "$ python stats_trace.py trace.csv --distance",
         "…",
         "essai, 5.0 attendu : 5.0",
-        "premier segment : 36.2 m",
+        "premier segment : 18.8 m",
         "distance : calcul manquant",
       ),
       commit("La fonction distance_entre"),
@@ -676,7 +677,7 @@
     Passer dans les rangs.
 
     Erreur fréquente : `return` indenté dans la boucle ; la fonction s'arrête après le
-    premier segment, `distance parcourue : 36.2 m`.
+    premier segment, `distance parcourue : 18.8 m`.
   ]
 ]
 
@@ -697,11 +698,11 @@
     test(
       "$ python stats_trace.py trace.csv --distance",
       "…",
-      "position 1, cumul : 36.2",
-      "position 2, cumul : 73.2",
+      "position 1, cumul : 18.8",
+      "position 2, cumul : 63.4",
       "…",
-      "position 60, cumul : 2166.4",
-      "distance parcourue : 2166.4 m",
+      "position 59, cumul : 1906.7",
+      "distance parcourue : 1906.7 m",
     ),
   )
 
@@ -728,17 +729,17 @@
       test(
         "$ python stats_trace.py trace.csv --distance",
         "…",
-        "distance parcourue : 2166.4 m",
+        "distance parcourue : 1906.7 m",
         "$ python stats_trace.py trace_2.csv --distance",
         "…",
-        "distance parcourue : 4327.6 m",
+        "distance parcourue : 632.3 m",
       ),
       commit("Le calcul de la distance parcourue"),
     ),
   )
 
   #legende[
-    La trace compte 60 segments d'environ 36 m, et 60 × 36 = 2160 : le résultat a le
+    La trace compte 59 segments d'environ 32 m, et 59 × 32 = 1888 : le résultat a le
     bon ordre de grandeur. Solution : guide, étape B5.
   ]
 ]
@@ -760,38 +761,107 @@
     test(
       "$ python stats_trace.py trace.csv --vitesse",
       "…",
-      "cumul en baisse : 59.9 m",
+      "cumul en baisse : 50.3 m",
       "vitesse : calcul manquant",
     ),
   )
 ]
 
 // --------------------------------------------
-#d("Étape B6 · Calculer le temps total")[
+// Nouveau, 06/11/2026 : la colonne `time` remplace la durée en secondes. La fonction
+// `secondes_ecoulees` prend la place de `vitesse_moyenne`, qui ne faisait qu'une
+// division. Sortie exécutée, Python 3.12.
+#d("Dates et durées : le module datetime")[
   #annonce[
-    Objectif : calculer le temps total, la dernière valeur de la colonne `durée` moins
-    la première.
+    Le module `datetime` fait partie de la bibliothèque standard, livrée avec Python. Il
+    convertit un texte en date, et la différence de deux dates donne une durée.
+  ]
+
+  #code-commente(
+    ("from datetime import datetime", "s'importe sans installation"),
+    ("FORMAT_TEMPS = \"%Y/%m/%d %H:%M:%S+00\"", "décrit le texte de la colonne `time`"),
+    ("", ""),
+    ("debut = datetime.strptime(\"2026/10/04 08:00:00+00\", FORMAT_TEMPS)", "convertit le texte en date"),
+    ("fin = datetime.strptime(\"2026/10/04 08:00:30+00\", FORMAT_TEMPS)", ""),
+    ("print((fin - debut).total_seconds())", "affiche `30.0`, la durée en secondes"),
+  )
+
+  #legende[
+    `%Y` : année. `%m` : mois. `%d` : jour. `%H`, `%M`, `%S` : heure, minutes, secondes.
+    `+00` : heure UTC, écrit tel quel dans le format. Documentation :
+    docs.python.org/fr/3/library/datetime.html.
+  ]
+
+  #notes[
+    Rappel : « Bibliothèque standard de Python », cours 3.
+
+    Python 3.12 : `%z` refuse `+00`, et `fromisoformat` refuse les `/`.
+
+    Ce format de date est celui qu'écrit `ogr2ogr`, au cours 5.
+  ]
+]
+
+// --------------------------------------------
+#d("Étape B6 · Écrire la fonction secondes_ecoulees")[
+  #annonce[
+    Objectif : écrire `secondes_ecoulees(debut, fin)`, qui renvoie le temps en secondes
+    entre deux valeurs de la colonne `time`.
   ]
 
   #deux-colonnes(
     consignes(
-      taille: 16pt,
-      [Sous la ligne `liste_y = []`, créer une liste vide, `durees`.],
-      [Dans la boucle de lecture, convertir `duree` en nombre avec `float`, puis l'ajouter à `durees`.],
-      [Dans le bloc `if options.vitesse:`, au-dessus du message, calculer `temps_total`, puis l'afficher provisoirement sans chiffre après la virgule (`:.0f`).],
+      taille: 14pt,
+      [Sous la ligne `import math`, ajouter la ligne `from datetime import datetime`.],
+      [Sous les lignes `import`, ajouter la ligne `FORMAT_TEMPS = "%Y/%m/%d %H:%M:%S+00"`.],
+      [Sous `distance_parcourue`, déclarer la fonction `secondes_ecoulees(debut, fin)`.],
+      [Dans la fonction, convertir `debut` et `fin` en dates, puis renvoyer le temps qui les sépare, en secondes.],
+      [Dans le bloc `if options.vitesse:`, au-dessus du message, afficher provisoirement le résultat sur les deux valeurs ci-dessous.],
       [Enregistrer le fichier, puis lancer le test.],
     ),
     test(
       "$ python stats_trace.py trace.csv --vitesse",
       "…",
-      "temps total : 1800 s",
+      "essai, 30.0 attendu : 30.0",
       "vitesse : calcul manquant",
     ),
   )
 
   #legende[
-    `durees[-1]` désigne le dernier élément de la liste `durees`. La dernière ligne de
-    `trace.csv` commence par `1800`.
+    Les deux valeurs de l'essai : `"2026/10/04 08:00:00+00"` et `"2026/10/04 08:00:30+00"`.
+  ]
+
+  #notes[
+    Exercice le moins guidé de l'étape : l'élève adapte l'exemple de la diapositive
+    précédente. Si le temps manque, donner la fonction : aucune autre étape n'en dépend.
+  ]
+]
+
+// --------------------------------------------
+#d("Étape B6 · Calculer le temps total")[
+  #annonce[
+    Objectif : calculer le temps total, entre la première et la dernière valeur de la
+    colonne `time`.
+  ]
+
+  #deux-colonnes(
+    consignes(
+      taille: 16pt,
+      [Sous la ligne `liste_y = []`, créer une liste vide, `temps`.],
+      [Dans la boucle de lecture, ajouter `time` à `temps`, sans le convertir.],
+      [Dans le bloc `if options.vitesse:`, remplacer l'essai par le calcul de `temps_total`, avec `secondes_ecoulees(temps[0], temps[-1])`, puis l'afficher provisoirement sans chiffre après la virgule (`:.0f`).],
+      [Enregistrer le fichier, puis lancer le test.],
+    ),
+    test(
+      "$ python stats_trace.py trace.csv --vitesse",
+      "…",
+      "temps total : 1770 s",
+      "vitesse : calcul manquant",
+    ),
+  )
+
+  #legende[
+    `temps[-1]` désigne le dernier élément de la liste `temps`. La première position de
+    `trace.csv` finit par `08:00:00+00`, et la dernière par `08:29:30+00`.
   ]
 ]
 
@@ -805,9 +875,8 @@
   #deux-colonnes(
     consignes(
       taille: 16pt,
-      [Sous `distance_parcourue`, écrire la fonction `vitesse_moyenne(distance, temps)`, qui renvoie la vitesse en m/s.],
       [Dans le bloc `if options.vitesse:`, retirer les deux `print`.],
-      [Sous le calcul de `temps_total`, appeler `distance_parcourue`, puis `vitesse_moyenne` avec `distance` et `temps_total`.],
+      [Sous le calcul de `temps_total`, appeler `distance_parcourue`, puis diviser `distance` par `temps_total`, et garder le résultat dans la variable `vitesse`.],
       [Afficher le résultat, comme sur le test : deux chiffres après la virgule en m/s, un en km/h.],
       [Enregistrer le fichier, puis lancer le test.],
     ),
@@ -817,11 +886,11 @@
         taille: 15.5pt,
         "$ python stats_trace.py trace.csv --distance --vitesse",
         "…",
-        "distance parcourue : 2166.4 m",
-        "vitesse moyenne : 1.20 m/s, soit 4.3 km/h",
+        "distance parcourue : 1906.7 m",
+        "vitesse moyenne : 1.08 m/s, soit 3.9 km/h",
         "$ python stats_trace.py trace.csv --vitesse",
         "…",
-        "vitesse moyenne : 1.20 m/s, soit 4.3 km/h",
+        "vitesse moyenne : 1.08 m/s, soit 3.9 km/h",
       ),
       commit("L'option --vitesse"),
     ),
@@ -829,14 +898,13 @@
 
   #legende[
     Une vitesse en m/s, multipliée par 3,6, donne des km/h. À la calculatrice,
-    2166,4 / 1800 donne 1,20. Solution : guide, étape B6.
+    1906,7 / 1770 donne 1,08. Solution : guide, étape B6.
   ]
 
   #notes[
     `git log --oneline` : huit lignes. Fin du TD en séance ; l'étape B7 est un bonus.
 
-    La seconde trace a été fabriquée à la même vitesse : `trace_2.csv` donne la même
-    ligne.
+    `trace_2.csv` donne `vitesse moyenne : 1.29 m/s, soit 4.6 km/h`.
   ]
 ]
 

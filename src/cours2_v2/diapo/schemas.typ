@@ -36,7 +36,7 @@
 // programme affichées, pour une fenêtre moins haute.
 #let fenetre-vscode(hauteur: 300pt, reperes: false, commande: "python 2a_vscode/altitudes.py", lignes: (1, 8)) = {
   set text(size: 11pt, fill: accent)
-  let code = "\"\"\"Moyenne d'une série d'altitudes, à la main plutôt qu'avec sum().\"\"\"\n\naltitudes = [128.4, 131.0, 127.6]\ntotal = 0\nfor altitude in altitudes:\n    total = total + altitude\nmoyenne = total / len(altitudes)\nprint(f\"moyenne : {moyenne:.1f} m\")"
+  let code = "\"\"\"Moyenne d'une série d'altitudes, à la main plutôt qu'avec sum().\"\"\"\n\naltitudes = [79.6, 103.2, 98.3]\ntotal = 0\nfor altitude in altitudes:\n    total = total + altitude\nmoyenne = total / len(altitudes)\nprint(f\"moyenne : {moyenne:.1f} m\")"
   block(width: 100%, stroke: _bord, clip: true)[
     // Barre de titre et menus
     #block(width: 100%, fill: gris, inset: (x: 8pt, y: 5pt))[
@@ -91,7 +91,7 @@
           #block(inset: (x: 8pt, y: 2pt))[
             #set text(size: 13pt)
             #set par(leading: 0.4em)
-            #raw("(base)\neleve@POSTE MINGW64 ~/Desktop/info01/cours2\n$ " + commande + "\nmoyenne : 129.0 m", block: true)
+            #raw("(base)\neleve@POSTE MINGW64 ~/Desktop/info01/cours2\n$ " + commande + "\nmoyenne : 93.7 m", block: true)
           ]
         ],
       ),
@@ -132,7 +132,7 @@
 })
 
 #let schema-rappel-outils() = {
-  let code = "altitudes = [128.4, 131.0, 127.6]\ntotal = 0\nfor altitude in altitudes:\n    total = total + altitude\nmoyenne = total / len(altitudes)\nprint(f\"moyenne : {moyenne:.1f} m\")"
+  let code = "altitudes = [79.6, 103.2, 98.3]\ntotal = 0\nfor altitude in altitudes:\n    total = total + altitude\nmoyenne = total / len(altitudes)\nprint(f\"moyenne : {moyenne:.1f} m\")"
   let icones = box(baseline: 3pt, stack(
     dir: ltr, spacing: 5pt,
     image("/src/cours1_v2/images/editeurs/bloc_notes.svg", height: 17pt),
@@ -191,7 +191,7 @@
         linebreak()
         raw("$ python altitudes.py")
         linebreak()
-        raw("moyenne : 129.0 m")
+        raw("moyenne : 93.7 m")
       })
     },
   )

@@ -107,7 +107,7 @@
   #notes[
     Les autres cœurs servent aux autres programmes ouverts.
 
-    Cœurs : 4 sur les postes de la salle (relevé au TD 5a), 4 à 8 sur un
+    Cœurs : 4 sur les postes de la salle (relevé au TD 3d), 4 à 8 sur un
     portable, 32 à 128 sur un serveur de calcul.
 
     Les cœurs se sont multipliés quand la fréquence a cessé de monter, vers
@@ -141,7 +141,7 @@
       gabarit: bloc, pleins: (1,),
       ([#text(size: 24pt)[`altitudes.py`]], [un fichier texte, en entrée]),
       ([#text(size: 24pt)[`python`]], [l'interpréteur, un programme en ligne de commande]),
-      ([#text(size: 24pt)[`moyenne : 129.0 m`]], [le résultat, écrit dans le terminal]),
+      ([#text(size: 24pt)[`moyenne : 93.7 m`]], [le résultat, écrit dans le terminal]),
     )
     #v(0.2em)
     #show raw: set text(size: 1.15em)
@@ -196,7 +196,7 @@
 // une autre question que la différence demandée ici.
 //
 // Sorties relevées le 05/11/2026 : `python trois_lignes.py` et le programme C++ des
-// notes affichent tous deux 129.0.
+// notes affichent tous deux 93.7.
 #d("Compilateur et interpréteur : traduction")[
   #annonce[
     Le compilateur traduit toutes les lignes avant le lancement. L'interpréteur
@@ -222,9 +222,9 @@
     Stanford CS106L : « Interpreted languages all run in run time! Compiled
     Languages run in first compile time then run time ».
 
-    Le même programme en C++, si la question vient : `double total = 128.4 + 131.0 +
-    127.6;`, `double moyenne = total / 3;`, `printf("%.1f\n", moyenne);`, dans une
-    fonction `main`. Il affiche aussi 129.0.
+    Le même programme en C++, si la question vient : `double total = 79.6 + 103.2 +
+    98.3;`, `double moyenne = total / 3;`, `printf("%.1f\n", moyenne);`, dans une
+    fonction `main`. Il affiche aussi 93.7.
 
     Image possible, à l'oral : un livre traduit d'avance se lit vite, sans
     traducteur, et une correction demande une nouvelle édition. Un interprète en
@@ -274,7 +274,7 @@
         taille: 17pt,
         "$ cd ~/Desktop/info01/cours1/1c_programme",
         "$ python altitudes.py",
-        "moyenne : 129.0 m",
+        "moyenne : 93.7 m",
       )
     ],
     panneau[Ouvrir une session interactive : `python`][
@@ -282,8 +282,8 @@
         taille: 16pt,
         "$ python",
         "Python 3.12.14 (main, Sep  2 2026, 23:27:36) [GCC 15.3.0] on linux",
-        ">>> 128.4 + 131.0",
-        "259.4",
+        ">>> 79.6 + 103.2",
+        "182.8",
         ">>> exit()",
       )
     ],
@@ -431,7 +431,7 @@
       "$ which python",
       "/c/Python27/python",
       "$ /c/ProgramData/anaconda3/python.exe altitudes.py",
-      "moyenne : 129.0 m",
+      "moyenne : 93.7 m",
     )
   ]
 

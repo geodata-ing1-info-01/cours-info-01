@@ -298,7 +298,7 @@ Bash](../../../../annexes/problemes/git.md).
 
 > **À faire :** lancer `altitudes.py` par le bouton d'exécution.
 >
-> **À obtenir :** `moyenne : 129.0 m` dans le terminal.
+> **À obtenir :** `moyenne : 93.7 m` dans le terminal.
 
 `altitudes.py` étant ouvert au centre, cliquer sur le triangle « Run Python
 File », en haut à droite de la zone du code.
@@ -307,7 +307,7 @@ File », en haut à droite de la zone du code.
 puis le résultat :
 
 ```text
-moyenne : 129.0 m
+moyenne : 93.7 m
 ```
 
 La commande tapée par le bouton est `python`, précédé du chemin complet de
