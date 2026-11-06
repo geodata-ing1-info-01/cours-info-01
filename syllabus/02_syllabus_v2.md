@@ -170,6 +170,8 @@ Objectif : avoir employé une fois GitHub de bout en bout (dépôt distant, `pus
 
 ## Projet (séance 7) — Un effet pour l'animation
 
+*Mise à jour du 06/11/2026 : séance de TD finale, sans notion nouvelle. Cette section, décrite avant cette décision, reste à aligner, en particulier sur numpy.*
+
 Objectif : ajouter une fonctionnalité au projet 4 par une pull request, et comparer une boucle Python et numpy sur les images de l'animation. Remplace le benchmark de conversion en gris sur une image fournie.
 
 - **⌨️ Ajouter les paquets** : `conda install -c conda-forge numpy pillow` dans l'environnement `animation`, les ajouter à `environment.yml`, commit.

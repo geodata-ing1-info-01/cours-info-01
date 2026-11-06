@@ -97,6 +97,12 @@ Le TD `4c_trajet` portait le numéro 5a sur son ouverture ; il devient le TD 1j.
 | TD 7a | TD 7a | `7a_recette/` | parcours standard |
 | TD 7b | TD 7b | `7b_train/` | parcours avancé |
 
+## Cours 3 (version 2)
+
+| Ancien nom | Nouveau nom | Dossier | Statut |
+|---|---|---|---|
+| TD 5a | TD 3d | `3d_mesures/` | facultatif |
+
 ## Cours 6 (version 2)
 
 | Ancien nom | Nouveau nom | Dossier | Statut |

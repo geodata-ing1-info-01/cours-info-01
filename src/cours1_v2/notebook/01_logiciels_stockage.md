@@ -73,8 +73,7 @@ Android ou iOS (environ 70 % et 30 % des téléphones dans le monde,
 StatCounter, 2026) ; Android est construit sur Linux.
 
 Chaque système d'exploitation a ses conventions : les chemins de fichiers ne
-s'y écrivent pas de la même façon, et les outils installés diffèrent. Le
-matériel est traité au cours 5.
+s'y écrivent pas de la même façon, et les outils installés diffèrent.
 
 ## Entrées et sorties d'un logiciel
 

@@ -23,6 +23,7 @@
 #import "tds/3a_denivele.typ": td as td-3a
 #import "tds/3b_portabilite.typ": td as td-3b
 #import "tds/3c_encodage.typ": td as td-3c
+#import "tds/3d_mesures.typ": td as td-3d
 
 #let partie-1 = (
   titre: "Portabilité du code",
@@ -45,13 +46,14 @@
 #include "parties/02c_fichiers.typ"
 #include "parties/02d_chemins_arguments.typ"
 
-// Les trois TD, sur la même trace GPS.
+// Les trois TD, sur la même trace GPS, puis le TD facultatif sur le poste.
 #if tds {
   include "tds/3a_denivele.typ"
   include "tds/3b_portabilite.typ"
   include "tds/3c_encodage.typ"
+  include "tds/3d_mesures.typ"
 } else {
-  sommaire-td(td-3a, td-3b, td-3c)
+  sommaire-td(td-3a, td-3b, td-3c, td-3d)
 }
 
 #include "parties/99_cloture.typ"

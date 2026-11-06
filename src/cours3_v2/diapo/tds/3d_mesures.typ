@@ -1,15 +1,17 @@
-// TD 5a — « Les ordres de grandeur de votre poste ».
+// TD 3d du cours 3 v2 — « Les ordres de grandeur de votre poste », facultatif.
 //
-// Repris tel quel du cours 5 de 2026 le 05/11/2026. Inclus par `cours5_v2.typ`, qui porte les réglages globaux et importe `td`
-// pour le sommaire des TD ; compilable seul par `outils/compiler_tds.py`.
+// Le TD 5a du cours 5 de 2026, passé au cours 3 v2 le 06/11/2026, après la mémoire et le
+// stockage. Inclus par `cours3_v2.typ`, qui porte les réglages globaux et importe `td`
+// pour le sommaire des TD ; compilable seul par `outils/compiler_tds.py --cours 3_v2`.
 #import "../../../commun/prelude.typ": *
 
 #let td = (
-  numero: "5a",
+  numero: "3d",
   titre: "Les ordres de grandeur de votre poste",
   annonce: "Objectif : relever les caractéristiques du poste, puis comparer les vitesses du processeur, de la mémoire, du disque et du réseau",
-  dossier: "cours5/5a_mesures/",
+  dossier: "cours3/3d_mesures/",
   duree: "15′",
+  statut: "facultatif",
 )
 #separateur-td(..td)
 
@@ -37,14 +39,14 @@
     Deux minutes. Les valeurs du corrigé sont supposées : les relever sur une VM
     de la salle avant la séance.
 
-    Les valeurs relevées sont dans les fourchettes de « Mémoire vive et
-    disque », cours 3.
+    Les valeurs relevées sont dans les fourchettes de « Ordres de grandeur : tailles
+    et temps d'accès ».
   ]
 ]
 
 #d("Quatre mesures en Python")[
   #annonce[
-    Dans l'invite de commandes d'Anaconda, depuis `cours5/5a_mesures/` : `python mesures.py`.
+    Dans le terminal de VS Code, depuis `cours3/3d_mesures/` : `python mesures.py`.
     Reporter les six lignes de résultat.
   ]
 
@@ -61,8 +63,7 @@
   )
 
   #notes[
-    Le script mesure chaque opération avec `time.perf_counter()` avant et après,
-    comme au projet 7.
+    Le script mesure chaque opération avec `time.perf_counter()` avant et après.
 
     Sortie sur un poste Linux (septembre 2026) : 39 ns par addition ; 1,4 Go/s
     en mémoire ; 90 Mo/s en écriture ; 1 300 Mo/s en relecture ; 22 ms

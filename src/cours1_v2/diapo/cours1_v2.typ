@@ -12,7 +12,8 @@
 // `a_reprendre/introduction_module.typ`. Trois diapositives de matériel sont
 // reprises du cours 5 de 2026, qui reste inchangé : les composants en partie 1,
 // le processeur en partie 3, après la compilation (ordre du 05/11/2026). La
-// température et la consommation s'y ajoutent en partie 1, le 05/11/2026.
+// température et la consommation s'y ajoutent en partie 1, le 05/11/2026, et
+// l'évolution des processeurs après les cœurs, le 06/11/2026.
 //
 //   python outils/compiler_diapos.py --cours 1_v2            # à projeter
 //   python outils/compiler_diapos.py --cours 1_v2 --notes    # notes de conduite

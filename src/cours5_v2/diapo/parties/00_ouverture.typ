@@ -27,8 +27,8 @@
   ]
 
   #notes[
-    Le déroulé reste à établir. Avec le matériel, le réseau et le TD 5a, le contenu
-    dépasse une séance : choisir ce qui reste du cours 5 de 2026.
+    Le déroulé reste à établir. Avec le réseau, le contenu dépasse une séance : choisir
+    ce qui reste du cours 5 de 2026.
 
     Le TD 4b du parcours avancé applique déjà `pyproject.toml` et `subprocess`, avant
     cette séance.

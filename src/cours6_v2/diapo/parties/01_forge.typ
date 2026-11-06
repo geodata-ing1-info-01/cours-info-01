@@ -4,7 +4,8 @@
 // (`livraison/cours6/diapositives_cours6.pdf`). Ses figures sont reprises telles
 // quelles (`images/forge/CREDITS.md`). Les phrases passent au format de STYLE.md ; les
 // deux diapositives « Utilisations de git » en font une, avec les cercles rouges de la
-// seconde. La dernière diapositive, sur l'accès au dépôt, est nouvelle.
+// seconde. La dernière diapositive, sur l'accès au dépôt, est nouvelle. Les deux
+// diapositives sur les services en ligne viennent du matériel du cours 5 v2.
 #import "../../../commun/prelude.typ": *
 #import "../../../cours1_v2/diapo/schemas.typ": terminal
 
@@ -126,6 +127,94 @@
   #notes[
     Le TD 6a le fait constater. Une branche qui n'existe pas encore sur la forge n'a
     rien à récupérer : `git pull` y répond par une erreur, sans conséquence.
+  ]
+]
+
+// --------------------------------------------
+// Déplacée du cours 5 v2 (`05_materiel.typ`) le 06/11/2026.
+#d("Consommation électrique des services en ligne")[
+  #annonce[
+    Un fichier gardé en ligne consomme même quand personne ne le lit.
+  ]
+
+  #tableau(
+    columns: (1fr, auto, 1fr),
+    align: (left + horizon, right + horizon, left + horizon),
+    [Quoi], [Électricité], [Équivalent],
+    [une question à un assistant d'IA], [0,3 à 2 Wh], [10 s à 1 min de télévision],
+    [la même, modèle « qui raisonne »], [7 à 33 Wh], [4 à 20 min de télévision],
+    [une heure de vidéo en streaming], [80 Wh], [une ampoule LED de 10 W, 8 h],
+    [garder 1 To en ligne pendant un an], [40 à 150 kWh], [1 à 3 disques toujours allumés],
+    [le même To dans un tiroir], [0], [],
+    [centres de données du monde, 2024], [415 TWh], [1,5 % du mondial, la France entière],
+  )
+
+  #legende[
+    IA : Jegham et al. 2025, serveurs seuls ; IEA 2020 et 2025 ; disque :
+    5 W × 8 760 h × 1 à 3 copies ; France : RTE 2024 ; télévision : 100 W.
+  ]
+
+  #notes[
+    Les estimations pour une question à un assistant d'IA varient d'un facteur
+    100 selon la source et le périmètre :
+    - Google (2025) : 0,24 Wh pour une question médiane à Gemini ; chiffre du
+      fournisseur ; serveurs et refroidissement, sans entraînement, fabrication,
+      réseau ni appareil de l'utilisateur ;
+    - Jegham et al. (université de Rhode Island, 2025) : GPT-4o, 0,4 Wh pour une
+      question courte, 1,8 Wh pour une longue ; o3 et DeepSeek-R1, plus de
+      30 Wh ;
+    - Mistral AI, analyse de cycle de vie (Carbone 4, ADEME, 2025), commandée
+      par le fournisseur : 1,14 g de CO₂e et 45 mL d'eau pour une réponse de
+      400 tokens, fabrication et entraînement compris ;
+    - une image générée coûte environ 60 fois plus qu'un texte (Luccioni et
+      al., 2024).
+
+    La consommation vient du volume : des milliards de questions par jour. L'IEA
+    prévoit le doublement de la consommation des centres de données d'ici 2030,
+    surtout à cause de l'IA.
+
+    Ligne du disque : 5 W × 8 760 h = 44 kWh par an, deux ou trois copies, plus
+    le refroidissement.
+
+    À dire : supprimer en ligne ce qui ne sert plus ; garder les données lourdes
+    d'un projet sur un disque local.
+  ]
+]
+
+// --------------------------------------------
+// Déplacée du cours 5 v2 (`05_materiel.typ`) le 06/11/2026.
+#d("Coût d'un service en ligne")[
+  #annonce[
+    Le coût suit le nombre de machines qui tournent, et de personnes qui les
+    font tourner.
+  ]
+
+  #tableau(
+    columns: (1fr, 1.3fr, auto),
+    align: (left + horizon, left + horizon, right + horizon),
+    [Service], [Ce qui tourne], [Par an],
+    [un site personnel, pages statiques], [une part d'un serveur partagé, ou GitHub Pages], [0 à 60 €],
+    [OpenStreetMap, la carte du monde], [deux salles de serveurs, Amsterdam et Dublin], [100 000 à 170 000 €],
+    [Wikipédia], [plusieurs centres de données], [3,4 M\$ d'hébergement],
+    [Meta : Facebook, Instagram, WhatsApp], [des dizaines de centres de données], [72 milliards de \$ d'investissement],
+  )
+
+  #legende[
+    Nom de domaine 10 € par an, hébergement partagé 3 à 5 € par mois ; OSMF,
+    plan 2023, diffusion des tuiles offerte ; Wikimedia, exercice 2024-2025 ;
+    Meta, résultats 2025.
+  ]
+
+  #notes[
+    Trois ordres de grandeur entre un site personnel et OpenStreetMap, cinq
+    entre OpenStreetMap et Meta.
+
+    OpenStreetMap fonctionne avec deux salles : le rendu des tuiles est réparti
+    entre plusieurs organisations, et leur diffusion est offerte.
+
+    Le personnel est la plus grande dépense de Wikimedia.
+
+    Un site sur GitHub Pages ne coûte que son nom de domaine, s'il en a un.
   ]
 ]
 

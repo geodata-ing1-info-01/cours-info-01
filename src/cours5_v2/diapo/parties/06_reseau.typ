@@ -221,7 +221,7 @@
     Le facteur 8 entre bits et octets est l'erreur la plus fréquente. Les
     opérateurs donnent les débits en bits par seconde.
 
-    Débits observés en pratique. Le TD 5a en mesure un depuis la salle.
+    Débits observés en pratique. Le TD 3d du cours 3 en mesure un depuis la salle.
   ]
 ]
 

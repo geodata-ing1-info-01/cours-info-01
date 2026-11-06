@@ -13,6 +13,9 @@ qui ne sont pas employés en séance :
 - [Programme, application et interpréteur](programme_interpreteur.md) : ce
   qui sépare un programme d'une application, et ce que fait l'interpréteur
   entre un programme et le système.
+- [Le processeur et la carte graphique](processeur.md) : les instructions
+  vectorielles, les unités de calcul, la carte graphique et le nombre
+  d'opérations par seconde d'un portable.
 
 Le module emploie Python. Un éditeur de code se configure langage par
 langage : une extension pour lire le langage, et l'outil qui exécute les
@@ -26,4 +29,5 @@ personnel.
 gestionnaires
 cpp
 programme_interpreteur
+processeur
 ```

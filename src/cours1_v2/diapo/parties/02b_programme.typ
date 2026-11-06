@@ -10,7 +10,7 @@
 // calculs » et « changer de poste », qui reprennent leur contenu.
 #import "../../../commun/prelude.typ": *
 #import "../schemas.typ": terminal, programme-trois-lignes, schema-moment-traduction, schema-modifier-relancer
-#import "../../../cours5/diapo/schemas.typ": schema-processeur, schema-coeurs
+#import "../../../cours5/diapo/schemas.typ": schema-processeur, schema-coeurs, graphe-tendances
 
 #separateur(
   "Exécuter un programme",
@@ -111,7 +111,7 @@
     portable, 32 à 128 sur un serveur de calcul.
 
     Les cœurs se sont multipliés quand la fréquence a cessé de monter, vers
-    2005.
+    2005 (diapositive suivante).
 
     Un programme occupe plusieurs cœurs s'il découpe son travail en parties
     indépendantes. numpy le fait pour le produit de matrices.
@@ -119,6 +119,48 @@
     Le gestionnaire des tâches affiche pour le Ryzen 5 7530U 6 cœurs et 12
     processeurs logiques : chaque cœur suit deux files d'instructions, qui se
     partagent ses unités.
+  ]
+]
+
+// --------------------------------------------
+// Reprise du cours 5 de 2026, le 06/11/2026.
+#d("Évolution des processeurs de 1990 à 2022")[
+  #annonce[
+    Le nombre de transistors double environ tous les deux ans. Depuis 2005, la
+    fréquence ne monte plus, et les transistors en plus servent à ajouter des
+    cœurs.
+  ]
+
+  #align(center, graphe-tendances(hauteur: 6.7))
+
+  #legende[
+    Transistor : un interrupteur électronique ; tous les circuits d'une puce
+    en sont faits. Pentium (1993) : 3,1 millions ; puce du Ryzen 5 7530U :
+    10,7 milliards sur 180 mm². Un point par processeur, échelle verticale
+    logarithmique. Karl Rupp, *microprocessor-trend-data*, CC BY 4.0.
+  ]
+
+  #notes[
+    Loi de Moore : le nombre de transistors double environ tous les deux ans
+    depuis 1970. Les transistors rétrécissent, et la même surface en porte
+    deux fois plus.
+
+    Jusque vers 2005, un transistor plus petit commutait aussi plus vite sans
+    chauffer davantage par cm² (loi de Dennard), et la fréquence montait.
+    Depuis, la tension d'alimentation ne baisse plus assez pour cela.
+
+    Les transistors en plus servent à des instructions de 8 puis de 16 nombres, aux
+    unités de multiplication-addition, à deux unités par cœur, à plus de cœurs ; et
+    aussi à de plus grands caches, à une carte graphique intégrée. Détail : page « Le
+    processeur et la carte graphique » du site.
+
+    La fréquence plafonne vers 3 GHz depuis 2005, parce que la puissance à
+    évacuer plafonne vers 100 W. Le gain vient depuis du nombre de cœurs ; un
+    programme qui n'en utilise qu'un gagne peu d'une génération à l'autre.
+
+    De 1995 à 2025 : mémoire vive de 8 Mo à 16 Go ; disque de 1 Go à 1 To ; prix
+    du Go de disque de 1 000 \$ à 2 centimes ; modem à 28,8 kbit/s, fibre à
+    1 Gbit/s.
   ]
 ]
 

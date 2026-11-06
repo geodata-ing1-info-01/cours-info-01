@@ -36,7 +36,7 @@
 
     SSD : mémoire flash, sans pièce mobile, 100 µs. Disque dur : plateau tournant,
     10 ms, cent fois plus lent à l'accès. Les postes de la salle ont un SSD (relevé
-    au TD 5a).
+    au TD 3d, facultatif).
 
     Le cache est une petite mémoire dans le processeur ; il garde les dernières
     données lues en mémoire vive. Une boucle sur des valeurs voisines est donc
