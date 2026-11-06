@@ -1,19 +1,16 @@
 // Cours 5, version 2 — fichier d'assemblage. PROPOSITION DE TRAVAIL (WIP).
 //
-// 06/11/2026 : la séance part d'un objectif, le résumé et la carte d'une trace GPX
-// (`parties/01_probleme.typ`). La suite reste à reprendre dans cet ordre : dossier d'une
-// distribution, PATH, environnement, dépendances, paquet, noyau, réseau.
-//
-// 05/11/2026 : le cours porte d'abord sur l'installation et la distribution d'un
-// programme Python, après le cours 3 sur la portabilité. En tête, `subprocess` (cours 3
-// de 2026) et les environnements (cours 1 de 2026) ; puis `PATH` et les variables
-// d'environnement, nouveaux ; puis le paquet.
+// 06/11/2026 : même organisation que le cours 3 v2. La partie 1 pose le problème sans détail
+// de Python : réutiliser des outils existants, et les réinstaller sur un autre poste. Les
+// parties 2 et 3 traitent les deux cas, un programme et une bibliothèque. La partie 4 traite
+// l'environnement et le fichier de projet. La partie 5, en bonus, JupyterLab et le noyau. Le
+// TD vient après l'exposé.
 //
 // Le cours 5 de 2026 reste inchangé dans `src/cours5/`. Les schémas viennent de là, et ne
-// sont pas recopiés. 06/11/2026 : le matériel sort de la séance, voir
-// `a_reprendre/materiel.typ`, et le TD 5a devient le TD 3d du cours 3. Du réseau, seuls
-// le client et le serveur restent : voir `a_reprendre/reseau.typ`. Passés ailleurs : les mots de passe, les clés SSH et
-// les secrets au cours 6 v2 ; la température et la consommation au cours 1 v2.
+// sont pas recopiés. Le matériel sort de la séance, voir `a_reprendre/materiel.typ`, et le TD
+// 5a de 2026 devient le TD 3d du cours 3. Du réseau, seuls le client et le serveur restent :
+// voir `a_reprendre/reseau.typ`. Passés ailleurs : les mots de passe, les clés SSH et les
+// secrets au cours 6 v2 ; la température et la consommation au cours 1 v2.
 //
 //   python outils/compiler_diapos.py --cours 5_v2
 //   python outils/compiler_diapos.py --cours 5_v2 --notes
@@ -27,13 +24,54 @@
   auteur-court: "1re année géomatique",
 )
 
+#let tds = sys.inputs.at("tds", default: "") != "false"
+
+#import "tds/5a_distribution.typ": td as td-5a
+
+#let partie-1 = (
+  titre: "Réutiliser des programmes et des bibliothèques",
+  annonce: "Ajouter des fonctionnalités sans tout recoder, et réinstaller ensuite ces outils sur un autre poste.",
+)
+#let partie-2 = (
+  titre: "Appeler un programme existant",
+  annonce: "Lancer un programme depuis Python, et la façon dont le système le trouve.",
+)
+#let partie-3 = (
+  titre: "Bibliothèques et autres dépendances",
+  annonce: "La bibliothèque standard et les bibliothèques à installer, où elles se trouvent, et ce dont elles dépendent.",
+)
+#let partie-4 = (
+  titre: "Environnement et fichier de projet",
+  annonce: "Un dossier par projet, et les fichiers qui permettent de le recréer sur un autre poste.",
+)
+#let partie-5 = (
+  titre: "Bonus : JupyterLab et le noyau",
+  annonce: "Le client, le serveur, et le Python qui exécute un notebook.",
+)
+
 #include "parties/00_ouverture.typ"
 
-#include "parties/01_probleme.typ"
-#include "parties/02_environnements.typ"
-#include "parties/03_path.typ"
-#include "parties/04_paquet.typ"
+// L'exposé.
+#separateur(partie-1.titre, annonce: partie-1.annonce)
+#include "parties/01_reutiliser.typ"
 
-#include "parties/06_reseau.typ"
+#separateur(partie-2.titre, annonce: partie-2.annonce)
+#include "parties/02_programme.typ"
+
+#separateur(partie-3.titre, annonce: partie-3.annonce)
+#include "parties/03_bibliotheques.typ"
+
+#separateur(partie-4.titre, annonce: partie-4.annonce)
+#include "parties/04_environnement.typ"
+
+#separateur(partie-5.titre, annonce: partie-5.annonce)
+#include "parties/05_jupyter.typ"
+
+// Les TD, après l'exposé.
+#if tds {
+  include "tds/5a_distribution.typ"
+} else {
+  sommaire-td(td-5a)
+}
 
 #include "parties/99_cloture.typ"

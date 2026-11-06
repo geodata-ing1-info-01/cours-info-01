@@ -5,9 +5,10 @@
 //
 // La partie réseau du cours 5 de 2026 (`cours5/diapo/parties/`) reste inchangée. Déjà
 // transférés en v2 : « Commit local et push sur le réseau » au cours 6 (`01_forge.typ`). Le
-// cours 5 v2 garde « Client et serveur » et « Client et serveur sur le même poste ».
+// cours 5 v2 garde « Client et serveur : JupyterLab ». « Client et serveur » est sortie de sa
+// partie 5 le 06/11/2026 : `ssh` n'arrive qu'au cours 6.
 #import "../../../commun/prelude.typ": *
-#import "../../../cours5/diapo/schemas.typ": schema-local-distant, schema-tuyau
+#import "../../../cours5/diapo/schemas.typ": schema-client-serveur, schema-local-distant, schema-tuyau
 
 #show: diapos.with(
   titre-court: "Réseau : diapositives à replacer",
@@ -20,6 +21,7 @@
     columns: (1fr, 1fr),
     align: left + horizon,
     [Diapositive], [Lien avec les autres supports],
+    [Client et serveur], [cours 6 : `git push`, `git pull`, `ssh`],
     [Liens entre le poste et un serveur], [TD 3d : un aller-retour vers `github.com`],
     [Adresse IP, nom de domaine, port, protocole], [cours 6 : ports 443 et 22, hameçonnage],
     [Débit et latence], [TD 3d : le téléchargement de 10 Mo],
@@ -30,7 +32,31 @@
 
   #legende[
     Déjà transférée : « Commit local et push sur le réseau », au cours 6. Le cours 5 garde
-    les deux diapositives sur le client et le serveur.
+    « Client et serveur : JupyterLab ».
+  ]
+]
+
+// --------------------------------------------
+#d("Client et serveur")[
+  #annonce[
+    Le client envoie une requête, le serveur répond. Le serveur répond à
+    beaucoup de clients à la fois.
+  ]
+
+  #align(center, schema-client-serveur())
+
+  #v(0.15em)
+  #tableau(
+    columns: (1fr, 1fr, 1.4fr),
+    align: left + horizon,
+    [Client], [Serveur], [Contenu de la requête],
+    [le navigateur], [le site web], [l'adresse de la page demandée],
+    [`git push`], [la forge], [les nouveaux commits],
+    [`ssh`], [un serveur de calcul], [l'ouverture d'un terminal],
+  )
+
+  #notes[
+    Le cours 6 ajoute `git pull`, qui demande à la forge les commits des autres.
   ]
 ]
 

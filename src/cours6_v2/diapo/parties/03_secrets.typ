@@ -4,6 +4,7 @@
 // qu'on publie dans un dépôt.
 #import "../../../commun/prelude.typ": *
 #import "../../../cours5/diapo/style.typ": terminal
+#import "../../../cours1_v2/diapo/schemas.typ": terminal as terminal-lignes
 
 #separateur(
   "Les secrets de vos programmes",
@@ -122,6 +123,104 @@ README.md")
   ]
 ]
 
+// --------------------------------------------
+// Déplacée du cours 5 v2 le 06/11/2026.
+#d("Variables d'environnement : portée")[
+  #annonce[
+    Une variable créée dans un terminal reste dans ce terminal. `export` en fait une
+    variable d'environnement, et un fichier de démarrage la pose à chaque ouverture.
+  ]
+
+  #show table.cell: set text(size: 15pt)
+  #show raw: set text(size: 1.15em)
+  #grid(
+    columns: (1.5fr, 1fr), column-gutter: 16pt, align: top,
+    tableau(
+      columns: (auto, 1fr),
+      align: left + horizon,
+      inset: (x: 8pt, y: 5pt),
+      [Où l'écrire], [Elle vaut pour],
+      [`CLE_API=abc python carte.py`], [cette commande],
+      [`NOM=alice`], [ce terminal seulement],
+      [`export NOM=alice`], [ce terminal et ses programmes],
+      [une ligne `export` dans `~/.bash_profile`], [chaque nouveau terminal],
+    ),
+    terminal-lignes(
+      taille: 16pt,
+      "$ NOM=alice",
+      "$ bash -c 'echo \"[$NOM]\"'",
+      "[]",
+      "$ export NOM",
+      "$ bash -c 'echo \"[$NOM]\"'",
+      "[alice]",
+    ),
+  )
+
+  #legende[
+    Dans le terminal de droite, `bash -c` lance un second programme bash. Au TD 1c,
+    `conda init bash` a écrit dans `~/.bash_profile`.
+  ]
+
+  #notes[
+    MIT, _The Missing Semester_, « Command-line Environment » : `~/.bashrc` et
+    `~/.bash_profile` contiennent les commandes à lancer au démarrage, comme une
+    modification de `PATH` : `export PATH="$PATH:/chemin/vers/programme/bin"`.
+
+    Une variable modifiée par un programme ne revient pas au terminal qui l'a
+    lancé : la transmission va du parent vers ses enfants.
+  ]
+]
+
+// --------------------------------------------
+// Déplacée du cours 5 v2 (`03_path.typ`) le 06/11/2026.
+#d("Variables d'environnement : lecture en Python")[
+  #annonce[
+    `os.environ` donne au programme les variables qu'il a reçues. `subprocess.run`
+    les transmet au programme lancé.
+  ]
+
+  #grid(
+    columns: (1.35fr, 1fr), column-gutter: 16pt, align: top,
+    panneau[`carte.py`][
+      #set text(size: 15pt)
+      ```python
+      import os
+      import subprocess
+
+      commande = ["bash", "-c", 'echo "bash : $CLE_API"']
+      subprocess.run(commande, check=True)
+      print("Python :", os.environ.get("CLE_API", "absente"))
+      ```
+    ],
+    panneau[Deux lancements][
+      #terminal-lignes(
+        taille: 15pt,
+        "$ python carte.py",
+        "bash :",
+        "Python : absente",
+        "$ CLE_API=abc python carte.py",
+        "bash : abc",
+        "Python : abc",
+      )
+    ],
+  )
+
+  #legende[
+    Sorties réelles. `os.environ["CLE_API"]` lève un `KeyError` si la variable est
+    absente. Cette lecture garde un secret hors du code.
+  ]
+
+  #notes[
+    Essayé le 05/11/2026 sous Linux, Python 3.12.
+
+    `'echo "bash : $CLE_API"'` est un seul élément de la liste : `bash -c` reçoit tout
+    le texte à exécuter comme un seul argument.
+
+    `subprocess` passe avant `print` dans `carte.py` : quand la sortie n'est pas une
+    console, Python garde son texte en mémoire jusqu'à la fin, et l'ordre des deux
+    lignes changerait.
+  ]
+]
 // --------------------------------------------
 #d("Fuite d'un secret : révocation et remplacement")[
   #annonce[
