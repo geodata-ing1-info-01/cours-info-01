@@ -714,13 +714,26 @@
 // Erreur fréquente, et sa conséquence. Répondant en diapositive à l'encadré
 // `warning` des pages de cours : une forme qu'on reconnaît à la deuxième
 // occurrence, ce qu'un mot en couleur ne fait pas. Un par diapositive au plus,
-// et pas dans un TD, où le brun est déjà à l'écran.
-#let avertissement(corps) = block(
+// et pas dans un TD, où le brun est déjà à l'écran : un TD emploie
+// `couleur: attention`, pour un point à ne pas manquer.
+#let avertissement(corps, couleur: alerte) = block(
   width: 100%, inset: (x: 13pt, y: 10pt), above: 0.7em,
-  fill: alerte.lighten(92%), stroke: (left: 3pt + alerte),
+  fill: couleur.lighten(92%), stroke: (left: 3pt + couleur),
 )[
   #set text(size: 18pt)
-  #text(fill: alerte, weight: demi-gras)[Attention. ] #corps
+  #text(fill: couleur, weight: demi-gras)[Attention. ] #corps
+]
+
+// L'objectif d'une diapositive d'action de TD, avant ses consignes. Le brun est la couleur
+// des TD. Le code passe à 0,9 fois la taille du texte, comme dans les consignes : l'objectif
+// nomme souvent des fichiers.
+#let objectif(corps) = block(
+  width: 100%, inset: (x: 13pt, y: 9pt), below: 0.8em,
+  fill: brun.lighten(90%), stroke: (left: 3pt + brun),
+)[
+  #set text(size: 17pt)
+  #show raw: set text(size: 1.15em)
+  #text(fill: brun, weight: demi-gras)[Objectif : ]#corps
 ]
 
 // Ce que le TD fait constater : affiché dans la compilation « corrigé »

@@ -53,14 +53,15 @@ assertion compressée.
   d'emoji décoratif, pas de couleur qui ne code rien. Le thème n'emploie que
   cinq couleurs, et chacune code une information réelle et répétée : le bleu du
   texte et des diapositives de section, le brun des TD (`separateur-td`,
-  `sommaire-td`) qui marque le passage de l'exposé au travail sur machine,
+  `sommaire-td`, `objectif`) qui marque le passage de l'exposé au travail sur machine,
   le gris des encadrés, puis deux couleurs de
   signalement — `attention`, un bleu clair, sur un point à ne pas manquer, et
   `alerte`, un orange, sur une erreur fréquente et ses conséquences. Ces deux
   dernières répondent aux encadrés `note` et `warning` des pages de cours, et
   ne servent jamais à mettre un mot en valeur : le gras s'en charge, et
   seulement sur un terme défini. `alerte` ne s'emploie pas dans un TD,
-  où le brun est déjà présent.
+  où le brun est déjà présent : un avertissement y prend la couleur `attention`,
+  par `#avertissement(couleur: attention)[…]`.
 
 **Formulations à éviter**, relevées sur une première version de ce deck :
 
@@ -140,6 +141,24 @@ Kornell, Hays & Bjork, *Unsuccessful retrieval attempts enhance subsequent
 learning* (JEP:LMC, 2009) —
 [texte](https://bjorklab.psych.ucla.edu/wp-content/uploads/sites/13/2016/07/Hays_Kornell_RBjork_inpress.pdf).
 
+**Titre et objectif d'une diapositive de TD** (règle du 06/11/2026). Une diapositive
+qui donne seulement des étapes oblige l'élève à les suivre sans savoir ce qu'il cherche à
+obtenir, et l'empêche de réfléchir à la façon de faire.
+
+- Le titre nomme le sujet, en groupe nominal, sans verbe ni question. Un numéro d'étape
+  reste en tête : « Étape B4 · Fonction distance_entre ».
+- Une diapositive d'action énonce son objectif dans le bloc `#objectif[…]`, avant les
+  consignes. Il donne en une phrase le résultat à obtenir, les fichiers employés, et l'outil
+  s'il compte. Il ne révèle pas ce que le TD fait constater : il emploie alors « déterminer
+  si » ou « comparer ».
+- Chaque consigne sert cet objectif. Une consigne qui sert un autre objectif change de
+  diapositive.
+- Une action s'écrit en consigne. Elle ne se cache ni dans un encadré, ni dans une annonce,
+  ni dans une légende.
+- L'objectif nomme les fichiers employés, y compris ceux qu'une étape précédente a produits.
+- Une étape à faire en même temps que la salle porte un avertissement, sous l'objectif, qui
+  demande d'attendre le signal de l'enseignant.
+
 **Diapositives d'étape de TD** (à l'essai depuis le 30/09/2026). Une
 diapositive « Étape n » donne, l'un sous l'autre, ce qu'on doit obtenir à la
 fin de l'étape, puis les pistes pour y arriver (gabarit `attendu-pistes`).
@@ -211,6 +230,9 @@ table précédente.
 | Sujet abstrait, verbe vague | « Beaucoup de besoins sont déjà couverts par des outils existants » | « Un programme peut appeler des outils écrits et testés par d'autres » |
 | Chiasme, parallélisme à effet | « au cours 3, une autre personne utilise votre code ; ici, votre code utilise celui des autres » ; « Une correction y coûte une ligne, alors qu'elle coûte aujourd'hui une refonte » | « Cours 3 : une autre personne utilise le code. Cours 5 : le code appelle des outils écrits par d'autres. » |
 | Image dans une note | « Le fichier de projet raccourcit le chemin sur le nouveau poste » | « Avec le fichier de projet, le nouveau poste compte moins d'étapes » |
+| Consigne en titre d'une diapositive de TD | « Exporter le document `raven.odt` en PDF et PNG » | titre : « Conversion d'un document en d'autres formats » ; objectif : « exporter `raven.odt` en PDF et en PNG… » |
+| Titre en question | « Quels formats permettent la manipulation du texte ? » | titre : « Manipulation du texte selon le format » ; objectif : « reprendre `raven.odt` et ses deux exports, `raven.pdf` et `raven.png`, et déterminer dans lesquels le texte se sélectionne et se cherche. » |
+| Annonce raccourcie en titre | « Deux dossiers par TD : `depart/` et `travail/` » | titre : « Organisation des TD » ; l'annonce explique le rôle des deux dossiers |
 
 Sur une diapositive de TD, ce que l'élève doit faire s'écrit en consignes
 numérotées (gabarit `consignes`) ou en pistes (`attendu-pistes`) : une
@@ -255,6 +277,7 @@ Pas d'encadré « à retenir » qui recopie le paragraphe précédent.
 - [ ] Une suite d'actions est une liste numérotée, et un tableau ne contient que des données à deux dimensions.
 - [ ] Les commandes montrées ont été exécutées.
 - [ ] Ce que le TD fait constater est dans `reponse[…]`.
+- [ ] Une diapositive d'action d'un TD énonce son objectif, et chaque consigne sert cet objectif.
 - [ ] Un TD nouveau est un fichier de `tds/` nommé comme son dossier, avec son dictionnaire `td` en tête, importé et inclus par `cours<n>.typ`.
 - [ ] Un TD nouveau s'appelle `<séance><lettre>`, la lettre suivant l'ordre de la séance ; son statut est dans `statut`, pas dans son nom.
 - [ ] Les chemins cités dans un TD sont ceux de l'archive livrée : `cours1/1c_vscode_python/`, sans `data/` ni `produit/`.

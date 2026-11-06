@@ -21,8 +21,8 @@
 // du TD 1a le 19/10/2026, juste avant la copie de l'archive. 
 #d("Les fichiers du cours")[
   #annonce[
-    L'archive de la séance, `info01-cours1.zip`, est dans `formationTemp`.
-    Chacun doit la copier sur le Bureau du poste, puis l'extraire.
+    L'archive de la séance, `info01-cours1.zip`, est dans `formationTemp`. Chaque élève
+    travaille sur une copie, sur le disque de son poste.
   ]
 
   #tableau(
@@ -70,10 +70,10 @@
 ]
 
 // Nouveau (v2) : la copie de l'archive devient la première étape du TD.
-#d("Copier les fichiers de la séance sur le poste")[
-
-  #annonce[
-    Copier `info01-cours1.zip` depuis `formationTemp` sur le Bureau et l'extraire dans un dossier `info01`.
+#d("Récupération des fichiers de la séance")[
+  #objectif[
+    copier `info01-cours1.zip` depuis `formationTemp` sur le Bureau, et l'extraire dans un dossier
+    `info01`.
   ]
 
   #consignes(
@@ -83,7 +83,6 @@
     [Coller l'archive dans `info01` : #comment[ouvrir `info01`, puis clic droit, Coller.]],
     [Extraire l'archive : #comment[clic droit sur `info01-cours1.zip`, Extraire tout…]],
     [Extraire dans `info01` même : #comment[dans la fenêtre qui s'ouvre, effacer `\info01-cours1` à la fin du chemin, puis cliquer sur Extraire.]],
-    [Ouvrir `cours1\1a_formats\`, et vérifier qu'il contient `depart\` et `travail\`.],
   )
 
   #legende[
@@ -105,19 +104,26 @@
     Fin de séance : dire où emporter son travail (à préciser).
   ]
 ]
-#d([Deux dossiers par TD : `depart/` et `travail/`])[
-  #avertissement[
-    Avant d'ouvrir un fichier : afficher les extensions, que Windows masque
-    par défaut.
-    Explorateur #sym.arrow.r Affichage #sym.arrow.r Afficher #sym.arrow.r
-    Extensions de noms de fichiers.
-  ]
-
+// 06/11/2026 : l'annonce explique les deux dossiers. La vérification du dossier vient de la diapositive
+// précédente, et l'affichage des extensions, qui était dans un encadré, devient une consigne.
+#d("Organisation des TD")[
   #annonce[
-    Ne pas modifier les fichiers de `depart/`. Enregistrer dans `travail/`
-    les fichiers que vous produisez.
+    Dans chaque TD, `depart/` contient les fichiers livrés, à ne pas modifier. `travail/`, vide au
+    départ, contiendra les fichiers que vous produisez.
   ]
 
+  #objectif[
+    retrouver ces deux dossiers au TD 1a, et afficher les extensions de leurs fichiers.
+  ]
+
+  #consignes(
+    taille: 16pt,
+    [Ouvrir `cours1\1a_formats\`, et vérifier qu'il contient `depart\` et `travail\`.],
+    [Ouvrir `depart\`, et afficher les extensions, que Windows masque par défaut : #comment[dans l'explorateur, Affichage, Afficher, Extensions de noms de fichiers.]
+      #constat[Les noms des fichiers se terminent par `.odt`, `.donnees` ou `.txt`.]],
+  )
+
+  #v(0.3em)
   #schema-dossier-depart()
 
   #notes[
@@ -146,7 +152,11 @@
 // une liste de consignes, comme la copie de l'archive. Seconde relecture du
 // même jour : chaque tâche en noir, sa manière en gris, en deux opérations
 // lettrées pour les exports ; le schéma passe en colonne à droite.
-#d([Exporter le document `raven.odt` en PDF et PNG])[
+#d("Conversion d'un document en d'autres formats")[
+  #objectif[
+    exporter `raven.odt` en PDF et en PNG dans `travail\`, avec LibreOffice Writer.
+  ]
+
   #grid(
     columns: (1.75fr, 1fr), column-gutter: 18pt, align: top,
     [#consignes(
@@ -188,7 +198,12 @@
 // --------------------------------------------
 // 05/11/2026 : le tableau devient une liste de consignes. La solution sort de sa colonne,
 // et passe sous chaque consigne, dans le corrigé seulement.
-#d("Quels formats permettent la manipulation du texte ?")[
+#d("Manipulation du texte selon le format")[
+  #objectif[
+    reprendre `raven.odt` et ses deux exports, `raven.pdf` et `raven.png`, et déterminer dans lesquels
+    le texte se sélectionne et se cherche.
+  ]
+
   #consignes(
     [Rouvrir `raven.odt`, le document de départ, dans LibreOffice : #comment[dans `depart\`.]],
     [Sélectionner une ligne du poème, puis chercher un mot avec `Ctrl` + `F`. Le texte est-il encore du texte ?
@@ -222,10 +237,10 @@
   text(size: 14pt, fill: estompe)[#nom],
 ))
 
-#d("Ouvrir les fichiers avec un éditeur de texte")[
-  #annonce[
-    On ouvre cette fois les fichiers avec un éditeur de texte, le Bloc-notes
-    ou Notepad++.
+#d("Contenu d'un fichier dans un éditeur de texte")[
+  #objectif[
+    comparer ce qu'un éditeur de texte affiche pour trois fichiers de `depart\` :
+    `raven_une_ligne.txt`, `raven_une_ligne.donnees` et `raven.odt`.
   ]
 
   #grid(
@@ -246,7 +261,7 @@
     ),
   )
 
-  #avertissement[
+  #avertissement(couleur: attention)[
     Un `.odt` enregistré depuis le Bloc-notes ou Notepad++ est abîmé, et
     Writer ne peut plus l'ouvrir.
   ]
@@ -283,32 +298,39 @@
 // Relecture du 19/10/2026 : toute la salle modifie le même fichier du
 // dossier partagé. La diapositive qui suit le TD, « Modifications
 // simultanées d'un fichier partagé », explique ce qu'on y constate.
-#d("Modifier à plusieurs un fichier partagé")[
-  #annonce[
-    Toute la salle ajoute une ligne au même fichier,
-    `formationTemp\info01-salle.txt`. Ne modifier aucun autre fichier de
-    `formationTemp`.
+// 06/11/2026 : le tableau devient une liste de consignes.
+#d("Modification à plusieurs d'un fichier partagé")[
+  #objectif[
+    ajouter chacun une ligne au même fichier du dossier partagé, `info01-salle.txt`, puis relire ce
+    fichier.
   ]
 
-  #tableau(
-    columns: (auto, 1.5fr, 1fr),
-    align: left + horizon,
-    [], [Ce qu'il faut faire], [Ce que vous constatez],
-    [1], [dans `formationTemp`, clic droit sur `info01-salle.txt`, Ouvrir avec, Bloc-notes ; attendre le signal],
-      reponse[le fichier est vide],
-    [2], [au signal, écrire son prénom, puis `Ctrl` + `S`],
-      reponse[le Bloc-notes enregistre sans aucun message],
-    [3], [fermer le Bloc-notes, puis rouvrir le fichier],
-      reponse[un prénom, ou quelques-uns : la plupart ont disparu],
+  #avertissement(couleur: attention)[
+    Toute la salle fait cette étape en même temps. Attendre le signal de l'enseignant avant de
+    commencer.
+  ]
+
+  #v(0.4em)
+  #consignes(
+    [Ouvrir le fichier dans le Bloc-notes, puis attendre le signal : #comment[dans `formationTemp`, clic droit sur `info01-salle.txt`, Ouvrir avec, Bloc-notes.]
+      #constat[Le fichier est vide.]],
+    [Au signal, écrire son prénom, puis enregistrer : `Ctrl` + `S`.
+      #constat[Le Bloc-notes enregistre sans aucun message.]],
+    [Fermer le Bloc-notes, puis rouvrir le fichier.
+      #constat[Un prénom, ou quelques-uns : la plupart ont disparu.]],
   )
+
+  #legende[
+    Ne modifier aucun autre fichier de `formationTemp`.
+  ]
 
   #notes[
     Avant la séance : déposer dans `formationTemp` un fichier texte vide,
     `info01-salle.txt`, à côté de l'archive. Le vider avant chaque groupe.
 
-    Attendre que toute la salle ait le fichier ouvert avant de donner le
-    signal : chacun doit avoir lu le fichier vide. Faire écrire le prénom
-    seul : le fichier est lisible par toute la promotion.
+    Deux signaux : un pour ouvrir le fichier, quand la salle a fini la diapositive précédente ; un
+    pour écrire, quand toute la salle a le fichier ouvert. Chacun doit avoir lu le fichier vide. Faire
+    écrire le prénom seul : le fichier est lisible par toute la promotion.
 
     À vérifier sur un poste de la salle : l'élève a le droit d'écrire dans
     `formationTemp`, et le Bloc-notes de Windows 11 enregistre sans signaler
