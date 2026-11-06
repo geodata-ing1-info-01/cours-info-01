@@ -245,7 +245,8 @@
 // --------------------------------------------
 #d("Étape A1 · Dossier du projet")[
   #objectif[
-    créer le dossier du projet par des commandes, en copiant les fichiers livrés.
+    créer le dossier du projet, `travail/stats_trace`, par des commandes, et y copier
+    `stats_trace.py`, `trace.csv` et `trace_2.csv`.
   ]
 
   #deux-colonnes(
@@ -314,7 +315,8 @@
 // --------------------------------------------
 #d("Étape A2 · Projet dans VS Code")[
   #objectif[
-    ouvrir le dossier du projet dans VS Code, avec un terminal Git Bash dans ce dossier.
+    ouvrir `travail/stats_trace` et `stats_trace.py` dans VS Code, avec un terminal Git Bash dans
+    ce dossier.
   ]
 
   #consignes(
@@ -351,7 +353,8 @@
 // --------------------------------------------
 #d("Étape A3 · Dépôt git")[
   #objectif[
-    enregistrer l'état de départ du projet dans un premier commit.
+    créer le dépôt git du projet, exclure `resume.txt` avec `.gitignore`, et enregistrer
+    `stats_trace.py` et les deux traces dans un premier commit.
   ]
 
   #deux-colonnes(
@@ -404,8 +407,8 @@
 // --------------------------------------------
 #d("Étape B1 · Correction du programme de départ")[
   #objectif[
-    lire un message d'erreur de Python et corriger la ligne qu'il désigne. Le programme de départ
-    contient deux erreurs.
+    corriger les deux erreurs de `stats_trace.py`, lancé sur `trace.csv`, à partir des messages de
+    Python.
   ]
 
   #deux-colonnes(
@@ -454,8 +457,7 @@
 // --------------------------------------------
 #d("Étape B2 · Option de distance")[
   #objectif[
-    ajouter l'option `--distance`, qui affiche pour l'instant un message. Le calcul est écrit aux
-    étapes B3 à B5, qui se testent avec la même commande.
+    ajouter à `stats_trace.py` l'option `--distance`, qui affiche pour l'instant un message.
   ]
 
   #deux-colonnes(
@@ -479,6 +481,7 @@
   )
 
   #legende[
+    Le calcul est écrit aux étapes B3 à B5, qui se testent avec la même commande.
     Sans `--distance`, le message n'apparaît pas. `python stats_trace.py --help` décrit
     l'option. Solution : guide, étape B2.
   ]
@@ -494,7 +497,8 @@
 // --------------------------------------------
 #d("Étape B3 · Positions de la trace")[
   #objectif[
-    garder les colonnes `x` et `y` de la trace dans deux listes, et contrôler les valeurs lues.
+    garder dans deux listes de `stats_trace.py` les colonnes `X` et `Y` de `trace.csv`, et
+    contrôler les valeurs lues.
   ]
 
   #deux-colonnes(
@@ -580,7 +584,8 @@
 // --------------------------------------------
 #d("Étape B4 · Fonction distance_entre")[
   #objectif[
-    écrire `distance_entre(x1, y1, x2, y2)`, qui renvoie la distance entre deux points.
+    écrire dans `stats_trace.py` la fonction `distance_entre(x1, y1, x2, y2)`, qui renvoie la
+    distance entre deux points.
   ]
 
   #consignes(
@@ -604,8 +609,8 @@
 // --------------------------------------------
 #d("Étape B4 · Essai de la fonction")[
   #objectif[
-    essayer la fonction sur un cas dont le résultat est connu, puis sur les deux premières
-    positions de la trace.
+    essayer `distance_entre` sur un cas dont le résultat est connu, puis sur les deux premières
+    positions de `trace.csv`.
   ]
 
   #deux-colonnes(
@@ -653,8 +658,8 @@
 // --------------------------------------------
 #d("Étape B5 · Fonction distance_parcourue")[
   #objectif[
-    additionner les longueurs des segments. La position 0 n'a pas de position précédente : la
-    boucle commence donc à `i = 1`.
+    écrire dans `stats_trace.py` la fonction `distance_parcourue(liste_x, liste_y)`, qui additionne
+    les longueurs des segments.
   ]
 
   #consignes(
@@ -668,6 +673,10 @@
     [Après la boucle, au niveau de la ligne `for`, renvoyer `total` avec `return`.],
   )
 
+  #legende[
+    La position 0 n'a pas de position précédente : la boucle commence donc à `i = 1`.
+  ]
+
   #notes[
     Passage le plus difficile du TD : une fonction qui appelle une autre fonction.
     Passer dans les rangs.
@@ -680,7 +689,8 @@
 // --------------------------------------------
 #d("Étape B5 · Appel de la fonction")[
   #objectif[
-    contrôler le total après chaque segment.
+    appeler `distance_parcourue` sur les positions de `trace.csv`, et contrôler le total après
+    chaque segment.
   ]
 
   #deux-colonnes(
@@ -711,7 +721,8 @@
 // --------------------------------------------
 #d("Étape B5 · Résultat final")[
   #objectif[
-    retirer l'affichage provisoire, une fois les valeurs contrôlées.
+    retirer l'affichage provisoire de `distance_parcourue`, puis calculer la distance parcourue sur
+    `trace.csv` et sur `trace_2.csv`.
   ]
 
   #deux-colonnes(
@@ -743,8 +754,7 @@
 // --------------------------------------------
 #d("Étape B6 · Option de vitesse")[
   #objectif[
-    ajouter l'option `--vitesse`, dans le même ordre que pour la distance : l'option, le calcul
-    intermédiaire, puis le résultat.
+    ajouter à `stats_trace.py` l'option `--vitesse`, qui affiche pour l'instant un message.
   ]
 
   #deux-colonnes(
@@ -761,6 +771,11 @@
       "vitesse : calcul manquant",
     ),
   )
+
+  #legende[
+    L'étape B6 suit le même ordre que pour la distance : l'option, le calcul intermédiaire, puis
+    le résultat.
+  ]
 ]
 
 // --------------------------------------------
@@ -800,8 +815,8 @@
 // --------------------------------------------
 #d("Étape B6 · Fonction secondes_ecoulees")[
   #objectif[
-    écrire `secondes_ecoulees(debut, fin)`, qui renvoie le temps en secondes entre deux valeurs de
-    la colonne `time`.
+    écrire dans `stats_trace.py` la fonction `secondes_ecoulees(debut, fin)`, qui renvoie le temps
+    en secondes entre deux valeurs de la colonne `time`.
   ]
 
   #deux-colonnes(
@@ -835,7 +850,7 @@
 // --------------------------------------------
 #d("Étape B6 · Temps total")[
   #objectif[
-    calculer le temps total, entre la première et la dernière valeur de la colonne `time`.
+    calculer le temps total de `trace.csv`, entre la première et la dernière valeur de `time`.
   ]
 
   #deux-colonnes(
@@ -863,7 +878,7 @@
 // --------------------------------------------
 #d("Étape B6 · Vitesse moyenne")[
   #objectif[
-    afficher la vitesse moyenne, la distance parcourue divisée par le temps total.
+    afficher la vitesse moyenne sur `trace.csv`, la distance parcourue divisée par le temps total.
   ]
 
   #deux-colonnes(
@@ -905,7 +920,8 @@
 // --------------------------------------------
 #d("Étape B7 (bonus) · README et étiquette")[
   #objectif[
-    permettre à une autre personne de lancer le programme, et nommer la version finale.
+    compléter `README.md` pour qu'une autre personne puisse lancer `stats_trace.py`, et poser
+    l'étiquette `v1.0` sur la version finale.
   ]
 
   #consignes(
