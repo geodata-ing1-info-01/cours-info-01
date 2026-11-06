@@ -8,6 +8,7 @@
 // diapositives sur les services en ligne viennent du matériel du cours 5 v2.
 #import "../../../commun/prelude.typ": *
 #import "../../../cours1_v2/diapo/schemas.typ": terminal
+#import "../../../cours5/diapo/schemas.typ": schema-commit-push
 
 #separateur(
   "Partager son code sur une forge",
@@ -115,6 +116,21 @@
   #_commande("push.png", "$ git push")
 ]
 
+// --------------------------------------------
+// Déplacée du cours 5 v2 (`06_reseau.typ`) le 06/11/2026.
+#d("Commit local et push sur le réseau")[
+  #annonce[
+    Le commit écrit sur le disque du poste, le push traverse le réseau. Git
+    est fait pour qu'on puisse travailler sans réseau et pousser plus tard.
+  ]
+
+  #align(center, schema-commit-push())
+
+  #notes[
+    Un outil qui enregistrerait directement sur le serveur attendrait le réseau
+    à chaque enregistrement et ne fonctionnerait pas hors ligne.
+  ]
+]
 // --------------------------------------------
 #d("Synchronisation des dépôts : pull avant push")[
   #annonce[

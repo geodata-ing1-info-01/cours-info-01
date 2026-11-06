@@ -27,7 +27,6 @@
   ]
 
   #notes[
-    Le déroulé reste à établir. Avec le réseau, le contenu dépasse une séance : choisir
-    ce qui reste du cours 5 de 2026.
+    Le déroulé reste à établir.
   ]
 ]

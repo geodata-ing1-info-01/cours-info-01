@@ -7,11 +7,12 @@
 // 05/11/2026 : le cours porte d'abord sur l'installation et la distribution d'un
 // programme Python, après le cours 3 sur la portabilité. En tête, `subprocess` (cours 3
 // de 2026) et les environnements (cours 1 de 2026) ; puis `PATH` et les variables
-// d'environnement, nouveaux ; puis le paquet. Le réseau restant suit.
+// d'environnement, nouveaux ; puis le paquet.
 //
 // Le cours 5 de 2026 reste inchangé dans `src/cours5/`. Les schémas viennent de là, et ne
 // sont pas recopiés. 06/11/2026 : le matériel sort de la séance, voir
-// `a_reprendre/materiel.typ`, et le TD 5a devient le TD 3d du cours 3. Passés ailleurs : les mots de passe, les clés SSH et
+// `a_reprendre/materiel.typ`, et le TD 5a devient le TD 3d du cours 3. Du réseau, seuls
+// le client et le serveur restent : voir `a_reprendre/reseau.typ`. Passés ailleurs : les mots de passe, les clés SSH et
 // les secrets au cours 6 v2 ; la température et la consommation au cours 1 v2.
 //
 //   python outils/compiler_diapos.py --cours 5_v2
