@@ -136,6 +136,10 @@
   ))
 }
 
+// Typst remplace l'apostrophe droite dans le texte entre crochets, mais pas dans une chaîne : un
+// titre écrit `#d("Création d'une branche")` la garderait droite.
+#let _apostrophe(t) = if type(t) == str { t.replace("'", "’") } else { t }
+
 #let diapos(
   titre: "",
   sous-titre: "",
@@ -146,7 +150,7 @@
   auteur-court: none,
   corps,
 ) = {
-  let titre-pied = if titre-court != none { titre-court } else { titre }
+  let titre-pied = _apostrophe(if titre-court != none { titre-court } else { titre })
   let auteur-pied = if auteur-court != none { auteur-court } else { auteur }
 
   set text(font: police-texte, size: pt-normalsize, fill: encre, lang: "fr")
@@ -216,11 +220,11 @@
       {
         v(0.4fr)
         block(width: 70%)[
-          #text(size: pt-LARGE, weight: demi-gras)[#titre]
+          #text(size: pt-LARGE, weight: demi-gras)[#_apostrophe(titre)]
           #v(0.2em)
           #line(length: 70%, stroke: 0.955pt + brun)
           #v(1.35em)
-          #text(size: pt-normalsize)[#sous-titre]
+          #text(size: pt-normalsize)[#_apostrophe(sous-titre)]
           #v(1.4em)
           #text(size: pt-footnotesize)[
             #auteur \
@@ -242,12 +246,12 @@
       #petites-capitales("Module")
     ]
     #v(0.5em)
-    #text(size: pt-LARGE * 1.15, fill: white, weight: demi-gras)[#titre-module]
+    #text(size: pt-LARGE * 1.15, fill: white, weight: demi-gras)[#_apostrophe(titre-module)]
     #v(0.45em)
     #line(length: 45%, stroke: 1.5pt + brun.lighten(25%))
     #if annonce != none [
       #v(0.6em)
-      #text(size: pt-normalsize, fill: white.darken(18%))[#annonce]
+      #text(size: pt-normalsize, fill: white.darken(18%))[#_apostrophe(annonce)]
     ]
     #v(2.2em)
     #text(size: pt-footnotesize, fill: white.darken(32%))[
@@ -280,7 +284,7 @@
   let titre = [
     #set text(size: pt-LARGE, fill: accent, weight: demi-gras)
     #set par(leading: 0.4em)
-    #titre-diapo
+    #_apostrophe(titre-diapo)
     #if sous-titre != none [
       #linebreak()
       #text(size: pt-normalsize, fill: estompe)[
@@ -326,10 +330,10 @@
     ]
     #line(length: 40%, stroke: 1.5pt + filet)
     #v(0.7em)
-    #text(size: pt-LARGE, fill: sur-fond, weight: demi-gras)[#titre-partie]
+    #text(size: pt-LARGE, fill: sur-fond, weight: demi-gras)[#_apostrophe(titre-partie)]
     #if annonce != none [
       #v(0.45em)
-      #text(size: pt-normalsize, fill: sur-fond.lighten(35%))[#annonce]
+      #text(size: pt-normalsize, fill: sur-fond.lighten(35%))[#_apostrophe(annonce)]
     ]
     // Le dossier de travail, sur l'ouverture plutôt que dans une légende trois
     // diapositives plus loin : c'est la première chose que la salle a besoin de
@@ -436,10 +440,10 @@
   place(horizon + left, block(width: 0.43 * l)[
     #line(length: 40%, stroke: 1.5pt + brun.lighten(25%))
     #v(0.7em)
-    #text(size: pt-LARGE, fill: white, weight: demi-gras)[#titre-partie]
+    #text(size: pt-LARGE, fill: white, weight: demi-gras)[#_apostrophe(titre-partie)]
     #if annonce-partie != none [
       #v(0.45em)
-      #text(size: pt-normalsize, fill: white.darken(12%))[#annonce-partie]
+      #text(size: pt-normalsize, fill: white.darken(12%))[#_apostrophe(annonce-partie)]
     ]
   ])
   // Le TD, à droite. Le décalage part du bord gauche de la zone de texte,
@@ -456,7 +460,7 @@
       #v(0.4em)
       #text(size: pt-normalsize * 1.15, font: police-code, fill: white, weight: demi-gras)[#notebook]
     ] else [
-      #text(size: pt-LARGE, fill: white, weight: demi-gras)[#titre]
+      #text(size: pt-LARGE, fill: white, weight: demi-gras)[#_apostrophe(titre)]
     ]
     #if dossier != none [
       #v(0.9em)
@@ -497,7 +501,7 @@
         (
           text(weight: demi-gras)[TD #td.numero],
           [
-            #td.titre
+            #_apostrophe(td.titre)
             #if statut != none [
               #text(size: pt-footnotesize, fill: white.darken(30%))[— #statut]
             ]
@@ -635,7 +639,7 @@
 
 // Étiquette d'un panneau de comparaison.
 #let panneau(titre, corps) = block(width: 100%)[
-  #text(size: 15pt, fill: estompe, weight: demi-gras)[#titre]
+  #text(size: 15pt, fill: estompe, weight: demi-gras)[#_apostrophe(titre)]
   #v(0.35em)
   #corps
 ]
