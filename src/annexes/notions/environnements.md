@@ -49,7 +49,7 @@ d'environnement de la fenêtre
 Ces modifications ne valent que pour cette fenêtre. Un autre `cmd` ouvert
 depuis le menu Démarrer ne les a pas : `python` y désigne un autre Python,
 ou aucun, et `conda` n'y est pas reconnu ({ref}`A2 <dep-a2>`,
-{ref}`V7 <dep-v7>`). L'invite de commandes d'Anaconda est un `cmd` dans lequel cette
+{ref}`A16 <dep-a16>`). L'invite de commandes d'Anaconda est un `cmd` dans lequel cette
 activation a été faite à l'ouverture ([Les terminaux](terminaux.md)).
 
 ## Les scripts d'activation
@@ -108,7 +108,14 @@ même fenêtre, refait exactement cela avec les dossiers de `recette` ;
 `conda deactivate` remet les valeurs précédentes.
 
 Les autres interpréteurs ont leur script, qui fait la même chose dans
-leur langage : `conda-hook.ps1` pour PowerShell (un fichier `.ps1`, que
-le réglage des postes de la salle bloque, {ref}`A7 <dep-a7>`), `conda.sh`
-pour `bash` et `zsh` sous macOS et Linux, chargé au démarrage du terminal
-par une ligne que `conda init` a écrite dans `~/.bashrc` ou `~/.zshrc`.
+leur langage :
+
+| Terminal | Script d'activation | Mise en place |
+|---|---|---|
+| Invite de commandes d'Anaconda (`cmd`) | `Scripts\activate.bat` | le raccourci du menu Démarrer l'exécute |
+| Git Bash (`bash`) | `etc/profile.d/conda.sh` | `conda init bash` écrit son chargement dans `~/.bash_profile` |
+| `bash` et `zsh`, sous macOS et Linux | `etc/profile.d/conda.sh` | `conda init` écrit son chargement dans `~/.bashrc` ou `~/.zshrc` |
+| PowerShell | `shell\condabin\conda-hook.ps1` | refusé tant que le compte n'a pas changé sa stratégie ({ref}`A7 <dep-a7>`) |
+
+La marche à suivre pour chaque terminal est dans {ref}`Anaconda, section conda
+dans un terminal <conda-terminal>`.

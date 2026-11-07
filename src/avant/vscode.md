@@ -84,9 +84,9 @@ installée, d'où les boutons Disable et Uninstall à la place d'Install
 
 Si un message d'erreur s'affiche :
 
-- `source` affiche `No such file or directory` : {ref}`G5 <dep-g5>`.
+- `source` affiche `No such file or directory` : {ref}`A14 <dep-a14>`.
 - `conda init bash` écrit `needs sudo`, ou Windows demande des droits
-  d'administrateur : {ref}`G6 <dep-g6>`.
+  d'administrateur : {ref}`A15 <dep-a15>`.
 - Chaque nouveau terminal affiche l'aide de `cygpath` : {ref}`G7 <dep-g7>`.
 
 La flèche à droite du `+`, en haut à droite du panneau du terminal, liste les
@@ -97,10 +97,10 @@ terminaux ({ref}`Choisir le terminal à ouvrir <vscode-terminal-choisir>`).
 1. En bas à droite de la fenêtre, lire `3.x ('base')`. Sinon :
    {ref}`V6 <dep-v6>`.
 2. Menu Terminal, New Terminal. L'invite commence par `(base)` et se termine par
-   `$`. Sans `(base)` : {ref}`G4 <dep-g4>`. Si une erreur s'affiche :
+   `$`. Sans `(base)` : {ref}`A3 <dep-a3>`. Si une erreur s'affiche :
    {ref}`V5 <dep-v5>`.
 3. Dans ce terminal, taper `which python`. La commande affiche
-   `/c/ProgramData/anaconda3/python`. Sinon : {ref}`V7 <dep-v7>`.
+   `/c/ProgramData/anaconda3/python`. Sinon : {ref}`A16 <dep-a16>`.
 4. Ouvrir un fichier `.py`, puis cliquer sur le triangle en haut à droite. Le
    terminal affiche la commande, puis ce que le programme écrit. Sinon :
    {ref}`V8 <dep-v8>`.

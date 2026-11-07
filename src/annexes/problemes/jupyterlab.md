@@ -5,7 +5,7 @@ title: Problèmes avec JupyterLab et les notebooks
 Le noyau et le client d'un notebook sont expliqués dans [Les
 notebooks](../notions/notebooks.md), le test de JupyterLab dans [Anaconda et
 JupyterLab](../../avant/python.md), et son lancement depuis un terminal dans
-[JupyterLab hors Anaconda](../configuration/jupyterlab.md). La configuration des
+[JupyterLab sans Navigator](../configuration/jupyterlab.md). La configuration des
 notebooks dans VS Code est dans
 [VS Code : notebooks](../configuration/vscode_notebooks.md).
 

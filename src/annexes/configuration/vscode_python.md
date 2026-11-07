@@ -11,7 +11,7 @@ VS Code ouvert sur le dossier du TD ([VS Code](vscode.md)) :
 3. Faire de Git Bash le terminal de VS Code, avec conda activé.
 4. Lancer un programme pour vérifier.
 
-Les autres réglages et les versions vérifiées sont en fin de page.
+Les versions vérifiées sont en fin de page.
 
 ## Installer l'extension Python
 
@@ -46,8 +46,7 @@ L'interpréteur est le Python que VS Code emploie pour exécuter les fichiers
    Python trouvé son nom, son chemin, et son type : Conda pour un environnement
    conda, Global pour un Python installé seul.
 3. Choisir la ligne `base` dont le chemin contient `anaconda3`. Si la liste ne
-   montre pas `base` : {ref}`Quand la liste ne montre ni base ni les
-   environnements <vscode-liste-interpreteurs>`.
+   montre pas `base` : {ref}`V6 <dep-v6>`.
 
 ```{figure} captures/vscode_select_interpreter.png
 :alt: La liste Select Interpreter : l'interpréteur choisi en haut, puis Enter interpreter path, une entrée base de type Conda, et des Python de type Global et Workspace
@@ -81,9 +80,7 @@ pourquoi le module passe par l'invite de commandes d'Anaconda.
 Par défaut, le terminal de VS Code est un PowerShell, qui refuse le script
 d'activation d'Anaconda tant que le compte n'a pas changé sa stratégie
 ({ref}`A7 <dep-a7>`). Le module emploie Git Bash, le terminal du cours 1
-([Git et Git Bash](git.md)). VS Code l'ajoute à ses profils quand Git for
-Windows est installé dans `C:\Program Files\Git`, comme sur les postes de la
-salle.
+([Git et Git Bash](git.md)).
 
 Palette, « Terminal: Select Default Profile », puis « Git Bash » (s'il est
 absent : {ref}`V12 <dep-v12>`). Ce choix est écrit dans les réglages du compte
@@ -95,16 +92,16 @@ absent : {ref}`V12 <dep-v12>`). Ce choix est écrit dans les réglages du compte
 
 Le fichier complet est dans [Fichiers de réglages](vscode_reglages.md). Le
 terminal de VS Code lit le même `~/.bash_profile` que la fenêtre Git Bash, où
-`conda init bash` a écrit ({ref}`Git et Git Bash, section conda
-<conda-git-bash>`) : l'invite commence donc par `(base)`.
+`conda init bash` a écrit ({ref}`Anaconda, section conda dans un terminal
+<conda-terminal>`) : l'invite commence donc par `(base)`.
 
 ## Vérifier
 
 1. Menu Terminal, New Terminal. L'invite commence par `(base)` et se termine par
-   `$`. Sans `(base)` : {ref}`G4 <dep-g4>`. Si une erreur s'affiche :
+   `$`. Sans `(base)` : {ref}`A3 <dep-a3>`. Si une erreur s'affiche :
    {ref}`V5 <dep-v5>`.
 2. Dans ce terminal, taper `python -c "import sys; print(sys.executable)"`. Le
-   chemin d'Anaconda s'affiche. Sinon : {ref}`V7 <dep-v7>`.
+   chemin d'Anaconda s'affiche. Sinon : {ref}`A16 <dep-a16>`.
 3. Ouvrir un fichier `.py`, puis cliquer sur le triangle en haut à droite. Le
    terminal affiche ce que le programme écrit. Sinon : {ref}`V8 <dep-v8>`.
 
@@ -112,9 +109,7 @@ Le chemin affiché dans le terminal doit être celui de l'interpréteur choisi. 
 un `import` échoue alors que le paquet est installé, ces deux Python diffèrent
 souvent ({ref}`V8 <dep-v8>`).
 
-## Les autres terminaux
-
-### Secours : l'invite de commandes d'Anaconda
+## Secours : l'invite de commandes d'Anaconda
 
 Quand le réglage de conda échoue dans Git Bash, le terminal de secours est un
 `cmd` ([Les terminaux](../notions/terminaux.md)), celui de l'invite de
@@ -151,138 +146,6 @@ le raccourci, Propriétés, champ Cible. Il contient
 `%windir%\System32\cmd.exe "/K" C:\ProgramData\anaconda3\Scripts\activate.bat C:\ProgramData\anaconda3` :
 les deux chemins du réglage sont les deux derniers, dans le même ordre.
 :::
-
-### Variante : conda chargé par VS Code
-
-Quand `conda init bash` n'est pas possible, VS Code peut charger conda
-par ses réglages seuls, sans rien écrire dans le compte. Un profil de terminal
-lance bash avec un fichier de démarrage donné en argument, comme le profil
-« Anaconda Prompt » lance `cmd` avec `activate.bat`. Ajouter ce profil dans
-`terminal.integrated.profiles.windows`, à côté du profil « Anaconda Prompt » :
-
-```json
-"Git Bash (Anaconda)": {
-  "path": "C:\\Program Files\\Git\\bin\\bash.exe",
-  "args": ["-c", "exec bash --rcfile <(echo 'source /etc/profile; cygpath() { /usr/bin/cygpath \"$@\"; }; source /c/ProgramData/anaconda3/etc/profile.d/conda.sh; conda activate base') -i"]
-}
-```
-
-Le fichier de démarrage lit `/etc/profile`, comme un Git Bash ordinaire
-(invite, `PATH`), puis charge `conda.sh` et active `base`. Choisir ce terminal
-par la flèche à côté du `+` : l'invite commence par `(base)`, et
-`which python` affiche `/c/ProgramData/anaconda3/python`. Ce profil ne lit
-ni `~/.bashrc` ni `~/.bash_profile`, et ne vaut que dans VS Code. Avec ces
-arguments, VS Code n'y ajoute pas son intégration du terminal (les
-marques à gauche des commandes).
-
-La fonction `cygpath() { … }` de ce profil corrige un défaut de
-l'installation de la salle, décrit dans {ref}`G7 <dep-g7>`.
-
-### Variante : le profil « Command Prompt »
-
-VS Code a parmi ses profils un `cmd` ordinaire, « Command Prompt », où
-l'extension Python tape la commande d'activation à l'ouverture :
-
-```json
-"terminal.integrated.defaultProfile.windows": "Command Prompt"
-```
-
-Ce profil ne convient que si `conda activate` fonctionne dans un `cmd` ordinaire
-du poste. Quand l'extension n'a pas pu lire les informations d'activation de
-conda (panneau Output, « Python Environments » : `Conda environment
-manager is not available, using default conda activation paths`), elle
-tape seulement `conda activate base`, qui affiche `CondaError: Run 'conda
-init' before 'conda activate'` si `conda init cmd.exe` n'a jamais été fait
-pour le compte ({ref}`V5 <dep-v5>`).
-
-(vscode-liste-interpreteurs)=
-## Quand la liste ne montre ni `base` ni les environnements
-
-L'extension construit cette liste en cherchant dans le `PATH` reçu au
-lancement de VS Code, le registre de Windows, les installations de python.org
-et les dossiers du projet, et en lançant `conda info --envs` quand elle trouve
-conda.
-
-Lancé depuis le menu Démarrer, VS Code ne reçoit pas les variables de
-l'invite de commandes d'Anaconda ([Variables d'environnement](../notions/variables_environnement.md)).
-Il cherche alors `conda` dans une liste de dossiers d'installation
-habituels, dont `C:\ProgramData\anaconda3` : sur les postes de la salle,
-cette recherche aboutit. Quand Anaconda est installé ailleurs, la liste ne
-contient que « Enter interpreter path… » et des Python qui ne sont pas
-ceux d'Anaconda ({ref}`V6 <dep-v6>`). Les réglages suivants corrigent ce cas.
-Leurs valeurs sont celles des postes de la salle : si elles diffèrent, les lire
-dans la cible du raccourci « Anaconda Prompt ».
-
-`python.condaPath`
-: Le chemin du programme `conda`. Avec ce réglage, VS Code interroge
-  conda et obtient la liste complète des environnements, `base` et ceux
-  du compte ; il s'en sert aussi pour activer l'environnement dans le
-  terminal. Valeur : `C:\\ProgramData\\anaconda3\\Scripts\\conda.exe`.
-  Niveau User seulement : au niveau Workspace, il est ignoré sans message.
-  Il vaut pour les deux extensions, Python et Python Environments. VS Code
-  ne relance pas toujours la recherche après ce changement : faire
-  palette, « Python: Clear Cache and Reload Window » (ou « Developer:
-  Reload Window »).
-
-`python.defaultInterpreterPath`
-: Le chemin du Python à employer pour un dossier tant qu'aucun
-  interpréteur n'y a été choisi. Pour `base` :
-  `C:\\ProgramData\\anaconda3\\python.exe` ; pour un environnement créé
-  par le compte : `${env:USERPROFILE}\\.conda\\envs\\recette\\python.exe`.
-  Niveau User ou Workspace ; au niveau Workspace, il peut être livré dans
-  le `.vscode\settings.json` d'un TD. Un choix fait ensuite par « Python:
-  Select Interpreter » l'emporte sur ce réglage pour ce dossier, et la
-  liste propose alors une entrée « Use Python from
-  `python.defaultInterpreterPath` setting » pour y revenir. L'extension
-  Jupyter propose ce même interpréteur en tête de sa liste de noyaux
-  ([Notebooks](vscode_notebooks.md)).
-
-Le plus direct, sans réglage : « Enter interpreter path… », puis taper ou
-coller le chemin du fichier `python.exe` de l'environnement voulu, aux chemins
-ci-dessus, et appuyer sur Entrée. « Find… » ouvre à la place une fenêtre de
-choix, qui n'affiche pas `C:\ProgramData`, un dossier masqué.
-
-:::{note}
-`${env:USERPROFILE}` est remplacé par VS Code par le dossier du compte,
-`C:\Users\<nom>`. Les réglages qui commencent par `python.` acceptent
-cette écriture, `${env:NOM}` pour toute variable d'environnement
-([Variables d'environnement](../notions/variables_environnement.md)). Elle
-permet d'écrire un fichier de réglages qui vaut pour tous les comptes, et
-de le distribuer tel quel. Les chemins d'Anaconda de la salle, dans
-`C:\ProgramData`, n'en ont pas besoin : ils ne contiennent pas le nom du
-compte.
-:::
-
-## Les autres réglages de conda
-
-`python-envs.terminal.autoActivationType`
-: `command` par défaut : quand VS Code ouvre un nouveau terminal, l'extension y
-  tape la commande d'activation de l'environnement choisi comme interpréteur.
-  Dans un `cmd`, elle tape
-  `C:\ProgramData\anaconda3\Scripts\activate && conda activate base`, qui
-  fonctionne sans que `conda` soit dans le `PATH` et fait apparaître `(base)`
-  dans l'invite. Quand l'extension n'a pas pu lire les informations
-  d'activation de conda, elle tape seulement `conda activate base`, qui échoue
-  dans un `cmd` sans `conda init`. Dans PowerShell, la commande passe par un
-  script, `conda-hook.ps1`, refusé par défaut ({ref}`A7 <dep-a7>`). Changer de
-  terminal évite ce refus. À `off`, `python` désigne dans le terminal un autre
-  Python que celui d'Anaconda. La valeur `shellStartup` modifie les fichiers de
-  démarrage du terminal pour qu'il s'active seul, et ne sert pas ici.
-
-`python-envs.defaultEnvManager`
-: L'outil que VS Code emploie quand on lui demande de créer un
-  environnement (bouton « Create Environment »), et celui dont la liste
-  s'affiche en premier dans la vue Python : `ms-python.python:venv` par
-  défaut (des environnements `venv`, sans conda), `ms-python.python:conda`
-  pour employer conda. Sans ce réglage, un « Create Environment » lancé
-  par mégarde produit un `venv` dans le dossier du TD, et la vue Python
-  place venv avant conda. Poser ce réglage, même si le module crée ses
-  environnements dans l'invite de commandes d'Anaconda.
-
-`python-envs.defaultPackageManager`
-: L'outil employé par « Install Package » dans la vue Python :
-  `ms-python.python:pip` par défaut, `ms-python.python:conda` pour employer
-  conda. Le poser pour la même raison.
 
 ## Versions
 

@@ -31,17 +31,46 @@ programmes](../notions/variables_environnement.md), et le contenu des
 scripts d'activation dans [Les environnements
 conda](../notions/environnements.md).
 
-Chaque interpréteur de commandes a son script d'activation, dans le dossier
-d'Anaconda :
+La mise en place dépend du terminal employé.
 
-| Terminal | Script d'activation | Mise en place |
-|---|---|---|
-| Invite de commandes d'Anaconda (`cmd`) | `Scripts\activate.bat` | faite par le raccourci du menu Démarrer |
-| Git Bash (`bash`) | `etc/profile.d/conda.sh` | par `conda init bash`, une fois sur le poste : {ref}`Git et Git Bash, section conda <conda-git-bash>` |
-| PowerShell | `shell\condabin\conda-hook.ps1` | bloquée par défaut sur les postes de la salle ({ref}`A7 <dep-a7>`) |
+::::{tab-set}
 
-### L'invite de commandes d'Anaconda
+:::{tab-item} Git Bash
+Le [TD
+1c](../../cours1_v2/notebook/td/1c_programme/guide.md) fait cette
+configuration. Taper une fois ces commandes dans Git Bash :
 
+```text
+source /c/ProgramData/anaconda3/etc/profile.d/conda.sh
+conda init bash
+```
+
+`source` exécute le script `conda.sh` dans le terminal ouvert, ce qui y
+définit la commande `conda`. `conda init bash` écrit une instruction
+équivalente dans le fichier `~/.bash_profile`, que Git Bash lit à chaque
+ouverture. Il affiche une ligne par fichier examiné, `no change` ou
+`modified`. Fermer ensuite Git Bash, puis le rouvrir.
+
+1. Ouvrir Git Bash. L'invite commence par `(base)`. Sinon : {ref}`A3 <dep-a3>`.
+2. Taper `which python`. La commande affiche `/c/ProgramData/anaconda3/python`.
+   Sinon : {ref}`A16 <dep-a16>`.
+3. Taper `conda --version`. La commande affiche `conda 25.x` ou `conda 24.x`.
+   Sinon : {ref}`A2 <dep-a2>`.
+
+Si un message d'erreur s'affiche :
+
+- `source` affiche `No such file or directory` : {ref}`A14 <dep-a14>`.
+- `conda init bash` écrit `needs sudo`, ou Windows demande des droits
+  d'administrateur : {ref}`A15 <dep-a15>`.
+- Chaque nouveau Git Bash affiche l'aide de `cygpath` : {ref}`G7 <dep-g7>`.
+
+Le réglage est écrit dans le dossier personnel du compte. Il reste d'une
+séance à l'autre sur le même poste, et se refait sur un autre poste. Il
+vaut aussi pour le Git Bash ouvert dans VS Code, qui lit le même fichier
+([Python et environnement conda](vscode_python.md)).
+:::
+
+:::{tab-item} Invite de commandes d'Anaconda
 Menu Démarrer, taper `anaconda`, choisir « Anaconda Prompt », le nom
 anglais de l'invite de commandes d'Anaconda. Une fenêtre noire s'ouvre tout
 de suite. La ligne qui attend une commande s'appelle
@@ -69,6 +98,30 @@ de commandes d'Anaconda fonctionne donc sans réglage. Pour le vérifier :
 1. Taper `conda --version`. La commande affiche `conda 25.x` ou `conda 24.x`.
 2. Taper `where python`. La première ligne affiche
    `C:\ProgramData\anaconda3\python.exe`.
+:::
+
+:::{tab-item} cmd
+1. Dans l'invite de commandes d'Anaconda, taper `conda init cmd.exe`.
+2. Ouvrir un nouveau `cmd`. `conda activate base` y fonctionne ensuite.
+
+Ces étapes restent [à vérifier sur un poste de la salle].
+:::
+
+:::{tab-item} PowerShell
+1. Dans un PowerShell, autoriser les scripts pour le compte ({ref}`A7 <dep-a7>`).
+   Cette commande ne demande pas de droits d'administrateur :
+
+   ```
+   Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+   ```
+
+2. Dans l'invite de commandes d'Anaconda, taper `conda init powershell`.
+3. Fermer le PowerShell, puis le rouvrir.
+
+Ces étapes restent [à vérifier sur un poste de la salle].
+:::
+
+::::
 
 ## Les environnements
 
@@ -184,13 +237,6 @@ aussi depuis un terminal, comme l'indique sa page. Un Navigator bloqué au
 démarrage, dont l'icône reste à l'écran, s'arrête depuis le Gestionnaire
 des tâches ({ref}`A13 <dep-a13>`).
 
-## Documentation officielle
-
-- Anaconda Navigator : [Getting started with Navigator](https://www.anaconda.com/docs/tools/anaconda-navigator/getting-started)
-  (en anglais).
-- Invite de commandes d'Anaconda et conda : [Getting started with conda](https://docs.conda.io/projects/conda/en/stable/user-guide/getting-started.html)
-  (en anglais).
-
 ## Fichiers utiles
 
 | Quoi | Où |
@@ -205,3 +251,10 @@ des tâches ({ref}`A13 <dep-a13>`).
 
 `conda info`, dans l'invite de commandes d'Anaconda, affiche ces chemins tels que conda
 les voit.
+
+## Documentation officielle
+
+- Anaconda Navigator : [Getting started with Navigator](https://www.anaconda.com/docs/tools/anaconda-navigator/getting-started)
+  (en anglais).
+- Invite de commandes d'Anaconda et conda : [Getting started with conda](https://docs.conda.io/projects/conda/en/stable/user-guide/getting-started.html)
+  (en anglais).

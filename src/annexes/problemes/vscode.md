@@ -105,7 +105,7 @@ Solution
   Default Profile », « Git Bash », puis fermer ce terminal et en ouvrir un
   nouveau ([Python et environnement
   conda](../configuration/vscode_python.md)). Si l'invite ne commence pas
-  par `(base)` : {ref}`G4 <dep-g4>`.
+  par `(base)` : {ref}`A3 <dep-a3>`.
 
   Avec le profil de secours « Anaconda Prompt », si l'erreur reste :
   vérifier que le fichier a été enregistré, que
@@ -126,44 +126,20 @@ Cause
 : L'extension cherche Anaconda à plusieurs endroits du poste, dont
   `C:\ProgramData\anaconda3`. Elle ne le trouve pas quand il est installé
   ailleurs, ou quand la recherche a échoué une fois et que son résultat
-  est resté en cache.
+  est resté en cache ([Comment VS Code gère les
+  environnements](../notions/vscode_environnements.md)).
 
 Solution
 : Cliquer « Enter interpreter path… », puis coller le chemin
   `C:\ProgramData\anaconda3\python.exe`, et appuyer sur Entrée. « Find… » ouvre
   une fenêtre de choix, qui n'affiche pas `C:\ProgramData`, un dossier masqué.
   Si la recherche a échoué une fois : palette, « Python: Clear Cache and Reload
-  Window ». Pour que la liste devienne
+  Window », puis {ref}`V13 <dep-v13>` si la liste reste fausse. Pour que la liste devienne
   complète (avec les environnements du TD 1h) : le réglage
-  `python.condaPath`, décrit dans [Python et environnement
-  conda](../configuration/vscode_python.md), puis « Developer: Reload
+  `python.condaPath`, décrit dans [Fichiers de
+  réglages](../configuration/vscode_reglages.md), puis « Developer: Reload
   Window ». Le chemin exact est celui du raccourci « Anaconda Prompt »
   ({ref}`A1 <dep-a1>`).
-
-(dep-v7)=
-### V7. `python` lance un autre Python que celui d'Anaconda
-
-Ce qu'on voit
-: « Python n'a pas été trouvé ; exécutez sans arguments pour l'installer à
-  partir du Microsoft Store… ». Ou `Python 2.7`. Ou `ModuleNotFoundError`
-  sur un module qui est pourtant dans `base`.
-
-Cause
-: Sans environnement activé ({ref}`A3 <dep-a3>`), `python` est le premier
-  `python.exe` que Windows trouve : souvent un raccourci du Microsoft Store
-  qui ne fait que proposer une installation, ou un vieux Python du poste
-  ([Variables d'environnement](../notions/variables_environnement.md)).
-
-Vérifier
-: `where python` dans un `cmd`, ou `which -a python` dans Git Bash, liste
-  tous les `python.exe` trouvés, dans l'ordre. `python -c "import sys; print(sys.executable)"` affiche
-  celui qui s'exécute.
-
-Solution
-: Employer le terminal Git Bash, avec conda activé ({ref}`G4 <dep-g4>`,
-  [Python et environnement conda](../configuration/vscode_python.md)). Le
-  bouton Run n'est pas concerné : il lance l'interpréteur choisi, par son chemin
-  complet.
 
 (dep-v8)=
 ### V8. `ModuleNotFoundError` alors que le paquet est installé
@@ -288,3 +264,43 @@ Solution
   réglages](../configuration/vscode_reglages.md). Si le fichier n'existe pas,
   voir les solutions de secours de [Git et Git
   Bash](../configuration/git.md).
+
+(dep-v13)=
+### V13. Un interpréteur supprimé reste proposé, ou un environnement nouveau n'apparaît pas
+
+Ce qu'on voit
+: Après la suppression ou la recréation d'un environnement, un interpréteur qui
+  n'existe plus reste proposé, ou un environnement nouveau n'apparaît pas dans
+  la liste.
+
+Cause
+: VS Code et ses extensions gardent des informations d'une session à
+  l'autre : la liste des environnements trouvés, l'interpréteur choisi pour
+  chaque dossier, le noyau de chaque notebook. Ces informations peuvent ne plus correspondre au poste.
+
+Solution
+: D'abord palette, « Python: Clear Cache and Reload Window ». La commande vide
+  le cache de l'extension Python et recharge la fenêtre.
+
+  Si le problème reste, fermer VS Code, puis lancer l'un des deux scripts
+  suivants depuis le dossier où il a été enregistré :
+
+  - {download}`vider_cache_vscode.bat <../configuration/fichiers/vider_cache_vscode.bat>`,
+    dans l'invite de commandes d'Anaconda : `vider_cache_vscode.bat` ;
+  - {download}`vider_cache_vscode.sh <../configuration/fichiers/vider_cache_vscode.sh>`, dans
+    Git Bash, et aussi sous macOS et Linux : `bash vider_cache_vscode.sh`.
+
+  Chaque script vérifie d'abord que VS Code est fermé. Il supprime ensuite
+  des dossiers de `%APPDATA%\Code`, le dossier de VS Code dans le compte :
+
+  | Dossiers | Contenu | Supprimés |
+  |---|---|---|
+  | `Cache`, `CachedData`, `CachedExtensionVSIXs`, `Code Cache`, `GPUCache` | les caches de l'application | toujours |
+  | `User\workspaceStorage` | l'état de chaque dossier ouvert : interpréteur choisi, noyau des notebooks, onglets ouverts | avec l'option `--tout` |
+  | `User\globalStorage\ms-python.python`, `ms-python.vscode-python-envs`, `ms-toolsai.jupyter` | les données des extensions Python, Python Environments et Jupyter | avec l'option `--tout` |
+
+  Les scripts ne touchent ni aux réglages (`settings.json`), ni aux
+  extensions installées. Après l'option `--tout`, l'interpréteur et le noyau
+  sont à choisir de nouveau dans chaque dossier. Les noms des dossiers
+  viennent de l'organisation habituelle de VS Code [à vérifier sur un poste
+  de la salle].

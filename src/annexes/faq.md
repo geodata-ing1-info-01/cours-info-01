@@ -52,6 +52,8 @@ même message a parfois deux causes selon la fenêtre.
 | `CondaToSNonInteractiveError`, ou une question `[(a)ccept/(r)eject/(v)iew]` | {ref}`A10 <dep-a10>` |
 | Mon environnement n'apparaît pas dans VS Code, Navigator, ou `conda env list` | {ref}`A11 <dep-a11>` |
 | Spyder met du temps à s'ouvrir, ou ne s'ouvre pas | {ref}`A12 <dep-a12>` |
+| « Python n'a pas été trouvé ; exécutez sans arguments pour l'installer à partir du Microsoft Store » | {ref}`A16 <dep-a16>` |
+| `python` lance Python 2.7, ou un autre Python que celui d'Anaconda | {ref}`A16 <dep-a16>` |
 | `'pandoc' n'est pas reconnu` (ou `typst`, `magick`, `ffmpeg`) après un `conda install` réussi | {ref}`X1 <dep-x1>` |
 | `convert` affiche un message sur les disques ou les systèmes de fichiers | {ref}`X2 <dep-x2>` |
 
@@ -77,22 +79,22 @@ même message a parfois deux causes selon la fenêtre.
 | « Restricted Mode » en bas de la fenêtre ; « Select Interpreter » absent de la palette | {ref}`V4 <dep-v4>` |
 | Le terminal de VS Code affiche une erreur dès qu'il s'ouvre | {ref}`V5 <dep-v5>` |
 | « Python: Select Interpreter » ne propose pas Anaconda | {ref}`V6 <dep-v6>` |
-| « Python n'a pas été trouvé ; exécutez sans arguments pour l'installer à partir du Microsoft Store » | {ref}`V7 <dep-v7>` |
-| `python` lance Python 2.7, ou un autre Python que celui d'Anaconda | {ref}`V7 <dep-v7>` |
 | `ModuleNotFoundError` alors que le paquet est installé | {ref}`V8 <dep-v8>` |
 | `Ctrl` + `ù` n'ouvre pas le terminal | {ref}`V9 <dep-v9>` |
 | « Unable to write into user settings » ; une ligne rouge dans `settings.json` | {ref}`V10 <dep-v10>` |
 | « Error loading webview: Could not register service worker » à l'aperçu Markdown ou dans un notebook | {ref}`V11 <dep-v11>` |
 | « Git Bash » n'est pas proposé parmi les terminaux de VS Code | {ref}`V12 <dep-v12>` |
+| Un interpréteur supprimé reste proposé, ou un environnement nouveau n'apparaît pas | {ref}`V13 <dep-v13>` |
 
 ## Git Bash et git
 
 | Ce qu'on voit | Entrée |
 |---|---|
-| L'invite de Git Bash ne commence pas par `(base)` ; `conda: command not found` | {ref}`G4 <dep-g4>` |
-| `python` lance une autre version dans Git Bash | {ref}`G4 <dep-g4>` |
-| `source` affiche `No such file or directory` en réglant conda | {ref}`G5 <dep-g5>` |
-| `conda init bash` écrit `needs sudo`, ou Windows demande des droits | {ref}`G6 <dep-g6>` |
+| L'invite de Git Bash ne commence pas par `(base)` | {ref}`A3 <dep-a3>` |
+| `conda: command not found` dans Git Bash | {ref}`A2 <dep-a2>` |
+| `python` lance une autre version dans Git Bash | {ref}`A16 <dep-a16>` |
+| `source` affiche `No such file or directory` en réglant conda | {ref}`A14 <dep-a14>` |
+| `conda init bash` écrit `needs sudo`, ou Windows demande des droits | {ref}`A15 <dep-a15>` |
 | Chaque nouveau Git Bash affiche `Usage: cygpath …` | {ref}`G7 <dep-g7>` |
 | `'git' n'est pas reconnu` ; VS Code affiche « Git not found » | {ref}`G1 <dep-g1>` |
 | `Author identity unknown` au premier commit | {ref}`G2 <dep-g2>` |

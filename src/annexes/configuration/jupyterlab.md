@@ -1,5 +1,5 @@
 ---
-title: JupyterLab hors Anaconda
+title: JupyterLab sans Navigator
 subtitle: Lancer JupyterLab seul, dans un terminal, sans Anaconda Navigator
 ---
 

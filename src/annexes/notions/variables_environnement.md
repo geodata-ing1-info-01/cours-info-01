@@ -92,7 +92,7 @@ Deux messages s'expliquent ainsi :
   à partir du Microsoft Store` » : le premier `python.exe` trouvé est
   celui de `C:\Users\eleve\AppData\Local\Microsoft\WindowsApps`, un
   fichier que Windows fournit pour proposer une installation, et aucun
-  dossier contenant un vrai Python n'est devant lui ({ref}`V7 <dep-v7>`).
+  dossier contenant un vrai Python n'est devant lui ({ref}`A16 <dep-a16>`).
 
 Ce qui met les dossiers d'Anaconda devant les autres est l'activation d'un
 environnement ([Les environnements conda](environnements.md)).

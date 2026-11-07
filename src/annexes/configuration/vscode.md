@@ -14,21 +14,8 @@ les notebooks.
 VS Code n'est lié à aucun langage, et ne contient ni interpréteur ni
 compilateur. Il faut le configurer pour chaque langage employé, et lui
 désigner son terminal. La marche à suivre, en une page, est dans [VS
-Code](../../avant/vscode.md), parmi les pages à lire avant les séances.
-
-Configurer un langage :
-
-1. Installer son extension, avec une connexion internet.
-2. Indiquer le chemin de son interpréteur ou de son compilateur.
-3. Lancer un programme pour vérifier.
-
-Configurer le terminal :
-
-1. Choisir Git Bash comme terminal de VS Code.
-2. Y activer conda ({ref}`Git et Git Bash, section conda <conda-git-bash>`).
-3. Vérifier `(base)` et `which python`.
-
-Le détail pour Python est dans [Python et environnement conda](vscode_python.md).
+Code](../../avant/vscode.md), parmi les pages à lire avant les séances, et le
+détail pour Python dans [Python et environnement conda](vscode_python.md).
 
 ## Lancer VS Code et ouvrir un dossier
 
@@ -106,14 +93,13 @@ dans l'éditeur (documentation VS Code, CC BY 3.0 US).
 
 Les réglages se modifient dans l'interface ou dans le fichier :
 
-- l'interface : palette (`Ctrl` + `Maj` + `P`), « Preferences: Open
-  Settings (UI) », ou `Ctrl` + `,`. La page affiche une zone de recherche en
-  haut, deux onglets User et Workspace, et un champ par réglage. Chaque valeur
-  saisie est enregistrée aussitôt ;
-- le fichier : palette, « Preferences: Open User Settings (JSON) » ou
-  « Preferences: Open Workspace Settings (JSON) ». Il contient les mêmes
-  réglages, en texte. Les pages du module donnent les réglages à recopier sous
-  cette forme.
+::::{tab-set}
+
+:::{tab-item} Interface
+Palette (`Ctrl` + `Maj` + `P`), « Preferences: Open
+Settings (UI) », ou `Ctrl` + `,`. La page affiche une zone de recherche en
+haut, deux onglets User et Workspace, et un champ par réglage. Chaque valeur
+saisie est enregistrée aussitôt.
 
 ```{figure} captures/vscode_settings_user_tab.png
 :alt: La page des réglages : zone de recherche en haut, onglets User et Workspace, puis les réglages par catégorie
@@ -121,21 +107,26 @@ Les réglages se modifient dans l'interface ou dans le fichier :
 
 La page des réglages, onglet User (documentation VS Code, CC BY 3.0 US).
 ```
+:::
+
+:::{tab-item} Fichier
+Palette, « Preferences: Open User Settings (JSON) » ou
+« Preferences: Open Workspace Settings (JSON) ». Le fichier contient les mêmes
+réglages, en texte. Les pages du module donnent les réglages à recopier sous
+cette forme.
 
 ```{figure} captures/vscode_settings_json.png
 :alt: Le fichier settings.json du compte ouvert dans l'éditeur, avec son chemin AppData, Roaming, Code, User
 :width: 80%
 
-Le même contenu, dans le fichier `settings.json` du compte (documentation
-VS Code, CC BY 3.0 US).
+Le fichier `settings.json` du compte (documentation VS Code, CC BY 3.0 US).
 ```
 
 Dans le fichier, chaque réglage s'écrit `"nom": valeur`, les réglages sont
 séparés par des virgules, et l'ensemble est entre accolades. Les chemins
 Windows s'y écrivent avec des barres obliques inverses doublées. Les deux
-réglages de l'exemple sont ceux de [Python et environnement
-conda](vscode_python.md) ; les fichiers complets des postes de la salle
-sont dans [Fichiers de réglages](vscode_reglages.md) :
+réglages de l'exemple sont détaillés, avec les fichiers complets des postes de
+la salle, dans [Fichiers de réglages](vscode_reglages.md) :
 
 ```json
 {
@@ -146,6 +137,9 @@ sont dans [Fichiers de réglages](vscode_reglages.md) :
 
 Une erreur dans ce fichier se voit à une ligne soulignée en rouge
 ({ref}`V10 <dep-v10>`).
+:::
+
+::::
 
 ## Le terminal
 
@@ -216,35 +210,33 @@ sans terminal. Il le cherche dans cet ordre : le réglage `git.path` ;
 `C:\Users\<nom>\AppData\Local\Programs\Git\cmd\git.exe` ; enfin le PATH
 tel qu'il était quand VS Code a été lancé. Sur les postes de la salle, Git
 for Windows est dans `C:\Program Files\Git`, et VS Code le trouve sans
-réglage. Avec une des solutions de secours de [Git et Git
-Bash](git.md), git n'est dans aucun de ces dossiers : donner son
-chemin dans les réglages User ({ref}`Les réglages <vscode-reglages>`),
-puis « Developer: Reload Window » :
-
-```json
-"git.path": "C:\\Users\\eleve\\.conda\\envs\\outils\\Library\\cmd\\git.exe"
-```
-
-Pour Cmder, le chemin est `<Cmder>\vendor\git-for-windows\cmd\git.exe` ;
-pour l'archive portable, `<dossier>\PortableGit\cmd\git.exe`. Sans réglage,
-lancer VS Code depuis l'invite de commandes d'Anaconda où `outils` est activé
-(`code <dossier>`) : git est alors dans son PATH.
+réglage.
 
 ### Le terminal Git Bash
 
-Quand Git for Windows est installé dans un dossier nommé `Git`, VS Code
-ajoute de lui-même « Git Bash » à la liste de ses profils de terminal
-({ref}`Choisir le terminal à ouvrir <vscode-terminal-choisir>`). Le
-terminal Git Bash de VS Code lit le même fichier `~/.bash_profile` que la
-fenêtre Git Bash : conda y est disponible une fois `conda init bash` fait
-({ref}`Git et Git Bash, section conda <conda-git-bash>`). Son réglage est
-décrit dans [Python et environnement conda](vscode_python.md).
+Le réglage du terminal Git Bash est décrit dans [Python et environnement
+conda](vscode_python.md). Si VS Code ne propose pas ce terminal :
+{ref}`V12 <dep-v12>`.
 
-Avec les solutions de secours, VS Code ne propose pas « Git Bash ». Le
-profil s'écrit à la main, et pointe sur le `bash.exe` du même dossier que
-`git.exe` :
+### Les solutions de secours
+
+Avec une des solutions de secours de [Git et Git Bash](git.md), git n'est dans
+aucun des dossiers cherchés par le panneau Source Control, et VS Code ne propose
+pas « Git Bash ». Donner deux chemins dans les réglages User
+({ref}`Les réglages <vscode-reglages>`), puis « Developer: Reload Window » :
+`<git>\cmd\git.exe` pour `git.path`, et `<git>\bin\bash.exe` pour le profil
+« Git Bash ». Le dossier `<git>` dépend de la solution :
+
+| Solution | Dossier `<git>` |
+|---|---|
+| git par conda | `C:\Users\eleve\.conda\envs\outils\Library` |
+| Cmder | `<Cmder>\vendor\git-for-windows` |
+| Archive portable | `<dossier>\PortableGit` |
+
+Dans le fichier, les barres obliques inverses sont doublées. Avec git par conda :
 
 ```json
+"git.path": "C:\\Users\\eleve\\.conda\\envs\\outils\\Library\\cmd\\git.exe",
 "terminal.integrated.profiles.windows": {
   "Git Bash": {
     "path": "C:\\Users\\eleve\\.conda\\envs\\outils\\Library\\bin\\bash.exe",
@@ -252,6 +244,9 @@ profil s'écrit à la main, et pointe sur le `bash.exe` du même dossier que
   }
 }
 ```
+
+Sans `git.path`, lancer VS Code depuis l'invite de commandes d'Anaconda où `outils` est activé
+(`code <dossier>`) : git est alors dans son PATH.
 
 Menu Terminal, New Terminal, puis la flèche à côté du `+` pour choisir
 « Git Bash ». Vérifier dans la liste des terminaux que ce terminal est

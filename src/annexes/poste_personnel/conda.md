@@ -24,8 +24,9 @@ installateurs sont comparés dans {ref}`Les installateurs de conda
 (installer-miniforge)=
 ## Installer Miniforge
 
-### Sous Windows
+::::{tab-set}
 
+:::{tab-item} Windows
 1. Télécharger `Miniforge3-Windows-x86_64.exe` sur
    <https://conda-forge.org/download/>.
 2. Lancer l'installateur, et garder « Just Me ». Miniforge s'installe alors
@@ -34,8 +35,9 @@ installateurs sont comparés dans {ref}`Les installateurs de conda
 3. Menu Démarrer, taper `miniforge`, choisir « Miniforge Prompt ». Une
    fenêtre noire s'ouvre, et l'invite commence par `(base)`.
 
-### Sous Ubuntu, les autres Linux et macOS
+:::
 
+:::{tab-item} Ubuntu, autres Linux et macOS
 Dans le Terminal :
 
 ```bash
@@ -48,6 +50,9 @@ répondre `yes` à la dernière question, qui propose d'initialiser conda dans
 le terminal. Fermer puis rouvrir le Terminal : l'invite commence par
 `(base)`. La documentation de Miniforge déconseille de l'installer par
 Homebrew.
+:::
+
+::::
 
 ### Vérifier
 
@@ -83,7 +88,7 @@ payant dans une organisation de plus de 200 personnes (conditions du 15 juillet
 Dans la salle, Anaconda est installé pour tous les comptes, dans
 `C:\ProgramData\anaconda3`, ce qui demande des droits d'administrateur. Chez soi,
 les chemins des pages de la salle sont à remplacer par le dossier choisi
-({ref}`G5 <dep-g5>`), et les canaux à régler (section suivante).
+({ref}`A14 <dep-a14>`), et les canaux à régler (section suivante).
 
 ## Les canaux
 
@@ -142,30 +147,15 @@ Sous macOS et Linux, l'installateur a initialisé conda dans le Terminal, et
 dans celui de VS Code, qui lit les mêmes fichiers.
 
 Sous Windows, la Miniforge Prompt est un `cmd` activé, comme l'invite de
-commandes d'Anaconda dans la salle ({ref}`Anaconda, section conda dans un
-terminal <conda-terminal>`). Pour les autres terminaux :
+commandes d'Anaconda dans la salle. Pour les autres terminaux, suivre
+{ref}`Anaconda, section conda dans un terminal <conda-terminal>`, avec la
+Miniforge Prompt à la place de l'invite de commandes d'Anaconda. Dans Git Bash,
+le chemin change :
 
-- Git Bash : les commandes de la salle, avec le chemin de Miniforge, puis
-  fermer et rouvrir Git Bash ({ref}`Git et Git Bash, section conda
-  <conda-git-bash>`) :
-
-  ```text
-  source ~/miniforge3/etc/profile.d/conda.sh
-  conda init bash
-  ```
-
-- `cmd` : taper une fois `conda init cmd.exe` dans la Miniforge Prompt,
-  puis rouvrir le terminal ;
-- PowerShell : autoriser d'abord les scripts pour le compte
-  ({ref}`A7 <dep-a7>`), en tapant une fois dans un PowerShell la commande
-  suivante, qui ne demande pas de droits d'administrateur :
-
-  ```
-  Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
-  ```
-
-  Puis taper `conda init powershell` dans la Miniforge Prompt, et rouvrir
-  le terminal.
+```text
+source ~/miniforge3/etc/profile.d/conda.sh
+conda init bash
+```
 
 ## D'autres gestionnaires d'environnements
 

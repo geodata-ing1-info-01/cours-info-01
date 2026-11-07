@@ -1,6 +1,6 @@
 ---
 title: Git et Git Bash
-subtitle: Ouvrir Git Bash, y avoir conda, régler git, et les solutions de secours quand Git Bash n'est pas installé
+subtitle: Ouvrir Git Bash, régler git, et les solutions de secours quand Git Bash n'est pas installé
 ---
 
 Git Bash est le terminal du module, à partir du [TD
@@ -37,41 +37,13 @@ Git Bash s'ouvre depuis l'explorateur ou depuis le menu Démarrer :
 3. Dans le dossier d'une séance, taper `ls -a`. La commande liste les fichiers,
    avec `.` et `..`. Si `ls` n'est pas reconnu, la fenêtre n'est pas Git Bash.
 
-(conda-git-bash)=
 ## conda dans Git Bash
 
 Dans un Git Bash qui n'a pas été configuré, `conda` n'est pas reconnu,
-et `python` lance un autre Python que celui d'Anaconda, ou aucun. Le [TD
-1c](../../cours1_v2/notebook/td/1c_programme/guide.md) fait cette
-configuration. Taper une fois ces commandes dans Git Bash :
-
-```text
-source /c/ProgramData/anaconda3/etc/profile.d/conda.sh
-conda init bash
-```
-
-`source` exécute le script `conda.sh` dans le terminal ouvert, ce qui y
-définit la commande `conda`. `conda init bash` écrit une instruction
-équivalente dans le fichier `~/.bash_profile`, que Git Bash lit à chaque
-ouverture. Il affiche une ligne par fichier examiné, `no change` ou
-`modified`. Fermer ensuite Git Bash, puis le rouvrir.
-
-1. Ouvrir Git Bash. L'invite commence par `(base)`.
-2. Taper `which python`. La commande affiche `/c/ProgramData/anaconda3/python`.
-3. Taper `conda --version`. La commande affiche `conda 25.x` ou `conda 24.x`.
-
-Si l'une de ces vérifications échoue : {ref}`G4 <dep-g4>`. Si un message
-d'erreur s'affiche :
-
-- `source` affiche `No such file or directory` : {ref}`G5 <dep-g5>`.
-- `conda init bash` écrit `needs sudo`, ou Windows demande des droits
-  d'administrateur : {ref}`G6 <dep-g6>`.
-- Chaque nouveau Git Bash affiche l'aide de `cygpath` : {ref}`G7 <dep-g7>`.
-
-Le réglage est écrit dans le dossier personnel du compte. Il reste d'une
-séance à l'autre sur le même poste, et se refait sur un autre poste. Il
-vaut aussi pour le Git Bash ouvert dans VS Code, qui lit le même fichier
-({ref}`VS Code, section Git dans VS Code <vscode-git>`).
+et `python` lance un autre Python que celui d'Anaconda, ou aucun. La
+configuration est dans {ref}`Anaconda, section conda dans un terminal
+<conda-terminal>`. Si chaque nouveau Git Bash affiche ensuite l'aide de
+`cygpath` : {ref}`G7 <dep-g7>`.
 
 ## Le nom et l'adresse des commits
 
@@ -107,8 +79,9 @@ le même git, le même bash et les mêmes commandes unix, sans droits
 d'administrateur. Employer Cmder s'il est là. Sinon, git par conda demande le
 réseau à la création, et l'archive portable n'en demande pas.
 
-### Avec Cmder
+::::{tab-set}
 
+:::{tab-item} Cmder
 Cmder est une console portable (ConEmu + `cmd` + clink) qui embarque Git for
 Windows, dans `<Cmder>\vendor\git-for-windows\`. Il est déjà sur les postes
 [à vérifier : édition complète ou mini].
@@ -123,8 +96,9 @@ Pour savoir si le Cmder d'un poste est l'édition complète, vérifier que le do
 dans Cmder, affiche `git version 2.45.1.windows.1`. L'édition mini n'a ni
 l'un ni l'autre.
 
-### Avec git par conda
+:::
 
+:::{tab-item} git par conda
 Le paquet `git` de conda-forge contient Git for Windows, décompressé dans
 `C:\Users\<nom>\.conda\envs\outils\Library\` (124 Mo).
 
@@ -151,8 +125,9 @@ bash --login -i
 Le paquet ajoute aussi un raccourci « Git Bash » au menu Démarrer [à
 vérifier : nom exact sur les postes], qui ouvre bash directement.
 
-### Avec Git for Windows portable
+:::
 
+:::{tab-item} Archive portable
 1. Dans `formationTemp`, copier `PortableGit-2.55.0.5-64-bit.7z.exe` (un seul
    fichier, 59 Mo) dans `Desktop\info01\outils\`.
 2. Double-cliquer sur ce fichier. Une fenêtre demande le dossier de destination :
@@ -162,6 +137,9 @@ vérifier : nom exact sur les postes], qui ouvre bash directement.
 3. Double-cliquer sur `PortableGit\git-bash.exe` pour ouvrir Git Bash.
 
 `git-cmd.exe`, à côté, ouvre un `cmd` avec les mêmes commandes.
+:::
+
+::::
 
 ## Documentation officielle
 

@@ -112,6 +112,16 @@ d'échec. Un renvoi nomme son cas quand il y en a plusieurs. Un tableau présent
 des données à deux dimensions, sans ordre de lecture : comparaison,
 correspondance, réglages, chemins.
 
+**Sur le rangement et les onglets** : un détail propre à un outil s'écrit dans
+la page de cet outil. Le problème de `cygpath`, propre à Git Bash, est ainsi
+décrit dans le dépannage de Git, et les pages d'Anaconda et de VS Code y
+renvoient. Une action qui dépend d'un choix, comme l'activation de conda selon
+le terminal, s'écrit dans une seule section, avec un onglet par choix
+(`tab-set`). La cause et la solution d'un message d'erreur s'écrivent hors des
+onglets, dans une page de dépannage, car `Ctrl` + `F` ne trouve pas le texte
+d'un onglet masqué. Un onglet cite le message et y renvoie. Quand seuls des
+chemins changent d'un choix à l'autre, un tableau les présente.
+
 ## TD et corrigé
 
 Ce qu'un TD fait constater n'apparaît que dans le corrigé. La colonne
@@ -275,6 +285,7 @@ Pas d'encadré « à retenir » qui recopie le paragraphe précédent.
 - [ ] Le gras ne marque que des termes définis.
 - [ ] Aucun encadré ne répète le paragraphe voisin.
 - [ ] Une suite d'actions est une liste numérotée, et un tableau ne contient que des données à deux dimensions.
+- [ ] Un détail propre à un outil est dans la page de cet outil, et la cause et la solution d'une erreur sont hors des onglets.
 - [ ] Les commandes montrées ont été exécutées.
 - [ ] Ce que le TD fait constater est dans `reponse[…]`.
 - [ ] Une diapositive d'action d'un TD énonce son objectif, et chaque consigne sert cet objectif.

@@ -13,7 +13,7 @@ de la salle, dans l'ordre où on les configure :
   [notebooks](vscode_notebooks.md), et les [fichiers de
   réglages](vscode_reglages.md) prêts à recopier
 - [Spyder](spyder.md), employé dans d'autres cours
-- [JupyterLab hors Anaconda](jupyterlab.md), lancé seul dans un terminal
+- [JupyterLab sans Navigator](jupyterlab.md), lancé seul dans un terminal
 
 La comparaison des trois outils qui exécutent du Python est dans [Choisir
 entre JupyterLab, Spyder et VS Code](../notions/outils.md), parmi les

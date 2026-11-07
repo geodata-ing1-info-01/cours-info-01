@@ -83,8 +83,8 @@ est une ligne de réglage : le chemin de `bash.exe` et les arguments
 classique : il part de `git.exe` trouvé dans le PATH, remonte de deux
 dossiers, et cherche `Git\bin\bash.exe`. Le dossier doit donc s'appeler
 `Git`, ce qui n'est le cas ni pour Cmder, ni pour conda, ni pour l'archive
-portable ; pour eux, on écrit le profil ([Git et Git
-Bash](../configuration/git.md)).
+portable ; pour eux, on écrit le profil ({ref}`VS Code, section Git dans VS
+Code <vscode-git>`).
 
 ## Un fichier de configuration commun
 

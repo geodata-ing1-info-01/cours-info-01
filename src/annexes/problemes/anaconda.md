@@ -41,39 +41,48 @@ Solution
 ### A2. « 'conda' n'est pas reconnu en tant que commande interne ou externe »
 
 Ce qu'on voit
-: Ce message dans un `cmd`. Dans PowerShell : « conda : Le terme 'conda'
-  n'est pas reconnu », ou « CommandNotFoundError: Your shell has not been
-  properly configured to use 'conda activate' ».
+: Ce message dans un `cmd`. Dans Git Bash : `conda: command not found`. Dans
+  PowerShell : « conda : Le terme 'conda' n'est pas reconnu », ou
+  « CommandNotFoundError: Your shell has not been properly configured to use
+  'conda activate' ».
 
 Cause
-: La commande `conda` n'est disponible que dans l'invite de commandes
-  d'Anaconda. Un `cmd` ou un PowerShell ordinaire ne la trouve pas
+: La commande `conda` n'est disponible sans réglage que dans l'invite de
+  commandes d'Anaconda. Un `cmd`, un PowerShell ou un Git Bash qui n'a pas été
+  configuré ne la trouve pas, ni un terminal ouvert avant la configuration
   ([Variables d'environnement](../notions/variables_environnement.md)).
 
 Solution
-: Taper la commande dans l'invite de commandes d'Anaconda ({ref}`A1 <dep-a1>`). Dans Git
-  Bash : {ref}`G4 <dep-g4>`. Dans VS Code, faire le réglage du terminal
-  ({ref}`V5 <dep-v5>`).
+: Configurer ce terminal : {ref}`Anaconda, section conda dans un terminal
+  <conda-terminal>`. Dans VS Code, faire le réglage du terminal
+  ({ref}`V5 <dep-v5>`), fermer le terminal (icône de corbeille, en haut à
+  droite du panneau), puis en ouvrir un nouveau.
+
+  Si le réglage échoue, quelle qu'en soit la raison, employer l'invite de
+  commandes d'Anaconda : menu Démarrer, « Anaconda Prompt »
+  ({ref}`A1 <dep-a1>` si le menu ne le propose pas). conda y est
+  actif sans réglage, et les chemins s'y écrivent avec des `\`. Dans VS
+  Code, le même terminal est le profil « Anaconda Prompt » ([Python et
+  environnement conda](../configuration/vscode_python.md)).
 
 (dep-a3)=
 ### A3. L'invite ne commence pas par `(base)`
 
 Ce qu'on voit
 : L'invite est `C:\Users\<nom>>` ou `PS C:\Users\<nom>>`, sans nom entre
-  parenthèses.
+  parenthèses. Dans Git Bash, la ligne `(base)` manque au-dessus de l'invite.
 
 Cause
 : Aucun environnement n'est activé. La commande `python` lance alors un
-  autre Python que celui d'Anaconda, ou aucun ({ref}`V7 <dep-v7>`).
+  autre Python que celui d'Anaconda, ou aucun ({ref}`A16 <dep-a16>`).
 
 Vérifier
 : `python -c "import sys; print(sys.executable)"` : le chemin doit
   contenir `anaconda3`.
 
 Solution
-: Si `conda` fonctionne dans cette fenêtre, taper `conda activate base`. Sinon,
-  ouvrir une invite de commandes d'Anaconda ({ref}`A1 <dep-a1>`). Dans VS Code, voir
-  {ref}`V5 <dep-v5>`.
+: Si `conda` fonctionne dans cette fenêtre, taper `conda activate base`. Sinon :
+  {ref}`A2 <dep-a2>`.
 
 (dep-a4)=
 ### A4. Anaconda Navigator met plusieurs minutes à s'ouvrir
@@ -347,6 +356,67 @@ Solution
   commandes d'Anaconda, se placer dans le dossier de la séance avec `cd`,
   puis taper `jupyter lab` ([JupyterLab](../configuration/jupyterlab.md)).
   Ces manipulations restent à vérifier sur un poste de la salle.
+
+(dep-a14)=
+### A14. `source` affiche `No such file or directory`
+
+Ce qu'on voit
+: `bash: /c/ProgramData/anaconda3/etc/profile.d/conda.sh: No such file or
+  directory`.
+
+Cause
+: Anaconda est installé dans un autre dossier.
+
+Solution
+: Sur un ordinateur personnel, essayer `source
+  /c/Users/$USERNAME/anaconda3/etc/profile.d/conda.sh`, ou `source
+  ~/miniforge3/etc/profile.d/conda.sh` avec Miniforge ([Python et
+  conda](../poste_personnel/conda.md)).
+
+(dep-a15)=
+### A15. `conda init bash` écrit `needs sudo`, ou Windows demande des droits d'administrateur
+
+Ce qu'on voit
+: `needs sudo` dans la liste des fichiers examinés, ou une fenêtre de
+  Windows qui demande des droits d'administrateur.
+
+Solution
+: Refuser, puis écrire la ligne à la main dans `~/.bash_profile`, et
+  rouvrir Git Bash :
+
+  ```text
+  echo 'eval "$(/c/ProgramData/anaconda3/Scripts/conda.exe shell.bash hook)"' >> ~/.bash_profile
+  ```
+
+(dep-a16)=
+### A16. `python` lance un autre Python que celui d'Anaconda
+
+Ce qu'on voit
+: « Python n'a pas été trouvé ; exécutez sans arguments pour l'installer à
+  partir du Microsoft Store… ». Ou `Python 2.7`. Ou `ModuleNotFoundError`
+  sur un module qui est pourtant dans `base`.
+
+Cause
+: Sans environnement activé ({ref}`A3 <dep-a3>`), `python` est le premier
+  `python.exe` que Windows trouve : souvent un raccourci du Microsoft Store
+  qui ne fait que proposer une installation, ou un vieux Python du poste
+  ([Variables d'environnement](../notions/variables_environnement.md)).
+
+Vérifier
+: `where python` dans un `cmd`, ou `which -a python` dans Git Bash, liste
+  tous les `python.exe` trouvés, dans l'ordre. `python -c "import sys; print(sys.executable)"` affiche
+  celui qui s'exécute.
+
+Solution
+: Employer le terminal Git Bash, avec conda activé ({ref}`Anaconda, section conda dans un terminal
+  <conda-terminal>`,
+  [Python et environnement conda](../configuration/vscode_python.md)). Le
+  bouton Run n'est pas concerné : il lance l'interpréteur choisi, par son chemin
+  complet.
+
+  Pour désactiver le raccourci du Microsoft Store : Paramètres, Applications,
+  Paramètres avancés des applications, Alias d'exécution d'application, et
+  désactiver `python.exe` et `python3.exe`.
 
 ## Outils installés dans un environnement
 

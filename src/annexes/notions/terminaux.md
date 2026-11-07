@@ -7,7 +7,9 @@ Un terminal est une fenêtre dans laquelle on tape une commande, puis
 Entrée ; la réponse s'affiche en dessous, et l'invite revient pour la
 commande suivante. Le programme qui lit la commande et l'exécute s'appelle
 un interpréteur de commandes. Windows en a deux ; l'invite de commandes d'Anaconda est
-l'un des deux, ouvert avec un réglage particulier.
+l'un des deux, ouvert avec un réglage particulier. Git Bash, le terminal du
+module, emploie un autre interpréteur, `bash` ([Git Bash : une fenêtre, bash et
+des programmes](git_bash.md)).
 
 ## Les deux interpréteurs de Windows
 
@@ -17,7 +19,7 @@ l'un des deux, ouvert avec un réglage particulier.
 | Ouvrir | menu Démarrer, taper `cmd` | menu Démarrer, taper `powershell` |
 | Aspect de l'invite | `C:\Users\eleve>` | `PS C:\Users\eleve>` |
 | Fichiers de commandes | `.bat`, `.cmd` | `.ps1` |
-| Fichiers de commandes sur les postes de la salle | exécutés | bloqués par le réglage de l'école ({ref}`A7 <dep-a7>`) |
+| Fichiers de commandes sur les postes de la salle | exécutés | refusés tant que le compte n'a pas changé sa stratégie ({ref}`A7 <dep-a7>`) |
 
 Les deux lancent les mêmes programmes : `python`, `conda`, `curl.exe`,
 `git`. Ils diffèrent par leurs commandes internes (`dir` dans `cmd`,
@@ -87,7 +89,7 @@ donner le fichier à son interpréteur :
 | Interpréteur | Script | Lancement |
 |---|---|---|
 | `cmd` | `collecte.bat` | `cmd /K collecte.bat`, ou double-clic |
-| PowerShell | `collecte.ps1` | `powershell -File collecte.ps1` (bloqué sur les postes) |
+| PowerShell | `collecte.ps1` | `powershell -File collecte.ps1` (refusé par défaut sur les postes) |
 | Python | `altitudes.py` | `python altitudes.py`, ou le bouton Run de VS Code |
 
 `activate.bat`, que le raccourci « Anaconda Prompt » exécute, est un script
@@ -96,8 +98,7 @@ donner le fichier à son interpréteur :
 
 ## Le terminal de VS Code
 
-Le terminal intégré de VS Code est l'un de ces interpréteurs, ouvert dans
-un panneau de l'éditeur. Par défaut c'est PowerShell ; le réglage décrit
+Le terminal intégré de VS Code ouvre l'un de ces interpréteurs, ou `bash`, dans
+un panneau de l'éditeur. Par défaut, il ouvre PowerShell ; le réglage décrit
 dans [Python et environnement conda](../configuration/vscode_python.md)
-lui substitue un `cmd` lancé avec `activate.bat`, exactement comme le
-raccourci « Anaconda Prompt ».
+le remplace par Git Bash.

@@ -79,7 +79,7 @@ emplacements habituels. Le journal « Python Environments » le montre :
 Le réglage `python.condaPath` donne le chemin quand cette recherche
 échoue, sur un poste où Anaconda est ailleurs ; VS Code lance ensuite
 `conda info --json` pour obtenir la liste des environnements
-([Python et environnement conda](../configuration/vscode_python.md)).
+([Fichiers de réglages](../configuration/vscode_reglages.md)).
 
 ## Le choix de l'interpréteur à l'ouverture d'un dossier
 
@@ -113,6 +113,21 @@ Interpreter », l'activation dans le terminal
 (`python-envs.terminal.autoActivationType`), la création d'environnement
 et la proposition d'installer un paquet manquant passent par elle, et les
 réglages `python-envs.*` prennent le pas sur les anciens.
+
+`python-envs.terminal.autoActivationType`
+: `command` par défaut : quand VS Code ouvre un nouveau terminal, l'extension y
+  tape la commande d'activation de l'environnement choisi comme interpréteur.
+  Dans un `cmd`, elle tape
+  `C:\ProgramData\anaconda3\Scripts\activate && conda activate base`, qui
+  fonctionne sans que `conda` soit dans le `PATH` et fait apparaître `(base)`
+  dans l'invite. Quand l'extension n'a pas pu lire les informations
+  d'activation de conda (panneau Output, « Python Environments » : `Conda environment
+  manager is not available, using default conda activation paths`), elle tape seulement `conda activate base`, qui échoue
+  dans un `cmd` sans `conda init`. Dans PowerShell, la commande passe par un
+  script, `conda-hook.ps1`, refusé par défaut ({ref}`A7 <dep-a7>`). Changer de
+  terminal évite ce refus. À `off`, `python` désigne dans le terminal un autre
+  Python que celui d'Anaconda. La valeur `shellStartup` modifie les fichiers de
+  démarrage du terminal pour qu'il s'active seul, et ne sert pas ici.
 
 Avec `python.useEnvironmentsExtension` à `false`, puis « Developer: Reload
 Window », l'extension Python fait tout elle-même, avec ses anciens
