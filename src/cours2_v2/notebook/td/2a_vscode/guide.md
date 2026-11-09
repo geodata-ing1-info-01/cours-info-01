@@ -56,7 +56,7 @@ Configurer le terminal, ici Git Bash :
 | 4 | choisir le Python qui exécute le code | choisir l'interpréteur Python |
 | 5 | utiliser le terminal du cours 1 dans l'IDE | faire de Git Bash le terminal de VS Code, avec conda activé |
 | 6 | vérifier les deux | lancer un programme |
-| 7 | régler l'IDE, et lire où ses réglages sont écrits | deux réglages, puis leur fichier `settings.json` |
+| 7 | régler l'IDE, et lire où ses réglages sont écrits | trois réglages, puis leur fichier `settings.json` |
 
 Chaque étape se termine par une vérification. Une étape dont la
 vérification échoue se reprend avant de passer à la suivante ; la fin de
@@ -197,7 +197,8 @@ installées avec elle.
 documentation de VS Code, CC BY 3.0 US.*
 
 Le nom de l'interpréteur choisi s'affiche en bas à droite de la fenêtre, et
-VS Code le retient pour ce dossier.
+VS Code le retient pour ce dossier. Pour les dossiers ouverts ensuite, un réglage
+de l'étape 7 désigne l'interpréteur par défaut.
 
 Si la liste ne contient ni `base` ni aucun chemin avec `anaconda3`, choisir
 « Enter interpreter path… », coller le chemin
@@ -314,11 +315,11 @@ La commande tapée par le bouton est `python`, précédé du chemin complet de
 l'interpréteur choisi, suivi du chemin du fichier : la même commande que
 celle tapée à la main au cours 1, avec des chemins absolus.
 
-## 7 · Deux réglages, puis leur fichier
+## 7 · Trois réglages, puis leur fichier
 
-> **À faire :** régler, au niveau User, l'affichage des espaces et l'enregistrement automatique ; ouvrir le fichier `settings.json`.
+> **À faire :** régler, au niveau User, l'affichage des espaces, l'enregistrement automatique et l'interpréteur par défaut ; ouvrir le fichier `settings.json`.
 >
-> **À obtenir :** `settings.json` contient les deux réglages et celui du terminal.
+> **À obtenir :** `settings.json` contient les trois réglages et celui du terminal.
 
 ### Deux niveaux de réglages
 
@@ -334,13 +335,20 @@ Un réglage du dossier (Workspace) l'emporte sur celui du compte (User).
 Le premier voyage avec le projet, et se versionne avec lui ; le second
 reste sur le poste.
 
-### Les deux réglages
+### Les trois réglages
 
 Dans l'onglet User :
 
 1. Taper `render whitespace` dans la zone de recherche. Le réglage « Editor:
    Render Whitespace » s'affiche ; choisir `all` dans sa liste.
 2. Taper `auto save`. Pour « Files: Auto Save », choisir `afterDelay`.
+3. Taper `default interpreter path`. Dans le champ « Python: Default
+   Interpreter Path », taper `C:\ProgramData\anaconda3\python.exe`.
+
+L'interpréteur choisi à l'étape 4 vaut pour le dossier ouvert seulement. Le
+troisième réglage fait de `base` l'interpréteur de tout dossier ouvert ensuite,
+à commencer par celui du TD 2b. Un choix fait par « Python: Select
+Interpreter » l'emporte sur ce réglage, pour son dossier.
 
 **Vérification** : dans `altitudes.py`, un point gris marque chaque espace
 d'indentation, comme dans Notepad++ au cours 1 ; en modifiant le fichier, le
@@ -356,16 +364,25 @@ Le fichier du compte s'ouvre au centre. Il contient au moins :
 {
     "terminal.integrated.defaultProfile.windows": "Git Bash",
     "editor.renderWhitespace": "all",
-    "files.autoSave": "afterDelay"
+    "files.autoSave": "afterDelay",
+    "python.defaultInterpreterPath": "C:\\ProgramData\\anaconda3\\python.exe"
 }
 ```
 
+Dans le fichier, les barres obliques inverses du chemin sont doublées.
 L'ordre des lignes peut différer, et d'autres lignes peuvent y être,
 écrites par les extensions. Ne rien modifier, et fermer le fichier.
 
 Chaque réglage a un nom en plusieurs parties séparées par des points,
 `editor.renderWhitespace`, et une valeur. L'onglet des réglages et ce
 fichier montrent les mêmes réglages : l'onglet écrit dans le fichier.
+
+:::{warning}
+La configuration de ce TD est enregistrée dans le compte, sur ce poste :
+l'extension Python, les réglages User, et le fichier `~/.bash_profile` écrit
+par `conda init bash` au TD 1c. Sur un autre poste de l'école, il faut a priori
+la refaire, étapes 3 à 7, avec `conda init bash`.
+:::
 
 ## Si la configuration de VS Code bloque
 

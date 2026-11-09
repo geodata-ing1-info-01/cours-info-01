@@ -5,8 +5,9 @@ subtitle: Les deux settings.json des postes de la salle, prêts à recopier
 
 Cette page réunit les réglages de [Python et environnement
 conda](vscode_python.md) et de [Notebooks](vscode_notebooks.md) en deux
-fichiers complets, et détaille ceux de conda. Le premier se recopie une fois par compte ; le second
-est livré dans l'archive de chaque TD. Les deux niveaux de réglages et
+fichiers complets, et détaille ceux de conda. Le premier se recopie une fois par compte, et a
+priori sur chaque poste employé [à vérifier sur un poste] ; le second règle un seul dossier.
+Les deux niveaux de réglages et
 l'ouverture des fichiers sont décrits dans {ref}`VS Code, section Les réglages
 <vscode-reglages>`.
 
@@ -64,13 +65,14 @@ Enregistrer (`Ctrl` + `S`), puis palette, « Developer: Reload Window ».
 conda est disponible dans Git Bash après `conda init bash` ({ref}`Anaconda,
 section conda dans un terminal <conda-terminal>`).
 
-## Réglages du dossier d'un TD
+## Réglages d'un dossier
 
-Fichier `.vscode\settings.json` à la racine du dossier du TD ; dans
-VS Code, palette, « Preferences: Open Workspace Settings (JSON) », qui le
-crée s'il n'existe pas. Ce fichier est livré dans l'archive de chaque TD, et il
-n'y a rien à y faire. Il est reproduit ici pour préparer une archive ou vérifier
-un poste.
+Fichier `.vscode\settings.json` à la racine du dossier ; dans VS Code,
+palette, « Preferences: Open Workspace Settings (JSON) », qui le crée s'il
+n'existe pas. Les archives des TD n'en contiennent pas, car le réglage
+`python.defaultInterpreterPath` du compte donne `base` à chaque dossier ouvert.
+Le fichier ci-dessous donne les mêmes réglages Python à un seul dossier, et le
+dossier le garde quand on le copie ou le versionne.
 
 ```json
 {
@@ -138,7 +140,7 @@ dans la cible du raccourci « Anaconda Prompt ».
   `C:\\ProgramData\\anaconda3\\python.exe` ; pour un environnement créé
   par le compte : `${env:USERPROFILE}\\.conda\\envs\\recette\\python.exe`.
   Niveau User ou Workspace ; au niveau Workspace, il peut être livré dans
-  le `.vscode\settings.json` d'un TD. Un choix fait ensuite par « Python:
+  le `.vscode\settings.json` d'un dossier. Un choix fait ensuite par « Python:
   Select Interpreter » l'emporte sur ce réglage pour ce dossier, et la
   liste propose alors une entrée « Use Python from
   `python.defaultInterpreterPath` setting » pour y revenir. L'extension

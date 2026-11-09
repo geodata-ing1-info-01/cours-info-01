@@ -18,6 +18,7 @@
 // graphes, chaque pastille porte le début de l'identifiant du commit.
 #import "../../../commun/prelude.typ": *
 #import "../../../commun/schemas_git.typ": graphe-git, marque-tete, marque-conflit, rouge-attention
+#import "../schemas.typ": schema-usages-git
 
 // Une sortie de terminal, en chasse fixe sur fond gris. `taille` est celle
 // du texte courant : le code en prend 0,78.
@@ -77,6 +78,35 @@
 )
 
 // --------------------------------------------
+// 09/11/2026 : « Git : c'est quoi ? », diapositive 8 du cours 2 de 2026 (support de
+// Florent Geniet), dans son état final, sans les quatre étapes d'apparition. Le titre
+// passe en groupe nominal. Le schéma est redessiné en typst, avec les logos de Wikimedia
+// Commons (`images/git/CREDITS.md`) ; les usages traités par la séance sont en couleur.
+#d("Git : vue d'ensemble")[
+  #align(center, schema-usages-git(echelle: 1.15))
+
+  #legende[
+    Les parties en couleur sont traitées dans cette séance : le versionnement du code, en
+    ligne de commande et dans un IDE. Le travail à plusieurs et l'hébergement du code en
+    ligne sont pratiqués au cours 6.
+  ]
+
+  #notes[
+    Quatre usages : le versionnement du code, le travail à plusieurs,
+    l'hébergement en ligne (GitHub, GitLab), les outils (ligne de commande,
+    logiciels dédiés, IDE).
+
+    La séance traite le versionnement, avec les commandes git tapées dans le
+    terminal de VS Code (TD 2c). Le travail à plusieurs n'y est vu qu'en théorie,
+    en fin de partie : branches à plusieurs, copies d'un dépôt.
+
+    git est le logiciel, installé sur le poste ; GitHub et GitLab sont des
+    services en ligne qui hébergent des dépôts git. Le module n'emploie pas de
+    logiciel dédié, comme GitKraken ou TortoiseGit.
+  ]
+]
+
+// --------------------------------------------
 #d("À quoi sert git")[
   #annonce[
     git enregistre les versions successives des fichiers d'un projet. Chaque
@@ -102,111 +132,6 @@
     distingue deux copies, ni laquelle est la bonne.
 
     Colonne de droite : `git log --oneline` relevé à l'étape 4 du TD 2c.
-  ]
-]
-
-// --------------------------------------------
-// Nouveau (28/09/2026), d'après Pro Git, chapitre 1.
-#d("Les systèmes de version")[
-  #annonce[
-    Un système centralisé garde l'historique sur un serveur. Dans un système
-    distribué, comme git, chaque copie du projet contient tout l'historique.
-  ]
-
-  #face-a-face(
-    panneau("Centralisé : CVS (1986), Subversion (2000)")[
-      #align(center)[
-        #_machine("Serveur", _historique, plein: true)
-        #v(0.2em)
-        #grid(
-          columns: 3, column-gutter: 12pt,
-          ..range(1, 4).map(i => stack(
-            dir: ttb, spacing: 3pt,
-            _double-fleche(vertical: true),
-            _machine("Poste " + str(i), _une-version),
-          )),
-        )
-      ]
-    ],
-    panneau("Distribué : git, Mercurial (2005)")[
-      #v(1.2em)
-      #align(center, grid(
-        columns: 5, column-gutter: 4pt, align: horizon,
-        _machine("Poste 1", _historique), _double-fleche(),
-        _machine("Poste 2", _historique), _double-fleche(),
-        _machine("Clé USB", _historique),
-      ))
-    ],
-  )
-
-  #legende[
-    À gauche, un poste n'a que la dernière version, et il faut le serveur
-    pour faire un commit ou lire l'historique. À droite, chaque dépôt a
-    tous les commits, et un commit se fait sans réseau.
-  ]
-
-  #notes[
-    Avant : des copies à la main (diapositive précédente), puis RCS (1982),
-    l'historique d'un fichier sur un seul poste.
-
-    git est écrit par Linus Torvalds en avril 2005 pour le noyau Linux,
-    quand la licence gratuite de BitKeeper, l'outil distribué employé
-    jusque-là, est retirée. Mercurial date du même mois.
-
-    Pro Git, chapitre 1 (git-scm.com/book/fr), dessine ces familles : le
-    serveur central est un « point unique de panne », et dans un système
-    distribué chaque copie est « une sauvegarde complète de toutes les
-    données ».
-
-    Presque toutes les commandes du jour s'exécutent sur le dépôt local,
-    sans réseau.
-  ]
-]
-
-// --------------------------------------------
-// Nouveau (28/09/2026). Théorie seule ; la pratique est au cours 6, et à
-// l'étape 7 du TD 2c pour ceux qui ont fini.
-#d("Les copies d'un dépôt")[
-  #annonce[
-    Une copie d'un dépôt git a tous ses commits. Deux copies échangent
-    ensuite leurs nouveaux commits, sur un même poste, par une clé USB ou
-    par un serveur.
-  ]
-
-  // Le poste de la salle et l'ordinateur personnel ne se relient que par
-  // la clé USB ou par la forge (pas d'accès au réseau de l'école depuis
-  // chez soi). Disposition revue le 28/09/2026.
-  #align(center, scale(125%, reflow: true, grid(
-    columns: 5, column-gutter: 6pt, row-gutter: 4pt, align: center + horizon,
-    [], [], _machine("Forge, au cours 6", _historique), _double-fleche(),
-    _machine("Ordinateur personnel", _historique),
-    [], [], _double-fleche(vertical: true), [], _double-fleche(vertical: true),
-    _machine("Dépôt d'un camarade", _historique), _double-fleche(),
-    _machine("Poste de la salle", _historique, plein: true), _double-fleche(),
-    _machine("Clé USB", _historique),
-  )))
-
-  #legende[
-    `git clone` crée une copie. `git pull` récupère les nouveaux commits
-    d'une autre copie, `git push` y envoie les siens.
-  ]
-
-  #notes[
-    Pas de pratique aujourd'hui, hors l'étape 7 du TD 2c (seconde copie par
-    `git clone`, un commit passé par `git pull`), pour ceux qui ont fini.
-
-    Comme le réseau de l'école n'est pas accessible depuis chez soi, les
-    commits passent du poste de la salle à l'ordinateur personnel par la
-    clé USB ou par la forge.
-
-    Cours 6 : clone local d'abord, puis la forge, qui n'est qu'une copie de
-    plus. Le cours 1 l'a annoncé sur le dossier partagé : chacun travaille
-    dans sa copie, et les modifications se fusionnent.
-
-    Une copie « distante » peut être un dossier du même poste ou une clé
-    USB (P.-A. Champin, _Introduction à GIT_, IUT Lyon 1). Pas de dépôt
-    commun dans `formationTemp`, où le cours 1 demande de ne pas
-    travailler.
   ]
 ]
 
@@ -882,5 +807,111 @@
     Le module ne pratique que la branche de tâche fusionnée dans `master`,
     par une pull request (cours 6, projet 7) : à dire si la question vient.
     Le `tag` de la version terminée est au projet 7.
+  ]
+]
+
+// --------------------------------------------
+// Nouveau (28/09/2026), d'après Pro Git, chapitre 1. Cette diapositive et la suivante
+// passent en fin de partie, après les branches, le 09/11/2026.
+#d("Les systèmes de version")[
+  #annonce[
+    Un système centralisé garde l'historique sur un serveur. Dans un système
+    distribué, comme git, chaque copie du projet contient tout l'historique.
+  ]
+
+  #face-a-face(
+    panneau("Centralisé : CVS (1986), Subversion (2000)")[
+      #align(center)[
+        #_machine("Serveur", _historique, plein: true)
+        #v(0.2em)
+        #grid(
+          columns: 3, column-gutter: 12pt,
+          ..range(1, 4).map(i => stack(
+            dir: ttb, spacing: 3pt,
+            _double-fleche(vertical: true),
+            _machine("Poste " + str(i), _une-version),
+          )),
+        )
+      ]
+    ],
+    panneau("Distribué : git, Mercurial (2005)")[
+      #v(1.2em)
+      #align(center, grid(
+        columns: 5, column-gutter: 4pt, align: horizon,
+        _machine("Poste 1", _historique), _double-fleche(),
+        _machine("Poste 2", _historique), _double-fleche(),
+        _machine("Clé USB", _historique),
+      ))
+    ],
+  )
+
+  #legende[
+    À gauche, un poste n'a que la dernière version, et il faut le serveur
+    pour faire un commit ou lire l'historique. À droite, chaque dépôt a
+    tous les commits, et un commit se fait sans réseau.
+  ]
+
+  #notes[
+    Avant : des copies à la main (diapositive « À quoi sert git »), puis RCS (1982),
+    l'historique d'un fichier sur un seul poste.
+
+    git est écrit par Linus Torvalds en avril 2005 pour le noyau Linux,
+    quand la licence gratuite de BitKeeper, l'outil distribué employé
+    jusque-là, est retirée. Mercurial date du même mois.
+
+    Pro Git, chapitre 1 (git-scm.com/book/fr), dessine ces familles : le
+    serveur central est un « point unique de panne », et dans un système
+    distribué chaque copie est « une sauvegarde complète de toutes les
+    données ».
+
+    Presque toutes les commandes du jour s'exécutent sur le dépôt local,
+    sans réseau.
+  ]
+]
+
+// --------------------------------------------
+// Nouveau (28/09/2026). Théorie seule ; la pratique est au cours 6, et à
+// l'étape 7 du TD 2c pour ceux qui ont fini.
+#d("Les copies d'un dépôt")[
+  #annonce[
+    Une copie d'un dépôt git a tous ses commits. Deux copies échangent
+    ensuite leurs nouveaux commits, sur un même poste, par une clé USB ou
+    par un serveur.
+  ]
+
+  // Le poste de la salle et l'ordinateur personnel ne se relient que par
+  // la clé USB ou par la forge (pas d'accès au réseau de l'école depuis
+  // chez soi). Disposition revue le 28/09/2026.
+  #align(center, scale(125%, reflow: true, grid(
+    columns: 5, column-gutter: 6pt, row-gutter: 4pt, align: center + horizon,
+    [], [], _machine("Forge, au cours 6", _historique), _double-fleche(),
+    _machine("Ordinateur personnel", _historique),
+    [], [], _double-fleche(vertical: true), [], _double-fleche(vertical: true),
+    _machine("Dépôt d'un camarade", _historique), _double-fleche(),
+    _machine("Poste de la salle", _historique, plein: true), _double-fleche(),
+    _machine("Clé USB", _historique),
+  )))
+
+  #legende[
+    `git clone` crée une copie. `git pull` récupère les nouveaux commits
+    d'une autre copie, `git push` y envoie les siens.
+  ]
+
+  #notes[
+    Pas de pratique aujourd'hui, hors l'étape 7 du TD 2c (seconde copie par
+    `git clone`, un commit passé par `git pull`), pour ceux qui ont fini.
+
+    Comme le réseau de l'école n'est pas accessible depuis chez soi, les
+    commits passent du poste de la salle à l'ordinateur personnel par la
+    clé USB ou par la forge.
+
+    Cours 6 : clone local d'abord, puis la forge, qui n'est qu'une copie de
+    plus. Le cours 1 l'a annoncé sur le dossier partagé : chacun travaille
+    dans sa copie, et les modifications se fusionnent.
+
+    Une copie « distante » peut être un dossier du même poste ou une clé
+    USB (P.-A. Champin, _Introduction à GIT_, IUT Lyon 1). Pas de dépôt
+    commun dans `formationTemp`, où le cours 1 demande de ne pas
+    travailler.
   ]
 ]

@@ -60,6 +60,8 @@ la salle, la ligne `base` porte le chemin `C:\ProgramData\anaconda3\python.exe`
 
 Le nom choisi s'affiche en bas à droite de la fenêtre, et il est mémorisé
 pour ce dossier, à part des fichiers `settings.json`, dans `User\workspaceStorage`.
+Dans un dossier ouvert ensuite, le réglage `python.defaultInterpreterPath` du
+compte désigne `base` ([Fichiers de réglages](vscode_reglages.md)).
 
 ```{figure} captures/vscode_status_bar.png
 :alt: La barre d'état de VS Code avec le nom de l'environnement Python choisi

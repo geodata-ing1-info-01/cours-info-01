@@ -64,16 +64,16 @@
 
 // --------------------------------------------
 // Nouveau (05/11/2026) ; les deux listes, « Configurer un langage » et « Configurer le
-// terminal », réunies le même jour. Extension C/C++ et compilateur : documentation de VS
-// Code, « C/C++ for Visual Studio Code ». Les numéros sont ceux des diapositives suivantes.
+// terminal », réunies le même jour. Les numéros sont ceux des diapositives suivantes.
+// 09/11/2026 : les exemples en C++ sont retirés.
 #d("Configuration de VS Code : étapes")[
   #face-a-face(
     panneau[Un langage, ici Python][
       #consignes(
         taille: 16pt,
-        [Installer l'extension du langage, avec une connexion internet. #comment[« Python », de Microsoft ; en C++, « C/C++ », de Microsoft.]],
-        [Indiquer le chemin de l'interpréteur ou du compilateur. #comment[`python.exe` d'Anaconda ; en C++, #box[`g++.exe`].]],
-        [Lancer un programme pour vérifier. #comment[`altitudes.py` ; en C++, `altitudes.cpp`.]],
+        [Installer l'extension du langage, avec une connexion internet. #comment[« Python », de Microsoft.]],
+        [Indiquer le chemin de l'interpréteur. #comment[`python.exe` d'Anaconda.]],
+        [Lancer un programme pour vérifier. #comment[`altitudes.py`.]],
       )
     ],
     panneau[Le terminal, ici Git Bash][
@@ -88,14 +88,13 @@
   )
 
   #legende[
-    L'interpréteur ou le compilateur doit être installé sur le poste : ici, Anaconda fournit
-    Python. En cas de problème : FAQ du site du cours,
+    L'interpréteur doit être installé sur le poste : ici, Anaconda fournit Python. En cas de problème : FAQ du site du cours,
     #_site("annexes/faq.html", "geodata-ing1-info-01.github.io/cours-info-01").
   ]
 
   #notes[
-    Le C++ montre que la démarche ne dépend pas du langage : il n'est pas configuré
-    ici. Le cours 1 a montré `g++ altitudes.cpp`.
+    La démarche est la même pour un autre langage : son extension, puis le chemin de son
+    interpréteur ou de son compilateur.
 
     VS Code ouvre un terminal installé sur le poste. Le module emploie Git Bash, celui du
     cours 1. Sans conda activé, `python` lance dans Git Bash un autre Python que celui
@@ -110,30 +109,47 @@
 
 // « Copier et décompresser les fichiers dans Git Bash » et « Lancer VS Code
 // et ouvrir le dossier de la séance » fondues le 28/09/2026.
+// 09/11/2026 : l'ouverture de VS Code passe sur la diapositive suivante, qui ouvre le
+// dossier du TD seul ; à droite, l'arborescence attendue, comme au TD 1a du cours 1 v2.
 #d("Préparation de la séance")[
   #objectif[
-    copier les fichiers du TD sur le Bureau, lancer VS Code, puis ouvrir le dossier de la séance,
-    `info01\cours2`.
+    copier l'archive de la séance, `info01-cours2.zip`, dans le dossier `info01` du Bureau, puis
+    l'extraire dans Git Bash.
   ]
 
-  #consignes(
-    taille: 16pt,
-    [Copier l'archive `info01-cours2.zip` de `formationTemp` dans le dossier `info01` du Bureau.
-      #constat[L'archive est à côté de `cours1`.]],
-    [Décompresser l'archive dans Git Bash : #commandes("cd ~/Desktop/info01", "unzip info01-cours2.zip")
-      #constat[La liste des fichiers extraits défile.]],
-    [Lister le dossier de la séance : `ls cours2`.
-      #constat[`2a_vscode/`, `2b_erreurs/`, `2c_depot_altitudes/`.]],
-    [Lancer VS Code depuis le menu Démarrer, puis ouvrir le dossier de la séance : #comment[File, Open Folder…, `Desktop\info01\cours2`, puis « Yes, I trust the authors ».]
-      #constat[Les trois dossiers des TD, à gauche.]],
+  #grid(
+    columns: (1.9fr, 1fr), column-gutter: 16pt, align: top,
+    consignes(
+      taille: 16pt,
+      [Copier l'archive `info01-cours2.zip` de `formationTemp` dans le dossier `info01` du Bureau.
+        #constat[L'archive est à côté de `cours1`.]],
+      [Décompresser l'archive dans Git Bash : #commandes("cd ~/Desktop/info01", "unzip info01-cours2.zip")
+        #constat[La liste des fichiers extraits défile.]],
+      [Lister le dossier de la séance : `ls cours2`.
+        #constat[`2a_vscode/`, `2b_erreurs/`, `2c_depot_altitudes/`.]],
+    ),
+    [
+      #block(width: 100%, inset: (x: 10pt, y: 10pt), fill: gris, stroke: 1pt + accent.lighten(62%))[
+        #set text(size: 16pt)
+        #set align(left)
+        #raw(
+"Bureau/
+└── info01/
+    ├── cours1/
+    ├── info01-cours2.zip
+    └── cours2/
+        ├── 2a_vscode/
+        ├── 2b_erreurs/
+        └── 2c_depot_altitudes/")
+      ]
+      #legende[Arborescence attendue après l'étape 2. `cours1/` vient de la séance 1.]
+    ],
   )
 
-  #legende[
-    Le dossier ouvert dans VS Code est le projet : l'explorateur, la
-    recherche et le terminal partent de lui.
-  ]
-
   #notes[
+    `cours1/` reste sur le Bureau si la séance 1 a eu lieu sur ce poste. Sinon, l'arborescence
+    n'a que `cours2/` et l'archive.
+
     `unzip` est dans l'installation complète de Git for Windows depuis 2011 ;
     MinGit et Anaconda ne l'ont pas. À vérifier sur un poste de la salle
     (`which unzip`). Sinon, « Extraire tout… » à la souris.
@@ -150,30 +166,34 @@
 // Reprise de la diapositive 50 du cours 1 de 2026, chemin mis à jour. 05/11/2026 : la
 // recherche se fait par le nom, `python`, comme le font les utilisateurs, avec le schéma
 // du bouton Extensions, et la capture de la liste sur la diapositive suivante.
+// 09/11/2026 : l'ouverture de VS Code, venue de « Préparation de la séance », et le dossier
+// du TD seul, `2a_vscode` : un dossier par projet.
 #d("Python, étape 1 : extension")[
   #objectif[
-    installer dans VS Code l'extension « Python », de Microsoft.
+    ouvrir le dossier `2a_vscode` dans VS Code, afficher `altitudes.py`, puis installer
+    l'extension « Python », de Microsoft.
   ]
 
   #grid(
-    columns: (1.2fr, 1fr), column-gutter: 16pt, align: top,
+    columns: (1.55fr, 1fr), column-gutter: 16pt, align: top,
     consignes(
-      taille: 16pt,
-      [Ouvrir `2a_vscode/altitudes.py`, avant toute installation.
+      taille: 15pt,
+      [Lancer VS Code depuis le menu Démarrer, puis ouvrir le dossier du TD : #comment[File, Open Folder…, `Desktop\info01\cours2\2a_vscode`, puis « Yes, I trust the authors ».]
+        #constat[`2A_VSCODE` en haut de l'arborescence, à gauche.]],
+      [Ouvrir `altitudes.py` : #comment[clic dans l'arborescence.]
         #constat[Le texte est déjà coloré : VS Code colore Python sans extension.]],
       [Ouvrir le panneau Extensions : #comment[bouton à quatre carrés, dans la barre de gauche, ou `Ctrl` + `Maj` + `X`.]],
       [Taper `python` dans la zone de recherche.
         #constat[Une liste d'extensions, dont plusieurs s'appellent « Python ».]],
       [Choisir « Python », de Microsoft, puis cliquer sur Install.
-        #constat[Pylance et le débogueur s'installent avec, et la barre d'état propose un interpréteur.]],
+        #constat[Pylance et le débogueur s'installent avec.]],
     ),
-    schema-bouton-extensions(),
+    schema-bouton-extensions(hauteur: 150pt),
   )
 
   #legende[
-    Une extension s'installe depuis le panneau Extensions, avec une connexion internet. Il en faut
-    une par langage.
-    Une extension installée le reste, pour les séances suivantes et les autres cours.
+    Le dossier ouvert est le projet : l'explorateur, la recherche et le terminal partent de lui.
+    Chaque TD du module a son propre dossier.
   ]
 
   #notes[
@@ -181,7 +201,9 @@
     choisir, installer.
 
     L'extension de Microsoft installe aussi Pylance, qui vérifie l'écriture, et le
-    débogueur.
+    débogueur. La barre d'état propose ensuite un interpréteur (étape 2).
+
+    Une extension installée le reste, pour les séances suivantes et les autres cours.
 
     Première consigne : la coloration est fournie d'origine pour les langages
     courants. L'extension ajoute l'interpréteur, l'exécution et la
@@ -206,7 +228,7 @@
     // Les deux dimensions : avec la largeur seule, `image` se limite à la hauteur de la
     // boîte et recadre au centre.
     #place(top + left, image("/src/annexes/configuration/captures/vscode_extensions_python.png", width: 1400 * echelle, height: 446 * echelle))
-    #for (numero, x, y) in ((2, 24, 262), (3, 392, 50), (4, 300, 88)) {
+    #for (numero, x, y) in ((3, 24, 262), (4, 392, 50), (5, 300, 88)) {
       place(top + left, dx: x * echelle - 10pt, dy: y * echelle - 10pt, repere(numero, taille: 20pt))
     }
   ]
@@ -227,9 +249,9 @@
     _capture-extensions(232pt),
     stack(
       dir: ttb, spacing: 14pt,
-      _repere-capture(2)[le bouton Extensions],
-      _repere-capture(3)[la zone de recherche : `python`],
-      _repere-capture(4)[l'extension à choisir : « Python », éditeur Microsoft, avec une coche bleue],
+      _repere-capture(3)[le bouton Extensions],
+      _repere-capture(4)[la zone de recherche : `python`],
+      _repere-capture(5)[l'extension à choisir : « Python », éditeur Microsoft, avec une coche bleue],
     ),
   )
 
@@ -369,7 +391,7 @@
       [Choisir « Terminal: Select Default Profile », puis « Git Bash ».
         #constat[La palette se ferme ; rien d'autre ne change.]],
       [Ouvrir un terminal : #comment[menu Terminal, New Terminal.]
-        #constat[Un terminal en bas, avec `MINGW64 ~/Desktop/info01/cours2`.]],
+        #constat[Un terminal en bas, avec `MINGW64 ~/Desktop/info01/cours2/2a_vscode`.]],
       [Lister les terminaux : #comment[flèche à droite du signe +, en haut à droite du panneau du terminal.]
         #constat[PowerShell, Git Bash, Command Prompt…]],
     ),
@@ -431,12 +453,12 @@
 // est à relever sur un poste.
 #d("Python, étape 3 : lancement d'un programme")[
   #objectif[
-    lancer `2a_vscode/altitudes.py` avec le bouton de VS Code.
+    lancer `altitudes.py` avec le bouton de VS Code.
   ]
 
   #consignes(
     taille: 16pt,
-    [Ouvrir `2a_vscode/altitudes.py`, dans l'arborescence.],
+    [Afficher `altitudes.py`, ouvert à l'étape 1 : #comment[son onglet, ou un clic dans l'arborescence.]],
     [Cliquer sur le bouton #sym.triangle.filled.r en haut à droite du fichier.
       #constat[La commande apparaît dans le terminal, puis `moyenne : 93.7 m`.]],
   )
@@ -540,22 +562,32 @@
   ]
 ]
 
+// 09/11/2026 : `python.defaultInterpreterPath` au niveau User. L'interpréteur choisi à
+// l'étape 2 ne vaut que pour `2a_vscode` ; sans ce réglage, l'extension ne choisit pas
+// conda d'office dans les dossiers des TD suivants (annexes, « Comment VS Code gère les
+// environnements »).
 #d("Réglages de VS Code : interface et fichier")[
   #objectif[
-    modifier deux réglages dans l'interface de VS Code, puis retrouver ces réglages dans leur
-    fichier.
+    modifier trois réglages du compte dans l'interface de VS Code, puis retrouver ces réglages
+    dans leur fichier.
   ]
 
   #consignes(
-    taille: 17pt,
+    taille: 16pt,
     [Ouvrir les réglages : `Ctrl` + `,`, onglet User.],
     [Chercher « render whitespace », puis choisir `all`.
       #constat[Un point par espace dans le code.]],
     [Chercher « auto save », puis choisir `afterDelay`.
       #constat[Plus de point blanc sur l'onglet d'un fichier modifié.]],
+    [Chercher « default interpreter path », puis taper `C:\ProgramData\anaconda3\python.exe`. #comment[`base` devient l'interpréteur de tout dossier ouvert ensuite.]],
     [Ouvrir le fichier des réglages : #comment[palette de commandes, « Preferences: Open User Settings (JSON) ».]
-      #constat[Trois lignes : les deux réglages, et le terminal Git Bash.]],
+      #constat[Quatre lignes : les trois réglages, et le terminal Git Bash.]],
   )
+
+  #avertissement(couleur: attention)[
+    La configuration de ce TD est enregistrée dans le compte, sur ce poste. Sur un autre poste
+    de l'école, il faut a priori la refaire.
+  ]
 
   #legende[
     #reponse[
@@ -567,10 +599,21 @@
   #notes[
     Contenu attendu de `settings.json`, à ne montrer qu'après :
     `"terminal.integrated.defaultProfile.windows": "Git Bash"`,
-    `"editor.renderWhitespace": "all"`, `"files.autoSave": "afterDelay"`.
-    D'autres lignes peuvent y être, écrites par des extensions.
+    `"editor.renderWhitespace": "all"`, `"files.autoSave": "afterDelay"`,
+    `"python.defaultInterpreterPath": "C:\\ProgramData\\anaconda3\\python.exe"`.
+    Dans le fichier, les barres obliques inverses sont doublées. D'autres lignes
+    peuvent y être, écrites par des extensions.
 
     `files.autoSave` : un programme lancé lit le fichier enregistré (cours 1,
     TD 1c) ; l'enregistrement automatique évite l'écart.
+
+    `python.defaultInterpreterPath` : le choix de l'étape 2 ne vaut que pour
+    `2a_vscode`. Dans un dossier nouveau, l'extension prend ce réglage ; sans lui,
+    un venv du dossier ou un Python du système. Un choix fait ensuite par « Python:
+    Select Interpreter » l'emporte, pour ce dossier.
+
+    Avertissement : extensions, réglages User et `~/.bash_profile` sont dans
+    `C:\Users\<nom>`, sur le poste. À vérifier sur un poste de la salle : si les
+    profils suivent le compte d'un poste à l'autre, la configuration suit aussi.
   ]
 ]

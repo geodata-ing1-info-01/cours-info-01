@@ -79,7 +79,7 @@ Tout ce qui se règle dans VS Code est enregistré dans des fichiers
   `C:\Users\<nom>\AppData\Roaming\Code\User\settings.json` ;
 - Workspace : les réglages du dossier ouvert. Le fichier est
   `.vscode\settings.json` dans ce dossier. Il est copié avec le dossier, par
-  exemple dans l'archive d'un TD.
+  exemple dans une archive.
 
 Quand un réglage est présent aux deux niveaux, celui du dossier l'emporte.
 

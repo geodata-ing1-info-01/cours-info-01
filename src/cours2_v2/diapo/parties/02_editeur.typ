@@ -17,7 +17,7 @@
 // (`notebook/01_editeur_de_code.md`) garde la chasse fixe et les anciens titres.
 #import "../../../commun/prelude.typ": *
 #import "../../../cours1/diapo/schemas.typ": souligne-ondule, blancs
-#import "../schemas.typ": fenetre-vscode, schema-rappel-outils, schema-fonctions-ide, vignette-jupyterlab, vignette-spyder, vignette-vscode
+#import "../schemas.typ": fenetre-vscode, schema-rappel-outils, schema-fonctions-ide, vignette-jupyterlab, vignette-spyder, vignette-vscode, zoom-barre-etat
 
 #separateur(
   "L'éditeur de code",
@@ -46,46 +46,18 @@
 ]
 
 // --------------------------------------------
-// Venue de la partie « Configurer l'éditeur de code » (retirée le
-// 28/09/2026) ; reprise de la diapositive 48 du cours 1 de 2026, avec une
-// fenêtre dessinée (`../schemas.typ`).
-// Déplacée après le rappel du cours 1 le 04/11/2026, sans changement.
-#d("Visual Studio Code")[
-  #annonce[
-    L'éditeur du module a trois zones : l'arborescence du dossier ouvert, le
-    fichier, et le terminal, qui part de ce dossier.
-  ]
-
-  #fenetre-vscode(hauteur: 240pt)
-
-  #notes[
-    Schéma de la fenêtre après la configuration du TD 2a. En bas, la barre
-    d'état : position, indentation, encodage, fin de ligne, interpréteur
-    (TD 2b).
-
-    Générique : une extension par langage, et une configuration qui dépend
-    du système. Le panneau git vient au TD 2c.
-
-    Faire retrouver les trois zones sur les postes au début du TD 2a.
-
-    La commande du terminal part du dossier ouvert, `cours2` : le chemin
-    du programme est relatif à lui.
-
-    Un éditeur de code enregistre du texte brut ; les couleurs et les
-    numéros de ligne ne sont qu'un affichage.
-
-    VS Code s'affiche en anglais par défaut ; le module ne demande pas d'en
-    changer. Les intitulés cités dans les TD sont les intitulés anglais.
-  ]
-]
-
-// --------------------------------------------
 // Redessinée le 04/11/2026 : le tableau et son avertissement deviennent les
-// zones d'une fenêtre, dans le dessin des vignettes de la diapositive suivante.
-// « Connaître le langage » passe sur « Comparaison : JupyterLab, Spyder, VS
-// Code ». Notes reprises, sauf leur première ligne.
+// zones d'une fenêtre, dans le dessin des vignettes de « Comparaison : JupyterLab,
+// Spyder, VS Code ». « Connaître le langage » passe sur cette diapositive-là. Notes
+// reprises, sauf leur première ligne.
+// 09/11/2026 : passe avant « Visual Studio Code », et reçoit une annonce.
 #d("Les fonctions d'un IDE")[
-  #schema-fonctions-ide()
+  #annonce[
+    Un IDE réunit en une fenêtre les outils du cours 1, pour programmer sans passer de l'un à
+    l'autre. Il ajoute d'autres aides, comme la complétion et le débogueur.
+  ]
+
+  #scale(88%, reflow: true, schema-fonctions-ide())
 
   #legende[
     IDE : _integrated development environment_, environnement de développement
@@ -123,6 +95,41 @@
     Microsoft présente VSCode comme un éditeur plutôt que comme un IDE,
     ses fonctions avancées venant d'extensions. Ne pas s'y attarder si la
     question ne vient pas.
+  ]
+]
+
+// --------------------------------------------
+// Venue de la partie « Configurer l'éditeur de code » (retirée le
+// 28/09/2026) ; reprise de la diapositive 48 du cours 1 de 2026, avec une
+// fenêtre dessinée (`../schemas.typ`).
+// Déplacée après le rappel du cours 1 le 04/11/2026, sans changement ; après « Les
+// fonctions d'un IDE » le 09/11/2026.
+#d("Visual Studio Code")[
+  #annonce[
+    L'éditeur du module a trois zones : l'arborescence du dossier ouvert, le
+    fichier, et le terminal, qui part de ce dossier.
+  ]
+
+  #fenetre-vscode(hauteur: 240pt)
+
+  #notes[
+    Schéma de la fenêtre après la configuration du TD 2a. En bas, la barre
+    d'état : position, indentation, encodage, fin de ligne, interpréteur
+    (TD 2b).
+
+    Générique : une extension par langage, et une configuration qui dépend
+    du système. Le panneau git vient au TD 2c.
+
+    Faire retrouver les trois zones sur les postes au début du TD 2a.
+
+    La commande du terminal part du dossier ouvert, `2a_vscode` : le chemin
+    du programme est relatif à lui.
+
+    Un éditeur de code enregistre du texte brut ; les couleurs et les
+    numéros de ligne ne sont qu'un affichage.
+
+    VS Code s'affiche en anglais par défaut ; le module ne demande pas d'en
+    changer. Les intitulés cités dans les TD sont les intitulés anglais.
   ]
 ]
 
@@ -197,16 +204,12 @@
     le fichier.
   ]
 
+  // 09/11/2026 : la colonne « Enregistré par un traitement de texte » est retirée ; le
+  // cours 1 v2 compare déjà le `.odt` et le `.txt` (TD 1a).
   #grid(
-    columns: (1.15fr, 0.9fr, 0.95fr), column-gutter: 18pt,
+    columns: (1fr, 1fr), column-gutter: 18pt,
     // Volontairement sans coloration : seule la colonne de droite en porte,
     // sans quoi la comparaison ne montrerait plus rien.
-    panneau("Enregistré par un traitement de texte")[
-      #raw(
-        "<text:p text:style-name=\"P1\">\naltitude = 79.6</text:p>\n<text:p>print(altitude)</text:p>",
-        block: true,
-      )
-    ],
     panneau("Le fichier d'un programme")[
       #raw("altitude = 79.6\nprint(altitude)", block: true)
     ],
@@ -245,12 +248,9 @@
     Deux services tirés de la même chose, les règles écrites du langage : la
     couleur, puis le soulignement.
 
-    À gauche, le `content.xml` d'un `.odt` (TD 1b de 2026, dans l'archive du book), le
-    texte entre les balises. On n'écrit pas de code dans Word ni dans
-    LibreOffice.
-
-    Au milieu et à droite, le même fichier, octet pour octet. Ouvrir le même
-    fichier dans le Bloc-notes le montre en une seconde.
+    Les deux colonnes montrent le même fichier, octet pour octet. Ouvrir le même
+    fichier dans le Bloc-notes le montre en une seconde. On n'écrit pas de code dans
+    Word ni dans LibreOffice : le TD 1a du cours 1 a comparé le `.odt` et le `.txt`.
 
     Faire nommer par la salle ce que la couleur distingue : les mots du langage
     et les fonctions connues, les nombres, le texte entre guillemets, les noms
@@ -296,6 +296,20 @@
     l'éditeur change.
   ]
 
+  // 09/11/2026 : la droite de la barre d'état de VS Code, agrandie. D'après la
+  // documentation de VS Code (« Basic editing », Indentation) : « By default, VS Code
+  // inserts spaces and uses 4 spaces per Tab key. »
+  #v(0.2em)
+  #grid(
+    columns: (auto, 1fr), column-gutter: 16pt, align: horizon,
+    zoom-barre-etat(),
+    text(size: 15pt)[
+      Dans VS Code, la touche Tab insère quatre espaces, et la barre d'état affiche
+      « Spaces: 4 ». Un clic sur cette mention propose de convertir les tabulations du
+      fichier en espaces.
+    ],
+  )
+
   #notes[
     Un éditeur de code emploie une police à chasse fixe, où toutes les lettres
     ont la même largeur. Python compte les espaces qui commencent une ligne ;
@@ -311,7 +325,10 @@
     sur 4, le mélange ne se voit pas (colonne de gauche).
 
     VS Code insère quatre espaces pour une tabulation dans un fichier
-    Python.
+    Python. Il détecte aussi l'indentation d'un fichier ouvert : dans un fichier indenté
+    par des tabulations, la barre d'état affiche « Tab Size: 4 », et la touche Tab insère
+    une tabulation. Il ne convertit pas seul les tabulations déjà présentes ; la commande
+    « Convert Indentation to Spaces », dans le menu de la barre d'état, le fait.
 
     Les blancs s'afficheront après le réglage du TD 2a (« render
     whitespace ») ; le TD 2b s'en sert.

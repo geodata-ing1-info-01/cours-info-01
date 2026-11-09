@@ -5,7 +5,11 @@
 // cours 1 de 2026 (projet trajet), absente du dépôt, dont le repli ne
 // dessinait qu'une fenêtre vide. Intitulés en anglais, comme sur les postes ;
 // disposition simplifiée. Le programme est `2a_vscode/altitudes.py`, et la
-// sortie du terminal est la sienne.
+// sortie du terminal est la sienne. 09/11/2026 : le dossier ouvert est
+// `2a_vscode` seul, un dossier par projet, et la commande part de lui.
+//
+// `zoom-barre-etat` (09/11/2026) : la droite de la barre d'état, agrandie, avec
+// l'indentation du fichier encadrée.
 //
 // `schema-rappel-outils` (04/11/2026) : trois fenêtres séparées, à la disposition
 // de `fenetre-vscode`, l'explorateur à gauche, l'éditeur au-dessus du terminal.
@@ -34,7 +38,7 @@
 // `reperes` place les numéros 1 et 2 sur le fichier et sur le bouton d'exécution (TD 2a) ;
 // `commande` remplace la ligne tapée dans le terminal ; `lignes` choisit les lignes du
 // programme affichées, pour une fenêtre moins haute.
-#let fenetre-vscode(hauteur: 300pt, reperes: false, commande: "python 2a_vscode/altitudes.py", lignes: (1, 8)) = {
+#let fenetre-vscode(hauteur: 300pt, reperes: false, commande: "python altitudes.py", lignes: (1, 8)) = {
   set text(size: 11pt, fill: accent)
   let code = "\"\"\"Moyenne d'une série d'altitudes, à la main plutôt qu'avec sum().\"\"\"\n\naltitudes = [79.6, 103.2, 98.3]\ntotal = 0\nfor altitude in altitudes:\n    total = total + altitude\nmoyenne = total / len(altitudes)\nprint(f\"moyenne : {moyenne:.1f} m\")"
   block(width: 100%, stroke: _bord, clip: true)[
@@ -42,7 +46,7 @@
     #block(width: 100%, fill: gris, inset: (x: 8pt, y: 5pt))[
       #text(size: 10.5pt)[File #h(6pt) Edit #h(6pt) Selection #h(6pt) View #h(6pt) Go #h(6pt) Run #h(6pt) Terminal #h(6pt) Help]
       #h(1fr)
-      #text(size: 10.5pt, fill: estompe)[altitudes.py — cours2 — Visual Studio Code]
+      #text(size: 10.5pt, fill: estompe)[altitudes.py — 2a_vscode — Visual Studio Code]
       #h(1fr)
     ]
     #grid(
@@ -52,11 +56,9 @@
         #set block(spacing: 0pt)
         #_nom-zone[l'arborescence]
         #block(inset: (x: 8pt, bottom: 4pt), text(size: 9.5pt, weight: demi-gras, fill: estompe)[EXPLORER])
-        #_ligne-arbre(text(weight: demi-gras)[⌄ COURS2])
-        #_ligne-arbre([⌄ 2a_vscode], retrait: 1)
-        #_ligne-arbre([altitudes.py #if reperes { h(6pt); box(baseline: 5pt, repere(1, taille: 18pt)) }], retrait: 2, courant: true)
-        #_ligne-arbre([› 2b_erreurs], retrait: 1)
-        #_ligne-arbre([› 2c_depot_altitudes], retrait: 1)
+        #_ligne-arbre(text(weight: demi-gras)[⌄ 2A_VSCODE])
+        #_ligne-arbre([altitudes.py #if reperes { h(6pt); box(baseline: 5pt, repere(1, taille: 18pt)) }], retrait: 1, courant: true)
+        #_ligne-arbre([td_2a_vscode.pdf], retrait: 1)
       ],
       grid(
         rows: (auto, auto),
@@ -91,7 +93,7 @@
           #block(inset: (x: 8pt, y: 2pt))[
             #set text(size: 13pt)
             #set par(leading: 0.4em)
-            #raw("(base)\neleve@POSTE MINGW64 ~/Desktop/info01/cours2\n$ " + commande + "\nmoyenne : 93.7 m", block: true)
+            #raw("(base)\neleve@POSTE MINGW64 ~/Desktop/info01/cours2/2a_vscode\n$ " + commande + "\nmoyenne : 93.7 m", block: true)
           ]
         ],
       ),
@@ -104,11 +106,19 @@
   ]
 }
 
+#let zoom-barre-etat() = block(fill: accent, inset: (x: 12pt, y: 7pt), radius: 2pt)[
+  #set text(size: 15pt, fill: white)
+  Ln 8, Col 1 #h(16pt)
+  #box(stroke: 1.6pt + white, inset: (x: 5pt, y: 3pt), outset: (y: 2pt), radius: 3pt)[Spaces: 4]
+  #h(16pt) UTF-8 #h(16pt) LF #h(16pt) Python
+]
+
 // ---------------------------------------------------------------------------
 // Rappel du cours 1 : trois fenêtres séparées
 //
 // Le programme et sa sortie sont ceux du TD 1c. Les icônes des éditeurs sont
-// celles du cours 1 v2 (`images/editeurs/CREDITS.md`).
+// celles du cours 1 v2 (`images/editeurs/CREDITS.md`). 09/11/2026 : le dossier
+// est `1c_programme/travail`, où le TD 1c copie ses fichiers depuis `depart/`.
 
 #let _colonnes-ide = (0.46fr, 1fr)
 
@@ -142,9 +152,9 @@
     columns: (_colonnes-ide.at(0), auto, _colonnes-ide.at(1)), column-gutter: 7pt, align: top,
     {
       _titre-outil[Explorateur de fichiers]
-      _fenetre-serree("1c_programme", {
+      _fenetre-serree("travail", {
         block(width: 100%, stroke: 0.6pt + estompe, inset: (x: 6pt, y: 4pt), radius: 2pt, below: 5pt,
-              text(font: police-code, size: 12pt)[…\\cours1\\1c_programme])
+              text(font: police-code, size: 12pt)[…\\1c_programme\\travail])
         _entree("altitudes.py", choisie: true)
         _entree("commandes.sh")
       })
@@ -187,7 +197,7 @@
       _fenetre-serree("Git Bash", {
         set text(size: 16.5pt)
         set par(leading: 0.42em)
-        text(fill: estompe, raw("eleve@POSTE-12 MINGW64 ~/Desktop/info01/cours1/1c_programme"))
+        text(fill: estompe, raw("eleve@POSTE-12 MINGW64 ~/Desktop/info01/cours1/1c_programme/travail"))
         linebreak()
         raw("$ python altitudes.py")
         linebreak()
@@ -400,10 +410,10 @@
         // Les repères sont placés à la main, à hauteur du bouton et de la zone.
         place(top + left, dx: -2pt, dy: 88pt, stack(
           dir: ltr, spacing: 5pt,
-          repere(2, taille: 20pt),
+          repere(3, taille: 20pt),
           align(horizon, text(size: 14pt, weight: demi-gras, fill: attention)[bouton Extensions]),
         ))
-        place(top + right, dx: 2pt, dy: 18pt, repere(3, taille: 20pt))
+        place(top + right, dx: 2pt, dy: 18pt, repere(4, taille: 20pt))
       }),
     )
   ]
@@ -466,3 +476,150 @@
     ]
   ]
 }
+
+// ---------------------------------------------------------------------------
+// Git : vue d'ensemble
+//
+// 09/11/2026 : la diapositive « Git : c'est quoi ? » du cours 2 de 2026 (support de
+// Florent Geniet, `src/cours2/diapo/schemas.typ`, `intro-git`), dans son état final.
+// Les logos sont les SVG de Wikimedia Commons de `src/cours2_v2/images/git/` (voir
+// `CREDITS.md`), à la place des PNG découpés dans le support d'origine. Le terminal,
+// le serveur, les personnes et les écrans sont dessinés. Les deux usages traités par
+// la séance, le versionnement et les outils en ligne de commande et dans un IDE, sont
+// en couleur `attention`.
+#import "@preview/cetz:0.4.2"
+
+#let _logos-git = "/src/cours2_v2/images/git/"
+
+// Tête et buste, puis un écran sur son pied : repris de `src/cours2/diapo/schemas.typ`.
+#let _personne(d, p, taille: 0.42, couleur: accent) = {
+  let t = taille
+  d.circle((p.at(0), p.at(1) + t * 0.46), radius: t * 0.26, stroke: 0.9pt + couleur, fill: white)
+  d.line(
+    (p.at(0) - t * 0.42, p.at(1) - t * 0.5),
+    (p.at(0) - t * 0.40, p.at(1) + t * 0.06),
+    (p.at(0) - t * 0.24, p.at(1) + t * 0.22),
+    (p.at(0) + t * 0.24, p.at(1) + t * 0.22),
+    (p.at(0) + t * 0.40, p.at(1) + t * 0.06),
+    (p.at(0) + t * 0.42, p.at(1) - t * 0.5),
+    close: true, stroke: 0.9pt + couleur, fill: white,
+  )
+}
+
+#let _ecran(d, p, taille: 0.42, couleur: accent) = {
+  d.rect(
+    (p.at(0) - taille / 2, p.at(1) - taille * 0.34),
+    (p.at(0) + taille / 2, p.at(1) + taille * 0.34),
+    stroke: 0.9pt + couleur, fill: white,
+  )
+  d.line(
+    (p.at(0) - taille * 0.18, p.at(1) - taille * 0.34),
+    (p.at(0) + taille * 0.18, p.at(1) - taille * 0.34),
+    stroke: 1.6pt + couleur,
+  )
+}
+
+// Trois tiroirs empilés, chacun avec son voyant.
+#let _serveur(d, p, taille: 0.5, couleur: accent) = {
+  let l = taille
+  let h = taille * 0.24
+  for i in range(3) {
+    let y = p.at(1) + (1 - i) * h * 1.15
+    d.rect((p.at(0) - l / 2, y - h / 2), (p.at(0) + l / 2, y + h / 2),
+      radius: 0.03, stroke: 0.8pt + couleur, fill: white)
+    d.circle((p.at(0) + l * 0.32, y), radius: h * 0.16, fill: couleur, stroke: none)
+  }
+}
+
+// Une fenêtre de terminal : fond sombre, invite `>_`.
+#let _terminal(d, p, taille: 0.6, echelle: 1.0) = {
+  d.rect((p.at(0) - taille / 2, p.at(1) - taille * 0.4), (p.at(0) + taille / 2, p.at(1) + taille * 0.4),
+    radius: 0.06, fill: accent, stroke: none)
+  d.content((p.at(0) - taille * 0.36, p.at(1) + taille * 0.12),
+    text(font: police-code, size: 9pt * echelle, weight: "bold", fill: white)[>\_], anchor: "west")
+}
+
+#let schema-usages-git(echelle: 1.0) = cetz.canvas(length: echelle * 1cm, {
+  import cetz.draw: *
+  let rayon = 1.5
+  let logo = (0, 2.0)
+  let petite-fleche = (end: ">", fill: accent, scale: 0.35)
+  let marque(fichier, p, largeur) = content(p, image(_logos-git + fichier, width: largeur * echelle * 1cm))
+  let taille-titre = 12pt * echelle
+
+  let usages = (
+    (cle: "versions", centre: (-6.3, 0.6), traite: true,
+      titre: text(weight: "bold", fill: attention)[Versionnement \ du code]),
+    (cle: "equipe", centre: (-2.3, -3.0), traite: false,
+      titre: [Travail à plusieurs]),
+    (cle: "forge", centre: (2.3, -3.0), traite: false,
+      titre: [Hébergement du code en ligne]),
+    (cle: "outils", centre: (6.3, 0.6), traite: true,
+      titre: [#text(weight: "bold", fill: attention)[ligne de commande], logiciels dédiés, #text(weight: "bold", fill: attention)[IDE]]),
+  )
+
+  for u in usages {
+    let (cx, cy) = u.centre
+    let couleur = if u.traite { attention } else { accent }
+
+    // Du bord du losange au bord du cercle.
+    let dx = cx - logo.at(0)
+    let dy = cy - logo.at(1)
+    let n = calc.sqrt(dx * dx + dy * dy)
+    line(
+      (logo.at(0) + dx / n * 1.05, logo.at(1) + dy / n * 1.05),
+      (cx - dx / n * rayon, cy - dy / n * rayon),
+      stroke: (if u.traite { 1.8pt } else { 1.1pt }) + couleur,
+      mark: (end: ">", fill: couleur, scale: 0.5),
+    )
+    circle(u.centre, radius: rayon,
+      stroke: (if u.traite { 2pt } else { 0.8pt }) + couleur,
+      fill: if u.traite { attention.lighten(90%) } else { white })
+
+    if u.cle == "versions" {
+      line((cx - 0.15, cy + 0.75), (cx - 0.15, cy - 0.85),
+           stroke: (paint: estompe, thickness: 0.7pt, dash: "densely-dashed"),
+           mark: (end: ">", fill: estompe, scale: 0.4))
+      for (i, teinte) in (rgb("#A8D8A8"), rgb("#F2B8B8"), rgb("#CBB8E8")).enumerate() {
+        let y = cy + 0.55 - i * 0.55
+        circle((cx - 0.15, y), radius: 0.2, fill: teinte, stroke: 0.7pt + accent)
+        content((cx + 0.15, y), text(size: 10pt * echelle, fill: accent)[V#(i + 1)], anchor: "west")
+      }
+    } else if u.cle == "equipe" {
+      marque("git.svg", (cx, cy + 0.75), 0.6)
+      for dx in (-0.7, 0.0, 0.7) {
+        _personne(cetz.draw, (cx + dx, cy - 0.5), taille: 0.52)
+        line((cx + dx * 0.5, cy + 0.38), (cx + dx, cy - 0.18), stroke: 0.7pt + accent, mark: petite-fleche)
+      }
+    } else if u.cle == "forge" {
+      let ligne-marque(fichier, nom, y) = {
+        marque(fichier, (cx - 0.55, y), 0.3)
+        content((cx - 0.33, y), text(size: 9pt * echelle, weight: "bold", fill: accent)[#nom], anchor: "west")
+      }
+      ligne-marque("github.svg", "GitHub", cy + 1.0)
+      ligne-marque("gitlab.svg", "GitLab", cy + 0.64)
+      _serveur(cetz.draw, (cx, cy + 0.12), taille: 0.5)
+      for dx in (-0.65, 0.0, 0.65) {
+        _ecran(cetz.draw, (cx + dx, cy - 0.68), taille: 0.48)
+        line((cx + dx * 0.45, cy - 0.16), (cx + dx, cy - 0.44), stroke: 0.7pt + accent, mark: petite-fleche)
+      }
+    } else {
+      // En haut, les deux outils de la séance ; en bas, deux logiciels dédiés.
+      _terminal(cetz.draw, (cx - 0.5, cy + 0.42), taille: 0.68, echelle: echelle)
+      marque("vscode.svg", (cx + 0.5, cy + 0.42), 0.64)
+      marque("gitkraken.svg", (cx - 0.5, cy - 0.55), 0.75)
+      marque("tortoisegit.svg", (cx + 0.5, cy - 0.55), 0.8)
+    }
+
+    content(
+      (cx, cy - rayon - 0.15),
+      block(width: 4.2cm * echelle)[
+        #set par(leading: 0.45em)
+        #align(center, text(size: taille-titre, fill: accent)[#u.titre])
+      ],
+      anchor: "north",
+    )
+  }
+
+  marque("git.svg", logo, 2.0)
+})
