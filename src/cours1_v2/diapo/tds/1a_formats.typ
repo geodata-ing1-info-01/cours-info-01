@@ -70,25 +70,54 @@
 ]
 
 // Nouveau (v2) : la copie de l'archive devient la première étape du TD.
+// 09/11/2026 : l'arborescence attendue sur le Bureau, à droite des consignes, dans la
+// notation de « Les fichiers du cours ». Pour laisser la place, les indications en gris
+// passent à 85 % de la taille des consignes.
+#let _indication(corps) = comment(text(size: 0.85em, corps))
 #d("Récupération des fichiers de la séance")[
   #objectif[
     copier `info01-cours1.zip` depuis `formationTemp` sur le Bureau, et l'extraire dans un dossier
     `info01`.
   ]
 
-  #consignes(
-    [Ouvrir `formationTemp` : #comment[double-clic sur son raccourci, sur le Bureau.]],
-    [Copier `info01-cours1.zip` : #comment[clic droit sur l'archive, Copier.]],
-    [Créer le dossier `info01` sur le Bureau, s'il n'existe pas : #comment[clic droit sur le Bureau, Nouveau, Dossier.]],
-    [Coller l'archive dans `info01` : #comment[ouvrir `info01`, puis clic droit, Coller.]],
-    [Extraire l'archive : #comment[clic droit sur `info01-cours1.zip`, Extraire tout…]],
-    [Extraire dans `info01` même : #comment[dans la fenêtre qui s'ouvre, effacer `\info01-cours1` à la fin du chemin, puis cliquer sur Extraire.]],
-  )
+  #grid(
+    columns: (2fr, 1fr), column-gutter: 18pt, align: top,
+    [
+      #consignes(
+        taille: 16pt,
+        [Ouvrir `formationTemp` : #_indication[double-clic sur son raccourci, sur le Bureau.]],
+        [Copier `info01-cours1.zip` : #_indication[clic droit sur l'archive, Copier.]],
+        [Créer le dossier `info01` sur le Bureau, s'il n'existe pas : #_indication[clic droit sur le Bureau, Nouveau, Dossier.]],
+        [Coller l'archive dans `info01` : #_indication[ouvrir `info01`, puis clic droit, Coller.]],
+        [Extraire l'archive : #_indication[clic droit sur `info01-cours1.zip`, Extraire tout…]],
+        [Extraire dans `info01` même : #_indication[dans la fenêtre qui s'ouvre, effacer `\info01-cours1` à la fin du chemin, puis cliquer sur Extraire.]],
+      )
 
-  #legende[
-    Le détail, avec les messages de Windows : page « Récupérer les fichiers
-    d'une séance » du site du cours.
-  ]
+      #legende[
+        Le détail, avec les messages de Windows : page « Récupérer les fichiers
+        d'une séance » du site du cours.
+      ]
+    ],
+    [
+      #block(
+        width: 100%, inset: (x: 10pt, y: 10pt), fill: gris,
+        stroke: 1pt + accent.lighten(62%),
+      )[
+        #set text(size: 18pt)
+        #set align(left)
+        #raw(
+"Bureau/
+└── info01/
+    ├── info01-cours1.zip
+    └── cours1/
+        ├── 1a_formats/
+        ├── 1b_terminal/
+        ├── 1c_programme/
+        └── 1d_notebook/")
+      ]
+      #legende[Arborescence attendue après l'étape 6.]
+    ],
+  )
 
   #notes[
     Faire lire la barre d'adresse aux étapes 1 et 4, comme sur la
@@ -152,16 +181,20 @@
 // une liste de consignes, comme la copie de l'archive. Seconde relecture du
 // même jour : chaque tâche en noir, sa manière en gris, en deux opérations
 // lettrées pour les exports ; le schéma passe en colonne à droite.
+// 09/11/2026 : une troisième copie, en texte, par Enregistrer sous. La diapositive suivante
+// compare `raven.odt` et `raven.txt`, qui contiennent les mêmes caractères. Pour la place,
+// les consignes passent à 15 pt et le schéma à 46 %.
 #d("Conversion d'un document en d'autres formats")[
   #objectif[
-    exporter `raven.odt` en PDF et en PNG dans `travail\`, avec LibreOffice Writer.
+    exporter `depart\raven.odt` en PDF et en PNG, puis l'enregistrer en texte, dans `travail\`, avec
+    LibreOffice Writer.
   ]
 
   #grid(
-    columns: (1.75fr, 1fr), column-gutter: 18pt, align: top,
+    columns: (2.1fr, 1fr), column-gutter: 16pt, align: top,
     [#consignes(
-      taille: 16pt,
-      [Ouvrir `raven.odt` avec LibreOffice Writer : #comment[dans `depart\`, double-clic sur `raven.odt`.]],
+      taille: 15pt,
+      [Ouvrir `raven.odt` avec LibreOffice Writer : #comment[double-clic, dans `depart\`.]],
       [Exporter le document en PDF, dans `travail\`.
         #sous-etapes(
           [Menu Fichier, Exporter sous, Exporter au format PDF…, puis Exporter.],
@@ -172,13 +205,19 @@
           [Menu Fichier, Exporter…, puis choisir le type PNG.],
           [Vérifier que la fenêtre affiche `travail\`, puis Enregistrer.],
         )],
-      [Fermer Writer sans enregistrer `raven.odt`.],
-    )
-    #legende[
-      Le détail, avec les fenêtres de LibreOffice : guide du TD 1a, étape 3.
-    ]],
-    align(center, scale(58%, reflow: true, schema-exports-vertical())),
+      [Enregistrer le document en texte, dans `travail\`.
+        #sous-etapes(
+          [Menu Fichier, Enregistrer sous…, type « Texte (.txt) ».],
+          [Vérifier que la fenêtre affiche `travail\`, puis Enregistrer.],
+          [À la question de Writer, choisir « Utiliser le format Texte ! ».],
+        )],
+      [Fermer Writer sans enregistrer.],
+    )],
+    align(center, scale(46%, reflow: true, schema-exports-vertical())),
   )
+  #legende[
+    Le détail, avec les fenêtres de LibreOffice : guide du TD 1a, étape 3.
+  ]
 
   #notes[
     Menu vérifié dans l'aide de LibreOffice : Fichier > Exporter sous >
@@ -192,29 +231,43 @@
 
     Après l'étape 2, la barre de titre de Writer indique toujours
     `raven.odt` : l'export ne remplace pas le document ouvert.
+
+    Après l'étape 4, elle indique `raven.txt` : « Enregistrer sous » remplace le document
+    ouvert par la copie. La question de Writer prévient que le format Texte ne garde pas la
+    mise en forme. Libellés de la question et du type à relever sur un poste de la salle.
   ]
 ]
 
 // --------------------------------------------
 // 05/11/2026 : le tableau devient une liste de consignes. La solution sort de sa colonne,
 // et passe sous chaque consigne, dans le corrigé seulement.
+// 09/11/2026 : les trois copies de la diapositive précédente, dont `raven.txt`, ouvert dans
+// Writer pour que seul le fichier change. La question « Le texte est-il encore du texte ? »
+// devient un essai de modification.
 #d("Manipulation du texte selon le format")[
   #objectif[
-    reprendre `raven.odt` et ses deux exports, `raven.pdf` et `raven.png`, et déterminer dans lesquels
-    le texte se sélectionne et se cherche.
+    comparer `depart\raven.odt` et ses trois copies de `travail\`, `raven.txt`, `raven.pdf` et
+    `raven.png`, et déterminer quels fichiers permettent de sélectionner, de chercher et de modifier
+    le texte.
   ]
 
   #consignes(
+    taille: 16pt,
     [Rouvrir `raven.odt`, le document de départ, dans LibreOffice : #comment[dans `depart\`.]],
-    [Sélectionner une ligne du poème, puis chercher un mot avec `Ctrl` + `F`. Le texte est-il encore du texte ?
-      #constat[oui, et il reste modifiable]],
-    [Recommencer avec `raven.pdf`, l'export en PDF : #comment[dans `travail\`.]
-      #constat[oui : il se sélectionne et se cherche]],
-    [Recommencer avec `raven.png`, l'export en image : #comment[dans `travail\`. Le `.png` s'ouvre dans Draw, comme une image posée sur une page.]
-      #constat[non : des pixels, et la première page seulement]],
+    [Sélectionner une ligne du poème, chercher un mot avec `Ctrl` + `F`, puis essayer de modifier un mot.
+      #constat[Les trois opérations fonctionnent.]],
+    [Recommencer avec `raven.txt`, la copie en texte : #comment[dans Writer, Fichier, Ouvrir, puis `travail\raven.txt`.]
+      #constat[Les trois opérations fonctionnent. Le titre a la même police et la même taille que les strophes.]],
+    [Recommencer avec `raven.pdf`, l'export en PDF : #comment[double-clic sur le fichier, dans `travail\`, pour l'ouvrir dans le lecteur PDF du poste.]
+      #constat[On peut sélectionner et chercher le texte. Le lecteur PDF ne permet pas de le modifier.]],
+    [Recommencer avec `raven.png`, l'export en image : #comment[dans Writer, Fichier, Ouvrir, puis `travail\raven.png`. Le `.png` s'ouvre dans Draw, comme une image posée sur une page.]
+      #constat[Aucune des trois opérations ne fonctionne. L'image ne contient que des pixels, de la première page seulement.]],
   )
 
   #notes[
+    Ouvert depuis LibreOffice, un PDF s'ouvre dans Draw, où chaque ligne devient un cadre de
+    texte modifiable. Le faire ouvrir par double-clic, dans le lecteur PDF du poste.
+
     Nommer ici la différence entre une page décrite (PDF, texte
     vectoriel) et une page photographiée (PNG, JPEG).
 
@@ -237,16 +290,20 @@
   text(size: 14pt, fill: estompe)[#nom],
 ))
 
+// 09/11/2026 : la comparaison des tailles, avant l'éditeur, et un avertissement qui donne la
+// cause.
 #d("Contenu d'un fichier dans un éditeur de texte")[
   #objectif[
-    comparer ce qu'un éditeur de texte affiche pour trois fichiers de `depart\` :
-    `raven_une_ligne.txt`, `raven_une_ligne.donnees` et `raven.odt`.
+    comparer la taille de trois fichiers de `depart\`, `raven_une_ligne.txt`,
+    `raven_une_ligne.donnees` et `raven.odt`, puis ce qu'un éditeur de texte affiche pour chacun.
   ]
 
   #grid(
     columns: (1fr, auto), column-gutter: 24pt, align: (top, horizon),
     consignes(
-      taille: 16pt,
+      taille: 15pt,
+      [Dans `depart\`, comparer la taille des trois fichiers : #comment[Affichage, Détails, colonne Taille.]
+        #constat[2 Ko pour le `.txt` et le `.donnees`, 8 Ko pour le `.odt`, avec les mêmes strophes.]],
       [Ouvrir `raven_une_ligne.txt` avec le Bloc-notes ou Notepad++ : #comment[dans `depart\`, clic droit sur le fichier, Ouvrir avec, puis l'éditeur choisi.]
         #constat[Le poème s'affiche en entier.]],
       [Ouvrir de la même façon `raven_une_ligne.donnees`, puis `raven.odt`, et comparer avec `raven_une_ligne.txt`.
@@ -262,11 +319,19 @@
   )
 
   #avertissement(couleur: attention)[
-    Un `.odt` enregistré depuis le Bloc-notes ou Notepad++ est abîmé, et
-    Writer ne peut plus l'ouvrir.
+    Enregistrer un `.odt` depuis un éditeur de texte modifie ses octets, et Writer ne peut plus
+    l'ouvrir.
   ]
 
   #notes[
+    Tailles : 1 385 octets pour le `.txt` et le `.donnees`, 8 100 pour le `.odt`, que
+    l'explorateur arrondit à 2 et 8 Ko. Dans le `.odt`, le texte (`content.xml`) occupe 4 ko
+    avant compression, et les styles (`styles.xml`) 60 ko.
+
+    Avertissement : le Bloc-notes remplace les octets qu'il ne sait pas afficher, et une seule
+    lettre ajoutée décale les positions enregistrées dans l'archive. Dans les deux cas, LibreOffice
+    refuse le fichier (simulation du 09/11/2026).
+
     Sous macOS et Linux, l'éditeur de texte du système refuse souvent les
     fichiers non texte : le faire alors en démonstration depuis le poste
     enseignant.
@@ -295,19 +360,53 @@
 ]
 
 // --------------------------------------------
+// Nouveau (09/11/2026), en bonus : l'archive d'un `.odt`, d'après le TD 1b de 2026
+// (`src/cours1/diapo/tds/1b_archive_odt.typ`), sans la modification ni la recompression.
+// L'explorateur de Windows ne reconnaît une archive qu'à son extension. La copie est donc
+// renommée en `.zip` avant d'être extraite.
+#d[Structure d'un fichier `.odt` (bonus)][
+  #objectif[
+    copier `depart\raven.odt` dans `travail\` sous le nom `raven.zip`, l'extraire, puis déterminer
+    dans quels fichiers de l'archive se trouvent le texte du poème et sa mise en forme.
+  ]
+
+  #consignes(
+    taille: 16pt,
+    [Copier `raven.odt` de `depart\` dans `travail\` : #comment[clic droit, Copier, puis dans `travail\`, clic droit, Coller.]],
+    [Renommer la copie en `raven.zip` : #comment[clic droit, Renommer, puis Oui pour confirmer le changement d'extension.]],
+    [Extraire `raven.zip` : #comment[clic droit, Extraire tout…, puis Extraire.]
+      #constat[Le dossier `travail\raven\` contient `content.xml`, `styles.xml`, `meta.xml`, `manifest.rdf`, `mimetype` et le dossier `META-INF`.]],
+    [Ouvrir `content.xml`, puis `styles.xml`, avec le Bloc-notes ou Notepad++ : #comment[dans `travail\raven\`, clic droit sur le fichier, Ouvrir avec, puis l'éditeur choisi.]
+      #constat[`content.xml` : le texte du poème, entre des balises. `styles.xml` : la mise en forme, avec les polices et les tailles.]],
+  )
+
+  #notes[
+    L'explorateur ne reconnaît une archive qu'à son extension. Sans le changement d'extension,
+    il ne propose pas Extraire tout. 7-Zip, s'il est installé, ouvre le `.odt` sans le renommer
+    (clic droit, 7-Zip, Ouvrir l'archive).
+
+    Le texte est dans `content.xml`, la mise en forme dans `styles.xml`. Un `.docx`, un `.xlsx`
+    et un `.epub` sont construits de la même façon.
+
+    Le TD 1b de 2026, dans l'archive 2026 du site, va plus loin : il modifie `content.xml` et
+    `styles.xml`, puis recompresse l'archive.
+  ]
+]
+
+// --------------------------------------------
 // Relecture du 19/10/2026 : toute la salle modifie le même fichier du
 // dossier partagé. La diapositive qui suit le TD, « Modifications
 // simultanées d'un fichier partagé », explique ce qu'on y constate.
 // 06/11/2026 : le tableau devient une liste de consignes.
 #d("Modification à plusieurs d'un fichier partagé")[
-  #objectif[
-    ajouter chacun une ligne au même fichier du dossier partagé, `info01-salle.txt`, puis relire ce
-    fichier.
-  ]
-
   #avertissement(couleur: attention)[
     Toute la salle fait cette étape en même temps. Attendre le signal de l'enseignant avant de
     commencer.
+  ]
+
+  #objectif[
+    ajouter chacun une ligne au même fichier du dossier partagé, `info01-salle.txt`, puis relire ce
+    fichier.
   ]
 
   #v(0.4em)

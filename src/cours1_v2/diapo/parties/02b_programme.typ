@@ -9,8 +9,8 @@
 // compromis » et « Exécution d'un programme Python » sont remplacées par « essais,
 // calculs » et « changer de poste », qui reprennent leur contenu.
 #import "../../../commun/prelude.typ": *
-#import "../schemas.typ": terminal, programme-trois-lignes, schema-moment-traduction, schema-modifier-relancer
-#import "../../../cours5/diapo/schemas.typ": schema-processeur, schema-coeurs, graphe-tendances
+#import "../schemas.typ": terminal, programme-trois-lignes, schema-moment-traduction, schema-modifier-relancer, graphe-frequence-coeurs, schema-coeur-registres
+#import "../../../cours5/diapo/schemas.typ": _facteur
 
 #separateur(
   "Exécuter un programme",
@@ -56,111 +56,189 @@
 ]
 
 // --------------------------------------------
-// Repris du cours 5 le 04/11/2026 (`cours5/diapo/parties/01_materiel.typ`), qui
-// garde la sienne. Seuls les renvois changent : au cours 5, cette diapositive
-// ouvre une suite de cinq, jusqu'aux six cœurs du Ryzen 5 7530U. 05/11/2026 :
-// passe après la compilation, dont elle reprend les « instructions machine ».
-#d("Exécution des instructions machine : un cœur")[
+// Nouveau (09/11/2026) : deux lignes de C++ et leurs instructions machine, en assembleur.
+// Sortie réelle de g++ 11.4 sous Linux, x86-64, le 09/11/2026 :
+//   g++ -O0 -S -masm=intel moyenne.cpp
+// sur un fichier de sept lignes : `double altitudes[3] = {79.6, 103.2, 98.3};`,
+// `double moyenne;`, puis une fonction `void calculer()` qui contient les deux lignes
+// affichées. Extrait sans l'entrée et la sortie de la fonction (`endbr64`, `push rbp`,
+// `mov rbp, rsp`, `nop`, `pop rbp`, `ret`). Sans optimisation (`-O0`), chaque calcul porte
+// sur deux registres.
+// 09/11/2026, seconde version : les deux lignes de C++ ensemble, une flèche de la première
+// vers ses six instructions, à droite ; le tableau, dessous, ne garde que ce qu'elles
+// emploient. La seconde ligne et ses quatre instructions passent dans les notes.
+#let _ligne-cpp(ligne, traduite: true) = text(
+  fill: if traduite { accent } else { estompe },
+  weight: if traduite { demi-gras } else { "regular" },
+  raw(ligne),
+)
+#let _ligne-asm(ligne, calcul: false, encours: false) = {
+  let corps = text(
+    fill: if calcul { attention } else { encre },
+    weight: if calcul { demi-gras } else { "regular" },
+    raw(ligne),
+  )
+  // L'instruction que montre `schema-coeur-registres`, surlignée.
+  if encours { highlight(fill: attention.lighten(80%), extent: 2pt, corps) } else { corps }
+}
+
+#d("Instructions machine : une ligne de C++")[
   #annonce[
-    Un cœur exécute les instructions du programme une par une, une par cycle.
+    Une ligne de code devient plusieurs instructions. Le processeur ne calcule que sur ses
+    registres, des cases de mémoire placées dans la puce.
   ]
 
-  #schema-processeur(1)
+  // 09/11/2026, troisième version : sous le code, un cœur et la mémoire vive pendant la
+  // troisième instruction (`schema-coeur-registres`), à la place du dessin de l'ancienne
+  // « Exécution des instructions machine : un cœur », supprimée ; sous les instructions,
+  // le tableau.
+  #grid(
+    columns: (13.2cm, auto, 1fr), column-gutter: 8pt, align: top,
+    [
+      #block(fill: gris, inset: (x: 10pt, y: 9pt))[
+        #set text(size: 13pt)
+        #set par(leading: 0.42em)
+        #_ligne-cpp("double total = altitudes[0] + altitudes[1] + altitudes[2];") \
+        #_ligne-cpp("moyenne = total / 3;", traduite: false)
+      ]
+      #v(4pt)
+      #schema-coeur-registres()
+      #legende[
+        Pendant l'instruction `addsd xmm1, xmm0`, surlignée à droite, le cœur additionne deux
+        registres. Il exécute les instructions une par une, une par cycle.
+      ]
+    ],
+    text(size: 24pt, fill: accent)[→],
+    [
+      #block(width: 100%, fill: gris, inset: (x: 10pt, y: 9pt))[
+        #set text(size: 13pt)
+        #set par(leading: 0.42em)
+        #_ligne-asm("movsd  xmm1, QWORD PTR altitudes[rip]") \
+        #_ligne-asm("movsd  xmm0, QWORD PTR altitudes[rip+8]") \
+        #_ligne-asm("addsd  xmm1, xmm0", calcul: true, encours: true) \
+        #_ligne-asm("movsd  xmm0, QWORD PTR altitudes[rip+16]") \
+        #_ligne-asm("addsd  xmm0, xmm1", calcul: true) \
+        #_ligne-asm("movsd  QWORD PTR -8[rbp], xmm0")
+      ]
+      #{
+        show table.cell: set text(size: 13pt)
+        tableau(
+          entete: false,
+          columns: (auto, 1fr),
+          align: left + horizon,
+          [`movsd a, b`], [copie `b` dans `a`, entre la mémoire et un registre],
+          [`addsd a, b`], [ajoute le registre `b` au registre `a`],
+          [`xmm0`, `xmm1`], [deux registres du processeur],
+          [`altitudes[rip]`], [`altitudes[0]`, en mémoire vive],
+          [`-8[rbp]`], [la variable `total`, en mémoire vive],
+        )
+      }
+    ],
+  )
 
   #legende[
-    Une cadence de 2~GHz fait 2 milliards de cycles par seconde. 2~GHz est la
-    cadence de base de l'AMD Ryzen 5 7530U (2023), un processeur de portable.
+    En bleu, les instructions de calcul. Sortie de g++ sans optimisation (`-O0`), pour un
+    processeur x86-64.
   ]
 
   #notes[
-    Une instruction : lire une valeur en mémoire, multiplier, additionner,
-    comparer, sauter à une autre instruction. Une ligne de Python correspond à
-    des dizaines ou des centaines d'instructions.
+    Ne pas faire lire chaque instruction. Faire repérer les deux sortes, copier et
+    additionner, et compter : six instructions pour une ligne. La sortie de g++ est un
+    extrait, sans l'entrée et la sortie de la fonction.
 
-    Le compte suppose une instruction de calcul à chaque cycle ; il donne un
-    maximum.
+    Le dessin montre les mêmes étapes : lire deux valeurs, calculer, écrire le résultat. Une
+    instruction : lire une valeur en mémoire, multiplier, additionner, comparer, sauter à
+    une autre instruction. Une ligne de Python correspond à des dizaines ou des centaines
+    d'instructions.
 
-    Cadence de base : celle que le processeur tient sur tous ses cœurs à la
-    fois. Un cœur seul monte jusqu'à 4,5 GHz.
+    La seconde ligne en donne quatre : relire `total`, copier la constante 3 dans un
+    registre, diviser (`divsd xmm0, xmm1`), puis ranger le résultat dans `moyenne`.
+
+    `altitudes` et `moyenne` sont déclarées avant la fonction :
+    `double altitudes[3] = {79.6, 103.2, 98.3};` et `double moyenne;`. Le programme de
+    trois lignes de « Compilateur et interpréteur : traduction » fait le même calcul.
+
+    Sans optimisation, le compilateur range `total` en mémoire, puis le relit. Avec
+    `-O1`, il garde `total` dans un registre, et le calcul tient en cinq instructions ;
+    `addsd` y lit alors son second opérande directement en mémoire.
+
+    `sd` : _scalar double_, un nombre à virgule sur 64 bits. L'opérande de gauche reçoit le
+    résultat. Un processeur ARM, celui d'un téléphone ou d'un Mac récent, a d'autres
+    instructions : `ldr`, `fadd`, `fdiv`, `str`.
   ]
 ]
 
+// « Exécution des instructions machine : un cœur », reprise du cours 5 le 04/11/2026, est
+// supprimée le 09/11/2026 : son dessin passe sur « Instructions machine : une ligne de
+// C++ », sa cadence sur « Évolution de la puissance de calcul ».
+
 // --------------------------------------------
-// D'après « Le processeur : six cœurs » du cours 5 (annonce et notes), le
-// 04/11/2026. Le schéma de cette diapositive-là multiplie des facteurs que le
-// cours 1 ne présente pas (instructions vectorielles, a × b + c) : celui-ci est
-// `schema-coeurs`, celui de la diapositive « Le processeur » du cours 5 avant
-// le 19/10/2026, toujours employé par la page de cours.
-#d("Exécution des instructions machine : plusieurs cœurs")[
+// 09/11/2026 : « Exécution des instructions machine : plusieurs cœurs » et « Évolution des
+// processeurs de 1990 à 2022 » réunies. La puissance de calcul se lit comme un produit,
+// fréquence par nombre de cœurs, dans les cases du cours 5 ; le graphe ne garde que ces
+// deux séries. Les transistors, que le cours 1 ne présente pas, passent dans les notes.
+#let _signe(s) = align(center, text(size: 22pt, fill: estompe)[#s])
+
+#d("Évolution de la puissance de calcul")[
   #annonce[
-    Chaque cœur suit sa file d'instructions ; un programme Python ordinaire
-    n'en occupe qu'un.
+    Un processeur exécute plus d'instructions par seconde si sa fréquence monte ou s'il a
+    plus de cœurs. Depuis 2005, la fréquence ne monte plus, et le nombre de cœurs augmente.
   ]
 
-  #align(center, schema-coeurs())
+  #grid(
+    columns: (4.4cm, 1fr), column-gutter: 18pt, align: horizon,
+    stack(
+      dir: ttb, spacing: 3pt,
+      _facteur([2 · 10#super[9]], [cycles par seconde]),
+      _signe[×],
+      _facteur([6], [cœurs]),
+      _signe[=],
+      align(center)[
+        #text(size: 22pt, weight: demi-gras, fill: accent)[12 · 10#super[9]]
+        #linebreak()
+        #text(size: 13pt, fill: estompe)[opérations par seconde]
+      ],
+    ),
+    align(center, graphe-frequence-coeurs(largeur: 12.5, hauteur: 5.8)),
+  )
 
   #legende[
-    Deux cœurs sur les processeurs grand public depuis 2005 (AMD Athlon 64
-    X2, Intel Pentium D).
+    Calcul pour l'AMD Ryzen 5 7530U (2023) à sa cadence de base : 2 GHz, soit 2 milliards de
+    cycles par seconde, ou 2 000 MHz. Un programme Python ordinaire n'occupe qu'un cœur. Un
+    point par processeur, échelle logarithmique ; Karl Rupp, _microprocessor-trend-data_,
+    CC BY 4.0.
   ]
 
   #notes[
-    Les autres cœurs servent aux autres programmes ouverts.
+    Le calcul suppose une opération par cycle et par cœur, comme le dessin de
+    « Instructions machine : une ligne de C++ ». Il donne un maximum ; les processeurs
+    récents en font davantage par cycle (page « Le processeur et la carte graphique » du
+    site).
 
-    Cœurs : 4 sur les postes de la salle (relevé au TD 3d), 4 à 8 sur un
-    portable, 32 à 128 sur un serveur de calcul.
+    Cadence de base : celle que le processeur tient sur tous ses cœurs à la fois. Un cœur
+    seul monte jusqu'à 4,5 GHz.
 
-    Les cœurs se sont multipliés quand la fréquence a cessé de monter, vers
-    2005 (diapositive suivante).
+    Chaque cœur suit sa file d'instructions, et les autres cœurs servent aux autres
+    programmes ouverts. Un programme occupe plusieurs cœurs s'il découpe son travail en
+    parties indépendantes. numpy le fait pour le produit de matrices.
 
-    Un programme occupe plusieurs cœurs s'il découpe son travail en parties
-    indépendantes. numpy le fait pour le produit de matrices.
-
-    Le gestionnaire des tâches affiche pour le Ryzen 5 7530U 6 cœurs et 12
-    processeurs logiques : chaque cœur suit deux files d'instructions, qui se
+    Cœurs : 4 sur les postes de la salle (relevé au TD 3d), 4 à 8 sur un portable, 32 à 128
+    sur un serveur de calcul. Deux cœurs sur les processeurs grand public depuis 2005 (AMD
+    Athlon 64 X2, Intel Pentium D). Le gestionnaire des tâches affiche pour le Ryzen 5 7530U
+    6 cœurs et 12 processeurs logiques : chaque cœur suit deux files d'instructions, qui se
     partagent ses unités.
-  ]
-]
 
-// --------------------------------------------
-// Reprise du cours 5 de 2026, le 06/11/2026.
-#d("Évolution des processeurs de 1990 à 2022")[
-  #annonce[
-    Le nombre de transistors double environ tous les deux ans. Depuis 2005, la
-    fréquence ne monte plus, et les transistors en plus servent à ajouter des
-    cœurs.
-  ]
+    La fréquence plafonne vers 3 GHz depuis 2005, parce que la puissance à évacuer plafonne
+    vers 100 W. Un programme qui n'utilise qu'un cœur gagne peu d'une génération à l'autre.
 
-  #align(center, graphe-tendances(hauteur: 6.7))
+    Si la question vient : un processeur est fait de transistors, des interrupteurs
+    électroniques. Leur nombre double environ tous les deux ans (loi de Moore) : 3,1
+    millions sur le Pentium (1993), 10,7 milliards sur la puce du Ryzen 5 7530U. Jusque vers
+    2005, un transistor plus petit commutait aussi plus vite sans chauffer davantage par cm²
+    (loi de Dennard). Depuis, les transistors en plus servent surtout à ajouter des cœurs.
 
-  #legende[
-    Transistor : un interrupteur électronique ; tous les circuits d'une puce
-    en sont faits. Pentium (1993) : 3,1 millions ; puce du Ryzen 5 7530U :
-    10,7 milliards sur 180 mm². Un point par processeur, échelle verticale
-    logarithmique. Karl Rupp, *microprocessor-trend-data*, CC BY 4.0.
-  ]
-
-  #notes[
-    Loi de Moore : le nombre de transistors double environ tous les deux ans
-    depuis 1970. Les transistors rétrécissent, et la même surface en porte
-    deux fois plus.
-
-    Jusque vers 2005, un transistor plus petit commutait aussi plus vite sans
-    chauffer davantage par cm² (loi de Dennard), et la fréquence montait.
-    Depuis, la tension d'alimentation ne baisse plus assez pour cela.
-
-    Les transistors en plus servent à des instructions de 8 puis de 16 nombres, aux
-    unités de multiplication-addition, à deux unités par cœur, à plus de cœurs ; et
-    aussi à de plus grands caches, à une carte graphique intégrée. Détail : page « Le
-    processeur et la carte graphique » du site.
-
-    La fréquence plafonne vers 3 GHz depuis 2005, parce que la puissance à
-    évacuer plafonne vers 100 W. Le gain vient depuis du nombre de cœurs ; un
-    programme qui n'en utilise qu'un gagne peu d'une génération à l'autre.
-
-    De 1995 à 2025 : mémoire vive de 8 Mo à 16 Go ; disque de 1 Go à 1 To ; prix
-    du Go de disque de 1 000 \$ à 2 centimes ; modem à 28,8 kbit/s, fibre à
-    1 Gbit/s.
+    De 1995 à 2025 : mémoire vive de 8 Mo à 16 Go ; disque de 1 Go à 1 To ; prix du Go de
+    disque de 1 000 \$ à 2 centimes ; modem à 28,8 kbit/s, fibre à 1 Gbit/s.
   ]
 ]
 

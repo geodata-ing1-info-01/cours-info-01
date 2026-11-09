@@ -33,7 +33,7 @@ commande traite toutes les images :
 magick mogrify -path travail -resize 640 depart/*.png
 ```
 
-Le motif `*` désigne tous les fichiers `.png` de `depart/`. Cette commande
+Le motif `depart/*.png` désigne tous les fichiers `.png` de `depart/`. Cette commande
 sert d'exemple : le programme `magick` n'est installé qu'au cours 4.
 
 ```{list-table}
@@ -310,7 +310,7 @@ fichiers.
 :::{warning}
 `rm` supprime définitivement : le fichier ne va pas dans la corbeille, et
 aucune commande ne le rend. Relire la commande avant de la valider, surtout
-avec un motif `*`.
+avec le caractère générique `*`.
 :::
 
 `cp -r` et `rm -r` agissent sur un dossier et tout son contenu. `start` est
@@ -397,7 +397,7 @@ Dans Git Bash, il s'écrit entre guillemets : `cd "C:\Users\eleve\Desktop"`.
 Sur un clavier français, `~` se tape `AltGr` + `2`, puis espace.
 :::
 
-## Fichiers cachés et motif `*`
+## Fichiers cachés et caractère générique `*`
 
 Un nom qui commence par un point désigne un fichier **caché** : `ls` ne
 l'affiche pas, `ls -a` l'affiche. Dans un dossier encore vide :
@@ -413,9 +413,9 @@ de tout dossier. Les logiciels enregistrent leurs réglages dans des fichiers
 cachés : le TD 1c crée `.bash_profile` dans le dossier personnel, et le
 cours 2 un dossier caché, `.git`.
 
-Dans un nom de fichier, **`*` remplace n'importe quelle suite de
-caractères**. Git Bash remplace le motif par la liste des noms qui
-correspondent, puis lance la commande.
+Dans un nom de fichier, **le caractère générique `*` remplace n'importe
+quelle suite de caractères**. Git Bash remplace le motif, par exemple
+`*.txt`, par la liste des noms qui correspondent, puis lance la commande.
 
 ```{list-table}
 :header-rows: 1
@@ -431,7 +431,8 @@ correspondent, puis lance la commande.
 ```
 
 :::{note}
-Ces motifs s'appellent *glob* en anglais. Les expressions régulières,
+Le caractère `*` s'appelle aussi joker (*wildcard* en anglais), et ces
+motifs s'appellent *glob*. Les expressions régulières,
 employées par `grep` ou le module `re` de Python, ont une autre syntaxe, où
 `*` répète le caractère précédent.
 :::
@@ -441,7 +442,7 @@ employées par `grep` ou le module `re` de Python, ont une autre syntaxe, où
 - [TD 1b — Les fichiers du TD 1a en ligne de
   commande](td/1b_terminal/guide.md), 15 minutes : se déplacer avec `pwd`,
   `ls` et `cd` ; copier, renommer et ouvrir des fichiers avec `cp`, `mv` et
-  `start` ; un nom avec une espace ; `mkdir`, le motif `*` et `rm`.
+  `start` ; un nom avec une espace ; `mkdir`, le caractère générique `*` et `rm`.
 
 Pour s'entraîner à la ligne de commande après la séance, des jeux et des
 exercices sont réunis dans [S'entraîner : jeux et

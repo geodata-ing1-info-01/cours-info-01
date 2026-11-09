@@ -64,6 +64,9 @@
 
     Variante, si le temps le permet : `cd /c/ProgramData/anaconda3`, puis
     `./python.exe --version`, où `./` désigne le dossier courant.
+
+    `which` et le lancement d'un programme par son chemin sont présentés sur « Le fichier
+    exécutable d'une commande », en partie 2.
   ]
 ]
 
@@ -125,10 +128,18 @@
   ]
 ]
 
+// 09/11/2026 : un objectif, et les deux premières consignes de « Cycle d'édition d'un
+// programme » (ouvrir, lancer), qui en perd autant. La sortie, affichée jusque-là à
+// droite, passe dans le constat de la consigne 2, au corrigé.
 #d("Le programme du TD")[
   #annonce[
     Le programme `altitudes.py` calcule la moyenne de trois altitudes, puis
     l'affiche.
+  ]
+
+  #objectif[
+    ouvrir `altitudes.py`, du dossier `1c_programme`, dans Notepad++, puis le lancer dans Git
+    Bash depuis ce dossier.
   ]
 
   #face-a-face(
@@ -142,25 +153,22 @@
       print(f"moyenne : {moyenne:.1f} m")
       ```
     ],
-    panneau("Lancé en entier")[
-      ```console
-      $ python altitudes.py
-      moyenne : 93.7 m
-      ```
-      #v(0.4em)
-      #text(size: 14pt, fill: estompe)[
-        Une seule ligne de sortie, celle du `print` final. Les étapes du
-        calcul ne s'affichent pas.
-      ]
-    ],
+    consignes(
+      taille: 16pt,
+      [Ouvrir `altitudes.py` dans Notepad++ : #comment[Fichier, Ouvrir, puis `cours1\1c_programme\altitudes.py`.]
+        #constat[Le code en couleur : Notepad++ reconnaît l'extension `.py`.]],
+      [Lancer le programme dans Git Bash, ouvert dans `1c_programme` : `python altitudes.py`.
+        #constat[`moyenne : 93.7 m`, une seule ligne, écrite par le `print` final.]],
+    ),
   )
 
-  #legende[
-    Sortie réelle, Python 3.12. La moyenne de 79,6, 103,2 et 98,3 vaut bien
-    93,7.
-  ]
-
   #notes[
+    Sortie réelle, Python 3.12. La moyenne de 79,6, 103,2 et 98,3 vaut bien 93,7. Les
+    étapes du calcul ne s'affichent pas.
+
+    Git Bash a été rouvert dans `1c_programme/` à la diapositive précédente. Si `python`
+    n'est pas trouvé, le réglage de conda dans Git Bash n'a pas été fait sur ce poste.
+
     Six lignes, une boucle donc un état qui change, un résultat vérifiable
     de tête : le `hello world` n'avait aucune de ces propriétés.
 
@@ -180,10 +188,6 @@
 
   #consignes(
     taille: 16pt,
-    [Ouvrir `altitudes.py` dans Notepad++ : #comment[Fichier, Ouvrir, puis `cours1\1c_programme\altitudes.py`.]
-      #constat[Le code en couleur : Notepad++ reconnaît l'extension `.py`.]],
-    [Lancer le programme dans Git Bash : `python altitudes.py`.
-      #constat[`moyenne : 93.7 m`]],
     [Dans Notepad++, ajouter `92.5` à la liste, sans enregistrer : #commandes("altitudes = [79.6, 103.2, 98.3, 92.5]")],
     [Relancer le programme dans Git Bash. #comment[Flèche vers le haut, puis Entrée.]
       #constat[Toujours `93.7` : python lit le fichier enregistré.]],
@@ -192,15 +196,10 @@
   )
 
   #notes[
-    Étape 2 : Git Bash rouvert dans `1c_programme/` à la deuxième
-    diapositive du TD. Si `python` n'est pas trouvé, le réglage de conda
-    dans Git Bash n'a pas été fait sur ce poste.
-
-    Étape 3 : l'onglet de Notepad++ porte une disquette rouge tant que le
+    Étape 1 : l'onglet de Notepad++ porte une disquette rouge tant que le
     fichier n'est pas enregistré.
 
-    Sortie de l'étape 5 relevée avec Python 3.12 : 130,05 arrondi à une
-    décimale par `:.1f`.
+    Sortie de l'étape 3 relevée avec Python 3.12 : 373,6 / 4 = 93,4.
   ]
 ]
 

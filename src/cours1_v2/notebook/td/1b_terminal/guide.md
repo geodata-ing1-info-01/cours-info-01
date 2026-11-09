@@ -370,8 +370,8 @@ dossier.
 **Une ligne découpée aux espaces.** Git Bash découpe la ligne en mots
 avant de lancer la commande : le premier est le programme, les suivants ses
 options et ses arguments. Un nom qui contient un espace s'écrit donc entre
-guillemets. Le motif `*` est remplacé par Git Bash, lui aussi, avant que la
-commande ne démarre.
+guillemets. Un motif comme `*.txt` est remplacé par Git Bash, lui aussi, avant
+que la commande ne démarre.
 
 ## Annexe · Les commandes du TD
 

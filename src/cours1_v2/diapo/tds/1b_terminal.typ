@@ -22,21 +22,27 @@
 // consignes sur une diapositive.
 //
 // Les lignes de ce tableau sont celles de « Les commandes de base » (partie 2).
-#let _rappel-commandes = panneau[Commandes possibles][
-  #show table.cell: set text(size: 14pt)
-  #show raw: set text(size: 1.15em)
-  #tableau(
-    entete: false,
-    columns: (auto, 0.75fr, auto, 1.25fr),
-    align: left + horizon,
-    [`ls dossier`], [liste le dossier nommé],
-    [`mkdir nom`], [crée un dossier],
-    [`cp source destination`], [copie un fichier],
-    [`rm fichier`], [supprime, sans passer par la corbeille],
-    [`mv source destination`], [déplace ou renomme],
-    [`start fichier`], [ouvre avec le logiciel associé],
-  )
-]
+// 09/11/2026 : une pile à espacement fixe remplace `panneau`, dont l'espace entre
+// l'étiquette et le tableau faisait déborder les diapositives.
+#let _rappel-commandes = stack(
+  dir: ttb, spacing: 8pt,
+  text(size: 15pt, fill: estompe, weight: demi-gras)[Commandes possibles],
+  {
+    show table.cell: set text(size: 14pt)
+    show raw: set text(size: 1.15em)
+    tableau(
+      entete: false,
+      columns: (auto, 0.75fr, auto, 1.25fr),
+      align: left + horizon,
+      [`ls dossier`], [liste le dossier nommé],
+      [`mkdir nom`], [crée un dossier],
+      [`cp source destination`], [copie un fichier],
+      [`rm fichier`], [supprime, sans passer par la corbeille],
+      [`mv source destination`], [déplace ou renomme],
+      [`start fichier`], [ouvre avec le logiciel associé],
+    )
+  },
+)
 
 #d("Git Bash dans le dossier du TD")[
   #objectif[
@@ -68,10 +74,13 @@
   ]
 ]
 
+// 09/11/2026 : `1a_formats/travail` se liste depuis `depart`, à deux dossiers au-dessus. Le
+// retour dans `1b_terminal` passe en dernier : la diapositive suivante part de ce dossier.
 #d("Déplacements et contenu d'un dossier")[
   #objectif[
-    afficher le dossier courant, lister `depart` et `travail`, et passer d'un dossier à l'autre en
-    ligne de commande.
+    avec la ligne de commande : afficher le dossier courant, lister le contenu de `depart` et de
+    `travail`, entrer dans le dossier `depart`, lister depuis ce dossier le contenu de
+    `1a_formats/travail`, puis revenir dans `1b_terminal`.
   ]
 
   #grid(
@@ -88,9 +97,9 @@
         #constat[`./` et `../` seulement : le dossier est vide, à part ces deux entrées cachées.]],
       [Entrer dans `depart`. Afficher le dossier courant, et relire l'invite.
         #constat[Le dossier courant est maintenant `depart`, et l'invite le montre.]],
-      [Revenir dans `1b_terminal`.],
-      [Sans quitter `1b_terminal`, lister les fichiers exportés au TD 1a.
-        #constat[`raven.pdf` et `raven.png`, si les exports du TD 1a sont faits.]],
+      [Sans quitter `depart`, lister le contenu de `1a_formats/travail`.
+        #constat[`raven.pdf`, `raven.png` et `raven.txt`, si le TD 1a est fait.]],
+      [Revenir dans `1b_terminal` pour la suite du TD.],
     ),
     terminal-etapes(
       taille: 18pt,
@@ -99,8 +108,8 @@
       etape-terminal("ls depart"),
       etape-terminal("ls -a travail"),
       etape-terminal("cd depart", "pwd"),
+      etape-terminal("ls ../../1a_formats/travail"),
       etape-terminal("cd .."),
-      etape-terminal("ls ../1a_formats/travail"),
     ),
   )
 
@@ -116,25 +125,31 @@
 
     `ls` d'un dossier vide n'affiche rien : pas de message. Le faire
     remarquer avant `ls -a`.
+
+    Depuis `depart`, `../..` désigne `cours1`, et `../../1a_formats/travail` le dossier
+    `travail` du TD 1a. Si le bonus du TD 1a est fait, la liste contient aussi `raven.zip` et le
+    dossier `raven/`.
   ]
 ]
 
+// 09/11/2026 : l'objectif nomme les trois copies, leur dossier et ce qu'il faut noter ; les
+// consignes 4 et 5 nomment le dossier `travail`.
 #d("Copie et renommage d'un fichier")[
   #objectif[
-    copier et renommer `raven.odt` en ligne de commande, et déterminer quel logiciel ouvre chaque
-    copie selon son nom.
+    en ligne de commande, obtenir dans `travail` trois copies de `depart/raven.odt`, nommées
+    `raven_odt.pdf`, `riri.fifi.loulou.odt` et `raven.loulou`, puis ouvrir chacune et noter quel
+    logiciel Windows lance et ce que ce logiciel affiche.
   ]
 
   #consignes(
-    taille: 16pt,
+    taille: 15pt,
     [Copier `raven.odt` de `depart` dans `travail`.],
     [Renommer la copie en `raven_odt.pdf`.],
     [Ouvrir le fichier renommé. Noter le logiciel qui s'ouvre et ce qu'il affiche.],
-    [Copier `raven.odt` sous le nom `riri.fifi.loulou.odt`, puis ouvrir la copie.],
-    [Copier `raven.odt` sous le nom `raven.loulou`, puis ouvrir la copie. Si Windows demande un logiciel, choisir LibreOffice Writer.],
+    [Copier `raven.odt` dans `travail` sous le nom `riri.fifi.loulou.odt`, puis ouvrir la copie.],
+    [Copier `raven.odt` dans `travail` sous le nom `raven.loulou`, puis ouvrir la copie. Si Windows demande un logiciel, choisir LibreOffice Writer.],
   )
 
-  #v(0.5em)
   #_rappel-commandes
 
   #notes[
@@ -178,16 +193,23 @@
   ]
 ]
 
+// 09/11/2026 : l'annonce pose le problème avant l'objectif ; la diapositive de solution
+// donne les guillemets.
 #d("Espace dans un nom de fichier")[
+  #annonce[
+    Dans une commande, les espaces séparent le programme, ses options et ses arguments. Le
+    chemin `travail/le corbeau.txt` devient donc deux arguments.
+  ]
+
   #objectif[
-    copier `raven_une_ligne.txt` dans `travail` sous le nom `le corbeau.txt`, qui contient un espace,
-    puis ouvrir la copie.
+    copier `raven_une_ligne.txt` dans `travail` sous le nom `le corbeau.txt`, puis ouvrir la copie ;
+    déterminer comment écrire ce nom dans une commande.
   ]
 
   #consignes(
-    taille: 17pt,
-    [Copier `raven_une_ligne.txt` de `depart` dans `travail`, sous le nom `le corbeau.txt`, sans guillemets. Lire le message.],
-    [Refaire la copie, avec le nom entre guillemets.],
+    taille: 15pt,
+    [Copier `raven_une_ligne.txt` de `depart` dans `travail`, sous le nom `le corbeau.txt`. Lire le message.],
+    [Écrire le nom pour qu'il reste un seul argument, puis refaire la copie. #comment[Essayer les guillemets.]],
     [Lister le contenu de `travail`.],
     [Ouvrir la copie. #comment[Avec `start`, écrire `""` avant un nom entre guillemets.]],
   )
@@ -201,8 +223,7 @@
 
 #d("Espace dans un nom de fichier : solution")[
   #annonce[
-    L'interpréteur coupe la ligne aux espaces. Un nom qui en contient s'écrit
-    entre guillemets.
+    Entre guillemets, un nom qui contient un espace reste un seul argument.
   ]
 
   #terminal-etapes(
@@ -234,7 +255,7 @@
 
 #d("Copie de plusieurs fichiers avec un motif")[
   #objectif[
-    employer le motif `*` pour copier d'un coup les fichiers `.txt` de `depart` dans un nouveau
+    employer le caractère générique `*` pour copier d'un coup les fichiers `.txt` de `depart` dans un nouveau
     dossier, `travail/textes`, et pour lister les fichiers `.odt`.
   ]
 
@@ -252,7 +273,8 @@
   #notes[
     Laisser chercher. Solution à la diapositive suivante.
 
-    Le motif `*` est sur « Fichiers cachés et motif `*` », en fin de partie 2.
+    Le caractère générique `*` est sur « Fichiers cachés et caractère générique `*` », en fin
+    de partie 2.
   ]
 ]
 
@@ -271,7 +293,7 @@
 
   #notes[
     `*` est remplacé par Git Bash avant que `cp` ne démarre : `cp` reçoit
-    les deux noms. Diapositive « Le motif `*` ».
+    les deux noms. Diapositive « Fichiers cachés et caractère générique `*` ».
 
     Sorties relevées sur le dossier livré, le 19/10/2026, et de nouveau le
     05/11/2026.

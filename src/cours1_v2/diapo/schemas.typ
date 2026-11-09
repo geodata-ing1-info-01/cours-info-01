@@ -16,6 +16,7 @@
 #import "@preview/cetz:0.4.2"
 #import cetz.draw: *
 #import "../../cours5/diapo/schemas.typ": _etiquette, _fleche, _ecran, _clavier, _disque, _portable, _boitier-reseau, _nuage, _serveur, _cadenas
+#import "../../cours5/diapo/donnees/tendances.typ": frequence, coeurs
 
 // ---------------------------------------------------------------------------
 // Exécution de programmes et stockage de données
@@ -149,7 +150,8 @@
 // ---------------------------------------------------------------------------
 // Les couches de logiciels, du matériel aux applications web
 //
-// 05/11/2026 : la pile de « Couches matérielles et logicielles », complétée pour répondre
+// 05/11/2026 : la pile de « Exécution : couches matérielles et logicielles » (titre du
+// 09/11/2026), complétée pour répondre
 // à la question posée sur cette diapositive. Le navigateur est un programme : la
 // couche des programmes est coupée en deux, et les applications web sont posées sur le
 // navigateur seul. Les pilotes sont la partie basse du système : dans son cadre, juste
@@ -351,7 +353,7 @@
 // de terminal. `plein` remplit la boîte de l'interpréteur.
 
 #let _etape-serree(titre, detail, plein: false) = block(
-  width: 100%, inset: (x: 8pt, y: 4pt),
+  width: 100%, inset: (x: 8pt, y: 2.5pt),
   fill: if plein { accent.lighten(88%) } else { white },
   stroke: 1pt + accent.lighten(if plein { 40% } else { 55% }),
 )[
@@ -362,14 +364,22 @@
   ]
 ]
 
+// `plein` : le numéro d'une étape, ou une liste de numéros (09/11/2026, l'interpréteur
+// revient en dernière étape).
 #let chaine-terminal(..etapes, plein: none) = {
+  let pleins = if type(plein) == array { plein } else if plein == none { () } else { (plein,) }
   let contenu = ()
   for (i, (titre, detail)) in etapes.pos().enumerate() {
-    if i > 0 { contenu.push(align(center, text(size: 14pt, fill: accent)[↓])) }
-    contenu.push(_etape-serree(titre, detail, plein: i == plein))
+    if i > 0 { contenu.push(align(center, text(size: 12pt, fill: accent)[↓])) }
+    contenu.push(_etape-serree(titre, detail, plein: pleins.contains(i)))
   }
   std.grid(columns: 1, row-gutter: 1pt, ..contenu)
 }
+
+// Couleurs de « Le terminal et l'interpréteur de commandes » (09/11/2026) : la commande
+// tapée et ce que le programme écrit, dans la chaîne comme dans la fenêtre.
+#let couleur-commande = attention
+#let couleur-sortie = brun
 
 // La commande `ls depart` dans Git Bash, avec sa sortie : la liste du dossier
 // `depart/` du TD 1b, telle que le guide du TD la montre (relevée de nouveau
@@ -418,20 +428,22 @@
 
 #let _invite-2a = "eleve@POSTE-12 MINGW64 ~/Desktop/info01/cours1/1b_terminal"
 
+// Chaque ligne est une suite de morceaux (couleur, texte) : la commande et la sortie
+// prennent les couleurs de la chaîne (09/11/2026).
 #let git-bash-ls() = fenetre("Git Bash", code: true)[
   #set par(leading: 0.45em)
   #let lignes = (
-    (estompe, _invite-2a),
-    (accent, "$ ls depart"),
-    (accent, "auld_lang_syne.odt                raven.odt"),
-    (accent, "auld_lang_syne_une_ligne.donnees  raven_une_ligne.donnees"),
-    (accent, "auld_lang_syne_une_ligne.txt      raven_une_ligne.txt"),
-    (accent, ""),
-    (estompe, _invite-2a),
-    (accent, "$"),
+    ((estompe, _invite-2a),),
+    ((accent, "$ "), (couleur-commande, "ls depart")),
+    ((couleur-sortie, "auld_lang_syne.odt                raven.odt"),),
+    ((couleur-sortie, "auld_lang_syne_une_ligne.donnees  raven_une_ligne.donnees"),),
+    ((couleur-sortie, "auld_lang_syne_une_ligne.txt      raven_une_ligne.txt"),),
+    ((accent, ""),),
+    ((estompe, _invite-2a),),
+    ((accent, "$"),),
   )
-  #for (couleur, ligne) in lignes [
-    #text(size: 17pt, fill: couleur, raw(ligne)) \
+  #for morceaux in lignes [
+    #for (couleur, ligne) in morceaux { text(size: 17pt, fill: couleur, raw(ligne)) } \
   ]
 ]
 
@@ -461,7 +473,7 @@
   #text(size: 13pt)[#box(fill: attention.lighten(85%), inset: (x: 4pt, y: 2pt))[Fichier] #h(8pt) Édition #h(8pt) Affichage]
   #v(2pt)
   #block(width: 100%, stroke: 0.8pt + accent.lighten(55%), radius: 3pt, inset: 4pt)[
-    #_article-menu[Enregistrer]
+    #_article-menu(choisi: true)[Enregistrer sous… #h(1fr) Texte]
     #_article-menu(choisi: true)[Exporter… #h(1fr) PNG]
     #_article-menu(choisi: true)[Exporter sous #sym.arrow.r Exporter au format PDF…]
     #_article-menu[Fermer]
@@ -513,8 +525,8 @@
     explorateur([…\\depart], ("raven.odt", "raven_une_ligne.txt"), choisi: 0, titre: "depart"),
     fleche[double-clic],
     writer-exports(),
-    fleche[exports],
-    explorateur([…\\travail], ("raven.pdf", "raven.png"), titre: "travail"),
+    fleche[copies],
+    explorateur([…\\travail], ("raven.pdf", "raven.png", "raven.txt"), titre: "travail"),
   )
 }
 
@@ -811,3 +823,97 @@
     ],
   )
 }
+
+// ---------------------------------------------------------------------------
+// Fréquence et nombre de cœurs, de 1990 à 2024
+//
+// 09/11/2026 : deux des quatre séries de `graphe-tendances` (cours 5), pour
+// « Évolution de la puissance de calcul ». Les transistors, que le cours 1 ne
+// présente pas, et la puissance sont retirés. Mêmes données (Karl Rupp,
+// microprocessor-trend-data, CC BY 4.0), un point par processeur, échelle
+// verticale logarithmique. Un trait pointillé marque 2005.
+#let graphe-frequence-coeurs(largeur: 13, hauteur: 6.2) = cetz.canvas(length: 1cm, {
+  let (a0, a1) = (1990, 2024)
+  let (l0, l1) = (-0.2, 3.8)
+  let x(a) = largeur * (a - a0) / (a1 - a0)
+  let y(v) = hauteur * (calc.log(v, base: 10) - l0) / (l1 - l0)
+
+  for (k, etiquette) in ((0, [1]), (1, [10]), (2, [100]), (3, [1 000])) {
+    let yy = y(calc.pow(10, k))
+    line((0, yy), (largeur, yy), stroke: 0.4pt + gris.darken(12%))
+    content((-0.25, yy), anchor: "east", text(size: 12pt, fill: estompe, etiquette))
+  }
+  line((0, 0), (largeur, 0), stroke: 0.8pt + accent)
+  line((0, 0), (0, hauteur), stroke: 0.8pt + accent)
+  for a in range(1990, 2025, step: 5) {
+    line((x(a), 0), (x(a), -0.15), stroke: 0.8pt + accent)
+    content((x(a), -0.25), anchor: "north", text(size: 12pt, fill: accent)[#a])
+  }
+  line((x(2005), 0), (x(2005), hauteur), stroke: (paint: estompe, thickness: 0.8pt, dash: "dashed"))
+
+  let serie(points, couleur, nom, y-nom) = {
+    for (a, v) in points {
+      if v > 0 { circle((x(a), y(v)), radius: 0.075, fill: couleur, stroke: none) }
+    }
+    content((largeur + 0.25, y(y-nom)), anchor: "west",
+            text(size: 13.5pt, fill: couleur, weight: demi-gras)[#nom])
+  }
+  serie(frequence, attention, "fréquence (MHz)", 3000)
+  serie(coeurs, accent, "cœurs", 12)
+})
+
+// ---------------------------------------------------------------------------
+// Un cœur, ses registres et la mémoire vive, pendant `addsd xmm1, xmm0`
+//
+// 09/11/2026 : remplace, sur « Instructions machine : une ligne de C++ », le dessin du
+// cours 5 (`_dessin-coeur(1)`), qui multipliait a par b. Seconde version du même jour :
+// la liste des instructions, qui répétait le bloc d'assembleur voisin, est retirée, et la
+// diapositive surligne l'instruction en cours dans ce bloc. À gauche, le cœur : les deux
+// registres que lit `addsd xmm1, xmm0`, l'addition et le résultat. À droite, la mémoire
+// vive, avec les valeurs du programme. Le bleu marque le calcul, comme dans le code.
+#let schema-coeur-registres() = cetz.canvas(length: 1cm, {
+  let code(t, couleur: accent) = text(font: police-code, size: 12.5pt, fill: couleur, t)
+  let haut-case = 0.52
+
+  // le cœur : deux registres, l'addition, le résultat
+  let (cx0, cx1) = (0, 3.9)
+  rect((cx0, 0.6), (cx1, -3.45), radius: 0.08, fill: gris, stroke: 1.4pt + accent)
+  content((cx0 + 0.18, 0.3), anchor: "west",
+          text(size: 15pt, weight: demi-gras, fill: accent)[cœur])
+  let registre(y, nom, valeur, nouveau: false) = {
+    rect((cx0 + 0.3, y - haut-case), (cx1 - 0.3, y), radius: 0.04,
+         fill: if nouveau { attention.lighten(80%) } else { white },
+         stroke: 0.8pt + if nouveau { attention } else { accent })
+    content((cx0 + 0.45, y - haut-case / 2), anchor: "west", code(nom, couleur: estompe))
+    content((cx1 - 0.45, y - haut-case / 2), anchor: "east",
+            code(valeur, couleur: if nouveau { attention } else { accent }))
+  }
+  registre(-0.1, "xmm1", "79.6")
+  registre(-0.75, "xmm0", "103.2")
+  let ux = (cx0 + cx1) / 2
+  line((ux, -1.32), (ux, -1.56), mark: (end: ">", fill: accent), stroke: 0.9pt + accent)
+  circle((ux, -1.92), radius: 0.34, fill: white, stroke: 1.2pt + attention)
+  content((ux, -1.92), text(size: 18pt, weight: demi-gras, fill: attention)[+])
+  line((ux, -2.3), (ux, -2.54), mark: (end: ">", fill: attention), stroke: 0.9pt + attention)
+  registre(-2.62, "xmm1", "182.8", nouveau: true)
+
+  // la mémoire vive
+  let (mx0, mx1) = (5.4, 10.9)
+  rect((mx0, 0.6), (mx1, -2.9), radius: 0.08, fill: white, stroke: 1.2pt + accent)
+  content((mx0 + 0.18, 0.3), anchor: "west",
+          text(size: 15pt, weight: demi-gras, fill: accent)[mémoire vive])
+  let cases = (("altitudes[0]", "79.6"), ("altitudes[1]", "103.2"),
+               ("altitudes[2]", "98.3"), ("total", ""))
+  for (k, (nom, valeur)) in cases.enumerate() {
+    let y = -0.1 - k * 0.65
+    rect((mx0 + 0.2, y - haut-case), (mx1 - 0.2, y), radius: 0.04, fill: white,
+         stroke: 0.8pt + estompe.lighten(20%))
+    content((mx0 + 0.35, y - haut-case / 2), anchor: "west", code(nom, couleur: estompe))
+    content((mx1 - 0.35, y - haut-case / 2), anchor: "east", code(valeur))
+  }
+
+  // les copies entre la mémoire et les registres
+  line((cx1 + 0.1, -0.72), (mx0 - 0.1, -0.72), mark: (start: ">", end: ">", fill: estompe),
+       stroke: 0.9pt + estompe)
+  content(((cx1 + mx0) / 2, -0.58), anchor: "south", code("movsd", couleur: estompe))
+})

@@ -120,8 +120,8 @@
     Puissance : 65 à 250 W sur 1 à 2,5 cm², soit 50 à 100 W par cm². Une plaque
     de cuisson : moins de 10 W par cm².
 
-    Cette limite a arrêté la montée en fréquence vers 2005 (« Évolution des
-    processeurs de 1990 à 2022 », cours 5). Un portable qui ralentit pendant un long
+    Cette limite a arrêté la montée en fréquence vers 2005 (« Évolution de la
+    puissance de calcul », partie 3). Un portable qui ralentit pendant un long
     calcul baisse sa fréquence pour rester sous la limite.
 
     AMD (2022) : 95 °C pendant un calcul intensif est le fonctionnement prévu des Ryzen 7000.
@@ -136,39 +136,64 @@
 // colonne des opérations par seconde. La ligne d'ASCI Red est remplacée par un serveur
 // GPU, et l'annonce par la comparaison avec ce serveur. NVIDIA DGX H100 : huit H100,
 // 10,2 kW au maximum (guide d'utilisation de NVIDIA) ; 10,2 kW × 8 760 h = 89 000 kWh.
+// 09/11/2026 : les deux téléphones sur une ligne ; ampoule, réfrigérateur et logement
+// ajoutés comme repères. La télévision ne tient pas dans le tableau : elle reste dans les
+// notes. Réfrigérateur : 174 à 346 kWh (ADEME) ; logement : 4 287 kWh par site
+// résidentiel (Enedis, bilan électrique 2024).
+// Les repères domestiques sont en violet, texte et fond, pour les distinguer des appareils
+// informatiques (demande du 09/11/2026). Le violet s'ajoute aux cinq couleurs du thème, sur
+// cette diapositive seulement.
+#let _violet = rgb("#6A3D9A")
+#let _repere(corps) = table.cell(fill: _violet.lighten(88%), text(fill: _violet, corps))
 #d("Consommation électrique des appareils")[
   #annonce[
-    À pleine puissance, un serveur GPU pour l'IA générative consomme en quelques
-    heures l'électricité d'un ordinateur portable pendant un an.
+    Un serveur GPU consomme en quelques heures l'électricité d'un portable pendant un an.
   ]
 
   #tableau(
     columns: (1.4fr, auto, auto),
     align: (left + horizon, right + horizon, right + horizon),
     [Appareil], [Puissance], [Électricité par an],
-    [téléphone à touches], [0,01 à 0,5 W], [0,1 kWh],
-    [smartphone], [1 à 5 W], [5 à 7 kWh],
+    [téléphone à touches ou smartphone], [0,01 à 5 W], [0,1 à 7 kWh],
+    _repere[ampoule LED], _repere[5 à 10 W], _repere[7 à 15 kWh],
     [ordinateur portable], [15 à 45 W], [30 à 60 kWh],
+    _repere[réfrigérateur], _repere[20 à 40 W en moyenne], _repere[170 à 350 kWh],
     [PC de bureau et carte graphique], [100 à 400 W], [200 à 400 kWh],
+    _repere[logement, tous appareils compris], _repere[500 W en moyenne], _repere[4 300 kWh],
     [serveur, en continu], [300 à 800 W], [3 000 à 7 000 kWh],
     [serveur GPU pour l'IA générative, en continu], [10 000 W], [90 000 kWh],
   )
 
   #legende[
-    Ordres de grandeur ; portable 8 h par jour. GPU : carte graphique, _graphics
-    processing unit_. Serveur GPU : NVIDIA DGX H100, huit cartes, 10,2 kW au maximum,
-    à pleine puissance toute l'année.
+    Ordres de grandeur ; portable 8 h par jour, ampoule 4 h par jour. En violet, les
+    repères domestiques (ADEME, Enedis 2024). GPU : carte graphique, _graphics
+    processing unit_. Serveur GPU : NVIDIA DGX H100, à pleine puissance toute l'année.
   ]
 
   #notes[
     Hypothèses de la dernière colonne : téléphone à touches rechargé une fois
     par semaine (batterie de 3 Wh), smartphone chaque jour (15 Wh), portable
-    8 h par jour, serveur en continu.
+    8 h par jour, ampoule 4 h par jour, serveur en continu.
 
-    Serveur GPU : 10,2 kW × 8 760 h = 89 000 kWh, un maximum. Un portable consomme
+    Serveur GPU, huit cartes H100 : 10,2 kW × 8 760 h = 89 000 kWh, un maximum. Un portable consomme
     30 à 60 kWh par an, soit 3 à 6 h de ce serveur. Une carte H100 seule : jusqu'à
-    700 W (fiche de NVIDIA). Le cours 5 donne la consommation d'une question à un
+    700 W (fiche de NVIDIA). Le cours 6 donne la consommation d'une question à un
     assistant d'IA et celle des centres de données.
+
+    Réfrigérateur (ADEME) : 174 kWh par an pour un modèle à une porte, 346 kWh pour
+    un combiné de 320 L, soit 20 à 40 W en moyenne sur l'année. Le compresseur
+    tourne par intermittence, jour et nuit. Un réfrigérateur et un portable ont une
+    puissance moyenne voisine, et le réfrigérateur consomme en un an trois à douze fois
+    plus.
+
+    Logement : 4 287 kWh par an en moyenne en 2024, logements chauffés ou non à
+    l'électricité (Enedis), soit 490 W en moyenne. Un serveur allumé en continu
+    consomme autant qu'un logement, et le serveur GPU autant qu'une vingtaine de
+    logements.
+
+    Télévision : 50 à 150 W, 70 à 220 kWh par an à 4 h par jour. Le cours 6 emploie
+    la télévision (100 W) et l'ampoule LED (10 W) comme équivalents, sur
+    « Consommation électrique des services en ligne ».
 
     Le téléphone à touches consomme quelques dizaines de milliwatts : sa
     batterie tient dix jours.
@@ -218,7 +243,7 @@
 // --------------------------------------------
 // 05/11/2026 : la question sur la webapp et le driver est ajoutée, en bas, à celle sur le
 // téléphone. La diapositive suivante y répond.
-#d("Couches matérielles et logicielles")[
+#d("Exécution : couches matérielles et logicielles")[
   #annonce[
     Un programme ne s'adresse pas directement au matériel : il passe par le système (OS).
   ]
@@ -267,7 +292,7 @@
 // --------------------------------------------
 // 05/11/2026 : la pile de la diapositive précédente, avec les applications web, les
 // pilotes et les systèmes des téléphones.
-#d("Couches matérielles et logicielles — réponses")[
+#d("Exécution : couches matérielles et logicielles — réponses")[
   #annonce[
     Un programme ne s'adresse pas directement au matériel : il passe par le système (OS).
   ]
@@ -328,10 +353,10 @@
 */
 // -------------------------- Extensions et formats ---------------------------
 // --------------------------------------------
-#d("Fichier, extension et type de fichier")[
+#d("Stockage : fichier, extension et type")[
   #annonce[
-    Un fichier conserve un résultat. On peut l'ouvrir avec un autre logiciel ou le
-    copier sur une autre machine.
+    Sur un disque, les données sont stockées dans des fichiers, rangés dans des dossiers.
+    Un fichier permet de transférer des données entre logiciels et entre machines.
   ]
 
   #grid(
@@ -346,7 +371,7 @@
           choisi: 3,
         )
       }
-      #legende[L'explorateur affiche ce qui est stocké sur le disque.]
+      #legende[L'explorateur affiche les fichiers du dossier Documents.]
     ],
     [
       #annonce[
@@ -395,7 +420,7 @@
   ]
 ]
 // --------------------------------------------
-#d("Reconnaître un format à son extension")[
+#d("Stockage : formats et extensions")[
   #annonce[
     Pour chacune de ces extensions, dites de quel type de contenu il s'agit, et si le fichier
     est lisible dans un éditeur de texte.
@@ -422,7 +447,7 @@
 ]
 
 // --------------------------------------------
-#d("Reconnaître un format à son extension — réponses")[
+#d("Stockage : formats et extensions — réponses")[
   #grid(
     columns: (1fr, 1fr, 1fr, 1fr),
     gutter: 9pt,
@@ -534,9 +559,9 @@
     align: left + horizon,
     [Nom de la partie du chemin], [Ce qu'il désigne dans l'exemple],
     [la racine, ou le disque],
-      [#text(fill: estompe)[`C:\`], le point de départ ; `/` sous macOS et Linux],
+      [#text(fill: estompe)[`C:\`] ou `D:\` sous Windows ; `/` sous macOS et Linux],
     [un nom de dossier],
-      [#text(fill: brun)[`Users`, `alice`, `Documents`] : trois, du plus large au plus précis],
+      [#text(fill: brun)[`Users`, `alice`, `Documents`]],
     [le nom du fichier],
       [`raven.odt`, extension comprise],
     [le chemin du fichier], [tout, de la racine au fichier],
@@ -553,6 +578,9 @@
     Insister sur la dernière ligne : « dossier parent » est le mot des
     messages d'erreur et des fonctions de Python (`Path.parent`). Le cours 3
     s'en sert sans le redéfinir.
+
+    Sous Windows, chaque disque reçoit une lettre : `C:\` pour le disque du système,
+    `D:\` ou `E:\` pour un second disque ou une clé USB.
   ]
 ]
 

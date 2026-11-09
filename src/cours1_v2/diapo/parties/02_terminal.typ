@@ -2,7 +2,7 @@
 // `cours1_v2.typ`. Un fichier inclus n'hérite pas des imports de son appelant.
 //
 #import "../../../commun/prelude.typ": *
-#import "../schemas.typ": explorateur-copie, git-bash-copie, chaine-terminal, git-bash-ls
+#import "../schemas.typ": explorateur-copie, git-bash-copie, chaine-terminal, git-bash-ls, couleur-commande, couleur-sortie, terminal
 
 #separateur(
   "Interface en ligne de commande / terminal",
@@ -13,8 +13,8 @@
 // interface graphique et ligne de commande, avant le vocabulaire du terminal.
 #d("Interface graphique et ligne de commande")[
   #annonce[
-    Dans une interface graphique, on choisit l'opération parmi les menus et boutons affichés. 
-    En ligne de commande, on tape le nom de l'opération, qu'il faut donc connaître.
+    Dans une interface graphique, on choisit l'opération parmi les menus et boutons affichés.
+    En ligne de commande, on tape une commande, le nom de l'opération, puis ses paramètres.
   ]
 
   #face-a-face(
@@ -40,6 +40,9 @@
     Recognition and Recall in User Interfaces », Nielsen Norman Group, 2024.
 
     `cp` n'affiche rien quand la copie réussit.
+
+    Paramètres de `cp` : le fichier à copier et le dossier de destination. La diapositive
+    « La forme d'une commande » les distingue en options et arguments.
   ]
 ]
 
@@ -52,27 +55,36 @@
 // diapositive. Les trois commandes ont été exécutées le 05/11/2026 (GDAL 3.4.1, Python
 // 3.12 ; la dernière sur le corrigé du TD 3b).
 #let _interet(titre, detail, commande) = grid(
-  columns: (1.25fr, 1fr), column-gutter: 16pt, align: horizon,
+  columns: (1.5fr, 1fr), column-gutter: 16pt, align: horizon,
   [
+    // Sans ce réglage, l'interligne suit le corps de 21 pt du paragraphe, trop large pour le
+    // détail en 14 pt.
+    #set par(leading: 0.5em)
     #text(size: 18pt, weight: demi-gras)[#titre] \
     // Le code passe de 0,78 à 0,9 fois le texte : `*` serait illisible à sa taille.
     #show raw: set text(size: 1.15em)
     #text(size: 14pt, fill: estompe)[#detail]
   ],
-  block(width: 100%, fill: gris, inset: (x: 10pt, y: 9pt), text(size: 17pt, raw(commande))),
+  block(width: 100%, fill: gris, inset: (x: 10pt, y: 9pt), text(size: 16pt, raw(commande))),
 )
 
+// Étiquette d'un groupe de lignes, dans le gris des étiquettes de panneau.
+#let _groupe(titre) = text(size: 15pt, fill: estompe, weight: demi-gras, titre)
+
+// 09/11/2026 : deux groupes. L'automatisation et les programmes viennent de la ligne de
+// commande elle-même ; les logiciels scientifiques et les serveurs demandent seulement de
+// savoir s'en servir. « Opérations répétées » devient « Automatisation des tâches », car
+// des logiciels à interface graphique proposent aussi un traitement par lot.
 #d("Intérêt de la ligne de commande")[
+  // Une longueur placée entre deux éléments remplace `spacing` : l'étiquette reste près de
+  // ses lignes, et le second groupe s'écarte du premier.
   #stack(
-    dir: ttb, spacing: 22pt,
+    dir: ttb, spacing: 14pt,
+    _groupe[Intérêt face à une interface graphique],
+    10pt,
     _interet(
-      "Logiciels sans interface graphique",
-      [logiciels scientifiques, comme GDAL pour les données géographiques ; accès distant à des serveurs de calcul (sans interface graphique)],
-      "$ gdal_translate carte.png carte.tif",
-    ),
-    _interet(
-      "Opérations répétées",
-      [Cette commande copie d'un coup tous les fichiers `.txt` de `depart`. On peut la relancer plus tard, ou l'enregistrer dans un script.],
+      "Automatisation des tâches",
+      [Le traitement par lot, comme cette copie des `.txt` de `depart`, est plus courant qu'en interface graphique. Une suite de commandes s'enregistre dans un script, et se relance avec d'autres paramètres.],
       "$ cp depart/*.txt travail/textes/",
     ),
     _interet(
@@ -80,9 +92,21 @@
       [Le cours 3 construit ce programme. Avec une interface graphique, il faudrait aussi programmer les fenêtres, les boutons et leur comportement.],
       "$ python altitudes.py trace.csv -s 2",
     ),
+    26pt,
+    _groupe[Intérêt de savoir s'en servir],
+    10pt,
+    _interet(
+      "Logiciels scientifiques et serveurs de calcul",
+      [Beaucoup de ces outils ne s'utilisent qu'en ligne de commande : GDAL pour les données géographiques, PDAL pour les nuages de points, et les serveurs de calcul, utilisés à distance.],
+      "$ gdal_translate carte.png carte.tif",
+    ),
   )
 
   #notes[
+    Deux intérêts distincts. Face à une interface graphique, la ligne de commande facilite
+    l'automatisation et simplifie l'écriture d'un programme. Savoir s'en servir donne accès
+    aux outils sans autre interface.
+
     Outils du module en ligne de commande : `python` à la partie suivante, `conda` au
     TD 1c, `git` au cours 2.
 
@@ -96,9 +120,11 @@
     resources such as cloud computing systems usually require users to be familiar
     with the shell ». Serveurs : accès par `ssh`, aux cours 5 et 6.
 
-    Répétition : le TD 1b fait cette copie. Software Carpentry : « excels at making
+    Automatisation : le TD 1b fait cette copie. Software Carpentry : « excels at making
     repetitive tasks automatic and fast ». Exemple de la page de cours, 120 images :
-    `magick mogrify -path travail -resize 640 depart/*.png`.
+    `magick mogrify -path travail -resize 640 depart/*.png`. Des logiciels à interface
+    graphique proposent aussi un traitement par lot, comme QGIS, par « Exécuter comme
+    processus de lot » dans la boîte à outils de traitements.
 
     Programmes : `argparse` fournit aussi `--help` et le message d'erreur. Un programme
     en ligne de commande se lance aussi depuis un autre programme (`subprocess`, cours 5).
@@ -117,12 +143,15 @@
   // commande et sa sortie.
   #grid(
     columns: (0.9fr, 1.45fr), column-gutter: 18pt, align: horizon,
+    // 09/11/2026 : la commande et la liste en couleur, comme dans la fenêtre, et une
+    // dernière étape, le retour de l'invite.
     chaine-terminal(
-      ("Ce qu'on tape", "ls depart, puis Entrée"),
+      ("Ce qu'on tape", [#text(fill: couleur-commande, weight: demi-gras)[ls depart], puis Entrée]),
       ("Le terminal", "la fenêtre, qui transmet la ligne"),
       ("L'interpréteur de commandes", "bash : découpe la ligne, lance ls"),
-      ("Le programme ls", "écrit la liste des fichiers"),
-      plein: 2,
+      ("Le programme ls", text(fill: couleur-sortie, weight: demi-gras)[écrit la liste des fichiers]),
+      ("L'interpréteur de commandes", "réaffiche l'invite, puis attend la ligne suivante"),
+      plein: (2, 4),
     ),
     git-bash-ls(),
   )
@@ -144,44 +173,43 @@
 ]
 
 // --------------------------------------------
-#let _capture(fichier, nom, lancer, invite, hauteur: 100pt) = align(center, stack(
+// Une capture de terminal, les logos des systèmes où il existe à sa droite, puis son nom,
+// la façon de l'ouvrir et son invite, sous l'image (09/11/2026).
+#let _terminal(fichier, logos, nom, lancer, invite, hauteur: 70pt) = align(center, stack(
   dir: ttb, spacing: 5pt,
-  text(size: 16pt, weight: demi-gras)[#nom],
-  text(size: 13pt, fill: estompe)[#lancer],
-  box(
-    stroke: 1pt + accent.lighten(55%),
-    image("/src/cours1_v2/images/terminaux/" + fichier, height: hauteur),
+  grid(
+    columns: (auto, auto), column-gutter: 8pt, align: horizon,
+    box(
+      stroke: 1pt + accent.lighten(55%),
+      image("/src/cours1_v2/images/terminaux/" + fichier, height: hauteur),
+    ),
+    stack(
+      dir: ttb, spacing: 7pt,
+      ..logos.map(f => image("/src/cours1_v2/images/os/" + f, height: 18pt)),
+    ),
   ),
+  text(size: 15pt, weight: demi-gras)[#nom],
+  text(size: 13pt, fill: estompe)[#lancer],
   text(size: 13pt, fill: estompe)[Invite : #invite],
 ))
 
-#let _systemes(..logos, texte) = align(center, stack(
-  dir: ttb, spacing: 5pt,
-  line(length: 92%, stroke: 1pt + accent.lighten(55%)),
-  stack(
-    dir: ltr, spacing: 12pt,
-    ..logos.pos().map(f => image("/src/cours1_v2/images/os/" + f, height: 20pt)),
-  ),
-  text(size: 13pt, fill: estompe)[#texte],
-))
-
-#d("Les trois terminaux du poste")[
-  #annonce[
-    L'invite, au début de chaque ligne, indique quel interpréteur lit la
-    commande.
-  ]
-
+// 09/11/2026 : Git Bash en grand, sur les deux tiers de droite ; cmd et PowerShell l'un sous
+// l'autre, sur le tiers de gauche. L'annonce sur l'invite est retirée : la diapositive
+// suivante la détaille.
+#d("Les trois terminaux du poste de l'école")[
   #grid(
-    columns: (1fr, 1fr, auto, 1fr), column-gutter: 10pt, row-gutter: 6pt,
-    _capture("cmd_windows11.png", [Invite de commandes (cmd)],
-      [Démarrer #sym.arrow.r `cmd`], [`C:\Users\…>`]),
-    _capture("powershell_terminal_windows.png", [PowerShell],
-      [Démarrer #sym.arrow.r Terminal], [`PS C:\Users\…>`]),
-    grid.cell(rowspan: 2, line(angle: 90deg, length: 190pt, stroke: (paint: accent.lighten(55%), thickness: 1pt, dash: "dashed"))),
-    _capture("git_bash_2011.png", [bash / Git Bash],
-      [clic droit #sym.arrow.r Open Git Bash here], [`utilisateur@machine`, puis `$`]),
-    grid.cell(colspan: 2, _systemes("windows.svg")[Windows]),
-    _systemes("linux_tux.svg", "macos_apple.svg", "windows.svg")[Linux, macOS ; Windows avec Git Bash],
+    columns: (1fr, auto, 2fr), column-gutter: 14pt, align: top,
+    stack(
+      dir: ttb, spacing: 14pt,
+      _terminal("cmd_windows11.png", ("windows.svg",), [Invite de commandes (cmd)],
+        [Démarrer #sym.arrow.r `cmd`], [`C:\Users\…>`]),
+      _terminal("powershell_terminal_windows.png", ("windows.svg",), [PowerShell],
+        [Démarrer #sym.arrow.r Terminal], [`PS C:\Users\…>`]),
+    ),
+    line(angle: 90deg, length: 225pt, stroke: (paint: accent.lighten(55%), thickness: 1pt, dash: "dashed")),
+    _terminal("git_bash_2011.png", ("linux_tux.svg", "macos_apple.svg", "windows.svg"),
+      [bash / Git Bash], [clic droit #sym.arrow.r Open Git Bash here],
+      [`utilisateur@machine`, puis `$`], hauteur: 190pt),
   )
 
   #v(2pt)
@@ -192,13 +220,15 @@
     #set text(size: 16pt)
     #text(fill: attention, weight: demi-gras)[Le module emploie Git Bash.]
     Git Bash est installé avec git sur les postes. Son interpréteur, bash,
-    est celui de Linux et de la plupart des serveurs, et les mêmes commandes
-    fonctionnent sous macOS.
+    est celui de Linux et de la plupart des serveurs.
   ]
 
   #notes[
     Faire repérer l'invite sur chaque capture : elle indique le langage à
-    employer.
+    employer. La diapositive suivante détaille celle de Git Bash.
+
+    Logos des systèmes : cmd et PowerShell sous Windows ; bash sous Linux et macOS, et sous
+    Windows avec Git Bash.
 
     Lancer Git Bash : sous Windows 11, « Open Git Bash here » est sous
     « Afficher d'autres options » du menu contextuel (à vérifier sur un
@@ -354,8 +384,13 @@
     [`ls`], [liste le dossier courant], [la fenêtre ouverte],
     [`ls dossier`], [liste le dossier nommé], [ouvrir ce dossier],
     [`cd dossier`], [descend dans le dossier nommé], [double-clic sur le dossier],
-    [`cd ..`], [remonte au dossier parent], [flèche « dossier parent »],
   )
+
+  // 09/11/2026 : la ligne `cd ..` est retirée, `..` n'étant présenté qu'ensuite.
+  #notes[
+    Montrer `cd ..` sur « Le chemin d'un fichier en ligne de commande », après la
+    présentation de `..`.
+  ]
 ]
 
 #d("Les commandes de base : agir sur les fichiers")[
@@ -385,6 +420,10 @@
 // ------------------------------- Chemins -----------------------------------
 
 // --------------------------------------------
+// 09/11/2026 : les exemples passent en chemins de Git Bash, qui suit la convention de
+// Linux, sur les dossiers du poste (`/c/Users/eleve/Desktop/info01`). Les correspondances
+// de l'ancienne « Les chemins dans Git Bash » viennent en tête ; celle-ci laisse sa place à
+// « Le fichier exécutable d'une commande ». Exemple refait le 28/09 sur les dossiers v2.
 #d("Le chemin d'un fichier en ligne de commande")[
   #annonce[
     En ligne de commande, un fichier se désigne par son chemin, écrit après
@@ -393,134 +432,203 @@
     dossier où l'on se trouve.
   ]
 
-  #v(0.4em)
-  #tableau(
-    columns: (auto, 1fr, 1fr),
-    align: left + horizon,
-    [], [Windows], [macOS et Linux],
-    [Le séparateur de dossiers], [la barre inversée `\`, _backslash_], [la barre `/`, _slash_],
-  )
-
-  #v(0.5em)
   #grid(
-    columns: (auto, 1fr), column-gutter: 18pt, align: horizon,
+    columns: (1.6fr, 1fr), column-gutter: 16pt, align: horizon,
+    {
+      show table.cell: set text(size: 14pt)
+      tableau(
+        columns: (auto, auto, 1fr),
+        align: left + horizon,
+        [Dans l'explorateur], [Dans Git Bash], [],
+        [`C:\Users\eleve`], [`/c/Users/eleve`], [chemin absolu],
+        [`C:\Users\eleve`], [`~`], [le dossier personnel],
+        [le dossier au-dessus], [`..`], [le dossier parent],
+      )
+    },
     block(inset: (x: 10pt, y: 8pt), fill: gris)[
       #set text(font: police-code, size: 12.5pt)
       #set par(leading: 0.6em)
-      C:\\Users\\alice\\ \
-      └─ cours1\\ \
-      #h(0.75em)├─ 1a_formats\\ \
-      #h(0.75em)│#h(0.3em)└─ depart\\ \
-      #h(0.75em)│#h(1.6em)└─ raven.odt \
-      #h(0.75em)└─ 1c_programme\\ \
-      #h(2.05em)└─ altitudes.py
+      \~/Desktop/info01/cours1/ \
+      ├─ 1a_formats/depart/raven.odt \
+      └─ 1c_programme/altitudes.py
     ],
+  )
+
+  #v(0.3em)
+  #{
+    show table.cell: set text(size: 14pt)
     tableau(
       columns: (auto, 1fr, auto),
       align: left + horizon,
       [], [Le chemin de `raven.odt`], [Depuis],
-      [Absolu], [`C:\Users\alice\cours1\1a_formats\depart\raven.odt`], [la racine],
-      [Relatif], [`1a_formats\depart\raven.odt`], [`cours1`],
-      [Relatif qui remonte], [`..\1a_formats\depart\raven.odt`], [`1c_programme`],
-    ),
-  )
+      [Absolu], [`/c/Users/eleve/Desktop/info01/cours1/1a_formats/depart/raven.odt`], [la racine],
+      [Relatif], [`1a_formats/depart/raven.odt`], [`cours1`],
+      [Relatif qui remonte], [`../1a_formats/depart/raven.odt`], [`1c_programme`],
+    )
+  }
 
   #legende[
-    macOS et Linux séparent les dossiers par `/`, que Python accepte aussi
-    sous Windows : `/home/alice/cours1/1a_formats/depart/raven.odt`.
+    Exemples dans Git Bash, qui écrit les chemins à la façon de Linux et de macOS : le disque
+    `C:` devient `/c`, et chaque `\` devient `/`. Sous Windows, Python accepte aussi les `/`.
   ]
 
   #notes[
+    Les exemples sont les chemins que les élèves tapent au TD 1b. L'explorateur de Windows
+    affiche les mêmes chemins avec `C:` et des `\`.
+
     L'intérêt du relatif, à dire avec la légende : un programme ne connaît
     pas a priori le chemin absolu du dossier d'un utilisateur, mais il peut
     imposer une arborescence relative, comme `../1a_formats/`, et il tourne
     chez tout le monde. Le chemin en dur, absolu, casse au premier
     changement de poste ; le TD 2b en fait corriger un.
-    (28/09 : exemple refait sur les dossiers de la v2.)
 
     Lire l'arborescence avant le tableau : les trois chemins désignent le
     même fichier, `raven.odt`, et ne diffèrent que par l'endroit d'où on le
-    demande. 
+    demande.
 
-    Deux notations à donner en passant, et à écrire au tableau plutôt qu'à
-    projeter : deux points désignent le dossier parent, un point le dossier
-    courant. Elles s'écrivent pareil sur les trois systèmes, seul le
-    séparateur qui les suit change.
-  ]
-]
+    Un point désigne le dossier courant, comme dans `./python.exe` au TD 1c. Le donner en
+    passant.
 
-// --------------------------------------------
-// Nouveau (v2).
-#d("Les chemins dans Git Bash")[
-  #annonce[
-    Git Bash écrit les chemins à la façon de Linux : des barres obliques, et
-    le disque `C:` devient `/c`.
-  ]
-
-  #tableau(
-    columns: (auto, auto, 1fr),
-    align: left + horizon,
-    [Dans l'explorateur], [Dans Git Bash], [],
-    [`C:\Users\eleve\Desktop\info01`], [`/c/Users/eleve/Desktop/info01`], [chemin absolu],
-    [`C:\Users\eleve`], [`~`], [le dossier personnel],
-    [le dossier ouvert], [`.`], [le dossier courant],
-    [le dossier au-dessus], [`..`], [le dossier parent],
-    [`..\1a_formats\depart`], [`../1a_formats/depart`], [chemin relatif],
-  )
-
-  #legende[
-    Un chemin copié depuis la barre d'adresse de l'explorateur garde ses
-    `\` : dans Git Bash, il s'écrit entre guillemets.
-  ]
-
-  #notes[
-    `cd "C:\Users\eleve\Desktop"` fonctionne dans Git Bash ; sans
-    guillemets, les `\` sont lus comme des caractères d'échappement.
-    À vérifier sur un poste de la salle, avec le glisser-déposer d'un
-    dossier dans la fenêtre de Git Bash.
+    Un chemin copié depuis la barre d'adresse de l'explorateur garde ses `\` : dans Git
+    Bash, il s'écrit entre guillemets. `cd "C:\Users\eleve\Desktop"` fonctionne ; sans
+    guillemets, les `\` sont lus comme des caractères d'échappement. À vérifier sur un poste
+    de la salle, avec le glisser-déposer d'un dossier dans la fenêtre de Git Bash.
 
     `~` se tape `AltGr` + `2`, puis espace, sur un clavier français.
   ]
 ]
 
 // --------------------------------------------
+// Nouveau (09/11/2026), à la place de « Les chemins dans Git Bash », passée sur la
+// diapositive précédente. Le TD 1c emploie `which python` et lance Python par son chemin :
+// cette diapositive présente les deux.
+// 09/11/2026, seconde version : le Bloc-notes remplace `ls`. `which ls` affiche
+// `/usr/bin/ls`, un chemin propre à Git Bash, que l'élève ne retrouve pas dans
+// l'explorateur avec la règle de « Le chemin d'un fichier en ligne de commande » ; le
+// chemin du Bloc-notes, en `/c/`, la suit. Sorties de Git Bash sous Windows, à relever sur
+// un poste de la salle (voir les notes).
+#d("Le fichier exécutable d'une commande")[
+  #annonce[
+    Une commande lance un fichier exécutable. `which` affiche le chemin de ce fichier, et ce
+    chemin peut remplacer le nom de la commande.
+  ]
+
+  #terminal(
+    taille: 19pt,
+    "$ which notepad",
+    "/c/Windows/system32/notepad",
+    "$ /c/Windows/system32/notepad.exe depart/raven_une_ligne.txt",
+  )
+
+  // Sans chemin, le premier fichier trouvé ; d'où le chemin ou le réglage quand plusieurs
+  // versions d'un programme sont installées.
+  #v(0.3em)
+  #{
+    show table.cell: set text(size: 15pt)
+    tableau(
+      columns: (auto, 1fr),
+      align: left + horizon,
+      [Commande tapée], [Fichier lancé],
+      [`notepad fichier`], [le premier fichier `notepad` trouvé dans les dossiers du `PATH`, ici `/c/Windows/system32/notepad`],
+      [`/c/Windows/system32/notepad.exe fichier`], [le fichier de ce chemin, `C:\Windows\System32\notepad.exe`, sans recherche],
+    )
+  }
+
+  #legende[
+    Les deux commandes ouvrent le fichier dans le Bloc-notes. Quand plusieurs versions d'un
+    programme sont installées sur le poste, comme Python au TD 1c, il faut écrire le chemin
+    du fichier, ou régler le `PATH`.
+  ]
+
+  #notes[
+    À relever sur un poste de la salle avant la séance : la casse affichée par `which
+    notepad`, qui suit l'écriture du `PATH` du poste (`/c/WINDOWS/system32` sur certains
+    postes) ; l'ouverture du poème dans le Bloc-notes sous Windows 11, où `notepad.exe`
+    lance la nouvelle application ; l'attente de Git Bash jusqu'à la fermeture du
+    Bloc-notes, avant l'invite suivante.
+
+    Git Bash parcourt dans l'ordre la liste de dossiers du `PATH` (`echo $PATH`). Au TD 1c,
+    conda ajoute son dossier en tête de cette liste, et `python` lance alors le Python
+    d'Anaconda.
+
+    Si la question vient : `which ls` affiche `/usr/bin/ls`. Git Bash appelle `/` son
+    dossier d'installation, `C:\Program Files\Git`, et ce fichier est donc
+    `C:\Program Files\Git\usr\bin\ls.exe` ; `cygpath -w /usr/bin/ls` affiche ce chemin.
+    Seuls les chemins qui commencent par `/c/` suivent la règle de la diapositive
+    précédente.
+
+    Dans cmd, `where notepad` affiche le même fichier ; dans PowerShell, `Get-Command
+    notepad`.
+  ]
+]
+
+// --------------------------------------------
 // 28/09 : « Les fichiers cachés » et « Le motif * » réunies, textes gardés.
-#d([Fichiers cachés et motif `*`])[
-  #face-a-face(
-    panneau[Un nom qui commence par un point désigne un fichier caché : `ls` ne l'affiche pas, `ls -a` l'affiche.][
+// 09/11/2026 : l'arborescence du dossier du TD 1b, tel qu'il est livré, à gauche ; les
+// exemples de droite s'y appliquent. `*` est nommé « caractère générique ». Deux exemples
+// sur trois, et la légende passe dans les notes.
+#let _phrase-panneau(corps) = text(size: 15pt, fill: estompe, weight: demi-gras, corps)
+#d([Fichiers cachés et caractère générique `*`])[
+  #grid(
+    columns: (1fr, 1.2fr), column-gutter: 22pt, align: top,
+    [
+      #block(width: 100%, inset: (x: 10pt, y: 9pt), fill: gris, stroke: 1pt + accent.lighten(62%))[
+        #set text(size: 18pt)
+        #set align(left)
+        #raw(
+"1b_terminal/
+├── depart/
+│   ├── auld_lang_syne.odt
+│   ├── auld_lang_syne_une_ligne.donnees
+│   ├── auld_lang_syne_une_ligne.txt
+│   ├── raven.odt
+│   ├── raven_une_ligne.donnees
+│   └── raven_une_ligne.txt
+└── travail/           vide")
+      ]
+      #legende[Le dossier du TD 1b, tel qu'il est livré.]
+    ],
+    [
+      #_phrase-panneau[Un nom qui commence par un point désigne un fichier caché : `ls` ne l'affiche pas, `ls -a` l'affiche.]
       ```console
       $ ls travail
       $ ls -a travail
       ./  ../
       ```
-      #v(0.2em)
       #text(size: 14pt, fill: estompe)[
         `.` et `..`, le dossier courant et son parent, sont les deux
         entrées cachées de tout dossier.
       ]
-    ],
-    panneau[Dans un nom de fichier, `*` remplace n'importe quelle suite de caractères.][
+      #v(0.3em)
+      #_phrase-panneau[Dans un nom de fichier, le caractère générique `*` remplace n'importe quelle suite de caractères.]
       #tableau(
         columns: (auto, 1fr),
         align: left + horizon,
         [Commande], [Noms désignés dans `depart/`],
         [`ls depart/*.txt`], [les deux fichiers `.txt`],
-        [`ls depart/raven*`], [les trois fichiers de *The Raven*],
-        [`cp depart/*.odt travail/`], [les deux documents LibreOffice],
+        [`ls depart/raven*`], [les trois fichiers de _The Raven_],
       )
     ],
   )
 
-  #legende[
-    Git Bash remplace le motif par la liste des noms qui correspondent, puis
-    lance la commande. Le TD 1c crée un fichier caché, `.bash_profile`,
-    dans le dossier personnel ; le cours 2 un dossier caché, `.git`.
-  ]
-
   #notes[
-    Sorties relevées sur le dossier livré du TD 1a, `travail/` encore vide
-    (bash 5.2 sous Linux, `ls -F`). `ls depart/*.txt` donne
-    `auld_lang_syne_une_ligne.txt` et `raven_une_ligne.txt`.
+    Sorties relevées le 09/11/2026 sur le dossier livré du TD 1b (bash 5.2 sous Linux,
+    `ls -F`). `ls depart/*.txt` donne `auld_lang_syne_une_ligne.txt` et
+    `raven_une_ligne.txt` ; `ls depart/raven*`, `raven.odt`, `raven_une_ligne.donnees` et
+    `raven_une_ligne.txt`.
+
+    Les exemples portent sur le dossier du TD 1b, ouvert juste après, car le `travail/` du
+    TD 1a contient déjà les exports.
+
+    Git Bash remplace le motif, par exemple `*.txt`, par la liste des noms qui
+    correspondent, puis lance la commande. Troisième exemple, retiré pour la place :
+    `cp depart/*.odt travail/` copie les deux documents LibreOffice.
+
+    `*` s'appelle aussi joker (_wildcard_). L'expression entière, `*.txt`, est un motif,
+    _glob_ en anglais ; le cours 3 emploie le mot avec `Path.glob`.
+
+    Fichiers cachés à venir : `.bash_profile`, créé au TD 1c dans le dossier personnel ; le
+    dossier `.git`, au cours 2.
 
     Dans l'explorateur de Windows : Affichage, Afficher, Éléments masqués.
     Windows marque un fichier caché par un attribut ; Git Bash suit la

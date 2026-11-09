@@ -1,7 +1,7 @@
 # Logos des systèmes d'exploitation : sources et licences
 
 Téléchargés le 19/10/2026 sur Wikimedia Commons, sans modification, pour la
-diapositive « Les trois terminaux du poste » (`diapo/parties/02_terminal.typ`).
+diapositive « Les trois terminaux du poste de l'école » (`diapo/parties/02_terminal.typ`).
 Ce sont des marques appartenant à leurs titulaires, reproduites ici pour
 désigner les systèmes dans un support d'enseignement.
 
