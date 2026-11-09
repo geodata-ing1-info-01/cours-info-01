@@ -17,9 +17,9 @@ Code : le programme s'ouvre dans Notepad++ et se lance dans Git Bash.*
 Un programme Python est un fichier texte, et `python` est un programme en
 ligne de commande. Le TD cherche d'abord quel fichier la commande `python`
 lance, puis rend disponible dans Git Bash celui d'Anaconda, par un réglage
-fait une fois par poste. Il ouvre ensuite le programme dans un éditeur de
-texte, Notepad++, le fait exécuter depuis Git Bash, le modifie et le
-relance. Il lance ensuite un script de commandes, puis refait le calcul
+fait une fois par poste. Il copie ensuite les fichiers du TD de `depart/`
+dans `travail/`, ouvre le programme dans un éditeur de texte, Notepad++, le
+fait exécuter depuis Git Bash, le modifie et le relance. Il lance ensuite un script de commandes, puis refait le calcul
 ligne à ligne dans une session interactive. Il dure une vingtaine de
 minutes.
 
@@ -27,7 +27,7 @@ minutes.
 |---|---|---|
 | 1 | identifier le programme qu'une commande lance | trouver quel python la commande lance |
 | 2 | rendre un programme accessible depuis le terminal | rendre le Python d'Anaconda disponible dans Git Bash, une fois par poste |
-| 3 | lire un programme Python dans un éditeur | ouvrir `altitudes.py` dans Notepad++ |
+| 3 | lire un programme Python dans un éditeur | copier les fichiers de `depart` dans `travail`, puis ouvrir `travail\altitudes.py` dans Notepad++ |
 | 4 | exécuter un programme depuis le terminal | le lancer dans Git Bash |
 | 5 | relier le fichier enregistré à ce qui s'exécute | le modifier, et le relancer avant et après l'enregistrement |
 | 6 | enchaîner des commandes dans un script | lancer un script de commandes, si le temps le permet |
@@ -152,8 +152,16 @@ dossier personnel. Il se refait sur un autre poste.
 Si le réglage échoue, quelle qu'en soit la raison, faire le Python de la
 séance dans l'invite de commandes d'Anaconda : menu Démarrer, « Anaconda
 Prompt ». conda y est actif sans réglage, et `python altitudes.py` s'y tape
-de la même façon, après `cd Desktop\info01\cours1\1c_programme`. Les
-chemins s'y écrivent avec des `\`. Prévenir l'enseignant ; le réglage de
+de la même façon. Aller d'abord dans le dossier du TD, puis faire la copie de
+l'étape 3 avec la commande `copy` de l'invite :
+
+```text
+cd Desktop\info01\cours1\1c_programme
+copy depart\* travail\
+cd travail
+```
+
+Les chemins s'y écrivent avec des `\`. Prévenir l'enseignant ; le réglage de
 Git Bash se refera au cours 2.
 
 - **`source` affiche `No such file or directory`.** Anaconda est installé
@@ -178,15 +186,31 @@ Git Bash se refera au cours 2.
   sed -i '1i cygpath() { /usr/bin/cygpath "$@"; }' ~/.bash_profile
   ```
 
-## 3 · Ouvrir le programme dans Notepad++
+## 3 · Copier le programme et l'ouvrir dans Notepad++
 
-> **À faire :** ouvrir `cours1\1c_programme\altitudes.py` dans Notepad++.
+> **À faire :** copier les fichiers de `depart/` dans `travail/` ; ouvrir
+> `cours1\1c_programme\travail\altitudes.py` dans Notepad++.
 >
-> **À obtenir :** le programme affiché, en couleur.
+> **À obtenir :** `travail/` contient `altitudes.py` et `commandes.sh` ; le
+> programme affiché, en couleur.
+
+Le TD modifie le programme. Comme aux TD 1a et 1b, `depart/` garde les
+fichiers livrés, et le travail se fait sur une copie, dans `travail/`. Dans
+Git Bash, rouvert dans `1c_programme/` à l'étape 2 :
+
+```text
+cp depart/* travail/
+cd travail
+ls
+```
+
+`cp depart/* travail/` copie les deux fichiers de `depart/` dans `travail/`,
+et `cd travail` fait de ce dossier le dossier courant. `ls` affiche
+`altitudes.py` et `commandes.sh`.
 
 1. Lancer Notepad++ (menu Démarrer, « Notepad++ »).
-2. Menu Fichier, Ouvrir…, aller dans `Bureau\info01\cours1\1c_programme`,
-   et choisir `altitudes.py`.
+2. Menu Fichier, Ouvrir…, aller dans
+   `Bureau\info01\cours1\1c_programme\travail`, et choisir `altitudes.py`.
 
 Le fichier compte huit lignes : une chaîne de documentation, une ligne
 vide, puis six lignes de code.
@@ -207,19 +231,18 @@ de la fenêtre de Notepad++.
 
 ## 4 · Lancer le programme dans Git Bash
 
-> **À faire :** placer Git Bash dans `1c_programme/` ; `python altitudes.py`.
+> **À faire :** dans `travail/`, lancer `python altitudes.py`.
 >
 > **À obtenir :** `moyenne : 93.7 m`.
 
-Dans Git Bash, rouvert dans `1c_programme/` à l'étape 2 :
+Dans Git Bash, dans `travail/` depuis l'étape 3 :
 
 ```text
-ls
 python altitudes.py
 ```
 
-`ls` affiche `altitudes.py` et `commandes.sh`. La commande `python altitudes.py` lance
-l'interpréteur Python, qui lit le fichier et l'exécute :
+La commande `python altitudes.py` lance l'interpréteur Python, qui lit le
+fichier et l'exécute :
 
 ```text
 moyenne : 93.7 m
@@ -233,8 +256,8 @@ fichiers. Lancer un programme Python ne crée aucun fichier.
 
 Si Git Bash affiche `python: command not found`, l'étape 2 n'est pas faite
 sur ce poste. Si Python affiche `can't open file … No such
-file or directory`, le dossier courant n'est pas `1c_programme` : lire
-l'invite, et refaire le `cd`.
+file or directory`, le dossier courant n'est pas `travail` : lire
+l'invite, et refaire le `cd` de l'étape 3.
 
 ## 5 · Modifier, relancer
 
@@ -267,8 +290,7 @@ l'invite, et refaire le `cd`.
 moyenne : 93.4 m
 ```
 
-La moyenne des quatre altitudes vaut 130,05, arrondie à une décimale par
-`:.1f`.
+La somme des quatre altitudes vaut 373,6, et leur moyenne 93,4.
 
 ## 6 · Lancer un script de commandes, si le temps le permet
 
@@ -280,23 +302,24 @@ La moyenne des quatre altitudes vaut 130,05, arrondie à une décimale par
 
 Un script est un fichier texte qui contient des commandes. `bash` les lit
 et les exécute dans l'ordre, comme si on les tapait. Dans Notepad++, ouvrir
-`1c_programme\commandes.sh` :
+`1c_programme\travail\commandes.sh`, la copie de l'étape 3 :
 
 ```bash
 # Commandes du TD 1b, puis le programme du TD 1c.
-# Lancer depuis 1c_programme : bash commandes.sh
+# Lancer depuis 1c_programme/travail : bash commandes.sh
 mkdir -p copies
-cp ../1b_terminal/depart/*.txt copies/
+cp ../../1b_terminal/depart/*.txt copies/
 ls copies
 python altitudes.py
 ```
 
 Une ligne qui commence par `#` est un commentaire, que bash ne lit pas.
-`mkdir -p` crée le dossier `copies`, sans erreur s'il existe déjà. La
-dernière ligne lance le programme du TD : `python` est une commande comme
-`ls` ou `cp`.
+`mkdir -p` crée le dossier `copies`, sans erreur s'il existe déjà. Depuis
+`travail/`, `../../1b_terminal` remonte de deux dossiers, jusqu'à `cours1`,
+puis descend dans le dossier du TD 1b. La dernière ligne lance le programme
+du TD : `python` est une commande comme `ls` ou `cp`.
 
-Dans Git Bash, dans `1c_programme/` :
+Dans Git Bash, dans `travail/` :
 
 ```text
 bash commandes.sh
@@ -412,9 +435,9 @@ dans les chemins. [À vérifier sur un poste de la salle : ce fichier n'a pas
 
 ```bat
 rem Commandes du TD 1b, puis le programme du TD 1c.
-rem Lancer depuis 1c_programme : commandes.bat
+rem Lancer depuis 1c_programme\travail : commandes.bat
 if not exist copies mkdir copies
-copy ..\1b_terminal\depart\*.txt copies\
+copy ..\..\1b_terminal\depart\*.txt copies\
 dir /b copies
 python altitudes.py
 ```
@@ -422,6 +445,6 @@ python altitudes.py
 `rem` commence un commentaire. `if not exist copies mkdir copies` crée le
 dossier seulement s'il n'existe pas. Dans l'invite de commandes, le fichier
 se lance en tapant son nom, `commandes.bat`, depuis le dossier
-`1c_programme`. La dernière ligne demande que `python` soit disponible dans
+`1c_programme\travail`. La dernière ligne demande que `python` soit disponible dans
 l'invite, comme dans l'invite de commandes d'Anaconda.
 

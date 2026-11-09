@@ -120,9 +120,9 @@ et le disque `C:` devient `/c`. Le même dossier s'écrit
 
 ## 2 · Se déplacer et lister
 
-> **À faire :** lister le dossier courant et `depart/` ; afficher les entrées cachées ; descendre dans `depart/` et remonter ; lister un dossier d'un autre TD.
+> **À faire :** afficher le dossier courant ; lister le contenu de `depart/` et de `travail/` ; entrer dans `depart/` ; lister depuis ce dossier le contenu de `1a_formats/travail` ; revenir dans `1b_terminal`.
 >
-> **À obtenir :** l'invite suit chaque `cd` ; `ls ../1a_formats/travail` montre les exports du TD 1a.
+> **À obtenir :** l'invite suit chaque `cd` ; `ls ../../1a_formats/travail`, tapé dans `depart/`, montre les copies du TD 1a.
 
 ### Lister
 
@@ -175,21 +175,31 @@ pwd
 L'invite et `pwd` se terminent maintenant par `1b_terminal/depart`. `cd`
 (« change directory ») change le dossier courant.
 
+Les chemins relatifs partent du dossier courant. Le schéma les donne depuis
+`1b_terminal` :
+
+![Les chemins relatifs depuis 1b_terminal](illustrations/arborescence.png)
+
+Depuis `depart`, il faut un `..` de plus : `..` désigne `1b_terminal`, et
+`../..` désigne `cours1`. Sans quitter `depart` :
+
+```text
+ls ../../1a_formats/travail
+```
+
+```text
+raven.pdf  raven.png  raven.txt
+```
+
+La commande liste les copies faites au TD 1a. Si le bonus du TD 1a est
+fait, la liste contient aussi `raven.zip` et le dossier `raven/`.
+
+Revenir dans `1b_terminal`, d'où partent les commandes de la suite du TD :
+
 ```text
 cd ..
 pwd
 ```
-
-retour dans `1b_terminal`. Les chemins relatifs partent du dossier courant :
-
-![Les chemins relatifs depuis 1b_terminal](illustrations/arborescence.png)
-
-```text
-ls ../1a_formats/travail
-```
-
-liste les fichiers exportés au TD 1a (`raven.pdf`, `raven.png`), sans
-quitter `1b_terminal`.
 
 **Vérification** : l'invite se termine par `1b_terminal`.
 
@@ -273,9 +283,13 @@ de Windows : `explorer.exe travail\\raven_odt.pdf`.
 
 ## 4 · Un espace dans un nom de fichier
 
-> **À faire :** copier `raven_une_ligne.txt` sous le nom `le corbeau.txt`, sans puis avec guillemets ; l'ouvrir.
+> **À faire :** copier `raven_une_ligne.txt` dans `travail/` sous le nom `le corbeau.txt` ; déterminer comment écrire ce nom dans une commande ; ouvrir la copie.
 >
 > **À obtenir :** la copie `le corbeau.txt` dans `travail/`, ouverte dans le Bloc-notes.
+
+Dans une commande, les espaces séparent le programme, ses options et ses
+arguments. Le chemin `travail/le corbeau.txt` devient donc deux arguments.
+Faire d'abord la copie sans précaution :
 
 ```text
 cp depart/raven_une_ligne.txt travail/le corbeau.txt
@@ -287,10 +301,12 @@ Git Bash affiche un message d'erreur, par exemple :
 cp: target 'corbeau.txt' is not a directory
 ```
 
-Git Bash découpe la ligne aux espaces : `cp` a reçu trois noms,
-`depart/raven_une_ligne.txt`, `travail/le` et `corbeau.txt`, et il copie
-les deux premiers dans le troisième, qu'il prend pour un dossier. Entre
-guillemets, le nom reste un seul argument :
+`cp` a reçu trois noms, `depart/raven_une_ligne.txt`, `travail/le` et
+`corbeau.txt`, et il copie les deux premiers dans le troisième, qu'il prend
+pour un dossier.
+
+Il faut écrire le nom pour qu'il reste un seul argument. Essayer les
+guillemets, puis vérifier la copie et l'ouvrir :
 
 ```text
 cp depart/raven_une_ligne.txt "travail/le corbeau.txt"
@@ -362,8 +378,8 @@ lequel employer. Même constat qu'au TD 1a de 2026, où le renommage se faisait 
 souris.
 
 **Le dossier courant.** Chaque commande part du dossier courant, affiché
-dans l'invite et par `pwd`. Un chemin relatif (`depart`,
-`../1a_formats/travail`) part de lui ; un chemin absolu (`/c/Users/…`) ou
+dans l'invite et par `pwd`. Un chemin relatif (`depart`, ou
+`../../1a_formats/travail` tapé dans `depart`) part de lui ; un chemin absolu (`/c/Users/…`) ou
 qui commence par `~` part d'ailleurs, et vaut depuis n'importe quel
 dossier.
 

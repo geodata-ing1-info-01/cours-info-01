@@ -166,8 +166,8 @@ obtenir, et l'empêche de réfléchir à la façon de faire.
 - Une action s'écrit en consigne. Elle ne se cache ni dans un encadré, ni dans une annonce,
   ni dans une légende.
 - L'objectif nomme les fichiers employés, y compris ceux qu'une étape précédente a produits.
-- Une étape à faire en même temps que la salle porte un avertissement, sous l'objectif, qui
-  demande d'attendre le signal de l'enseignant.
+- Une étape à faire en même temps que la salle porte un avertissement qui demande d'attendre
+  le signal de l'enseignant. Sa place, avant ou après l'objectif, dépend de la diapositive.
 
 **Diapositives d'étape de TD** (à l'essai depuis le 30/09/2026). Une
 diapositive « Étape n » donne, l'un sous l'autre, ce qu'on doit obtenir à la

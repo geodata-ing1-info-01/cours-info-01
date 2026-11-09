@@ -130,7 +130,9 @@
 
 // 09/11/2026 : un objectif, et les deux premières consignes de « Cycle d'édition d'un
 // programme » (ouvrir, lancer), qui en perd autant. La sortie, affichée jusque-là à
-// droite, passe dans le constat de la consigne 2, au corrigé.
+// droite, passe dans le constat de la consigne 2, au corrigé. Même jour : les fichiers
+// du TD passent dans `depart/`, comme aux TD 1a et 1b ; la première consigne les copie
+// dans `travail/`, où le TD les modifie.
 #d("Le programme du TD")[
   #annonce[
     Le programme `altitudes.py` calcule la moyenne de trois altitudes, puis
@@ -138,8 +140,8 @@
   ]
 
   #objectif[
-    ouvrir `altitudes.py`, du dossier `1c_programme`, dans Notepad++, puis le lancer dans Git
-    Bash depuis ce dossier.
+    copier les fichiers de `depart` dans `travail`, puis ouvrir `travail/altitudes.py` dans
+    Notepad++ et le lancer dans Git Bash depuis `travail`.
   ]
 
   #face-a-face(
@@ -154,10 +156,11 @@
       ```
     ],
     consignes(
-      taille: 16pt,
-      [Ouvrir `altitudes.py` dans Notepad++ : #comment[Fichier, Ouvrir, puis `cours1\1c_programme\altitudes.py`.]
+      taille: 15pt,
+      [Copier les fichiers de `depart` dans `travail`, puis entrer dans `travail` : #commandes("cp depart/* travail/", "cd travail")],
+      [Ouvrir `altitudes.py` dans Notepad++ : #comment[Fichier, Ouvrir, puis `cours1\1c_programme\travail\altitudes.py`.]
         #constat[Le code en couleur : Notepad++ reconnaît l'extension `.py`.]],
-      [Lancer le programme dans Git Bash, ouvert dans `1c_programme` : `python altitudes.py`.
+      [Lancer le programme dans Git Bash : `python altitudes.py`.
         #constat[`moyenne : 93.7 m`, une seule ligne, écrite par le `print` final.]],
     ),
   )
@@ -168,6 +171,9 @@
 
     Git Bash a été rouvert dans `1c_programme/` à la diapositive précédente. Si `python`
     n'est pas trouvé, le réglage de conda dans Git Bash n'a pas été fait sur ce poste.
+
+    Les étapes suivantes modifient la copie de `travail/`, et `depart/` garde les fichiers
+    livrés, comme aux TD 1a et 1b.
 
     Six lignes, une boucle donc un état qui change, un résultat vérifiable
     de tête : le `hello world` n'avait aucune de ces propriétés.
@@ -284,7 +290,7 @@
 
   #consignes(
     taille: 16pt,
-    [Ouvrir `commandes.sh` dans Notepad++, et lire ses six lignes, reproduites ci-dessous.
+    [Ouvrir `travail\commandes.sh` dans Notepad++, et lire ses six lignes, reproduites ci-dessous.
       #constat[Deux commentaires, qui commencent par `#`, puis quatre commandes. Notepad++ reconnaît l'extension `.sh`.]],
     [Lancer le script dans Git Bash : `bash commandes.sh`.
       #constat[Les deux fichiers `.txt` copiés dans `copies/`, puis `moyenne : 93.4 m`.]],
@@ -295,9 +301,9 @@
   #panneau[`commandes.sh`][
     #text(size: 15pt)[```bash
     # Commandes du TD 1b, puis le programme du TD 1c.
-    # Lancer depuis 1c_programme : bash commandes.sh
+    # Lancer depuis 1c_programme/travail : bash commandes.sh
     mkdir -p copies
-    cp ../1b_terminal/depart/*.txt copies/
+    cp ../../1b_terminal/depart/*.txt copies/
     ls copies
     python altitudes.py
     ```]

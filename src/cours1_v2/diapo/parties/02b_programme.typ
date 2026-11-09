@@ -392,7 +392,7 @@
     panneau[Exécuter un fichier : `python altitudes.py`][
       #terminal(
         taille: 17pt,
-        "$ cd ~/Desktop/info01/cours1/1c_programme",
+        "$ cd ~/Desktop/info01/cours1/1c_programme/depart",
         "$ python altitudes.py",
         "moyenne : 93.7 m",
       )
@@ -423,7 +423,8 @@
     pour JupyterLab à la partie 3. L'invite de commandes d'Anaconda est
     `cmd`, avec conda déjà activé : `python` y lance le Python d'Anaconda
     sans réglage. Elle s'ouvre dans `C:\Users\eleve` ; y taper
-    `cd Desktop\info01\cours1\1c_programme`.
+    `cd Desktop\info01\cours1\1c_programme\travail`, le dossier où le TD 1c copie le
+    programme.
 
     Un programme Python n'ouvre de fenêtre que s'il le demande, par une
     bibliothèque graphique. Ceux du module écrivent dans le terminal ou

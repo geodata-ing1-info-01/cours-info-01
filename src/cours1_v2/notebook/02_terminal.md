@@ -6,14 +6,16 @@ subtitle: La ligne de commande, Git Bash, les commandes de base et les chemins
 Cette partie présente la ligne de commande, à côté de l'interface graphique
 qu'on connaît déjà. Elle décrit ensuite le terminal et l'interpréteur de
 commandes, le terminal du module, Git Bash, la forme d'une commande, les
-commandes de base et l'écriture des chemins. Le [TD
-1b](td/1b_terminal/guide.md) l'accompagne ; il est présenté en fin de page.
+commandes de base, l'écriture des chemins, et le fichier qu'une commande
+lance. Le [TD 1b](td/1b_terminal/guide.md) l'accompagne ; il est présenté en
+fin de page.
 
 ## Interface graphique et ligne de commande
 
 Dans une **interface graphique**, on choisit l'opération parmi celles que la
-fenêtre affiche. En **ligne de commande**, on tape le nom de l'opération,
-qu'il faut connaître.
+fenêtre affiche. En **ligne de commande**, on tape une commande, le nom de
+l'opération, puis ses paramètres. Il faut donc connaître ce nom, ou le
+chercher dans l'aide.
 
 ```{figure} figures/2_gui_cli.svg
 :alt: Deux panneaux. À gauche, l'explorateur de fichiers : raven.odt sélectionné dans depart, et le menu du clic droit ouvert sur Copier. À droite, Git Bash : la commande cp depart/raven.odt travail/.
@@ -62,10 +64,18 @@ sert d'exemple : le programme `magick` n'est installé qu'au cours 4.
   - par `ssh`, vu au cours 5
 ```
 
-L'interface graphique se prend en main plus vite. La ligne de commande
-**répète** une opération sur beaucoup de fichiers, et la commande **se
-conserve** pour être relancée. Des logiciels graphiques ont aussi un
-traitement par lots, limité aux opérations qu'ils prévoient.
+L'interface graphique se prend en main plus vite. Face à elle, la ligne de
+commande facilite l'**automatisation**. Le traitement par lot y est plus
+courant, et une suite de commandes s'enregistre dans un script, puis se
+relance avec d'autres paramètres. Des logiciels graphiques ont aussi un
+traitement par lot, comme QGIS, limité aux opérations qu'ils prévoient. Un
+programme en ligne de commande est aussi plus simple à écrire, sans fenêtre
+ni bouton à programmer.
+
+Savoir se servir de la ligne de commande a un autre intérêt. Beaucoup de
+logiciels scientifiques ne s'utilisent qu'en ligne de commande, comme GDAL
+pour les données géographiques, ou PDAL pour les nuages de points. Les
+serveurs de calcul s'utilisent aussi à distance, sans interface graphique.
 
 ## Le terminal et l'interpréteur de commandes
 
@@ -77,13 +87,15 @@ Deux programmes se partagent le travail :
   programme qu'elle nomme.
 
 ```{figure} figures/2_terminal.svg
-:alt: À gauche, une chaîne de quatre étapes : ce qu'on tape, ls depart puis Entrée ; le terminal, la fenêtre, qui transmet la ligne ; l'interpréteur de commandes, bash, qui découpe la ligne et lance ls ; le programme ls, qui écrit la liste des fichiers. À droite, la fenêtre de Git Bash, avec la commande ls depart et la liste des fichiers du dossier depart du TD 1b.
+:alt: À gauche, une chaîne de cinq étapes : ce qu'on tape, ls depart puis Entrée ; le terminal, la fenêtre, qui transmet la ligne ; l'interpréteur de commandes, bash, qui découpe la ligne et lance ls ; le programme ls, qui écrit la liste des fichiers ; l'interpréteur de commandes, qui réaffiche l'invite et attend la ligne suivante. À droite, la fenêtre de Git Bash, avec la commande ls depart, la liste des fichiers du dossier depart du TD 1b, puis l'invite suivante.
 
 La commande `ls depart`, de la frappe à la liste des fichiers.
 ```
 
-Le mot « terminal » désigne souvent les deux à la fois. Le langage des
-commandes est celui de l'interpréteur : cmd, PowerShell ou bash.
+Quand le programme a fini, l'interpréteur réaffiche l'invite, et attend la
+ligne suivante. Le mot « terminal » désigne souvent les deux programmes à la
+fois. Le langage des commandes est celui de l'interpréteur : cmd, PowerShell
+ou bash.
 
 ## Git Bash, le terminal du module
 
@@ -320,53 +332,9 @@ propre à Windows ; sous macOS, la commande est `open`, sous Linux
 ## Le chemin d'un fichier
 
 Un chemin **absolu** part de la racine. Un chemin **relatif** part du
-dossier courant. Dans l'arborescence suivante, les trois chemins du tableau
-désignent le même fichier, `raven.odt`, depuis trois endroits différents.
-
-```text
-C:\Users\alice\
-└─ cours1\
-   ├─ 1a_formats\
-   │  └─ depart\
-   │     └─ raven.odt
-   └─ 1c_programme\
-      └─ altitudes.py
-```
-
-```{list-table}
-:header-rows: 1
-
-* -
-  - Le chemin de `raven.odt`
-  - Depuis
-* - Absolu
-  - `C:\Users\alice\cours1\1a_formats\depart\raven.odt`
-  - n'importe où
-* - Relatif
-  - `1a_formats\depart\raven.odt`
-  - `cours1`
-* - Relatif qui remonte
-  - `..\1a_formats\depart\raven.odt`
-  - `1c_programme`
-```
-
-- Deux points, `..`, désignent le **dossier parent** ; un point, `.`, le
-  **dossier courant**.
-- Sous Windows, le séparateur est la barre inversée `\` ; sous macOS et
-  Linux, la barre `/`. Le même fichier s'y écrit
-  `/home/alice/cours1/1a_formats/depart/raven.odt`.
-
-Un programme ne connaît pas à l'avance le chemin absolu du dossier d'un
-utilisateur, mais il peut s'appuyer sur la position relative des fichiers.
-Un projet qui n'emploie que des **chemins relatifs** se copie, se déplace et
-s'envoie sans modification ; un chemin absolu écrit dans le code ne vaut que
-sur le poste où il a été écrit. Le TD 2b fait corriger un chemin
-de ce genre.
-
-## Les chemins dans Git Bash
-
-Git Bash écrit les chemins à la façon de Linux : des barres obliques, et le
-disque `C:` devient `/c`.
+dossier courant. Les exemples de cette page s'écrivent dans Git Bash, qui
+note les chemins à la façon de Linux et de macOS : le disque `C:` devient
+`/c`, et chaque barre inversée `\` devient une barre `/`.
 
 ```{list-table}
 :header-rows: 1
@@ -374,8 +342,8 @@ disque `C:` devient `/c`.
 * - Dans l'explorateur
   - Dans Git Bash
   -
-* - `C:\Users\eleve\Desktop\info01`
-  - `/c/Users/eleve/Desktop/info01`
+* - `C:\Users\eleve`
+  - `/c/Users/eleve`
   - chemin absolu
 * - `C:\Users\eleve`
   - `~`
@@ -386,15 +354,81 @@ disque `C:` devient `/c`.
 * - le dossier au-dessus
   - `..`
   - le dossier parent
-* - `..\1a_formats\depart`
-  - `../1a_formats/depart`
-  - chemin relatif
 ```
+
+Dans l'arborescence suivante, les trois chemins du tableau désignent le même
+fichier, `raven.odt`, depuis trois endroits différents.
+
+```text
+~/Desktop/info01/cours1/
+├─ 1a_formats/depart/raven.odt
+└─ 1c_programme/depart/altitudes.py
+```
+
+```{list-table}
+:header-rows: 1
+
+* -
+  - Le chemin de `raven.odt`
+  - Depuis
+* - Absolu
+  - `/c/Users/eleve/Desktop/info01/cours1/1a_formats/depart/raven.odt`
+  - la racine
+* - Relatif
+  - `1a_formats/depart/raven.odt`
+  - `cours1`
+* - Relatif qui remonte
+  - `../1a_formats/depart/raven.odt`
+  - `1c_programme`
+```
+
+Sous Windows, Python accepte aussi les `/` dans un chemin.
 
 :::{note}
 Un chemin copié depuis la barre d'adresse de l'explorateur garde ses `\`.
 Dans Git Bash, il s'écrit entre guillemets : `cd "C:\Users\eleve\Desktop"`.
 Sur un clavier français, `~` se tape `AltGr` + `2`, puis espace.
+:::
+
+Un programme ne connaît pas à l'avance le chemin absolu du dossier d'un
+utilisateur, mais il peut s'appuyer sur la position relative des fichiers.
+Un projet qui n'emploie que des **chemins relatifs** se copie, se déplace et
+s'envoie sans modification ; un chemin absolu écrit dans le code ne vaut que
+sur le poste où il a été écrit. Le TD 2b fait corriger un chemin
+de ce genre.
+
+## Le fichier exécutable d'une commande
+
+Une commande lance un fichier exécutable. `which` affiche le chemin de ce
+fichier, et ce chemin peut remplacer le nom de la commande :
+
+```text
+$ which notepad
+/c/Windows/system32/notepad
+$ /c/Windows/system32/notepad.exe depart/raven_une_ligne.txt
+```
+
+*Sortie à relever sur un poste de la salle avant la version finale.*
+
+La seconde commande ouvre le poème dans le Bloc-notes, comme
+`notepad depart/raven_une_ligne.txt`. Sans chemin, Git Bash lance le premier
+fichier `notepad` trouvé dans une liste de dossiers, la variable **`PATH`**.
+Avec le chemin, il lance ce fichier, sans recherche. Le chemin
+`/c/Windows/system32/notepad.exe` désigne le fichier
+`C:\Windows\System32\notepad.exe` de l'explorateur.
+
+Quand plusieurs versions d'un programme sont installées sur le poste, comme
+Python au TD 1c, il faut donc écrire le chemin du fichier, ou régler le
+`PATH`. La partie [Premier programme](03_premier_programme.md) montre la
+liste des dossiers du `PATH`, avant et après le réglage de conda.
+
+:::{note}
+`which ls` affiche `/usr/bin/ls`. Git Bash appelle `/` son dossier
+d'installation, `C:\Program Files\Git`, et ce fichier est donc
+`C:\Program Files\Git\usr\bin\ls.exe` ; `cygpath -w /usr/bin/ls` affiche ce
+chemin. Seuls les chemins qui commencent par `/c/` suivent la règle de la
+section précédente. Dans l'invite de commandes, `where notepad` affiche le
+même fichier que `which notepad`.
 :::
 
 ## Fichiers cachés et caractère générique `*`

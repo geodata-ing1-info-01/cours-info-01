@@ -57,19 +57,10 @@ cours7/index
 
 ```{toctree}
 :maxdepth: 1
-:caption: Cours 4, version 2
+:caption: Séances 4 et 5, version 2
 
-cours4_v2/notebook/td/4a_trace/guide
-```
-
-```{toctree}
-:maxdepth: 1
-:caption: Cours 5, version 2
-
-cours5_v2/notebook/td/5a_distribution/guide
-cours5_v2/notebook/td/5b_environnement/guide
-cours5_v2/notebook/td/5c_description/guide
-cours5_v2/notebook/td/5d_noyau/guide
+cours4_v2/index
+cours5_v2/index
 ```
 
 ```{toctree}

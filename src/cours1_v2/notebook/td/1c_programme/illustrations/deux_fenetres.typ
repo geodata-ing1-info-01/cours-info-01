@@ -1,5 +1,6 @@
 // Le programme du TD 1c (cours 1 v2) : `altitudes.py` dans Notepad++ à
 // gauche, Git Bash à droite, où il est lancé. Schéma, pas une capture.
+// 09/11/2026 : Git Bash ouvert dans `travail/`, où le TD copie le programme.
 #import "../../../../../commun/prelude.typ": *
 #set page(width: auto, height: auto, margin: 12pt, fill: white)
 #set text(font: police-texte, size: 10pt, fill: accent, lang: "fr")
@@ -24,16 +25,16 @@
       ```
     ],
     block(width: 100%, stroke: 1pt + accent.lighten(55%))[
-      #block(width: 100%, fill: gris, inset: (x: 9pt, y: 6pt))[#text(size: 10pt, fill: estompe)[MINGW64:/c/Users/eleve/Desktop/info01/cours1/1c_programme]]
+      #block(width: 100%, fill: gris, inset: (x: 9pt, y: 6pt))[#text(size: 10pt, fill: estompe)[MINGW64:/c/Users/eleve/Desktop/info01/cours1/1c_programme/travail]]
       #block(width: 100%, fill: rgb("#101010"), inset: 8pt)[
         #set text(font: police-code, size: 8.5pt, fill: white)
         (base) \
-        #text(fill: rgb("#2f9e44"))[eleve\@POSTE-12] #text(fill: rgb("#9c36b5"))[MINGW64] #text(fill: rgb("#b08800"))[\~/Desktop/info01/cours1/1c_programme] \
+        #text(fill: rgb("#2f9e44"))[eleve\@POSTE-12] #text(fill: rgb("#9c36b5"))[MINGW64] #text(fill: rgb("#b08800"))[\~/Desktop/info01/cours1/1c_programme/travail] \
         \$ python altitudes.py #repere(2) \
         moyenne : 93.7 m #repere(3) \
         \
         (base) \
-        #text(fill: rgb("#2f9e44"))[eleve\@POSTE-12] #text(fill: rgb("#9c36b5"))[MINGW64] #text(fill: rgb("#b08800"))[\~/Desktop/info01/cours1/1c_programme] \
+        #text(fill: rgb("#2f9e44"))[eleve\@POSTE-12] #text(fill: rgb("#9c36b5"))[MINGW64] #text(fill: rgb("#b08800"))[\~/Desktop/info01/cours1/1c_programme/travail] \
         \$ #box(width: 5pt, height: 9pt, fill: white)
       ]
     ],

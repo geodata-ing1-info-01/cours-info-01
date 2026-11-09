@@ -450,7 +450,7 @@
       #set par(leading: 0.6em)
       \~/Desktop/info01/cours1/ \
       ├─ 1a_formats/depart/raven.odt \
-      └─ 1c_programme/altitudes.py
+      └─ 1c_programme/depart/altitudes.py
     ],
   )
 

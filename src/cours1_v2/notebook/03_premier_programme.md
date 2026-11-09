@@ -22,7 +22,7 @@ terminal où Python est disponible convient :
 **Dans Git Bash**
 
 ```text
-$ cd ~/Desktop/info01/cours1/1c_programme
+$ cd ~/Desktop/info01/cours1/1c_programme/depart
 $ python altitudes.py
 moyenne : 93.7 m
 ```
@@ -32,8 +32,8 @@ moyenne : 93.7 m
 **Dans l'invite de commandes d'Anaconda**
 
 ```text
-(base) …>cd Desktop\info01\cours1\1c_programme
-(base) …\1c_programme>python altitudes.py
+(base) …>cd Desktop\info01\cours1\1c_programme\depart
+(base) …\depart>python altitudes.py
 moyenne : 93.7 m
 ```
 :::
@@ -190,9 +190,9 @@ commande, aussi souvent qu'il le faut.
 
 ```bash
 # Commandes du TD 1b, puis le programme du TD 1c.
-# Lancer depuis 1c_programme : bash commandes.sh
+# Lancer depuis 1c_programme/travail : bash commandes.sh
 mkdir -p copies
-cp ../1b_terminal/depart/*.txt copies/
+cp ../../1b_terminal/depart/*.txt copies/
 ls copies
 python altitudes.py
 ```
@@ -235,9 +235,9 @@ On choisit, pour une tâche, le plus simple des outils qui la font.
 
 - [TD 1c — Lancer un programme](td/1c_programme/guide.md), 20
   minutes : voir quel `python` la commande lance ; régler conda dans Git
-  Bash, une fois par poste ; ouvrir `altitudes.py` dans Notepad++, le
-  lancer, le modifier et le relancer ; lancer `commandes.sh` si le temps le
-  permet ; Python en interactif.
+  Bash, une fois par poste ; copier les fichiers de `depart` dans `travail` ;
+  ouvrir `altitudes.py` dans Notepad++, le lancer, le modifier et le relancer ;
+  lancer `commandes.sh` si le temps le permet ; Python en interactif.
 
 Les TD des autres parties sont dans [Travaux dirigés de la séance 1,
 version 2](travaux_diriges.md).

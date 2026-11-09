@@ -35,8 +35,9 @@ les étapes avec lui.
 |---|---|---|
 | 1 | travailler sur le disque du poste, hors du dossier partagé | copier les fichiers de la séance sur le poste |
 | 2 | travailler sur des copies, à côté des fichiers livrés | préparer le dossier du TD |
-| 3 | produire un même texte dans plusieurs formats | exporter un même document en trois formats |
-| 4 | comparer fichiers texte et fichiers binaires dans un éditeur | lire les fichiers avec deux éditeurs de texte |
+| 3 | produire un même texte dans plusieurs formats | exporter un document en PDF et en PNG, puis l'enregistrer en texte |
+| 4 | comparer fichiers texte et fichiers binaires | comparer la taille de trois fichiers, puis les lire avec deux éditeurs de texte |
+| bonus | voir de quoi est fait un `.odt` | extraire le contenu d'une copie de `raven.odt` |
 | 5 | voir ce que devient un fichier du dossier partagé modifié par plusieurs personnes | modifier à plusieurs un fichier partagé |
 
 Chaque étape commence par un encadré qui la résume. Ce que chaque étape fait
@@ -154,6 +155,17 @@ ces opérations, et ce qu'on fait du dossier `info01` à la fin de la séance.
 
 **Vérification** : `cours1` apparaît à côté de l'archive, dans `info01`.
 
+```text
+Bureau\
+└── info01\
+    ├── info01-cours1.zip
+    └── cours1\
+        ├── 1a_formats\
+        ├── 1b_terminal\
+        ├── 1c_programme\
+        └── 1d_notebook\
+```
+
 ## 2 · Préparer le dossier du TD
 
 > **À faire :** afficher les extensions dans l'explorateur ; ouvrir le
@@ -204,20 +216,22 @@ La suite du guide écrit les chemins à partir de `1a_formats\`.
 `cours1\1a_formats` (ou « Bureau > info01 > cours1 > 1a_formats »), et
 `depart\` montre `raven.odt` avec son extension.
 
-## 3 · Exporter un même document en trois formats
+## 3 · Copier un même document dans trois formats
 
 > **À faire :** ouvrir `depart\raven.odt` dans LibreOffice Writer ;
-> l'exporter en PDF, puis en PNG, dans `travail\` ; fermer Writer sans
-> enregistrer ; rouvrir les trois fichiers.
+> l'exporter en PDF, puis en PNG, et l'enregistrer en texte, dans
+> `travail\` ; fermer Writer sans enregistrer ; comparer les quatre
+> fichiers.
 >
-> **À obtenir :** `travail\` contient `raven.pdf` et `raven.png` ;
-> `depart\raven.odt` n'a pas changé.
+> **À obtenir :** `travail\` contient `raven.pdf`, `raven.png` et
+> `raven.txt` ; `depart\raven.odt` n'a pas changé.
 
 Le document de départ est `depart\raven.odt`. Dans cette étape, vous
 l'ouvrez dans Writer, puis vous l'exportez en PDF, puis en PNG, dans
 `travail\`. La commande Exporter enregistre une copie du document dans un
 nouveau fichier. Le document ouvert dans Writer reste `raven.odt`, et il
-n'est pas modifié.
+n'est pas modifié. Vous l'enregistrez enfin en texte, par Enregistrer sous.
+Cette commande remplace le document ouvert par la copie.
 
 ![Le document de départ, ouvert dans Writer, et ses deux exports](illustrations/exports.png)
 
@@ -269,11 +283,28 @@ changé le document ouvert.
 
 **Vérification** : `travail\` contient `raven.pdf` et `raven.png`.
 
-### 3.4 Fermer Writer sans enregistrer
+### 3.4 Enregistrer en texte
 
-Fermer Writer. Si une fenêtre demande d'enregistrer les modifications de
-`raven.odt`, répondre « Ne pas enregistrer ». Le document de départ reste
-tel qu'il a été livré.
+1. Menu Fichier, Enregistrer sous…
+2. Dans la liste « Type », choisir « Texte (.txt) ». Le nom devient
+   `raven.txt`.
+3. Vérifier que la fenêtre affiche `travail\`, puis cliquer sur
+   « Enregistrer ».
+4. Writer demande quel format garder. Cliquer sur « Utiliser le format
+   Texte ! ».
+
+*Libellés de la question et du type à vérifier sur un poste de la salle.*
+
+**Vérification** : `travail\` contient `raven.txt`. La barre de titre de
+Writer indique maintenant `raven.txt` : Enregistrer sous a remplacé le
+document ouvert par la copie. La question de Writer prévient que le format
+Texte ne garde pas la mise en forme.
+
+### 3.5 Fermer Writer sans enregistrer
+
+Fermer Writer. Si une fenêtre demande d'enregistrer les modifications,
+répondre « Ne pas enregistrer ». Le document de départ reste tel qu'il a
+été livré.
 
 **Dossier à la fin de l'étape** :
 
@@ -284,23 +315,28 @@ tel qu'il a été livré.
 │   └── …
 └── travail\
     ├── raven.pdf              l'export en PDF
-    └── raven.png              l'export en image
+    ├── raven.png              l'export en image
+    └── raven.txt              la copie en texte
 ```
 
-### 3.5 Comparer les trois fichiers
+### 3.6 Comparer les quatre fichiers
 
-Rouvrir les trois fichiers par un double-clic : `depart\raven.odt`,
-`travail\raven.pdf`, `travail\raven.png`. Windows ouvre chacun avec le
-logiciel associé à son extension : Writer pour le `.odt`, le lecteur PDF du
-poste pour le `.pdf`, la visionneuse d'images pour le `.png`. Dans chacun,
-essayer de sélectionner une ligne du poème, puis de chercher un mot avec
-`Ctrl` + `F`.
+Ouvrir les quatre fichiers l'un après l'autre. Dans chacun, sélectionner une
+ligne du poème, chercher un mot avec `Ctrl` + `F`, puis essayer de modifier
+un mot.
 
-Ouvert depuis LibreOffice (Fichier, Ouvrir), le `.png` s'affiche dans Draw,
-comme une image posée sur une page.
+1. `depart\raven.odt` : double-clic. Writer l'ouvre.
+2. `travail\raven.txt` : dans Writer, menu Fichier, Ouvrir. Le même logiciel
+   ouvre le `.odt` et le `.txt`, et la comparaison ne porte que sur le
+   fichier.
+3. `travail\raven.pdf` : double-clic, pour l'ouvrir dans le lecteur PDF du
+   poste. Ouvert depuis LibreOffice, un PDF passe dans Draw, où chaque ligne
+   devient un cadre de texte modifiable.
+4. `travail\raven.png` : dans Writer, menu Fichier, Ouvrir. Le `.png`
+   s'ouvre dans Draw, comme une image posée sur une page.
 
-**À noter** : pour chacun des trois fichiers, si le texte est encore du texte
-(il se sélectionne, se cherche, se modifie).
+**À noter** : pour chacun des quatre fichiers, si l'on peut sélectionner,
+chercher et modifier le texte, et comment le titre s'affiche.
 
 ### Si ça bloque
 
@@ -314,27 +350,30 @@ comme une image posée sur une page.
 - **Writer a été fermé avant les exports.** Le rouvrir par un double-clic sur
   `depart\raven.odt`, et reprendre à l'étape 3.2.
 
-## 4 · Lire les fichiers avec deux éditeurs de texte
+## 4 · Comparer la taille et le contenu de trois fichiers
 
-> **À faire :** ouvrir trois fichiers de `depart\` dans le Bloc-notes, puis
-> dans Notepad++.
+> **À faire :** comparer la taille de trois fichiers de `depart\` ; les
+> ouvrir dans le Bloc-notes, puis dans Notepad++.
 >
-> **À obtenir :** les trois fichiers ouverts dans chaque éditeur, puis
-> fermés sans enregistrer.
+> **À obtenir :** les trois tailles notées ; les trois fichiers ouverts dans
+> chaque éditeur, puis fermés sans enregistrer.
 
-Ouvrir chacun des trois fichiers suivants dans le Bloc-notes (clic droit,
-Ouvrir avec, Bloc-notes), puis dans Notepad++ (clic droit, Ouvrir avec,
-Notepad++, ou par le menu Fichier de Notepad++) :
+Les trois fichiers sont `depart\raven_une_ligne.txt`,
+`depart\raven_une_ligne.donnees` et `depart\raven.odt`.
 
-- `depart\raven_une_ligne.txt`
-- `depart\raven_une_ligne.donnees`
-- `depart\raven.odt`
+1. Dans l'explorateur, dans `depart\`, afficher la taille des fichiers :
+   Affichage, Détails, puis lire la colonne Taille.
+2. Ouvrir chacun des trois fichiers dans le Bloc-notes : clic droit, Ouvrir
+   avec, Bloc-notes.
+3. Les ouvrir de la même façon dans Notepad++ : clic droit, Ouvrir avec,
+   Notepad++, ou par le menu Fichier de Notepad++.
+4. Fermer chaque fenêtre sans enregistrer.
 
-**Attention** : ne rien enregistrer, et fermer sans sauver. Un `.odt`
-réenregistré par un éditeur de texte est détruit.
+**Attention** : enregistrer un `.odt` depuis un éditeur de texte modifie ses
+octets, et Writer ne peut plus l'ouvrir.
 
-**À noter** : pour chaque fichier et chaque éditeur, si le contenu est
-lisible, et ce que Notepad++ montre de plus.
+**À noter** : la taille de chaque fichier ; pour chaque fichier et chaque
+éditeur, si le contenu est lisible, et ce que Notepad++ montre de plus.
 
 ### Si ça bloque
 
@@ -347,6 +386,33 @@ lisible, et ce que Notepad++ montre de plus.
 - **Un `.odt` a été enregistré par un éditeur de texte.** Il ne s'ouvre plus
   dans Writer. Le recopier depuis l'archive `info01-cours1.zip`, qui garde les
   fichiers de départ.
+
+## Bonus · Structure d'un fichier `.odt`
+
+> **À faire :** copier `depart\raven.odt` dans `travail\` sous le nom
+> `raven.zip` ; l'extraire ; ouvrir `content.xml`, puis `styles.xml`, dans un
+> éditeur de texte.
+>
+> **À obtenir :** le dossier `travail\raven\`, avec les fichiers de
+> l'archive.
+
+Cette partie est facultative, pour qui a fini en avance. Elle se fait sur une
+copie, et `depart\raven.odt` reste intact.
+
+1. Dans `depart\`, clic droit sur `raven.odt`, Copier, puis dans `travail\`,
+   clic droit, Coller.
+2. Renommer la copie en `raven.zip` : clic droit, Renommer. Windows demande
+   de confirmer le changement d'extension ; répondre « Oui ».
+3. Clic droit sur `raven.zip`, Extraire tout…, puis « Extraire ». Windows
+   crée le dossier `travail\raven\`.
+4. Dans `travail\raven\`, ouvrir `content.xml`, puis `styles.xml`, avec le
+   Bloc-notes ou Notepad++ : clic droit, Ouvrir avec.
+
+L'explorateur ne reconnaît une archive qu'à son extension. Sans le
+changement de nom, il ne propose pas « Extraire tout ».
+
+**À noter** : la liste des fichiers de l'archive, et ce que contient chacun
+des deux fichiers ouverts.
 
 ## 5 · Modifier à plusieurs un fichier partagé
 
@@ -387,19 +453,29 @@ Toute la promotion peut lire ce fichier. N'y écrire que son prénom.
 
 Cette section se lit après avoir fait les étapes.
 
-### Étape 3 : trois formats d'un même document
+### Étape 3 : quatre fichiers d'un même document
 
-| Fichier | Le texte est-il encore du texte ? |
+| Fichier | Sélectionner, chercher, modifier le texte |
 |---|---|
-| `raven.odt` | oui, et il reste modifiable dans LibreOffice |
-| `raven.pdf` | oui : il se sélectionne et se cherche, mais la mise en page est figée |
-| `raven.png` | non : ce sont des pixels, et seule la première page est exportée |
+| `raven.odt` | les trois opérations fonctionnent |
+| `raven.txt` | les trois opérations fonctionnent ; le titre a la même police et la même taille que les strophes |
+| `raven.pdf` | on peut sélectionner et chercher le texte ; le lecteur PDF ne permet pas de le modifier |
+| `raven.png` | aucune des trois : l'image ne contient que des pixels, de la première page seulement |
+
+Le `.odt` et le `.txt` permettent tous deux de modifier le texte. Le `.txt`
+ne contient que les caractères, et Writer le signalait à l'enregistrement : le
+format Texte ne garde pas la mise en forme. Le `.odt` garde le texte et sa
+mise en forme.
 
 Un PDF décrit la page : les caractères y sont rangés avec leur position. Une
 image PNG ou JPEG photographie la page : elle ne garde que l'apparence, et
 le texte n'y est plus que des points de couleur.
 
-### Étape 4 : ce qu'un éditeur de texte affiche
+### Étape 4 : la taille, et ce qu'un éditeur de texte affiche
+
+L'explorateur affiche 2 Ko pour `raven_une_ligne.txt` et
+`raven_une_ligne.donnees`, et 8 Ko pour `raven.odt`, avec les mêmes strophes. Le `.odt` contient aussi la mise en forme et des informations sur
+le document, compressées.
 
 | Fichier | Dans le Bloc-notes | Dans Notepad++ |
 |---|---|---|
@@ -418,6 +494,19 @@ contenu. `raven.odt` n'est pas du texte, et son nom ne le disait pas : seule
 l'ouverture dans un éditeur de texte le montre. Les deux
 caractères `PK` du début sont la signature d'une archive ZIP, dont un `.odt`
 est une forme. Le cours 3 y revient avec la table ASCII.
+
+Enregistrer le `.odt` depuis un éditeur de texte l'abîmerait. Le Bloc-notes
+remplace les octets qu'il ne sait pas afficher, et une seule lettre ajoutée
+décale les positions enregistrées dans l'archive. Dans les deux cas, Writer
+refuse le fichier.
+
+### Bonus : les fichiers d'un `.odt`
+
+L'archive contient six fichiers : `content.xml`, `styles.xml`, `meta.xml`,
+`manifest.rdf`, `mimetype` et `META-INF/manifest.xml`. `content.xml` contient
+le texte du poème, entre des balises ; `styles.xml` contient la mise en
+forme, avec les polices et les tailles. Un `.docx`, un `.xlsx` et un `.epub`
+sont construits de la même façon.
 
 ### Étape 5 : un fichier modifié à plusieurs
 

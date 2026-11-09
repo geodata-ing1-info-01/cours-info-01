@@ -9,6 +9,10 @@ fichiers versionnés dans leur dossier.
 Les TD 1a et 1b n'abordent plus la page web (décision du 19/10/2026) :
 les pages `.html` et la feuille de style ne sont pas recopiées.
 
+Le TD 1c garde ses fichiers dans `1c_programme/depart/`, versionnés ; le
+script lui crée un `travail/` vide, où l'élève les copie avant de modifier
+le programme (09/11/2026).
+
     python data/cours1/make_data.py build      # d'abord, si produit/ est vide
     python data/cours1_v2/make_data.py build
 """
@@ -35,6 +39,9 @@ def build() -> None:
         shutil.copytree(DEPART_V1, cible, ignore=shutil.ignore_patterns(*EXCLUS.get(td, ())))
         (ICI / td / "produit" / "travail").mkdir(exist_ok=True)
         print(f"✓ {cible.relative_to(ICI.parent.parent)}")
+    travail_1c = ICI / "1c_programme" / "produit" / "travail"
+    travail_1c.mkdir(parents=True, exist_ok=True)
+    print(f"✓ {travail_1c.relative_to(ICI.parent.parent)}")
 
 
 if __name__ == "__main__":
