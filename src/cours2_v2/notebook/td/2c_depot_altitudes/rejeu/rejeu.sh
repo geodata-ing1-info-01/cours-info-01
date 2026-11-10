@@ -82,14 +82,18 @@ MD
 p cat README.md
 p git add README.md
 horloge; p git commit -m '"Ajoute un README"'
-p python altitudes.py '>' resultat.txt
-p cat resultat.txt
+cat > notes.txt <<'TXT'
+À faire :
+- ajouter le dénivelé cumulé
+- lire les altitudes dans un fichier texte
+TXT
+p cat notes.txt
 p git status
-printf 'resultat.txt\n' > .gitignore
+printf 'notes.txt\n' > .gitignore
 p cat .gitignore
 p git status
 p git add .gitignore
-horloge; p git commit -m '"Ignore le fichier du résultat"'
+horloge; p git commit -m '"Ignore le fichier de notes"'
 p git status
 p ls
 p git log --oneline

@@ -1,0 +1,152 @@
+=== c1 et c2 (TD 2c)
+
+$ git commit -m "Ajoute le calcul de la moyenne"
+[master (commit racine) 64ed213] Ajoute le calcul de la moyenne
+ 1 file changed, 8 insertions(+)
+ create mode 100644 altitudes.py
+
+$ git commit -m "Remplace la moyenne par les altitudes extrêmes"
+[master 726d93f] Remplace la moyenne par les altitudes extrêmes
+ 1 file changed, 4 insertions(+), 6 deletions(-)
+=== c4 : dénivelé cumulé, branche cumul
+
+$ git checkout -b cumul
+Basculement sur la nouvelle branche 'cumul'
+
+$ git commit -m "Ajoute le dénivelé cumulé"
+[cumul 5298338] Ajoute le dénivelé cumulé
+ 1 file changed, 11 insertions(+)
+=== c3 : fichier texte, master
+
+$ git checkout master
+Basculement sur la branche 'master'
+
+$ git commit -m "Lit les altitudes dans un fichier texte"
+[master 3b88896] Lit les altitudes dans un fichier texte
+ 2 files changed, 8 insertions(+), 1 deletion(-)
+ create mode 100644 altitudes.txt
+
+$ git log --oneline --graph --all --decorate
+* 3b88896 (HEAD -> master) Lit les altitudes dans un fichier texte
+| * 5298338 (cumul) Ajoute le dénivelé cumulé
+|/  
+* 726d93f Remplace la moyenne par les altitudes extrêmes
+* 64ed213 Ajoute le calcul de la moyenne
+
+$ python altitudes.py
+altitude minimale : 79.6 m
+altitude maximale : 103.2 m
+max - min : 23.6 m
+
+$ git checkout cumul
+Basculement sur la branche 'cumul'
+
+$ python altitudes.py
+altitude minimale : 79.6 m
+altitude maximale : 103.2 m
+max - min : 23.6 m
+cumul en hausse : 23.6 m
+cumul en baisse : 4.9 m
+
+$ git checkout master
+Basculement sur la branche 'master'
+=== variante : revert de c3
+
+$ git revert --no-edit HEAD
+[master 503a1fd] Revert "Lit les altitudes dans un fichier texte"
+ Date: Mon Sep 21 16:18:20 2026 +0200
+ 2 files changed, 1 insertion(+), 8 deletions(-)
+ delete mode 100644 altitudes.txt
+
+$ git log --oneline -3
+503a1fd Revert "Lit les altitudes dans un fichier texte"
+3b88896 Lit les altitudes dans un fichier texte
+726d93f Remplace la moyenne par les altitudes extrêmes
+
+$ git rev-parse HEAD^{tree} HEAD~2^{tree}
+8e4546bb1143a29a858a77119e351730c4c12159
+8e4546bb1143a29a858a77119e351730c4c12159
+=== c5 : trace GPS, master
+
+$ git commit -m "Lit les altitudes d'une trace GPS"
+[master 27f004c] Lit les altitudes d'une trace GPS
+ 2 files changed, 65 insertions(+), 2 deletions(-)
+ create mode 100644 trace.csv
+=== c6 : seuil, branche cumul
+
+$ git checkout cumul
+Basculement sur la branche 'cumul'
+
+$ git commit -m "Ajoute un seuil au dénivelé cumulé"
+[cumul 3b5bd5a] Ajoute un seuil au dénivelé cumulé
+ 1 file changed, 10 insertions(+), 6 deletions(-)
+
+$ git checkout master
+Basculement sur la branche 'master'
+
+$ git log --oneline --graph --all --decorate
+* 3b5bd5a (cumul) Ajoute un seuil au dénivelé cumulé
+* 5298338 Ajoute le dénivelé cumulé
+| * 27f004c (HEAD -> master) Lit les altitudes d'une trace GPS
+| * 3b88896 Lit les altitudes dans un fichier texte
+|/  
+* 726d93f Remplace la moyenne par les altitudes extrêmes
+* 64ed213 Ajoute le calcul de la moyenne
+=== variante : rebase de cumul sur master
+
+$ git checkout cumul
+Basculement sur la branche 'cumul'
+
+$ git rebase master
+Rebasage (1/2)Rebasage (2/2)                                                                                Rebasage et mise à jour de refs/heads/cumul avec succès.
+
+$ git log --oneline --graph --all --decorate
+* 03fde43 (HEAD -> cumul) Ajoute un seuil au dénivelé cumulé
+* 0a47db5 Ajoute le dénivelé cumulé
+* 27f004c (master) Lit les altitudes d'une trace GPS
+* 3b88896 Lit les altitudes dans un fichier texte
+* 726d93f Remplace la moyenne par les altitudes extrêmes
+* 64ed213 Ajoute le calcul de la moyenne
+
+$ git checkout master
+Basculement sur la branche 'master'
+
+$ git merge cumul
+Mise à jour 27f004c..03fde43
+Fast-forward
+ altitudes.py | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+=== c7 : fusion
+
+$ git merge cumul -m "Fusionne le dénivelé cumulé"
+Fusion automatique de altitudes.py
+Merge made by the 'ort' strategy.
+ altitudes.py | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+
+$ python altitudes.py
+altitude minimale : 78.8 m
+altitude maximale : 129.5 m
+max - min : 50.7 m
+cumul en hausse : 88.7 m
+cumul en baisse : 39.9 m
+=== c8 : renommage
+
+$ git mv altitudes.py stats_trace.py
+
+$ git commit -m "Renomme le script en stats_trace.py"
+[master e888209] Renomme le script en stats_trace.py
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename altitudes.py => stats_trace.py (100%)
+
+$ git log --oneline --graph --all --decorate
+* e888209 (HEAD -> master) Renomme le script en stats_trace.py
+*   153d49a Fusionne le dénivelé cumulé
+|\  
+| * 3b5bd5a (cumul) Ajoute un seuil au dénivelé cumulé
+| * 5298338 Ajoute le dénivelé cumulé
+* | 27f004c Lit les altitudes d'une trace GPS
+* | 3b88896 Lit les altitudes dans un fichier texte
+|/  
+* 726d93f Remplace la moyenne par les altitudes extrêmes
+* 64ed213 Ajoute le calcul de la moyenne

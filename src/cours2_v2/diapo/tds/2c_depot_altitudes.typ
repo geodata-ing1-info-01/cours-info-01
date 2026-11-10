@@ -16,6 +16,7 @@
 #import "../../../commun/prelude.typ": *
 #import "../../../commun/schemas_git.typ": graphe-git, marque-tete
 #import "../../../cours1_v2/diapo/schemas.typ": consignes, comment, commandes, constat
+#import "../schemas.typ": schema-dossier-gitignore
 
 #let td = (
   numero: "2c",
@@ -33,6 +34,16 @@
 )[
   #show raw: set text(size: taille)
   #raw(block: true, lang: "python", texte)
+]
+
+// Un encart d'explication, en bleu, sur le modèle du bloc « Objectif ».
+#let encart(titre, corps) = block(
+  width: 100%, inset: (x: 13pt, y: 9pt), above: 0.8em,
+  fill: accent.lighten(92%), stroke: (left: 3pt + accent),
+)[
+  #set text(size: 15pt)
+  #show raw: set text(size: 1.1em)
+  #text(fill: accent, weight: demi-gras)[#titre : ]#corps
 ]
 
 #d("Étape 0 · Copie du programme")[
@@ -78,7 +89,8 @@
   #notes[
     `git config` sans `--global` : le réglage ne vaut que pour ce dépôt. Les
     postes sont partagés (même compte `eleve`) ; un réglage `--global`
-    signerait les commits des autres élèves.
+    mettrait le nom d'un élève sur les commits des autres. Diapositive « L'auteur
+    des commits : git config ».
   ]
 ]
 
@@ -96,8 +108,18 @@
       #constat[`79.6`, `103.2` et `23.6`.]],
   )
 
+  #encart[Le format `:.1f`][
+    Python écrit la valeur entre accolades arrondie à un chiffre après la virgule : `.1`
+    fixe le nombre de chiffres, `f` demande l'écriture décimale. Pour `2/3`, Python écrit
+    `0.7` avec `:.1f`, et `0.6666666666666666` sans format.
+  ]
+
   #notes[
     `min` et `max` sont des fonctions de Python, qui reçoivent la liste.
+
+    Le `f` devant les guillemets fait de la chaîne une f-chaîne, dont les accolades
+    reçoivent des valeurs ; le `f` de `:.1f` désigne l'écriture décimale. Le programme du
+    cours 1 employait déjà `:.1f` pour la moyenne.
 
     Textes affichés sans accent : selon le terminal, Python n'écrit pas les
     accents de la même façon.
@@ -145,7 +167,7 @@
   )
 ]
 
-#d("Étape 4 · Fichier README")[
+#d("Étape 4 · Ajout d'un fichier README")[
   #objectif[
     décrire le programme dans un fichier `README.md`, et l'enregistrer par un commit.
   ]
@@ -173,39 +195,92 @@
   ]
 ]
 
-// Sans pandoc depuis le 05/11/2026 : le fichier produit est la sortie du programme,
-// comme `resume.txt` au TD 4a.
+// Un fichier de notes personnelles, créé dans VS Code comme `README.md` : aucune commande
+// nouvelle avant `.gitignore`.
 #d("Étape 4 · Fichier à ignorer")[
   #objectif[
-    écrire le résultat du programme dans `resultat.txt`, et exclure ce fichier des commits.
+    écrire ses notes de travail dans `notes.txt`, et exclure ce fichier des commits.
   ]
 
-  #consignes(
-    taille: 16pt,
-    [Écrire le résultat du programme dans un fichier : `python altitudes.py > resultat.txt`.
-      #constat[Rien ne s'affiche ; `cat resultat.txt` affiche les trois lignes.]],
+  #grid(
+    columns: (1fr, 250pt), column-gutter: 16pt, align: top,
+    consignes(
+    taille: 15pt,
+    [Dans VS Code, créer le fichier `notes.txt`, avec ces lignes : #comment[File, New File…]
+      #block(width: 100%, inset: (x: 9pt, y: 6pt), above: 5pt, below: 2pt, fill: gris)[
+        #show raw: set text(size: 12pt)
+        #raw(block: true, "À faire :\n- ajouter le dénivelé cumulé\n- lire les altitudes dans un fichier texte")
+      ]],
     [Afficher l'état du dépôt : `git status`.
-      #constat[`resultat.txt` non suivi.]],
-    [Créer le fichier `.gitignore`, avec la ligne `resultat.txt`. Afficher de nouveau l'état du dépôt.
+      #constat[`notes.txt` non suivi.]],
+    [Créer le fichier `.gitignore`, avec la ligne `notes.txt`. Afficher de nouveau l'état du dépôt.
       #constat[Seul `.gitignore` est non suivi.]],
-    [Créer un commit, puis afficher l'état du dépôt : #commandes("git add .gitignore", "git commit -m \"Ignore le fichier du résultat\"", "git status")
-      #constat[« rien à valider », alors que `resultat.txt` est dans le dossier.]],
+    [Créer un commit, puis afficher l'état du dépôt : #commandes("git add .gitignore", "git commit -m \"Ignore le fichier de notes\"", "git status")
+      #constat[« rien à valider », alors que `notes.txt` est dans le dossier.]],
+    ),
+    schema-dossier-gitignore(),
   )
 
   #legende[
-    Le signe `>` écrit la sortie d'une commande dans un fichier, à la place du terminal.
+    `notes.txt` sert à la personne qui travaille, et ne fait pas partie du programme. Au
+    cours 6, le dépôt est partagé, et ces notes restent sur le poste.
   ]
 
   #notes[
-    `resultat.txt` se refait par la même commande : il n'a pas à être versionné.
-
     `.gitignore` se crée dans VS Code : File, New File, nom `.gitignore`,
     une ligne par motif.
+
+    `ls` n'affiche ni `.git` ni `.gitignore`, et `ls -a` les affiche. L'explorateur de
+    VS Code montre `.gitignore`, et masque `.git` par défaut.
   ]
 ]
 
-// Calcul et légende repris du TD 3a du cours 3 v2 (05/11/2026).
-#d("Étape 5 · Création d'une branche")[
+// L'étape 5 commence par son énoncé, à faire seul, avec le calcul en pseudo-code ; les deux
+// diapositives suivantes donnent la solution et le code Python. L'objectif reprend le « À
+// faire » du guide. Calcul et légende repris du TD 3a du cours 3 v2.
+#let _code-cumul = code("hausse = 0\nbaisse = 0\nfor i in range(1, len(altitudes)):\n    ecart = altitudes[i] - altitudes[i - 1]\n    if ecart > 0:\n        hausse = hausse + ecart\n    else:\n        baisse = baisse - ecart\nprint(f\"cumul en hausse : {hausse:.1f} m\")\nprint(f\"cumul en baisse : {baisse:.1f} m\")", taille: 11pt)
+
+#d("Étape 5 · Énoncé : branche et fusion")[
+  #objectif[
+    créer la branche `cumul` et y ajouter le dénivelé cumulé ; revenir sur `master` et y
+    compléter la description du programme ; fusionner `cumul` dans `master`.
+  ]
+
+  #grid(
+    columns: (1fr, 322pt), column-gutter: 16pt, align: top,
+    [
+      #consignes(
+        taille: 15pt,
+        [Chercher les commandes dans les diapositives « Les branches » et « Fusionner deux branches ».],
+        [Faire l'étape seul, sans regarder les deux diapositives suivantes.],
+        [Comparer avec la solution, sur ces deux diapositives.],
+      )
+      #v(0.5em)
+      #set text(size: 15pt)
+      Le pseudo-code ci-contre décrit le calcul à ajouter à la fin de `altitudes.py`, sur
+      `cumul` ; la solution donne son code Python.
+
+      Sur `master`, la première ligne devient : #commandes("\"\"\"Altitudes extrêmes et dénivelé cumulé d'une série de mesures.\"\"\"")
+    ],
+    block(width: 100%, inset: (x: 10pt, y: 8pt), fill: gris, text(size: 17pt,
+      raw(block: true, "hausse ← 0 ; baisse ← 0\npour chaque altitude, à partir de la deuxième :\n    écart ← altitude − altitude précédente\n    si écart > 0 :\n        hausse ← hausse + écart\n    sinon :\n        baisse ← baisse − écart\nafficher hausse et baisse"))),
+  )
+
+  #legende[
+    Le dénivelé cumulé est la somme des écarts d'altitude d'un point au suivant, avec un total pour
+    les hausses et un total pour les baisses.
+  ]
+
+  #notes[
+    Le code Python est dans la solution : `if` et `range` n'ont pas été vus, et le TD
+    porte sur git. La boucle `for` est celle de la moyenne, au cours 1.
+
+    Laisser chercher quelques minutes avant de passer à la solution. Pour vérifier :
+    `git log --oneline --graph` montre la fusion.
+  ]
+]
+
+#d("Étape 5 · Solution : création d'une branche")[
   #objectif[
     ajouter le calcul du dénivelé cumulé à `altitudes.py`, sur une nouvelle branche, `cumul`.
   ]
@@ -221,17 +296,10 @@
         #constat[`cumul en hausse : 23.6 m` et `cumul en baisse : 4.9 m`.]],
       [Créer un commit : #commandes("git add altitudes.py", "git commit -m \"Ajoute le dénivelé cumulé\"")],
     ),
-    code("hausse = 0\nbaisse = 0\nfor i in range(1, len(altitudes)):\n    ecart = altitudes[i] - altitudes[i - 1]\n    if ecart > 0:\n        hausse = hausse + ecart\n    else:\n        baisse = baisse - ecart\nprint(f\"cumul en hausse : {hausse:.1f} m\")\nprint(f\"cumul en baisse : {baisse:.1f} m\")", taille: 11pt),
+    _code-cumul,
   )
 
-  #legende[
-    Le dénivelé cumulé est la somme des écarts d'altitude d'un point au suivant, avec un total pour
-    les hausses et un total pour les baisses.
-  ]
-
   #notes[
-    Le code est fourni : `if` et `range` n'ont pas été vus. Le TD porte sur git.
-
     Sur 79.6, 103.2 et 98.3 : une hausse de 23.6 m, puis une baisse de 4.9 m.
 
     La branche courante s'affiche entre parenthèses à la fin de l'invite de
@@ -239,7 +307,7 @@
   ]
 ]
 
-#d("Étape 5 · Fusion de la branche")[
+#d("Étape 5 · Solution : fusion de la branche")[
   #objectif[
     modifier `altitudes.py` sur `master`, puis y fusionner la branche `cumul`.
   ]
@@ -331,13 +399,13 @@
         (nom: "c1", col: 0, voie: 0, id: "64e"),
         (nom: "c2", col: 1, voie: 0, id: "726", parents: ("c1",)),
         (nom: "c3", col: 2, voie: 0, id: "409", parents: ("c2",)),
-        (nom: "c4", col: 3, voie: 0, id: "2cc", parents: ("c3",)),
-        (nom: "c5", col: 4, voie: 1, id: "c56", parents: ("c4",)),
-        (nom: "c6", col: 4, voie: 0, id: "b3e", parents: ("c4",)),
-        (nom: "c7", col: 5, voie: 0, id: "17a", parents: ("c6", "c5")),
-        (nom: "c8", col: 6, voie: 1, id: "f68", parents: ("c7",)),
-        (nom: "c9", col: 6, voie: 0, id: "c07", parents: ("c7",)),
-        (nom: "c10", col: 7, voie: 0, id: "83a", parents: ("c9", "c8")),
+        (nom: "c4", col: 3, voie: 0, id: "ccd", parents: ("c3",)),
+        (nom: "c5", col: 4, voie: 1, id: "e0e", parents: ("c4",)),
+        (nom: "c6", col: 4, voie: 0, id: "f42", parents: ("c4",)),
+        (nom: "c7", col: 5, voie: 0, id: "5e6", parents: ("c6", "c5")),
+        (nom: "c8", col: 6, voie: 1, id: "a24", parents: ("c7",)),
+        (nom: "c9", col: 6, voie: 0, id: "414", parents: ("c7",)),
+        (nom: "c10", col: 7, voie: 0, id: "e0c", parents: ("c9", "c8")),
       ),
       branches: (
         (nom: "master", voie: 0, commit: "c10"),

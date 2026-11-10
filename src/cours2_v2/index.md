@@ -52,8 +52,7 @@ dans le dépôt :
 - git se joue sur un seul dépôt, celui d'`altitudes.py`, le programme du cours 1,
   à la place des cinq TD sur le projet `projet_2` ; ce programme y gagne ses
   calculs, et un README ;
-- `revert` et `rebase` restent dans la séance 2 de 2026, dans l'archive du
-  book ; `tag` passe au projet 7 ;
+- `tag` passe au projet 7 ;
   l'organisation main, develop, feature est gardée, en théorie ;
 - l'aspect distribué de git est présenté en théorie ; il se pratique au
   cours 6, et à l'étape 7 du TD git pour ceux qui ont fini.

@@ -5,9 +5,9 @@
 
 #graphe-git(
   commits: (
-    (nom: "c6", col: 0, voie: 0, id: "17a"),
-    (nom: "c8", col: 1, voie: 0, id: "c07", parents: ("c6",)),
-    (nom: "c7", col: 1, voie: 1, id: "f68", parents: ("c6",)),
+    (nom: "c6", col: 0, voie: 0, id: "5e6"),
+    (nom: "c8", col: 1, voie: 0, id: "414", parents: ("c6",)),
+    (nom: "c7", col: 1, voie: 1, id: "a24", parents: ("c6",)),
   ),
   branches: (
     (nom: "master", voie: 0, commit: "c8"),

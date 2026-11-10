@@ -18,8 +18,8 @@ chaque commit fait sur elle. **HEAD** désigne la branche courante.
 ```{figure} figures/4_branches.svg
 :alt: Le commit 02b, puis deux commits qui en partent : 862 sur la branche master, 18b sur la branche cumul, au-dessus. HEAD désigne 862.
 
-Deux branches partent de `2cc` : `master` a reçu la description complétée
-(`b3e`), `cumul` a reçu le dénivelé cumulé (`c56`). HEAD est sur `master`.
+Deux branches partent de `ccd` : `master` a reçu la description complétée
+(`f42`), `cumul` a reçu le dénivelé cumulé (`e0e`). HEAD est sur `master`.
 ```
 
 Une branche fait évoluer une **variante** sans toucher à la version
@@ -66,7 +66,7 @@ La fin de ce qu'affiche `python altitudes.py`, selon la branche courante.
 ```
 
 Le calcul reste enregistré sur `cumul` quand on revient sur
-`master`. Les fichiers non suivis ou ignorés, comme `resultat.txt`, ne
+`master`. Les fichiers non suivis ou ignorés, comme `notes.txt`, ne
 changent pas.
 
 :::{warning}
@@ -96,7 +96,7 @@ Deux cas se présentent :
   deux parents, le dernier commit de chaque branche.
 
 Au TD 2c, `master` a reçu la description complétée et `cumul` le dénivelé
-cumulé. La fusion crée le commit `17ac578` :
+cumulé. La fusion crée le commit `5e694de` :
 
 ```text
 $ git checkout master
@@ -128,18 +128,18 @@ La fusion de `mesure-4` dans `master` s'arrête sur un conflit.
 ```
 
 À l'étape 6 du TD 2c, la troisième ligne d'`altitudes.py` est modifiée des
-deux côtés depuis `17a` :
+deux côtés depuis `5e6` :
 
 ```{list-table}
 :header-rows: 1
 
 * - Commit
   - La troisième ligne d'`altitudes.py`
-* - `17a`, avant
+* - `5e6`, avant
   - `altitudes = [79.6, 103.2, 98.3]`
-* - `f68`, sur `mesure-4`
+* - `a24`, sur `mesure-4`
   - `altitudes = [79.6, 103.2, 98.3, 92.5]`
-* - `c07`, sur `master`
+* - `414`, sur `master`
   - `altitudes = [79.6, 103.2, 98.3, 123.7]`
 ```
 
@@ -193,7 +193,7 @@ Modifications qui seront validées :
 	modifié :         altitudes.py
 
 $ git commit -m "Fusionne les deux mesures"
-[master 83a406f] Fusionne les deux mesures
+[master e0c82f8] Fusionne les deux mesures
 ```
 
 VS Code affiche au-dessus du conflit « Accept Current Change », « Accept

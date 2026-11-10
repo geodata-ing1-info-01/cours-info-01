@@ -8,4 +8,4 @@
   "(base)",
   "eleve@POSTE MINGW64",
   "~/Desktop/info01/cours2/2c_depot_altitudes/travail (cumul)",
-), fichiers: (".gitignore", "altitudes.py", "README.md", "resultat.txt"))
+), fichiers: (".gitignore", "altitudes.py", "notes.txt", "README.md"))

@@ -37,7 +37,7 @@ revenir.
 
 ```text
 $ git log --oneline
-2cc998a Ignore le fichier du résultat
+ccd2363 Ignore le fichier de notes
 4097d87 Ajoute un README
 726d93f Remplace la moyenne par les altitudes extrêmes
 64ed213 Ajoute le calcul de la moyenne
@@ -321,7 +321,7 @@ ignore.
   - rien, sans savoir lesquelles
 * - `Remplace la moyenne par les altitudes extrêmes`
   - le programme n'affiche plus la moyenne
-* - `Ignore le fichier du résultat`
+* - `Ignore le fichier de notes`
   - d'où vient le `.gitignore`
 ```
 
@@ -425,9 +425,12 @@ Certains fichiers du dossier n'ont pas leur place dans le dépôt.
 * - Ce qu'on ne versionne pas
   - Pourquoi
   - Motif
-* - les fichiers produits par une commande
+* - les notes personnelles
+  - elles ne font pas partie du programme
+  - `notes.txt`
+* - les fichiers produits par un programme
   - ils se refont depuis leur source
-  - `resultat.txt`, `__pycache__/`
+  - `__pycache__/`
 * - les données de travail
   - chaque version resterait dans l'historique ; le projet n'en garde
     qu'un petit jeu d'essai
@@ -439,16 +442,15 @@ Certains fichiers du dossier n'ont pas leur place dans le dépôt.
 
 Un fichier **`.gitignore`**, à la racine du dépôt, liste des motifs de
 noms, un par ligne. `git status` n'affiche plus les fichiers qui y
-correspondent, et `git add` ne les ajoute pas. Au TD 2c, la commande
-`python altitudes.py > resultat.txt` écrit la sortie du programme dans un
-fichier :
+correspondent, et `git add` ne les ajoute pas. Au TD 2c, `notes.txt`
+contient la liste des tâches à venir, et ne fait pas partie du programme :
 
 ```text
 $ git status
 Sur la branche master
 Fichiers non suivis:
   (utilisez "git add <fichier>..." pour inclure dans ce qui sera validé)
-	resultat.txt
+	notes.txt
 
 aucune modification ajoutée à la validation mais des fichiers non suivis sont présents (utilisez "git add" pour les suivre)
 ```
@@ -456,7 +458,7 @@ aucune modification ajoutée à la validation mais des fichiers non suivis sont 
 Le fichier `.gitignore` contient une ligne :
 
 ```text
-resultat.txt
+notes.txt
 ```
 
 Après le commit du `.gitignore`, le fichier est toujours dans le
@@ -482,7 +484,7 @@ Un fichier déjà suivi le reste, même s'il correspond à un motif :
 - [TD 2c — Un dépôt git pour altitudes.py](td/2c_depot_altitudes/guide.md),
   40 minutes. Les étapes 0 à 4 appliquent cette page : le dépôt et le
   premier commit, modifier, comparer et restaurer, écrire un README, ignorer le
-  fichier du résultat. Les étapes 5 à 7 appliquent la page suivante.
+  fichier de notes. Les étapes 5 à 7 appliquent la page suivante.
 
 Pour s'entraîner à git après la séance, des jeux et des exercices sont
 réunis dans [S'entraîner : jeux et exercices](../../apres/s_entrainer.md),

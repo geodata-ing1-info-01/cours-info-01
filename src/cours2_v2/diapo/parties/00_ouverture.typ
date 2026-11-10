@@ -57,7 +57,7 @@
     Si la séance déborde, retirer la diapositive « L'organisation des branches
     à plusieurs ».
 
-    `revert` et `rebase` sont en annexe ; `tag` au projet 7 ; l'organisation
+    `tag` au projet 7 ; l'organisation
     des branches à plusieurs, en théorie en fin de partie git, puis au
     cours 6.
   ]

@@ -64,8 +64,10 @@
 // `place` (« dessus » ou « dessous » pour l'étiquette et le cartouche de
 // branche ; par défaut dessous sur la voie 0, dessus ailleurs).
 //
-// `branches` : (nom, voie, col, commit, etape). Le cartouche s'accroche au
-// commit nommé, sinon au dernier commit visible de la voie.
+// `branches` : (nom, voie, col, commit, etape, ecart). Le cartouche s'accroche au
+// commit nommé, sinon au dernier commit visible de la voie, à `ecart` de la pastille :
+// 1.0 le place au-delà d'une étiquette du même côté. Il s'appelle `branche-<nom>`
+// dans le canevas.
 // `fleches` : (depuis, longueur) — un prolongement en pointillé vers la
 // droite, pour dire que l'historique continue.
 // `extra` : fonction `(pos, d)` appelée en dernier, avec `pos(nom)` qui donne
@@ -164,12 +166,16 @@
     let p = pos(nom-commit)
     let couleur = _teinte-voie(c.voie)
     let s = if dessous(c) { -1 } else { 1 }
-    let q = (p.at(0), p.at(1) + s * (r + 0.62))
-    line(
-      (p.at(0), p.at(1) + s * (r + 0.04)), (q.at(0), q.at(1) - s * 0.3),
-      stroke: (paint: couleur, thickness: 1pt, dash: "dotted"),
-    )
-    content(q, box(fill: couleur, inset: (x: 6pt, y: 3.5pt), radius: 4pt,
+    let q = (p.at(0), p.at(1) + s * (r + b.at("ecart", default: 0.62)))
+    // Le pointillé part du bord de la pastille, ou du bas de l'étiquette du commit.
+    let depart = if _legende(c) == "" { r + 0.04 } else { r + 0.14 + 1.3 * taille-etiquette / (echelle * 1cm) }
+    if r + b.at("ecart", default: 0.62) - 0.3 > depart + 0.2 {
+      line(
+        (p.at(0), p.at(1) + s * depart), (q.at(0), q.at(1) - s * 0.3),
+        stroke: (paint: couleur, thickness: 1pt, dash: "dotted"),
+      )
+    }
+    content(q, name: "branche-" + b.nom, box(fill: couleur, inset: (x: 6pt, y: 3.5pt), radius: 4pt,
       text(size: taille-etiquette + 1pt, weight: demi-gras, fill: white)[#b.nom]))
   }
 
@@ -198,6 +204,17 @@
       text(size: 10pt, weight: demi-gras, fill: accent)[#texte]),
     anchor: if sens < 0 { "north-west" } else { "south-west" },
   )
+}
+
+// Le cartouche HEAD à droite de celui d'une branche : HEAD désigne la branche
+// courante. La branche doit figurer dans `branches`.
+#let marque-tete-branche(d, branche, texte: "HEAD") = {
+  let bord = "branche-" + branche + ".east"
+  d.line((rel: (0.7, 0), to: bord), (rel: (0.08, 0), to: bord),
+    stroke: 1.2pt + accent, mark: (end: "straight", fill: accent, scale: 0.8))
+  d.content((rel: (0.7, 0), to: bord), anchor: "west",
+    box(stroke: 1pt + accent, fill: white, inset: (x: 5pt, y: 3pt), radius: 4pt,
+      text(size: 10pt, weight: demi-gras, fill: accent)[#texte]))
 }
 
 // L'ellipse rouge autour d'une arête.

@@ -1,4 +1,4 @@
-# Logos de git et de ses outils : sources et licences
+# Logos et capture de la partie git : sources et licences
 
 Téléchargés le 09/11/2026 sur Wikimedia Commons, sans modification, pour la
 diapositive « Git : vue d'ensemble » (`diapo/parties/04_git.typ`). Ils
@@ -18,3 +18,30 @@ d'enseignement.
 
 Le terminal, le serveur, les personnes et les écrans du schéma sont dessinés
 dans `diapo/schemas.typ`.
+
+## Captures de VS Code
+
+Deux captures faites ici le 10/11/2026, qui montrent un logiciel de Microsoft pour en
+désigner l'interface dans un support d'enseignement. VS Code 1.145.2 pour Linux, sans
+extension, interface en anglais, thème « Default Light Modern », `window.zoomLevel` à 1,
+dans un écran Xvfb ; les clics et la frappe passent par l'extension XTest.
+
+`vscode_fusion.png`, pour la diapositive « Résoudre un conflit dans VS Code » :
+
+- Dépôt : celui du TD 2c, rejoué par `notebook/td/2c_depot_altitudes/rejeu/rejeu.sh`
+  jusqu'au conflit du `git merge mesure-4`, à l'étape 6.
+- Écran : 1200 × 660 pixels.
+- Actions : `altitudes.py` ouvert, bouton « Resolve in Merge Editor », barre latérale
+  masquée, puis lien « Accept Combination (Incoming First) ».
+- Recadrage : de (62, 100) à (1200, 500), sur les trois volets.
+
+`vscode_source_control.png`, pour la diapositive « git dans VS Code : le panneau Source
+Control » :
+
+- Dépôt : celui de `diapo/rejeu/rejeu.sh`, arrêté après le commit `3b88896` (fichier
+  texte), avec les modifications du commit suivant (trace GPS) faites, sans commit.
+- Écran : 1300 × 680 pixels, `diffEditor.renderSideBySide` à `false`.
+- Actions : panneau Source Control, barre latérale élargie à 600 pixels, graphe sur
+  « All », clic sur `altitudes.py`, puis message « Lit les altitudes d'une trace GPS »
+  tapé.
+- Recadrage : de (0, 36) à (1300, 490).

@@ -41,7 +41,7 @@ identifiants de commit (`64ed213`…) sont différents sur chaque poste.
 | 1 | créer un dépôt et enregistrer un premier état | créer le dépôt, faire le premier commit | 1 |
 | 2 | lire une différence, puis l'enregistrer | modifier le programme, lire la différence, faire un commit | 2 |
 | 3 | annuler une modification non enregistrée | abîmer une ligne, puis la restaurer | 2 |
-| 4 | décrire le projet, et ne pas versionner les fichiers produits | écrire un README, ignorer le fichier du résultat | 4 |
+| 4 | décrire le projet, et ne pas versionner les notes personnelles | écrire un README, ignorer le fichier de notes | 4 |
 | 5 | développer un calcul sur une branche, puis fusionner | le dénivelé cumulé sur une branche, fusionné | 7 |
 | 6 | résoudre un conflit de fusion | la même ligne modifiée sur deux branches, et le conflit résolu | 10 |
 | 7 | copier un dépôt, et récupérer un commit fait dans la copie | pour aller plus loin : une seconde copie du dépôt | 11 |
@@ -183,7 +183,7 @@ Si `git init` a été tapé dans un autre dossier (`2c_depot_altitudes/` par
 exemple), supprimer le `.git` créé par erreur (`rm -rf .git`, dans ce
 dossier-là), puis revenir dans `travail/` et recommencer.
 
-### 1.2 Signer ses commits
+### 1.2 Nom et adresse de l'auteur
 
 Chaque commit porte le nom et l'adresse de son auteur. Les postes de la
 salle sont partagés : le réglage se fait dans le dépôt, sans `--global`, et
@@ -451,11 +451,11 @@ rien à valider, la copie de travail est propre
 modification est perdue, et aucune commande ne la retrouve. git ne peut
 restaurer que ce qui a été enregistré par un commit.
 
-## Étape 4 · Un README, et un fichier produit
+## Étape 4 · Un README, et un fichier de notes
 
-> **À faire :** écrire `README.md` et en faire un commit ; écrire le résultat du programme dans `resultat.txt` ; lire `git status` ; écrire un fichier `.gitignore` et en faire un commit.
+> **À faire :** écrire `README.md` et en faire un commit ; écrire ses notes de travail dans `notes.txt` ; lire `git status` ; écrire un fichier `.gitignore` et en faire un commit.
 >
-> **À obtenir :** `git status` affiche « rien à valider », alors que `resultat.txt` est dans le dossier.
+> **À obtenir :** `git status` affiche « rien à valider », alors que `notes.txt` est dans le dossier.
 
 ### 4.1 Écrire le README
 
@@ -487,20 +487,15 @@ git commit -m "Ajoute un README"
  create mode 100644 README.md
 ```
 
-### 4.2 Produire un fichier
+### 4.2 Un fichier de notes
 
-Le signe `>` écrit la sortie d'une commande dans un fichier, à la place du
-terminal. Rien ne s'affiche :
-
-```text
-python altitudes.py > resultat.txt
-cat resultat.txt
-```
+Dans VS Code : explorateur, clic droit sur un endroit vide, « New File… »,
+nom `notes.txt`. Y écrire la liste des tâches à venir, puis enregistrer :
 
 ```text
-altitude minimale : 79.6 m
-altitude maximale : 103.2 m
-max - min : 23.6 m
+À faire :
+- ajouter le dénivelé cumulé
+- lire les altitudes dans un fichier texte
 ```
 
 ```text
@@ -511,14 +506,14 @@ git status
 Sur la branche master
 Fichiers non suivis:
   (utilisez "git add <fichier>..." pour inclure dans ce qui sera validé)
-	resultat.txt
+	notes.txt
 
 aucune modification ajoutée à la validation mais des fichiers non suivis sont présents (utilisez "git add" pour les suivre)
 ```
 
-`resultat.txt` se refait par la même commande. Le versionner ajouterait à
-l'historique une copie de chacune de ses versions, alors que `altitudes.py`
-permet de le refaire.
+`notes.txt` sert à la personne qui travaille, et ne fait pas partie du
+programme. Au cours 6, le dépôt est partagé : les autres membres du projet
+n'ont pas à recevoir ces notes.
 
 ### 4.3 Le fichier `.gitignore`
 
@@ -531,7 +526,7 @@ Dans VS Code : explorateur, clic droit sur un endroit vide, « New File… »,
 nom `.gitignore`. Y écrire une ligne, puis enregistrer :
 
 ```text
-resultat.txt
+notes.txt
 ```
 
 Un motif peut contenir `*`, qui remplace n'importe quelle suite de caractères,
@@ -550,18 +545,18 @@ Fichiers non suivis:
 aucune modification ajoutée à la validation mais des fichiers non suivis sont présents (utilisez "git add" pour les suivre)
 ```
 
-`resultat.txt` n'apparaît plus. `.gitignore` est un
+`notes.txt` n'apparaît plus. `.gitignore` est un
 fichier du projet comme un autre : il se versionne.
 
 ### 4.4 Le commit
 
 ```text
 git add .gitignore
-git commit -m "Ignore le fichier du résultat"
+git commit -m "Ignore le fichier de notes"
 ```
 
 ```text
-[master 2cc998a] Ignore le fichier du résultat
+[master ccd2363] Ignore le fichier de notes
  1 file changed, 1 insertion(+)
  create mode 100644 .gitignore
 ```
@@ -580,11 +575,11 @@ rien à valider, la copie de travail est propre
 
 ```text
 altitudes.py
+notes.txt
 README.md
-resultat.txt
 ```
 
-Le fichier produit est dans le dossier ; `git status` ne l'affiche
+Le fichier de notes est dans le dossier ; `git status` ne l'affiche
 pas.
 
 ## Étape 5 · Une branche, puis la fusion
@@ -662,7 +657,7 @@ git commit -m "Ajoute le dénivelé cumulé"
 ```
 
 ```text
-[cumul c563389] Ajoute le dénivelé cumulé
+[cumul e0e07c5] Ajoute le dénivelé cumulé
  1 file changed, 11 insertions(+)
 ```
 
@@ -708,17 +703,17 @@ git log --oneline --graph --all --decorate
 ```
 
 ```text
-* b3e9e18 (HEAD -> master) Complète la description du programme
-| * c563389 (cumul) Ajoute le dénivelé cumulé
+* f42a619 (HEAD -> master) Complète la description du programme
+| * e0e07c5 (cumul) Ajoute le dénivelé cumulé
 |/  
-* 2cc998a Ignore le fichier du résultat
+* ccd2363 Ignore le fichier de notes
 * 4097d87 Ajoute un README
 * 726d93f Remplace la moyenne par les altitudes extrêmes
 * 64ed213 Ajoute le calcul de la moyenne
 ```
 
 Chaque `*` est un commit ; les traits dessinent les deux branches, parties
-du même commit `2cc998a`. `HEAD -> master` : la branche courante est
+du même commit `ccd2363`. `HEAD -> master` : la branche courante est
 `master`.
 
 ### 5.5 Fusionner
@@ -747,12 +742,12 @@ git log --oneline --graph
 ```
 
 ```text
-*   17ac578 Fusionne le dénivelé cumulé
+*   5e694de Fusionne le dénivelé cumulé
 |\  
-| * c563389 Ajoute le dénivelé cumulé
-* | b3e9e18 Complète la description du programme
+| * e0e07c5 Ajoute le dénivelé cumulé
+* | f42a619 Complète la description du programme
 |/  
-* 2cc998a Ignore le fichier du résultat
+* ccd2363 Ignore le fichier de notes
 * 4097d87 Ajoute un README
 * 726d93f Remplace la moyenne par les altitudes extrêmes
 * 64ed213 Ajoute le calcul de la moyenne
@@ -791,7 +786,7 @@ git commit -m "Ajoute la mesure 92.5"
 ```
 
 ```text
-[mesure-4 f687eaa] Ajoute la mesure 92.5
+[mesure-4 a24c0bb] Ajoute la mesure 92.5
  1 file changed, 1 insertion(+), 1 deletion(-)
 ```
 
@@ -809,7 +804,7 @@ git commit -m "Ajoute la mesure 123.7"
 ```
 
 ```text
-[master c07169c] Ajoute la mesure 123.7
+[master 41493a5] Ajoute la mesure 123.7
  1 file changed, 1 insertion(+), 1 deletion(-)
 ```
 
@@ -929,7 +924,7 @@ git commit -m "Fusionne les deux mesures"
 ```
 
 ```text
-[master 83a406f] Fusionne les deux mesures
+[master e0c82f8] Fusionne les deux mesures
 ```
 
 ### 6.6 Le graphe du dépôt
@@ -944,17 +939,17 @@ git log --oneline --graph --all --decorate
 ```
 
 ```text
-*   83a406f (HEAD -> master) Fusionne les deux mesures
+*   e0c82f8 (HEAD -> master) Fusionne les deux mesures
 |\  
-| * f687eaa (mesure-4) Ajoute la mesure 92.5
-* | c07169c Ajoute la mesure 123.7
+| * a24c0bb (mesure-4) Ajoute la mesure 92.5
+* | 41493a5 Ajoute la mesure 123.7
 |/  
-*   17ac578 Fusionne le dénivelé cumulé
+*   5e694de Fusionne le dénivelé cumulé
 |\  
-| * c563389 (cumul) Ajoute le dénivelé cumulé
-* | b3e9e18 Complète la description du programme
+| * e0e07c5 (cumul) Ajoute le dénivelé cumulé
+* | f42a619 Complète la description du programme
 |/  
-* 2cc998a Ignore le fichier du résultat
+* ccd2363 Ignore le fichier de notes
 * 4097d87 Ajoute un README
 * 726d93f Remplace la moyenne par les altitudes extrêmes
 * 64ed213 Ajoute le calcul de la moyenne
@@ -1016,13 +1011,13 @@ README.md
 ```
 
 ```text
-83a406f Fusionne les deux mesures
-c07169c Ajoute la mesure 123.7
-f687eaa Ajoute la mesure 92.5
+e0c82f8 Fusionne les deux mesures
+41493a5 Ajoute la mesure 123.7
+a24c0bb Ajoute la mesure 92.5
 ```
 
 La copie a son propre dossier `.git`, avec les mêmes commits et les mêmes
-identifiants. `resultat.txt`, ignoré, n'a pas été copié.
+identifiants. `notes.txt`, ignoré, n'a pas été copié.
 
 ### 7.2 Le dépôt d'origine
 
@@ -1062,7 +1057,7 @@ git commit -m "Ajoute la mesure 127.7"
 ```
 
 ```text
-[master 3425cef] Ajoute la mesure 127.7
+[master 2a47e60] Ajoute la mesure 127.7
  1 file changed, 1 insertion(+), 1 deletion(-)
 ```
 
@@ -1078,7 +1073,7 @@ git pull ../copie master
 ```text
 Depuis ../copie
  * branch            master     -> FETCH_HEAD
-Mise à jour 83a406f..3425cef
+Mise à jour e0c82f8..2a47e60
 Fast-forward
  altitudes.py | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
@@ -1096,12 +1091,12 @@ git log --oneline -3
 ```
 
 ```text
-3425cef Ajoute la mesure 127.7
-83a406f Fusionne les deux mesures
-c07169c Ajoute la mesure 123.7
+2a47e60 Ajoute la mesure 127.7
+e0c82f8 Fusionne les deux mesures
+41493a5 Ajoute la mesure 123.7
 ```
 
-Le même identifiant, `3425cef`, dans les deux dépôts. Dans VS Code,
+Le même identifiant, `2a47e60`, dans les deux dépôts. Dans VS Code,
 la liste de `travail/altitudes.py` se termine par la mesure ajoutée dans la copie.
 
 ## Ce que le TD fait constater
@@ -1112,9 +1107,9 @@ la liste de `travail/altitudes.py` se termine par la mesure ajoutée dans la cop
 prochain commit ; `git commit` l'enregistre. Entre les deux, `git status`
 affiche la zone de chaque fichier (étapes 1, 2 et 4).
 
-**Ce qui se refait ne se versionne pas.** `resultat.txt` se refait depuis
-`altitudes.py` par la même commande. `.gitignore` le tient hors du dépôt
-(étape 4.3).
+**Les notes personnelles ne se versionnent pas.** `notes.txt` sert à la
+personne qui travaille, et ne fait pas partie du programme. `.gitignore` le
+tient hors du dépôt (étape 4.3).
 
 **git ne restaure que ce qu'il a enregistré.** `git restore` remet la
 version du dernier commit ; une modification jamais enregistrée par un
@@ -1149,7 +1144,6 @@ tous les commits, et `git pull` fait passer les nouveaux commits d'un dépôt
 | `git clone source copie` | copie le dépôt `source` dans le dossier `copie` |
 | `git remote -v` | affiche le dépôt d'origine d'une copie |
 | `git pull dépôt branche` | récupère les commits d'une branche d'un autre dépôt, et les fusionne |
-| `commande > fichier` | écrit la sortie de la commande dans le fichier |
 
 Les sorties de ce guide ont été relevées en rejouant le TD par le script
 `rejeu/rejeu.sh`, à côté de ce guide dans le dépôt du cours.

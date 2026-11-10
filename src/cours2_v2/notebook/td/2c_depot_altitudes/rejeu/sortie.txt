@@ -172,23 +172,21 @@ $ git commit -m "Ajoute un README"
  1 file changed, 7 insertions(+)
  create mode 100644 README.md
 
-$ python altitudes.py > resultat.txt
-
-$ cat resultat.txt
-altitude minimale : 79.6 m
-altitude maximale : 103.2 m
-max - min : 23.6 m
+$ cat notes.txt
+À faire :
+- ajouter le dénivelé cumulé
+- lire les altitudes dans un fichier texte
 
 $ git status
 Sur la branche master
 Fichiers non suivis:
   (utilisez "git add <fichier>..." pour inclure dans ce qui sera validé)
-	resultat.txt
+	notes.txt
 
 aucune modification ajoutée à la validation mais des fichiers non suivis sont présents (utilisez "git add" pour les suivre)
 
 $ cat .gitignore
-resultat.txt
+notes.txt
 
 $ git status
 Sur la branche master
@@ -200,8 +198,8 @@ aucune modification ajoutée à la validation mais des fichiers non suivis sont 
 
 $ git add .gitignore
 
-$ git commit -m "Ignore le fichier du résultat"
-[master 2cc998a] Ignore le fichier du résultat
+$ git commit -m "Ignore le fichier de notes"
+[master ccd2363] Ignore le fichier de notes
  1 file changed, 1 insertion(+)
  create mode 100644 .gitignore
 
@@ -211,11 +209,11 @@ rien à valider, la copie de travail est propre
 
 $ ls
 altitudes.py
+notes.txt
 README.md
-resultat.txt
 
 $ git log --oneline
-2cc998a Ignore le fichier du résultat
+ccd2363 Ignore le fichier de notes
 4097d87 Ajoute un README
 726d93f Remplace la moyenne par les altitudes extrêmes
 64ed213 Ajoute le calcul de la moyenne
@@ -237,7 +235,7 @@ cumul en baisse : 4.9 m
 $ git add altitudes.py
 
 $ git commit -m "Ajoute le dénivelé cumulé"
-[cumul c563389] Ajoute le dénivelé cumulé
+[cumul e0e07c5] Ajoute le dénivelé cumulé
  1 file changed, 11 insertions(+)
 
 $ git checkout master
@@ -251,14 +249,14 @@ max - min : 23.6 m
 $ git add altitudes.py
 
 $ git commit -m "Complète la description du programme"
-[master b3e9e18] Complète la description du programme
+[master f42a619] Complète la description du programme
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 $ git log --oneline --graph --all --decorate
-* b3e9e18 (HEAD -> master) Complète la description du programme
-| * c563389 (cumul) Ajoute le dénivelé cumulé
+* f42a619 (HEAD -> master) Complète la description du programme
+| * e0e07c5 (cumul) Ajoute le dénivelé cumulé
 |/  
-* 2cc998a Ignore le fichier du résultat
+* ccd2363 Ignore le fichier de notes
 * 4097d87 Ajoute un README
 * 726d93f Remplace la moyenne par les altitudes extrêmes
 * 64ed213 Ajoute le calcul de la moyenne
@@ -280,12 +278,12 @@ $ head -1 altitudes.py
 """Altitudes extrêmes et dénivelé cumulé d'une série de mesures."""
 
 $ git log --oneline --graph
-*   17ac578 Fusionne le dénivelé cumulé
+*   5e694de Fusionne le dénivelé cumulé
 |\  
-| * c563389 Ajoute le dénivelé cumulé
-* | b3e9e18 Complète la description du programme
+| * e0e07c5 Ajoute le dénivelé cumulé
+* | f42a619 Complète la description du programme
 |/  
-* 2cc998a Ignore le fichier du résultat
+* ccd2363 Ignore le fichier de notes
 * 4097d87 Ajoute un README
 * 726d93f Remplace la moyenne par les altitudes extrêmes
 * 64ed213 Ajoute le calcul de la moyenne
@@ -297,7 +295,7 @@ Basculement sur la nouvelle branche 'mesure-4'
 $ git add altitudes.py
 
 $ git commit -m "Ajoute la mesure 92.5"
-[mesure-4 f687eaa] Ajoute la mesure 92.5
+[mesure-4 a24c0bb] Ajoute la mesure 92.5
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 $ git checkout master
@@ -306,7 +304,7 @@ Basculement sur la branche 'master'
 $ git add altitudes.py
 
 $ git commit -m "Ajoute la mesure 123.7"
-[master c07169c] Ajoute la mesure 123.7
+[master 41493a5] Ajoute la mesure 123.7
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 $ git merge mesure-4
@@ -368,20 +366,20 @@ Modifications qui seront validées :
 
 
 $ git commit -m "Fusionne les deux mesures"
-[master 83a406f] Fusionne les deux mesures
+[master e0c82f8] Fusionne les deux mesures
 
 $ git log --oneline --graph --all --decorate
-*   83a406f (HEAD -> master) Fusionne les deux mesures
+*   e0c82f8 (HEAD -> master) Fusionne les deux mesures
 |\  
-| * f687eaa (mesure-4) Ajoute la mesure 92.5
-* | c07169c Ajoute la mesure 123.7
+| * a24c0bb (mesure-4) Ajoute la mesure 92.5
+* | 41493a5 Ajoute la mesure 123.7
 |/  
-*   17ac578 Fusionne le dénivelé cumulé
+*   5e694de Fusionne le dénivelé cumulé
 |\  
-| * c563389 (cumul) Ajoute le dénivelé cumulé
-* | b3e9e18 Complète la description du programme
+| * e0e07c5 (cumul) Ajoute le dénivelé cumulé
+* | f42a619 Complète la description du programme
 |/  
-* 2cc998a Ignore le fichier du résultat
+* ccd2363 Ignore le fichier de notes
 * 4097d87 Ajoute un README
 * 726d93f Remplace la moyenne par les altitudes extrêmes
 * 64ed213 Ajoute le calcul de la moyenne
@@ -409,9 +407,9 @@ altitudes.py
 README.md
 
 $ git log --oneline -3
-83a406f Fusionne les deux mesures
-c07169c Ajoute la mesure 123.7
-f687eaa Ajoute la mesure 92.5
+e0c82f8 Fusionne les deux mesures
+41493a5 Ajoute la mesure 123.7
+a24c0bb Ajoute la mesure 92.5
 
 $ git remote -v
 origin	…/2c_depot_altitudes/travail (fetch)
@@ -433,7 +431,7 @@ cumul en baisse : 10.7 m
 $ git add altitudes.py
 
 $ git commit -m "Ajoute la mesure 127.7"
-[master 3425cef] Ajoute la mesure 127.7
+[master 2a47e60] Ajoute la mesure 127.7
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 $ cd ../travail
@@ -441,15 +439,15 @@ $ cd ../travail
 $ git pull ../copie master
 Depuis ../copie
  * branch            master     -> FETCH_HEAD
-Mise à jour 83a406f..3425cef
+Mise à jour e0c82f8..2a47e60
 Fast-forward
  altitudes.py | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 $ git log --oneline -3
-3425cef Ajoute la mesure 127.7
-83a406f Fusionne les deux mesures
-c07169c Ajoute la mesure 123.7
+2a47e60 Ajoute la mesure 127.7
+e0c82f8 Fusionne les deux mesures
+41493a5 Ajoute la mesure 123.7
 
 $ sed -n 3p altitudes.py
 altitudes = [79.6, 103.2, 98.3, 92.5, 123.7, 127.7]

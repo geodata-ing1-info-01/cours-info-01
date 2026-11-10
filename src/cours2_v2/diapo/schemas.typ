@@ -17,9 +17,11 @@
 // `vignette-jupyterlab`, `vignette-spyder`, `vignette-vscode` (04/11/2026) : la
 // disposition par défaut de chaque fenêtre, simplifiée. `schema-fonctions-ide`
 // reprend ce dessin, en grand.
-#import "../../commun/theme.typ": accent, alerte, attention, brun, estompe, gris, police-code, demi-gras
-#import "../../cours1_v2/diapo/schemas.typ": _entree
+#import "../../commun/theme.typ": accent, alerte, attention, brun, estompe, gris, police-code, demi-gras, reponse
+#import "../../cours1_v2/diapo/schemas.typ": _entree, _icone-fichier
 #import "../../cours5/diapo/schemas.typ": repere
+#import "../../commun/schemas_git.typ": graphe-git
+#import "@preview/cetz:0.4.2"
 
 #let _bord = 0.8pt + accent.lighten(55%)
 
@@ -478,20 +480,12 @@
 }
 
 // ---------------------------------------------------------------------------
-// Git : vue d'ensemble
-//
-// 09/11/2026 : la diapositive « Git : c'est quoi ? » du cours 2 de 2026 (support de
-// Florent Geniet, `src/cours2/diapo/schemas.typ`, `intro-git`), dans son état final.
-// Les logos sont les SVG de Wikimedia Commons de `src/cours2_v2/images/git/` (voir
-// `CREDITS.md`), à la place des PNG découpés dans le support d'origine. Le terminal,
-// le serveur, les personnes et les écrans sont dessinés. Les deux usages traités par
-// la séance, le versionnement et les outils en ligne de commande et dans un IDE, sont
-// en couleur `attention`.
-#import "@preview/cetz:0.4.2"
+// Pictogrammes des schémas git. `d` est le module `cetz.draw`, `p` le point où poser le
+// dessin. La personne et l'écran viennent de `src/cours2/diapo/schemas.typ`.
 
-#let _logos-git = "/src/cours2_v2/images/git/"
+#let _logos-git = "/src/cours2_v2/images/git/"   // voir CREDITS.md
 
-// Tête et buste, puis un écran sur son pied : repris de `src/cours2/diapo/schemas.typ`.
+// Tête et buste.
 #let _personne(d, p, taille: 0.42, couleur: accent) = {
   let t = taille
   d.circle((p.at(0), p.at(1) + t * 0.46), radius: t * 0.26, stroke: 0.9pt + couleur, fill: white)
@@ -506,6 +500,7 @@
   )
 }
 
+// Un écran sur son pied.
 #let _ecran(d, p, taille: 0.42, couleur: accent) = {
   d.rect(
     (p.at(0) - taille / 2, p.at(1) - taille * 0.34),
@@ -539,32 +534,70 @@
     text(font: police-code, size: 9pt * echelle, weight: "bold", fill: white)[>\_], anchor: "west")
 }
 
+// ---------------------------------------------------------------------------
+// Git : vue d'ensemble, d'après « Git : c'est quoi ? » du cours 2 de 2026 (Florent
+// Geniet). Quatre usages autour du logo ; ceux que la séance traite sont en `attention`.
 #let schema-usages-git(echelle: 1.0) = cetz.canvas(length: echelle * 1cm, {
   import cetz.draw: *
   let rayon = 1.5
   let logo = (0, 2.0)
   let petite-fleche = (end: ">", fill: accent, scale: 0.35)
   let marque(fichier, p, largeur) = content(p, image(_logos-git + fichier, width: largeur * echelle * 1cm))
-  let taille-titre = 12pt * echelle
+  let traite(corps) = text(weight: "bold", fill: attention, corps)
+
+  // Le contenu de chaque cercle, dessiné autour de son centre (x, y).
+  let versions(x, y) = {
+    line((x - 0.15, y + 0.75), (x - 0.15, y - 0.85),
+      stroke: (paint: estompe, thickness: 0.7pt, dash: "densely-dashed"),
+      mark: (end: ">", fill: estompe, scale: 0.4))
+    for (i, teinte) in (rgb("#A8D8A8"), rgb("#F2B8B8"), rgb("#CBB8E8")).enumerate() {
+      let yi = y + 0.55 - i * 0.55
+      circle((x - 0.15, yi), radius: 0.2, fill: teinte, stroke: 0.7pt + accent)
+      content((x + 0.15, yi), text(size: 10pt * echelle, fill: accent)[V#(i + 1)], anchor: "west")
+    }
+  }
+  let equipe(x, y) = {
+    marque("git.svg", (x, y + 0.75), 0.6)
+    for dx in (-0.7, 0.0, 0.7) {
+      _personne(cetz.draw, (x + dx, y - 0.5), taille: 0.52)
+      line((x + dx * 0.5, y + 0.38), (x + dx, y - 0.18), stroke: 0.7pt + accent, mark: petite-fleche)
+    }
+  }
+  let forge(x, y) = {
+    for (fichier, nom, dy) in (("github.svg", "GitHub", 1.0), ("gitlab.svg", "GitLab", 0.64)) {
+      marque(fichier, (x - 0.55, y + dy), 0.3)
+      content((x - 0.33, y + dy), text(size: 9pt * echelle, weight: "bold", fill: accent)[#nom], anchor: "west")
+    }
+    _serveur(cetz.draw, (x, y + 0.12), taille: 0.5)
+    for dx in (-0.65, 0.0, 0.65) {
+      _ecran(cetz.draw, (x + dx, y - 0.68), taille: 0.48)
+      line((x + dx * 0.45, y - 0.16), (x + dx, y - 0.44), stroke: 0.7pt + accent, mark: petite-fleche)
+    }
+  }
+  // En haut, les deux outils de la séance ; en bas, deux logiciels dédiés.
+  let outils(x, y) = {
+    _terminal(cetz.draw, (x - 0.5, y + 0.42), taille: 0.68, echelle: echelle)
+    marque("vscode.svg", (x + 0.5, y + 0.42), 0.64)
+    marque("gitkraken.svg", (x - 0.5, y - 0.55), 0.75)
+    marque("tortoisegit.svg", (x + 0.5, y - 0.55), 0.8)
+  }
 
   let usages = (
-    (cle: "versions", centre: (-6.3, 0.6), traite: true,
-      titre: text(weight: "bold", fill: attention)[Versionnement \ du code]),
-    (cle: "equipe", centre: (-2.3, -3.0), traite: false,
+    (centre: (-6.3, 0.6), traite: true, dessin: versions,
+      titre: traite[Versionnement \ du code]),
+    (centre: (-2.3, -3.0), traite: false, dessin: equipe,
       titre: [Travail à plusieurs]),
-    (cle: "forge", centre: (2.3, -3.0), traite: false,
+    (centre: (2.3, -3.0), traite: false, dessin: forge,
       titre: [Hébergement du code en ligne]),
-    (cle: "outils", centre: (6.3, 0.6), traite: true,
-      titre: [#text(weight: "bold", fill: attention)[ligne de commande], logiciels dédiés, #text(weight: "bold", fill: attention)[IDE]]),
+    (centre: (6.3, 0.6), traite: true, dessin: outils,
+      titre: [#traite[ligne de commande], logiciels dédiés, #traite[IDE]]),
   )
 
   for u in usages {
     let (cx, cy) = u.centre
     let couleur = if u.traite { attention } else { accent }
-
-    // Du bord du losange au bord du cercle.
-    let dx = cx - logo.at(0)
-    let dy = cy - logo.at(1)
+    // Une flèche du bord du logo au bord du cercle.
+    let (dx, dy) = (cx - logo.at(0), cy - logo.at(1))
     let n = calc.sqrt(dx * dx + dy * dy)
     line(
       (logo.at(0) + dx / n * 1.05, logo.at(1) + dy / n * 1.05),
@@ -575,47 +608,12 @@
     circle(u.centre, radius: rayon,
       stroke: (if u.traite { 2pt } else { 0.8pt }) + couleur,
       fill: if u.traite { attention.lighten(90%) } else { white })
-
-    if u.cle == "versions" {
-      line((cx - 0.15, cy + 0.75), (cx - 0.15, cy - 0.85),
-           stroke: (paint: estompe, thickness: 0.7pt, dash: "densely-dashed"),
-           mark: (end: ">", fill: estompe, scale: 0.4))
-      for (i, teinte) in (rgb("#A8D8A8"), rgb("#F2B8B8"), rgb("#CBB8E8")).enumerate() {
-        let y = cy + 0.55 - i * 0.55
-        circle((cx - 0.15, y), radius: 0.2, fill: teinte, stroke: 0.7pt + accent)
-        content((cx + 0.15, y), text(size: 10pt * echelle, fill: accent)[V#(i + 1)], anchor: "west")
-      }
-    } else if u.cle == "equipe" {
-      marque("git.svg", (cx, cy + 0.75), 0.6)
-      for dx in (-0.7, 0.0, 0.7) {
-        _personne(cetz.draw, (cx + dx, cy - 0.5), taille: 0.52)
-        line((cx + dx * 0.5, cy + 0.38), (cx + dx, cy - 0.18), stroke: 0.7pt + accent, mark: petite-fleche)
-      }
-    } else if u.cle == "forge" {
-      let ligne-marque(fichier, nom, y) = {
-        marque(fichier, (cx - 0.55, y), 0.3)
-        content((cx - 0.33, y), text(size: 9pt * echelle, weight: "bold", fill: accent)[#nom], anchor: "west")
-      }
-      ligne-marque("github.svg", "GitHub", cy + 1.0)
-      ligne-marque("gitlab.svg", "GitLab", cy + 0.64)
-      _serveur(cetz.draw, (cx, cy + 0.12), taille: 0.5)
-      for dx in (-0.65, 0.0, 0.65) {
-        _ecran(cetz.draw, (cx + dx, cy - 0.68), taille: 0.48)
-        line((cx + dx * 0.45, cy - 0.16), (cx + dx, cy - 0.44), stroke: 0.7pt + accent, mark: petite-fleche)
-      }
-    } else {
-      // En haut, les deux outils de la séance ; en bas, deux logiciels dédiés.
-      _terminal(cetz.draw, (cx - 0.5, cy + 0.42), taille: 0.68, echelle: echelle)
-      marque("vscode.svg", (cx + 0.5, cy + 0.42), 0.64)
-      marque("gitkraken.svg", (cx - 0.5, cy - 0.55), 0.75)
-      marque("tortoisegit.svg", (cx + 0.5, cy - 0.55), 0.8)
-    }
-
+    (u.dessin)(cx, cy)
     content(
       (cx, cy - rayon - 0.15),
       block(width: 4.2cm * echelle)[
         #set par(leading: 0.45em)
-        #align(center, text(size: taille-titre, fill: accent)[#u.titre])
+        #align(center, text(size: 12pt * echelle, fill: accent)[#u.titre])
       ],
       anchor: "north",
     )
@@ -623,3 +621,280 @@
 
   marque("git.svg", logo, 2.0)
 })
+
+// ---------------------------------------------------------------------------
+// Créer un dépôt : le dossier `travail` avant et après `git init`, le nouveau `.git` surligné.
+#let _icone-dossier = box(width: 15pt, height: 12pt, baseline: 2pt, {
+  place(top + left, rect(width: 7pt, height: 4pt, radius: (top: 1.5pt), fill: accent.lighten(55%)))
+  place(bottom + left, rect(width: 15pt, height: 10pt, radius: 1.5pt, fill: accent.lighten(55%)))
+})
+
+// Une ligne d'arborescence. `nouveau` surligne ce que l'étape crée ; `cache` estompe
+// un nom qui commence par un point ; `note` s'écrit à droite du nom.
+#let _entree-arbre(nom, retrait: 0, dossier: false, nouveau: false, cache: false, note: none, taille: 14pt) = block(
+  above: 2pt, below: 2pt, inset: (left: 4pt + retrait * 20pt, right: 8pt, y: taille * 3 / 14), radius: 2pt,
+  fill: if nouveau { attention.lighten(85%) },
+  [#if dossier { _icone-dossier } else { _icone-fichier } #h(5pt)
+   #text(font: police-code, size: taille, fill: if cache { estompe } else { accent }, nom)
+   #if note != none { h(6pt) + text(size: 12pt, fill: estompe, note) }],
+)
+
+// Un cadre titré autour de lignes d'arborescence.
+#let _cadre-arbre(titre, ..lignes) = block(width: 100%, stroke: _bord, radius: 3pt, inset: 8pt)[
+  #text(size: 14pt, weight: demi-gras, fill: estompe, titre)
+  #v(2pt)
+  #lignes.pos().join()
+]
+
+#let schema-git-init() = {
+  let entree = _entree-arbre
+  let etat = _cadre-arbre
+  let dossier = (entree("travail", dossier: true), entree("altitudes.py", retrait: 1))
+  stack(
+    spacing: 6pt,
+    etat([Avant `git init`], ..dossier),
+    align(center, text(size: 22pt, fill: accent, sym.arrow.b)),
+    etat([Après `git init`], ..dossier,
+      entree(".git", retrait: 1, dossier: true, nouveau: true),
+      pad(left: 4pt + 2 * 20pt, text(font: police-code, size: 12pt, fill: estompe)[HEAD config objects refs …]),
+    ),
+  )
+}
+
+// TD 2c, étape 4 : le dossier `travail` après le commit de `.gitignore`, puis le contenu
+// de ce fichier. Ce que l'étape fait constater, `notes.txt` ignoré, est une réponse.
+#let schema-dossier-gitignore() = {
+  let entree = _entree-arbre.with(taille: 13pt)
+  stack(
+    spacing: 8pt,
+    _cadre-arbre([Dossier `travail`],
+      entree("travail", dossier: true),
+      entree(".git", retrait: 1, dossier: true, cache: true, note: [caché]),
+      entree(".gitignore", retrait: 1, nouveau: true, cache: true, note: [caché]),
+      entree("altitudes.py", retrait: 1),
+      entree("notes.txt", retrait: 1, note: reponse[ignoré]),
+      entree("README.md", retrait: 1),
+    ),
+    _cadre-arbre([Contenu de `.gitignore`],
+      block(width: 100%, above: 4pt, fill: gris, inset: (x: 8pt, y: 4pt),
+        text(font: police-code, size: 13pt, "notes.txt"))),
+  )
+}
+
+// ---------------------------------------------------------------------------
+// Aide-mémoire : les trois zones de « Trois zones : dossier, index, dépôt », et les
+// commandes qui font passer un fichier de l'une à l'autre.
+#let schema-zones-commandes(echelle: 1.0) = cetz.canvas(length: echelle * 1cm, {
+  import cetz.draw: *
+  let (largeur, hauteur, ecart) = (4.6, 1.1, 7.8)
+  let zones = ([Dossier de travail], [Index], [Dépôt, dans `.git`])
+  for (i, nom) in zones.enumerate() {
+    rect((i * ecart, 0), (i * ecart + largeur, hauteur), radius: 0.12, stroke: _bord,
+      fill: if i == 2 { accent.lighten(88%) } else { white }, name: "z" + str(i))
+    content("z" + str(i), text(size: 14pt * echelle, weight: demi-gras, nom))
+  }
+  let commande(p, t, ancre) = content(p, anchor: ancre,
+    text(size: 13pt * echelle, font: police-code, fill: attention, t))
+  let fleche = (paint: attention, thickness: 1.4pt)
+  let pointe = (end: "straight", fill: attention, scale: 0.8)
+  for (i, t) in ((0, "git add"), (1, "git commit")) {
+    let (a, b) = (i * ecart + largeur, (i + 1) * ecart)
+    line((a + 0.1, hauteur / 2), (b - 0.1, hauteur / 2), stroke: fleche, mark: pointe)
+    commande(((a + b) / 2, hauteur / 2 + 0.15), t, "south")
+  }
+  // `git restore` : du dépôt vers le dossier, par-dessous.
+  let (x0, x2) = (largeur / 2, 2 * ecart + largeur / 2)
+  line((x2, -0.1), (x2, -0.7), (x0, -0.7), (x0, -0.1), stroke: fleche, mark: pointe)
+  commande(((x0 + x2) / 2, -0.82), "git restore", "north")
+})
+
+// ---------------------------------------------------------------------------
+// Trois zones, d'après « Enregistrer des modifications » du cours 2 de 2026 (Florent
+// Geniet) : `altitudes.py` va du dossier de travail au dépôt en deux commits, comme aux
+// étapes 1 et 2 du TD 2c. Une ligne de vie par zone, le temps vers le bas, et à droite ce
+// qu'affiche alors `git status`.
+#let schema-zones-git(echelle: 1.0) = cetz.canvas(length: echelle * 1cm, {
+  import cetz.draw: *
+  let ecart = 4.7                       // d'une zone à la suivante
+  let pas = 0.8                         // d'une ligne à la suivante
+  let x-statut = 2 * ecart + 2.4
+  let taille = 12pt * echelle
+  let zones = (
+    (nom: [Dossier de travail], detail: [les fichiers tels qu'on les modifie]),
+    (nom: [Index], detail: [ce qui entrera dans le prochain commit]),
+    (nom: [Dépôt], detail: [l'historique des commits, dans `.git`]),
+  )
+  // Un événement sur la ligne du dossier (`de` = `vers`) ou d'une zone à la suivante, puis
+  // le message de `git status` qui le suit, et le commit créé.
+  let propre = "rien à valider, la copie de travail est propre"
+  let evenements = (
+    (de: 0, vers: 0, texte: [`altitudes.py` créé], statut: "Fichiers non suivis"),
+    (de: 0, vers: 1, texte: raw("git add"), statut: "Modifications qui seront validées"),
+    (de: 1, vers: 2, texte: raw("git commit"), statut: propre, commit: "64e"),
+    (de: 0, vers: 0, texte: [`altitudes.py` modifié], statut: "Modifications qui ne seront pas validées"),
+    (de: 0, vers: 1, texte: raw("git add"), statut: "Modifications qui seront validées"),
+    (de: 1, vers: 2, texte: raw("git commit"), statut: propre, commit: "726"),
+  )
+  let bas = -(evenements.len() + 0.2) * pas
+
+  for (i, z) in zones.enumerate() {
+    let x = i * ecart
+    let depot = i == 2
+    content((x, 0.15), anchor: "south", block(
+      width: 4.4 * echelle * 1cm, height: 1.75 * echelle * 1cm, inset: 6pt,
+      fill: if depot { accent.lighten(88%) },
+      stroke: 1pt + accent.lighten(if depot { 40% } else { 65% }),
+      align(center + horizon, stack(spacing: 5pt,
+        text(size: 13pt * echelle, weight: demi-gras, fill: accent, z.nom),
+        text(size: 10.5pt * echelle, fill: estompe, z.detail),
+      )),
+    ))
+    line((x, 0.15), (x, bas), stroke: 0.8pt + estompe)
+  }
+  content((x-statut, 0.4), anchor: "south-west",
+    text(size: taille, weight: demi-gras, fill: estompe)[Sortie de `git status`])
+
+  for (k, e) in evenements.enumerate() {
+    let y = -(k + 0.6) * pas
+    let (x1, x2) = (e.de * ecart, e.vers * ecart)
+    if e.de == e.vers {
+      circle((x1, y), radius: 0.11, fill: accent, stroke: none)
+      content((x1 - 0.25, y), text(size: taille, fill: accent, e.texte), anchor: "east")
+    } else {
+      let fin = if "commit" in e { x2 - 0.4 } else { x2 - 0.05 }
+      line((x1 + 0.05, y), (fin, y), stroke: 1.3pt + accent,
+        mark: (end: ">", fill: accent, scale: 0.6))
+      content(((x1 + x2) / 2, y + 0.08), text(size: taille, fill: accent, e.texte), anchor: "south")
+    }
+    if "commit" in e {
+      circle((x2, y), radius: 0.34, fill: accent.lighten(88%), stroke: 1.3pt + accent)
+      content((x2, y), text(size: 9pt * echelle, weight: demi-gras, font: police-code,
+        fill: accent, e.commit))
+    }
+    content((x-statut, y), text(size: taille, fill: estompe, "« " + e.statut + " »"), anchor: "west")
+  }
+})
+
+// ---------------------------------------------------------------------------
+// Git : fonctionnalités, d'après « Fonctionnalités » du cours 2 de 2026 (Florent Geniet).
+//
+// L'histoire d'`altitudes.py` dans les TD : Bruno écrit le programme, Alice ajoute sur sa
+// branche le dénivelé cumulé et un seuil, Bruno fusionne puis renomme le script.
+// `etape` ajoute, de 1 à 7 : la branche de Bruno, celle d'Alice, les développeurs, la
+// fusion, les étiquettes, les utilisateurs, le dépôt sur GitHub. L'étape 1 oppose aussi
+// cet historique à une copie de fichier par version. Le cadre du dessin est le même à
+// toutes les étapes : rien ne bouge d'une page à l'autre.
+#let schema-fonctionnalites-git(etape: 7, echelle: 1.0) = {
+  let ex = 2.4                    // d'une colonne à la suivante
+  let ey = 2.1                    // ordonnée de la branche d'Alice ; celle de Bruno est 0
+  let r = 0.44                    // rayon d'un commit dans `graphe-git`
+  let y-version = -1.62
+  let y-utilisateur = -3.15
+  let x-nom = -3.05               // colonne des développeurs
+  let x-forge = -1.1              // bord gauche du cadre de la forge
+  let gauche = x-nom - 1.32       // bords du dessin
+  let droite = 5 * ex + 1.25
+  let fin-bande = 5 * ex + 1.05
+  let taille = 11.5pt * echelle
+  let fleche = (end: ">", fill: accent, scale: 0.45)
+
+  let commits = (
+    (nom: "c1", col: 0, voie: 0, texte: "moyenne"),
+    (nom: "c2", col: 1, voie: 0, texte: "min et max", parents: ("c1",)),
+    (nom: "c3", col: 2, voie: 0, texte: "fichier texte", parents: ("c2",)),
+    (nom: "c4", col: 2, voie: 1, texte: "dénivelé cumulé", parents: ("c2",), etape: 2),
+    (nom: "c5", col: 3, voie: 0, texte: "trace GPS", parents: ("c3",)),
+    (nom: "c6", col: 3, voie: 1, texte: "seuil", parents: ("c4",), etape: 2),
+    (nom: "c7", col: 4, voie: 0, texte: "fusion", parents: ("c5", "c6"), etape: 4),
+    (nom: "c8", col: 5, voie: 0, texte: "renommage", parents: ("c7",), etape: 4),
+  )
+  let versions = (("c2", "v1"), ("c5", "v2"), ("c7", "v3"))
+  // Chaque bande couvre la branche et les textes de ses commits.
+  let developpeurs = (
+    (nom: "Bruno", y: 0, couleur: accent, fond: accent.lighten(93%), bande: (-1.12, 0.62)),
+    (nom: "Alice", y: ey, couleur: brun, fond: brun.lighten(90%), bande: (ey - 0.62, ey + 1.12)),
+  )
+
+  graphe-git(
+    commits: commits, etape: etape, echelle: echelle, ecart-x: ex, ecart-y: ey,
+    extra: (pos, d) => {
+      d.rect((gauche, y-utilisateur - 0.55), (droite, ey + 1.85), stroke: none)
+
+      // Étape 1 : une copie par version face aux commits, et deux légendes, dans la place
+      // que la branche d'Alice et les étiquettes occupent ensuite.
+      if etape == 1 {
+        let titre-ligne(y, titre, detail) = d.content((x-nom, y), align(center,
+          text(size: taille, fill: accent)[#text(weight: demi-gras, titre) \ #detail]))
+        titre-ligne(2.55, [Sans git], [une copie \ par version])
+        titre-ligne(-0.35, [Avec git], [un commit \ par version])
+        d.content((-0.75, 2.55), anchor: "west", block(fill: gris, inset: (x: 8pt, y: 6pt),
+          text(size: 15pt * echelle, raw(block: true,
+            "altitudes.py\naltitudes_v2.py\naltitudes_final.py\naltitudes_final_OK.py"))))
+        let legende(y, ancre, corps) = d.content(((gauche + droite) / 2, y),
+          block(width: (droite - gauche) * echelle * 1cm,
+            align(center, text(size: 13pt, fill: estompe, corps))),
+          anchor: ancre)
+        legende(0.75, "south")[Chaque flèche part d'un commit enfant et pointe vers son parent.]
+        legende(-1.3, "north")[
+          Exemple tiré des TD 2c, 3a, 3b et 4a : script `altitudes.py`, puis `stats_trace.py`.
+        ]
+      }
+
+      // Le texte de chaque commit : sous la branche de Bruno, au-dessus de celle d'Alice.
+      for c in commits.filter(c => c.at("etape", default: 0) <= etape) {
+        let (x, y) = pos(c.nom)
+        let dessous = c.voie == 0
+        d.content((x, if dessous { y - r - 0.1 } else { y + r + 0.1 }),
+          text(size: taille, fill: accent, c.texte),
+          anchor: if dessous { "north" } else { "south" })
+      }
+
+      if etape >= 3 {
+        for dev in developpeurs {
+          d.on-layer(-1, d.rect((x-nom - 1.05, dev.bande.at(0)), (fin-bande, dev.bande.at(1)),
+            radius: 0.15, stroke: none, fill: dev.fond))
+          _personne(d, (x-nom - 0.38, dev.y + 0.12), taille: 0.62, couleur: dev.couleur)
+          _ecran(d, (x-nom + 0.37, dev.y + 0.1), taille: 0.55, couleur: dev.couleur)
+          d.content((x-nom, dev.y - 0.36),
+            text(size: taille, weight: demi-gras, fill: dev.couleur, dev.nom), anchor: "north")
+        }
+      }
+
+      if etape >= 5 {
+        for (nom, v) in versions {
+          d.content((pos(nom).at(0), y-version), box(
+            stroke: 1pt + accent, fill: white, inset: (x: 6pt, y: 3pt), radius: 3pt,
+            text(size: taille, weight: demi-gras, fill: accent, v),
+          ))
+        }
+      }
+
+      if etape >= 6 {
+        d.content((x-nom, y-utilisateur + 0.15), text(size: taille, fill: accent)[Utilisateurs])
+        for (nom, v) in versions {
+          let x = pos(nom).at(0)
+          _personne(d, (x, y-utilisateur), taille: 0.62)
+          d.line((x, y-utilisateur + 0.52), (x, y-version - 0.36), stroke: 0.9pt + accent, mark: fleche)
+        }
+      }
+
+      // Le dépôt sur la forge entoure les commits ; chaque poste échange avec lui.
+      if etape >= 7 {
+        d.rect((x-forge, y-version - 0.5), (fin-bande + 0.15, ey + 1.8), radius: 0.2,
+          stroke: 1.3pt + accent)
+        d.content((x-forge + 0.25, ey + 1.47),
+          image(_logos-git + "github.svg", width: 0.42 * echelle * 1cm), anchor: "west")
+        d.content((x-forge + 0.8, ey + 1.47),
+          text(size: taille, weight: demi-gras, fill: accent)[Dépôt sur GitHub], anchor: "west")
+        let (debut, fin) = (x-nom + 0.75, x-forge - 0.1)
+        for dev in developpeurs {
+          let (milieu, y) = ((debut + fin) / 2, dev.y)
+          d.line((debut, y + 0.14), (fin, y + 0.14), stroke: 1pt + accent, mark: fleche)
+          d.line((fin, y - 0.14), (debut, y - 0.14), stroke: 1pt + accent, mark: fleche)
+          d.content((milieu, y + 0.2), text(size: 10pt * echelle, fill: accent)[push], anchor: "south")
+          d.content((milieu, y - 0.2), text(size: 10pt * echelle, fill: accent)[pull], anchor: "north")
+        }
+      }
+    },
+  )
+}
