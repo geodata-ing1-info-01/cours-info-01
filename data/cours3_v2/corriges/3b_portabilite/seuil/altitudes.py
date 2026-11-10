@@ -1,19 +1,7 @@
-"""Altitudes et dénivelé cumulé d'une trace GPS."""
-
-import argparse
-from pathlib import Path
-
-analyseur = argparse.ArgumentParser(description="Altitudes et cumul d'une trace GPS.")
-analyseur.add_argument("fichier", help="le fichier CSV de la trace")
-analyseur.add_argument("-s", "--seuil", type=float, default=0,
-                       help="variation ignorée sous ce seuil, en mètres")
-options = analyseur.parse_args()
-
-FICHIER = Path(options.fichier)
-SEUIL = options.seuil
+"""Altitudes extrêmes et dénivelé cumulé d'une série de mesures."""
 
 altitudes = []
-with open(FICHIER, encoding="utf-8") as fichier:
+with open("C:/Users/alice/cours3/trace.csv", encoding="utf-8") as fichier:
     fichier.readline()
     for ligne in fichier:
         x, y, ele, time = ligne.strip().split(",")
@@ -23,6 +11,7 @@ print(f"altitude minimale : {min(altitudes):.1f} m")
 print(f"altitude maximale : {max(altitudes):.1f} m")
 print(f"max - min : {max(altitudes) - min(altitudes):.1f} m")
 
+SEUIL = 2.0
 hausse = 0
 baisse = 0
 reference = altitudes[0]
@@ -34,6 +23,5 @@ for altitude in altitudes[1:]:
         else:
             baisse = baisse - ecart
         reference = altitude
-
 print(f"cumul en hausse : {hausse:.1f} m")
 print(f"cumul en baisse : {baisse:.1f} m")

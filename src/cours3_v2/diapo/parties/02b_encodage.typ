@@ -28,7 +28,7 @@
     ecart: 22pt,
     ("Huit bits", "01010010"),
     ("Une valeur", "82 sur 256 possibles"),
-    ("Deux chiffres hexadécimaux", "52, de 00 à FF"),
+    ("Deux chiffres hexadécimaux", [52 vaut 5 × 16 + 2 × 1 = 82\ de 00 à FF]),
     ("Un caractère dans un fichier texte", "R, dans la table ASCII"),
   )
 
@@ -50,7 +50,8 @@
     Le cours 1 v2 ne définit ni l'octet ni l'hexadécimal : ils sont définis ici.
 
     Ne pas faire calculer : donner 2 puissance 8, et passer. Un chiffre
-    hexadécimal note quatre bits, donc un octet s'écrit avec deux chiffres.
+    hexadécimal note quatre bits, donc un octet s'écrit avec deux chiffres. Ici,
+    `0101` vaut 5 et `0010` vaut 2.
 
     Tous les fichiers sont écrits en bits. Un fichier binaire n'est pas fait pour
     être lu caractère par caractère.
@@ -100,7 +101,7 @@
   ]
 
   #notes[
-    Le TD 3c écrit `resume.txt` en `"w"`, puis le complète en `"a"`. Le mode
+    Le TD 3b écrit `resume.txt` en `"w"`, puis le complète en `"a"`. Le mode
     `"x"` lève `FileExistsError` si le fichier existe.
   ]
 ]

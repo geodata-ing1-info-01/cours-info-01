@@ -1,4 +1,4 @@
-# Les ordres de grandeur de votre poste — TD 3d, cours 3 (facultatif)
+# Les ordres de grandeur de votre poste — TD 3c, cours 3 (facultatif)
 
 Deux étapes : lire les caractéristiques du poste dans le gestionnaire des
 tâches, puis mesurer quatre temps avec un script fourni.
@@ -14,7 +14,7 @@ processeur et la mémoire.
 
 ## Quatre mesures
 
-Depuis `cours3/3d_mesures/`, dans le terminal de VS Code :
+Depuis `cours3/3c_mesures/`, dans le terminal de VS Code :
 
 ```bash
 python mesures.py
@@ -49,4 +49,4 @@ l'écrit et s'arrête là ; les quatre autres mesures sont faites.
 Vérifier depuis une VM de la salle, session réseau ouverte, que `github.com`
 répond sur le port 443 et que `speed.cloudflare.com` sert le fichier de 10 Mo.
 Relever les valeurs des VM et les reporter dans le corrigé du TD
-(`src/cours3_v2/diapo/tds/3d_mesures.typ`).
+(`src/cours3_v2/diapo/tds/3c_mesures.typ`).

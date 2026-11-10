@@ -1,4 +1,4 @@
-"""Altitudes et dénivelé cumulé d'une trace GPS."""
+"""Altitudes extrêmes et dénivelé cumulé d'une série de mesures."""
 
 import argparse
 from pathlib import Path
@@ -34,6 +34,8 @@ for altitude in altitudes[1:]:
         else:
             baisse = baisse - ecart
         reference = altitude
-
 print(f"cumul en hausse : {hausse:.1f} m")
 print(f"cumul en baisse : {baisse:.1f} m")
+
+with open("resume.txt", "a", encoding="utf-8") as sortie:
+    sortie.write(f"{FICHIER.name} : seuil {SEUIL}, hausse {hausse:.1f} m, baisse {baisse:.1f} m\n")

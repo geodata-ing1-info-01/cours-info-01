@@ -11,7 +11,7 @@
 #import "../../../commun/prelude.typ": *
 #import "../schemas.typ": *
 #import "../../../cours5/diapo/schemas.typ": repere
-#import "../schemas_fichiers.typ": schema-lecture-memoire, schema-position-lecture, schema-fin-de-ligne
+#import "../schemas_fichiers.typ": schema-lecture-memoire, schema-position-lecture, schema-boucle-fichier, schema-fin-de-ligne, schema-page-cr-lf, schema-machine-a-ecrire
 
 // --------------------------------------------
 // Fusion de « Lire un fichier : ouvrir, lire, fermer » et de « Lecture d'un
@@ -75,7 +75,7 @@
 #include "02a_memoire.typ"
 
 // --------------------------------------------
-#d("Fichier texte : une suite de caractères")[
+#d("En mémoire : fichier texte == suite de caractères")[
   #annonce[
     Un éditeur affiche le texte sur plusieurs lignes. Dans le fichier, le
     texte est une seule suite de caractères, et chaque fin de ligne est un
@@ -96,6 +96,30 @@
   ]
 ]
 // --------------------------------------------
+// Vérifié sur `trace.csv`, Python 3.12 : après `f.readline()`, le premier tour
+// donne la première ligne de données.
+#d("Boucle sur un fichier : une ligne par tour")[
+  #annonce[
+    Comme `for altitude in altitudes` parcourt une liste au cours 1,
+    `for ligne in f` parcourt les lignes du fichier. À chaque tour, Python lit la
+    ligne suivante comme `readline`, à partir de la position de lecture.
+  ]
+
+  #align(center, schema-boucle-fichier())
+
+  #legende[
+    La boucle s'arrête à la fin du fichier. Chaque ligne garde son ⏎, et
+    `strip()` le retire.
+  ]
+
+  #notes[
+    Au TD 3a, `fichier.readline()` lit l'en-tête de `trace.csv` avant la boucle.
+    `float(ligne)` accepte le ⏎ ; après `split(",")`, il resterait dans la
+    dernière valeur, d'où `strip()`.
+  ]
+]
+
+// --------------------------------------------
 // Placée ici le 05/11/2026, à la suite de ⏎ et avant « fin de ligne comprise ».
 // L'octet n'étant pas encore défini, le schéma montre des caractères.
 #d("Fin de ligne")[
@@ -113,14 +137,52 @@
     programme, les lignes sont toujours séparées par `\n`.
   ]
 
+  // La barre d'état de `parcours.txt` ouvert dans VS Code.
+  #v(0.4em)
+  #grid(
+    columns: (auto, 1fr), column-gutter: 16pt, align: horizon,
+    barre-etat-fin-de-ligne(),
+    text(size: 15pt)[
+      VS Code affiche la fin de ligne du fichier dans la barre d'état : `LF` pour
+      `\n`, `CRLF` pour `\r\n`. Pour en changer, cliquer sur cette mention.
+    ],
+  )
+
   #notes[
-    Première ligne de `parcours.txt`, le fichier du TD 3c.
+    Première ligne de `parcours.txt`, le fichier du TD 3b.
+
+    Les fins de ligne de `parcours.txt` sont des `\n` : VS Code affiche `LF`, y
+    compris sous Windows. Un fichier créé dans VS Code sous Windows est en `CRLF`, car le
+    réglage `files.eol` vaut `auto` par défaut.
 
     `\r` seul (anciens Mac) est aussi lu comme `\n`. `newline=""` supprime la
     conversion : le module `csv` le demande.
 
     Octets : `0a` sous Linux et macOS, `0d 0a` sous Windows, visibles à « Lecture
     en mode binaire ».
+  ]
+]
+
+// --------------------------------------------
+// Diapositive de culture : CR et LF sur une feuille et sur une machine à écrire.
+#d("Origine de CR et LF : la machine à écrire")[
+  #annonce[
+    Les téléscripteurs, puis le code ASCII, ont codé les deux mouvements du passage
+    à la ligne par deux caractères de contrôle : CR, _carriage return_ (retour
+    chariot), et LF, _line feed_ (saut de ligne).
+  ]
+
+  #align(center, grid(
+    columns: (auto, auto), column-gutter: 40pt,
+    panneau("Sur la feuille", schema-page-cr-lf()),
+    panneau("Sur la machine à écrire", schema-machine-a-ecrire()),
+  ))
+
+  #notes[
+    Diapositive de culture, à passer vite. Sur une machine mécanique, le levier
+    fait aussi tourner le rouleau d'une ligne, et produit ainsi CR et LF en un seul
+    mouvement. MS-DOS, puis Windows, ont gardé les deux caractères ; Unix n'a
+    gardé que LF.
   ]
 ]
 

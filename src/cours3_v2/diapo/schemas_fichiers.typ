@@ -91,6 +91,44 @@
   _note(xn, 0.0)[la suite, jusqu'à la fin]
 })
 
+// La boucle `for` sur un fichier : chaque tour lit la ligne suivante, à partir
+// de la position de lecture. Une case par ligne de `trace.csv`, abrégée par `…`.
+#let schema-boucle-fichier() = cetz.canvas(length: 1cm, {
+  let lignes = ("X,Y,ele,time⏎", "670307.7,…,79.6,…⏎", "670295.1,…,78.8,…⏎", "…")
+  let xr = 5.8
+  let bords = (xr,)
+  for l in lignes { bords.push(bords.last() + l.clusters().len() * 0.25 + 0.45) }
+  let xn = bords.last() + 0.4
+  let rangee(y, lue) = {
+    for (i, l) in lignes.enumerate() {
+      let vif = i == lue
+      rect((bords.at(i), y), (bords.at(i + 1), y + 0.62),
+           stroke: 0.7pt + accent.lighten(40%),
+           fill: if vif { attention.lighten(80%) } else { white })
+      content(((bords.at(i) + bords.at(i + 1)) / 2, y + 0.31), {
+        set smartquote(enabled: false)
+        text(size: 11pt, font: police-code, fill: if vif { attention } else { encre })[#l]
+      })
+    }
+    let x = bords.at(lue + 1)
+    line((x, y - 0.05), (x, y + 0.67), stroke: 2.4pt + attention)
+    content((x, y - 0.3), text(size: 10.5pt, fill: attention, weight: demi-gras)[position])
+  }
+
+  _code(0, 2.9, "f.readline()")
+  rangee(2.6, 0)
+  _note(xn, 2.9)[l'en-tête, ⏎ compris]
+
+  _code(0, 1.5, "for ligne in f:")
+  _note(4.1, 1.5)[tour 1]
+  rangee(1.2, 1)
+  _note(xn, 1.5)[`ligne` : le 1#super[er] point]
+
+  _note(4.1, 0.1)[tour 2]
+  rangee(-0.2, 2)
+  _note(xn, 0.1)[`ligne` : le 2#super[e] point]
+})
+
 // --------------------------------------------
 // Schémas des octets : une rangée de cases, chaque case portant un octet en
 // hexadécimal ou un caractère. Une case est `(texte, largeur)` ou
@@ -327,4 +365,83 @@
   etape(2, (cm + demi, r1), (cp - demi, r1), code: "majuscules = texte.upper()", dessous: [accès : 100 ns])
   _fleche((cp, r1 - 0.36), (cp, r2 + 0.36))
   etape(3, (cp - demi, r2), (cm + demi, r2), dessous: [résultat écrit en mémoire vive])
+})
+
+// ---------------------------------------------------------------------------
+// CR et LF sur une feuille, puis sur une machine à écrire.
+
+#let _fleche-cr-lf(a, b) = line(a, b, stroke: 1.8pt + attention,
+  mark: (end: ">", fill: attention, scale: 1.1))
+
+#let _sigle(position, sigle) = content(position,
+  text(size: 16pt, weight: "bold", fill: attention)[#sigle])
+
+// Une feuille A4 lignée, avec les deux premières lignes de `parcours.txt`. Au
+// bout de la première ligne, CR ramène le point de frappe à la marge. LF, à droite
+// de la feuille, la fait avancer d'une ligne, comme la molette de la machine.
+#let schema-page-cr-lf() = cetz.canvas(length: 1cm, {
+  let l = 5.3
+  let h = l * 1.414
+  let marge = 1.2
+  rect((0, 0), (l, h), stroke: 0.8pt + accent.lighten(40%), fill: white)
+  for i in range(9) {
+    let y = h - 1.1 - i * 0.7
+    line((0.15, y), (l - 0.15, y), stroke: 0.5pt + attention.lighten(75%))
+  }
+  line((marge, 0.15), (marge, h - 0.15), stroke: 0.6pt + estompe.lighten(40%))
+
+  let y1 = h - 1.8
+  let y2 = y1 - 1.4
+  let ecrire(y, texte) = content((marge + 0.15, y + 0.06), anchor: "south-west",
+    text(size: 13pt, font: police-code)[#texte])
+  ecrire(y1, "Forêt,2 km")
+  ecrire(y2, "École,640 m")
+
+  let fin = 4.25
+  let yc = y1 + 0.8
+  line((fin, y1 + 0.05), (fin, y1 + 0.55), stroke: 2pt + attention)
+  _fleche-cr-lf((fin, yc), (0.95, yc))
+  _sigle((2.7, yc + 0.4), "CR")
+  _fleche-cr-lf((l + 0.35, y1 + 0.25), (l + 0.35, y2 + 0.25))
+  _sigle((l + 0.9, (y1 + y2) / 2 + 0.25), "LF")
+})
+
+// Une machine à écrire mécanique, de face : le levier de retour du chariot à
+// gauche (CR), la molette du rouleau à droite (LF).
+#let schema-machine-a-ecrire() = cetz.canvas(length: 1cm, {
+  let trait = 0.9pt + accent
+  let legende(position, ancre, cote, sigle, texte) = content(position, anchor: ancre,
+    box(width: 4.8cm, align(cote)[
+      #set par(leading: 0.4em)
+      #text(size: 16pt, weight: "bold", fill: attention)[#sigle] \
+      #text(size: 12pt, fill: estompe)[#texte]
+    ]))
+
+  // Corps et clavier.
+  line((1.5, 0), (13.5, 0), (12.7, 2.5), (2.3, 2.5), close: true,
+       fill: accent.lighten(88%), stroke: trait)
+  for (n, y) in ((12, 0.75), (11, 1.35), (10, 1.95)) {
+    for k in range(n) {
+      circle((7.5 - (n - 1) * 0.31 + k * 0.62, y), radius: 0.19,
+             fill: white, stroke: 0.7pt + accent)
+    }
+  }
+  rect((5.6, 0.2), (9.4, 0.42), radius: 0.1, fill: white, stroke: 0.7pt + accent)
+
+  // Feuille, puis rouleau devant elle.
+  rect((5.2, 3.0), (9.8, 7.3), fill: white, stroke: 0.8pt + accent.lighten(40%))
+  content((5.6, 3.48), anchor: "south-west", text(size: 12pt, font: police-code)[Forêt,2 km])
+  rect((1.8, 2.7), (13.2, 3.4), radius: 0.3, fill: accent.lighten(60%), stroke: trait)
+
+  // Levier, à gauche.
+  line((1.95, 3.25), (1.1, 3.95), stroke: 3pt + accent)
+  rect((0.35, 3.85), (1.3, 4.15), radius: 0.12, fill: accent, stroke: none)
+  _fleche-cr-lf((0.25, 4.6), (1.5, 4.6))
+  legende((0, 7.3), "north-west", left, "CR", [le levier ramène le chariot en début de ligne])
+
+  // Molette, à droite.
+  circle((13.75, 3.05), radius: 0.48, fill: accent.lighten(30%), stroke: trait)
+  arc((13.75, 3.05), start: 160deg, stop: 20deg, radius: 0.85, anchor: "origin",
+      stroke: 1.8pt + attention, mark: (end: ">", fill: attention, scale: 1.1))
+  legende((15.0, 7.3), "north-east", right, "LF", [la molette fait tourner le rouleau d'une ligne])
 })

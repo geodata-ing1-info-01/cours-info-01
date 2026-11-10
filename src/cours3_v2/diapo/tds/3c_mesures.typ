@@ -1,4 +1,4 @@
-// TD 3d du cours 3 v2 — « Les ordres de grandeur de votre poste », facultatif.
+// TD 3c du cours 3 v2 — « Les ordres de grandeur de votre poste », facultatif.
 //
 // Le TD 5a du cours 5 de 2026, passé au cours 3 v2 le 06/11/2026, après la mémoire et le
 // stockage. Inclus par `cours3_v2.typ`, qui porte les réglages globaux et importe `td`
@@ -7,10 +7,10 @@
 #import "../../../cours1_v2/diapo/schemas.typ": consignes, commandes
 
 #let td = (
-  numero: "3d",
+  numero: "3c",
   titre: "Les ordres de grandeur de votre poste",
   annonce: "Objectif : relever les caractéristiques du poste, puis comparer les vitesses du processeur, de la mémoire, du disque et du réseau",
-  dossier: "cours3/3d_mesures/",
+  dossier: "cours3/3c_mesures/",
   duree: "15′",
   statut: "facultatif",
 )
@@ -59,7 +59,7 @@
 
   #consignes(
     taille: 17pt,
-    [Dans le terminal de VS Code, aller dans le dossier du TD, puis lancer le programme : #commandes("cd ../../3d_mesures", "python mesures.py")],
+    [Dans le terminal de VS Code, aller dans le dossier du TD, puis lancer le programme : #commandes("cd ../../3c_mesures", "python mesures.py")],
     [Reporter les six lignes de résultat.],
   )
 

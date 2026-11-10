@@ -154,14 +154,15 @@
 
 // Un script entier, une bande par ligne. Les lignes de `vives`, comptées à
 // partir de 1, ont un fond bleu clair : ce sont celles qui changent d'une
-// version à l'autre.
-#let script(texte, vives: (), taille: 11pt, lang: "python") = block(
+// version à l'autre. `interligne` est la hauteur d'une bande, en multiple de
+// `taille`.
+#let script(texte, vives: (), taille: 11pt, interligne: 1.38, lang: "python") = block(
   width: 100%, inset: 7pt, fill: gris, above: 0pt, below: 0pt,
 )[
   // Le thème réduit les `raw` en ligne ; celle-ci, posée plus près, fixe la taille.
   #show raw: set text(size: taille)
   #stack(..texte.split("\n").enumerate().map(((i, ligne)) => block(
-    width: 100%, height: taille * 1.38, inset: (x: 3pt), above: 0pt, below: 0pt,
+    width: 100%, height: taille * interligne, inset: (x: 3pt), above: 0pt, below: 0pt,
     fill: if (i + 1) in vives { attention.lighten(72%) },
     align(horizon, raw(lang: lang, ligne)),
   )))
@@ -190,18 +191,19 @@
 
 // La diapositive d'une version : `donnees`, le contenu du fichier lu, s'il faut
 // le montrer ; `lien` nomme ce qui passe du poste d'Alice à l'autre poste ;
-// `adapter` donne les opérations d'une autre personne.
+// `adapter` donne les opérations d'une autre personne. L'interligne serré laisse
+// la place d'une annonce de deux lignes.
 #let version-script(code, vives: (), donnees: none, alice, lien, autre, adapter) = {
   grid(
     columns: (1fr, 1fr), column-gutter: 16pt,
     stack(
       spacing: 5pt,
       text(size: 15pt, fill: estompe, weight: demi-gras)[altitudes.py],
-      script(code, vives: vives),
+      script(code, vives: vives, interligne: 1.25),
       ..if donnees != none {(
         v(3pt),
         text(size: 15pt, fill: estompe, weight: demi-gras)[altitudes.txt],
-        script(donnees, lang: none),
+        script(donnees, lang: none, interligne: 1.25),
       )},
     ),
     stack(
@@ -220,3 +222,73 @@
     #text(fill: attention, weight: demi-gras)[Pour traiter d'autres données.] #adapter
   ]
 }
+
+// ---------------------------------------------------------------------------
+// La droite de la barre d'état de VS Code, agrandie, avec la fin de ligne
+// encadrée. Même dessin que `zoom-barre-etat` du cours 2 v2. Par défaut, la
+// barre de `parcours.txt` (TD 3b), en fins de ligne `\n`.
+#let barre-etat-fin-de-ligne(fin: "LF", langage: "Plain Text") = block(
+  fill: accent, inset: (x: 12pt, y: 7pt), radius: 2pt,
+)[
+  #set text(size: 15pt, fill: white)
+  Ln 1, Col 1 #h(16pt) Spaces: 4 #h(16pt) UTF-8 #h(16pt)
+  #box(stroke: 1.6pt + white, inset: (x: 5pt, y: 3pt), outset: (y: 2pt), radius: 3pt)[#fin]
+  #h(16pt) #langage
+]
+
+// ---------------------------------------------------------------------------
+// Une ligne de code qui crée un chemin, avec un crochet sur chaque partie de la
+// chaîne : `.name` au-dessus, `.parent`, `.stem` et `.suffix` dessous. Les
+// colonnes ont la largeur mesurée de chaque morceau, et les noms débordent de
+// leur colonne sans l'élargir.
+#let parties-chemin(avant, dossier, nom, extension, apres, taille: 24pt) = context {
+  let morceaux = (avant, dossier, "/", nom, extension, apres)
+  let morceau(t) = text(font: police-code, size: taille)[#t]
+  let trait = 1.4pt + attention
+  let crochet(vers-le-bas) = pad(x: 3pt, block(width: 100%, height: 7pt, stroke: (
+    left: trait, right: trait,
+    top: if vers-le-bas { trait } else { none },
+    bottom: if vers-le-bas { none } else { trait },
+  )))
+  let nomme(t) = box(width: 0pt, height: 1.1em, place(top + center,
+    text(font: police-code, size: 13pt, fill: attention, weight: demi-gras)[#t]))
+  grid(
+    columns: morceaux.map(t => measure(morceau(t)).width),
+    align: center + bottom, row-gutter: 3pt,
+    grid.cell(colspan: 3)[], grid.cell(colspan: 2, nomme(".name")), [],
+    grid.cell(colspan: 3)[], grid.cell(colspan: 2, crochet(true)), [],
+    ..morceaux.map(morceau),
+    [], crochet(false), [], crochet(false), crochet(false), [],
+    [], nomme(".parent"), [], nomme(".stem"), nomme(".suffix"), [],
+  )
+}
+
+// ---------------------------------------------------------------------------
+// L'explorateur de VS Code, dessiné comme dans le cours 2 v2 : le dossier ouvert,
+// en capitales, puis ses fichiers.
+#let explorateur-vscode(dossier, fichiers, largeur: 5.6cm) = block(
+  width: largeur, fill: gris.lighten(40%), stroke: 0.8pt + accent.lighten(55%),
+  inset: (x: 10pt, y: 9pt),
+)[
+  #stack(
+    spacing: 7pt,
+    text(size: 10.5pt, weight: demi-gras, fill: estompe)[EXPLORER],
+    text(size: 14pt, weight: demi-gras)[⌄ #upper(dossier)],
+    ..fichiers.map(f => pad(left: 18pt, text(size: 14pt)[#f])),
+  )
+]
+
+// ---------------------------------------------------------------------------
+// Un fichier CSV en texte, sur fond gris : l'en-tête en gris, et la colonne
+// d'indice `colonne`, comptée à partir de 0, en couleur.
+#let csv-colonne(texte, colonne, taille: 12pt) = block(
+  width: 100%, inset: (x: 10pt, y: 8pt), fill: gris,
+)[
+  #set text(font: police-code, size: taille)
+  #set par(leading: 0.65em)
+  #texte.split("\n").enumerate().map(((n, ligne)) => ligne.split(",").enumerate().map(((i, champ)) => {
+    if i == colonne { text(fill: attention, weight: "bold", champ) }
+    else if n == 0 { text(fill: estompe, champ) }
+    else { champ }
+  }).join(",")).join(linebreak())
+]
