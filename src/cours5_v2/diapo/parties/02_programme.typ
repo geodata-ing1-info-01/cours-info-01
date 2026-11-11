@@ -20,6 +20,16 @@
 #import "../../../cours3_v2/diapo/schemas.typ": arborescence, script
 #import "../../../cours1_v2/diapo/schemas.typ": terminal
 
+// Un bloc de code sous le titre d'un panneau. `sortie` garde l'espacement d'un bloc, et
+// s'écarte du titre plus que la fenêtre de `terminal`. `hauteur` aligne le bas du bloc sur
+// celui d'un bloc voisin.
+#let code-panneau(texte, taille: 13pt, hauteur: auto) = block(
+  width: 100%, height: hauteur, above: 0pt, inset: (x: 10pt, y: 8pt), fill: gris, {
+    show raw: set text(size: taille)
+    raw(block: true, texte)
+  },
+)
+
 // --------------------------------------------
 #d("Appel d'un programme : étapes")[
   #grid(
@@ -62,19 +72,28 @@
     [Dans la liste Python], [`"git"`], [`"log"`], [`"--oneline"`],
   )
 
-  #face-a-face(
-    panneau("Dans le terminal")[
-      #terminal(
-        taille: 14pt,
-        "$ git log --oneline",
-        "8d08215 Remplace la moyenne par les altitudes extrêmes",
-        "8195be4 Ajoute le calcul de la moyenne",
+  // Le bloc de code prend la hauteur de la fenêtre du terminal : les deux blocs commencent
+  // et finissent à la même hauteur.
+  #{
+    let fenetre-terminal = terminal(
+      taille: 14pt,
+      "$ git log --oneline",
+      "8d08215 Remplace la moyenne par les altitudes extrêmes",
+      "8195be4 Ajoute le calcul de la moyenne",
+    )
+    let ecart = 22pt
+    layout(zone => {
+      let hauteur = measure(block(width: (zone.width - ecart) / 2, fenetre-terminal)).height
+      face-a-face(
+        ecart: ecart,
+        panneau("Dans le terminal", fenetre-terminal),
+        panneau("Dans un programme Python", code-panneau(
+          "import subprocess\ncommande = [\"git\", \"log\", \"--oneline\"]\nsubprocess.run(commande, check=True)",
+          hauteur: hauteur,
+        )),
       )
-    ],
-    panneau("Dans un programme Python")[
-      #sortie("import subprocess\ncommande = [\"git\", \"log\", \"--oneline\"]\nsubprocess.run(commande, check=True)", taille: 13pt)
-    ],
-  )
+    })
+  }
 
   #legende[
     `subprocess` est livré avec Python. Lancé dans le même dossier, ce programme affiche les
@@ -96,18 +115,19 @@
   ]
 
   #face-a-face(
-    panneau("Une position de trace_2.gpx")[
-      #sortie("<trkpt lat=\"48.8434345\" lon=\"2.5817636\">\n  <ele>94.7</ele><time>2026-09-07T07:40:00Z</time>\n</trkpt>", taille: 10pt)
-    ],
-    panneau("Les mêmes valeurs dans trace_2.csv")[
-      #sortie("X,Y,ele,time\n669304.8,6860457.7,94.7,2026/09/07 07:40:00+00", taille: 10pt)
-    ],
+    panneau("Une position de trace_2.gpx",
+      code-panneau("<trkpt lat=\"48.8434345\" lon=\"2.5817636\">\n  <ele>94.7</ele><time>2026-09-07T07:40:00Z</time>\n</trkpt>", taille: 10pt)),
+    panneau("Les mêmes valeurs dans trace_2.csv",
+      code-panneau("X,Y,ele,time\n669304.8,6860457.7,94.7,2026/09/07 07:40:00+00", taille: 10pt)),
   )
 
+  // `terminal` n'a pas d'espacement de bloc : l'écart avec les blocs voisins est écrit ici.
+  #v(16pt)
   #terminal(
     taille: 13.5pt,
     "$ ogr2ogr trace_2.csv trace_2.gpx track_points -f CSV -t_srs EPSG:2154 -lco GEOMETRY=AS_XY -select ele,time -xyRes 0.1",
   )
+  #v(12pt)
 
   #script("FICHIER_GPX = \"trace_2.gpx\"\nFICHIER_CSV = \"trace_2.csv\"\noptions_ogr = [\"-f\", \"CSV\", \"-t_srs\", \"EPSG:2154\", \"-lco\", \"GEOMETRY=AS_XY\",\n               \"-select\", \"ele,time\", \"-xyRes\", \"0.1\"]\ncommande = [\"ogr2ogr\", FICHIER_CSV, FICHIER_GPX, \"track_points\"] + options_ogr\nsubprocess.run(commande, check=True)", vives: (1, 2, 5), taille: 11.5pt)
 

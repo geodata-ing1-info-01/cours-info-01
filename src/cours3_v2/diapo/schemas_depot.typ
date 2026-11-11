@@ -1,8 +1,10 @@
 // Le graphe du dépôt du TD 3b, propre au cours 3.
 //
-// `master` en bas, la branche `seuil` au-dessus une fois que `master` a avancé. Dans le
-// dépôt reçu, les trois commits sont sur une ligne, comme dans `git log --graph`. Les
-// commits fournis portent les trois premiers caractères de leur identifiant, fixe
+// `master` en bas, la branche `seuil` au-dessus, partie du dernier commit du TD 3a. Dans
+// le dépôt reçu, `git log --graph` affiche les quatre commits sur une ligne, car `master`
+// n'a pas avancé depuis la création de `seuil` ; le graphe dessine quand même `seuil` sur
+// sa voie, pour montrer d'où part la branche (demande du 10/11/2026). Les commits fournis
+// portent les trois premiers caractères de leur identifiant, fixe
 // (`data/cours3_v2/make_data.py`) ; ceux de l'élève, dont l'identifiant change d'un poste
 // à l'autre, ont une pastille vide. Le commit d'Alice est en bleu.
 #import "../../commun/prelude.typ": *
@@ -11,27 +13,30 @@
 // `etat` : "fourni" (le dépôt reçu), "fusion" (après l'étape 6) ou "final".
 #let graphe-depot(etat) = cetz.canvas(length: 1cm, {
   import cetz.draw: *
-  let dx = 1.9
+  // Les deux premiers états tiennent dans une colonne de la diapositive ; après la
+  // fusion, les étiquettes « pathlib » et « argument » demandent au moins 1,75 cm.
+  let dx = (fourni: 1.6, fusion: 1.75, final: 1.9).at(etat)
   let (bas, haut) = (0, 1.35)
   let r = 0.34
   // (nom, colonne, voie, étiquette, identifiant, parents)
   let commits = (
     ("c1", 0, bas, [TD 2c], "53a", ()),
-    ("c2", 1, bas, [TD 3a], "a55", ("c1",)),
-    ("a1", 2, if etat == "fourni" { bas } else { haut }, [Alice], "fd6", ("c2",)),
+    ("c2", 1, bas, [TD 3a\ `.txt`], "189", ("c1",)),
+    ("c3", 2, bas, [TD 3a\ `.csv`], "efe", ("c2",)),
+    ("a1", 3, haut, [Alice], "5d4", ("c3",)),
   )
   if etat != "fourni" {
     commits += (
-      ("g", 2, bas, [ignorer], none, ("c2",)),
-      ("p", 3, bas, [pathlib], none, ("g",)),
-      ("f", 4, bas, [argument], none, ("p",)),
-      ("m", 5, bas, [fusion], none, ("f", "a1")),
+      ("g", 3, bas, [ignorer], none, ("c3",)),
+      ("p", 4, bas, [pathlib], none, ("g",)),
+      ("f", 5, bas, [argument], none, ("p",)),
+      ("m", 6, bas, [fusion], none, ("f", "a1")),
     )
   }
   if etat == "final" {
     commits += (
-      ("s", 6, bas, [option], none, ("m",)),
-      ("e", 7, bas, [résumé], none, ("s",)),
+      ("s", 7, bas, [option], none, ("m",)),
+      ("e", 8, bas, [résumé], none, ("s",)),
     )
   }
   let position = (:)
@@ -56,11 +61,12 @@
     if id != none {
       content((x, y), text(size: 9pt, font: police-code, fill: white)[#id])
     }
-    let dy = if voie == bas { -0.62 } else { 0.62 }
-    content((x, y + dy), {
+    // Ancrée par son bord, l'étiquette peut avoir deux lignes sans toucher la pastille.
+    let (dy, ancre) = if voie == bas { (-(r + 0.1), "north") } else { (r + 0.1, "south") }
+    content((x, y + dy), anchor: ancre, align(center, {
       show raw: set text(size: 10.5pt)
       text(size: 11.5pt, fill: if alice { attention } else { encre })[#etiquette]
-    })
+    }))
   }
 
   // Les branches : un cartouche sous le dernier commit de `master`, au-dessus de celui
@@ -71,7 +77,8 @@
   ))
   let tete = commits.filter(c => c.at(2) == bas and c.at(0) != "a1").last().at(0)
   let (xt, _) = position.at(tete)
-  cartouche((xt, bas - 1.25), [HEAD -> master], accent)
+  // Dans le dépôt reçu, la tête est le commit du TD 3a, dont l'étiquette a deux lignes.
+  cartouche((xt, bas - if etat == "fourni" { 1.75 } else { 1.25 }), [HEAD -> master], accent)
   let (xa, ya) = position.at("a1")
-  cartouche((xa, ya + if ya == bas { 0.8 } else { 1.25 }), [seuil], attention)
+  cartouche((xa, ya + 1.25), [seuil], attention)
 })

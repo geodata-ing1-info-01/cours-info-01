@@ -11,7 +11,7 @@
 #import "../../../commun/prelude.typ": *
 #import "../schemas.typ": *
 #import "../../../cours5/diapo/schemas.typ": repere
-#import "../schemas_fichiers.typ": schema-lecture-memoire, schema-position-lecture, schema-boucle-fichier, schema-fin-de-ligne, schema-page-cr-lf, schema-machine-a-ecrire
+#import "../schemas_fichiers.typ": schema-lecture-memoire, schema-position-lecture, schema-fin-de-ligne, schema-page-cr-lf, schema-machine-a-ecrire
 
 // --------------------------------------------
 // Fusion de « Lire un fichier : ouvrir, lire, fermer » et de « Lecture d'un
@@ -96,23 +96,42 @@
   ]
 ]
 // --------------------------------------------
-// Vérifié sur `trace.csv`, Python 3.12 : après `f.readline()`, le premier tour
-// donne la première ligne de données.
-#d("Boucle sur un fichier : une ligne par tour")[
+// Deux extraits et leurs sorties, relevées avec Python 3.12 sur `altitudes.txt`
+// du TD 3a, qui contient les valeurs de la liste. Les extraits ont remplacé le
+// schéma de la position de lecture, `schema-boucle-fichier`, le 10/11/2026.
+#d("Boucle sur un fichier : une ligne par itération")[
   #annonce[
-    Comme `for altitude in altitudes` parcourt une liste au cours 1,
-    `for ligne in f` parcourt les lignes du fichier. À chaque tour, Python lit la
-    ligne suivante comme `readline`, à partir de la position de lecture.
+    Même syntaxe que la boucle sur une liste, vue au cours 1.
   ]
 
-  #align(center, schema-boucle-fichier())
+  #{
+    // Le code des titres de panneau, à la taille du titre ; `script` fixe la sienne.
+    show raw: set text(size: 13pt)
+    let affichage = block(above: 6pt, below: 3pt,
+      text(size: 13pt, fill: estompe)[Affichage])
+    face-a-face(
+      panneau[Liste `altitudes`][
+        #script("altitudes = [79.6, 103.2, 98.3, 92.5, 123.7]\nfor altitude in altitudes:\n    print(altitude)", taille: 12pt)
+        #affichage
+        #script("79.6\n103.2\n98.3\n92.5\n123.7", taille: 12pt, interligne: 1.3, lang: none)
+      ],
+      panneau[Fichier `altitudes.txt`][
+        #script("f = open(\"altitudes.txt\", encoding=\"utf-8\")\nfor ligne in f:\n    print(ligne)\nf.close()", taille: 12pt)
+        #affichage
+        #script("79.6\n\n103.2\n\n98.3\n\n92.5\n\n123.7\n", taille: 12pt, interligne: 1.1, lang: none)
+      ],
+    )
+  }
 
   #legende[
-    La boucle s'arrête à la fin du fichier. Chaque ligne garde son ⏎, et
-    `strip()` le retire.
+    Une ligne vide suit chaque valeur, car `ligne` garde son ⏎ et `print` écrit
+    une fin de ligne de plus. `ligne.strip()` retire le ⏎.
   ]
 
   #notes[
+    À chaque itération, Python lit la ligne suivante comme `readline`, à partir
+    de la position de lecture.
+
     Au TD 3a, `fichier.readline()` lit l'en-tête de `trace.csv` avant la boucle.
     `float(ligne)` accepte le ⏎ ; après `split(",")`, il resterait dans la
     dernière valeur, d'où `strip()`.

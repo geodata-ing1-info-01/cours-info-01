@@ -11,6 +11,7 @@
 #import "../../../commun/prelude.typ": *
 #import "../../../cours5/diapo/schemas.typ": schema-cryptographie, schema-echange-ssh, schema-connexion, repere
 #import "../../../cours5/diapo/style.typ": terminal
+#import "../../../commun/schemas_github.typ": formulaire-token, token-genere, gestionnaire-identification, pastille
 
 #separateur(
   "Mots de passe et clés SSH",
@@ -661,3 +662,139 @@ SHA256:UdftFYrZHMVT1F9jJrEyd+9auv49Mi15wkj7o+uNUm4 alice.martin@etu.ecole.fr", t
     Le token passe par HTTPS, port 443. La clé SSH passe par le port 22.
   ]
 ]
+
+// --------------------------------------------
+// Ajoutée le 10/11/2026 : le formulaire que le TD 6a et le TD 7a v2 font remplir. Menus
+// d'après la documentation de GitHub, « Managing your personal access tokens ».
+#d("Création d'un token sur GitHub")[
+  #annonce[
+    Le token se crée dans les réglages du compte GitHub. Son nom, sa durée et ses droits se
+    choisissent à sa création, et GitHub ne l'affiche qu'une fois.
+  ]
+
+  #grid(
+    columns: (1.1fr, 1fr), column-gutter: 16pt, align: top,
+    text(size: 12pt, formulaire-token(reperes: (note: 1, expiration: 2, repo: 3, generer: 4))),
+    [
+      #text(size: 12pt, token-genere(repere: 5))
+      #v(0.4em)
+      #set text(size: 14pt)
+      #stack(
+        spacing: 0.55em,
+        [#pastille(1) un nom, pour retrouver le token],
+        [#pastille(2) une durée courte : 7 jours pour un TD],
+        [#pastille(3) le droit d'écrire dans ses dépôts],
+        [#pastille(4) la création],
+        [#pastille(5) la copie, aussitôt : GitHub ne l'affiche plus],
+      )
+    ],
+  )
+
+  #legende[
+    Menu du compte, Settings, Developer settings, Personal access tokens, Tokens (classic), puis
+    Generate new token (classic).
+  ]
+
+  #notes[
+    `repo` ouvre tous les dépôts du compte, publics et privés. Pour des dépôts publics,
+    le droit `public_repo` permet aussi le push. Le TD coche `repo`, nommé par la
+    documentation et par les messages d'erreur.
+
+    Les tokens à droits fins (_fine-grained_) se limitent à certains dépôts, mais leur
+    formulaire est plus long : hors du TD.
+
+    Le token commence par `ghp_`. Un token publié par erreur dans un dépôt public est
+    détecté et révoqué par GitHub.
+  ]
+]
+
+// --------------------------------------------
+// Ajoutée le 10/11/2026 : les postes de la salle ont un compte Windows `eleve` commun.
+#d("Token sur un poste partagé")[
+  #annonce[
+    Après le premier `git push`, Windows garde le token dans son Gestionnaire
+    d'identification, pour le compte Windows ouvert. Sur un compte Windows commun, le token
+    reste à la disposition de l'élève suivant.
+  ]
+
+  #grid(
+    columns: (1fr, 1.1fr), column-gutter: 16pt, align: top,
+    text(size: 12pt, gestionnaire-identification(repere: 1)),
+    [
+      #show table.cell: set text(size: 13pt)
+      #tableau(
+        columns: (auto, 1fr),
+        align: left + horizon,
+        [Situation], [Conséquence],
+        [votre token reste sur le poste], [l'élève suivant pousse dans vos dépôts],
+        [le token d'un autre est resté], [votre push échoue : `Permission … denied to <autre compte>`],
+        [vous supprimez l'identifiant #pastille(1)], [le push suivant redemande le compte et le token],
+      )
+    ],
+  )
+
+  #legende[
+    Gestionnaire d'identification : menu Démarrer, « Gestionnaire d'identification »,
+    Informations d'identification Windows. Supprimer aussi le token sur GitHub à la fin de la
+    séance.
+  ]
+
+  #notes[
+    Deux noms proches : Git Credential Manager, le programme livré avec Git for Windows, que
+    git appelle pour s'identifier ; le Gestionnaire d'identification, l'endroit de Windows
+    où ce programme range le token. Il l'écrit sous le nom `git:https://github.com`, un seul
+    identifiant par site : le push d'un autre compte échoue alors avec `Permission … denied
+    to <compte resté>` et `error: 403`.
+
+    Sur un ordinateur personnel, garder le token est commode, jusqu'à son expiration.
+  ]
+]
+
+// --------------------------------------------
+// Ajoutée le 11/11/2026 : ce qu'est un token, comparé à la clé SSH vue plus haut.
+#d("Token ou clé SSH")[
+  #annonce[
+    Le token et la clé SSH remplacent tous deux le mot de passe du compte pour git.
+  ]
+
+  #show table.cell: set text(size: 14pt)
+  #show raw: set text(size: 13pt)
+  #tableau(
+    columns: (auto, 1fr, 1fr),
+    align: (left + horizon, left + horizon, left + horizon),
+    [], [Token], [Clé SSH],
+    [Forme], [`ghp_`, puis 30 caractères tirés au hasard et 6 de contrôle], [deux fichiers : la clé privée et la clé publique],
+    [Créé par], [GitHub, qui l'affiche une seule fois], [`ssh-keygen`, sur le poste],
+    [Envoyé à GitHub à chaque push], [le token, dans la connexion chiffrée par HTTPS], [une signature calculée avec la clé privée, qui reste sur le poste],
+    [Adresse du dépôt], [`https://github.com/…`, port 443], [`git@github.com:…`, port 22, fermé à l'école],
+    [Durée], [jusqu'à l'expiration choisie], [jusqu'à sa suppression sur GitHub],
+    [Droits], [ceux cochés à la création], [tous les dépôts du compte],
+  )
+
+  #legende[
+    Le token lui-même n'est pas chiffré. Qui le lit, dans un fichier ou sur un écran, peut
+    s'en servir jusqu'à son expiration, comme d'un mot de passe.
+  ]
+
+  #notes[
+    Git envoie le token dans l'en-tête `Authorization` de chaque requête HTTPS, encodé en
+    base64, un encodage réversible. TLS chiffre la connexion entière. Avec le token, git
+    envoie aussi le nom du compte, que GitHub ne vérifie pas.
+
+    Les 6 derniers caractères sont une somme de contrôle (CRC32) des 30 autres. Avec le
+    préfixe `ghp_`, elle permet de reconnaître un token dans un texte : poussé par erreur
+    dans un dépôt public, il est révoqué par GitHub (documentation de GitHub, « Remediating
+    a leaked secret »).
+
+    Un token n'ouvre pas l'interface web de GitHub, seulement git et l'API, et sans deuxième
+    facteur.
+
+    Sous Windows, le Gestionnaire d'identification protège le token par la session Windows.
+    Tout programme lancé dans cette session le relit en clair, par exemple
+    `git credential fill`. Sur le compte `eleve` commun, il se supprime donc à la fin du TD.
+
+    À l'école, le token : port 22 fermé, compte Windows commun. Sur un ordinateur personnel,
+    la clé SSH évite de coller un token, et n'expire pas.
+  ]
+]
+

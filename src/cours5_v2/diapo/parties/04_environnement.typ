@@ -409,3 +409,43 @@
     La distribution du code par une forge : cours 6.
   ]
 ]
+
+// --------------------------------------------
+// Ajoutée le 10/11/2026 : les commandes conda de la partie et des TD 5b à 5d, réunies avant les
+// TD. Syntaxe et sorties de `conda env list` et `conda list` vérifiées avec conda 24.7.
+#d("Commandes conda : résumé")[
+  // Les commandes du tableau, plus grandes que le code de la légende.
+  #show table.cell: set text(size: 14.5pt)
+  #{
+    show raw: set text(size: 13pt)
+    tableau(
+      columns: (auto, 1fr),
+      align: left + horizon,
+      [Commande], [Effet],
+      [`conda create -n carte python=3.12 gdal`], [crée le dossier de l'environnement `carte`, et y installe ces paquets],
+      [`conda env create -f environment.yml`], [crée l'environnement que décrit le fichier],
+      [`conda activate carte`], [sélectionne `carte` dans ce terminal, en plaçant son dossier en tête de `PATH`],
+      [`conda install ipykernel`], [installe un paquet dans l'environnement actif],
+      [`conda list`], [liste les paquets de l'environnement actif, avec leur version],
+      [`conda deactivate`], [revient à l'environnement précédent],
+      [`conda env list`], [liste les environnements ; `*` marque l'environnement actif],
+      [`conda env remove -n carte`], [supprime le dossier de l'environnement],
+    )
+  }
+
+  #legende[
+    `-n carte` désigne un environnement sans l'activer, comme dans `conda install -n carte ipykernel`.
+    `-c conda-forge` désigne le dépôt des paquets. Dans un environnement actif, `pip install` écrit
+    aussi dans son dossier.
+  ]
+
+  #notes[
+    Les TD 5b à 5d emploient ces commandes : `conda env list` et `conda deactivate` aux TD 5b et
+    5c, `conda env remove` au TD 5c, `conda install -c conda-forge ipykernel` au TD 5d.
+
+    `conda list` affiche le nom, la version, la construction et le dépôt de chaque paquet.
+
+    Dans la salle, ajouter `-c conda-forge` à `conda create` et à `conda install` : Anaconda
+    installe sinon depuis son propre dépôt.
+  ]
+]

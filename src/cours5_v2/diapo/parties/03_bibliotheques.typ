@@ -1,9 +1,10 @@
 // Partie 3 du cours 5 v2 : bibliothèques et autres dépendances. Incluse par `cours5_v2.typ`.
 //
 // Réorganisée le 06/11/2026 : le besoin (origines, exemple, échec de l'import) ; l'installation et
-// la recherche (`pip`, dossier d'une distribution, `sys.path`, lien avec `PATH`) ; les outils
-// (`pip` et `conda`, dépôts, repères) ; les dépendances et leurs versions, qui amènent les conflits
-// de la partie 4. Textes repris en partie de la partie 4 du cours 1 de 2026.
+// la recherche (`pip`, dépôts, repères, dossier d'une distribution, `sys.path`, lien avec
+// `PATH`) ; `pip` et `conda` (wheels, GDAL) ; les dépendances et leurs versions, qui amènent les
+// conflits de la partie 4. Dépôts et repères placés après `pip` le 10/11/2026. Textes repris en
+// partie de la partie 4 du cours 1 de 2026.
 //
 // Sorties et déclarations de paquets relevées le 06/11/2026 sous Linux, Python 3.12, dans un
 // environnement virtuel réduit à Python. L'arborescence Windows de « Dossier d'une distribution
@@ -169,7 +170,7 @@
   ]
 
   #notes[
-    `Location` : le dossier où `pip` a écrit, diapositive suivante. `Requires` : les dépendances,
+    `Location` : le dossier où `pip` a écrit, à « Dossier d'une distribution Python ». `Requires` : les dépendances,
     plus loin dans la partie.
 
     Essayé le 06/11/2026 sous Linux.
@@ -177,6 +178,84 @@
     Dans la salle, `C:\ProgramData\anaconda3` n'est probablement pas modifiable par les élèves.
     `pip` installe alors dans un `site-packages` du compte, et `sys.path` compte un dossier de
     plus : attendu, à relever en salle.
+  ]
+]
+
+// --------------------------------------------
+#d("Dépôts de paquets : PyPI et conda-forge")[
+  #annonce[
+    Les deux dépôts diffèrent par la façon d'y publier un paquet.
+  ]
+
+  #align(center, schema-depots-carte())
+
+  #legende[
+    Les deux ne s'opposent pas : un paquet conda-forge est le plus souvent
+    construit à partir de PyPI, quelques jours plus tard. Projets relevés le
+    8 septembre 2026 dans l'index de PyPI, recettes conda-forge le même jour.
+  ]
+
+  #notes[
+    « Dépôt de paquets » traduit *repository*.
+
+    Ne pas classer les deux dépôts en bon et mauvais. PyPI est l'index de référence du
+    monde Python, où la plupart des bibliothèques paraissent d'abord ; un paquet
+    conda-forge en est le plus souvent construit quelques jours plus tard.
+
+    La porte d'entrée change. Publier sur PyPI est immédiat et sans relecture ;
+    conda-forge demande une recette et une relecture humaine, ce qui élève la barrière
+    sans rien prouver sur le code en amont. Le risque de paquets piratés revient au
+    cours 6.
+
+    Trente fois plus de projets d'un côté : conda-forge n'empaquette que ce que
+    quelqu'un a proposé.
+
+    Si la question du canal `defaults` vient : Miniforge n'installe que depuis
+    conda-forge, les conditions d'Anaconda demandant une licence payante aux grandes
+    organisations. Raison écrite dans `INSTALLATION.md`.
+  ]
+]
+
+// --------------------------------------------
+#d("Outils d'installation : repères")[
+  #annonce[
+    Plusieurs outils existent et l'écosystème évolue encore. Ici on utilise
+    `conda` pour l'environnement et les dépendances, et `pip` pour installer
+    le projet lui-même en local.
+  ]
+
+  #frise(
+    largeur-etiquette: 152pt, tige: 26pt,
+    (2008, "pip", "les bibliothèques Python, depuis PyPI"),
+    (2012, "conda", "les paquets, et ce qui n'est pas Python"),
+    (2015, "conda-forge", "le dépôt communautaire"),
+    (2019, "mamba", "le solveur de conda, réécrit"),
+    (2023, "pixi", "l'écosystème conda, repris de zéro"),
+    (2024, "uv", "pip et les environnements, réécrits"),
+  )
+
+  #legende[
+    `pyenv`, né la même année que `conda`, n'est pas sur l'axe : il choisit la
+    version de Python et n'installe aucun paquet. Dates de création des dépôts,
+    relevées le 8 septembre 2026 par l'API de GitHub.
+  ]
+
+  #notes[
+    Deux minutes. Répond à « pourquoi conda alors que tout le monde dit `pip install` »,
+    une question qui vient du web.
+
+    `pip` installe ce que PyPI publie. `conda` installe aussi Python lui-même et des bibliothèques
+    système, avec leurs dépendances. `pyenv` choisit la version de Python active et n'installe aucun
+    paquet ; il figure dans la légende parce que son nom prête à confusion.
+
+    `uv` et `pixi`, récents et écrits en Rust, résolvent les dépendances en quelques
+    secondes : `uv` du côté de `pip`, `pixi` de celui de conda. Hors programme, le
+    module s'en tenant à un seul outil.
+
+    Le dernier outil ne remplace pas les autres : `pip` a dix-huit ans, reste le plus
+    employé, et est installé dans l'environnement du module.
+
+    Dans un environnement conda, éviter d'installer un même paquet avec les deux outils.
   ]
 ]
 
@@ -421,85 +500,6 @@
     expressed » ; PEP 725, à l'état de brouillon, propose une façon de les déclarer.
 
     Le module emploie `conda` pour cette raison.
-  ]
-]
-
-// --------------------------------------------
-#d("Dépôts de paquets : PyPI et conda-forge")[
-  #annonce[
-    Une commande d'installation va chercher le paquet dans un dépôt. Les deux
-    que vous croiserez n'y laissent pas entrer la même chose.
-  ]
-
-  #align(center, schema-depots-carte())
-
-  #legende[
-    Les deux ne s'opposent pas : un paquet conda-forge est le plus souvent
-    construit à partir de PyPI, quelques jours plus tard. Projets relevés le
-    8 septembre 2026 dans l'index de PyPI, recettes conda-forge le même jour.
-  ]
-
-  #notes[
-    « Dépôt de paquets » traduit *repository*.
-
-    Ne pas classer les deux dépôts en bon et mauvais. PyPI est l'index de référence du
-    monde Python, où la plupart des bibliothèques paraissent d'abord ; un paquet
-    conda-forge en est le plus souvent construit quelques jours plus tard.
-
-    La porte d'entrée change. Publier sur PyPI est immédiat et sans relecture ;
-    conda-forge demande une recette et une relecture humaine, ce qui élève la barrière
-    sans rien prouver sur le code en amont. Le risque de paquets piratés revient au
-    cours 6.
-
-    Trente fois plus de projets d'un côté : conda-forge n'empaquette que ce que
-    quelqu'un a proposé.
-
-    Si la question du canal `defaults` vient : Miniforge n'installe que depuis
-    conda-forge, les conditions d'Anaconda demandant une licence payante aux grandes
-    organisations. Raison écrite dans `INSTALLATION.md`.
-  ]
-]
-
-// --------------------------------------------
-#d("Outils d'installation : repères")[
-  #annonce[
-    Plusieurs outils existent et l'écosystème évolue encore. Ici on utilise
-    `conda` pour l'environnement et les dépendances, et `pip` pour installer
-    le projet lui-même en local.
-  ]
-
-  #frise(
-    largeur-etiquette: 152pt, tige: 26pt,
-    (2008, "pip", "les bibliothèques Python, depuis PyPI"),
-    (2012, "conda", "les paquets, et ce qui n'est pas Python"),
-    (2015, "conda-forge", "le dépôt communautaire"),
-    (2019, "mamba", "le solveur de conda, réécrit"),
-    (2023, "pixi", "l'écosystème conda, repris de zéro"),
-    (2024, "uv", "pip et les environnements, réécrits"),
-  )
-
-  #legende[
-    `pyenv`, né la même année que `conda`, n'est pas sur l'axe : il choisit la
-    version de Python et n'installe aucun paquet. Dates de création des dépôts,
-    relevées le 8 septembre 2026 par l'API de GitHub.
-  ]
-
-  #notes[
-    Deux minutes. Répond à « pourquoi conda alors que tout le monde dit `pip install` »,
-    une question qui vient du web.
-
-    `pip` installe ce que PyPI publie. `conda` installe aussi Python lui-même et des bibliothèques
-    système, avec leurs dépendances. `pyenv` choisit la version de Python active et n'installe aucun
-    paquet ; il figure dans la légende parce que son nom prête à confusion.
-
-    `uv` et `pixi`, récents et écrits en Rust, résolvent les dépendances en quelques
-    secondes : `uv` du côté de `pip`, `pixi` de celui de conda. Hors programme, le
-    module s'en tenant à un seul outil.
-
-    Le dernier outil ne remplace pas les autres : `pip` a dix-huit ans, reste le plus
-    employé, et est installé dans l'environnement du module.
-
-    Dans un environnement conda, éviter d'installer un même paquet avec les deux outils.
   ]
 ]
 
