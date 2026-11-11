@@ -5,8 +5,10 @@ import math
 from pathlib import Path
 
 
-def distance_entre(x1, y1, x2, y2):
-    """La distance entre le point (x1, y1) et le point (x2, y2)."""
+def distance_entre(point1, point2):
+    """La distance horizontale entre deux points (x, y, altitude), en mètres."""
+    x1, y1, altitude1 = point1
+    x2, y2, altitude2 = point2
     return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
 
 
@@ -22,15 +24,14 @@ FICHIER = Path(options.fichier)
 SEUIL = options.seuil
 
 altitudes = []
-liste_x = []
-liste_y = []
+points = []
 with open(FICHIER, encoding="utf-8") as fichier:
     fichier.readline()
     for ligne in fichier:
         x, y, ele, time = ligne.strip().split(",")
         altitudes.append(float(ele))
-        liste_x.append(float(x))
-        liste_y.append(float(y))
+        if options.distance:
+            points.append((float(x), float(y), float(ele)))
 
 print(f"altitude minimale : {min(altitudes):.1f} m")
 print(f"altitude maximale : {max(altitudes):.1f} m")
@@ -55,7 +56,7 @@ with open("resume.txt", "a", encoding="utf-8") as sortie:
     sortie.write(f"{FICHIER.name} : seuil {SEUIL}, hausse {hausse:.1f} m, baisse {baisse:.1f} m\n")
 
 if options.distance:
-    print(f"essai, 5.0 attendu : {distance_entre(0, 0, 3, 4)}")
-    premier_segment = distance_entre(liste_x[0], liste_y[0], liste_x[1], liste_y[1])
+    print(f"essai, 5.0 attendu : {distance_entre((0, 0, 0), (3, 4, 0))}")
+    premier_segment = distance_entre(points[0], points[1])
     print(f"premier segment : {premier_segment:.1f} m")
     print("distance : calcul manquant")

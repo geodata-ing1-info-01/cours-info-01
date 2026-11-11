@@ -8,16 +8,18 @@ from pathlib import Path
 FORMAT_TEMPS = "%Y/%m/%d %H:%M:%S+00"
 
 
-def distance_entre(x1, y1, x2, y2):
-    """La distance entre le point (x1, y1) et le point (x2, y2)."""
+def distance_entre(point1, point2):
+    """La distance horizontale entre deux points (x, y, altitude), en mètres."""
+    x1, y1, altitude1 = point1
+    x2, y2, altitude2 = point2
     return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
 
 
-def distance_parcourue(liste_x, liste_y):
+def distance_parcourue(points):
     """La somme des longueurs des segments de la trace, en mètres."""
     total = 0
-    for i in range(1, len(liste_x)):
-        segment = distance_entre(liste_x[i - 1], liste_y[i - 1], liste_x[i], liste_y[i])
+    for i in range(1, len(points)):
+        segment = distance_entre(points[i - 1], points[i])
         total = total + segment
     return total
 
@@ -43,17 +45,16 @@ FICHIER = Path(options.fichier)
 SEUIL = options.seuil
 
 altitudes = []
-liste_x = []
-liste_y = []
+points = []
 temps = []
 with open(FICHIER, encoding="utf-8") as fichier:
     fichier.readline()
     for ligne in fichier:
         x, y, ele, time = ligne.strip().split(",")
         altitudes.append(float(ele))
-        liste_x.append(float(x))
-        liste_y.append(float(y))
-        temps.append(time)
+        if options.distance or options.vitesse:
+            points.append((float(x), float(y), float(ele)))
+            temps.append(time)
 
 print(f"altitude minimale : {min(altitudes):.1f} m")
 print(f"altitude maximale : {max(altitudes):.1f} m")
@@ -78,11 +79,11 @@ with open("resume.txt", "a", encoding="utf-8") as sortie:
     sortie.write(f"{FICHIER.name} : seuil {SEUIL}, hausse {hausse:.1f} m, baisse {baisse:.1f} m\n")
 
 if options.distance:
-    distance = distance_parcourue(liste_x, liste_y)
+    distance = distance_parcourue(points)
     print(f"distance parcourue : {distance:.1f} m")
 
 if options.vitesse:
     temps_total = secondes_ecoulees(temps[0], temps[-1])
-    distance = distance_parcourue(liste_x, liste_y)
+    distance = distance_parcourue(points)
     vitesse = distance / temps_total
     print(f"vitesse moyenne : {vitesse:.2f} m/s, soit {vitesse * 3.6:.1f} km/h")

@@ -15,15 +15,14 @@ FICHIER = Path(options.fichier)
 SEUIL = options.seuil
 
 altitudes = []
-liste_x = []
-liste_y = []
+points = []
 with open(FICHIER, encoding="utf-8") as fichier:
     fichier.readline()
     for ligne in fichier:
         x, y, ele, time = ligne.strip().split(",")
         altitudes.append(float(ele))
-        liste_x.append(float(x))
-        liste_y.append(float(y))
+        if options.distance:
+            points.append((float(x), float(y), float(ele)))
 
 print(f"altitude minimale : {min(altitudes):.1f} m")
 print(f"altitude maximale : {max(altitudes):.1f} m")
@@ -48,6 +47,6 @@ with open("resume.txt", "a", encoding="utf-8") as sortie:
     sortie.write(f"{FICHIER.name} : seuil {SEUIL}, hausse {hausse:.1f} m, baisse {baisse:.1f} m\n")
 
 if options.distance:
-    print(f"positions lues : {len(liste_x)}")
-    print(f"position 0 : {liste_x[0]} {liste_y[0]}")
+    print(f"positions lues : {len(points)}")
+    print(f"position 0 : {points[0]}")
     print("distance : calcul manquant")

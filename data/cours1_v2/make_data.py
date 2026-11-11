@@ -13,6 +13,10 @@ Le TD 1c garde ses fichiers dans `1c_programme/depart/`, versionnés ; le
 script lui crée un `travail/` vide, où l'élève les copie avant de modifier
 le programme (09/11/2026).
 
+Le script vide d'abord le `produit/` de chaque TD, comme `outils/livrer_tds.py`
+l'attend : un fichier laissé là par un essai ne part pas dans l'archive. Les
+guides et les notebooks y sont refaits ensuite par les outils de `outils/`.
+
     python data/cours1/make_data.py build      # d'abord, si produit/ est vide
     python data/cours1_v2/make_data.py build
 """
@@ -30,12 +34,25 @@ TDS = ("1a_formats", "1b_terminal")
 EXCLUS = {td: ("*.html", "*.css") for td in TDS}
 
 
+def vider_produits() -> None:
+    """Vide le `produit/` de chaque dossier de TD (`1a_formats`, `1b_terminal`…), sauf `.gitkeep`."""
+    for dossier in sorted(ICI.iterdir()):
+        produit = dossier / "produit"
+        if not (dossier.is_dir() and dossier.name[:1].isdigit() and produit.is_dir()):
+            continue
+        for element in produit.iterdir():
+            if element.is_dir():
+                shutil.rmtree(element)
+            elif element.name != ".gitkeep":
+                element.unlink()
+
+
 def build() -> None:
     if not DEPART_V1.is_dir():
         sys.exit(f"{DEPART_V1} absent : lancer d'abord `python data/cours1/make_data.py build`.")
+    vider_produits()
     for td in TDS:
         cible = ICI / td / "produit" / "depart"
-        shutil.rmtree(cible, ignore_errors=True)
         shutil.copytree(DEPART_V1, cible, ignore=shutil.ignore_patterns(*EXCLUS.get(td, ())))
         (ICI / td / "produit" / "travail").mkdir(exist_ok=True)
         print(f"✓ {cible.relative_to(ICI.parent.parent)}")

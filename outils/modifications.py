@@ -33,7 +33,8 @@ entre deux lignes `+++`, et les lignes supprimées vont entre deux lignes
 guides en PDF, en HTML et en notebook.
 
 `modifications` est utilisé par `data/cours4/generer_guides.py`, `blocs` par
-`data/cours7/guides_projet7.py` ; en ligne de commande, pour un guide écrit
+`data/cours4/guides_recette.py`, `data/cours7/guides_projet7.py` et
+`outils/guides_cog.py` (guides des TD 4a et 7a v2) ; en ligne de commande, pour un guide écrit
 à la main :
 
     python outils/modifications.py avant.py apres.py

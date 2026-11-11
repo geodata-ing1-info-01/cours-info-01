@@ -59,14 +59,15 @@ supports et non aux TD, et vivent dans [`illustrations/`](../../illustrations/)
 
 ## Ce que les étudiants reçoivent
 
-Pas ce dépôt : une archive par séance, `info01-cours1.zip`, assemblée par
+Pas ce dépôt : une archive par séance, `info01-cours1_v1.zip` pour cette
+version de 2026, assemblée par
 
 ```bash
-python outils/livrer_tds.py            # → livraison/cours1/ et livraison/info01-cours1.zip
-python outils/livrer_tds.py --lister   # ce qui partirait, sans rien écrire
+python outils/livrer_tds.py --cours 1            # → livraison/cours1_v1/ et livraison/info01-cours1_v1.zip
+python outils/livrer_tds.py --cours 1 --lister   # ce qui partirait, sans rien écrire
 ```
 
-Elle contient `cours1/`, avec un dossier par TD, et dans chacun : les fichiers
+Elle contient `cours1_v1/`, avec un dossier par TD, et dans chacun : les fichiers
 versionnés, le contenu de `produit/` **mis à plat** (sans `_corrige/`), et la
 feuille du TD, `td_<dossier>.pdf`, compilée par `outils/compiler_tds.py`. Ni
 `fourni/`, ni `make_data.py`, ni ce README ne partent : l'archive porte le
@@ -75,8 +76,9 @@ sien, qui liste les TD.
 La distinction `produit/` / `fourni/` compte pour qui entretient le cours et
 n'est rien pour qui le suit ; l'archive ne la montre donc pas, et **les
 diapositives nomment les chemins tels que l'archive les montre** :
-`cours1/1a_formats/raven.odt`, sans `data/` ni `produit/`. C'est depuis
-`livraison/cours1/` qu'on rejoue un TD pour le vérifier, jamais depuis `data/`
+`cours1/1a_formats/raven.odt`, sans `data/` ni `produit/` (l'archive de 2026
+s'extrait maintenant en `cours1_v1/`). C'est depuis
+`livraison/cours1_v1/` qu'on rejoue un TD pour le vérifier, jamais depuis `data/`
 — ce qu'un TD fabrique y resterait, et `make_data.py build` repart de zéro.
 
 Les scripts qui lisent les fichiers d'un autre TD (`1d_erreurs/depart/chemin.py`, les

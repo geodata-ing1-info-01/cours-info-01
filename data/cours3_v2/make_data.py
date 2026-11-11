@@ -9,11 +9,14 @@ colonnes sont celles qu'écrit `ogr2ogr` : `X`, `Y` (Lambert-93, en mètres), `e
 départ du TD 3a est une copie du corrigé du TD 2c.
 
 TD 3b. Fabrique dans `3b_portabilite/produit/travail/` le dépôt git que l'élève reçoit :
-sur `master`, le corrigé du TD 2c, puis celui du TD 3a ; sur la branche `seuil`, partie
-du second commit, le programme d'Alice (`corriges/3b_portabilite/seuil/altitudes.py`),
-avec son chemin absolu dans `open` et un seuil écrit en dur. Les auteurs et les dates
-sont fixes : les identifiants des trois commits ne changent pas d'une fabrication à
-l'autre. `trace.csv`, `trace_2.csv` et `parcours.txt` sont à côté, non suivis. Le script
+sur `master`, le corrigé du TD 2c, puis un commit par étape du TD 3a qui modifie le
+programme : la lecture de `altitudes.txt`, puis celle de `trace.csv`. Ces deux versions
+sont obtenues en appliquant au programme de départ les remplacements que donnent les
+diapositives du TD 3a, et la seconde doit être le corrigé du TD 3a. Sur la branche
+`seuil`, partie du dernier commit de `master`, le programme d'Alice
+(`corriges/3b_portabilite/seuil/altitudes.py`), avec son chemin absolu dans `open` et un
+seuil écrit en dur. Les auteurs et les dates sont fixes : les identifiants des quatre
+commits ne changent pas d'une fabrication à l'autre. `trace.csv`, `trace_2.csv` et `parcours.txt` sont à côté, non suivis. Le script
 rejoue ensuite les étapes du TD dans un dossier temporaire : la fusion doit s'arrêter sur
 un seul conflit, la ligne de `open`, et le programme final être le corrigé.
 
@@ -41,20 +44,35 @@ DEPARTS = {
 }
 DEPOT_3B = ICI / "3b_portabilite" / "produit" / "travail"
 
-# Les trois commits fournis : (auteur, adresse, date, message, programme).
+# Les commits fournis sur `master` : (auteur, adresse, date, message). Le premier
+# enregistre le programme de départ du TD 3a, qui est le corrigé du TD 2c ; les deux
+# suivants, ce programme après chacune des étapes de `ETAPES_3A`.
 COMMITS = (
     ("Équipe info01", "info01@exemple.fr", "2027-10-01T10:00:00+02:00",
-     "Calcule les altitudes extrêmes et le dénivelé cumulé",
-     ICI / "3a_denivele" / "depart" / "altitudes.py"),
+     "Calcule les altitudes extrêmes et le dénivelé cumulé"),
     ("Équipe info01", "info01@exemple.fr", "2027-10-08T10:00:00+02:00",
-     "Lit les altitudes dans trace.csv",
-     CORRIGES / "3a_denivele" / "altitudes.py"),
+     "Lit les altitudes dans altitudes.txt"),
+    ("Équipe info01", "info01@exemple.fr", "2027-10-08T10:30:00+02:00",
+     "Lit les altitudes dans trace.csv"),
+)
+# Les deux étapes du TD 3a qui modifient `altitudes.py`, telles que ses diapositives les
+# donnent : (ancien texte, nouveau texte).
+ETAPES_3A = (
+    ('altitudes = [79.6, 103.2, 98.3, 92.5, 123.7]\n',
+     'altitudes = []\nwith open("altitudes.txt", encoding="utf-8") as fichier:\n'
+     '    for ligne in fichier:\n        altitudes.append(float(ligne))\n\n'),
+    ('altitudes = []\nwith open("altitudes.txt", encoding="utf-8") as fichier:\n'
+     '    for ligne in fichier:\n        altitudes.append(float(ligne))\n',
+     'altitudes = []\nwith open("trace.csv", encoding="utf-8") as fichier:\n'
+     '    fichier.readline()\n    for ligne in fichier:\n'
+     '        x, y, ele, time = ligne.strip().split(",")\n'
+     '        altitudes.append(float(ele))\n'),
 )
 COMMIT_ALICE = (
     "Alice", "alice@exemple.fr", "2027-10-09T10:00:00+02:00",
     "Ajoute un seuil au dénivelé cumulé",
-    CORRIGES / "3b_portabilite" / "seuil" / "altitudes.py",
 )
+PROGRAMME_ALICE = CORRIGES / "3b_portabilite" / "seuil" / "altitudes.py"
 
 # Les modifications des étapes du TD 3b, telles que les diapositives les donnent :
 # (ancien texte, nouveau texte), appliquées à `altitudes.py`.
@@ -120,26 +138,49 @@ def git(dossier: Path, *arguments: str, auteur: tuple[str, str, str] | None = No
                           capture_output=True, text=True)
 
 
-def committer(dossier: Path, commit: tuple) -> None:
-    nom, adresse, date, message, programme = commit
-    shutil.copyfile(programme, dossier / "altitudes.py")
+def committer(dossier: Path, commit: tuple, programme: str) -> None:
+    nom, adresse, date, message = commit
+    (dossier / "altitudes.py").write_text(programme, encoding="utf-8", newline="\n")
     git(dossier, "add", "altitudes.py")
     git(dossier, "commit", "-q", "-m", message, auteur=(nom, adresse, date))
 
 
-def fabriquer_depot() -> None:
-    """Le dépôt du TD 3b : deux commits sur `master`, un sur `seuil`, puis `master`."""
+def programmes_3a() -> list[str] | None:
+    """Le programme de départ du TD 3a, puis ce programme après chaque étape de `ETAPES_3A`."""
+    programmes = [(ICI / "3a_denivele" / "depart" / "altitudes.py").read_text(encoding="utf-8")]
+    for ancien, nouveau in ETAPES_3A:
+        if programmes[-1].count(ancien) != 1:
+            print(f"! TD 3a rejoué : texte introuvable dans altitudes.py : {ancien[:40]!r}")
+            return None
+        programmes.append(programmes[-1].replace(ancien, nouveau))
+    corrige = CORRIGES / "3a_denivele" / "altitudes.py"
+    if programmes[-1] != corrige.read_text(encoding="utf-8"):
+        print(f"! TD 3a rejoué : le programme final diffère de {corrige.relative_to(ICI.parent.parent)}")
+        return None
+    return programmes
+
+
+def fabriquer_depot() -> bool:
+    """Le dépôt du TD 3b : trois commits sur `master`, un sur `seuil`, puis `master`."""
+    programmes = programmes_3a()
+    if programmes is None:
+        return False
     shutil.rmtree(DEPOT_3B.parent, ignore_errors=True)
     DEPOT_3B.mkdir(parents=True)
     git(DEPOT_3B, "init", "-q", "-b", "master")
-    for commit in COMMITS:
-        committer(DEPOT_3B, commit)
-    git(DEPOT_3B, "checkout", "-q", "-b", "seuil")
-    committer(DEPOT_3B, COMMIT_ALICE)
-    git(DEPOT_3B, "checkout", "-q", "master")
+    for commit, programme in zip(COMMITS, programmes, strict=True):
+        committer(DEPOT_3B, commit, programme)
+    # Les changements de branche ont aussi une identité et une date fixées : sinon, le
+    # journal des références (`.git/logs/`), livré avec le dépôt, garderait le nom du
+    # compte et de la machine qui fabriquent les données, et l'heure de fabrication.
+    alice = COMMIT_ALICE[:3]
+    git(DEPOT_3B, "checkout", "-q", "-b", "seuil", auteur=alice)
+    committer(DEPOT_3B, COMMIT_ALICE, PROGRAMME_ALICE.read_text(encoding="utf-8"))
+    git(DEPOT_3B, "checkout", "-q", "master", auteur=alice)
     for nom in ("trace.csv", "trace_2.csv", "parcours.txt"):
         shutil.copyfile(TRACES / nom, DEPOT_3B / nom)
     print(f"✓ {DEPOT_3B.relative_to(ICI.parent.parent)} : dépôt git, branches master et seuil")
+    return True
 
 
 def remplacer(fichier: Path, ancien: str, nouveau: str) -> bool:
@@ -199,8 +240,8 @@ def build() -> None:
     corrige = ICI.parent / "cours2_v2" / "corriges" / "2c_depot_altitudes" / "altitudes.py"
     if depart.read_text(encoding="utf-8") != corrige.read_text(encoding="utf-8"):
         print(f"! {depart.relative_to(ICI.parent.parent)} diffère de {corrige.relative_to(ICI.parent.parent)}")
-    fabriquer_depot()
-    rejouer_td_3b()
+    if fabriquer_depot():
+        rejouer_td_3b()
 
 
 if __name__ == "__main__":

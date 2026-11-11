@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Assemble l'archive d'une séance telle que les étudiants la reçoivent.
 
-    python outils/livrer_tds.py                # cours 1 → livraison/cours1/ et livraison/info01-cours1.zip
-    python outils/livrer_tds.py --cours 3      # une autre séance
+    python outils/livrer_tds.py                # séance 1 → livraison/cours1/ et livraison/info01-cours1.zip
+    python outils/livrer_tds.py --cours 3_v2   # une autre séance
+    python outils/livrer_tds.py --cours 3      # la séance 3 de 2026 → livraison/info01-cours3_v1.zip
     python outils/livrer_tds.py --lister       # ce qui serait copié, sans rien écrire
     python outils/livrer_tds.py --sans-fabriquer   # sans refaire feuilles de TD ni notebooks
 
@@ -33,6 +34,7 @@ sommaire, puisque les feuilles des TD sont déjà dans leurs dossiers.
 
 Avant d'assembler, le script refait ce qui se dérive des sources : les données
 (`data/cours<n>/make_data.py build`, qui repart d'un `produit/` vide), les
+blocs de code et les sorties des guides écrits par Cog (`outils/guides_cog.py`), les
 diapositives (`outils/compiler_diapos.py --sans-tds`), les
 feuilles de TD (`outils/compiler_tds.py`) et les notebooks
 (`outils/construire_notebooks.py`), et les guides détaillés
@@ -42,6 +44,13 @@ construction du book — a laissé dans `produit/`. Si `make_data.py` signale
 une source absente (une ligne `! …`, le plus souvent un `fourni/` pas encore
 téléchargé), le script s'arrête sans assembler : l'archive partirait sans le
 fichier.
+
+Le nom de l'archive est celui de la séance, sans le suffixe du dépôt : les
+sources de la version 2, `data/cours1_v2/` et `src/cours1_v2/`, donnent
+`info01-cours1.zip`, qui s'extrait en `cours1/`, les noms que citent ses guides
+et ses diapositives. La version de 2026, `data/cours1/`, gardée en archive,
+donne `info01-cours1_v1.zip`, qui s'extrait en `cours1_v1/` : les deux
+archives se décompressent côte à côte (`nom_livre`).
 
 `fourni/` reste au dépôt : c'est la matière première de `make_data.py`, les
 étudiants n'en ont pas besoin. Les diapositives nomment les chemins tels que
@@ -77,6 +86,14 @@ from pathlib import Path
 RACINE = Path(__file__).resolve().parent.parent
 LIVRAISON = RACINE / "livraison"
 MOTIF_TD = re.compile(r"^\d+[a-z]?_")
+
+
+def nom_livre(cours: str) -> str:
+    """Le nom de la séance dans l'archive : `1_v2` donne `1`, et `1`, la version de 2026, `1_v1`.
+
+    `src/conf.py` applique la même règle au lien vers l'archive, en tête des pages du book.
+    """
+    return cours.removesuffix("_v2") if cours.endswith("_v2") else f"{cours}_v1"
 
 
 def dossiers_td(cours: str) -> list[Path]:
@@ -173,8 +190,10 @@ def description(cours: str, td: Path | str) -> dict[str, str]:
 
 
 def readme(cours: str, tds: list[Path], racine: list[str], avec_diapos: bool) -> str:
+    nom = nom_livre(cours)
+    seance = f"{nom.removesuffix('_v1')}, version de 2026" if nom.endswith("_v1") else nom
     lignes = [
-        f"# Cours {cours} — travaux dirigés",
+        f"# Cours {seance} — travaux dirigés",
         "",
         "Un dossier par TD, dans l'ordre de la séance : le chiffre est la séance,",
         "la lettre l'ordre dans la séance. La feuille du TD (`td_<dossier>.pdf`) et,",
@@ -182,7 +201,7 @@ def readme(cours: str, tds: list[Path], racine: list[str], avec_diapos: bool) ->
         "Un TD qui se fait à la racine de l'archive a sa feuille à la racine.",
     ]
     if avec_diapos:
-        lignes.append(f"Les diapositives de la séance, sans les TD, sont dans `diapositives_cours{cours}.pdf`.")
+        lignes.append(f"Les diapositives de la séance, sans les TD, sont dans `diapositives_cours{nom}.pdf`.")
     lignes += [
         "",
         "| TD | Titre | Dossier | |",
@@ -209,6 +228,7 @@ def fabriquer(cours: str) -> int:
     if (RACINE / f"src/cours{cours}/diapo/cours{cours}.typ").exists():
         etapes.append((RACINE / "outils" / "compiler_diapos.py", ["--cours", str(cours), "--sans-tds"], RACINE))
     etapes += [
+        (RACINE / "outils" / "guides_cog.py", ["--cours", str(cours)], RACINE),
         (RACINE / "outils" / "compiler_tds.py", ["--cours", str(cours)], RACINE),
         (RACINE / "outils" / "construire_notebooks.py", [], RACINE),
         (RACINE / "outils" / "compiler_guides.py", ["--cours", str(cours)], RACINE),
@@ -239,8 +259,9 @@ def livrer(cours: str, lister: bool) -> int:
         print(f"data/cours{cours} : aucun dossier de TD", file=sys.stderr)
         return 1
 
-    cible = LIVRAISON / f"cours{cours}"
-    archive = LIVRAISON / f"info01-cours{cours}.zip"
+    nom = nom_livre(cours)
+    cible = LIVRAISON / f"cours{nom}"
+    archive = LIVRAISON / f"info01-cours{nom}.zip"
     if not lister:
         shutil.rmtree(cible, ignore_errors=True)
         cible.mkdir(parents=True)
@@ -269,11 +290,11 @@ def livrer(cours: str, lister: bool) -> int:
                 (cible / td.name / vide).mkdir(parents=True, exist_ok=True)
 
     racine = []
-    for nom, feuille in feuilles_racine(cours):
+    for td_racine, feuille in feuilles_racine(cours):
         if not feuille.exists():
-            print(f"  {nom} : feuille de TD absente ({feuille.relative_to(RACINE)})", file=sys.stderr)
+            print(f"  {td_racine} : feuille de TD absente ({feuille.relative_to(RACINE)})", file=sys.stderr)
             continue
-        racine.append(nom)
+        racine.append(td_racine)
         total += 1
         print(f"{feuille.name} : à la racine")
         if not lister:
@@ -282,9 +303,9 @@ def livrer(cours: str, lister: bool) -> int:
     diapos = diapositives(cours)
     if diapos.exists():
         total += 1
-        print(f"diapositives_cours{cours}.pdf : à la racine")
+        print(f"diapositives_cours{nom}.pdf : à la racine")
         if not lister:
-            shutil.copy2(diapos, cible / f"diapositives_cours{cours}.pdf")
+            shutil.copy2(diapos, cible / f"diapositives_cours{nom}.pdf")
     else:
         print(f"  diapositives absentes ({diapos.relative_to(RACINE)})", file=sys.stderr)
 
@@ -309,7 +330,8 @@ def livrer(cours: str, lister: bool) -> int:
 
 def main() -> int:
     analyseur = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    analyseur.add_argument("--cours", default="1", help="numéro du cours, 1 à 7, ou 1_v2 (défaut : 1)")
+    analyseur.add_argument("--cours", default="1_v2",
+                           help="séance : 1_v2 à 7_v2, ou 1 à 7 pour la version de 2026 (défaut : 1_v2)")
     analyseur.add_argument("--lister", action="store_true", help="dire ce qui serait copié")
     analyseur.add_argument(
         "--sans-fabriquer", action="store_true",

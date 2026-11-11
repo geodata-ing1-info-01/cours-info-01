@@ -28,7 +28,7 @@ Pour **suivre** le cours et jouer les TD :
 ```bash
 conda env create -f environment-supports.yml && conda activate info01
 cd data/cours1 && python make_data.py fetch && python make_data.py build && cd ../..
-python outils/livrer_tds.py     # l'archive des TD telle que les étudiants la reçoivent
+python outils/livrer_tds.py     # l'archive de la séance 1 telle que les étudiants la reçoivent
 ```
 
 Les étudiants, eux, n'installent qu'Anaconda : chaque TD qui a besoin d'autre
@@ -36,7 +36,9 @@ chose crée son propre environnement, et c'est ce que le TD 1h fait apprendre.
 
 Les étudiants, eux, ne reçoivent que `livraison/info01-cours<n>.zip` : un
 dossier par TD, la feuille du TD en PDF dans chacun. Les diapositives nomment
-les chemins tels que cette archive les montre.
+les chemins tels que cette archive les montre. Cette archive est fabriquée
+depuis la version 2 de la séance (`livrer_tds.py --cours <n>_v2`) ; la version
+de 2026 donne `info01-cours<n>_v1.zip` (`livrer_tds.py --cours <n>`).
 
 Pour **recompiler** les supports, il faut en plus la chaîne documentaire :
 

@@ -11,13 +11,14 @@ script en tire, par pandoc, deux versions à lire hors de JupyterLab :
 
 Chaque étape, titre de niveau 2, commence une page du PDF. Les images
 dessinées pour le guide, `illustrations/<nom>.typ` à côté de `guide.md`, sont
-compilées en PNG dans `produit/illustrations/`. Les images du guide sont
+compilées en PNG dans `produit/illustrations/`, où les autres images de
+`illustrations/`, des captures d'écran, sont copiées. Les images du guide sont
 cherchées à partir de `produit/` du TD, où
 `make_data.py` les dépose : un chemin comme
 `depart/illustrations/programme_montre.png` vaut pour le guide livré à la
 racine du dossier du TD comme pour la conversion. Elles sont cherchées
 ensuite à côté de `guide.md` : les guides du book (versions 2 des cours 1,
-2 et 4) y gardent leurs images versionnées, que la page du book affiche. Les deux fichiers sont
+2, 4, 5 et 7) y gardent leurs images versionnées, que la page du book affiche. Les deux fichiers sont
 déposés dans `produit/` du TD, que `outils/livrer_tds.py` met à
 plat dans le dossier livré : l'étudiant trouve le guide à côté de `depart/`.
 
@@ -37,6 +38,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -140,12 +142,21 @@ def sans_premier_titre(texte: str) -> str:
 # Cours dont les guides sont des pages du book avec leurs images : le PNG de
 # chaque illustration est aussi écrit à côté de sa source, et versionné, pour
 # que le book se construise sans typst (comme les SVG de `notebook/figures/`).
-ILLUSTRATIONS_VERSIONNEES = {"cours1_v2", "cours2_v2", "cours4_v2", "cours5_v2"}
+ILLUSTRATIONS_VERSIONNEES = {"cours1_v2", "cours2_v2", "cours4_v2", "cours5_v2", "cours7_v2"}
+IMAGES = {".png", ".jpg", ".jpeg", ".gif", ".svg"}
 
 
 def illustrer(source: Path, produit: Path) -> int:
-    """Les images du guide écrites en typst, `illustrations/<nom>.typ`, en PNG dans `produit/illustrations/`."""
+    """Les images du guide dans `produit/illustrations/` : celles écrites en typst,
+    `illustrations/<nom>.typ`, compilées en PNG, et les autres, des captures
+    d'écran, copiées telles quelles. `guide.ipynb`, livré à côté du guide, les
+    cherche dans ce dossier."""
     cours = source.relative_to(RACINE / "src").parts[0]
+    for image in sorted((source.parent / "illustrations").glob("*")):
+        if image.suffix.lower() in IMAGES and not image.with_suffix(".typ").exists():
+            cible = produit / "illustrations" / image.name
+            cible.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(image, cible)
     for figure in sorted((source.parent / "illustrations").glob("*.typ")):
         cible = produit / "illustrations" / (figure.stem + ".png")
         cible.parent.mkdir(parents=True, exist_ok=True)

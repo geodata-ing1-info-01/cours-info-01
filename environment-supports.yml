@@ -39,3 +39,4 @@ dependencies:
   - sphinx-design
   - sphinx-autobuild    # aperçu live pendant la rédaction
   - jupytext            # .md MyST -> .ipynb, pour outils/construire_notebooks.py
+  - cogapp              # blocs de code et sorties des guides de TD, outils/guides_cog.py

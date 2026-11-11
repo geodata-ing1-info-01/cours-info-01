@@ -90,8 +90,8 @@ exclude_patterns = [
 # `GUIDES_DANS_LE_BOOK`, il est aussi une page du book, sous le titre « TD … ».
 # Les guides des autres cours ne sont pas encore relus pour le book (leurs
 # images sont cherchées dans `data/`, depuis `produit/`).
-# Les versions 2 des cours 1, 2, 4 et 5 (propositions 2027-2028) aussi.
-GUIDES_DANS_LE_BOOK = {"cours1", "cours2", "cours3", "cours4", "cours7", "cours1_v2", "cours2_v2", "cours4_v2", "cours5_v2"}
+# Les versions 2 des cours 1, 2, 4, 5 et 7 (propositions 2027-2028) aussi.
+GUIDES_DANS_LE_BOOK = {"cours1", "cours2", "cours3", "cours4", "cours7", "cours1_v2", "cours2_v2", "cours4_v2", "cours5_v2", "cours7_v2"}
 _SRC = Path(__file__).resolve().parent
 
 
@@ -106,7 +106,7 @@ _SRC = Path(__file__).resolve().parent
 # `outils/compiler_guides.py`), le PNG à côté du guide est versionné, à
 # 144 ppi ; celui de `produit/` est à 110 ppi. Il n'est donc recopié que s'il
 # manque : sinon chaque construction du book réécrirait le fichier versionné.
-ILLUSTRATIONS_VERSIONNEES = {"cours1_v2", "cours2_v2", "cours4_v2", "cours5_v2"}
+ILLUSTRATIONS_VERSIONNEES = {"cours1_v2", "cours2_v2", "cours4_v2", "cours5_v2", "cours7_v2"}
 
 
 def _images_des_guides() -> None:
@@ -151,7 +151,11 @@ def _lien_archive(app, docname, source) -> None:
     parties = docname.split("/")
     if not (parties[0].startswith("cours") and parties[-1] in ("index", "guide")):
         return
-    archive = f"info01-{parties[0]}.zip"
+    # Même règle que `nom_livre` de `outils/livrer_tds.py` : `cours1_v2/`
+    # donne `info01-cours1.zip`, et `cours1/`, la version de 2026, `info01-cours1_v1.zip`.
+    dossier = parties[0]
+    archive = (f"info01-{dossier.removesuffix('_v2')}.zip" if dossier.endswith("_v2")
+               else f"info01-{dossier}_v1.zip")
     if archive not in _ARCHIVES:
         return
     href = "../" * (len(parties) - 1) + "telechargements/" + archive

@@ -30,4 +30,5 @@ indentations.
 | B4 | la fonction `distance_entre` | 6 |
 | B5 | la fonction `distance_parcourue` : le résultat final | 7 |
 | B6 | l'option `--vitesse` et la fonction `secondes_ecoulees` | 8 |
-| B7 (bonus) | un README, l'étiquette `v1.0` | 9 |
+| B7 (facultative) | un README, l'étiquette `v1.0` | 9 |
+| B8 (facultative) | la distance calculée avec numpy | 10 |
