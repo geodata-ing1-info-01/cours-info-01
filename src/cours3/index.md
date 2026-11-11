@@ -1,6 +1,11 @@
 ---
-title: "Séance 3 — Chemins, fichiers et ligne de commande"
+title: "Séance 3, 2026 — Chemins, fichiers et ligne de commande"
 ---
+
+:::{note}
+Version de 2026 de la séance 3, gardée en archive. La version en cours
+de la séance 3 est dans la partie « Séances ».
+:::
 
 ## Objectifs
 

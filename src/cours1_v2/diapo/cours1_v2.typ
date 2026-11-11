@@ -8,8 +8,8 @@
 // reformulées ; les diapositives nouvelles portent un commentaire
 // « nouveau (v2) » dans leur source.
 //
-// 04/11/2026 : l'introduction du module sort du cours 1 et attend dans
-// `a_reprendre/introduction_module.typ`. Trois diapositives de matériel sont
+// 04/11/2026 : l'introduction du module sort du cours 1 ; le 11/11/2026, elle revient
+// en ouverture, reprise dans `src/cours0_v2/diapo/presentation.typ`. Trois diapositives de matériel sont
 // reprises du cours 5 de 2026, qui reste inchangé : les composants en partie 1,
 // le processeur en partie 3, après la compilation (ordre du 05/11/2026). La
 // température et la consommation s'y ajoutent en partie 1, le 05/11/2026, et
@@ -26,7 +26,7 @@
 #import "../../commun/prelude.typ": *
 
 #show: diapos.with(
-  titre-court: "Introduction à l'informatique · cours 1, version 2 (proposition)",
+  titre-court: "Introduction à l'informatique · cours 1",
   auteur-court: "1re année géomatique",
 )
 
@@ -40,6 +40,9 @@
 #import "tds/1b_terminal.typ": td as td-1b
 #import "tds/1c_programme.typ": td as td-1c
 #import "tds/1d_notebook.typ": td as td-1d
+
+// La présentation du module (séance 0), en ouverture de la séance 1.
+#include "../../cours0_v2/diapo/presentation.typ"
 
 #include "parties/00_ouverture.typ"
 

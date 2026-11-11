@@ -1,4 +1,4 @@
-// Partie 5 du cours 5 v2, en bonus : JupyterLab et le noyau. Incluse par `cours5_v2.typ`.
+// Partie 5 du cours 5 v2, facultative : JupyterLab et le noyau. Incluse par `cours5_v2.typ`.
 //
 // Réorganisée le 06/11/2026 : le problème (une bibliothèque introuvable dans un notebook), le client
 // et le serveur dans JupyterLab, repris du cours 5 de 2026, « Les clients d'un notebook », reprise de

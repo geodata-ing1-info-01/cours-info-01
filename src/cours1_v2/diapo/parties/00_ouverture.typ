@@ -1,13 +1,12 @@
 // Partie du cours 1 v2 — incluse par `cours1_v2.typ`, qui porte les réglages
 // globaux. Un fichier inclus n'hérite pas des imports de son appelant.
 //
-// L'introduction du module, cinq diapositives retirées le 04/11/2026, est dans
-// `a_reprendre/introduction_module.typ`.
+// La présentation du module la précède : `src/cours0_v2/diapo/presentation.typ`.
 #import "../../../commun/prelude.typ": *
 
 #page-titre(
   titre: "Cours 1",
-  sous-titre: "Version 2, proposition de travail",
+  sous-titre: "Logiciels, fichiers, terminal et premier programme",
   auteur: "1re année géomatique",
   date: "2027-2028",
 )
@@ -59,7 +58,7 @@
     les trois parties.
 
     Si la séance déborde, le notebook et le TD 1d passent en début de
-    cours 3, qui ouvre des notebooks. Le TD des programmes fautifs est au cours 2 v2 depuis le
+    séance suivante. Le TD des programmes fautifs est au cours 2 v2 depuis le
     27/09/2026.
   ]
 ]

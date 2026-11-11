@@ -3,7 +3,7 @@
 // 06/11/2026 : même organisation que le cours 3 v2. La partie 1 pose le problème sans détail
 // de Python : réutiliser des outils existants, et les réinstaller sur un autre poste. Les
 // parties 2 et 3 traitent les deux cas, un programme et une bibliothèque. La partie 4 traite
-// l'environnement et le fichier de projet. La partie 5, en bonus, JupyterLab et le noyau. Les
+// l'environnement et le fichier de projet. La partie 5, facultative, JupyterLab et le noyau. Les
 // TD sont répartis dans l'exposé : le TD 5a après la partie 3, les TD 5b et 5c après la partie
 // 4, le TD 5d, facultatif, après la partie 5.
 //
@@ -21,7 +21,7 @@
 #import "../../commun/prelude.typ": *
 
 #show: diapos.with(
-  titre-court: "Introduction à l'informatique · cours 5, version 2 (proposition)",
+  titre-court: "Introduction à l'informatique · cours 5",
   auteur-court: "1re année géomatique",
 )
 
@@ -49,7 +49,7 @@
   annonce: "Un dossier par projet, et les fichiers qui permettent de le recréer sur un autre poste.",
 )
 #let partie-5 = (
-  titre: "Bonus : JupyterLab et le noyau",
+  titre: "JupyterLab et le noyau, partie facultative",
   annonce: "Le client, le serveur, et le Python qui exécute un notebook.",
 )
 

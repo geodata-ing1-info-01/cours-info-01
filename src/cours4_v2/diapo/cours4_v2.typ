@@ -13,7 +13,7 @@
 #import "../../commun/prelude.typ": *
 
 #show: diapos.with(
-  titre-court: "Introduction à l'informatique · cours 4, version 2 (proposition)",
+  titre-court: "Introduction à l'informatique · cours 4",
   auteur-court: "1re année géomatique",
 )
 
@@ -45,7 +45,7 @@
     columns: (auto, 1fr),
     align: left + horizon,
     [Commande], [Résultat],
-    [`git log --oneline`], [huit commits, neuf avec le bonus],
+    [`git log --oneline`], [huit commits, neuf avec l'étape facultative],
     [`git status`], [« rien à valider » ; `resume.txt` n'est pas listé],
     [`python stats_trace.py --help`], [décrit les options `--distance` et `--vitesse`],
     [`python stats_trace.py trace.csv --distance --vitesse`], [affiche la distance parcourue et la vitesse moyenne],

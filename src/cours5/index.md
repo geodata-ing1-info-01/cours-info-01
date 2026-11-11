@@ -1,6 +1,11 @@
 ---
-title: "Séance 5 — Matériel, réseau, mots de passe, clés SSH et secrets"
+title: "Séance 5, 2026 — Matériel, réseau, mots de passe, clés SSH et secrets"
 ---
+
+:::{note}
+Version de 2026 de la séance 5, gardée en archive. La version en cours
+de la séance 5 est dans la partie « Séances ».
+:::
 
 ## Contenu de la séance
 

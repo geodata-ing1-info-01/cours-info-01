@@ -430,8 +430,8 @@
     bibliothèque graphique. Ceux du module écrivent dans le terminal ou
     dans des fichiers.
 
-    Au cours 4, un programme Python lance `magick` et `ffmpeg`, deux autres
-    programmes en ligne de commande.
+    Au cours 5, un programme Python lance `ogr2ogr`, un autre programme en
+    ligne de commande.
   ]
 ]
 

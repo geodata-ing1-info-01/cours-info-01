@@ -19,7 +19,7 @@
 #import "../../commun/prelude.typ": *
 
 #show: diapos.with(
-  titre-court: "Introduction à l'informatique · cours 2, version 2 (proposition)",
+  titre-court: "Introduction à l'informatique · cours 2",
   auteur-court: "1re année géomatique",
 )
 

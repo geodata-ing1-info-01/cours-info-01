@@ -1,13 +1,6 @@
 ---
-title: "Séance 2, version 2 — Éditeur de code et git local"
+title: "Séance 2 — Éditeur de code et git local"
 ---
-
-:::{note}
-Version 2 de la séance 2, en cours de construction pour l'année 2027-2028,
-écrite en septembre 2026 à partir des retours sur la séance 2. La séance
-jouée en 2026 est dans la partie « Archive 2026 ». Le TD git de cette
-version peut servir à réviser git.
-:::
 
 ## Contenu de la séance
 
@@ -19,7 +12,7 @@ Bash.
 :header-rows: 1
 
 * - Partie
-  - Ce qu'on y voit
+  - Contenu
   - TD
 * - [L'éditeur de code](notebook/01_editeur_de_code.md)
   - les fonctions d'un IDE, la coloration, la chasse fixe, l'indentation en
@@ -39,25 +32,10 @@ Bash.
 ```
 
 Les guides détaillés des TD sont réunis dans [Travaux dirigés de la
-séance 2, version 2](notebook/travaux_diriges.md).
+séance 2](notebook/travaux_diriges.md). Les fichiers des TD sont dans
+l'archive de la séance, `info01-cours2.zip`, avec les diapositives,
+`diapositives_cours2.pdf`.
 
-## Ce qui change par rapport à 2026
-
-La version 2 suit le syllabus v2 du module, `syllabus/02_syllabus_v2.md`
-dans le dépôt :
-
-- la ligne de commande passe au cours 1, avec un TD ;
-- la configuration de VS Code arrive du cours 1, faite en classe entière,
-  avec Git Bash comme terminal ;
-- git se joue sur un seul dépôt, celui d'`altitudes.py`, le programme du cours 1,
-  à la place des cinq TD sur le projet `projet_2` ; ce programme y gagne ses
-  calculs, et un README ;
-- `tag` passe au projet 7 ;
-  l'organisation main, develop, feature est gardée, en théorie ;
-- l'aspect distribué de git est présenté en théorie ; il se pratique au
-  cours 6, et à l'étape 7 du TD git pour ceux qui ont fini.
-
-Les diapositives sont dans le dépôt, `src/cours2_v2/diapo/cours2_v2.pdf`.
 
 ```{toctree}
 :maxdepth: 1

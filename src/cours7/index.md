@@ -1,6 +1,11 @@
 ---
-title: "Séance 7 — Projet d'application 2"
+title: "Séance 7, 2026 — Projet d'application 2"
 ---
+
+:::{note}
+Version de 2026 de la séance 7, gardée en archive. La version en cours
+de la séance 7 est dans la partie « Séances ».
+:::
 
 ## Objectif
 

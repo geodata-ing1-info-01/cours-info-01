@@ -587,7 +587,7 @@
 // ------------------------------- Stockage ----------------------------------
 #d("Les emplacements de stockage sur le réseau")[
   #annonce[
-    Le Bureau est sur le disque du poste, `formationTemp` sur le disque du
+    Le Bureau est sur le disque de l'ordinateur, `formationTemp` sur le disque du
     serveur de l'école. Pour aller sur Internet, les postes passent par le
     proxy de l'école, avec demande de mot de passe.
   ]
@@ -600,10 +600,10 @@
   ]
 
   #notes[
-    Faire situer sur le schéma le disque du poste, `formationTemp`,
+    Faire situer sur le schéma le disque de l'ordinateur, `formationTemp`,
     l'espace personnel et le stockage en ligne. La clé USB n'y figure pas.
 
-    Lire un fichier sur le réseau est plus lent que sur le disque du poste.
+    Lire un fichier sur le réseau est plus lent que sur le disque de l'ordinateur.
 
     À compléter avant la séance : le nom de l'espace personnel de l'élève,
     son chemin, et comment l'ouvrir. Les élèves ne s'en servent pas encore
@@ -624,7 +624,7 @@
     fonctionnement du proxy (identifiant de l'école, fenêtre du navigateur).
     Le chemin se relève dans la barre d'adresse de l'explorateur, raccourci
     du Bureau ouvert. La règle de `src/avant/donnees.md` (« une autre lettre
-    que `C:` ») est fausse si `D:` est un disque du poste : à vérifier.
+    que `C:` ») est fausse si `D:` est un disque de l'ordinateur : à vérifier.
   ]
 ]
 

@@ -1,15 +1,15 @@
 ---
 title: Git et le dépôt local
-subtitle: Les versions d'un projet, les copies d'un dépôt, et les commandes qui enregistrent et comparent
+subtitle: Enregistrer et comparer les versions d'un projet
 ---
 
-Cette partie présente git, un logiciel qui enregistre les versions
-successives d'un projet, et sa place parmi les systèmes de version. Elle
-décrit ensuite la commande `git` et ses sous-commandes, puis celles qui
-créent un dépôt, enregistrent une version, comparent et annulent une
-modification, et ignorent des fichiers. Les exemples sont ceux du [TD
-2c](td/2c_depot_altitudes/guide.md), qui versionne le programme `altitudes.py` ; il
-est présenté en fin de page.
+Git enregistre les versions successives d'un projet. Il permet de revenir à
+une version antérieure, de voir ce qui a changé d'une version à l'autre, et de
+travailler à plusieurs sur les mêmes fichiers. Cette page présente les
+commandes de git employées sur un seul poste.
+
+Les exemples viennent du [TD 2c](td/2c_depot_altitudes/guide.md), qui crée un
+dépôt git pour le programme `altitudes.py`.
 
 ## À quoi sert git
 
@@ -490,5 +490,5 @@ Pour s'entraîner à git après la séance, des jeux et des exercices sont
 réunis dans [S'entraîner : jeux et exercices](../../apres/s_entrainer.md),
 dont Learn Git Branching, en français.
 
-Les TD des autres parties sont dans [Travaux dirigés de la séance 2,
-version 2](travaux_diriges.md).
+Les TD des autres parties sont dans [Travaux dirigés de la
+séance 2](travaux_diriges.md).

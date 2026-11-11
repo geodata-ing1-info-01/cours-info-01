@@ -5,7 +5,7 @@
 
 #page-titre(
   titre: "Cours 2",
-  sous-titre: "Version 2, proposition de travail",
+  sous-titre: "Éditeur de code et git local",
   auteur: "1re année géomatique",
   date: "2027-2028",
 )

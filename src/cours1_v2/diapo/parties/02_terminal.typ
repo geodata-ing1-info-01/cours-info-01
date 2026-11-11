@@ -30,7 +30,7 @@
 
   #notes[
     Les deux copies donnent le même fichier, `travail/raven.odt`, sur le
-    disque du poste.
+    disque de l'ordinateur.
 
     Sigles anglais : GUI (_graphical user interface_) et CLI (_command-line
     interface_).
@@ -42,7 +42,7 @@
     `cp` n'affiche rien quand la copie réussit.
 
     Paramètres de `cp` : le fichier à copier et le dossier de destination. La diapositive
-    « La forme d'une commande » les distingue en options et arguments.
+    « Structure d'une commande » les distingue en options et arguments.
   ]
 ]
 
@@ -118,7 +118,7 @@
     MicMac, de l'IGN et de l'ENSG, par la commande `mm3d`. QGIS propose des fenêtres
     pour une partie de GDAL. Software Carpentry, _The Unix Shell_ : « some tools and
     resources such as cloud computing systems usually require users to be familiar
-    with the shell ». Serveurs : accès par `ssh`, aux cours 5 et 6.
+    with the shell ». Serveurs : accès par `ssh`, au cours 6.
 
     Automatisation : le TD 1b fait cette copie. Software Carpentry : « excels at making
     repetitive tasks automatic and fast ». Exemple de la page de cours, 120 images :
@@ -257,7 +257,7 @@
     plus de 60 % des cœurs des clients d'Azure (page Azure, 27/09/2026).
     Développeurs : bash 49 %, PowerShell 23 % (Stack Overflow 2025).
 
-    Git Bash fournit aussi `ssh`, employé au cours 5. Software Carpentry
+    Git Bash fournit aussi `ssh`, employé au cours 6. Software Carpentry
     recommande Git for Windows, sans droits d'administrateur ; le MIT
     (_Missing Semester_) écarte cmd et PowerShell. Aucune étude trouvée qui
     compare la facilité d'apprentissage de bash et de PowerShell.
@@ -334,7 +334,7 @@
 ]
 
 // --------------------------------------------
-#d("La forme d'une commande")[
+#d("Structure d'une commande")[
   #annonce[
     Une commande commence par le nom du programme à lancer. Suivent des
     options, qui commencent par un tiret, et des arguments, souvent des noms

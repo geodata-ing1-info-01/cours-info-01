@@ -46,7 +46,7 @@
 
     Notions de la séance, à rappeler à l'oral : un logiciel transforme une entrée en
     sortie, et un fichier conserve le résultat ; l'extension nomme le type du fichier sans
-    modifier son contenu ; le disque du poste garde les fichiers de l'élève, le dossier
+    modifier son contenu ; le disque de l'ordinateur garde les fichiers de l'élève, le dossier
     partagé est à toute la salle ; une commande désigne un fichier exécutable, cherché dans
     le `PATH` ; un notebook réunit texte, code et résultats, et le noyau retient les
     variables.

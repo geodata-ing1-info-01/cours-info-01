@@ -4,7 +4,7 @@
 
 #page-titre(
   titre: "Cours 3",
-  sous-titre: "Version 2, proposition de travail",
+  sous-titre: "Fichiers, chemins et programme en ligne de commande",
   auteur: "1re année géomatique",
   date: "2027-2028",
 )

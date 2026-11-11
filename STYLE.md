@@ -266,6 +266,7 @@ changement de nature du contenu :
 | Encadré | Contenu |
 |---------|---------|
 | `:::{admonition} À faire` | ce que l'étudiant doit faire, à l'impératif |
+| `:::{admonition} Question` | une question posée à la salle pendant la séance (un quiz d'une diapositive), suivie de sa réponse dans la page |
 | `:::{note}` | une précision qu'on peut sauter en première lecture |
 | `:::{warning}` | une erreur fréquente et ses conséquences |
 

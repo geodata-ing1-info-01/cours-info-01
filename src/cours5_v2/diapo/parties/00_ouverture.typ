@@ -4,7 +4,7 @@
 
 #page-titre(
   titre: "Cours 5",
-  sous-titre: "Version 2, proposition de travail",
+  sous-titre: "Réutiliser des programmes et des bibliothèques",
   auteur: "1re année géomatique",
   date: "2027-2028",
 )
@@ -38,7 +38,7 @@
   #notes[
     Plan, à annoncer à l'oral : le problème, sans détail de Python ; appeler un programme
     existant ; les bibliothèques et les autres dépendances ; l'environnement et le fichier de
-    projet ; en bonus, JupyterLab et le noyau. Puis le TD.
+    projet ; en partie facultative, JupyterLab et le noyau. Puis le TD.
 
     Le déroulé reste à chronométrer.
   ]

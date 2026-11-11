@@ -242,7 +242,7 @@
 ]
 
 // --------------------------------------------
-// Prolonge « La forme d'une commande » du cours 1 v2.
+// Prolonge « Structure d'une commande » du cours 1 v2.
 #d("La commande git")[
   #annonce[
     git est un programme en ligne de commande. Le mot qui suit `git` est une

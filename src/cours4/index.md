@@ -1,6 +1,11 @@
 ---
-title: "Séance 4 — Projet d'application 1"
+title: "Séance 4, 2026 — Projet d'application 1"
 ---
+
+:::{note}
+Version de 2026 de la séance 4, gardée en archive. La version en cours
+de la séance 4 est dans la partie « Séances ».
+:::
 
 ## Objectifs
 

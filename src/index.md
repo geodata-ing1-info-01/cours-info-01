@@ -7,7 +7,7 @@ géomatique).
 
 Les pages contiennent le texte du cours, les TD à faire en séance, et le code exécuté pour produire les résultats affichés.
 
-Commencez par l'[introduction](introduction.md), qui décrit l'objectif du module et son articulation avec les autres cours, puis par les [premiers tests du poste](avant/poste.md), avant la séance 1. 
+Commencez par l'[introduction](introduction.md), qui décrit l'objectif du module, sa progression et son articulation avec les autres cours, puis par les [premiers tests du poste](avant/poste.md), avant la séance 1. 
 
 :::{note}
 En cas de problème de configuration, les annexes aident à en trouver la cause et à le résoudre. 
@@ -48,19 +48,11 @@ apres/s_entrainer
 
 cours1_v2/index
 cours2_v2/index
-cours3/index
-cours4/index
-cours5/index
-cours6/index
-cours7/index
-```
-
-```{toctree}
-:maxdepth: 1
-:caption: Séances 4 et 5, version 2
-
+cours3_v2/index
 cours4_v2/index
 cours5_v2/index
+cours6_v2/index
+cours7_v2/index
 ```
 
 ```{toctree}
@@ -81,4 +73,9 @@ annexes/plus_loin/index
 
 cours1/index
 cours2/index
+cours3/index
+cours4/index
+cours5/index
+cours6/index
+cours7/index
 ```

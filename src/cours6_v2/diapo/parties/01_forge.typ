@@ -120,7 +120,7 @@
 // Déplacée du cours 5 v2 (`06_reseau.typ`) le 06/11/2026.
 #d("Commit local et push sur le réseau")[
   #annonce[
-    Le commit écrit sur le disque du poste, le push traverse le réseau. Git
+    Le commit écrit sur le disque de l'ordinateur, le push traverse le réseau. Git
     est fait pour qu'on puisse travailler sans réseau et pousser plus tard.
   ]
 

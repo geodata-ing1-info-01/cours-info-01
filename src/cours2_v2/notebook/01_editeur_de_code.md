@@ -3,11 +3,14 @@ title: L'éditeur de code
 subtitle: Ce qu'un éditeur de code ajoute à un éditeur de texte, et la configuration de VS Code
 ---
 
-Cette partie présente l'éditeur de code, le logiciel dans lequel s'écrivent
-les programmes, leurs réglages et leur documentation. Elle décrit ce qu'il
-ajoute à un éditeur de texte ordinaire, puis la fenêtre de VS Code et sa
-configuration. Deux TD l'accompagnent, le [TD 2a](td/2a_vscode/guide.md) et
-le [TD 2b](td/2b_erreurs/guide.md) ; ils sont présentés en fin de page.
+Un programme s'écrit dans un éditeur de code. Celui-ci ajoute à un éditeur de
+texte comme le Bloc-notes des fonctions utiles pour programmer, comme la
+coloration du code et le lancement du programme. Le module emploie VS Code,
+dont cette page décrit aussi la configuration.
+
+Le [TD 2a](td/2a_vscode/guide.md) fait configurer VS Code. Le [TD
+2b](td/2b_erreurs/guide.md) fait corriger trois programmes à partir de leurs
+messages d'erreur.
 
 ## Les fonctions d'un IDE
 
@@ -317,5 +320,5 @@ VS Code](../../annexes/configuration/vscode_reglages.md) en donne d'autres.
   lire les caractères invisibles et la barre d'état, puis corriger trois
   programmes Python qui s'arrêtent sur une erreur.
 
-Les TD des autres parties sont dans [Travaux dirigés de la séance 2,
-version 2](travaux_diriges.md).
+Les TD des autres parties sont dans [Travaux dirigés de la
+séance 2](travaux_diriges.md).

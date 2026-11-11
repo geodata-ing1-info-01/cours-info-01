@@ -56,15 +56,15 @@
 
   #notes[
     Pourquoi en parler dès le cours 1 : le notebook montre l'explication, le
-    code et le résultat ensemble, ce qui sert à apprendre et à expliquer ;
-    les cours 3 et 4 font leurs TD de Python dans des notebooks.
+    code et le résultat ensemble, ce qui sert à apprendre et à expliquer.
+    Dans le module, le TD 5d en emploie un, et chaque guide de TD est aussi
+    livré en notebook.
 
     L'idée à faire passer, et la seule : ailleurs, le code est dans un
     fichier, l'explication dans un autre, et le résultat nulle part. Ici
     les trois sont au même endroit, et dans l'ordre du raisonnement.
 
-    Les cours et les TD de Python du module emploient des notebooks, qu'il
-    faut donc savoir lancer et exécuter. Le noyau est un programme Python
+    Le TD 1d fait lancer et exécuter un notebook. Le noyau est un programme Python
     lancé par JupyterLab : il exécute les cellules et garde leurs
     variables.
 
@@ -93,7 +93,7 @@
     exécuté dans le désordre.
 
     À droite en haut, le nom du noyau, `Python 3 (ipykernel)`. C'est ce
-    qu'on choisit à l'ouverture ; les noyaux sont au cours 3.
+    qu'on choisit à l'ouverture ; les noyaux sont au cours 5 (TD 5d).
 
     À gauche, l'arborescence : un notebook est un fichier dans un dossier,
     comme le reste.

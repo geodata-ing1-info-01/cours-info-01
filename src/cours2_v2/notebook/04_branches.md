@@ -3,12 +3,13 @@ title: Branches, fusion et conflits
 subtitle: Faire évoluer une variante du projet, la fusionner, et organiser les branches à plusieurs
 ---
 
-Cette partie présente les branches, qui font évoluer une variante du projet
-sans toucher à la version principale, puis la fusion, qui réunit deux
-branches, et le conflit, quand deux branches ont modifié la même ligne.
-Elle se termine par l'organisation des branches quand on travaille à
-plusieurs. Les exemples sont ceux des étapes 5 et 6 du [TD
-2c](td/2c_depot_altitudes/guide.md) ; il est présenté en fin de page.
+Une branche permet de faire évoluer une variante d'un projet sans modifier sa
+version principale. Cette page montre comment créer une branche, la fusionner
+dans une autre, et résoudre un conflit quand les deux branches ont modifié la
+même ligne, puis comment organiser les branches quand on travaille à
+plusieurs.
+
+Les exemples viennent des étapes 5 et 6 du [TD 2c](td/2c_depot_altitudes/guide.md).
 
 ## Les branches
 
@@ -250,5 +251,5 @@ Pour s'entraîner à git après la séance, des jeux et des exercices sont
 réunis dans [S'entraîner : jeux et exercices](../../apres/s_entrainer.md),
 dont Learn Git Branching, en français.
 
-Les TD des autres parties sont dans [Travaux dirigés de la séance 2,
-version 2](travaux_diriges.md).
+Les TD des autres parties sont dans [Travaux dirigés de la
+séance 2](travaux_diriges.md).

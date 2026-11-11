@@ -1,6 +1,11 @@
 ---
-title: "Séance 6 — La forge, sur le dépôt du projet 4"
+title: "Séance 6, 2026 — La forge, sur le dépôt du projet 4"
 ---
+
+:::{note}
+Version de 2026 de la séance 6, gardée en archive. La version en cours
+de la séance 6 est dans la partie « Séances ».
+:::
 
 :::{note} Page à rédiger
 Le plan ci-dessous est celui du syllabus v1.5 (`syllabus/03_syllabus_v1_5.md`),
