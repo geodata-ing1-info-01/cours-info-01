@@ -1,6 +1,6 @@
 ---
 title: "TD 5c — Décrire l'installation pour un autre poste"
-subtitle: Présentation, énoncé et solutions (version 2, proposition)
+subtitle: Présentation, énoncé et solutions
 jupytext:
   text_representation:
     extension: .md
@@ -10,15 +10,12 @@ kernelspec:
   display_name: Python 3
 ---
 
-*Version 2 du cours 5 : proposition de travail pour 2027-2028. Les messages et les durées de ce guide
-sont relevés sous Linux avec conda 26.7. Ils restent à relever sur un poste de la salle.*
-
 Ce guide a trois parties. La présentation décrit le but du TD et ses étapes. L'énoncé donne, pour
 chaque étape, l'objectif, les consignes et le test à faire. Les solutions expliquent chaque
-commande, et donnent la marche à suivre si le résultat diffère.
+commande, donnent ce que l'étape fait constater, et la marche à suivre si le résultat diffère.
 
-Le contenu des fichiers de ce guide se copie depuis `guide_5c_description.html`, ouvert dans un
-navigateur. Copié depuis le PDF, il perd ses indentations.
+Copier le contenu des fichiers depuis `guide_5c_description.html`, ouvert dans un navigateur. Copié
+depuis le PDF, ce contenu perd ses indentations.
 
 # Présentation du TD
 
@@ -35,11 +32,11 @@ Un dossier neuf, `nouveau_poste/`, remplace ici un autre poste. Il ne reçoit qu
 
 Le TD dure vingt minutes, sans l'étape facultative.
 
-1. Écrire le fichier `environment.yml`.
-2. Écrire le fichier `README.md`.
-3. Supprimer l'environnement.
-4. Recréer l'environnement dans un autre dossier.
-5. Écrire le fichier `pyproject.toml`, étape facultative.
+1. Fichier environment.yml.
+2. Fichier README.md.
+3. Suppression de l'environnement.
+4. Recréation de l'environnement.
+5. Fichier pyproject.toml, étape facultative.
 
 ### Les notions employées
 
@@ -48,25 +45,30 @@ Le TD dure vingt minutes, sans l'étape facultative.
 | `README` et `environment.yml` | « Environnement : README ou environment.yml » |
 | `pyproject.toml` | « Projet : déclaration des informations & métadonnées » |
 | choix entre les deux fichiers | « Fichiers de projet : environment.yml et pyproject.toml » |
+| commandes `conda` | « Commandes conda : résumé » |
 
 # Énoncé
 
-## Étape 1 · Écrire le fichier environment.yml
+## Étape 1 · Fichier environment.yml
 
-> **Objectif :** décrire l'environnement du programme dans un fichier lu par `conda`.
+> **Objectif :** décrire l'environnement `carte` dans `travail/environment.yml`.
 
 **Consignes**
 
-1. Aller dans le dossier du TD, et copier ses fichiers dans `travail/` :
+1. Ouvrir le dossier du TD dans VS Code : menu File, Open Folder…,
+   `Desktop\info01\cours5\5c_description`, puis « Yes, I trust the authors ».
+2. Ouvrir un terminal, y activer l'environnement, et copier les fichiers du TD dans `travail/` : menu
+   Terminal, New Terminal.
 
    ```text
-   cd ../../5c_description
+   conda activate carte
    cp depart/* travail/
    cd travail
    ```
 
-2. Dans VS Code, créer le fichier `environment.yml` dans `travail/`, avec ces lignes : menu File,
-   New File…
+3. Dans VS Code, créer le fichier `environment.yml` dans `travail`, y écrire ces lignes, puis
+   enregistrer : explorateur, clic droit sur `travail`, New File…, nom `environment.yml`, puis
+   `Ctrl` + `S`.
 
    ```yaml
    name: carte
@@ -78,7 +80,6 @@ Le TD dure vingt minutes, sans l'étape facultative.
      - folium
    ```
 
-3. Enregistrer le fichier : `Ctrl` + `S`.
 4. Lister le dossier :
 
    ```text
@@ -89,13 +90,16 @@ Le TD dure vingt minutes, sans l'étape facultative.
 
 `ls` affiche `carte_trace.py`, `environment.yml`, `stats_trace.py` et `trace_2.gpx`.
 
-## Étape 2 · Écrire le fichier README.md
+Si `ls` n'affiche pas `environment.yml`, voir la [solution de l'étape 1](#solution-de-létape-1).
 
-> **Objectif :** dire à une autre personne comment installer et lancer le programme.
+## Étape 2 · Fichier README.md
+
+> **Objectif :** écrire dans `travail/README.md` les commandes d'installation et d'utilisation.
 
 **Consignes**
 
-1. Dans VS Code, créer le fichier `README.md` dans `travail/`, avec ces lignes : menu File, New File…
+1. Dans VS Code, créer le fichier `README.md` dans `travail`, y écrire ces lignes, puis enregistrer :
+   explorateur, clic droit sur `travail`, New File…, nom `README.md`, puis `Ctrl` + `S`.
 
    ```markdown
    # carte-trace
@@ -113,15 +117,15 @@ Le TD dure vingt minutes, sans l'étape facultative.
    ```
 
 2. Afficher l'aperçu : `Ctrl` + `Maj` + `V`.
-3. Enregistrer le fichier : `Ctrl` + `S`.
 
 **Test**
 
 L'aperçu affiche un titre, un paragraphe et deux sections, avec les commandes dans des blocs de code.
 
-## Étape 3 · Supprimer l'environnement
+## Étape 3 · Suppression de l'environnement
 
-> **Objectif :** revenir à l'état d'un poste qui n'a pas l'environnement.
+> **Objectif :** supprimer l'environnement `carte`, pour le recréer ensuite à partir de
+> `environment.yml`.
 
 **Consignes**
 
@@ -149,9 +153,10 @@ L'invite commence par `(base)`. `conda env list` affiche `base`, sans `carte`.
 
 Si la suppression affiche une erreur, voir la [solution de l'étape 3](#solution-de-létape-3).
 
-## Étape 4 · Recréer l'environnement dans un autre dossier
+## Étape 4 · Recréation de l'environnement
 
-> **Objectif :** refaire l'installation à partir des seuls fichiers du projet, en suivant le `README.md`.
+> **Objectif :** copier le projet dans `nouveau_poste/`, y recréer `carte` à partir de
+> `environment.yml`, et y lancer `carte_trace.py`.
 
 **Consignes**
 
@@ -182,14 +187,15 @@ L'invite commence par `(carte)`, et le programme se termine par `carte écrite :
 
 Si `conda env create` affiche une erreur, voir la [solution de l'étape 4](#solution-de-létape-4).
 
-## Étape 5 (facultative) · Écrire le fichier pyproject.toml
+## Étape 5 (facultative) · Fichier pyproject.toml
 
-> **Objectif :** décrire le projet lui-même, dans le fichier lu par `pip`.
+> **Objectif :** décrire le projet dans `nouveau_poste/pyproject.toml`, puis l'installer avec `pip`.
 
 **Consignes**
 
-1. Dans VS Code, créer le fichier `pyproject.toml` dans `nouveau_poste/`, avec ces lignes : menu File,
-   New File…
+1. Dans VS Code, créer le fichier `pyproject.toml` dans `nouveau_poste`, y écrire ces lignes, puis
+   enregistrer : explorateur, clic droit sur `nouveau_poste`, New File…, nom `pyproject.toml`, puis
+   `Ctrl` + `S`.
 
    ```toml
    [project]
@@ -202,14 +208,13 @@ Si `conda env create` affiche une erreur, voir la [solution de l'étape 4](#solu
    py-modules = ["carte_trace", "stats_trace"]
    ```
 
-2. Enregistrer le fichier : `Ctrl` + `S`.
-3. Installer le projet :
+2. Installer le projet :
 
    ```text
    pip install .
    ```
 
-4. Afficher sa description :
+3. Afficher sa description :
 
    ```text
    pip show carte-trace
@@ -225,7 +230,7 @@ Si `conda env create` affiche une erreur, voir la [solution de l'étape 4](#solu
 
 ## Solution de l'étape 1
 
-`conda` lit trois informations dans `environment.yml` :
+`conda` lit dans `environment.yml` :
 
 | Clé | Rôle |
 |---|---|
@@ -236,10 +241,15 @@ Si `conda env create` affiche une erreur, voir la [solution de l'étape 4](#solu
 Le fichier ne contient que les paquets demandés. `conda` calcule les autres, et le même fichier sert
 donc sous Windows et sous Linux, où les paquets compilés diffèrent.
 
+La consigne 1 ouvre dans VS Code le dossier du TD 5c, et son explorateur montre `travail/`, où la
+consigne 3 crée le fichier. Si `ls` n'affiche pas `environment.yml`, le fichier a été créé dans un
+autre dossier : dans l'explorateur de VS Code, le faire glisser sur `travail`.
+
 ## Solution de l'étape 2
 
-`#` et `##` écrivent des titres en Markdown. Quatre espaces au début d'une ligne écrivent un bloc de
-code. L'autre personne lit la section Installation, puis tape ces commandes.
+En Markdown, une ligne qui commence par `#` ou `##` est un titre, et une ligne qui commence par
+quatre espaces appartient à un bloc de code. L'autre personne lit la section Installation, puis tape
+ces commandes.
 
 Sans `environment.yml`, cette section contiendrait la commande `conda create` complète, avec la liste
 des paquets.
@@ -255,15 +265,16 @@ est encore actif : lancer `conda deactivate`, puis relancer la suppression.
 
 ## Solution de l'étape 4
 
-`cp` copie ici les cinq fichiers du projet. `conda env create -f environment.yml` lit le nom et la liste des paquets dans le fichier, puis crée
-l'environnement. Essayée sous Linux, cette commande dure 11 s avec des paquets déjà téléchargés. Sur
-un autre poste, elle télécharge d'abord les paquets.
+`cp` copie ici les cinq fichiers du projet. `conda env create -f environment.yml` lit le nom et la
+liste des paquets dans le fichier, puis crée l'environnement. Sur ce poste, les paquets sont restés
+dans le cache de `conda` après la suppression de l'étape 3. Sur un autre poste, la commande les
+télécharge d'abord.
 
-Cas d'erreur :
+Si `conda env create` affiche une erreur :
 
-- **`EnvironmentFileNotFound`, suivi d'un chemin** : le terminal n'est pas dans le dossier du fichier.
+- `EnvironmentFileNotFound`, suivi d'un chemin : le terminal n'est pas dans le dossier du fichier.
   `pwd` affiche le dossier courant, qui doit se terminer par `nouveau_poste`.
-- **`ArgumentError: The environment file(s) do not specify a name or prefix`** : `conda` n'a pas pu lire
+- `ArgumentError: The environment file(s) do not specify a name or prefix` : `conda` n'a pas pu lire
   le fichier, qui contient par exemple une tabulation ou un deux-points manquant. Comparer le fichier
   aux lignes de l'énoncé.
 

@@ -30,7 +30,7 @@
     align: left + horizon,
     [Copie], [Emplacement], [Qui y a accès],
     [de], [`formationTemp` : serveur de l'école], [toute la promotion],
-    [vers], [Bureau : disque du poste], [votre session, sur ce poste],
+    [vers], [Bureau : disque de l'ordinateur], [votre session, sur ce poste],
   )
 
   #v(6pt)
@@ -74,7 +74,7 @@
 // notation de « Les fichiers du cours ». Pour laisser la place, les indications en gris
 // passent à 85 % de la taille des consignes.
 #let _indication(corps) = comment(text(size: 0.85em, corps))
-#d("Récupération des fichiers de la séance")[
+#d("Étape 1 · Récupération des fichiers de la séance")[
   #objectif[
     copier `info01-cours1.zip` depuis `formationTemp` sur le Bureau, et l'extraire dans un dossier
     `info01`.
@@ -115,20 +115,24 @@
         ├── 1c_programme/
         └── 1d_notebook/")
       ]
-      #legende[Arborescence attendue après l'étape 6.]
+      #legende[Arborescence attendue après la consigne 6.]
     ],
   )
 
   #notes[
-    Faire lire la barre d'adresse aux étapes 1 et 4, comme sur la
+    Faire lire la barre d'adresse aux consignes 1 et 4, comme sur la
     diapositive « Les emplacements de stockage sur le réseau » : dans
     `formationTemp`, elle commence par `\\` ; dans `info01`, elle indique
-    `C:\Users\eleve\Desktop\info01`. Après l'étape 6, `cours1` est à côté
+    `C:\Users\eleve\Desktop\info01`. Après la consigne 6, `cours1` est à côté
     de l'archive.
 
-    Étape 6 : sans effacer la fin du chemin proposé, Windows crée
+    Consigne 6 : sans effacer la fin du chemin proposé, Windows crée
     `info01\info01-cours1\cours1`, et les chemins des diapositives ne
     correspondent plus.
+
+    À relever sur un poste de la salle : les identifiants que Windows demande à
+    l'ouverture de `formationTemp` (les mêmes que ceux de la session ?). Le guide
+    écrit seulement « ses identifiants d'élève ».
 
     Fin de séance : dire où emporter son travail (à préciser).
   ]
@@ -183,8 +187,9 @@
 // lettrées pour les exports ; le schéma passe en colonne à droite.
 // 09/11/2026 : une troisième copie, en texte, par Enregistrer sous. La diapositive suivante
 // compare `raven.odt` et `raven.txt`, qui contiennent les mêmes caractères. Pour la place,
-// les consignes passent à 15 pt et le schéma à 46 %.
-#d("Conversion d'un document en d'autres formats")[
+// les consignes passent à 15 pt et le schéma à 46 %. 11/11/2026 : 14 pt et 38 %, le titre numéroté
+// tenant sur deux lignes.
+#d("Étape 2 · Conversion d'un document en d'autres formats")[
   #objectif[
     exporter `depart\raven.odt` en PDF et en PNG, puis l'enregistrer en texte, dans `travail\`, avec
     LibreOffice Writer.
@@ -193,7 +198,7 @@
   #grid(
     columns: (2.1fr, 1fr), column-gutter: 16pt, align: top,
     [#consignes(
-      taille: 15pt,
+      taille: 14pt,
       [Ouvrir `raven.odt` avec LibreOffice Writer : #comment[double-clic, dans `depart\`.]],
       [Exporter le document en PDF, dans `travail\`.
         #sous-etapes(
@@ -213,10 +218,10 @@
         )],
       [Fermer Writer sans enregistrer.],
     )],
-    align(center, scale(46%, reflow: true, schema-exports-vertical())),
+    align(center, scale(38%, reflow: true, schema-exports-vertical())),
   )
   #legende[
-    Le détail, avec les fenêtres de LibreOffice : guide du TD 1a, étape 3.
+    Le détail, avec les fenêtres de LibreOffice : guide du TD 1a, étape 2.
   ]
 
   #notes[
@@ -229,10 +234,10 @@
     L'export en image est sous Fichier > Exporter. « Enregistrer sous » ne
     propose pas le PNG.
 
-    Après l'étape 2, la barre de titre de Writer indique toujours
+    Après la consigne 2, la barre de titre de Writer indique toujours
     `raven.odt` : l'export ne remplace pas le document ouvert.
 
-    Après l'étape 4, elle indique `raven.txt` : « Enregistrer sous » remplace le document
+    Après la consigne 4, elle indique `raven.txt` : « Enregistrer sous » remplace le document
     ouvert par la copie. La question de Writer prévient que le format Texte ne garde pas la
     mise en forme. Libellés de la question et du type à relever sur un poste de la salle.
   ]
@@ -244,7 +249,7 @@
 // 09/11/2026 : les trois copies de la diapositive précédente, dont `raven.txt`, ouvert dans
 // Writer pour que seul le fichier change. La question « Le texte est-il encore du texte ? »
 // devient un essai de modification.
-#d("Manipulation du texte selon le format")[
+#d("Étape 3 · Manipulation du texte selon le format")[
   #objectif[
     comparer `depart\raven.odt` et ses trois copies de `travail\`, `raven.txt`, `raven.pdf` et
     `raven.png`, et déterminer quels fichiers permettent de sélectionner, de chercher et de modifier
@@ -292,7 +297,7 @@
 
 // 09/11/2026 : la comparaison des tailles, avant l'éditeur, et un avertissement qui donne la
 // cause.
-#d("Contenu d'un fichier dans un éditeur de texte")[
+#d("Étape 4 · Contenu d'un fichier dans un éditeur de texte")[
   #objectif[
     comparer la taille de trois fichiers de `depart\`, `raven_une_ligne.txt`,
     `raven_une_ligne.donnees` et `raven.odt`, puis ce qu'un éditeur de texte affiche pour chacun.
@@ -301,7 +306,7 @@
   #grid(
     columns: (1fr, auto), column-gutter: 24pt, align: (top, horizon),
     consignes(
-      taille: 15pt,
+      taille: 14pt,
       [Dans `depart\`, comparer la taille des trois fichiers : #comment[Affichage, Détails, colonne Taille.]
         #constat[2 Ko pour le `.txt` et le `.donnees`, 8 Ko pour le `.odt`, avec les mêmes strophes.]],
       [Ouvrir `raven_une_ligne.txt` avec le Bloc-notes ou Notepad++ : #comment[dans `depart\`, clic droit sur le fichier, Ouvrir avec, puis l'éditeur choisi.]
@@ -360,11 +365,11 @@
 ]
 
 // --------------------------------------------
-// Nouveau (09/11/2026), en bonus : l'archive d'un `.odt`, d'après le TD 1b de 2026
+// Nouveau (09/11/2026), étape facultative : l'archive d'un `.odt`, d'après le TD 1b de 2026
 // (`src/cours1/diapo/tds/1b_archive_odt.typ`), sans la modification ni la recompression.
 // L'explorateur de Windows ne reconnaît une archive qu'à son extension. La copie est donc
 // renommée en `.zip` avant d'être extraite.
-#d[Structure d'un fichier `.odt` (bonus)][
+#d[Étape 5 (facultative) · Structure d'un fichier `.odt`][
   #objectif[
     copier `depart\raven.odt` dans `travail\` sous le nom `raven.zip`, l'extraire, puis déterminer
     dans quels fichiers de l'archive se trouvent le texte du poème et sa mise en forme.
@@ -398,7 +403,7 @@
 // dossier partagé. La diapositive qui suit le TD, « Modifications
 // simultanées d'un fichier partagé », explique ce qu'on y constate.
 // 06/11/2026 : le tableau devient une liste de consignes.
-#d("Modification à plusieurs d'un fichier partagé")[
+#d("Étape 6 · Modification à plusieurs d'un fichier partagé")[
   #avertissement(couleur: attention)[
     Toute la salle fait cette étape en même temps. Attendre le signal de l'enseignant avant de
     commencer.
@@ -409,8 +414,8 @@
     fichier.
   ]
 
-  #v(0.4em)
   #consignes(
+    taille: 17pt,
     [Ouvrir le fichier dans le Bloc-notes, puis attendre le signal : #comment[dans `formationTemp`, clic droit sur `info01-salle.txt`, Ouvrir avec, Bloc-notes.]
       #constat[Le fichier est vide.]],
     [Au signal, écrire son prénom, puis enregistrer : `Ctrl` + `S`.

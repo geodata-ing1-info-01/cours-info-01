@@ -18,7 +18,7 @@
   numero: "6a",
   titre: "Utiliser GitHub",
   annonce: "Objectif : créer un dépôt sur GitHub, le synchroniser avec son poste, fusionner une pull request et résoudre un conflit",
-  dossier: none,
+  dossier: "cours6/",
   duree: none,
 )
 #separateur-td(..td)
@@ -29,23 +29,26 @@
   liste, commandes-td,
 )
 
+// 10/11/2026 : le compte se crée avant la séance, hors du réseau de l'école (fin du cours
+// 5 v2) : en 2026, GitHub a refusé une partie des inscriptions faites ensemble dans la salle.
 #d("Compte GitHub")[
   #objectif[
-    créer un compte GitHub avec son adresse de l'ENSG, et s'y connecter.
+    se connecter au compte GitHub créé avant la séance, et vérifier que le poste ne garde pas
+    l'identifiant d'un autre compte.
   ]
 
   #consignes(
-    [Aller sur github.com. Saisir son adresse e-mail de l'ENSG, puis cliquer sur « Inscrivez-vous sur GitHub ».],
-    [Remplir le formulaire, puis finaliser l'inscription.],
-    [Se connecter au nouveau compte. #comment[La page d'accueil affiche la liste des dépôts, le bouton de création d'un dépôt et le menu utilisateur.]],
-    [Activer le deuxième facteur, si GitHub le demande. #comment[Menu utilisateur, Settings, Password and authentication.]],
+    taille: 16pt,
+    [Aller sur `github.com` et se connecter, avec le code du deuxième facteur.],
+    [Sans compte : le créer depuis le partage de connexion de son téléphone. #comment[GitHub refuse les inscriptions nombreuses venues du réseau de l'école : diapositive « Création d'un compte GitHub », fin du cours 5.]],
+    [Ouvrir le Gestionnaire d'identification de Windows, puis Informations d'identification Windows : supprimer `git:https://github.com` s'il existe. #comment[Menu Démarrer, « Gestionnaire d'identification ».]],
   )
 
   #notes[
-    TP de Florent Geniet, étapes 1 à 3. GitHub impose un deuxième facteur depuis 2023
-    (« Authentification à deux facteurs »).
+    Le compte Windows `eleve` est commun : un identifiant GitHub resté sur le poste ferait
+    pousser au nom d'un autre élève (diapositive « Token sur un poste partagé »).
 
-    Un compte personnel n'est pas lié à l'école : l'adresse se change ensuite.
+    TP de Florent Geniet, étapes 1 à 3, pour le contenu de l'inscription.
   ]
 ]
 

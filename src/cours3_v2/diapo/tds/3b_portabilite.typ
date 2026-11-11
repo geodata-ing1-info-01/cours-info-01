@@ -1,7 +1,7 @@
-// TD 3b du cours 3 v2 — « Le programme d'Alice, avec git ».
+// TD 3b du cours 3 v2 — « Portabilité d'altitudes.py et fusion d'une branche ».
 //
-// Le dossier `travail/` est un dépôt git : sur `master`, les corrigés des TD 2c et 3a ;
-// sur `seuil`, le programme d'Alice. `data/cours3_v2/make_data.py` le fabrique et rejoue
+// Le dossier `travail/` est un dépôt git : sur `master`, le corrigé du TD 2c, puis un
+// commit par étape du TD 3a ; sur `seuil`, partie du dernier, le programme d'Alice. `data/cours3_v2/make_data.py` le fabrique et rejoue
 // les étapes du TD. Corrigé : `data/cours3_v2/corriges/3b_portabilite/`. Sorties relevées
 // en rejouant le TD sur ce dépôt, Python 3.12, git 2.34 en français.
 //
@@ -14,7 +14,7 @@
 
 #let td = (
   numero: "3b",
-  titre: "Le programme d'Alice, avec git",
+  titre: "Portabilité d'altitudes.py et fusion d'une branche",
   annonce: "Objectif : rendre portable le programme d'Alice, fusionner sa branche avec git, puis écrire le résultat dans un fichier",
   dossier: "cours3/3b_portabilite/",
   duree: "55′",
@@ -29,8 +29,8 @@
 
 #d("Étape 1 · Dépôt fourni")[
   #annonce[
-    Le dossier `travail/` contient un dépôt git. Sur `master`, il contient la
-    correction du TD 3a ; sur la branche `seuil`, Alice a ajouté un seuil à ce programme.
+    Sur `master` : un commit pour le TD 2c, puis un par étape du TD 3a. Alice a créé la
+    branche `seuil` après le dernier commit du TD 3a, puis y a ajouté un seuil.
   ]
 
   #objectif[
@@ -44,15 +44,19 @@
       [Ouvrir le dossier `travail/` du TD dans VS Code : #comment[File, Open Folder…, `Desktop\info01\cours3\3b_portabilite\travail`.]],
       [Dans un nouveau terminal, indiquer son identité pour ce dépôt : #comment[menu Terminal, New Terminal.] #commandes("git config user.name \"Prénom Nom\"", "git config user.email prenom.nom@ensg.eu")],
       [Afficher le graphe du dépôt : `git log --oneline --graph --all --decorate`.
-        #constat[Trois commits sur une ligne : `HEAD -> master` sur le deuxième, `seuil` sur le troisième.]],
+        #constat[Quatre commits sur une ligne : `HEAD -> master` sur le troisième, `seuil` sur le quatrième.]],
     ),
     panneau("Graphe du dépôt reçu", graphe-depot("fourni")),
   )
 
   #notes[
     `git config` sans `--global`, comme au TD 2c : le dépôt reçu n'a pas d'identité.
-    Les trois commits fournis ont des identifiants fixes : `53a24f4`, `a55eaa5`,
-    `fd6aeee`.
+    Les quatre commits fournis ont des identifiants fixes : `53a24f4`, `1895a7e`,
+    `efe1b46`, `5d472f8`.
+
+    `git log --graph` affiche les quatre commits sur une ligne, car `master` n'a pas
+    avancé depuis la création de `seuil`. Le graphe de la diapositive place `seuil` sur
+    sa propre voie.
   ]
 ]
 
@@ -74,6 +78,66 @@
   #notes[
     Changer de branche change les fichiers du dossier (cours 2). Le chemin écrit
     dans `open` : « Pb 2 » de l'exposé.
+  ]
+]
+
+// Un programme lu par blocs : à gauche ses lignes, à droite ce que fait chaque bloc. Les
+// lignes ont une hauteur fixe, et une ligne vide une hauteur réduite : la hauteur d'un bloc
+// se calcule, et son trait s'arrête avant le bloc suivant. `blocs` : (première ligne,
+// dernière ligne, texte), numéros comptés à partir de 1 ; `vives` : les lignes en bleu.
+#let programme-par-blocs(programme, blocs, vives: (), taille: 10pt) = {
+  let lignes = programme.trim("\n", at: end).split("\n")
+  let hauteur(ligne) = if ligne == "" { 3pt } else { taille * 1.2 }
+  let cellules = ()
+  for (i, ligne) in lignes.enumerate() {
+    let n = i + 1
+    cellules.push(grid.cell(
+      fill: if ligne == "" { none } else if n in vives { attention.lighten(72%) } else { gris },
+      inset: (x: 6pt),
+      align(horizon, raw(lang: "python", ligne)),
+    ))
+    let bloc = blocs.find(b => b.at(0) == n)
+    if bloc != none {
+      let (debut, fin, texte) = bloc
+      let h = lignes.slice(debut - 1, fin).map(hauteur).sum()
+      cellules.push(grid.cell(rowspan: fin - debut + 1, align(horizon, block(
+        height: h - 4pt, width: 100%, inset: (left: 9pt), stroke: (left: 1.4pt + accent.lighten(40%)),
+        align(horizon, text(size: 12.5pt, fill: estompe, texte)),
+      ))))
+    } else if blocs.all(b => n < b.at(0) or n > b.at(1)) {
+      cellules.push([])
+    }
+  }
+  show raw: set text(size: taille)
+  grid(columns: (auto, 1fr), column-gutter: 12pt, rows: lignes.map(hauteur), ..cellules)
+}
+
+// Ajoutée le 10/11/2026, à la demande de Nicolas : le programme que l'élève vient d'ouvrir,
+// lu dans le fichier livré sur la branche `seuil`.
+#d("Étape 2 · Lecture du programme d'Alice")[
+  #programme-par-blocs(
+    read("/data/cours3_v2/corriges/3b_portabilite/seuil/altitudes.py"),
+    (
+      (1, 1, [description du programme]),
+      (3, 8, [lecture de la colonne `ele` de `trace.csv`, dans la liste `altitudes`]),
+      (10, 12, [affichage des altitudes extrêmes et de leur écart]),
+      (14, 25, [cumul des montées et des descentes, sans les écarts de moins de `SEUIL` mètres avec `reference`, la dernière altitude retenue]),
+      (26, 27, [affichage des deux cumuls]),
+    ),
+    vives: (4, 14, 17, 18, 19, 20, 25),
+  )
+
+  #legende[
+    En bleu, les lignes qui diffèrent de `master`, indentation mise à part.
+  ]
+
+  #notes[
+    Lire de haut en bas : un bloc par tâche, dans l'ordre d'exécution.
+
+    Exemple pour le seuil, au tableau : altitudes 100, 101, 102,5 et 101, `SEUIL = 2`.
+    101 − 100 = 1 : ignoré. 102,5 − 100 = 2,5 : hausse de 2,5, `reference` passe à 102,5.
+    101 − 102,5 = −1,5 : ignoré. Cumuls : 2,5 m en hausse, 0 m en baisse ; sans seuil,
+    2,5 m et 1,5 m.
   ]
 ]
 
@@ -175,7 +239,7 @@
   ]
 
   #grid(
-    columns: (1fr, 11cm), column-gutter: 16pt,
+    columns: (1fr, 12.2cm), column-gutter: 16pt,
     consignes(
       taille: 16pt,
       [Lancer le programme : `python altitudes.py trace.csv`.
@@ -277,7 +341,7 @@
     [Afficher l'état du dépôt : `git status`.
       #constat[Seul `altitudes.py` est modifié : `.gitignore` écarte `resume.txt`.]],
     [Créer un commit, puis afficher le graphe : #commandes("git add altitudes.py", "git commit -m \"Écrit le résumé dans resume.txt\"", "git log --oneline --graph --all --decorate")
-      #constat[Neuf commits, dont la fusion.]],
+      #constat[Dix commits, dont la fusion.]],
   )
 
   #align(center, graphe-depot("final"))

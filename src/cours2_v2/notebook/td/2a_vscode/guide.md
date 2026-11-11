@@ -1,6 +1,6 @@
 ---
 title: "TD 2a — Configurer VS Code"
-subtitle: Guide détaillé, étape par étape (version 2, proposition)
+subtitle: Guide détaillé, étape par étape
 jupytext:
   text_representation:
     extension: .md
@@ -9,10 +9,6 @@ kernelspec:
   name: python3
   display_name: Python 3
 ---
-
-*Version 2 du cours 2 : proposition de travail pour 2027-2028. Ce guide
-reprend des parties du guide du TD 1c de 2026 ; VS Code y est
-lancé depuis le menu Démarrer, et son terminal est Git Bash.*
 
 Le TD configure l'éditeur de code du module, VS Code, pour le reste de
 l'année. Il se fait en classe entière : l'enseignant projette chaque étape,
@@ -24,7 +20,7 @@ La configuration se fait une fois par poste. Elle reste pour les séances
 suivantes : les postes de la salle gardent les réglages d'une séance à
 l'autre.
 
-## Ce que le TD configure
+## Configuration de VS Code : étapes
 
 VS Code n'est lié à aucun langage, et ne contient ni interpréteur ni
 compilateur. Il faut le configurer pour chaque langage employé, et lui
@@ -46,36 +42,37 @@ Configurer le terminal, ici Git Bash :
    `conda init bash`, une fois par poste, au TD 1c.
 4. Vérifier : `(base)` au-dessus de l'invite, puis `which python`.
 
+Les sections du guide portent les numéros de ces deux listes, comme les
+diapositives du TD : « Python, étape 2 » est l'étape 2 de la première liste.
+
 ## Les étapes du TD
 
-| Étape | Objectif | Ce qu'on fait |
+| Étape | Objectif | Action |
 |---|---|---|
-| 1 | récupérer les fichiers de la séance en ligne de commande | copier et décompresser les fichiers de la séance, dans Git Bash |
-| 2 | ouvrir un projet dans l'IDE | lancer VS Code et ouvrir le dossier `cours2` |
-| 3 | donner à l'IDE le langage du projet | installer l'extension Python |
-| 4 | choisir le Python qui exécute le code | choisir l'interpréteur Python |
-| 5 | utiliser le terminal du cours 1 dans l'IDE | faire de Git Bash le terminal de VS Code, avec conda activé |
-| 6 | vérifier les deux | lancer un programme |
-| 7 | régler l'IDE, et lire où ses réglages sont écrits | trois réglages, puis leur fichier `settings.json` |
+| [Préparation de la séance](#préparation-de-la-séance) | récupérer les fichiers de la séance en ligne de commande | copier et décompresser les fichiers de la séance, dans Git Bash |
+| [Python, étape 1](#python-étape-1-extension) | ouvrir un projet dans l'IDE, et lui donner le langage du projet | ouvrir le dossier `2a_vscode` dans VS Code, puis installer l'extension Python |
+| [Python, étape 2](#python-étape-2-chemin-de-linterpréteur) | choisir le Python qui exécute le code | choisir l'interpréteur Python |
+| [Terminal, étape 2](#terminal-étape-2-git-bash) | utiliser le terminal du cours 1 dans l'IDE | faire de Git Bash le terminal de VS Code |
+| [Terminal, étapes 3 et 4](#terminal-étapes-3-et-4-conda-et-vérification) | vérifier que ce terminal active conda | lire l'invite, puis taper `which python` |
+| [Python, étape 3](#python-étape-3-lancement-dun-programme) | vérifier les deux | lancer un programme |
+| [Réglages](#réglages-de-vs-code-interface-et-fichier) | régler l'IDE, et lire où ses réglages sont écrits | modifier trois réglages, puis ouvrir leur fichier, `settings.json` |
 
-Chaque étape se termine par une vérification. Une étape dont la
-vérification échoue se reprend avant de passer à la suivante ; la fin de
-chaque étape donne la marche à suivre dans les cas rencontrés en 2026.
+Chaque étape se termine par un test. Une étape dont le test échoue se
+reprend avant de passer à la suivante.
 
-## 1 · Copier et décompresser les fichiers de la séance
+## Préparation de la séance
 
-> **À faire :** copier l'archive de la séance dans `Desktop\info01` ; la décompresser dans Git Bash.
->
-> **À obtenir :** `ls cours2` affiche les trois dossiers des TD.
+> **Objectif :** copier l'archive de la séance, `info01-cours2.zip`, dans le dossier `info01` du
+> Bureau, puis l'extraire dans Git Bash.
 
-### Copier l'archive
+### Copie de l'archive
 
 Comme au cours 1 : sur le Bureau, ouvrir le raccourci `formationTemp`,
 copier `info01-cours2.zip`, et le coller dans le dossier `info01` du
 Bureau, à côté de `cours1`. Ne pas travailler dans `formationTemp`, dossier
 du serveur commun à toute la promotion.
 
-### Décompresser dans Git Bash
+### Décompression dans Git Bash
 
 Ouvrir Git Bash (menu Démarrer, « Git Bash »), puis :
 
@@ -93,30 +90,32 @@ unzip info01-cours2.zip
 `unzip` affiche une ligne par fichier extrait (`creating:` pour un dossier,
 `inflating:` pour un fichier).
 
-**Vérification** :
+**Test** :
 
 ```text
 ls cours2
 ```
 
-```text
-2a_vscode/  2b_erreurs/  2c_depot_altitudes/
-```
+affiche les trois dossiers des TD, `2a_vscode/`, `2b_erreurs/` et
+`2c_depot_altitudes/`, avec le `README.md` de l'archive et le PDF des
+diapositives.
 
 Si `unzip` affiche `command not found`, décompresser à la souris : clic
 droit sur l'archive, « Extraire tout… », en effaçant la fin du dossier
 proposé pour garder `Desktop\info01`.
 
-## 2 · Lancer VS Code et ouvrir le dossier de la séance
+## Python, étape 1 : extension
 
-> **À faire :** lancer VS Code depuis le menu Démarrer ; ouvrir le dossier `Desktop\info01\cours2`.
->
-> **À obtenir :** l'explorateur de VS Code affiche les trois dossiers des TD.
+> **Objectif :** ouvrir le dossier `2a_vscode` dans VS Code, afficher `altitudes.py`, puis
+> installer l'extension « Python », de Microsoft.
+
+### Ouverture du dossier du TD
 
 1. Menu Démarrer, taper « Visual Studio Code », Entrée. La page d'accueil
    de VS Code s'ouvre.
 2. Menu File, Open Folder… Dans la fenêtre, aller dans le Bureau, puis
-   `info01`, cliquer une fois sur `cours2`, et « Sélectionner un dossier ».
+   `info01`, puis `cours2`, cliquer une fois sur `2a_vscode`, et
+   « Sélectionner un dossier ».
 3. Une fenêtre demande si l'on fait confiance aux auteurs des fichiers du
    dossier : répondre « Yes, I trust the authors ». Sans cette réponse,
    VS Code ouvre le dossier en mode restreint, et les extensions n'y
@@ -125,28 +124,24 @@ proposé pour garder `Desktop\info01`.
 La fenêtre a trois zones : l'explorateur à gauche (`Ctrl` + `Maj` + `E`),
 le fichier ouvert au centre, le terminal en bas (menu Terminal, New
 Terminal). Le dossier ouvert est le projet : l'explorateur montre ses
-fichiers, la recherche s'y fait, et le terminal s'y ouvre.
+fichiers, la recherche s'y fait, et le terminal s'y ouvre. Chaque TD du
+module a son propre dossier.
 
 VS Code s'affiche en anglais. Le guide donne les intitulés anglais.
 
-**Vérification** : l'explorateur affiche `2A_VSCODE`, `2B_ERREURS` et
-`2C_DEPOT_ALTITUDES` sous le titre `COURS2`.
+**Test** : l'explorateur affiche `2A_VSCODE` en haut de l'arborescence, et
+`altitudes.py` dessous.
 
-## 3 · Installer l'extension Python
+### Programme avant l'installation
 
-> **À faire :** ouvrir un programme Python ; installer l'extension « Python » de Microsoft.
->
-> **À obtenir :** l'extension « Python » de Microsoft dans la liste des extensions installées.
+Dans l'explorateur, cliquer sur `altitudes.py`. Le programme du cours 1
+s'ouvre au centre.
 
-### Un programme avant l'installation
+Noter si le texte est coloré, alors qu'aucune extension Python n'est encore
+installée. La fin du guide l'explique, dans [L'éditeur, le langage,
+l'interpréteur](#léditeur-le-langage-linterpréteur).
 
-Dans l'explorateur, ouvrir `2a_vscode`, puis cliquer sur `altitudes.py`.
-Le programme du cours 1 s'ouvre au centre.
-
-**À noter** : si le texte est coloré, alors qu'aucune extension Python
-n'est encore installée.
-
-### Installer l'extension
+### Installation de l'extension
 
 1. Ouvrir le panneau Extensions : `Ctrl` + `Maj` + `X`, ou le bouton à quatre
    carrés dans la barre de gauche.
@@ -171,15 +166,15 @@ panneau reste vide ou l'installation ne finit pas : vérifier que la session
 réseau est ouverte, puis recommencer. Une extension installée le reste pour
 les séances suivantes.
 
-**Vérification** : l'extension « Python » est dans la section
-« Installed » du panneau, avec « Pylance » et « Python Debugger »,
-installées avec elle.
+**Test** : l'extension « Python » est dans la section « Installed » du
+panneau.
 
-## 4 · Choisir l'interpréteur Python
+## Python, étape 2 : chemin de l'interpréteur
 
-> **À faire :** choisir l'interpréteur `base` d'Anaconda.
->
-> **À obtenir :** `3.x ('base')` dans la barre d'état, en bas à droite de la fenêtre.
+> **Objectif :** désigner à l'extension le Python d'Anaconda,
+> `C:\ProgramData\anaconda3\python.exe`.
+
+### Python, étape 2 : interpréteur
 
 1. Garder `altitudes.py` ouvert au centre.
 2. Palette (`Ctrl` + `Maj` + `P`), taper « Python: Select Interpreter »,
@@ -198,20 +193,39 @@ documentation de VS Code, CC BY 3.0 US.*
 
 Le nom de l'interpréteur choisi s'affiche en bas à droite de la fenêtre, et
 VS Code le retient pour ce dossier. Pour les dossiers ouverts ensuite, un réglage
-de l'étape 7 désigne l'interpréteur par défaut.
+de la section [Réglages de VS Code : interface et
+fichier](#réglages-de-vs-code-interface-et-fichier) désigne l'interpréteur par
+défaut.
 
-Si la liste ne contient ni `base` ni aucun chemin avec `anaconda3`, choisir
-« Enter interpreter path… », coller le chemin
-`C:\ProgramData\anaconda3\python.exe`, puis appuyer sur Entrée. Les autres cas sont
-dans {ref}`V6 <dep-v6>`.
+**Test** : la barre d'état, en bas à droite de la fenêtre, affiche
+`3.x ('base')`. Si la ligne `base` manque dans la liste : [Python, étape 2 :
+dépannage](#python-étape-2-dépannage).
 
-## 5 · Git Bash, terminal de VS Code
+### Python, étape 2 : dépannage
 
-> **À faire :** choisir Git Bash comme terminal par défaut ; ouvrir un nouveau terminal ; vérifier que conda y est activé.
->
-> **À obtenir :** un terminal Git Bash, dont l'invite commence par `(base)`, et où `which python` affiche le Python d'Anaconda.
+Si la liste ne contient ni `base` ni aucun chemin avec `anaconda3` :
 
-### Choisir le terminal par défaut
+1. Dans la même liste, choisir « Enter interpreter path… ».
+2. Coller le chemin `C:\ProgramData\anaconda3\python.exe`, puis appuyer sur
+   Entrée. « Find… » n'affiche pas `C:\ProgramData`, un dossier masqué.
+
+Si la liste reste incomplète :
+
+| Cas | Action |
+|---|---|
+| un environnement manque, ou n'existe plus | lancer « Python: Clear Cache and Reload Window » depuis la palette |
+| `base` et les environnements restent absents | donner au réglage User `python.condaPath` la valeur `C:\ProgramData\anaconda3\Scripts\conda.exe` |
+
+Les autres cas sont dans les annexes, « Problèmes avec VS Code », V6.
+
+**Test** : la barre d'état, en bas à droite de la fenêtre, affiche
+`3.x ('base')`.
+
+## Terminal, étape 2 : Git Bash
+
+> **Objectif :** faire ouvrir Git Bash par VS Code, à la place de PowerShell.
+
+### Choix du terminal par défaut
 
 1. Palette de commandes : `Ctrl` + `Maj` + `P`. Une zone de saisie s'ouvre
    en haut de la fenêtre.
@@ -223,21 +237,29 @@ dans {ref}`V6 <dep-v6>`.
 La palette de commandes donne accès à toutes les commandes de VS Code par
 leur nom, sans passer par les menus. Le module s'en sert souvent.
 
-### Ouvrir un terminal
+### Ouverture d'un terminal
 
-Menu Terminal, New Terminal. Le terminal s'ouvre en bas, dans le dossier
-`cours2`.
+1. Menu Terminal, New Terminal. Le terminal s'ouvre en bas, dans le dossier
+   `2a_vscode`.
+2. Cliquer sur la flèche à droite du `+`, en haut à droite du panneau du
+   terminal. Elle liste les terminaux, et ouvre aussi un terminal d'un autre
+   type. Elle n'apparaît qu'une fois le panneau ouvert.
 
 ![Le terminal Git Bash dans VS Code, et le menu qui le choisit](illustrations/terminal.png)
 
-La flèche à droite du `+`, en haut à droite du panneau du terminal, liste les
-terminaux. Elle n'apparaît qu'une fois le panneau ouvert.
+**Test** : l'invite du terminal contient
+`MINGW64 ~/Desktop/info01/cours2/2a_vscode`. Si elle commence par `PS` :
+[Git Bash : problèmes fréquents](#git-bash-problèmes-fréquents).
 
-**Vérification** : l'invite du terminal est
+## Terminal, étapes 3 et 4 : conda et vérification
+
+> **Objectif :** vérifier que le terminal de VS Code active conda, et lance le Python d'Anaconda.
+
+**Test** : l'invite du terminal est
 
 ```text
 (base)
-eleve@POSTE MINGW64 ~/Desktop/info01/cours2
+eleve@POSTE MINGW64 ~/Desktop/info01/cours2/2a_vscode
 $
 ```
 
@@ -251,9 +273,10 @@ affiche `/c/ProgramData/anaconda3/python`, le fichier d'Anaconda.
 
 Sans conda activé, `python` lance un autre Python que celui d'Anaconda, ou
 aucun. Le réglage de conda, fait au TD 1c, reste d'une séance à l'autre sur le
-même poste.
+même poste. Si `(base)` manque : [Git Bash : problèmes
+fréquents](#git-bash-problèmes-fréquents).
 
-### Si ça bloque
+## Git Bash : problèmes fréquents
 
 - **« Git Bash » n'est pas dans la liste.** Fermer VS Code et le relancer ;
   VS Code cherche les terminaux au démarrage. S'il reste absent, git n'est
@@ -292,34 +315,31 @@ même poste.
   sed -i '1i cygpath() { /usr/bin/cygpath "$@"; }' ~/.bash_profile
   ```
 
-La cause de chaque message est dans [Problèmes avec git et Git
-Bash](../../../../annexes/problemes/git.md).
+La cause des messages de Git Bash est dans les annexes, « Problèmes avec git
+et Git Bash » ; celle du message `activate.ps1`, dans « Problèmes avec
+VS Code », V5.
 
-## 6 · Vérifier : lancer un programme
+## Python, étape 3 : lancement d'un programme
 
-> **À faire :** lancer `altitudes.py` par le bouton d'exécution.
->
-> **À obtenir :** `moyenne : 93.7 m` dans le terminal.
+> **Objectif :** lancer `altitudes.py` avec le bouton de VS Code.
 
 `altitudes.py` étant ouvert au centre, cliquer sur le triangle « Run Python
 File », en haut à droite de la zone du code.
 
-**Vérification** : le terminal affiche la commande que le bouton a tapée,
+**Test** : le terminal affiche la commande que le bouton a tapée,
 puis le résultat :
 
 ```text
 moyenne : 93.7 m
 ```
 
-La commande tapée par le bouton est `python`, précédé du chemin complet de
-l'interpréteur choisi, suivi du chemin du fichier : la même commande que
-celle tapée à la main au cours 1, avec des chemins absolus.
+La fin du guide décrit cette commande, dans [Bouton
+d'exécution](#bouton-dexécution).
 
-## 7 · Trois réglages, puis leur fichier
+## Réglages de VS Code : interface et fichier
 
-> **À faire :** régler, au niveau User, l'affichage des espaces, l'enregistrement automatique et l'interpréteur par défaut ; ouvrir le fichier `settings.json`.
->
-> **À obtenir :** `settings.json` contient les trois réglages et celui du terminal.
+> **Objectif :** modifier trois réglages du compte dans l'interface de VS Code, puis retrouver ces
+> réglages dans leur fichier.
 
 ### Deux niveaux de réglages
 
@@ -332,8 +352,8 @@ deux onglets :
 | Workspace | le dossier ouvert seulement | `.vscode/settings.json`, dans le dossier ouvert |
 
 Un réglage du dossier (Workspace) l'emporte sur celui du compte (User).
-Le premier voyage avec le projet, et se versionne avec lui ; le second
-reste sur le poste.
+Le fichier du dossier se copie et se versionne avec le projet ; celui du
+compte reste sur le poste.
 
 ### Les trois réglages
 
@@ -345,20 +365,22 @@ Dans l'onglet User :
 3. Taper `default interpreter path`. Dans le champ « Python: Default
    Interpreter Path », taper `C:\ProgramData\anaconda3\python.exe`.
 
-L'interpréteur choisi à l'étape 4 vaut pour le dossier ouvert seulement. Le
-troisième réglage fait de `base` l'interpréteur de tout dossier ouvert ensuite,
-à commencer par celui du TD 2b. Un choix fait par « Python: Select
-Interpreter » l'emporte sur ce réglage, pour son dossier.
+L'interpréteur choisi à [Python, étape
+2](#python-étape-2-chemin-de-linterpréteur) vaut pour le dossier ouvert
+seulement. Le troisième réglage fait de `base` l'interpréteur de tout dossier
+ouvert ensuite, à commencer par celui du TD 2b. Un choix fait par « Python:
+Select Interpreter » l'emporte sur ce réglage, pour son dossier.
 
-**Vérification** : dans `altitudes.py`, un point gris marque chaque espace
-d'indentation, comme dans Notepad++ au cours 1 ; en modifiant le fichier, le
-point blanc de l'onglet (fichier non enregistré) disparaît après une
-seconde.
+**Test** : dans `altitudes.py`, un point gris marque chaque espace, comme
+dans Notepad++ au cours 1 ; en modifiant le fichier, le point blanc de
+l'onglet (fichier non enregistré) disparaît après une seconde.
 
 ### Le fichier des réglages
 
 Palette (`Ctrl` + `Maj` + `P`), « Preferences: Open User Settings (JSON) ».
-Le fichier du compte s'ouvre au centre. Il contient au moins :
+Le fichier du compte s'ouvre au centre.
+
+**Test** : le fichier contient au moins :
 
 ```json
 {
@@ -374,47 +396,55 @@ L'ordre des lignes peut différer, et d'autres lignes peuvent y être,
 écrites par les extensions. Ne rien modifier, et fermer le fichier.
 
 Chaque réglage a un nom en plusieurs parties séparées par des points,
-`editor.renderWhitespace`, et une valeur. L'onglet des réglages et ce
-fichier montrent les mêmes réglages : l'onglet écrit dans le fichier.
+`editor.renderWhitespace`, et une valeur. La fin du guide compare l'onglet
+des réglages et ce fichier, dans [Réglages en texte](#réglages-en-texte).
 
-:::{warning}
 La configuration de ce TD est enregistrée dans le compte, sur ce poste :
 l'extension Python, les réglages User, et le fichier `~/.bash_profile` écrit
 par `conda init bash` au TD 1c. Sur un autre poste de l'école, il faut a priori
-la refaire, étapes 3 à 7, avec `conda init bash`.
-:::
+la refaire, de « Python, étape 1 » à ces réglages, avec `conda init bash`.
 
-## Si la configuration de VS Code bloque
+## Solution de repli : Spyder
 
 Spyder, installé avec Anaconda, fonctionne sans réglage. Pour ne pas rester
 bloqué, écrire et lancer les programmes dans Spyder (`F5`), et taper les commandes
 git dans une fenêtre Git Bash à côté, comme au cours 1. Les commandes git du TD 2c
-ne changent pas, et `git` ne dépend pas de conda. Le détail est dans {ref}`Spyder,
-section Git avec Spyder <spyder-git>`.
+ne changent pas, et `git` ne dépend pas de conda. Le détail est dans les
+annexes, « Spyder », section « Git avec Spyder ».
 
 ## Ce que le TD fait constater
 
 À lire après avoir fait les étapes.
 
-**L'éditeur, le langage, l'interpréteur.** Le texte de `altitudes.py` est
-coloré avant toute installation : la coloration des langages courants est
-livrée avec VS Code. L'extension Python apporte le reste : le choix de
-l'interpréteur, l'exécution, la vérification du code pendant la frappe.
-L'interpréteur n'est pas dans VS Code : l'éditeur appelle celui
-d'Anaconda, installé à part.
+### L'éditeur, le langage, l'interpréteur
 
-**Le terminal de VS Code est Git Bash.** Le terminal du cours 1 s'ouvre
-dans la fenêtre de l'éditeur. Il lit au démarrage le fichier `~/.bash_profile`
+Le texte de `altitudes.py` est coloré avant toute installation : la
+coloration des langages courants est livrée avec VS Code. L'extension Python
+apporte le reste : le choix de l'interpréteur, l'exécution, la vérification
+du code pendant la frappe. Elle installe avec elle « Pylance » et « Python
+Debugger », visibles dans la section « Installed » du panneau Extensions.
+L'interpréteur n'est pas dans VS Code : l'éditeur appelle celui d'Anaconda,
+installé à part.
+
+### Terminal de VS Code
+
+Le terminal de VS Code est Git Bash, le terminal du cours 1, ouvert dans la
+fenêtre de l'éditeur. Il lit au démarrage le fichier `~/.bash_profile`
 écrit par `conda init bash`, d'où le `(base)` et le `python` d'Anaconda.
-En 2026, VS Code ouvrait un terminal PowerShell, qui n'exécutait pas le
-script d'activation de conda sur les postes de la salle.
 
-**Le bouton d'exécution tape une commande.** Le bouton écrit dans le
-terminal la commande `python … altitudes.py`, avec l'interpréteur choisi à
-l'étape 4. Si cet interpréteur et le `python` du terminal diffèrent, un
-programme peut marcher par le bouton et échouer au terminal : le cours 5 y
-revient, avec les environnements.
+### Bouton d'exécution
 
-**Les réglages sont du texte.** L'onglet des réglages écrit dans
-`settings.json`. Un réglage de dossier, dans `.vscode/settings.json`,
-accompagne le projet quand il est copié ou versionné.
+Le bouton écrit dans le terminal la commande `python … altitudes.py`, avec
+l'interpréteur choisi à [Python, étape
+2](#python-étape-2-chemin-de-linterpréteur). Cette commande est `python`,
+précédé du chemin complet de l'interpréteur, suivi du chemin du fichier : la
+même commande que celle tapée à la main au cours 1, avec des chemins absolus.
+Si cet interpréteur et le `python` du terminal diffèrent, un programme peut
+marcher par le bouton et échouer au terminal : le cours 5 y revient, avec les
+environnements.
+
+### Réglages en texte
+
+L'onglet des réglages et le fichier `settings.json` montrent les mêmes
+réglages : l'onglet écrit dans le fichier. Un réglage de dossier, dans
+`.vscode/settings.json`, accompagne le projet quand il est copié ou versionné.

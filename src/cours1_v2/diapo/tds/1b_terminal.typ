@@ -1,4 +1,4 @@
-// TD 1b du cours 1 v2 — « Les fichiers du TD 1a en ligne de commande ».
+// TD 1b du cours 1 v2 — « Rejouer le TD 1a mais en ligne de commande ».
 //
 // Inclus par `cours1_v2.typ` ; compilable seul par
 // `outils/compiler_tds.py --cours 1_v2`.
@@ -44,7 +44,7 @@
   },
 )
 
-#d("Git Bash dans le dossier du TD")[
+#d("Étape 1 · Git Bash dans le dossier du TD")[
   #objectif[
     ouvrir Git Bash dans le dossier du TD, `cours1\1b_terminal`, à partir de l'explorateur.
   ]
@@ -71,12 +71,16 @@
     options ». À vérifier sur un poste de la salle.
 
     La complétion : taper `cd ~/De`, puis `Tab`. La montrer une fois ici.
+
+    À relever sur un poste de la salle : les colonnes PowerShell et invite de
+    commandes de la dernière annexe du guide, tirées de la documentation de
+    Microsoft et jamais exécutées ; la présence de l'invite PowerShell d'Anaconda.
   ]
 ]
 
 // 09/11/2026 : `1a_formats/travail` se liste depuis `depart`, à deux dossiers au-dessus. Le
 // retour dans `1b_terminal` passe en dernier : la diapositive suivante part de ce dossier.
-#d("Déplacements et contenu d'un dossier")[
+#d("Étape 2 · Déplacements et contenu d'un dossier")[
   #objectif[
     avec la ligne de commande : afficher le dossier courant, lister le contenu de `depart` et de
     `travail`, entrer dans le dossier `depart`, lister depuis ce dossier le contenu de
@@ -127,14 +131,14 @@
     remarquer avant `ls -a`.
 
     Depuis `depart`, `../..` désigne `cours1`, et `../../1a_formats/travail` le dossier
-    `travail` du TD 1a. Si le bonus du TD 1a est fait, la liste contient aussi `raven.zip` et le
+    `travail` du TD 1a. Si l'étape facultative du TD 1a est faite, la liste contient aussi `raven.zip` et le
     dossier `raven/`.
   ]
 ]
 
 // 09/11/2026 : l'objectif nomme les trois copies, leur dossier et ce qu'il faut noter ; les
 // consignes 4 et 5 nomment le dossier `travail`.
-#d("Copie et renommage d'un fichier")[
+#d("Étape 3 · Copie et renommage d'un fichier")[
   #objectif[
     en ligne de commande, obtenir dans `travail` trois copies de `depart/raven.odt`, nommées
     `raven_odt.pdf`, `riri.fifi.loulou.odt` et `raven.loulou`, puis ouvrir chacune et noter quel
@@ -159,7 +163,7 @@
   ]
 ]
 
-#d("Copie et renommage d'un fichier : solution")[
+#d("Étape 3 : solution")[
   #terminal-etapes(
     etape-terminal("cp depart/raven.odt travail/"),
     etape-terminal("mv travail/raven.odt travail/raven_odt.pdf"),
@@ -185,7 +189,7 @@
 
     `start` est fourni par Git for Windows (`/usr/bin/start`, qui appelle
     `cmd //c start`). À vérifier sur un poste ; à défaut,
-    `explorer.exe travail\raven_odt.pdf`.
+    `explorer.exe travail\\raven_odt.pdf` (dans Git Bash, un `\` seul disparaît).
 
     Extension inconnue : Windows affiche « Comment voulez-vous ouvrir ce
     fichier ? ». Vérifié sous Windows 11 en 2026 : il ne regarde pas le
@@ -195,7 +199,7 @@
 
 // 09/11/2026 : l'annonce pose le problème avant l'objectif ; la diapositive de solution
 // donne les guillemets.
-#d("Espace dans un nom de fichier")[
+#d("Étape 4 · Espace dans un nom de fichier")[
   #annonce[
     Dans une commande, les espaces séparent le programme, ses options et ses arguments. Le
     chemin `travail/le corbeau.txt` devient donc deux arguments.
@@ -221,7 +225,7 @@
   ]
 ]
 
-#d("Espace dans un nom de fichier : solution")[
+#d("Étape 4 : solution")[
   #annonce[
     Entre guillemets, un nom qui contient un espace reste un seul argument.
   ]
@@ -253,7 +257,7 @@
   ]
 ]
 
-#d("Copie de plusieurs fichiers avec un motif")[
+#d("Étape 5 · Copie de plusieurs fichiers avec un motif")[
   #objectif[
     employer le caractère générique `*` pour copier d'un coup les fichiers `.txt` de `depart` dans un nouveau
     dossier, `travail/textes`, et pour lister les fichiers `.odt`.
@@ -278,7 +282,7 @@
   ]
 ]
 
-#d("Copie de plusieurs fichiers : solution")[
+#d("Étape 5 : solution")[
   #terminal-etapes(
     etape-terminal("mkdir travail/textes"),
     etape-terminal("cp depart/*.txt travail/textes/",

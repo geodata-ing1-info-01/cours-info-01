@@ -6,6 +6,9 @@
 // noyaux. Le choix du noyau dans le menu de JupyterLab et les chemins de Windows restent à relever sur
 // un poste de la salle.
 //
+// 11/11/2026 : numéro d'étape dans le titre des diapositives d'action et dans la chaîne, repris par
+// les sections du guide.
+//
 // Inclus par `cours5_v2.typ` ; compilable seul par
 // `outils/compiler_tds.py --cours 5_v2`.
 #import "../../../commun/prelude.typ": *
@@ -29,10 +32,9 @@
 
   #chaine(
     ecart: 18pt,
-    ("Exécuter", "le notebook avec le noyau de base"),
-    ("Déclarer", "le noyau de l'environnement"),
-    ("Choisir", "ce noyau dans JupyterLab"),
-    ("Arrêter", "le serveur"),
+    ("Étape 1", "Notebook avec le noyau de base"),
+    ("Étape 2", "Déclaration du noyau de l'environnement"),
+    ("Étape 3", "Choix du noyau dans JupyterLab"),
   )
 
   #notes[
@@ -41,7 +43,7 @@
   ]
 ]
 
-#d("Notebook avec le noyau de base")[
+#d("Étape 1 · Notebook avec le noyau de base")[
   #objectif[
     exécuter `carte.ipynb` dans JupyterLab, avec le noyau de `base`, et déterminer si la cellule
     aboutit.
@@ -64,17 +66,20 @@
     d'essai à la place de `base` : le chemin de son interpréteur, `None`, puis `ModuleNotFoundError`.
 
     `None` : aucun dossier de `PATH` ne contient `ogr2ogr`.
+
+    Les captures du guide viennent de JupyterLab sous Linux, avec une cellule plus courte : à refaire
+    sur un poste de la salle.
   ]
 ]
 
-#d("Déclaration du noyau de l'environnement")[
+#d("Étape 2 · Déclaration du noyau de l'environnement")[
   #objectif[
     déclarer à JupyterLab le noyau de l'environnement `carte`, dans le second terminal.
   ]
 
   #consignes(
     taille: 16pt,
-    [Revenir au second terminal : #comment[cliquer sur son nom, dans la liste des terminaux.]
+    [Ouvrir un second terminal : #comment[menu Terminal, New Terminal.]
       #constat[`(base)` au début de la ligne.]],
     [Activer l'environnement, et y installer `ipykernel` : #commandes("conda activate carte", "conda install -y -c conda-forge ipykernel")],
     [Déclarer le noyau : #commandes("python -m ipykernel install --user --name carte")
@@ -86,10 +91,13 @@
 
     Dossier attendu sous Windows, d'après l'annexe sur les environnements de VS Code :
     `AppData\Roaming\jupyter\kernels\carte`. À relever sur un poste de la salle.
+
+    À relever sur un poste de la salle : le nom des deux terminaux dans la liste de VS Code, qui
+    s'appellent peut-être tous deux « bash ».
   ]
 ]
 
-#d("Choix du noyau dans JupyterLab")[
+#d("Étape 3 · Choix du noyau dans JupyterLab")[
   #objectif[
     exécuter `carte.ipynb` avec le noyau `carte`, puis arrêter le serveur de JupyterLab.
   ]

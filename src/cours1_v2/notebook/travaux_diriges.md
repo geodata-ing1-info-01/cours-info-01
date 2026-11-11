@@ -1,5 +1,5 @@
 ---
-title: Travaux dirigés de la séance 1, version 2
+title: Travaux dirigés de la séance 1
 subtitle: Un guide détaillé par TD, rangé par partie
 ---
 
@@ -9,17 +9,17 @@ reprennent les étapes de la feuille une à une, disent où se placer, quoi
 taper et comment vérifier le résultat, puis expliquent à la fin ce que le
 TD fait constater.
 
-## Logiciels, fichiers et stockage
+## Matériel, logiciels, fichiers et stockage
 
 - [TD 1a — Fichiers, formats et extensions](td/1a_formats/guide.md), 15 minutes
 
-## Terminal et premier programme
+## Interface en ligne de commande / terminal
 
-- [TD 1b — Les fichiers du TD 1a en ligne de commande](td/1b_terminal/guide.md), 15 minutes
+- [TD 1b — Rejouer le TD 1a mais en ligne de commande](td/1b_terminal/guide.md), 15 minutes
+
+## Exécuter un programme
+
 - [TD 1c — Lancer un programme](td/1c_programme/guide.md), 20 minutes
-
-## Un notebook et la syntaxe de Markdown
-
 - [TD 1d — Un notebook dans JupyterLab](td/1d_notebook/guide.md), 12 minutes
 
 ```{toctree}

@@ -1,5 +1,5 @@
-// Exporter le document de départ (TD 1a du cours 1 v2, étape 3) : le `.odt`
-// de `depart\` ouvert dans Writer, le menu Fichier, les deux exports dans
+// Exporter le document de départ (TD 1a du cours 1 v2, étape 2) : le `.odt`
+// de `depart\` ouvert dans Writer, le menu Fichier, les trois copies dans
 // `travail\`. Schéma, pas une capture : le menu est abrégé.
 // Compilé en PNG par `outils/compiler_guides.py`.
 #import "../../../../../commun/prelude.typ": *
@@ -42,13 +42,13 @@
       #box(fill: brun.lighten(80%), inset: (x: 4pt, y: 2pt))[Fichier] #h(6pt) Édition #h(6pt) Affichage
       #block(width: 100%, stroke: 0.8pt + accent.lighten(55%), radius: 3pt, inset: 3pt, above: 4pt)[
         #article[Enregistrer]
-        #article[Enregistrer sous…]
+        #article(choisi: true, n: 4)[Enregistrer sous…]
         #article(choisi: true, n: 3)[Exporter…]
         #article(choisi: true, n: 2)[Exporter sous › Exporter au format PDF…]
         #article[Fermer]
       ]
     ]
-    #legende-fenetre[#repere(2) l'export en PDF, puis #repere(3) l'export en PNG. Le titre de la fenêtre reste `raven.odt`.]
+    #legende-fenetre[#repere(2) l'export en PDF, puis #repere(3) l'export en PNG. Le titre de la fenêtre reste `raven.odt`. #repere(4) l'enregistrement en texte. Le titre devient `raven.txt`.]
   ],
   fleche,
   [
@@ -56,7 +56,8 @@
       #adresse[…\\travail]
       #entree("raven.pdf")
       #entree("raven.png")
+      #entree("raven.txt")
     ]
-    #legende-fenetre[les deux exports, enregistrés dans `travail\`]
+    #legende-fenetre[les trois copies, enregistrées dans `travail\`]
   ],
 )

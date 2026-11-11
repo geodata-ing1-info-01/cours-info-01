@@ -3,7 +3,11 @@
 // Refait le 05/11/2026 sur la trace GPS des cours 1 à 3 : même plan que le TD 4a
 // de 2026 (`src/cours4/diapo/tds/4a_recette.typ`), partie A pour le projet, partie B
 // pour le programme. Le programme ajoute la distance parcourue et la vitesse
-// moyenne à `altitudes.py` du TD 3c, renommé `stats_trace.py`.
+// moyenne à `altitudes.py` du TD 3b, renommé `stats_trace.py`.
+//
+// 10/11/2026 : une position est un tuple `(x, y, altitude)`, gardé dans la liste `points`
+// quand une option le demande, à la place de deux listes `liste_x` et `liste_y`. Les deux
+// listes reviennent à l'étape facultative B8, où numpy calcule la distance sur une colonne entière.
 //
 // Deux changements de forme. Une option s'ajoute d'abord sans son calcul, puis avec
 // des affichages provisoires, retirés quand le résultat est juste : chaque étape se
@@ -14,14 +18,15 @@
 // La sortie attendue d'un test reste visible hors du corrigé : sans elle, l'élève ne
 // peut pas tester (STYLE.md, « un attendu décrit un résultat visible »).
 //
-// Programme, corrigés et guide : `data/cours4_v2/generer_4a.py`, qui exécute chaque
-// version. Sorties relevées sur ces versions, Python 3.12.
+// Programme et corrigés : `data/cours4_v2/make_data.py`, qui exécute chaque version ;
+// blocs de code et sorties du guide écrits par Cog (`outils/guides_cog.py`) à partir de
+// ce module. Sorties relevées sur ces versions, Python 3.12.
 //
 // Inclus par `cours4_v2.typ` ; compilable seul par
 // `outils/compiler_tds.py --cours 4_v2`.
 #import "../../../commun/prelude.typ": *
 #import "../../../cours3/diapo/schemas.typ": arborescence, code-commente, sortie
-#import "../../../cours1_v2/diapo/schemas.typ": consignes, terminal, terminal-etapes, etape-terminal
+#import "../../../cours1_v2/diapo/schemas.typ": consignes, terminal, terminal-etapes, etape-terminal, constat
 #import "../schemas_trace.typ": schema-segments
 
 #let td = (
@@ -57,6 +62,31 @@
 )
 
 // --------------------------------------------
+#d("Le guide et le matériel de départ")[
+  #annonce[
+    Le guide du TD a trois parties : la présentation, l'énoncé de chaque étape, puis
+    les solutions.
+  ]
+
+  #tableau(
+    columns: (auto, auto, 1fr),
+    align: left + horizon,
+    [Fichier], [Emplacement], [Usage],
+    [`guide_4a_trace.pdf`, `.html`, `guide.ipynb`], [`cours4/4a_trace/`], [l'énoncé et les solutions, le code à copier],
+    [`stats_trace.py`], [`depart/`], [le programme de départ, avec deux erreurs de syntaxe à corriger],
+    [`trace.csv`, `trace_2.csv`], [`depart/`], [deux traces GPS, de 60 et 50 positions],
+    [`README.md`], [`depart/modeles/`], [un modèle de README à adapter et compléter (étape B7)],
+  )
+
+  #notes[
+    Copié depuis le PDF, le code perd ses indentations : copier depuis la page HTML.
+
+    Écrire le code à partir de l'énoncé, lancer le test, puis lire la solution. La
+    solution sert à vérifier, ou à avancer si l'essai n'aboutit pas.
+  ]
+]
+
+// --------------------------------------------
 #d("Objectif du TD")[
   #annonce[
     Ajouter à un script d'analyse de trace GPS le calcul de la distance parcourue et de
@@ -73,7 +103,7 @@
     stack(
       spacing: 10pt,
       test(
-        titre: [Au départ : `altitudes.py` du TD 3c, renommé `stats_trace.py`],
+        titre: [Après l'étape B1 : `altitudes.py` du TD 3b],
         "$ python stats_trace.py trace.csv",
         "altitude minimale : 78.8 m",
         "…",
@@ -103,53 +133,64 @@
 ]
 
 // --------------------------------------------
-#d("Le guide et le matériel de départ")[
-  #annonce[
-    Le guide du TD a trois parties : la présentation, l'énoncé de chaque étape, puis
-    les solutions.
-  ]
-
-  #tableau(
-    columns: (auto, auto, 1fr),
-    align: left + horizon,
-    [Fichier], [Emplacement], [Usage],
-    [`guide_4a_trace.pdf`, `.html`, `guide.ipynb`], [`cours4/4a_trace/`], [l'énoncé et les solutions, le code à copier],
-    [`stats_trace.py`], [`depart/`], [le programme de départ, avec deux erreurs de syntaxe à corriger],
-    [`trace.csv`, `trace_2.csv`], [`depart/`], [deux traces GPS, de 60 et 50 positions],
-    [`README.md`], [`depart/modeles/`], [un modèle de README à adapter et compléter (étape B7)],
-  )
-
-  #notes[
-    Copié depuis le PDF, le code perd ses indentations : copier depuis la page HTML.
-
-    Écrire le code à partir de l'énoncé, lancer le test, puis lire la solution. La
-    solution sert à vérifier, ou à avancer si l'essai n'aboutit pas.
+// Une partie du TD : son objectif, dans le bloc des diapositives d'étape précédé du nom de la
+// partie, puis ses étapes en chaîne, une rangée par liste. Chaque étape dit la tâche à faire.
+#let etape-td(titre, detail, hauteur: auto) = block(
+  width: 100%, height: hauteur, inset: (x: 8pt, y: 6pt), fill: white,
+  stroke: 1pt + accent.lighten(55%),
+)[
+  #align(center + horizon)[
+    #text(size: 13pt, weight: demi-gras)[#titre] \
+    #text(size: 12pt)[#detail]
   ]
 ]
+#let partie-td(nom, objectif-partie, ..rangees) = block(width: 100%, below: 0.8em)[
+  #block(
+    width: 100%, inset: (x: 13pt, y: 7pt), below: 0.45em,
+    fill: brun.lighten(90%), stroke: (left: 3pt + brun),
+  )[
+    #set text(size: 16pt)
+    #show raw: set text(size: 1.15em)
+    #text(fill: brun, weight: demi-gras)[#nom · Objectif : ]#objectif-partie
+  ]
+  #stack(spacing: 5pt, ..rangees.pos().map(etapes => chaine(gabarit: etape-td, ecart: 18pt, ..etapes)))
+]
 
-// --------------------------------------------
+// Refaite le 10/11/2026 : le tableau Étape | Objectif | Résultat devient un bloc objectif par
+// partie, suivi de ses étapes, chacune décrite par sa tâche.
 #d("Les étapes du TD")[
-  #tableau(
-    columns: (auto, 1fr, 1.2fr),
-    align: (center + horizon, left + horizon, left + horizon),
-    [Étape], [Objectif], [Résultat],
-    [A1-A3], [préparer le projet : dossier, éditeur, dépôt], [un dépôt git avec un commit initial],
-    [B1], [lire un message d'erreur et corriger], [le script affiche les altitudes et le dénivelé],
-    [B2], [ajouter l'option `--distance`, sans le calcul], [le script affiche `distance : calcul manquant`],
-    [B3], [lire les positions de la trace], [le script affiche `positions lues : 61`],
-    [B4], [écrire la fonction `distance_entre`], [le script affiche `premier segment : 36.2 m`],
-    [B5], [écrire la fonction `distance_parcourue`], [le script affiche `distance parcourue : 1906.7 m`],
-    [B6], [ajouter l'option `--vitesse`], [le script affiche `vitesse moyenne : 1.08 m/s`],
+  #partie-td(
+    [Partie A],
+    [créer le dossier du projet, l'ouvrir dans VS Code, puis y créer un dépôt git avec un commit
+      initial.],
+    (
+      ([A1], [création du dossier du projet, puis copie des fichiers]),
+      ([A2], [ouverture du dossier du projet dans VS Code]),
+      ([A3], [création du dépôt git, puis premier commit]),
+    ),
+  )
+  #partie-td(
+    [Partie B],
+    [ajouter à `stats_trace.py` le calcul de la distance parcourue et de la vitesse moyenne, avec un
+      test et un commit à la fin de chaque étape.],
+    (
+      ([B1], [correction des deux erreurs du programme de départ]),
+      ([B2], [ajout de l'option `--distance`, qui affiche pour l'instant un message]),
+      ([B3], [lecture des positions X et Y de la trace, avec `--distance`]),
+    ),
+    (
+      ([B4], [fonction qui calcule la distance entre deux points]),
+      ([B5], [fonction qui additionne les distances entre positions successives]),
+      ([B6], [ajout de l'option `--vitesse`, qui divise la distance par le temps total]),
+    ),
   )
 
-  #legende[
-    Commande de test : `python stats_trace.py trace.csv --distance` aux étapes B2 à B5,
-    `--vitesse` à l'étape B6.
-  ]
-
   #notes[
-    Un commit à la fin de chaque étape. L'étape B7, en bonus : un README et une
-    étiquette git.
+    Les étapes B7 et B8, facultatives : un README et une étiquette git, puis la distance
+    calculée avec numpy.
+
+    Commande de test : `python stats_trace.py trace.csv --distance` aux étapes B2 à B5,
+    `--vitesse` à l'étape B6. La sortie attendue est sur chaque diapositive d'étape.
 
     Déroulé, à annoncer à l'oral : présentation, 5 min ; partie A (créer le dossier du
     projet dans le terminal, l'ouvrir dans VS Code, créer le dépôt git), 30 min ;
@@ -200,41 +241,41 @@
 ]
 
 // --------------------------------------------
-#d("Aide-mémoire : commandes git")[
-  #annonce[
-    Les commandes se tapent dans le terminal Git Bash de VS Code, dans
-    `travail/stats_trace/`.
+// Réunit « Aide-mémoire : commandes git » et « Les supports en ligne » (10/11/2026).
+#d("Aide-mémoire : git et site du module")[
+  #show table.cell: set text(size: 14pt)
+  #show raw: set text(size: 1.15em)
+  // Chaque tableau suit son titre de panneau sans l'espacement d'un bloc.
+  #show table: set block(above: 0pt)
+  #panneau("Commandes git")[
+    #tableau(
+      entete: false,
+      columns: (auto, 1fr),
+      align: left + horizon,
+      [`git status`], [les fichiers modifiés depuis le dernier commit],
+      [`git diff`], [les lignes modifiées ; `q` pour quitter],
+      [`git add stats_trace.py`], [ajoute le fichier au prochain commit],
+      [`git commit -m "…"`], [enregistre le commit, avec ce message],
+      [`git log --oneline`], [l'historique, une ligne par commit],
+      [`git restore stats_trace.py`], [remet le fichier dans l'état du dernier commit],
+    )
+  ]
+  #panneau("Site du module")[
+    #tableau(
+      entete: false,
+      columns: (auto, 1fr),
+      align: left + horizon,
+      [#link("https://geodata-ing1-info-01.github.io/cours-info-01/")[geodata-ing1-info-01.github.io/cours-info-01]], [l'accueil : une page par séance, avec ses TD],
+      [#link("https://geodata-ing1-info-01.github.io/cours-info-01/cours4/index.html")[…/cours4/index.html]], [la séance 4 : le guide du TD 4a],
+      [#link("https://geodata-ing1-info-01.github.io/cours-info-01/telechargements/index.html")[…/telechargements/]], [une archive par séance, les fichiers des TD],
+    )
   ]
 
-  #tableau(
-    entete: false,
-    columns: (auto, 1fr),
-    align: left + horizon,
-    [`git status`], [les fichiers modifiés depuis le dernier commit],
-    [`git diff`], [les lignes modifiées ; `q` pour quitter],
-    [`git add stats_trace.py`], [ajoute le fichier au prochain commit],
-    [`git commit -m "…"`], [enregistre le commit, avec ce message],
-    [`git log --oneline`], [l'historique, une ligne par commit],
-    [`git restore stats_trace.py`], [remet le fichier dans l'état du dernier commit],
-  )
-]
-
-// --------------------------------------------
-#d("Les supports en ligne")[
-  #annonce[
-    Le site du module donne les pages de cours, les guides des TD et les
-    archives des séances. Il est en cours d'écriture : des pages manquent ou
+  #legende[
+    Les commandes se tapent dans le terminal Git Bash de VS Code, dans
+    `travail/stats_trace/`. Le site est en cours d'écriture : des pages manquent ou
     changent d'une semaine à l'autre.
   ]
-
-  #tableau(
-    columns: (auto, 1fr),
-    align: left + horizon,
-    [Page], [Contenu],
-    [#link("https://geodata-ing1-info-01.github.io/cours-info-01/")[geodata-ing1-info-01.github.io/cours-info-01]], [l'accueil : une page par séance, avec ses TD],
-    [#link("https://geodata-ing1-info-01.github.io/cours-info-01/cours4/index.html")[…/cours4/index.html]], [la séance 4 : le guide du TD 4a],
-    [#link("https://geodata-ing1-info-01.github.io/cours-info-01/telechargements/index.html")[…/telechargements/]], [une archive par séance, les fichiers des TD],
-  )
 
   #notes[
     Le guide en ligne est le même que celui de l'archive. Copier le code
@@ -293,11 +334,20 @@
         constat: [`mkdir` et `cp` n'affichent rien quand ils réussissent.]),
     ),
     arborescence(
+      taille: 11pt,
       (0, "4a_trace/"),
+      (1, "README.md"),
       (1, "depart/"),
+      (2, "modeles/"),
+      (3, "README.md"),
       (2, "stats_trace.py"),
       (2, "trace.csv"),
       (2, "trace_2.csv"),
+      (1, "guide.ipynb"),
+      (1, "guide_4a_trace.html"),
+      (1, "guide_4a_trace.pdf"),
+      (1, "illustrations/", "les figures du guide"),
+      (1, "td_4a_trace.pdf"),
       (1, "travail/"),
       (2, text(fill: attention)[stats_trace/], "le projet"),
       (3, text(fill: attention)[stats_trace.py]),
@@ -324,7 +374,7 @@
     [Lancer VS Code depuis le menu Démarrer.],
     [Ouvrir le dossier du projet : menu File, Open Folder…, `Desktop\info01\cours4\4a_trace\travail\stats_trace`, puis « Sélectionner un dossier ».],
     [Ouvrir un terminal : menu Terminal, New Terminal.],
-    [Dans l'explorateur de VS Code, à gauche, ouvrir `stats_trace.py`. Chaque espace du code apparaît comme un point gris, et chaque tabulation comme une flèche.],
+    [Dans l'explorateur de VS Code, à gauche, ouvrir `stats_trace.py`.],
   )
 
   #v(0.4em)
@@ -337,8 +387,9 @@
   )
 
   #legende[
-    Si l'invite ou l'affichage diffèrent, la solution de l'étape A2, dans le guide,
-    donne le réglage à refaire.
+    Dans `stats_trace.py`, chaque espace du code apparaît comme un point gris, et chaque
+    tabulation comme une flèche. Si l'invite ou l'affichage diffèrent, la solution de
+    l'étape A2, dans le guide, donne le réglage à refaire.
   ]
 
   #notes[
@@ -378,7 +429,7 @@
   )
 
   #notes[
-    `resume.txt` : modifié par le programme à chaque lancement (TD 3c), donc pas
+    `resume.txt` : modifié par le programme à chaque lancement (TD 3b), donc pas
     versionné.
 
     Vérifier que le dépôt est dans `travail/stats_trace/` : `git status` y liste
@@ -426,7 +477,7 @@
         "$ python stats_trace.py trace.csv",
         "altitude minimale : 78.8 m",
         "altitude maximale : 129.5 m",
-        "max - min : 44.7 m",
+        "max - min : 50.7 m",
         "cumul en hausse : 98.4 m",
         "cumul en baisse : 50.3 m",
       ),
@@ -495,27 +546,55 @@
 ]
 
 // --------------------------------------------
-#d("Étape B3 · Positions de la trace")[
+// Ajoutée le 10/11/2026 : les cours 1 à 3 v2 n'emploient pas de tuple.
+#d("Position d'une trace : un tuple")[
+  #annonce[
+    Un *tuple* regroupe plusieurs valeurs, entre parenthèses. Dans le programme, une position de
+    la trace est un tuple de trois nombres : `x`, `y` et l'altitude.
+  ]
+
+  #code-commente(
+    ("point = (670307.7, 6812407.3, 79.6)", "un tuple de trois valeurs"),
+    ("print(point[0])", "affiche `670307.7`, la première valeur"),
+    ("x, y, altitude = point", "sépare les trois valeurs"),
+    ("", ""),
+    ("points = []", "une liste vide"),
+    ("points.append(point)", "ajoute le tuple à la liste : un tuple par position"),
+  )
+
+  #notes[
+    Une liste se modifie, un tuple non : ne pas s'y attarder.
+
+    `x, y, ele, time = ligne.strip().split(",")` sépare déjà les valeurs d'une liste,
+    depuis le TD 3a.
+
+    Les listes `liste_x` et `liste_y` reviennent à l'étape B8, pour numpy.
+  ]
+]
+
+// --------------------------------------------
+#d("Étape B3 · Lecture des positions X et Y")[
   #objectif[
-    garder dans deux listes de `stats_trace.py` les colonnes `X` et `Y` de `trace.csv`, et
-    contrôler les valeurs lues.
+    garder dans la liste `points` de `stats_trace.py` un tuple `(x, y, altitude)` par position
+    de `trace.csv`, quand l'option `--distance` est donnée, et contrôler les valeurs lues.
   ]
 
   #deux-colonnes(
     consignes(
-      taille: 16pt,
-      [Sous la ligne `altitudes = []`, créer deux listes vides, `liste_x` et `liste_y`.],
-      [Dans la boucle de lecture, sous la ligne `altitudes.append(float(ele))`, convertir `x` et `y` en nombres avec `float`, puis les ajouter à `liste_x` et à `liste_y`.],
-      [Dans le bloc `if options.distance:`, au-dessus du message, afficher provisoirement les deux lignes du test, avec `len(liste_x)`, `liste_x[0]` et `liste_y[0]`.],
+      taille: 15pt,
+      [Sous la ligne `altitudes = []`, créer une liste vide, `points`.],
+      [Dans la boucle de lecture, sous la ligne `altitudes.append(float(ele))`, ajouter un bloc `if options.distance:`, qui ajoute à `points` le tuple de `x`, `y` et `ele`, convertis en nombres avec `float`.],
+      [Dans le bloc `if options.distance:` de la fin du fichier, au-dessus du message, afficher provisoirement les deux lignes du test, avec `len(points)` et `points[0]`.],
       [Enregistrer le fichier, puis lancer le test.],
     ),
     stack(
       spacing: 10pt,
       test(
+        taille: 15pt,
         "$ python stats_trace.py trace.csv --distance",
         "…",
         "positions lues : 60",
-        "position 0 : 670307.7 6812407.3",
+        "position 0 : (670307.7, 6812407.3, 79.6)",
         "distance : calcul manquant",
       ),
       commit("Les positions de la trace"),
@@ -523,15 +602,14 @@
   )
 
   #legende[
-    Ouvrir `trace.csv` dans VS Code, puis vérifier que la ligne 2 commence par
-    `670307.7,6812407.3`. Solution : guide, étape B3.
+    Des guillemets autour des valeurs, `('670307.7', …)`, montrent que `float` manque. Solution :
+    guide, étape B3.
   ]
 
   #notes[
-    Erreur fréquente : les deux `append` hors de la boucle, `positions lues : 1`.
+    Erreur fréquente : `append` hors de la boucle, `positions lues : 1`.
 
-    Le test ne détecte pas un `float` oublié, car un texte s'affiche comme le nombre.
-    L'erreur apparaît à l'étape B4.
+    Sans `--distance`, `points` reste vide, et rien ne s'affiche après les cumuls.
   ]
 ]
 
@@ -576,7 +654,7 @@
   #notes[
     Les cours 1 à 3 v2 ne montrent pas `def` : présenter cette diapositive à l'oral.
 
-    Le TD 4a est aussi le premier où l'élève compose du code : aux TD 3a à 3c, le code
+    Le TD 4a est aussi le premier où l'élève compose du code : aux TD 3a et 3b, le code
     était donné à coller.
   ]
 ]
@@ -584,19 +662,20 @@
 // --------------------------------------------
 #d("Étape B4 · Fonction distance_entre")[
   #objectif[
-    écrire dans `stats_trace.py` la fonction `distance_entre(x1, y1, x2, y2)`, qui renvoie la
-    distance entre deux points.
+    écrire dans `stats_trace.py` la fonction `distance_entre(point1, point2)`, qui renvoie la
+    distance horizontale entre deux points `(x, y, altitude)`.
   ]
 
   #consignes(
     taille: 17pt,
     [En tête de `stats_trace.py`, ajouter la ligne `import math`.],
-    [Sous les lignes `import`, déclarer la fonction `distance_entre(x1, y1, x2, y2)`.],
-    [Dans la fonction, renvoyer avec `return` la distance √((x2 − x1)² + (y2 − y1)²).],
+    [Sous les lignes `import`, déclarer la fonction `distance_entre(point1, point2)`.],
+    [Dans la fonction, séparer les trois valeurs de chaque point : `x1, y1, altitude1 = point1`, puis de même pour `point2`.],
+    [Renvoyer avec `return` la distance √((x2 − x1)² + (y2 − y1)²).],
   )
 
   #legende[
-    `3 ** 2` vaut `9`. `math.sqrt(9)` vaut `3.0`.
+    `3 ** 2` vaut `9`. `math.sqrt(9)` vaut `3.0`. L'altitude n'entre pas dans le calcul.
   ]
 
   #notes[
@@ -617,8 +696,8 @@
     consignes(
       taille: 16pt,
       [Dans le bloc `if options.distance:`, retirer les deux affichages de l'étape B3.],
-      [À leur place, afficher provisoirement `distance_entre(0, 0, 3, 4)`, comme sur le test.],
-      [Sous cette ligne, garder dans `premier_segment` la distance entre les positions 0 et 1, puis l'afficher avec un chiffre après la virgule.],
+      [À leur place, afficher provisoirement `distance_entre((0, 0, 0), (3, 4, 0))`, comme sur le test.],
+      [Sous cette ligne, garder dans `premier_segment` la distance entre `points[0]` et `points[1]`, puis l'afficher avec un chiffre après la virgule.],
       [Enregistrer le fichier, puis lancer le test.],
     ),
     stack(
@@ -650,6 +729,9 @@
     `essai, 5.0 attendu : None`, puis `TypeError: unsupported format string passed to
     NoneType.__format__` : `return` absent.
 
+    `ValueError: not enough values to unpack (expected 3, got 2)` : un point de l'essai écrit
+    avec deux valeurs, `(0, 0)`.
+
     `TypeError: unsupported operand type(s) for -: 'str' and 'str'` : `float` oublié à
     l'étape B3.
   ]
@@ -658,16 +740,16 @@
 // --------------------------------------------
 #d("Étape B5 · Fonction distance_parcourue")[
   #objectif[
-    écrire dans `stats_trace.py` la fonction `distance_parcourue(liste_x, liste_y)`, qui additionne
-    les longueurs des segments.
+    écrire dans `stats_trace.py` la fonction `distance_parcourue(points)`, qui additionne les
+    longueurs des segments.
   ]
 
   #consignes(
     taille: 16pt,
-    [Sous `distance_entre`, déclarer la fonction `distance_parcourue(liste_x, liste_y)`.],
+    [Sous `distance_entre`, déclarer la fonction `distance_parcourue(points)`.],
     [Dans la fonction, créer la variable `total`, qui vaut 0.],
-    [Écrire la boucle : `for i in range(1, len(liste_x)):`.],
-    [Dans la boucle, appeler `distance_entre` avec `liste_x[i - 1]`, `liste_y[i - 1]`, `liste_x[i]` et `liste_y[i]`, et garder le résultat dans la variable `segment`.],
+    [Écrire la boucle : `for i in range(1, len(points)):`.],
+    [Dans la boucle, appeler `distance_entre` avec `points[i - 1]` et `points[i]`, et garder le résultat dans la variable `segment`.],
     [Dans la boucle, ajouter `segment` à `total`.],
     [Dans la boucle, afficher provisoirement `i` et `total`, comme sur le test de la diapositive suivante.],
     [Après la boucle, au niveau de la ligne `for`, renvoyer `total` avec `return`.],
@@ -697,7 +779,7 @@
     consignes(
       taille: 16pt,
       [Dans le bloc `if options.distance:`, retirer tout le contenu.],
-      [À la place, écrire `distance = distance_parcourue(liste_x, liste_y)`.],
+      [À la place, écrire `distance = distance_parcourue(points)`.],
       [Afficher le résultat, comme sur la dernière ligne du test, avec un chiffre après la virgule.],
       [Enregistrer le fichier, puis lancer le test.],
     ),
@@ -843,7 +925,8 @@
 
   #notes[
     Exercice le moins guidé de l'étape : l'élève adapte l'exemple de la diapositive
-    précédente. Si le temps manque, donner la fonction : aucune autre étape n'en dépend.
+    précédente. Si le temps manque, donner la fonction : la suite de l'étape B6 l'appelle
+    sans la modifier.
   ]
 ]
 
@@ -856,8 +939,8 @@
   #deux-colonnes(
     consignes(
       taille: 16pt,
-      [Sous la ligne `liste_y = []`, créer une liste vide, `temps`.],
-      [Dans la boucle de lecture, ajouter `time` à `temps`, sans le convertir.],
+      [Sous la ligne `points = []`, créer une liste vide, `temps`.],
+      [Dans la boucle de lecture, remplacer `if options.distance:` par `if options.distance or options.vitesse:`, puis, dans ce bloc, ajouter `time` à `temps`, sans le convertir.],
       [Dans le bloc `if options.vitesse:`, remplacer l'essai par le calcul de `temps_total`, avec `secondes_ecoulees(temps[0], temps[-1])`, puis l'afficher provisoirement sans chiffre après la virgule (`:.0f`).],
       [Enregistrer le fichier, puis lancer le test.],
     ),
@@ -870,8 +953,13 @@
   )
 
   #legende[
-    `temps[-1]` désigne le dernier élément de la liste `temps`. La première position de
-    `trace.csv` finit par `08:00:00+00`, et la dernière par `08:29:30+00`.
+    Avec `--vitesse` seule, la boucle garde aussi les positions, dont la vitesse a besoin.
+    `temps[-1]` désigne le dernier élément de la liste `temps`.
+  ]
+
+  #notes[
+    La première position de `trace.csv` finit par `08:00:00+00`, et la dernière par
+    `08:29:30+00` : 29 min 30 s.
   ]
 ]
 
@@ -885,7 +973,7 @@
     consignes(
       taille: 16pt,
       [Dans le bloc `if options.vitesse:`, retirer les deux `print`.],
-      [Sous le calcul de `temps_total`, appeler `distance_parcourue`, puis diviser `distance` par `temps_total`, et garder le résultat dans la variable `vitesse`.],
+      [Sous le calcul de `temps_total`, écrire `distance = distance_parcourue(points)`, puis diviser `distance` par `temps_total`, et garder le résultat dans la variable `vitesse`.],
       [Afficher le résultat, comme sur le test : deux chiffres après la virgule en m/s, un en km/h.],
       [Enregistrer le fichier, puis lancer le test.],
     ),
@@ -911,14 +999,14 @@
   ]
 
   #notes[
-    `git log --oneline` : huit lignes. Fin du TD en séance ; l'étape B7 est un bonus.
+    `git log --oneline` : huit lignes. Fin du TD en séance ; l'étape B7 est facultative.
 
     `trace_2.csv` donne `vitesse moyenne : 1.29 m/s, soit 4.6 km/h`.
   ]
 ]
 
 // --------------------------------------------
-#d("Étape B7 (bonus) · README et étiquette")[
+#d("Étape B7 (facultative) · README et étiquette")[
   #objectif[
     compléter `README.md` pour qu'une autre personne puisse lancer `stats_trace.py`, et poser
     l'étiquette `v1.0` sur la version finale.
@@ -936,5 +1024,72 @@
 
   #legende[
     Solution : guide, étape B7.
+  ]
+]
+
+// --------------------------------------------
+// Ajoutée le 10/11/2026, étape facultative : numpy calcule sur une colonne entière, d'où deux listes.
+#d("Étape B8 (facultative) · Listes des coordonnées")[
+  #objectif[
+    ajouter à `stats_trace.py` l'import de numpy et deux listes, `liste_x` et `liste_y`, une par
+    colonne de coordonnées.
+  ]
+
+  #consignes(
+    taille: 17pt,
+    [Sous la ligne `from pathlib import Path`, ajouter une ligne vide, puis la ligne `import numpy as np`.],
+    [Sous la ligne `temps = []`, créer deux listes vides, `liste_x` et `liste_y`.],
+    [Dans le bloc `if options.distance or options.vitesse:` de la boucle de lecture, ajouter `float(x)` à `liste_x` et `float(y)` à `liste_y`.],
+    [Enregistrer le fichier, puis lancer `python stats_trace.py trace.csv --distance`.
+      #constat[La même sortie qu'à l'étape B6 : les listes ne servent pas encore.]],
+  )
+
+  #legende[
+    numpy calcule sur une colonne entière, d'où une liste par coordonnée, en plus des tuples.
+  ]
+
+  #notes[
+    Pour ceux qui ont fini l'étape B7. numpy est installé dans `base`, sur les postes.
+  ]
+]
+
+// --------------------------------------------
+#d("Étape B8 (facultative) · Calcul avec numpy")[
+  #objectif[
+    écrire la fonction `distance_parcourue_numpy(liste_x, liste_y)`, qui calcule la distance
+    parcourue avec numpy, et comparer son résultat à celui de `distance_parcourue`.
+  ]
+
+  #deux-colonnes(
+    consignes(
+      taille: 15pt,
+      [Sous `distance_parcourue`, déclarer la fonction `distance_parcourue_numpy(liste_x, liste_y)`.],
+      [Dans la fonction, convertir les deux listes en tableaux : `x = np.array(liste_x)`, puis de même pour `y`.],
+      [Renvoyer avec `return` la somme `np.sum(np.sqrt(np.diff(x) ** 2 + np.diff(y) ** 2))`.],
+      [Dans le bloc `if options.distance:`, afficher `distance_parcourue_numpy(liste_x, liste_y)` sous la distance, comme sur le test.],
+      [Enregistrer le fichier, puis lancer le test.],
+    ),
+    stack(
+      spacing: 10pt,
+      test(
+        taille: 15pt,
+        "$ python stats_trace.py trace.csv --distance",
+        "…",
+        "distance parcourue : 1906.7 m",
+        "distance parcourue, numpy : 1906.7 m",
+      ),
+      commit("La distance calculée avec numpy"),
+    ),
+  )
+
+  #legende[
+    `np.diff(x)` donne les écarts entre valeurs successives. `**`, `+` et `np.sqrt`
+    s'appliquent à chaque élément du tableau. Solution : guide, étape B8.
+  ]
+
+  #notes[
+    Calcul vectoriel : une opération sur tout le tableau, sans boucle écrite dans le programme.
+    Les tuples restent la forme lisible pour le calcul en Python ; numpy demande une liste par
+    colonne.
   ]
 ]

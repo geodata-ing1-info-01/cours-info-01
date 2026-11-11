@@ -1,6 +1,6 @@
 ---
 title: "TD 1d — Un notebook dans JupyterLab"
-subtitle: Guide détaillé, étape par étape (version 2, proposition)
+subtitle: Guide détaillé, étape par étape
 jupytext:
   text_representation:
     extension: .md
@@ -10,60 +10,54 @@ kernelspec:
   display_name: Python 3
 ---
 
-*Version 2 du cours 1 : proposition de travail pour 2027-2028. Ce guide
-reprend celui du TD 1g de 2026, réduit à JupyterLab lancé depuis
-un terminal, et ajoute l'écriture d'une cellule de texte en Markdown.*
-
 Le TD ouvre un notebook, `altitudes.ipynb`, dans JupyterLab, lancé depuis
 un terminal. Le notebook reprend le programme du TD 1c, qui calcule la moyenne
-de trois altitudes, découpé en cellules. La troisième étape fait constater
-ce que le noyau retient d'une cellule à l'autre ; la dernière ajoute au
+de trois altitudes, découpé en cellules. La deuxième étape fait constater
+ce que le noyau retient d'une cellule à l'autre ; la troisième ajoute au
 notebook une cellule de texte, écrite en Markdown. Le TD dure une douzaine
 de minutes.
 
 Le TD nécessite un terminal où conda est actif, et un navigateur. Il lance
 JupyterLab depuis l'invite de commandes d'Anaconda, puis depuis Git Bash, où
-les commandes d'Anaconda sont disponibles depuis le début du TD 1c.
+les commandes d'Anaconda sont disponibles depuis l'étape 2 du TD 1c.
 Anaconda Navigator sert de dernier secours.
 
-| Étape | Objectif | Ce qu'on fait |
+| Étape | Objectif | Action |
 |---|---|---|
-| 1 | ouvrir un notebook dans JupyterLab | lancer JupyterLab et ouvrir le notebook |
-| 2 | exécuter un notebook cellule par cellule | exécuter les cellules |
-| 3 | relire l'état du noyau d'une cellule à l'autre | relancer une cellule, et lire ce que le noyau retient |
-| 4 | documenter un notebook en Markdown | ajouter une cellule de texte |
-| 5 | lancer JupyterLab depuis un terminal | relancer JupyterLab depuis Git Bash, si le temps le permet |
+| [1 · Lancement de JupyterLab](#étape-1-lancement-de-jupyterlab) | ouvrir un notebook dans JupyterLab | lancer JupyterLab et ouvrir le notebook |
+| [2 · Exécution des cellules](#étape-2-exécution-des-cellules) | exécuter un notebook cellule par cellule, et relire l'état du noyau d'une cellule à l'autre | exécuter les cellules, relancer une cellule, puis redémarrer le noyau |
+| [3 · Cellule de texte dans un notebook](#étape-3-cellule-de-texte-dans-un-notebook) | documenter un notebook en Markdown | ajouter une cellule de texte ; si le temps le permet, relancer JupyterLab depuis Git Bash |
 
-Ce que chaque étape fait constater est expliqué à la fin du guide, dans « Ce
-que le TD fait constater » : faire l'étape d'abord, et noter ce qu'on
-observe, avant de lire l'explication.
+Ce que chaque étape fait constater est expliqué à la fin du guide, dans « [Ce
+que le TD fait constater](#ce-que-le-td-fait-constater) » : faire l'étape
+d'abord, et noter ce qu'on observe, avant de lire l'explication.
 
-## 1 · Lancer JupyterLab et ouvrir le notebook
+## Étape 1 · Lancement de JupyterLab
 
-> **À faire :** ouvrir l'invite de commandes d'Anaconda ; aller dans le
-> dossier `cours1\1d_notebook\` ; lancer JupyterLab par `jupyter lab` ;
-> ouvrir `altitudes.ipynb`.
->
-> **À obtenir :** le notebook ouvert dans un onglet du navigateur, à une
-> adresse qui commence par `localhost:8888/lab`.
+> **Objectif :** lancer JupyterLab dans `cours1/1d_notebook`, et ouvrir `altitudes.ipynb`.
 
 ### Le dossier du TD
 
-Le dossier `info01\cours1\1d_notebook\` contient le notebook, la feuille du
-TD et un `README.md`. Il n'a pas de dossier `depart\` : le notebook est
-ouvert à son emplacement, sans copie préalable.
+Le dossier `info01\cours1\1d_notebook\` contient le notebook du TD, la
+feuille du TD et ce guide, en PDF, en page web et en notebook. Il n'a pas de
+dossier `depart\` : le notebook est ouvert à son emplacement, sans copie
+préalable.
 
 ```text
 1d_notebook\
-├── altitudes.ipynb        le notebook du TD
-├── td_1d_notebook.pdf     la feuille du TD
-└── README.md
+├── altitudes.ipynb          le notebook du TD
+├── guide.ipynb              le guide, en notebook
+├── guide_1d_notebook.html   le guide, en page web
+├── guide_1d_notebook.pdf    le guide, en PDF
+└── td_1d_notebook.pdf       la feuille du TD
 ```
+
+Le TD se fait dans `altitudes.ipynb` ; `guide.ipynb` contient ce guide.
 
 `altitudes.ipynb` contient onze cellules : six blocs de texte et cinq
 cellules de code. Les cellules de code n'ont pas encore de sortie.
 
-### Lancer JupyterLab depuis l'invite de commandes d'Anaconda
+### Lancement depuis l'invite de commandes d'Anaconda
 
 1. Menu Démarrer, taper `anaconda prompt`, puis choisir « Anaconda Prompt ».
    Une fenêtre noire s'ouvre. Son invite commence par `(base)`, suivi du
@@ -80,22 +74,23 @@ cellules de code. Les cellules de code n'ont pas encore de sortie.
 3. Taper `jupyter lab`, puis Entrée. L'invite affiche des lignes de
    journal, puis le navigateur ouvre un onglet, à une adresse qui commence
    par `localhost:8888/lab`.
-4. La fenêtre de l'invite reste occupée tant que JupyterLab tourne : elle
-   doit rester ouverte.
-5. Le panneau de gauche de JupyterLab est une arborescence de fichiers. Elle
+4. Laisser ouverte la fenêtre de l'invite : elle reste occupée tant que
+   JupyterLab tourne.
+5. Dans le panneau de gauche de JupyterLab, double-cliquer sur
+   `altitudes.ipynb`. Ce panneau est une arborescence de fichiers : elle
    part du dossier où `jupyter lab` a été lancé, `1d_notebook`, et ne montre
-   que ce dossier et ce qu'il contient ({ref}`J6 <dep-j6>`).
-   Double-cliquer sur `altitudes.ipynb`.
+   que ce dossier et ce qu'il contient (annexes, « Problèmes avec JupyterLab
+   et les notebooks », J6).
 
 Si le navigateur ne s'ouvre pas, l'invite affiche une adresse qui commence
 par `http://localhost:8888/lab?token=` : la recopier dans la barre
 d'adresse du navigateur.
 
-Le module donne deux façons de lancer JupyterLab : l'invite de commandes
-d'Anaconda, qui n'a besoin d'aucun réglage, et Git Bash, le terminal du
-module, qui demande le réglage du TD 1c. L'étape 5 relance JupyterLab depuis
-Git Bash. Si un jour le réglage de Git Bash manque sur un poste, l'invite de
-commandes d'Anaconda reste disponible.
+JupyterLab se lance depuis l'invite de commandes d'Anaconda, qui n'a besoin
+d'aucun réglage, ou depuis Git Bash, le terminal du module, après le réglage
+du TD 1c. La fin de l'étape 3 relance JupyterLab depuis Git Bash. Si un jour
+le réglage de Git Bash manque sur un poste, l'invite de commandes d'Anaconda
+reste disponible.
 
 ### En dernier secours : Anaconda Navigator
 
@@ -115,13 +110,14 @@ Le nom du noyau s'affiche en haut à droite du notebook.
 **À noter** : l'adresse de l'onglet, et ce qu'elle indique sur la machine
 qui fournit le notebook au navigateur.
 
-## 2 · Exécuter les cellules
+Ce que l'étape fait constater : [fin du guide](#étape-1-jupyterlab-un-serveur-sur-le-poste).
 
-> **À faire :** exécuter les cellules une à une, de haut en bas, par
-> `Maj` + `Entrée`.
->
-> **À obtenir :** les cinq cellules de code exécutées, chacune avec son
-> numéro entre crochets.
+## Étape 2 · Exécution des cellules
+
+> **Objectif :** exécuter les cellules de `altitudes.ipynb` dans plusieurs ordres, et déterminer
+> ce que le noyau garde d'une cellule à l'autre.
+
+### Première exécution
 
 Avant toute exécution, les cellules de code ont des crochets vides, `[ ]`,
 à leur gauche.
@@ -131,26 +127,18 @@ cellule s'exécute, sa sortie s'affiche dessous, et la cellule suivante est
 sélectionnée. Continuer jusqu'à la fin du notebook.
 
 Un bloc de texte s'affiche mis en forme. Un double-clic dessus montre le
-Markdown qu'il contient, dont la syntaxe est celle de la partie 3 du cours ;
+Markdown qu'il contient, dont la syntaxe est présentée avant l'étape 3,
+dans « [La syntaxe minimale de Markdown](#la-syntaxe-minimale-de-markdown) » ;
 `Maj` + `Entrée` affiche de nouveau le texte mis en forme.
 
-**Vérification** : chaque cellule de code a un numéro à gauche, `[1]` à
+**Test** : chaque cellule de code a un numéro à gauche, `[1]` à
 `[5]`, la cellule de la boucle affiche trois valeurs, et la moyenne vaut
 `93.7 m`.
 
 **À noter** : ce qu'affiche la cellule des données, qui n'appelle pas
 `print`, et ce qu'affiche la cellule `total = 0`.
 
-## 3 · Relancer une cellule, et lire ce que le noyau retient
-
-> **À faire :** exécuter une seconde fois la cellule de la boucle, puis
-> celle de la moyenne ; lire `total` ; redémarrer le noyau et tout
-> exécuter.
->
-> **À obtenir :** les cellules de nouveau exécutées dans l'ordre, numérotées
-> `[1]` à `[5]`.
-
-### Relancer la boucle
+### Relance de la boucle
 
 Le notebook se termine par la section « Ce que le noyau retient » : une
 cellule qui ne contient que `total`, et une consigne.
@@ -165,22 +153,39 @@ cellule qui ne contient que `total`, et une consigne.
 valeur de `total`, et le numéro entre crochets de chaque cellule après ces
 trois exécutions.
 
-### Redémarrer le noyau
+### Redémarrage du noyau
 
 Menu Kernel, « Restart Kernel and Run All Cells… », puis confirmer par
 Restart.
 
-**Vérification** : les cellules sont numérotées `[1]` à `[5]` dans l'ordre de
+**Test** : les cellules sont numérotées `[1]` à `[5]` dans l'ordre de
 la page, `total` vaut `281.1`, et la moyenne `93.7 m`.
 
-## 4 · Ajouter une cellule de texte
+Ce que l'étape fait constater : [fin du guide](#étape-2-sorties-des-cellules).
 
-> **À faire :** ajouter une cellule en tête du notebook ; en faire une
-> cellule de texte ; y écrire, en Markdown, un titre, une phrase, une liste
-> et un lien ; l'afficher mise en forme ; enregistrer.
->
-> **À obtenir :** une première cellule sans numéro entre crochets, qui
-> affiche un titre, une phrase, une liste à puces et un lien.
+## La syntaxe minimale de Markdown
+
+Une cellule de texte s'écrit en Markdown : du texte brut, où quelques
+signes indiquent la mise en forme.
+
+| Texte tapé | Affichage |
+|---|---|
+| `# Altitudes`, `## Les données` | un titre, puis un titre de second niveau, plus petit |
+| deux lignes séparées par une ligne vide | deux paragraphes |
+| `du *texte* en **gras**` | du *texte* en **gras** |
+| `- une puce` | une ligne de liste à puces |
+| `1. une étape` | une ligne de liste numérotée |
+| `[le site](https://jupyter.org)` | les mots « le site », soulignés, qui ouvrent jupyter.org au clic |
+| ``la variable `total` `` | la variable `total`, en police de code |
+
+Le texte tapé reste lisible sans être affiché mis en forme.
+
+## Étape 3 · Cellule de texte dans un notebook
+
+> **Objectif :** ajouter en tête de `altitudes.ipynb` une cellule de texte, écrite en Markdown,
+> qui décrit le programme.
+
+### Ajout de la cellule de texte
 
 1. Cliquer sur la première cellule du notebook, puis taper `Échap`. La
    cellule passe en mode commande, où une touche agit sur la cellule
@@ -199,7 +204,8 @@ la page, `total` vaut `281.1`, et la moyenne `93.7 m`.
    double-clic sur la cellule revient au texte tapé.
 5. Enregistrer le notebook, `Ctrl` + `S`.
 
-La syntaxe est celle de la diapositive « La syntaxe minimale de Markdown ».
+La syntaxe est celle de la section « [La syntaxe minimale de
+Markdown](#la-syntaxe-minimale-de-markdown) ».
 
 **À noter** : ce qui distingue, à gauche, la cellule de texte d'une cellule
 de code ; l'aspect du texte pendant qu'on l'écrit, puis après
@@ -211,12 +217,7 @@ commande. `Ctrl` + `C` dans l'invite arrête aussi JupyterLab ; s'il demande
 une confirmation, taper `y` puis Entrée. Lancé depuis Navigator, JupyterLab
 se ferme avec sa fenêtre noire.
 
-## 5 · Relancer JupyterLab depuis Git Bash, si le temps le permet
-
-> **À faire :** ouvrir Git Bash dans le dossier `cours1/1d_notebook/` ;
-> lancer JupyterLab par `jupyter lab` ; rouvrir `altitudes.ipynb`.
->
-> **À obtenir :** le notebook, avec la cellule de texte de l'étape 4.
+### Relance de JupyterLab depuis Git Bash, si le temps le permet
 
 1. Dans l'explorateur de fichiers, ouvrir `Bureau\info01\cours1\1d_notebook`,
    puis clic droit sur un endroit vide du dossier, « Afficher d'autres
@@ -230,23 +231,28 @@ se ferme avec sa fenêtre noire.
 
    Git Bash affiche des lignes de journal, puis le navigateur ouvre un
    onglet, à une adresse qui commence par `localhost:8888/lab`.
-3. Git Bash reste occupé tant que JupyterLab tourne : sa fenêtre doit
-   rester ouverte.
-4. Le panneau de gauche de JupyterLab est une arborescence de fichiers. Elle
-   part du dossier où `jupyter lab` a été lancé, `1d_notebook`. Double-cliquer
-   sur `altitudes.ipynb`.
+3. Laisser ouverte la fenêtre de Git Bash : elle reste occupée tant que
+   JupyterLab tourne.
+4. Dans le panneau de gauche, qui part du dossier où `jupyter lab` a été
+   lancé, `1d_notebook`, double-cliquer sur `altitudes.ipynb`.
 
 Si le navigateur ne s'ouvre pas, Git Bash affiche une adresse qui commence
 par `http://localhost:8888/lab?token=` : la recopier dans la barre
 d'adresse du navigateur.
 
-Si Git Bash répond `jupyter: command not found`, le début du TD 1c, qui rend
-les commandes d'Anaconda disponibles dans Git Bash, n'a pas été fait sur ce
-poste. L'invite de commandes d'Anaconda de l'étape 1 reste disponible.
+Si Git Bash répond `bash: jupyter: command not found`, l'étape 2 du TD 1c,
+qui rend les commandes d'Anaconda disponibles dans Git Bash, n'a pas été
+faite sur ce poste. L'invite de commandes d'Anaconda de l'étape 1 reste
+disponible.
 
-**Vérification** : le notebook s'ouvre avec la cellule de texte de
-l'étape 4, enregistrée dans le fichier. Arrêter ensuite JupyterLab, par
-File, Shut Down, ou `Ctrl` + `C` dans Git Bash.
+**Test** : `altitudes.ipynb` s'ouvre dans un onglet de JupyterLab.
+
+**À noter** : si la cellule de texte ajoutée plus haut est toujours là.
+
+Arrêter ensuite JupyterLab, par File, Shut Down, ou `Ctrl` + `C` dans
+Git Bash.
+
+Ce que l'étape fait constater : [fin du guide](#étape-3-cellule-de-texte).
 
 ## Ce que le TD fait constater
 
@@ -255,8 +261,9 @@ Cette section se lit après avoir fait les étapes.
 ### Étape 1 : JupyterLab, un serveur sur le poste
 
 JupyterLab, lancé par `jupyter lab` ou par Navigator, est un serveur qui
-s'exécute sur le poste : le programme qui occupe Git Bash, ou la fenêtre
-noire de Navigator, est ce serveur, et `localhost:8888` désigne le port 8888
+s'exécute sur le poste : le programme qui occupe l'invite de commandes
+d'Anaconda, Git Bash ou la fenêtre noire de Navigator est ce serveur, et
+`localhost:8888` désigne le port 8888
 de la machine même. L'onglet du navigateur affiche le notebook, sans
 exécuter le code. Le noyau, le programme qui exécute les cellules, est
 démarré par ce serveur, sur le même poste. Le cours 5 revient sur le client
@@ -265,7 +272,7 @@ et le serveur.
 Le TD n'a pas nécessité de créer un environnement : les postes de la salle
 ont la distribution Anaconda, qui installe JupyterLab dans `base`.
 
-### Ce que les cellules affichent
+### Étape 2 : sorties des cellules
 
 | Cellule | Sortie |
 |---|---|
@@ -279,14 +286,14 @@ La dernière expression d'une cellule s'affiche sans `print`, comme dans la
 session interactive du TD 1c : la cellule des données affiche la liste,
 et la dernière cellule la valeur de `total`. La cellule `total = 0`
 n'affiche rien : une affectation ne produit pas de valeur à afficher. Les
-trois valeurs de la boucle sont celles que prend `total` à chaque tour.
+trois valeurs de la boucle sont celles que prend `total` à chaque itération.
 
-### Étape 3 : ce que le noyau retient
+### Étape 2 : variables conservées par le noyau
 
 Le numéro entre crochets donne l'ordre d'exécution ; il ne dépend pas de la
-place de la cellule dans la page. Après les trois exécutions de l'étape 3,
-la boucle porte `[6]`, la moyenne `[7]` et la dernière cellule `[8]`, alors
-que la cellule `total = 0` garde `[2]`. Un notebook dont les
+place de la cellule dans la page. Après les trois exécutions de la relance
+de la boucle, la boucle porte `[6]`, la moyenne `[7]` et la dernière cellule
+`[8]`, alors que la cellule `total = 0` garde `[2]`. Un notebook dont les
 numéros ne se suivent pas a été exécuté dans le désordre.
 
 La dernière cellule affiche `total` sans le recalculer : la variable a été
@@ -295,20 +302,22 @@ exécutions.
 
 La cellule `total = 0` n'a pas été relancée. La boucle part donc de la
 valeur de `total` conservée par le noyau, et ajoute une seconde fois les
-trois altitudes : elle affiche `515.4`, `646.4` puis `774.0`, et `total`
-vaut `774.0`. La moyenne, relancée ensuite, vaut `258.0 m` : la page montre
-alors une moyenne qui ne correspond plus aux trois altitudes affichées.
+trois altitudes : elle affiche `360.70000000000005`, `463.90000000000003`
+puis `562.2`, et `total` vaut `562.2`. Les chiffres qui suivent `360.7` et
+`463.9` viennent de l'arrondi des nombres à virgule, enregistrés en binaire.
+La moyenne, relancée ensuite, vaut `187.4 m` : la page montre alors une
+moyenne qui ne correspond plus aux trois altitudes affichées.
 
 Redémarrer le noyau efface toutes les variables ; le texte des cellules
 reste, et « Restart Kernel and Run All Cells » les exécute de nouveau dans
 l'ordre de la page. Le redémarrage remet ainsi le notebook dans un état
 cohérent.
 
-### Étape 4 : la cellule de texte
+### Étape 3 : cellule de texte
 
 Une cellule de texte possible, ligne par ligne :
 
-| Ce qu'on tape | Ce qui s'affiche |
+| Texte tapé | Affichage |
 |---|---|
 | `# Moyenne des altitudes` | un titre, en gros caractères |
 | une ligne vide, puis `Calcule la moyenne de trois altitudes, en mètres.` | un paragraphe |
@@ -322,6 +331,9 @@ Une cellule de texte n'a pas de numéro entre crochets : elle ne passe pas
 par le noyau, et `Maj` + `Entrée` ne fait que la mettre en forme. En mode
 commande, `A` insère une cellule au-dessus de la cellule sélectionnée, `B`
 au-dessous.
+
+Le notebook rouvert depuis Git Bash garde la cellule de texte : elle est
+enregistrée dans le fichier `altitudes.ipynb`.
 
 ### Le fichier `.ipynb`
 
@@ -337,9 +349,7 @@ montre chaque cellule avec son type et ses lignes :
    ]
 ```
 
-La cellule de texte ajoutée à l'étape 4 y a le type `"markdown"`. Les
+La cellule de texte ajoutée à l'étape 3 y a le type `"markdown"`. Les
 sorties y sont enregistrées avec le code, une fois le notebook exécuté
 puis enregistré : rouvert, il affiche encore les résultats de la dernière
-exécution. Le notebook du TD a été écrit dans un autre format de notebook,
-MyST Markdown, du Markdown dont les cellules de code sont des blocs, puis
-converti en `.ipynb`.
+exécution.

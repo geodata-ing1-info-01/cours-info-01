@@ -1,6 +1,6 @@
 ---
 title: "TD 5b — Un environnement pour le programme"
-subtitle: Présentation, énoncé et solutions (version 2, proposition)
+subtitle: Présentation, énoncé et solutions
 jupytext:
   text_representation:
     extension: .md
@@ -10,13 +10,9 @@ kernelspec:
   display_name: Python 3
 ---
 
-*Version 2 du cours 5 : proposition de travail pour 2027-2028. Les sorties du programme sont relevées
-sous Linux. Les chemins de ce guide sont attendus sous Windows, d'après la disposition d'Anaconda, et
-restent à relever sur un poste de la salle.*
-
 Ce guide a trois parties. La présentation décrit le but du TD et ses étapes. L'énoncé donne, pour
 chaque étape, l'objectif, les consignes et le test à faire. Les solutions expliquent chaque
-commande, et donnent la marche à suivre si le résultat diffère.
+commande, donnent ce que l'étape fait constater, et la marche à suivre si le résultat diffère.
 
 # Présentation du TD
 
@@ -48,10 +44,10 @@ La page `trace_2.html` affiche la trace sur le Plan IGN :
 
 Le TD dure vingt minutes.
 
-1. Vérifier l'environnement créé.
-2. Activer l'environnement.
-3. Lancer le programme.
-4. Désactiver l'environnement.
+1. Environnement créé.
+2. Activation de l'environnement.
+3. Programme dans l'environnement.
+4. Programme sans activation.
 
 ### Les notions employées
 
@@ -60,30 +56,32 @@ Le TD dure vingt minutes.
 | création d'un environnement | « Environnement : création et dossier » |
 | `conda activate` et `PATH` | « Activation d'un environnement : effet sur PATH » |
 | `which`, `sys.path` | « Activation : recherche des dépendances » |
+| commandes `conda` | « Commandes conda : résumé » |
 
 # Énoncé
 
-## Étape 1 · Vérifier l'environnement créé
+## Étape 1 · Environnement créé
 
-> **Objectif :** trouver sur le disque le dossier de l'environnement, avec le programme et la bibliothèque qui manquaient.
+> **Objectif :** attendre la fin de `conda create`, puis vérifier que l'environnement `carte`
+> contient `ogr2ogr` et `folium`.
 
 **Consignes**
 
-1. Revenir au second terminal, et attendre la fin de `conda create` : cliquer sur son nom, dans la
-   liste des terminaux.
-2. Revenir au premier terminal, et afficher les environnements :
+1. Revenir au second terminal : cliquer sur son nom, dans la liste des terminaux.
+2. Attendre la fin de `conda create`.
+3. Revenir au premier terminal, et afficher les environnements :
 
    ```text
    conda env list
    ```
 
-3. Lister le dossier de l'environnement :
+4. Lister le dossier de l'environnement :
 
    ```text
    ls ~/.conda/envs/carte
    ```
 
-4. Chercher le programme et la bibliothèque :
+5. Chercher le programme et la bibliothèque :
 
    ```text
    ls ~/.conda/envs/carte/Library/bin/ogr2ogr.exe
@@ -92,12 +90,17 @@ Le TD dure vingt minutes.
 
 **Test**
 
-Le second terminal se termine par :
+À la fin de la création, le second terminal affiche :
 
 ```text
+#
 # To activate this environment, use
 #
 #     $ conda activate carte
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
 ```
 
 `conda env list` affiche `base` et `carte`. `ls ~/.conda/envs/carte` affiche, parmi d'autres,
@@ -107,9 +110,41 @@ puis les fichiers de `folium`, dont `__init__.py`.
 Si `conda create` s'est arrêté sur une erreur, voir la
 [solution de l'étape 1](#solution-de-létape-1).
 
-## Étape 2 · Activer l'environnement
+## Étape 2 · Activation de l'environnement
 
-> **Objectif :** faire en sorte que `python` et `ogr2ogr` lancent les fichiers de l'environnement.
+> **Objectif :** activer `carte`, puis déterminer quels `python` et `ogr2ogr` le terminal lance.
+
+**Consignes**
+
+1. Activer l'environnement :
+
+   ```text
+   conda activate carte
+   ```
+
+2. Afficher le chemin des deux commandes :
+
+   ```text
+   which python
+   which ogr2ogr
+   ```
+
+3. Afficher le dernier dossier où Python cherche un module :
+
+   ```text
+   python -c "import sys; print(sys.path[-1])"
+   ```
+
+**Test**
+
+L'invite commence par `(carte)`, et les trois commandes affichent chacune un chemin. La
+[solution de l'étape 2](#solution-de-létape-2) donne les chemins attendus, et la marche à suivre si
+`conda activate` affiche une erreur.
+
+## Étape 3 · Programme dans l'environnement
+
+> **Objectif :** lancer `carte_trace.py` sur `trace_2.gpx` dans l'environnement `carte`, puis
+> ouvrir la carte `trace_2.html`.
 
 **Consignes**
 
@@ -121,56 +156,19 @@ Si `conda create` s'est arrêté sur une erreur, voir la
    cd travail
    ```
 
-2. Activer l'environnement :
-
-   ```text
-   conda activate carte
-   ```
-
-3. Afficher le chemin des deux commandes :
-
-   ```text
-   which python
-   which ogr2ogr
-   ```
-
-4. Afficher le dernier dossier où Python cherche un module :
-
-   ```text
-   python -c "import sys; print(sys.path[-1])"
-   ```
-
-**Test**
-
-L'invite commence par `(carte)`. Les trois commandes affichent :
-
-```text
-/c/Users/<nom>/.conda/envs/carte/python
-/c/Users/<nom>/.conda/envs/carte/Library/bin/ogr2ogr
-C:\Users\<nom>\.conda\envs\carte\Lib\site-packages
-```
-
-Si `conda activate` affiche une erreur, voir la [solution de l'étape 2](#solution-de-létape-2).
-
-## Étape 3 · Lancer le programme
-
-> **Objectif :** obtenir le résumé et la carte de la trace.
-
-**Consignes**
-
-1. Lancer le programme :
+2. Lancer le programme :
 
    ```text
    python carte_trace.py trace_2.gpx
    ```
 
-2. Lister les fichiers écrits :
+3. Lister les fichiers écrits :
 
    ```text
    ls
    ```
 
-3. Ouvrir la carte :
+4. Ouvrir la carte :
 
    ```text
    start trace_2.html
@@ -185,9 +183,9 @@ Le programme affiche le résumé donné dans la présentation, et se termine par
 Si le programme s'arrête sur une erreur, ou si la carte reste grise ou vide, voir la
 [solution de l'étape 3](#solution-de-létape-3).
 
-## Étape 4 · Désactiver l'environnement
+## Étape 4 · Programme sans activation
 
-> **Objectif :** constater que l'erreur revient sans activation, alors qu'aucun fichier n'a changé.
+> **Objectif :** déterminer si `carte_trace.py` fonctionne sans activer `carte`.
 
 **Consignes**
 
@@ -212,9 +210,9 @@ Si le programme s'arrête sur une erreur, ou si la carte reste grise ou vide, vo
 
 **Test**
 
-Après `conda deactivate`, l'invite commence par `(base)`, et le programme se termine par
-`ModuleNotFoundError: No module named 'folium'`. Après `conda activate carte`, il se termine par
-`carte écrite : trace_2.html`.
+Après `conda deactivate`, l'invite commence par `(base)`. Après `conda activate carte`, elle commence
+par `(carte)`, et le programme se termine par `carte écrite : trace_2.html`. La
+[solution de l'étape 4](#solution-de-létape-4) donne le résultat du lancement sans activation.
 
 # Solutions
 
@@ -232,8 +230,9 @@ Ce dossier a la même organisation que le dossier d'une distribution :
 | `Library\bin\ ` | `ogr2ogr.exe` et les bibliothèques compilées de GDAL |
 | `Lib\site-packages\ ` | `folium`, et les autres bibliothèques installées |
 
-Si le second terminal affiche `CondaHTTPError`, voir le cas A9 de la page
-[Problèmes avec Anaconda](../../../../annexes/problemes/anaconda.md). Relancer ensuite la commande du
+Si le second terminal affiche `CondaHTTPError`, voir l'annexe « Problèmes avec Anaconda », cas A9.
+Si `conda` demande d'accepter les conditions d'utilisation, ou s'arrête sur
+`CondaToSNonInteractiveError`, voir le cas A10 de la même annexe. Relancer ensuite la commande du
 TD 5a :
 
 ```text
@@ -241,9 +240,17 @@ conda create -y -n carte -c conda-forge python=3.12 gdal folium
 ```
 
 Si `carte` n'apparaît pas dans la liste alors que la commande a réussi, voir le cas A11 de la même
-page.
+annexe.
 
 ## Solution de l'étape 2
+
+Après `conda activate carte`, les trois commandes affichent :
+
+```text
+/c/Users/<nom>/.conda/envs/carte/python
+/c/Users/<nom>/.conda/envs/carte/Library/bin/ogr2ogr
+C:\Users\<nom>\.conda\envs\carte\Lib\site-packages
+```
 
 `conda activate carte` place les dossiers de l'environnement en tête de `PATH`, pour ce terminal.
 `which python` et `which ogr2ogr` trouvent donc les fichiers de `carte`. Cet interpréteur calcule
@@ -255,28 +262,34 @@ création n'est pas terminée, ou elle a échoué : revenir à l'étape 1.
 
 ## Solution de l'étape 3
 
-`carte_trace.py` enchaîne quatre opérations :
+`carte_trace.py` exécute, dans l'ordre :
 
 1. `ogr2ogr` convertit le GPX en CSV, dans `trace_2.csv`.
 2. `stats_trace.py` lit ce CSV, affiche le résumé et écrit `resume.txt`.
 3. `ogr2ogr` convertit le GPX en GeoJSON, dans `trace_2.geojson`.
 4. `folium` écrit la page web `trace_2.html`.
 
-Cas d'erreur :
+Si le programme s'arrête, ou si la carte ne s'affiche pas :
 
-- **`ModuleNotFoundError: No module named 'folium'`** : l'invite ne commence pas par `(carte)`.
+- `ModuleNotFoundError: No module named 'folium'` : l'invite ne commence pas par `(carte)`.
   Lancer `conda activate carte`.
-- **`python: can't open file` suivi de `carte_trace.py`** : le terminal n'est pas dans `travail/`.
+- `python: can't open file`, suivi de `carte_trace.py` : le terminal n'est pas dans `travail/`.
   `pwd` affiche le dossier courant, qui doit se terminer par `5b_environnement/travail`.
-- **La carte reste grise ou vide** : la page charge Leaflet et le fond de carte par le réseau. Voir le
-  cas R1 de la page [Problèmes de réseau et de compte](../../../../annexes/problemes/reseau.md). Le
-  résumé affiché dans le terminal ne dépend pas du réseau.
+- La carte reste grise ou vide : la page charge Leaflet et le fond de carte par le réseau. Voir
+  l'annexe « Problèmes de réseau et de compte », cas R1. Le résumé affiché dans le terminal ne
+  dépend pas du réseau.
 
 ## Solution de l'étape 4
+
+Sans activation, le programme se termine par :
+
+```text
+ModuleNotFoundError: No module named 'folium'
+```
 
 `conda deactivate` retire les dossiers de `carte` de `PATH`. `python` désigne de nouveau l'interpréteur
 de `base`, et aucun dossier de son `sys.path` ne contient `folium`, d'où l'erreur. `conda activate
 carte` replace les dossiers de `carte` en tête de `PATH`. Aucun fichier du projet ni de l'environnement
 ne change entre ces trois lancements.
 
-Le terminal reste à `(carte)` à la fin de ce TD, pour le TD 5c.
+Le TD 5c reprend ce terminal, avec `carte` activé.

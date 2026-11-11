@@ -1,5 +1,5 @@
 ---
-title: Travaux dirigés de la séance 2, version 2
+title: Travaux dirigés de la séance 2
 subtitle: Un guide détaillé par TD
 ---
 

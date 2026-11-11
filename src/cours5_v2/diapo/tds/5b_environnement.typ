@@ -5,6 +5,9 @@
 // attendues viennent de la disposition d'Anaconda sous Windows, et restent à relever sur un poste
 // de la salle.
 //
+// 11/11/2026 : numéro d'étape dans le titre des diapositives d'action et dans la chaîne, repris par
+// les sections du guide.
+//
 // Inclus par `cours5_v2.typ` ; compilable seul par
 // `outils/compiler_tds.py --cours 5_v2`.
 #import "../../../commun/prelude.typ": *
@@ -27,10 +30,10 @@
 
   #chaine(
     ecart: 18pt,
-    ("Vérifier", "l'environnement créé"),
-    ("Activer", "l'environnement dans le terminal"),
-    ("Lancer", "le programme, puis ouvrir la carte"),
-    ("Désactiver", "l'environnement, puis relancer le programme"),
+    ("Étape 1", "Environnement créé"),
+    ("Étape 2", "Activation de l'environnement"),
+    ("Étape 3", "Programme dans l'environnement"),
+    ("Étape 4", "Programme sans activation"),
   )
 
   #notes[
@@ -39,7 +42,7 @@
   ]
 ]
 
-#d("Environnement créé")[
+#d("Étape 1 · Environnement créé")[
   #objectif[
     attendre la fin de `conda create`, puis vérifier que l'environnement `carte` contient `ogr2ogr`
     et `folium`.
@@ -47,7 +50,8 @@
 
   #consignes(
     taille: 16pt,
-    [Revenir au second terminal, et attendre la fin de `conda create` : #comment[cliquer sur son nom, dans la liste des terminaux.]
+    [Revenir au second terminal : #comment[cliquer sur son nom, dans la liste des terminaux.]],
+    [Attendre la fin de `conda create`.
       #constat[`To activate this environment, use`, puis `conda activate carte`.]],
     [Revenir au premier terminal, et afficher les environnements : `conda env list`.
       #constat[`base` et `carte`, ce dernier dans `C:\Users\<nom>\.conda\envs\ `.]],
@@ -65,10 +69,13 @@
 
     Si `conda create` s'arrête sur `CondaHTTPError` : annexe « Session réseau, proxy, droits du
     compte ».
+
+    À relever sur un poste de la salle : le nom des deux terminaux dans la liste de VS Code, qui
+    s'appellent peut-être tous deux « bash ».
   ]
 ]
 
-#d("Activation de l'environnement")[
+#d("Étape 2 · Activation de l'environnement")[
   #objectif[
     activer `carte`, puis déterminer quels `python` et `ogr2ogr` le terminal lance.
   ]
@@ -91,7 +98,7 @@
   ]
 ]
 
-#d("Programme dans l'environnement")[
+#d("Étape 3 · Programme dans l'environnement")[
   #objectif[
     lancer `carte_trace.py` sur `trace_2.gpx` dans l'environnement `carte`, puis ouvrir la carte
     `trace_2.html`.
@@ -116,7 +123,7 @@
   ]
 ]
 
-#d("Programme sans activation")[
+#d("Étape 4 · Programme sans activation")[
   #objectif[
     déterminer si `carte_trace.py` fonctionne sans activer `carte`.
   ]

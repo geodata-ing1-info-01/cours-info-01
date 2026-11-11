@@ -91,6 +91,11 @@
     postes sont partagés (même compte `eleve`) ; un réglage `--global`
     mettrait le nom d'un élève sur les commits des autres. Diapositive « L'auteur
     des commits : git config ».
+
+    À relever sur un poste de la salle : la sortie de `ls -a` dans Git Bash (alias
+    `ls -F`, en colonnes ; le guide donne celle du rejeu, un nom par ligne), et
+    l'avertissement de `git add altitudes.py` sur les fins de ligne (« LF will be
+    replaced by CRLF », si `core.autocrlf` vaut `true`), absent du rejeu sous Linux.
   ]
 ]
 
@@ -174,7 +179,7 @@
 
   #consignes(
     taille: 16pt,
-    [Dans VS Code, créer le fichier `README.md`, avec ces lignes : #comment[File, New File…]
+    [Dans VS Code, créer le fichier `README.md`, avec ces lignes : #comment[explorateur, clic droit sur un endroit vide, New File…]
       #block(width: 100%, inset: (x: 9pt, y: 6pt), above: 5pt, below: 2pt, fill: gris)[
         #show raw: set text(size: 12pt)
         #raw(block: true, "# Altitudes\n\nCe programme affiche des statistiques sur une série d'altitudes, en mètres.\n\n## Utilisation\n\nÉcrire les altitudes dans la liste `altitudes`, puis lancer `python altitudes.py`.")
@@ -206,14 +211,14 @@
     columns: (1fr, 250pt), column-gutter: 16pt, align: top,
     consignes(
     taille: 15pt,
-    [Dans VS Code, créer le fichier `notes.txt`, avec ces lignes : #comment[File, New File…]
+    [Dans VS Code, créer le fichier `notes.txt`, avec ces lignes : #comment[explorateur, clic droit, New File…]
       #block(width: 100%, inset: (x: 9pt, y: 6pt), above: 5pt, below: 2pt, fill: gris)[
         #show raw: set text(size: 12pt)
         #raw(block: true, "À faire :\n- ajouter le dénivelé cumulé\n- lire les altitudes dans un fichier texte")
       ]],
     [Afficher l'état du dépôt : `git status`.
       #constat[`notes.txt` non suivi.]],
-    [Créer le fichier `.gitignore`, avec la ligne `notes.txt`. Afficher de nouveau l'état du dépôt.
+    [Créer le fichier `.gitignore` de la même façon, avec la ligne `notes.txt`. Afficher de nouveau l'état du dépôt.
       #constat[Seul `.gitignore` est non suivi.]],
     [Créer un commit, puis afficher l'état du dépôt : #commandes("git add .gitignore", "git commit -m \"Ignore le fichier de notes\"", "git status")
       #constat[« rien à valider », alors que `notes.txt` est dans le dossier.]],
@@ -227,8 +232,13 @@
   ]
 
   #notes[
-    `.gitignore` se crée dans VS Code : File, New File, nom `.gitignore`,
-    une ligne par motif.
+    `.gitignore` se crée comme `notes.txt` : explorateur, clic droit sur un endroit
+    vide, New File…, nom `.gitignore`, une ligne par motif. Le menu File, New File…
+    ouvre un fichier sans nom, à enregistrer ensuite ; l'explorateur crée le fichier
+    dans le dossier ouvert, avec son nom.
+
+    À relever sur un poste de la salle : la sortie de `ls` dans Git Bash, en colonnes
+    (guide, étape 4.4).
 
     `ls` n'affiche ni `.git` ni `.gitignore`, et `ls -a` les affiche. L'explorateur de
     VS Code montre `.gitignore`, et masque `.git` par défaut.
@@ -383,6 +393,9 @@
   #notes[
     Le dessin se fait avant la commande : le comparer ensuite au graphe de
     git, et au graphe du corrigé.
+
+    À relever sur un poste de la salle : la sortie de `ls -a` dans `copie/` (guide,
+    étape 7.1).
   ]
 ]
 

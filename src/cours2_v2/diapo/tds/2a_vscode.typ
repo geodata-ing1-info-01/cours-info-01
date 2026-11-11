@@ -142,7 +142,7 @@
         ├── 2b_erreurs/
         └── 2c_depot_altitudes/")
       ]
-      #legende[Arborescence attendue après l'étape 2. `cours1/` vient de la séance 1.]
+      #legende[Arborescence attendue après la consigne 2. `cours1/` vient de la séance 1.]
     ],
   )
 
@@ -160,6 +160,9 @@
     En 2026, VS Code était lancé depuis Anaconda Navigator, pour que son
     terminal trouve `python`. Avec Git Bash configuré, ce n'est plus
     nécessaire : le terminal lit `~/.bash_profile`.
+
+    À relever sur un poste de la salle : la sortie de `ls cours2` dans Git Bash, avec
+    `README.md` et le PDF des diapositives, pour la donner dans le guide.
   ]
 ]
 

@@ -32,7 +32,7 @@
 // Nouveau (v2) : remplace « Lancer JupyterLab depuis Anaconda » ; Navigator
 // était lent à démarrer sur les postes en 2026. 27/09 : l'invite de commandes
 // d'Anaconda d'abord, Git Bash ensuite.
-#d("Lancement de JupyterLab")[
+#d("Étape 1 · Lancement de JupyterLab")[
   #annonce[
     JupyterLab est installé avec Anaconda, et se lance dans un terminal où conda est actif.
   ]
@@ -100,7 +100,7 @@
 ]
 
 
-#d("Exécution des cellules")[
+#d("Étape 2 · Exécution des cellules")[
   #objectif[
     exécuter les cellules de `altitudes.ipynb` dans plusieurs ordres, et déterminer ce que le noyau
     garde d'une cellule à l'autre.
@@ -111,7 +111,7 @@
     [Exécuter les cellules une à une, de haut en bas. #comment[Cliquer dans une cellule, puis `Maj` + `Entrée`.]
       #constat[`[1]`, `[2]`… à gauche, dans l'ordre ; la moyenne vaut `93.7`.]],
     [Exécuter une seconde fois la cellule de la boucle, puis celle de la moyenne.
-      #constat[`258.0` : le noyau a gardé `total`, la boucle l'a encore augmenté.]],
+      #constat[`187.4` : le noyau a gardé `total`, la boucle l'a encore augmenté.]],
     [Redémarrer le noyau et tout exécuter : #comment[menu Kernel, Restart Kernel and Run All Cells.]
       #constat[Les numéros repartent de `[1]`, la moyenne revient à `93.7`.]],
   )
@@ -122,7 +122,7 @@
   ]
 
   #notes[
-    Étape 4 : `total` passe de 281,1 à 774,0, et la moyenne à 258,0. Le
+    Consigne 2 : `total` passe de 281,1 à 562,2, et la moyenne à 187,4. Le
     notebook sépare `total = 0` de la boucle pour que ce soit visible (le
     notebook du TD 1g de 2026 remettait `total` à zéro dans la même cellule,
     et la relance ne changeait rien).
@@ -176,7 +176,7 @@
   ]
 ]
 
-#d("Cellule de texte dans un notebook")[
+#d("Étape 3 · Cellule de texte dans un notebook")[
   #objectif[
     ajouter en tête de `altitudes.ipynb` une cellule de texte, écrite en Markdown, qui décrit le
     programme.

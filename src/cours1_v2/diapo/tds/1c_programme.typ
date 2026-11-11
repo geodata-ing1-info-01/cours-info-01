@@ -30,7 +30,7 @@
 #separateur-td(..td)
 
 // Nouveau (v2), 27/09 : la commande et le fichier qu'elle lance.
-#d("Programme lancé par la commande python")[
+#d("Étape 1 · Programme lancé par la commande python")[
   #objectif[
     déterminer quel fichier la commande `python` lance dans Git Bash, puis lancer le Python
     d'Anaconda par son chemin.
@@ -39,7 +39,7 @@
   #grid(
     columns: (2fr, 1fr), column-gutter: 16pt, align: (top, horizon),
     consignes(
-      taille: 16pt,
+      taille: 15pt,
       [Aller dans le dossier du TD : `cd ../1c_programme`. #comment[Git Bash est encore ouvert dans `1b_terminal`.]],
       [Afficher le fichier que lance la commande `python` : `which python`.
         #constat[Un Python 2.7 dans `/c/Python27`, ou `no python` : ce n'est pas le Python d'Anaconda.]],
@@ -56,7 +56,7 @@
   ]
 
   #notes[
-    À vérifier sur un poste : ce qu'affiche l'étape 2 sans conda (Python
+    À vérifier sur un poste : ce qu'affiche la consigne 2 sans conda (Python
     2.7 attendu, dans `/c/Python27`) et le contenu du dossier d'Anaconda.
 
     `C:\ProgramData` est un dossier masqué : l'explorateur ne l'affiche
@@ -72,7 +72,7 @@
 
 // Déplacée de la fin du TD 1b le 27/09 : le réglage se fait au moment où
 // `python` sert pour la première fois.
-#d("Configuration de conda dans Git Bash")[
+#d("Étape 2 · Configuration de conda dans Git Bash")[
   #objectif[
     régler Git Bash, une fois par poste, pour que `python` lance le Python d'Anaconda.
   ]
@@ -85,7 +85,7 @@
     [Vérifier le Python lancé : `which python`, puis `python --version`.
       #constat[`/c/ProgramData/anaconda3/python` ; `Python 3.`]],
     [Afficher les fichiers cachés du dossier personnel : `ls -a ~`.
-      #constat[`.bash_profile` parmi les noms : un fichier caché, créé à l'étape 1.]],
+      #constat[`.bash_profile` parmi les noms : un fichier caché, créé à la consigne 1.]],
   )
 
   #v(2pt)
@@ -101,7 +101,7 @@
     `PATH`. Dans l'invite de commandes d'Anaconda, conda est actif sans
     réglage.
 
-    Le chemin de l'étape 1 est celui d'Anaconda sur les postes de la salle.
+    Le chemin de la consigne 1 est celui d'Anaconda sur les postes de la salle.
     Sur un ordinateur personnel : page « Git et Git Bash » des annexes.
 
     À VÉRIFIER sur un poste de la salle, avant d'écrire la version finale.
@@ -133,7 +133,7 @@
 // droite, passe dans le constat de la consigne 2, au corrigé. Même jour : les fichiers
 // du TD passent dans `depart/`, comme aux TD 1a et 1b ; la première consigne les copie
 // dans `travail/`, où le TD les modifie.
-#d("Le programme du TD")[
+#d("Étape 3 · Le programme du TD")[
   #annonce[
     Le programme `altitudes.py` calcule la moyenne de trois altitudes, puis
     l'affiche.
@@ -172,6 +172,10 @@
     Git Bash a été rouvert dans `1c_programme/` à la diapositive précédente. Si `python`
     n'est pas trouvé, le réglage de conda dans Git Bash n'a pas été fait sur ce poste.
 
+    À relever sur un poste de la salle : le message de `python altitudes.py` quand le
+    réglage de conda manque et que `python` lance le Python 2.7 de `C:\Python27`. Le
+    guide fait taper `python --version` dans ce cas, sans citer le message.
+
     Les étapes suivantes modifient la copie de `travail/`, et `depart/` garde les fichiers
     livrés, comme aux TD 1a et 1b.
 
@@ -186,7 +190,7 @@
 ]
 
 // Nouveau (v2) : remplace « Lancer le programme » du TD 1b de 2026 (VS Code).
-#d("Cycle d'édition d'un programme")[
+#d("Étape 4 · Cycle d'édition d'un programme")[
   #objectif[
     modifier `altitudes.py` dans Notepad++, et déterminer à quel moment `python` prend en compte la
     modification.
@@ -202,14 +206,14 @@
   )
 
   #notes[
-    Étape 1 : l'onglet de Notepad++ porte une disquette rouge tant que le
+    Consigne 1 : l'onglet de Notepad++ porte une disquette rouge tant que le
     fichier n'est pas enregistré.
 
-    Sortie de l'étape 3 relevée avec Python 3.12 : 373,6 / 4 = 93,4.
+    Sortie de la consigne 3 relevée avec Python 3.12 : 373,6 / 4 = 93,4.
   ]
 ]
 
-#d("Python en interactif")[
+#d("Étape 5 · Python en interactif")[
   #objectif[
     exécuter les premières lignes de `altitudes.py` une à une, dans une session interactive, puis
     afficher `total` et la moyenne.
@@ -277,8 +281,9 @@
 // Nouveau (v2), 27/09 : le script de la diapositive « Un script de commandes »,
 // retirée du cours le 19/10/2026 ; la page de cours `03_premier_programme.md`
 // garde la section, et l'annonce reprend sa définition. Facultatif depuis le
-// 28/09.
-#d("Script de commandes, si le temps le permet")[
+// 28/09. Titre « Étape 6 (bonus) » le 11/11/2026, puis « (facultative) », comme le TD 1a : le titre
+// « si le temps le permet », numéroté, tenait sur deux lignes et faisait déborder la diapositive.
+#d("Étape 6 (facultative) · Script de commandes")[
   #annonce[
     Un script est un fichier texte qui contient des commandes. `bash` les
     exécute dans l'ordre, comme si on les tapait.
@@ -311,8 +316,9 @@
 
   #notes[
     Le même script pour l'invite de commandes, `commandes.bat` : annexe du guide.
+    À relever sur un poste de la salle : ce fichier n'a jamais été exécuté.
 
-    La moyenne est celle de l'étape 5 de « Cycle d'édition d'un programme »,
+    La moyenne est celle de la consigne 3 de « Cycle d'édition d'un programme »,
     avec quatre altitudes. Sortie de `bash commandes.sh` relevée sous Linux, sur
     une copie de l'archive.
 

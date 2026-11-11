@@ -5,6 +5,10 @@
 // `data/cours5_v2/corriges/5c_description/`. Parcours essayé sous Linux le 06/11/2026 ; la durée de
 // la recréation sur un poste de la salle reste à relever.
 //
+// 11/11/2026 : numéro d'étape dans le titre des diapositives d'action et dans la chaîne. Les fichiers
+// se créent par New File…, dans l'explorateur de VS Code, comme au TD 2c : VS Code s'ouvre
+// donc sur le dossier du TD 5c à l'étape 1, et le TD 5d ouvre un nouveau second terminal.
+//
 // Inclus par `cours5_v2.typ` ; compilable seul par
 // `outils/compiler_tds.py --cours 5_v2`.
 #import "../../../commun/prelude.typ": *
@@ -20,8 +24,8 @@
 #separateur-td(..td)
 
 // Le contenu d'un fichier à écrire dans VS Code.
-#let _fichier(contenu, lang: none) = block(width: 100%, inset: (x: 9pt, y: 6pt), above: 5pt, below: 2pt, fill: gris)[
-  #show raw: set text(size: 12pt)
+#let _fichier(contenu, lang: none, taille: 12pt) = block(width: 100%, inset: (x: 9pt, y: 6pt), above: 5pt, below: 2pt, fill: gris)[
+  #show raw: set text(size: taille)
   #raw(block: true, lang: lang, contenu)
 ]
 
@@ -33,11 +37,11 @@
 
   #chaine(
     ecart: 14pt,
-    ("Écrire", [`environment.yml`]),
-    ("Écrire", [`README.md`]),
-    ("Supprimer", "l'environnement"),
-    ("Recréer", "l'environnement, dans un autre dossier"),
-    ("Lancer", "le programme"),
+    ("Étape 1", [Fichier `environment.yml`]),
+    ("Étape 2", [Fichier `README.md`]),
+    ("Étape 3", "Suppression de l'environnement"),
+    ("Étape 4", "Recréation de l'environnement"),
+    ("Étape 5 (facultative)", [Fichier `pyproject.toml`]),
   )
 
   #notes[
@@ -46,48 +50,64 @@
   ]
 ]
 
-#d("Fichier environment.yml")[
+#d("Étape 1 · Fichier environment.yml")[
   #objectif[
     décrire l'environnement `carte` dans `travail/environment.yml`.
   ]
 
-  #consignes(
-    taille: 16pt,
-    [Aller dans le dossier du TD, et copier ses fichiers dans `travail/` : #commandes("cd ../../5c_description", "cp depart/* travail/", "cd travail")],
-    [Dans VS Code, créer le fichier `environment.yml` dans `travail/`, avec ces lignes : #comment[File, New File…]
-      #_fichier("name: carte\nchannels:\n  - conda-forge\ndependencies:\n  - python=3.12\n  - gdal\n  - folium", lang: "yaml")],
-    [Enregistrer le fichier, puis lister le dossier : `Ctrl` + `S`, puis `ls`.
-      #constat[`environment.yml`, avec les fichiers du programme.]],
+  // 11/11/2026 : le contenu du fichier passe à droite, pour que les deux consignes de
+  // l'ouverture du dossier tiennent sur la diapositive.
+  #grid(
+    columns: (1.55fr, 1fr), column-gutter: 14pt, align: top,
+    consignes(
+      taille: 14.5pt,
+      [Ouvrir le dossier du TD dans VS Code : #comment[File, Open Folder…, `Desktop\info01\cours5\5c_description`, puis « Yes, I trust the authors ».]
+        #constat[`5C_DESCRIPTION` en haut de l'arborescence, avec `depart` et `travail`.]],
+      [Ouvrir un terminal, y activer l'environnement, et copier les fichiers du TD dans `travail/` : #comment[menu Terminal, New Terminal.] #commandes("conda activate carte", "cp depart/* travail/", "cd travail")],
+      [Dans VS Code, créer le fichier `environment.yml` dans `travail`, y écrire les lignes ci-contre, puis enregistrer : #comment[explorateur, clic droit sur `travail`, New File…, nom `environment.yml`, puis `Ctrl` + `S`.]],
+      [Lister le dossier : `ls`.
+        #constat[`environment.yml`, avec les fichiers du programme.]],
+    ),
+    _fichier("name: carte\nchannels:\n  - conda-forge\ndependencies:\n  - python=3.12\n  - gdal\n  - folium", lang: "yaml", taille: 14pt),
   )
 
   #notes[
     Deux espaces d'indentation, jamais de tabulation : l'éditeur signale l'erreur.
+
+    VS Code est ouvert sur `travail/` du TD 5a depuis le TD 5a. Il s'ouvre ici sur le dossier du
+    TD 5c : son explorateur montre `travail/`, puis `nouveau_poste/` à l'étape 4, où New File… crée
+    les fichiers. Le nouveau terminal part de `5c_description`, avec `(base)` : d'où
+    `conda activate carte`, qui rétablit l'environnement actif à la fin du TD 5b.
+
+    À relever sur un poste de la salle : la fermeture des deux terminaux du TD 5a à l'ouverture du
+    dossier (le TD 5d en ouvre un second), et la place de New File… dans le menu du clic droit.
   ]
 ]
 
-#d("Fichier README.md")[
+#d("Étape 2 · Fichier README.md")[
   #objectif[
     écrire dans `travail/README.md` les commandes d'installation et d'utilisation.
   ]
 
   #consignes(
-    taille: 16pt,
-    [Dans VS Code, créer le fichier `README.md` dans `travail/`, avec ces lignes : #comment[File, New File…]
-      #_fichier("# carte-trace\n\nCe programme résume une trace GPX, et écrit une carte de cette trace dans une page web.\n\n## Installation\n\n    conda env create -f environment.yml\n    conda activate carte\n\n## Utilisation\n\n    python carte_trace.py trace_2.gpx", lang: "markdown")],
+    taille: 15pt,
+    [Dans VS Code, créer le fichier `README.md` dans `travail`, y écrire ces lignes, puis enregistrer : #comment[explorateur, clic droit sur `travail`, New File…, nom `README.md`, puis `Ctrl` + `S`.]
+      #_fichier("# carte-trace\n\nCe programme résume une trace GPX, et écrit une carte de cette trace dans une page web.\n\n## Installation\n\n    conda env create -f environment.yml\n    conda activate carte\n\n## Utilisation\n\n    python carte_trace.py trace_2.gpx", lang: "markdown", taille: 10.5pt)],
     [Afficher l'aperçu : `Ctrl` + `Maj` + `V`.
       #constat[Un titre, un paragraphe et deux sections, avec les commandes en bloc de code.]],
-    [Enregistrer le fichier : `Ctrl` + `S`.],
   )
 
   #notes[
     Quatre espaces au début d'une ligne : un bloc de code en Markdown.
+
+    VS Code reconnaît le Markdown à l'extension `.md`, donnée dès la création du fichier.
 
     Sans `environment.yml`, cette section contiendrait la commande `conda create` complète :
     « Environnement : README ou environment.yml ».
   ]
 ]
 
-#d("Suppression de l'environnement")[
+#d("Étape 3 · Suppression de l'environnement")[
   #objectif[
     supprimer l'environnement `carte`, pour le recréer ensuite à partir de `environment.yml`.
   ]
@@ -111,7 +131,7 @@
   ]
 ]
 
-#d("Recréation de l'environnement")[
+#d("Étape 4 · Recréation de l'environnement")[
   #objectif[
     copier le projet dans `nouveau_poste/`, y recréer `carte` à partir de `environment.yml`, et y
     lancer `carte_trace.py`.
@@ -136,18 +156,22 @@
 
     Sur un vrai nouveau poste, le dossier arrive par une copie ou par `git clone`, et `conda` télécharge
     les paquets : cours 6.
+
+    À relever sur un poste de la salle : le message de `conda env create` quand `environment.yml`
+    contient une tabulation. Le guide cite `ArgumentError: The environment file(s) do not specify a
+    name or prefix`, relevé avec conda 26.7 ; conda 24.7 affiche un `ERROR REPORT` de lecture du YAML.
   ]
 ]
 
-#d("Fichier pyproject.toml, étape facultative")[
+#d("Étape 5 (facultative) · Fichier pyproject.toml")[
   #objectif[
     décrire le projet dans `nouveau_poste/pyproject.toml`, puis l'installer avec `pip`.
   ]
 
   #consignes(
-    taille: 16pt,
-    [Dans VS Code, créer le fichier `pyproject.toml` dans `nouveau_poste/`, avec ces lignes : #comment[File, New File…]
-      #_fichier("[project]\nname = \"carte-trace\"\nversion = \"0.1\"\nrequires-python = \">=3.10\"\ndependencies = [\"folium>=0.20\"]\n\n[tool.setuptools]\npy-modules = [\"carte_trace\", \"stats_trace\"]", lang: "toml")],
+    taille: 15pt,
+    [Dans VS Code, créer le fichier `pyproject.toml` dans `nouveau_poste`, y écrire ces lignes, puis enregistrer : #comment[explorateur, clic droit sur `nouveau_poste`, New File…, nom `pyproject.toml`, puis `Ctrl` + `S`.]
+      #_fichier("[project]\nname = \"carte-trace\"\nversion = \"0.1\"\nrequires-python = \">=3.10\"\ndependencies = [\"folium>=0.20\"]\n\n[tool.setuptools]\npy-modules = [\"carte_trace\", \"stats_trace\"]", lang: "toml", taille: 11pt)],
     [Installer le projet : `pip install .`
       #constat[`Requirement already satisfied: folium>=0.20`, puis `Successfully installed carte-trace-0.1`.]],
     [Afficher sa description : `pip show carte-trace`.
