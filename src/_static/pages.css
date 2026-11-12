@@ -1,0 +1,43 @@
+/* Pages de cours : ce que les diapositives montrent par la mise en forme
+   (`#legende`, cases colorées de `#tableau`) et que le Markdown seul perd.
+   Les classes se posent avec les extensions MyST `attrs_block` et
+   `attrs_inline` (voir `conf.py`). */
+
+/* Légende d'un tableau : le paragraphe qui suit le tableau, précédé de
+   `{.legende}` sur sa propre ligne. Comme `#legende` sur les diapositives :
+   plus petit, en gris, collé au tableau ; en italique en plus, pour le
+   distinguer du texte qui suit. */
+p.legende {
+  font-style: italic;
+  font-size: 0.9em;
+  color: var(--pst-color-text-muted);
+  margin-top: -0.5rem;
+}
+
+/* Cases colorées : `[texte]{.repere}` ou `[texte]{.favorable}` dans chaque
+   case concernée d'un `list-table`. Le texte prend la couleur, et la case
+   son fond (sélecteur `:has`, Firefox 121 et Chrome 105 au moins ; avant,
+   seul le texte est coloré).
+   - `repere` : violet, les repères domestiques du tableau de consommation
+     électrique (cours 1, `_repere` sur la diapositive) ;
+   - `favorable` : fond bleu, couleur `attention` du thème des diapositives,
+     le côté favorable du tableau compilé / interprété (cours 1,
+     `_favorable`). */
+html[data-theme="light"] {
+  --info01-repere: #6a3d9a;
+  --info01-repere-fond: #ede8f3;   /* violet éclairci de 88 %, comme la diapositive */
+  --info01-favorable-fond: #c3d7e2; /* attention (#2A6F97) éclairci de 72 % */
+}
+html[data-theme="dark"] {
+  --info01-repere: #cdb4e8;
+  --info01-repere-fond: #33284a;
+  --info01-favorable-fond: #1e3a4d;
+}
+span.repere { color: var(--info01-repere); }
+.table td:has(span.repere) { background-color: var(--info01-repere-fond); }
+.table td:has(span.favorable) { background-color: var(--info01-favorable-fond); }
+
+/* Un tableau qui a des cases colorées perd la zébrure du thème, comme les
+   tableaux des diapositives : sans cela, les lignes grisées et les lignes
+   colorées se confondent. */
+.table:has(span.repere, span.favorable) tbody tr { background-color: transparent; }

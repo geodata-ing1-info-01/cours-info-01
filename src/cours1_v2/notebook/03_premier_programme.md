@@ -285,23 +285,21 @@ Modifier un programme, puis le relancer, en C++ et en Python.
 * - Situation
   - Compilé : C++
   - Interprété : Python
-  - Côté favorable
 * - Modifier `altitudes`, relancer
   - compiler, puis lancer : 0,06 s
-  - lancer : 0,01 s
-  - interprété
+  - [lancer : 0,01 s]{.favorable}
 * - Essayer une ligne seule
   - compiler tout un programme
-  - session interactive, `>>>`
-  - interprété
+  - [session interactive, `>>>`]{.favorable}
 * - Calcul de 100 millions d'additions
-  - 0,08 s, traduit une seule fois
+  - [0,08 s, traduit une seule fois]{.favorable}
   - 5 s, chaque addition traduite
-  - compilé
 ```
 
-L'interprétation convient à un calcul fait une fois et à l'exploration, la
-compilation à un calcul répété souvent. Les mesures ont été faites sous
+{.legende}
+En bleu, le côté favorable. L'interprétation convient à un calcul fait une
+fois et à l'exploration, la compilation à un calcul répété souvent. Les
+mesures ont été faites sous
 Linux, avec g++ 11.4 et Python 3.12, sur un processeur AMD Ryzen 7 PRO
 6850H.
 
@@ -348,16 +346,16 @@ en lance un autre.
 * - Situation
   - Compilé : C++
   - Interprété : Python
-  - Côté favorable
 * - Lancer sur un poste sans Python
-  - `altitudes.exe` se lance seul
+  - [`altitudes.exe` se lance seul]{.favorable}
   - installer Python
-  - compilé
 * - Lancer sur un autre système
   - recompiler pour ce système
-  - le même `.py`, si Python est installé
-  - interprété
+  - [le même `.py`, si Python est installé]{.favorable}
 ```
+
+{.legende}
+En bleu, le côté favorable.
 
 Sur un poste où un Python 2.7 est installé dans `C:\Python27`, le Python
 lancé par défaut dans Git Bash échoue, et celui d'Anaconda réussit :

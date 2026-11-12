@@ -112,6 +112,13 @@ d'échec. Un renvoi nomme son cas quand il y en a plusieurs. Un tableau présent
 des données à deux dimensions, sans ordre de lecture : comparaison,
 correspondance, réglages, chemins.
 
+**Sur les légendes et les couleurs des tableaux** : dans une page de cours, la
+légende d'un tableau est le paragraphe qui le suit, précédé de `{.legende}` sur
+sa propre ligne. Elle s'affiche en italique, plus petite et en gris. Une case
+colorée sur la diapositive l'est aussi dans la page : son texte s'écrit
+`[texte]{.repere}` (violet) ou `[texte]{.favorable}` (bleu), et la légende dit
+ce que la couleur indique. Les styles sont dans `src/_static/pages.css`.
+
 **Sur le rangement et les onglets** : un détail propre à un outil s'écrit dans
 la page de cet outil. Le problème de `cygpath`, propre à Git Bash, est ainsi
 décrit dans le dépannage de Git, et les pages d'Anaconda et de VS Code y

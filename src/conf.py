@@ -25,6 +25,8 @@ extensions = [
 myst_enable_extensions = [
     "colon_fence",    # blocs :::{note} … :::
     "deflist",
+    "attrs_block",    # {.legende} au-dessus d'un paragraphe : la légende d'un tableau
+    "attrs_inline",   # [texte]{.repere} : une case colorée comme sur la diapositive
 ]
 # Le titre vient du frontmatter : MyST l'insère comme H1, le corps peut donc
 # commencer en H2 sans déclencher d'avertissement.
@@ -49,7 +51,10 @@ nb_execution_raise_on_error = True   # une cellule qui échoue casse la build
 html_theme = "sphinx_book_theme"
 html_title = "Introduction à l'informatique"
 html_static_path = ["_static"]
-html_css_files = ["modif.css"]   # couleurs des blocs ```modif des guides de TD
+html_css_files = [
+    "modif.css",   # couleurs des blocs ```modif des guides de TD
+    "pages.css",   # légendes des tableaux, cases colorées des pages de cours
+]
 html_favicon = "_static/favicon.png"
 html_theme_options = {
     "home_page_in_toc": True,

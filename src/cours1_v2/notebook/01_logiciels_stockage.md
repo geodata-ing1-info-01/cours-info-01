@@ -77,6 +77,7 @@ Pendant un calcul intensif, un processeur travaille entre 60 et 100 °C.
   - 95 °C (AMD), 100 °C (Intel)
 ```
 
+{.legende}
 Ces valeurs sont des ordres de grandeur. Les limites sont celles des
 processeurs Ryzen 7000 d'AMD et Core de 13{sup}`e` génération d'Intel,
 données par les fabricants. Pour AMD, 95 °C pendant un calcul intensif
@@ -106,21 +107,21 @@ consomme en quelques heures l'électricité d'un portable pendant un an.
 * - téléphone à touches ou smartphone
   - 0,01 à 5 W
   - 0,1 à 7 kWh
-* - ampoule LED
-  - 5 à 10 W
-  - 7 à 15 kWh
+* - [ampoule LED]{.repere}
+  - [5 à 10 W]{.repere}
+  - [7 à 15 kWh]{.repere}
 * - ordinateur portable
   - 15 à 45 W
   - 30 à 60 kWh
-* - réfrigérateur
-  - 20 à 40 W en moyenne
-  - 170 à 350 kWh
+* - [réfrigérateur]{.repere}
+  - [20 à 40 W en moyenne]{.repere}
+  - [170 à 350 kWh]{.repere}
 * - PC de bureau et carte graphique
   - 100 à 400 W
   - 200 à 400 kWh
-* - logement, tous appareils compris
-  - 500 W en moyenne
-  - 4 300 kWh
+* - [logement, tous appareils compris]{.repere}
+  - [500 W en moyenne]{.repere}
+  - [4 300 kWh]{.repere}
 * - serveur, en continu
   - 300 à 800 W
   - 3 000 à 7 000 kWh
@@ -129,7 +130,9 @@ consomme en quelques heures l'électricité d'un portable pendant un an.
   - 90 000 kWh
 ```
 
-Les valeurs sont des ordres de grandeur. La dernière colonne suppose un
+{.legende}
+Les valeurs sont des ordres de grandeur. En violet, les repères domestiques.
+La dernière colonne suppose un
 téléphone à touches rechargé une fois par semaine (batterie de 3 Wh), un
 smartphone rechargé chaque jour (15 Wh), un portable allumé 8 h par jour, une
 ampoule allumée 4 h par jour, et des serveurs allumés en continu.
