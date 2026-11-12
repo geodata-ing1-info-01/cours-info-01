@@ -97,8 +97,10 @@ def deposer(fichiers: list[Path]) -> list[Path]:
 </head>
 <body>
 <h1>Téléchargements</h1>
-<p>Une archive par séance, avec les fichiers des TD. Décompresser, puis
-ouvrir le dossier obtenu dans JupyterLab ou VS Code.</p>
+<p>Une archive par séance, avec les fichiers des TD et les diapositives.
+Décompresser, puis ouvrir le dossier obtenu dans JupyterLab ou VS Code. Les
+fichiers <code>diapositives_cours&lt;n&gt;.pdf</code> sont les diapositives
+des archives, à télécharger seules.</p>
 <ul>
 {liste}
 </ul>

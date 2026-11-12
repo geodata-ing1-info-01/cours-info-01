@@ -143,8 +143,9 @@ language = "fr"
 
 
 # Le lien vers l'archive d'une séance, en tête de sa page et des guides de ses
-# TD. `outils/publier_book.py` donne dans `INFO01_TELECHARGEMENTS` le nom des
-# archives qu'il dépose dans `telechargements/`. Une construction sans
+# TD, et vers ses diapositives sur la page de la séance.
+# `outils/publier_book.py` donne dans `INFO01_TELECHARGEMENTS` le nom des
+# fichiers qu'il dépose dans `telechargements/`. Une construction sans
 # archives, celle du book ouvert par double-clic, n'ajoute donc aucun lien
 # qui mènerait à un fichier absent. Le lien est en HTML, comme celui de
 # `index.md` : Sphinx ne cherche pas à résoudre un fichier qu'il ne construit
@@ -163,9 +164,16 @@ def _lien_archive(app, docname, source) -> None:
                else f"info01-{dossier}_v1.zip")
     if archive not in _ARCHIVES:
         return
-    href = "../" * (len(parties) - 1) + "telechargements/" + archive
+    dossier_telechargements = "../" * (len(parties) - 1) + "telechargements/"
     note = (f':::{{note}}\nLes fichiers des TD de la séance sont dans l\'archive '
-            f'<a href="{href}">{archive}</a>.\n:::\n\n')
+            f'<a href="{dossier_telechargements}{archive}">{archive}</a>.')
+    # Sur la page de la séance, les diapositives de l'archive, quand elles sont
+    # aussi déposées seules : `diapositives_cours1.pdf` à côté de `info01-cours1.zip`.
+    diapositives = "diapositives_" + archive.removeprefix("info01-").removesuffix(".zip") + ".pdf"
+    if parties[-1] == "index" and diapositives in _ARCHIVES:
+        note += (f' Les diapositives se téléchargent aussi seules : '
+                 f'<a href="{dossier_telechargements}{diapositives}">{diapositives}</a>.')
+    note += "\n:::\n\n"
     texte = source[0]
     fin = texte.find("\n---\n", 4) + 5 if texte.startswith("---\n") else 0
     source[0] = texte[:fin] + "\n" + note + texte[fin:]

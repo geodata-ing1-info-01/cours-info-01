@@ -16,8 +16,8 @@ dossier (règle complète dans `STYLE.md`, « Nom d'un TD »).
 Les dossiers de `data/`, `src/cours<n>/diapo/tds/` et `src/cours<n>/notebook/td/`
 ont été renommés de la même façon. Les TD du cours 4 d'avant le 30/09/2026
 (4a montre, 4b tourbillon, 4c train) restent des propositions sous leur ancien
-nom, et les numéros antérieurs à septembre 2026 du cours 1 sont dans
-`data/cours1/_ancienne_numerotation/`.
+nom. Les dossiers des numéros antérieurs à septembre 2026 du cours 1 sont
+dans l'historique git, avant le commit `85d6afe`.
 
 ## Cours 1 (2026)
 
