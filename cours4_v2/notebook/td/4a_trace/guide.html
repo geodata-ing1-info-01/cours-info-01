@@ -1,0 +1,2381 @@
+
+<!DOCTYPE html>
+
+
+<html lang="fr" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>TD 4a — Un script Python, pas à pas &#8212; Introduction à l&#39;informatique</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/modif.css?v=b5c10e7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pages.css?v=e087e64c" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../../../_static/documentation_options.js?v=72dce1d2"></script>
+    <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../../../../_static/translations.js?v=e6b791cb"></script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cours4_v2/notebook/td/4a_trace/guide';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="../../../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Recherche" href="../../../../search.html" />
+    <link rel="next" title="Séance 5 — Réutiliser des programmes et des bibliothèques" href="../../../../cours5_v2/index.html" />
+    <link rel="prev" title="Séance 4 — Projet d’application 1" href="../../../index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="fr"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../../../_static/searchtools.js"></script>
+    <script src="../../../../_static/language_data.js"></script>
+    <script src="../../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Passer au contenu principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Haut de page</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Alerte de version"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navigation dans le site">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="Sur cette page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction à l'informatique</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../index.html">
+                    Introduction à l’informatique
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Avant les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/poste.html">Premiers tests du poste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/donnees.html">Récupérer les fichiers d’une séance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/python.html">Anaconda et JupyterLab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/vscode.html">VS Code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Après les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../apres/sauvegarder.html">Sauvegarder son travail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../apres/s_entrainer.html">S’entraîner : jeux et exercices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Séances</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours1_v2/index.html">Séance 1 — Logiciels, fichiers, terminal et premier programme</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/01_logiciels_stockage.html">Matériel, logiciels, fichiers et stockage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/02_terminal.html">Le terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/03_premier_programme.html">Premier programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/04_notebook.html">Un notebook et la syntaxe de Markdown</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours1_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1b_terminal/guide.html">TD 1b — Rejouer le TD 1a mais en ligne de commande</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1c_programme/guide.html">TD 1c — Lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1d_notebook/guide.html">TD 1d — Un notebook dans JupyterLab</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours2_v2/index.html">Séance 2 — Éditeur de code et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/01_editeur_de_code.html">L’éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/03_git_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2_v2/notebook/04_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours2_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/2a_vscode/guide.html">TD 2a — Configurer VS Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/2b_erreurs/guide.html">TD 2b — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2_v2/notebook/td/2c_depot_altitudes/guide.html">TD 2c — Un dépôt git pour altitudes.py</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cours3_v2/index.html">Séance 3 — Fichiers, chemins et programme en ligne de commande</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../../index.html">Séance 4 — Projet d’application 1</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">TD 4a — Un script Python, pas à pas</a></li>
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours5_v2/index.html">Séance 5 — Réutiliser des programmes et des bibliothèques</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5_v2/notebook/td/5a_distribution/guide.html">TD 5a — L’emplacement de votre distribution Python</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5_v2/notebook/td/5b_environnement/guide.html">TD 5b — Un environnement pour le programme</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5_v2/notebook/td/5c_description/guide.html">TD 5c — Décrire l’installation pour un autre poste</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5_v2/notebook/td/5d_noyau/guide.html">TD 5d — Le noyau de l’environnement</a></li>
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cours6_v2/index.html">Séance 6 — Forge, mots de passe et secrets</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours7_v2/index.html">Séance 7 — Projet d’application 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours7_v2/notebook/td/7a_trace/guide.html">TD 7a — Une pull request sur son dépôt GitHub</a></li>
+
+
+
+
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Annexes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/configuration/index.html">Configuration des postes de la salle</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/anaconda.html">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/git.html">Git et Git Bash</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../annexes/configuration/vscode.html">VS Code</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_python.html">Python et environnement conda</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_notebooks.html">Notebooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_reglages.html">Fichiers de réglages</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/spyder.html">Spyder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/jupyterlab.html">JupyterLab sans Navigator</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/poste_personnel/index.html">Configuration d’un ordinateur personnel</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/conda.html">Python et conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/git_outils.html">Git et éditeurs de texte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/vscode.html">VS Code</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/notions/index.html">Notions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/outils.html">Choisir entre JupyterLab, Spyder et VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/notebooks.html">Les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/terminaux.html">Les terminaux en ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/variables_environnement.html">Variables d’environnement et recherche des programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/environnements.html">Les environnements conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/vscode_environnements.html">Comment VS Code gère les environnements Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/git_bash.html">Git Bash : une fenêtre, bash et des programmes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/faq.html">FAQ</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/reseau.html">Problèmes de réseau et de compte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/bureautique.html">Problèmes avec les logiciels de texte et de bureautique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/anaconda.html">Problèmes avec Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/jupyterlab.html">Problèmes avec JupyterLab et les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/vscode.html">Problèmes avec VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/git.html">Problèmes avec git et Git Bash</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/plus_loin/index.html">Pour aller plus loin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/gestionnaires.html">venv, uv et pixi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/cpp.html">C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/programme_interpreteur.html">Programme, application et interpréteur</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/processeur.html">Le processeur et la carte graphique</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Archive 2026</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours1/index.html">Séance 1, 2026 — Logiciel, programmation et formats de fichier</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/01_logiciels_et_formats.html">Logiciels et formats de fichier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/02_programmation.html">Programmation et éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/03_markdown_notebook.html">Markdown et notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/04_bibliotheques_environnements.html">Bibliothèques et environnements Python</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours1/notebook/travaux_diriges.html">Travaux dirigés de la séance 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1b_archive_odt/guide.html">TD 1b — Un .odt est une archive ZIP (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1c_vscode_python/guide.html">TD 1c — Configurer l’éditeur de code, et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1d_erreurs/guide.html">TD 1d — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1e_hello_cpp/guide.html">TD 1e — Le même programme en C++ (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1f_markdown/guide.html">TD 1f — Mettre en forme une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1g_notebooks/guide.html">TD 1g — Le notebook, ouvert de trois façons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1h_recette/guide.html">TD 1h — Installer un projet Python, et décrire son installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1i_noyaux/guide.html">TD 1i — Le client, le noyau, et où ils sont installés (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1j_trajet/guide.html">TD 1j — Installer un projet en lisant son README (facultatif)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/05_comparer_versions.html">Annexe — Comparer deux versions d’un fichier</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours2/index.html">Séance 2, 2026 — Ligne de commande et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/01_ligne_de_commande.html">La ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/02_depot_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/03_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/04_lire_et_tenir_un_depot.html">Lire et tenir un dépôt</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2a_premier_depot/guide.html">TD 2a — Un premier dépôt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2b_branches/guide.html">TD 2b — Branches et fusions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2c_annuler/guide.html">TD 2c — Annuler et remettre à jour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2d_conflits/guide.html">TD 2d — Créer et résoudre un conflit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2e_livrer/guide.html">TD 2e — Publier une version</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours3/index.html">Séance 3, 2026 — Chemins, fichiers et ligne de commande</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/01_chemins_programmes.html">Chemins et programmes externes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/02_fichiers_encodage.html">Fichiers et encodage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/03_du_notebook_au_programme.html">Du notebook au programme</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours3/notebook/travaux_diriges.html">Travaux dirigés de la séance 3</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours3/notebook/td/3e_markdown/guide.html">TD 3e — Une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours3/notebook/td/3f_cli/guide.html">TD 3f — Une ligne de commande pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours4/index.html">Séance 4, 2026 — Projet d’application 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours4/notebook/travaux_diriges.html">Travaux dirigés du projet 4</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours4/notebook/td/4a_recette/guide.html">TD 4a — Un script Python, pas à pas</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours4/notebook/td/4b_paquet/guide.html">TD 4b — Un programme installable</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours5/index.html">Séance 5, 2026 — Matériel, réseau, mots de passe, clés SSH et secrets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/01_materiel.html">Le matériel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/02_reseau.html">Le réseau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/03_prouver_qui_lon_est.html">Prouver qui l’on est</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/04_secrets.html">Les secrets de vos programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/travaux_diriges.html">Travaux dirigés de la séance 5</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cours6/index.html">Séance 6, 2026 — La forge, sur le dépôt du projet 4</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours7/index.html">Séance 7, 2026 — Projet d’application 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours7/notebook/td/7a_recette/guide.html">TD 7a — Compléter un projet GitHub, par des pull requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours7/notebook/td/7b_train/guide.html">TD 7b — Reprendre et compléter le projet d’un autre</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Thème">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Thème" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Clair"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Sombre"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="Paramètres système"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>Paramètres système</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Clair</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Sombre</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>TD 4a — Un script Python, pas à pas</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">TD 4a — Un script Python, pas à pas</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#presentation-du-td">Présentation du TD</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objectif-du-td">Objectif du TD</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-programme">Le programme</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-trace-gps">La trace GPS</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#materiel-du-td">Matériel du TD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methode-de-travail">Méthode de travail</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-test-a-chaque-etape">Un test à chaque étape</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#les-etapes">Les étapes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-notions-employees">Les notions employées</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#enonce">Énoncé</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-a1-dossier-du-projet">Étape A1 · Dossier du projet</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-a2-projet-dans-vs-code">Étape A2 · Projet dans VS Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-a3-depot-git">Étape A3 · Dépôt git</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b1-correction-du-programme-de-depart">Étape B1 · Correction du programme de départ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b2-option-de-distance">Étape B2 · Option de distance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b3-lecture-des-positions-x-et-y">Étape B3 · Lecture des positions X et Y</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b4-distance-entre-deux-points">Étape B4 · Distance entre deux points</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b4-fonction-distance-entre">Étape B4 · Fonction distance_entre</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b4-essai-de-la-fonction">Étape B4 · Essai de la fonction</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b5-distance-parcourue">Étape B5 · Distance parcourue</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b5-fonction-distance-parcourue">Étape B5 · Fonction distance_parcourue</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b5-appel-de-la-fonction">Étape B5 · Appel de la fonction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b5-resultat-final">Étape B5 · Résultat final</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b6-calcul-de-la-vitesse-moyenne">Étape B6 · Calcul de la vitesse moyenne</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b6-option-de-vitesse">Étape B6 · Option de vitesse</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b6-fonction-secondes-ecoulees">Étape B6 · Fonction secondes_ecoulees</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b6-temps-total">Étape B6 · Temps total</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b6-vitesse-moyenne">Étape B6 · Vitesse moyenne</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b7-facultative-readme-et-etiquette">Étape B7 (facultative) · README et étiquette</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b8-facultative-distance-calculee-avec-numpy">Étape B8 (facultative) · Distance calculée avec numpy</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b8-facultative-listes-des-coordonnees">Étape B8 (facultative) · Listes des coordonnées</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b8-facultative-calcul-avec-numpy">Étape B8 (facultative) · Calcul avec numpy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#solutions">Solutions</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-des-blocs-de-modification">Lecture des blocs de modification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-de-l-etape-a1">Solution de l’étape A1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-de-l-etape-a2">Solution de l’étape A2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-de-l-etape-a3">Solution de l’étape A3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-de-l-etape-b1">Solution de l’étape B1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-de-l-etape-b2">Solution de l’étape B2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-de-l-etape-b3">Solution de l’étape B3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-de-l-etape-b4">Solution de l’étape B4</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-de-l-etape-b5">Solution de l’étape B5</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-de-l-etape-b6">Solution de l’étape B6</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-de-l-etape-b7">Solution de l’étape B7</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-de-l-etape-b8">Solution de l’étape B8</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#le-programme-a-la-fin-du-td">Le programme à la fin du TD</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="td-4a-un-script-python-pas-a-pas">
+<h1>TD 4a — Un script Python, pas à pas<a class="headerlink" href="#td-4a-un-script-python-pas-a-pas" title="Lien vers cette rubrique">#</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Les fichiers des TD de la séance sont dans l’archive <a href="../../../../telechargements/info01-cours4.zip">info01-cours4.zip</a>.</p>
+</div>
+<!-- [[[cog td = donnees("cours4_v2/make_data.py")]]] -->
+<!-- [[[end]]] -->
+<p>Ce guide a trois parties. La présentation décrit le programme de départ, le
+programme à obtenir et la méthode de travail. L’énoncé donne, pour chaque étape,
+l’objectif, les consignes et le test à lancer. Les solutions donnent le code de
+chaque étape, modification par modification, avec son explication.</p>
+<p>Aux TD 3a et 3b, le code à écrire était donné. Dans ce TD, vous l’écrivez à partir des
+consignes, qui en donnent une partie. Pour chaque étape, écrire d’abord le code, puis
+lancer le test. Lire ensuite la solution, pour vérifier son code ou pour avancer si
+l’essai n’aboutit pas.</p>
+<p>Le code de ce guide se copie depuis <code class="docutils literal notranslate"><span class="pre">guide_4a_trace.html</span></code>, ouvert dans un
+navigateur, ou depuis <code class="docutils literal notranslate"><span class="pre">guide.ipynb</span></code>, ouvert dans JupyterLab. Copié depuis le
+PDF, il perd ses indentations.</p>
+</section>
+<section id="presentation-du-td">
+<h1>Présentation du TD<a class="headerlink" href="#presentation-du-td" title="Lien vers cette rubrique">#</a></h1>
+<section id="objectif-du-td">
+<h2>Objectif du TD<a class="headerlink" href="#objectif-du-td" title="Lien vers cette rubrique">#</a></h2>
+<section id="le-programme">
+<h3>Le programme<a class="headerlink" href="#le-programme" title="Lien vers cette rubrique">#</a></h3>
+<p>Le TD part de <code class="docutils literal notranslate"><span class="pre">stats_trace.py</span></code>, le programme <code class="docutils literal notranslate"><span class="pre">altitudes.py</span></code> du TD 3b sous un autre
+nom. Ce programme lit une trace GPS dans un fichier CSV, puis affiche ses altitudes
+extrêmes et son dénivelé cumulé. Le TD lui ajoute le calcul de la distance
+parcourue, puis celui de la vitesse moyenne.</p>
+<p>Une fois corrigées les deux erreurs du programme de départ, le programme affiche :</p>
+<!-- [[[cog td.sortie("b1", "trace.csv")]]] -->
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ python stats_trace.py trace.csv
+altitude minimale : 78.8 m
+altitude maximale : 129.5 m
+max - min : 50.7 m
+cumul en hausse : 98.4 m
+cumul en baisse : 50.3 m
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+<p>À la fin du TD, deux options de la ligne de commande ajoutent les deux résultats :</p>
+<!-- [[[cog td.sortie("b6", "trace.csv", "--distance", "--vitesse")]]] -->
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ python stats_trace.py trace.csv --distance --vitesse
+altitude minimale : 78.8 m
+altitude maximale : 129.5 m
+max - min : 50.7 m
+cumul en hausse : 98.4 m
+cumul en baisse : 50.3 m
+distance parcourue : 1906.7 m
+vitesse moyenne : 1.08 m/s, soit 3.9 km/h
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+</section>
+<section id="la-trace-gps">
+<h3>La trace GPS<a class="headerlink" href="#la-trace-gps" title="Lien vers cette rubrique">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">trace.csv</span></code> contient une position toutes les 30 secondes :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>X,Y,ele,time
+670307.7,6812407.3,79.6,2026/10/04 08:00:00+00
+670295.1,6812393.4,78.8,2026/10/04 08:00:30+00
+670319.7,6812356.2,79.9,2026/10/04 08:01:00+00
+…
+671847.8,6812231.5,127.7,2026/10/04 08:29:30+00
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">X</span></code>, <code class="docutils literal notranslate"><span class="pre">Y</span></code> : Lambert-93, en mètres. <code class="docutils literal notranslate"><span class="pre">ele</span></code> : altitude, en mètres. <code class="docutils literal notranslate"><span class="pre">time</span></code> : date et heure
+UTC. La trace simule une marche sur un chemin des gorges de Franchard, en forêt de
+Fontainebleau : le chemin et les altitudes viennent de l’IGN, la vitesse et le bruit
+de mesure sont simulés.</p>
+<p>Deux positions successives forment un <strong>segment</strong>. La distance parcourue est la somme
+des longueurs des segments, et la vitesse moyenne est cette distance divisée par le
+temps total.</p>
+<p><img alt="Les cinq premières positions de , et les longueurs de leurs segments" src="../../../../_images/segments.png" /></p>
+</section>
+</section>
+<section id="materiel-du-td">
+<h2>Matériel du TD<a class="headerlink" href="#materiel-du-td" title="Lien vers cette rubrique">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fichier</p></th>
+<th class="head"><p>Emplacement</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">guide_4a_trace.pdf</span></code>, <code class="docutils literal notranslate"><span class="pre">.html</span></code>, <code class="docutils literal notranslate"><span class="pre">guide.ipynb</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">cours4/4a_trace/</span></code></p></td>
+<td><p>l’énoncé et les solutions, le code à copier</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">stats_trace.py</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">depart/</span></code></p></td>
+<td><p>le programme de départ, avec deux erreurs de syntaxe à corriger</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">trace.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">trace_2.csv</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">depart/</span></code></p></td>
+<td><p>deux traces GPS, de 60 et 50 positions</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">README.md</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">depart/modeles/</span></code></p></td>
+<td><p>un modèle de README à adapter et compléter (étape B7)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">trace_2.csv</span></code> simule de la même façon une marche de la gare de Noisy-Champs à
+Geodata Paris.</p>
+</section>
+<section id="methode-de-travail">
+<h2>Méthode de travail<a class="headerlink" href="#methode-de-travail" title="Lien vers cette rubrique">#</a></h2>
+<section id="un-test-a-chaque-etape">
+<h3>Un test à chaque étape<a class="headerlink" href="#un-test-a-chaque-etape" title="Lien vers cette rubrique">#</a></h3>
+<p>À la fin de chaque étape, le programme s’exécute sans erreur, et une commande de
+test montre si la modification est juste. Une option s’écrit dans cet ordre :
+d’abord sa déclaration, avec un message à la place du calcul ; puis les calculs
+intermédiaires, avec des affichages provisoires qui permettent de les contrôler ;
+enfin le résultat, une fois ces affichages retirés.</p>
+<p>Pour l’option <code class="docutils literal notranslate"><span class="pre">--distance</span></code>, la sortie de <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">stats_trace.py</span> <span class="pre">trace.csv</span> <span class="pre">--distance</span></code>
+se termine ainsi :</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>À la fin de l’étape</p></th>
+<th class="head"><p>Lignes après <code class="docutils literal notranslate"><span class="pre">cumul</span> <span class="pre">en</span> <span class="pre">baisse</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>B2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">distance</span> <span class="pre">:</span> <span class="pre">calcul</span> <span class="pre">manquant</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>B3</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">positions</span> <span class="pre">lues</span> <span class="pre">:</span> <span class="pre">60</span></code>, <code class="docutils literal notranslate"><span class="pre">position</span> <span class="pre">0</span> <span class="pre">:</span> <span class="pre">(670307.7,</span> <span class="pre">6812407.3,</span> <span class="pre">79.6)</span></code>, <code class="docutils literal notranslate"><span class="pre">distance</span> <span class="pre">:</span> <span class="pre">calcul</span> <span class="pre">manquant</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>B4</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">essai,</span> <span class="pre">5.0</span> <span class="pre">attendu</span> <span class="pre">:</span> <span class="pre">5.0</span></code>, <code class="docutils literal notranslate"><span class="pre">premier</span> <span class="pre">segment</span> <span class="pre">:</span> <span class="pre">18.8</span> <span class="pre">m</span></code>, <code class="docutils literal notranslate"><span class="pre">distance</span> <span class="pre">:</span> <span class="pre">calcul</span> <span class="pre">manquant</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>B5</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">distance</span> <span class="pre">parcourue</span> <span class="pre">:</span> <span class="pre">1906.7</span> <span class="pre">m</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Allen Downey décrit cette méthode dans
+<a class="reference external" href="https://greenteapress.com/thinkpython/html/chap05.html"><em>Think Python</em>, section 5.2</a>,
+sous le nom de développement incrémental, sur le même calcul de distance.</p>
+<p>Une étape se termine par ces opérations :</p>
+<ol class="arabic simple">
+<li><p>Enregistrer le fichier (<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">S</span></code>).</p></li>
+<li><p>Lancer la commande de test, par exemple <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">stats_trace.py</span> <span class="pre">trace.csv</span> <span class="pre">--distance</span></code>, puis comparer la sortie à celle de l’énoncé.</p></li>
+<li><p>Faire le commit de l’étape, en deux commandes : <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">stats_trace.py</span></code>, puis <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&quot;…&quot;</span></code>.</p></li>
+</ol>
+<p>Recopier tels quels les textes de la sortie de l’énoncé : la comparaison ne montre
+alors que les vraies différences. Ces textes sont écrits sans accent : selon le
+terminal, Python n’écrit pas les accents de la même façon.</p>
+<p><strong>Échec d’une étape.</strong> <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> montre les fichiers modifiés depuis le
+dernier commit. <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span></code> montre les lignes modifiées (<code class="docutils literal notranslate"><span class="pre">q</span></code> pour quitter).
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">restore</span> <span class="pre">stats_trace.py</span></code> remet le fichier dans l’état du dernier commit.</p>
+</section>
+</section>
+<section id="les-etapes">
+<h2>Les étapes<a class="headerlink" href="#les-etapes" title="Lien vers cette rubrique">#</a></h2>
+<p>La partie A, étapes A1 à A3, dure 30 minutes. La partie B, étapes B1 à B6, dure
+75 minutes. Les étapes B7 et B8 sont facultatives.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Énoncé</p></th>
+<th class="head"><p>Objectif</p></th>
+<th class="head"><p>Commits à la fin</p></th>
+<th class="head"><p>Solution</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#etape-a1-dossier-du-projet">A1</a></p></td>
+<td><p>créer le dossier du projet dans le terminal</p></td>
+<td><p>0</p></td>
+<td><p><a class="reference internal" href="#solution-de-l-etape-a1">A1</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#etape-a2-projet-dans-vs-code">A2</a></p></td>
+<td><p>ouvrir le projet dans VS Code</p></td>
+<td><p>0</p></td>
+<td><p><a class="reference internal" href="#solution-de-l-etape-a2">A2</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#etape-a3-depot-git">A3</a></p></td>
+<td><p>versionner le programme de départ</p></td>
+<td><p>1</p></td>
+<td><p><a class="reference internal" href="#solution-de-l-etape-a3">A3</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#etape-b1-correction-du-programme-de-depart">B1</a></p></td>
+<td><p>lire un message d’erreur, corriger le programme</p></td>
+<td><p>3</p></td>
+<td><p><a class="reference internal" href="#solution-de-l-etape-b1">B1</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#etape-b2-option-de-distance">B2</a></p></td>
+<td><p>ajouter l’option <code class="docutils literal notranslate"><span class="pre">--distance</span></code>, sans le calcul</p></td>
+<td><p>4</p></td>
+<td><p><a class="reference internal" href="#solution-de-l-etape-b2">B2</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#etape-b3-lecture-des-positions-x-et-y">B3</a></p></td>
+<td><p>lire les positions X et Y de la trace, en tuples</p></td>
+<td><p>5</p></td>
+<td><p><a class="reference internal" href="#solution-de-l-etape-b3">B3</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#etape-b4-distance-entre-deux-points">B4</a></p></td>
+<td><p>écrire la fonction <code class="docutils literal notranslate"><span class="pre">distance_entre</span></code></p></td>
+<td><p>6</p></td>
+<td><p><a class="reference internal" href="#solution-de-l-etape-b4">B4</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#etape-b5-distance-parcourue">B5</a></p></td>
+<td><p>écrire la fonction <code class="docutils literal notranslate"><span class="pre">distance_parcourue</span></code></p></td>
+<td><p>7</p></td>
+<td><p><a class="reference internal" href="#solution-de-l-etape-b5">B5</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#etape-b6-calcul-de-la-vitesse-moyenne">B6</a></p></td>
+<td><p>ajouter l’option <code class="docutils literal notranslate"><span class="pre">--vitesse</span></code></p></td>
+<td><p>8</p></td>
+<td><p><a class="reference internal" href="#solution-de-l-etape-b6">B6</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#etape-b7-facultative-readme-et-etiquette">B7</a> (facultative)</p></td>
+<td><p>écrire un README, poser une étiquette</p></td>
+<td><p>9</p></td>
+<td><p><a class="reference internal" href="#solution-de-l-etape-b7">B7</a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#etape-b8-facultative-distance-calculee-avec-numpy">B8</a> (facultative)</p></td>
+<td><p>calculer la distance avec numpy</p></td>
+<td><p>10</p></td>
+<td><p><a class="reference internal" href="#solution-de-l-etape-b8">B8</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="les-notions-employees">
+<h3>Les notions employées<a class="headerlink" href="#les-notions-employees" title="Lien vers cette rubrique">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Notion</p></th>
+<th class="head"><p>Vue au</p></th>
+<th class="head"><p>Employée aux étapes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>le terminal : <code class="docutils literal notranslate"><span class="pre">cd</span></code>, <code class="docutils literal notranslate"><span class="pre">ls</span></code>, <code class="docutils literal notranslate"><span class="pre">mkdir</span></code>, <code class="docutils literal notranslate"><span class="pre">cp</span></code></p></td>
+<td><p>cours 1</p></td>
+<td><p>A1</p></td>
+</tr>
+<tr class="row-odd"><td><p>VS Code et son terminal</p></td>
+<td><p>cours 2</p></td>
+<td><p>A2 et les suivantes</p></td>
+</tr>
+<tr class="row-even"><td><p>git : <code class="docutils literal notranslate"><span class="pre">init</span></code>, <code class="docutils literal notranslate"><span class="pre">add</span></code>, <code class="docutils literal notranslate"><span class="pre">commit</span></code>, <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code></p></td>
+<td><p>cours 2</p></td>
+<td><p>A3 et les suivantes</p></td>
+</tr>
+<tr class="row-odd"><td><p>les messages d’erreur de Python</p></td>
+<td><p>cours 2</p></td>
+<td><p>B1</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">if</span></code> et <code class="docutils literal notranslate"><span class="pre">range</span></code>, dans le code fourni du TD 2c</p></td>
+<td><p>cours 2</p></td>
+<td><p>B2, B3 et B5</p></td>
+</tr>
+<tr class="row-odd"><td><p>un README</p></td>
+<td><p>cours 2</p></td>
+<td><p>B7</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">argparse</span></code>, la lecture d’un fichier</p></td>
+<td><p>cours 3</p></td>
+<td><p>B2 et B3</p></td>
+</tr>
+<tr class="row-odd"><td><p>un tuple</p></td>
+<td><p>présenté à l’étape B3</p></td>
+<td><p>B3 à B6</p></td>
+</tr>
+<tr class="row-even"><td><p>une fonction : <code class="docutils literal notranslate"><span class="pre">def</span></code>, <code class="docutils literal notranslate"><span class="pre">return</span></code></p></td>
+<td><p>présentée à l’étape B4</p></td>
+<td><p>B4 à B6</p></td>
+</tr>
+<tr class="row-odd"><td><p>la bibliothèque standard : <code class="docutils literal notranslate"><span class="pre">math</span></code>, <code class="docutils literal notranslate"><span class="pre">datetime</span></code></p></td>
+<td><p>cours 3</p></td>
+<td><p>B4 et B6</p></td>
+</tr>
+<tr class="row-even"><td><p>numpy, un tableau</p></td>
+<td><p>présentés à l’étape B8</p></td>
+<td><p>B8</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+</section>
+<section id="enonce">
+<h1>Énoncé<a class="headerlink" href="#enonce" title="Lien vers cette rubrique">#</a></h1>
+<p>Les étapes A1 à A3 préparent le projet. Les étapes B1 à B6 modifient
+le programme, comme l’étape facultative B8.</p>
+<section id="etape-a1-dossier-du-projet">
+<h2>Étape A1 · Dossier du projet<a class="headerlink" href="#etape-a1-dossier-du-projet" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>Objectif :</strong> créer le dossier du projet, <code class="docutils literal notranslate"><span class="pre">travail/stats_trace</span></code>, par des commandes, et y copier <code class="docutils literal notranslate"><span class="pre">stats_trace.py</span></code>, <code class="docutils literal notranslate"><span class="pre">trace.csv</span></code> et <code class="docutils literal notranslate"><span class="pre">trace_2.csv</span></code>.</p>
+</div></blockquote>
+<p>Le projet est un dossier à part, dans <code class="docutils literal notranslate"><span class="pre">travail/</span></code> : les fichiers de <code class="docutils literal notranslate"><span class="pre">depart/</span></code> restent
+tels qu’ils ont été livrés.</p>
+<p><strong>Consignes</strong></p>
+<ol class="arabic simple">
+<li><p>Copier l’archive <code class="docutils literal notranslate"><span class="pre">info01-cours4.zip</span></code> de <code class="docutils literal notranslate"><span class="pre">formationTemp</span></code> dans le dossier <code class="docutils literal notranslate"><span class="pre">info01</span></code> du Bureau.</p></li>
+<li><p>Ouvrir Git Bash depuis le menu Démarrer.</p></li>
+<li><p>Aller dans le dossier <code class="docutils literal notranslate"><span class="pre">~/Desktop/info01</span></code>, puis décompresser l’archive.</p></li>
+<li><p>Aller dans le dossier du TD, <code class="docutils literal notranslate"><span class="pre">cours4/4a_trace</span></code>.</p></li>
+<li><p>Créer le dossier du projet, <code class="docutils literal notranslate"><span class="pre">travail/stats_trace</span></code>.</p></li>
+<li><p>Copier <code class="docutils literal notranslate"><span class="pre">depart/stats_trace.py</span></code> dans ce dossier.</p></li>
+<li><p>Copier les deux traces de <code class="docutils literal notranslate"><span class="pre">depart/</span></code> dans ce dossier, en une seule commande, avec le motif <code class="docutils literal notranslate"><span class="pre">*.csv</span></code>.</p></li>
+</ol>
+<p><strong>Commandes possibles</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Commande</p></th>
+<th class="head"><p>Effet</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">dossier</span></code></p></td>
+<td><p>entre dans le dossier</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">dossier</span></code></p></td>
+<td><p>liste le contenu du dossier</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">unzip</span> <span class="pre">archive.zip</span></code></p></td>
+<td><p>décompresse l’archive dans le dossier courant</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">nom</span></code></p></td>
+<td><p>crée un dossier</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">source</span> <span class="pre">destination</span></code></p></td>
+<td><p>copie un fichier</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">*.csv</span></code></p></td>
+<td><p>désigne tous les fichiers dont le nom se termine par <code class="docutils literal notranslate"><span class="pre">.csv</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Test</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">travail/stats_trace</span></code> affiche <code class="docutils literal notranslate"><span class="pre">stats_trace.py</span></code>, <code class="docutils literal notranslate"><span class="pre">trace.csv</span></code> et <code class="docutils literal notranslate"><span class="pre">trace_2.csv</span></code>.</p>
+<p>Si <code class="docutils literal notranslate"><span class="pre">cp</span></code> affiche <code class="docutils literal notranslate"><span class="pre">No</span> <span class="pre">such</span> <span class="pre">file</span> <span class="pre">or</span> <span class="pre">directory</span></code>, relire le chemin : la touche <code class="docutils literal notranslate"><span class="pre">Tab</span></code>
+complète les noms de dossiers et de fichiers.</p>
+<p>Solution : <a class="reference internal" href="#solution-de-l-etape-a1">étape A1</a>.</p>
+</section>
+<section id="etape-a2-projet-dans-vs-code">
+<h2>Étape A2 · Projet dans VS Code<a class="headerlink" href="#etape-a2-projet-dans-vs-code" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>Objectif :</strong> ouvrir le dossier du projet dans VS Code, avec un terminal Git Bash dans ce dossier.</p>
+</div></blockquote>
+<p><strong>Consignes</strong></p>
+<ol class="arabic simple">
+<li><p>Lancer VS Code depuis le menu Démarrer.</p></li>
+<li><p>Ouvrir le dossier du projet : menu File, Open Folder…, <code class="docutils literal notranslate"><span class="pre">Desktop\info01\cours4\4a_trace\travail\stats_trace</span></code>, puis « Sélectionner un dossier ». Si VS Code demande si l’on fait confiance aux auteurs des fichiers, répondre « Yes, I trust the authors ».</p></li>
+<li><p>Ouvrir un terminal : menu Terminal, New Terminal.</p></li>
+<li><p>Dans l’explorateur de VS Code, à gauche, ouvrir <code class="docutils literal notranslate"><span class="pre">stats_trace.py</span></code>.</p></li>
+</ol>
+<p><strong>Test</strong></p>
+<p>L’invite du terminal est :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>(base)
+eleve@POSTE MINGW64 ~/Desktop/info01/cours4/4a_trace/travail/stats_trace
+$
+</pre></div>
+</div>
+<p>Dans <code class="docutils literal notranslate"><span class="pre">stats_trace.py</span></code>, chaque espace du code apparaît comme un point gris, et chaque
+tabulation comme une flèche.</p>
+<p>Si l’invite ou l’affichage diffèrent, la <a class="reference internal" href="#solution-de-l-etape-a2">solution de l’étape A2</a>
+donne le réglage à refaire.</p>
+</section>
+<section id="etape-a3-depot-git">
+<h2>Étape A3 · Dépôt git<a class="headerlink" href="#etape-a3-depot-git" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>Objectif :</strong> créer le dépôt git du projet, exclure <code class="docutils literal notranslate"><span class="pre">resume.txt</span></code> avec <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>, et enregistrer <code class="docutils literal notranslate"><span class="pre">stats_trace.py</span></code> et les deux traces dans un premier commit.</p>
+</div></blockquote>
+<p>À chaque lancement, le programme ajoute une ligne au fichier <code class="docutils literal notranslate"><span class="pre">resume.txt</span></code> (TD 3b).
+Ce fichier n’est pas versionné, car le programme le modifie à chaque lancement. Le fichier
+<code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> donne la liste des fichiers et des dossiers que git ne suit pas, un par
+ligne.</p>
+<p><strong>Consignes</strong></p>
+<ol class="arabic simple">
+<li><p>Dans le terminal de VS Code, créer le dépôt dans le dossier du projet.</p></li>
+<li><p>Indiquer son nom et son adresse électronique, pour ce dépôt seulement.</p></li>
+<li><p>Dans l’explorateur de VS Code, créer un fichier nommé <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> (icône New File), y écrire la ligne <code class="docutils literal notranslate"><span class="pre">resume.txt</span></code>, puis enregistrer (<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">S</span></code>).</p></li>
+<li><p>Afficher l’état du dépôt.</p></li>
+<li><p>Faire le premier commit, avec tous les fichiers et le message <code class="docutils literal notranslate"><span class="pre">Le</span> <span class="pre">programme</span> <span class="pre">de</span> <span class="pre">départ</span> <span class="pre">et</span> <span class="pre">les</span> <span class="pre">traces</span></code>.</p></li>
+<li><p>Afficher l’historique.</p></li>
+</ol>
+<p><strong>Commandes possibles</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Commande</p></th>
+<th class="head"><p>Effet</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span></code></p></td>
+<td><p>crée le dépôt dans le dossier courant</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">user.name</span> <span class="pre">&quot;Prénom</span> <span class="pre">Nom&quot;</span></code></p></td>
+<td><p>le nom qui signe les commits, pour ce dépôt ; de même <code class="docutils literal notranslate"><span class="pre">user.email</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code></p></td>
+<td><p>les fichiers modifiés depuis le dernier commit</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span></code></p></td>
+<td><p>ajoute au prochain commit les fichiers du dossier courant</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&quot;…&quot;</span></code></p></td>
+<td><p>enregistre le commit, avec ce message</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span> <span class="pre">--oneline</span></code></p></td>
+<td><p>l’historique, une ligne par commit</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Test</strong></p>
+<p>Après le commit, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span> <span class="pre">--oneline</span></code> affiche une ligne.</p>
+<p>Solution : <a class="reference internal" href="#solution-de-l-etape-a3">étape A3</a>.</p>
+</section>
+<section id="etape-b1-correction-du-programme-de-depart">
+<h2>Étape B1 · Correction du programme de départ<a class="headerlink" href="#etape-b1-correction-du-programme-de-depart" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>Objectif :</strong> lire un message d’erreur de Python et corriger la ligne qu’il désigne. Le programme de départ contient deux erreurs.</p>
+</div></blockquote>
+<p><strong>Consignes</strong></p>
+<ol class="arabic simple">
+<li><p>Dans le terminal, lancer le programme : <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">stats_trace.py</span> <span class="pre">trace.csv</span></code>.</p></li>
+<li><p>Lire le message d’erreur. Il donne le fichier et le numéro de la ligne, recopie la ligne, puis nomme l’erreur.</p></li>
+<li><p>Dans VS Code, corriger cette ligne, puis enregistrer le fichier (<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">S</span></code>).</p></li>
+<li><p>Faire le commit de la correction, avec un message qui la décrit : <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">stats_trace.py</span></code>, puis <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&quot;Correction</span> <span class="pre">:</span> <span class="pre">…&quot;</span></code>.</p></li>
+<li><p>Relancer le programme, puis refaire les consignes 2 à 4 sur la seconde erreur.</p></li>
+</ol>
+<p><strong>Test</strong></p>
+<!-- [[[cog td.sortie("b1", "trace.csv")]]] -->
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ python stats_trace.py trace.csv
+altitude minimale : 78.8 m
+altitude maximale : 129.5 m
+max - min : 50.7 m
+cumul en hausse : 98.4 m
+cumul en baisse : 50.3 m
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span> <span class="pre">--oneline</span></code> affiche trois lignes, une par commit.</p>
+<p>Solution : <a class="reference internal" href="#solution-de-l-etape-b1">étape B1</a>.</p>
+</section>
+<section id="etape-b2-option-de-distance">
+<h2>Étape B2 · Option de distance<a class="headerlink" href="#etape-b2-option-de-distance" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>Objectif :</strong> ajouter au programme l’option <code class="docutils literal notranslate"><span class="pre">--distance</span></code>, qui affiche pour l’instant le message <code class="docutils literal notranslate"><span class="pre">distance</span> <span class="pre">:</span> <span class="pre">calcul</span> <span class="pre">manquant</span></code>.</p>
+</div></blockquote>
+<p>Le calcul est écrit aux étapes B3 à B5. Déclarée dès cette étape, l’option permet de
+tester ces trois étapes avec la même commande.</p>
+<p>Une option sans valeur se déclare comme l’option <code class="docutils literal notranslate"><span class="pre">--seuil</span></code> du TD 3b, avec
+<code class="docutils literal notranslate"><span class="pre">action=&quot;store_true&quot;</span></code> à la place de <code class="docutils literal notranslate"><span class="pre">type</span></code> et de <code class="docutils literal notranslate"><span class="pre">default</span></code> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">analyseur</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">"--distance"</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">"store_true"</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">"…"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Après <code class="docutils literal notranslate"><span class="pre">parse_args</span></code>, <code class="docutils literal notranslate"><span class="pre">options.distance</span></code> vaut <code class="docutils literal notranslate"><span class="pre">True</span></code> quand la commande contient
+<code class="docutils literal notranslate"><span class="pre">--distance</span></code>, et <code class="docutils literal notranslate"><span class="pre">False</span></code> sinon. Le bloc <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">options.distance:</span></code> ne s’exécute donc que
+si la commande contient l’option.</p>
+<p><strong>Consignes</strong></p>
+<ol class="arabic simple">
+<li><p>Dans <code class="docutils literal notranslate"><span class="pre">stats_trace.py</span></code>, avant la ligne <code class="docutils literal notranslate"><span class="pre">options</span> <span class="pre">=</span> <span class="pre">analyseur.parse_args()</span></code>, déclarer l’option <code class="docutils literal notranslate"><span class="pre">--distance</span></code>, avec le texte d’aide <code class="docutils literal notranslate"><span class="pre">affiche</span> <span class="pre">la</span> <span class="pre">distance</span> <span class="pre">parcourue</span></code>.</p></li>
+<li><p>À la fin du fichier, ajouter le bloc <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">options.distance:</span></code>, qui affiche <code class="docutils literal notranslate"><span class="pre">distance</span> <span class="pre">:</span> <span class="pre">calcul</span> <span class="pre">manquant</span></code>.</p></li>
+<li><p>Enregistrer le fichier.</p></li>
+</ol>
+<p><strong>Test</strong></p>
+<p>Avec l’option, le message s’affiche à la fin de la sortie :</p>
+<!-- [[[cog td.sortie("b2", "trace.csv", "--distance")]]] -->
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ python stats_trace.py trace.csv --distance
+altitude minimale : 78.8 m
+altitude maximale : 129.5 m
+max - min : 50.7 m
+cumul en hausse : 98.4 m
+cumul en baisse : 50.3 m
+distance : calcul manquant
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+<p>Sans l’option, <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">stats_trace.py</span> <span class="pre">trace.csv</span></code> affiche les cinq lignes de l’étape
+B1, sans le message.</p>
+<p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">stats_trace.py</span> <span class="pre">--help</span></code> décrit l’option :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>  --distance            affiche la distance parcourue
+</pre></div>
+</div>
+<p><strong>Commit</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git add stats_trace.py
+git commit -m "L'option --distance, sans le calcul"
+</pre></div>
+</div>
+<p>Solution : <a class="reference internal" href="#solution-de-l-etape-b2">étape B2</a>.</p>
+</section>
+<section id="etape-b3-lecture-des-positions-x-et-y">
+<h2>Étape B3 · Lecture des positions X et Y<a class="headerlink" href="#etape-b3-lecture-des-positions-x-et-y" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>Objectif :</strong> garder dans la liste <code class="docutils literal notranslate"><span class="pre">points</span></code> un tuple <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y,</span> <span class="pre">altitude)</span></code> par position de la trace, quand l’option <code class="docutils literal notranslate"><span class="pre">--distance</span></code> est donnée, et contrôler les valeurs lues.</p>
+</div></blockquote>
+<p>Le programme découpe déjà chaque ligne de la trace en <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>, <code class="docutils literal notranslate"><span class="pre">ele</span></code> et <code class="docutils literal notranslate"><span class="pre">time</span></code>, mais
+il ne garde que <code class="docutils literal notranslate"><span class="pre">ele</span></code>, dans la liste <code class="docutils literal notranslate"><span class="pre">altitudes</span></code>.</p>
+<p>Un <strong>tuple</strong> regroupe plusieurs valeurs, entre parenthèses. Dans le programme, une
+position de la trace est un tuple de trois nombres :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">point</span> <span class="o">=</span> <span class="p">(</span><span class="mf">670307.7</span><span class="p">,</span> <span class="mf">6812407.3</span><span class="p">,</span> <span class="mf">79.6</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>           <span class="c1"># affiche 670307.7, la première valeur</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">altitude</span> <span class="o">=</span> <span class="n">point</span>    <span class="c1"># sépare les trois valeurs</span>
+</pre></div>
+</div>
+<p>La liste <code class="docutils literal notranslate"><span class="pre">points</span></code> contient un tuple par position. Les coordonnées ne servent qu’au calcul
+de la distance : la boucle ne les garde que si l’option <code class="docutils literal notranslate"><span class="pre">--distance</span></code> est donnée.</p>
+<p><strong>Consignes</strong></p>
+<ol class="arabic simple">
+<li><p>Sous la ligne <code class="docutils literal notranslate"><span class="pre">altitudes</span> <span class="pre">=</span> <span class="pre">[]</span></code>, créer une liste vide, <code class="docutils literal notranslate"><span class="pre">points</span></code>.</p></li>
+<li><p>Dans la boucle de lecture, sous la ligne <code class="docutils literal notranslate"><span class="pre">altitudes.append(float(ele))</span></code>, ajouter un bloc <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">options.distance:</span></code>.</p></li>
+<li><p>Dans ce bloc, convertir <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code> et <code class="docutils literal notranslate"><span class="pre">ele</span></code> en nombres avec <code class="docutils literal notranslate"><span class="pre">float</span></code>, puis ajouter à <code class="docutils literal notranslate"><span class="pre">points</span></code> le tuple de ces trois nombres.</p></li>
+<li><p>Dans le bloc <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">options.distance:</span></code> de la fin du fichier, au-dessus du message, afficher provisoirement <code class="docutils literal notranslate"><span class="pre">positions</span> <span class="pre">lues</span> <span class="pre">:</span> </code>, suivi de <code class="docutils literal notranslate"><span class="pre">len(points)</span></code>.</p></li>
+<li><p>Sous cette ligne, afficher provisoirement <code class="docutils literal notranslate"><span class="pre">position</span> <span class="pre">0</span> <span class="pre">:</span> </code>, suivi de <code class="docutils literal notranslate"><span class="pre">points[0]</span></code>.</p></li>
+<li><p>Enregistrer le fichier.</p></li>
+</ol>
+<p><strong>Test</strong></p>
+<!-- [[[cog td.sortie("b3", "trace.csv", "--distance")]]] -->
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ python stats_trace.py trace.csv --distance
+altitude minimale : 78.8 m
+altitude maximale : 129.5 m
+max - min : 50.7 m
+cumul en hausse : 98.4 m
+cumul en baisse : 50.3 m
+positions lues : 60
+position 0 : (670307.7, 6812407.3, 79.6)
+distance : calcul manquant
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+<p>Ouvrir <code class="docutils literal notranslate"><span class="pre">trace.csv</span></code> dans VS Code, puis vérifier que la ligne 2 commence par
+<code class="docutils literal notranslate"><span class="pre">670307.7,6812407.3,79.6</span></code> et que la dernière position est à la ligne 61. Des guillemets
+autour des valeurs, <code class="docutils literal notranslate"><span class="pre">('670307.7',</span> <span class="pre">'6812407.3',</span> <span class="pre">'79.6')</span></code>, montrent que <code class="docutils literal notranslate"><span class="pre">float</span></code> manque.</p>
+<p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">stats_trace.py</span> <span class="pre">trace_2.csv</span> <span class="pre">--distance</span></code> affiche <code class="docutils literal notranslate"><span class="pre">positions</span> <span class="pre">lues</span> <span class="pre">:</span> <span class="pre">50</span></code>.</p>
+<p><strong>Commit</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git add stats_trace.py
+git commit -m "Les positions de la trace"
+</pre></div>
+</div>
+<p>Solution : <a class="reference internal" href="#solution-de-l-etape-b3">étape B3</a>.</p>
+</section>
+<section id="etape-b4-distance-entre-deux-points">
+<h2>Étape B4 · Distance entre deux points<a class="headerlink" href="#etape-b4-distance-entre-deux-points" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>Objectif :</strong> écrire la fonction <code class="docutils literal notranslate"><span class="pre">distance_entre(point1,</span> <span class="pre">point2)</span></code>, qui renvoie la distance horizontale entre deux points <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y,</span> <span class="pre">altitude)</span></code>, et l’essayer sur un cas dont le résultat est connu.</p>
+</div></blockquote>
+<p><code class="docutils literal notranslate"><span class="pre">len</span></code> et <code class="docutils literal notranslate"><span class="pre">min</span></code>, employées depuis le cours 2, sont des fonctions fournies par Python.
+<code class="docutils literal notranslate"><span class="pre">def</span></code> permet d’en écrire de nouvelles. Les paramètres d’une fonction reçoivent les
+valeurs données à l’appel, et <code class="docutils literal notranslate"><span class="pre">return</span></code> renvoie le résultat à l’endroit de l’appel.
+Une fonction s’écrit avant son premier appel, car Python exécute le fichier de haut
+en bas. Ce programme affiche <code class="docutils literal notranslate"><span class="pre">ecart</span> <span class="pre">:</span> <span class="pre">23.6</span> <span class="pre">m</span></code> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">ecart</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""La différence entre deux valeurs."""</span>
+    <span class="k">return</span> <span class="n">b</span> <span class="o">-</span> <span class="n">a</span>
+
+
+<span class="n">resultat</span> <span class="o">=</span> <span class="n">ecart</span><span class="p">(</span><span class="mf">79.6</span><span class="p">,</span> <span class="mf">103.2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"ecart : </span><span class="si">{</span><span class="n">resultat</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> m"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Les coordonnées <code class="docutils literal notranslate"><span class="pre">x</span></code> et <code class="docutils literal notranslate"><span class="pre">y</span></code> sont en mètres. La distance horizontale entre deux points
+est l’hypoténuse du triangle rectangle de côtés <code class="docutils literal notranslate"><span class="pre">x2</span> <span class="pre">-</span> <span class="pre">x1</span></code> et <code class="docutils literal notranslate"><span class="pre">y2</span> <span class="pre">-</span> <span class="pre">y1</span></code>, comme sur la
+figure de la présentation : √((x2 − x1)² + (y2 − y1)²). L’altitude n’entre pas dans le
+calcul. En Python, <code class="docutils literal notranslate"><span class="pre">**</span></code> élève à une puissance : <code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">**</span> <span class="pre">2</span></code> vaut <code class="docutils literal notranslate"><span class="pre">9</span></code>. <code class="docutils literal notranslate"><span class="pre">math.sqrt</span></code> donne la
+racine carrée, après <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">math</span></code>.</p>
+<section id="etape-b4-fonction-distance-entre">
+<h3>Étape B4 · Fonction distance_entre<a class="headerlink" href="#etape-b4-fonction-distance-entre" title="Lien vers cette rubrique">#</a></h3>
+<p><strong>Consignes</strong></p>
+<ol class="arabic simple">
+<li><p>En tête de <code class="docutils literal notranslate"><span class="pre">stats_trace.py</span></code>, ajouter la ligne <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">math</span></code>.</p></li>
+<li><p>Sous les lignes <code class="docutils literal notranslate"><span class="pre">import</span></code>, déclarer la fonction <code class="docutils literal notranslate"><span class="pre">distance_entre(point1,</span> <span class="pre">point2)</span></code>.</p></li>
+<li><p>Dans la fonction, séparer les trois valeurs de chaque point : <code class="docutils literal notranslate"><span class="pre">x1,</span> <span class="pre">y1,</span> <span class="pre">altitude1</span> <span class="pre">=</span> <span class="pre">point1</span></code>, puis de même pour <code class="docutils literal notranslate"><span class="pre">point2</span></code>.</p></li>
+<li><p>Renvoyer la distance avec <code class="docutils literal notranslate"><span class="pre">return</span></code>.</p></li>
+</ol>
+</section>
+<section id="etape-b4-essai-de-la-fonction">
+<h3>Étape B4 · Essai de la fonction<a class="headerlink" href="#etape-b4-essai-de-la-fonction" title="Lien vers cette rubrique">#</a></h3>
+<p><strong>Consignes</strong></p>
+<ol class="arabic simple">
+<li><p>Dans le bloc <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">options.distance:</span></code>, retirer les deux affichages provisoires de l’étape B3.</p></li>
+<li><p>À leur place, afficher provisoirement <code class="docutils literal notranslate"><span class="pre">essai,</span> <span class="pre">5.0</span> <span class="pre">attendu</span> <span class="pre">:</span> </code>, suivi de <code class="docutils literal notranslate"><span class="pre">distance_entre((0,</span> <span class="pre">0,</span> <span class="pre">0),</span> <span class="pre">(3,</span> <span class="pre">4,</span> <span class="pre">0))</span></code>. Le triangle de côtés 3 et 4 a une hypoténuse de longueur 5.</p></li>
+<li><p>Sous cette ligne, appeler <code class="docutils literal notranslate"><span class="pre">distance_entre</span></code> avec <code class="docutils literal notranslate"><span class="pre">points[0]</span></code> et <code class="docutils literal notranslate"><span class="pre">points[1]</span></code>, et garder le résultat dans la variable <code class="docutils literal notranslate"><span class="pre">premier_segment</span></code>.</p></li>
+<li><p>Afficher provisoirement <code class="docutils literal notranslate"><span class="pre">premier</span> <span class="pre">segment</span> <span class="pre">:</span> </code>, suivi de <code class="docutils literal notranslate"><span class="pre">premier_segment</span></code> avec un chiffre après la virgule, puis <code class="docutils literal notranslate"> <span class="pre">m</span></code>.</p></li>
+<li><p>Enregistrer le fichier.</p></li>
+</ol>
+<p><strong>Test</strong></p>
+<!-- [[[cog td.sortie("b4", "trace.csv", "--distance")]]] -->
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ python stats_trace.py trace.csv --distance
+altitude minimale : 78.8 m
+altitude maximale : 129.5 m
+max - min : 50.7 m
+cumul en hausse : 98.4 m
+cumul en baisse : 50.3 m
+essai, 5.0 attendu : 5.0
+premier segment : 18.8 m
+distance : calcul manquant
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+<p>Sur les deux premières lignes de la trace, <code class="docutils literal notranslate"><span class="pre">x2</span> <span class="pre">-</span> <span class="pre">x1</span></code> vaut -12,6 et <code class="docutils literal notranslate"><span class="pre">y2</span> <span class="pre">-</span> <span class="pre">y1</span></code> vaut
+-13,9. À la calculatrice, √(12,6² + 13,9²) donne 18,8.</p>
+<p>Si la sortie diffère, ce tableau donne les causes les plus fréquentes :</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Sortie</p></th>
+<th class="head"><p>Cause</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">NameError:</span> <span class="pre">name</span> <span class="pre">'distance_entre'</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">defined</span></code></p></td>
+<td><p>la fonction est écrite après son appel</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">NameError:</span> <span class="pre">name</span> <span class="pre">'math'</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">defined…</span></code></p></td>
+<td><p>la ligne <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">math</span></code> manque</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">essai,</span> <span class="pre">5.0</span> <span class="pre">attendu</span> <span class="pre">:</span> <span class="pre">None</span></code></p></td>
+<td><p>la fonction ne contient pas <code class="docutils literal notranslate"><span class="pre">return</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ValueError:</span> <span class="pre">not</span> <span class="pre">enough</span> <span class="pre">values</span> <span class="pre">to</span> <span class="pre">unpack</span> <span class="pre">(expected</span> <span class="pre">3,</span> <span class="pre">got</span> <span class="pre">2)</span></code></p></td>
+<td><p>un point de l’essai est écrit avec deux valeurs, <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">0)</span></code> au lieu de <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">0,</span> <span class="pre">0)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">TypeError:</span> <span class="pre">unsupported</span> <span class="pre">operand</span> <span class="pre">type(s)</span> <span class="pre">for</span> <span class="pre">-:</span> <span class="pre">'str'</span> <span class="pre">and</span> <span class="pre">'str'</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">float</span></code> manque dans la boucle de lecture (étape B3)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Commit</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git add stats_trace.py
+git commit -m "La fonction distance_entre"
+</pre></div>
+</div>
+<p>Solution : <a class="reference internal" href="#solution-de-l-etape-b4">étape B4</a>.</p>
+</section>
+</section>
+<section id="etape-b5-distance-parcourue">
+<h2>Étape B5 · Distance parcourue<a class="headerlink" href="#etape-b5-distance-parcourue" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>Objectif :</strong> écrire la fonction <code class="docutils literal notranslate"><span class="pre">distance_parcourue(points)</span></code>, qui calcule la somme des longueurs des segments, puis afficher le résultat final.</p>
+</div></blockquote>
+<p>La position 0 n’a pas de position précédente : la boucle commence donc à <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">=</span> <span class="pre">1</span></code>, et
+<code class="docutils literal notranslate"><span class="pre">points[i</span> <span class="pre">-</span> <span class="pre">1]</span></code> désigne la position précédente. Le TD 2c parcourait les altitudes de
+la même façon.</p>
+<section id="etape-b5-fonction-distance-parcourue">
+<h3>Étape B5 · Fonction distance_parcourue<a class="headerlink" href="#etape-b5-fonction-distance-parcourue" title="Lien vers cette rubrique">#</a></h3>
+<p><strong>Consignes</strong></p>
+<ol class="arabic simple">
+<li><p>Sous <code class="docutils literal notranslate"><span class="pre">distance_entre</span></code>, déclarer la fonction <code class="docutils literal notranslate"><span class="pre">distance_parcourue(points)</span></code>.</p></li>
+<li><p>Dans la fonction, créer la variable <code class="docutils literal notranslate"><span class="pre">total</span></code>, qui vaut 0.</p></li>
+<li><p>Écrire la boucle : <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">i</span> <span class="pre">in</span> <span class="pre">range(1,</span> <span class="pre">len(points)):</span></code>.</p></li>
+<li><p>Dans la boucle, appeler <code class="docutils literal notranslate"><span class="pre">distance_entre</span></code> avec <code class="docutils literal notranslate"><span class="pre">points[i</span> <span class="pre">-</span> <span class="pre">1]</span></code> et <code class="docutils literal notranslate"><span class="pre">points[i]</span></code>, et garder le résultat dans la variable <code class="docutils literal notranslate"><span class="pre">segment</span></code>.</p></li>
+<li><p>Dans la boucle, ajouter <code class="docutils literal notranslate"><span class="pre">segment</span></code> à <code class="docutils literal notranslate"><span class="pre">total</span></code>.</p></li>
+<li><p>Dans la boucle, afficher provisoirement <code class="docutils literal notranslate"><span class="pre">position</span> </code>, suivi de <code class="docutils literal notranslate"><span class="pre">i</span></code>, puis <code class="docutils literal notranslate"><span class="pre">,</span> <span class="pre">cumul</span> <span class="pre">:</span> </code>, suivi de <code class="docutils literal notranslate"><span class="pre">total</span></code> avec un chiffre après la virgule.</p></li>
+<li><p>Après la boucle, au niveau de la ligne <code class="docutils literal notranslate"><span class="pre">for</span></code>, renvoyer <code class="docutils literal notranslate"><span class="pre">total</span></code> avec <code class="docutils literal notranslate"><span class="pre">return</span></code>.</p></li>
+</ol>
+</section>
+<section id="etape-b5-appel-de-la-fonction">
+<h3>Étape B5 · Appel de la fonction<a class="headerlink" href="#etape-b5-appel-de-la-fonction" title="Lien vers cette rubrique">#</a></h3>
+<p><strong>Consignes</strong></p>
+<ol class="arabic simple">
+<li><p>Dans le bloc <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">options.distance:</span></code>, retirer tout le contenu.</p></li>
+<li><p>À la place, écrire <code class="docutils literal notranslate"><span class="pre">distance</span> <span class="pre">=</span> <span class="pre">distance_parcourue(points)</span></code>.</p></li>
+<li><p>Afficher <code class="docutils literal notranslate"><span class="pre">distance</span> <span class="pre">parcourue</span> <span class="pre">:</span> </code>, suivi de <code class="docutils literal notranslate"><span class="pre">distance</span></code> avec un chiffre après la virgule, puis <code class="docutils literal notranslate"> <span class="pre">m</span></code>.</p></li>
+<li><p>Enregistrer le fichier.</p></li>
+</ol>
+<p><strong>Test</strong></p>
+<!-- [[[cog td.sortie("b5.2", "trace.csv", "--distance", debut=8, fin=2)]]] -->
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ python stats_trace.py trace.csv --distance
+altitude minimale : 78.8 m
+altitude maximale : 129.5 m
+max - min : 50.7 m
+cumul en hausse : 98.4 m
+cumul en baisse : 50.3 m
+position 1, cumul : 18.8
+position 2, cumul : 63.4
+position 3, cumul : 105.6
+…
+position 59, cumul : 1906.7
+distance parcourue : 1906.7 m
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+<p>La première valeur est celle du premier segment, à l’étape B4. La valeur augmente
+ensuite de 15 à 50 m à chaque ligne, 32 m en moyenne. Si la sortie s’arrête à <code class="docutils literal notranslate"><span class="pre">position</span> <span class="pre">1</span></code>, avec
+<code class="docutils literal notranslate"><span class="pre">distance</span> <span class="pre">parcourue</span> <span class="pre">:</span> <span class="pre">18.8</span> <span class="pre">m</span></code>, le <code class="docutils literal notranslate"><span class="pre">return</span></code> est dans la boucle.</p>
+</section>
+<section id="etape-b5-resultat-final">
+<h3>Étape B5 · Résultat final<a class="headerlink" href="#etape-b5-resultat-final" title="Lien vers cette rubrique">#</a></h3>
+<p><strong>Consignes</strong></p>
+<ol class="arabic simple">
+<li><p>Retirer le <code class="docutils literal notranslate"><span class="pre">print</span></code> de la boucle.</p></li>
+<li><p>Enregistrer le fichier.</p></li>
+</ol>
+<p><strong>Test</strong></p>
+<!-- [[[cog td.sortie("b5", "trace.csv", "--distance")]]] -->
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ python stats_trace.py trace.csv --distance
+altitude minimale : 78.8 m
+altitude maximale : 129.5 m
+max - min : 50.7 m
+cumul en hausse : 98.4 m
+cumul en baisse : 50.3 m
+distance parcourue : 1906.7 m
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+<p>La trace compte 59 segments d’environ 32 m, et 59 × 32 = 1888 : le résultat a le bon
+ordre de grandeur.</p>
+<p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">stats_trace.py</span> <span class="pre">trace_2.csv</span> <span class="pre">--distance</span></code> se termine par
+<code class="docutils literal notranslate"><span class="pre">distance</span> <span class="pre">parcourue</span> <span class="pre">:</span> <span class="pre">632.3</span> <span class="pre">m</span></code>.</p>
+<p><strong>Commit</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git add stats_trace.py
+git commit -m "Le calcul de la distance parcourue"
+</pre></div>
+</div>
+<p>Solution : <a class="reference internal" href="#solution-de-l-etape-b5">étape B5</a>.</p>
+</section>
+</section>
+<section id="etape-b6-calcul-de-la-vitesse-moyenne">
+<h2>Étape B6 · Calcul de la vitesse moyenne<a class="headerlink" href="#etape-b6-calcul-de-la-vitesse-moyenne" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>Objectif :</strong> ajouter l’option <code class="docutils literal notranslate"><span class="pre">--vitesse</span></code>, qui affiche la vitesse moyenne, dans le même ordre que pour la distance : l’option, le calcul intermédiaire, puis le résultat.</p>
+</div></blockquote>
+<p>La vitesse moyenne est la distance parcourue divisée par le temps total.</p>
+<section id="etape-b6-option-de-vitesse">
+<h3>Étape B6 · Option de vitesse<a class="headerlink" href="#etape-b6-option-de-vitesse" title="Lien vers cette rubrique">#</a></h3>
+<p><strong>Consignes</strong></p>
+<ol class="arabic simple">
+<li><p>Avant la ligne <code class="docutils literal notranslate"><span class="pre">options</span> <span class="pre">=</span> <span class="pre">analyseur.parse_args()</span></code>, déclarer l’option <code class="docutils literal notranslate"><span class="pre">--vitesse</span></code>, avec le texte d’aide <code class="docutils literal notranslate"><span class="pre">affiche</span> <span class="pre">la</span> <span class="pre">vitesse</span> <span class="pre">moyenne</span></code>.</p></li>
+<li><p>À la fin du fichier, ajouter le bloc <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">options.vitesse:</span></code>, qui affiche <code class="docutils literal notranslate"><span class="pre">vitesse</span> <span class="pre">:</span> <span class="pre">calcul</span> <span class="pre">manquant</span></code>.</p></li>
+<li><p>Enregistrer le fichier.</p></li>
+</ol>
+<p><strong>Test</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">stats_trace.py</span> <span class="pre">trace.csv</span> <span class="pre">--vitesse</span></code> se termine par
+<code class="docutils literal notranslate"><span class="pre">vitesse</span> <span class="pre">:</span> <span class="pre">calcul</span> <span class="pre">manquant</span></code>.</p>
+</section>
+<section id="etape-b6-fonction-secondes-ecoulees">
+<h3>Étape B6 · Fonction secondes_ecoulees<a class="headerlink" href="#etape-b6-fonction-secondes-ecoulees" title="Lien vers cette rubrique">#</a></h3>
+<p>La colonne <code class="docutils literal notranslate"><span class="pre">time</span></code> contient la date et l’heure de chaque position, sous forme de
+texte, et Python ne peut pas soustraire deux textes. Le module <code class="docutils literal notranslate"><span class="pre">datetime</span></code>, de la
+bibliothèque standard livrée avec Python (cours 3), convertit un texte en date avec <code class="docutils literal notranslate"><span class="pre">datetime.strptime</span></code>. La
+différence de deux dates est une durée, et sa méthode <code class="docutils literal notranslate"><span class="pre">total_seconds</span></code> renvoie le
+nombre de secondes. Ce programme affiche <code class="docutils literal notranslate"><span class="pre">30.0</span></code> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="n">FORMAT_TEMPS</span> <span class="o">=</span> <span class="s2">"%Y/%m/</span><span class="si">%d</span><span class="s2"> %H:%M:%S+00"</span>
+
+<span class="n">debut</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="s2">"2026/10/04 08:00:00+00"</span><span class="p">,</span> <span class="n">FORMAT_TEMPS</span><span class="p">)</span>
+<span class="n">fin</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="s2">"2026/10/04 08:00:30+00"</span><span class="p">,</span> <span class="n">FORMAT_TEMPS</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">((</span><span class="n">fin</span> <span class="o">-</span> <span class="n">debut</span><span class="p">)</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">())</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">FORMAT_TEMPS</span></code> décrit le texte de la colonne <code class="docutils literal notranslate"><span class="pre">time</span></code> : <code class="docutils literal notranslate"><span class="pre">%Y</span></code> désigne l’année, <code class="docutils literal notranslate"><span class="pre">%m</span></code> le
+mois, <code class="docutils literal notranslate"><span class="pre">%d</span></code> le jour, <code class="docutils literal notranslate"><span class="pre">%H</span></code> l’heure, <code class="docutils literal notranslate"><span class="pre">%M</span></code> les minutes et <code class="docutils literal notranslate"><span class="pre">%S</span></code> les secondes. <code class="docutils literal notranslate"><span class="pre">+00</span></code> indique
+l’heure UTC, et s’écrit tel quel dans le format.</p>
+<p><strong>Consignes</strong></p>
+<ol class="arabic simple">
+<li><p>Sous la ligne <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">math</span></code>, ajouter la ligne <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">datetime</span> <span class="pre">import</span> <span class="pre">datetime</span></code>.</p></li>
+<li><p>Sous les lignes <code class="docutils literal notranslate"><span class="pre">import</span></code>, ajouter la ligne <code class="docutils literal notranslate"><span class="pre">FORMAT_TEMPS</span> <span class="pre">=</span> <span class="pre">&quot;%Y/%m/%d</span> <span class="pre">%H:%M:%S+00&quot;</span></code>.</p></li>
+<li><p>Sous <code class="docutils literal notranslate"><span class="pre">distance_parcourue</span></code>, écrire la fonction <code class="docutils literal notranslate"><span class="pre">secondes_ecoulees(debut,</span> <span class="pre">fin)</span></code>, qui convertit <code class="docutils literal notranslate"><span class="pre">debut</span></code> et <code class="docutils literal notranslate"><span class="pre">fin</span></code> en dates, puis renvoie le temps qui les sépare, en secondes.</p></li>
+<li><p>Dans le bloc <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">options.vitesse:</span></code>, au-dessus du message, garder dans <code class="docutils literal notranslate"><span class="pre">essai</span></code> le résultat de <code class="docutils literal notranslate"><span class="pre">secondes_ecoulees(&quot;2026/10/04</span> <span class="pre">08:00:00+00&quot;,</span> <span class="pre">&quot;2026/10/04</span> <span class="pre">08:00:30+00&quot;)</span></code>.</p></li>
+<li><p>Sous cette ligne, afficher provisoirement <code class="docutils literal notranslate"><span class="pre">essai,</span> <span class="pre">30.0</span> <span class="pre">attendu</span> <span class="pre">:</span> </code>, suivi de <code class="docutils literal notranslate"><span class="pre">essai</span></code>.</p></li>
+<li><p>Enregistrer le fichier.</p></li>
+</ol>
+<p><strong>Test</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">stats_trace.py</span> <span class="pre">trace.csv</span> <span class="pre">--vitesse</span></code> se termine par ces deux lignes :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>essai, 30.0 attendu : 30.0
+vitesse : calcul manquant
+</pre></div>
+</div>
+</section>
+<section id="etape-b6-temps-total">
+<h3>Étape B6 · Temps total<a class="headerlink" href="#etape-b6-temps-total" title="Lien vers cette rubrique">#</a></h3>
+<p><strong>Consignes</strong></p>
+<ol class="arabic simple">
+<li><p>Sous la ligne <code class="docutils literal notranslate"><span class="pre">points</span> <span class="pre">=</span> <span class="pre">[]</span></code>, créer une liste vide, <code class="docutils literal notranslate"><span class="pre">temps</span></code>.</p></li>
+<li><p>Dans la boucle de lecture, remplacer la condition <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">options.distance:</span></code> par <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">options.distance</span> <span class="pre">or</span> <span class="pre">options.vitesse:</span></code>. La vitesse a aussi besoin des positions.</p></li>
+<li><p>Dans ce bloc, ajouter <code class="docutils literal notranslate"><span class="pre">time</span></code> à <code class="docutils literal notranslate"><span class="pre">temps</span></code>, sans le convertir.</p></li>
+<li><p>Dans le bloc <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">options.vitesse:</span></code> de la fin du fichier, retirer les deux lignes de l’essai.</p></li>
+<li><p>À leur place, calculer <code class="docutils literal notranslate"><span class="pre">temps_total</span></code> avec <code class="docutils literal notranslate"><span class="pre">secondes_ecoulees</span></code>, sur <code class="docutils literal notranslate"><span class="pre">temps[0]</span></code> et <code class="docutils literal notranslate"><span class="pre">temps[-1]</span></code>.</p></li>
+<li><p>Sous cette ligne, afficher provisoirement <code class="docutils literal notranslate"><span class="pre">temps</span> <span class="pre">total</span> <span class="pre">:</span> </code>, suivi de <code class="docutils literal notranslate"><span class="pre">temps_total</span></code> sans chiffre après la virgule (<code class="docutils literal notranslate"><span class="pre">:.0f</span></code>), puis <code class="docutils literal notranslate"> <span class="pre">s</span></code>.</p></li>
+<li><p>Enregistrer le fichier.</p></li>
+</ol>
+<p><strong>Test</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">stats_trace.py</span> <span class="pre">trace.csv</span> <span class="pre">--vitesse</span></code> se termine par ces deux lignes :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>temps total : 1770 s
+vitesse : calcul manquant
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">temps[-1]</span></code> désigne le dernier élément de la liste <code class="docutils literal notranslate"><span class="pre">temps</span></code>. La première position de
+<code class="docutils literal notranslate"><span class="pre">trace.csv</span></code> finit par <code class="docutils literal notranslate"><span class="pre">08:00:00+00</span></code>, et la dernière par <code class="docutils literal notranslate"><span class="pre">08:29:30+00</span></code>, soit 29 min 30 s.</p>
+</section>
+<section id="etape-b6-vitesse-moyenne">
+<h3>Étape B6 · Vitesse moyenne<a class="headerlink" href="#etape-b6-vitesse-moyenne" title="Lien vers cette rubrique">#</a></h3>
+<p>Une vitesse en m/s, multipliée par 3,6, donne des km/h.</p>
+<p><strong>Consignes</strong></p>
+<ol class="arabic simple">
+<li><p>Dans le bloc <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">options.vitesse:</span></code>, retirer les deux <code class="docutils literal notranslate"><span class="pre">print</span></code>.</p></li>
+<li><p>Sous le calcul de <code class="docutils literal notranslate"><span class="pre">temps_total</span></code>, écrire <code class="docutils literal notranslate"><span class="pre">distance</span> <span class="pre">=</span> <span class="pre">distance_parcourue(points)</span></code>.</p></li>
+<li><p>Diviser <code class="docutils literal notranslate"><span class="pre">distance</span></code> par <code class="docutils literal notranslate"><span class="pre">temps_total</span></code>, et garder le résultat dans la variable <code class="docutils literal notranslate"><span class="pre">vitesse</span></code>.</p></li>
+<li><p>Afficher <code class="docutils literal notranslate"><span class="pre">vitesse</span> <span class="pre">moyenne</span> <span class="pre">:</span> </code>, suivi de <code class="docutils literal notranslate"><span class="pre">vitesse</span></code> avec deux chiffres après la virgule, puis <code class="docutils literal notranslate"><span class="pre">m/s,</span> <span class="pre">soit</span></code>, suivi de <code class="docutils literal notranslate"><span class="pre">vitesse</span> <span class="pre">*</span> <span class="pre">3.6</span></code> avec un chiffre après la virgule, puis <code class="docutils literal notranslate"> <span class="pre">km/h</span></code>.</p></li>
+<li><p>Enregistrer le fichier.</p></li>
+</ol>
+<p><strong>Test</strong></p>
+<!-- [[[cog td.sortie("b6", "trace.csv", "--distance", "--vitesse")]]] -->
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ python stats_trace.py trace.csv --distance --vitesse
+altitude minimale : 78.8 m
+altitude maximale : 129.5 m
+max - min : 50.7 m
+cumul en hausse : 98.4 m
+cumul en baisse : 50.3 m
+distance parcourue : 1906.7 m
+vitesse moyenne : 1.08 m/s, soit 3.9 km/h
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+<p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">stats_trace.py</span> <span class="pre">trace.csv</span> <span class="pre">--vitesse</span></code>, sans <code class="docutils literal notranslate"><span class="pre">--distance</span></code>, se termine par la même
+ligne <code class="docutils literal notranslate"><span class="pre">vitesse</span> <span class="pre">moyenne</span></code>.</p>
+<p>À la calculatrice, 1906,7 / 1770 donne 1,08.
+<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">stats_trace.py</span> <span class="pre">trace_2.csv</span> <span class="pre">--vitesse</span></code> se termine par
+<code class="docutils literal notranslate"><span class="pre">vitesse</span> <span class="pre">moyenne</span> <span class="pre">:</span> <span class="pre">1.29</span> <span class="pre">m/s,</span> <span class="pre">soit</span> <span class="pre">4.6</span> <span class="pre">km/h</span></code>.</p>
+<p><strong>Commit</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git add stats_trace.py
+git commit -m "L'option --vitesse"
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span> <span class="pre">--oneline</span></code> affiche huit lignes.</p>
+<p>Solution : <a class="reference internal" href="#solution-de-l-etape-b6">étape B6</a>.</p>
+</section>
+</section>
+<section id="etape-b7-facultative-readme-et-etiquette">
+<h2>Étape B7 (facultative) · README et étiquette<a class="headerlink" href="#etape-b7-facultative-readme-et-etiquette" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>Objectif :</strong> permettre à une autre personne de lancer le programme, et nommer la version finale.</p>
+</div></blockquote>
+<p><strong>Consignes</strong></p>
+<ol class="arabic simple">
+<li><p>Copier le modèle de README dans le projet : <code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">../../depart/modeles/README.md</span> <span class="pre">.</span></code></p></li>
+<li><p>Ouvrir <code class="docutils literal notranslate"><span class="pre">README.md</span></code> dans VS Code et remplacer chaque passage « (À compléter …) ». <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">V</span></code> affiche l’aperçu.</p></li>
+<li><p>Coller chaque commande du README dans le terminal, et vérifier qu’elle fonctionne.</p></li>
+<li><p>Faire le commit du README : <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">README.md</span></code>, puis <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&quot;Un</span> <span class="pre">README&quot;</span></code>.</p></li>
+<li><p>Poser l’étiquette <code class="docutils literal notranslate"><span class="pre">v1.0</span></code> sur ce commit : <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">tag</span> <span class="pre">-a</span> <span class="pre">v1.0</span> <span class="pre">-m</span> <span class="pre">&quot;Première</span> <span class="pre">version&quot;</span></code>.</p></li>
+</ol>
+<p><strong>Test</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span> <span class="pre">--oneline</span></code> affiche neuf lignes, la première marquée <code class="docutils literal notranslate"><span class="pre">tag:</span> <span class="pre">v1.0</span></code>.</p>
+<p>Solution : <a class="reference internal" href="#solution-de-l-etape-b7">étape B7</a>.</p>
+</section>
+<section id="etape-b8-facultative-distance-calculee-avec-numpy">
+<h2>Étape B8 (facultative) · Distance calculée avec numpy<a class="headerlink" href="#etape-b8-facultative-distance-calculee-avec-numpy" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>Objectif :</strong> calculer la distance parcourue avec la bibliothèque numpy, à partir de deux listes, <code class="docutils literal notranslate"><span class="pre">liste_x</span></code> et <code class="docutils literal notranslate"><span class="pre">liste_y</span></code>, et comparer le résultat à celui de <code class="docutils literal notranslate"><span class="pre">distance_parcourue</span></code>.</p>
+</div></blockquote>
+<p>numpy calcule sur des tableaux de nombres. Une opération s’applique à chaque élément du
+tableau, sans boucle écrite dans le programme. Ce mode de calcul s’appelle le <strong>calcul
+vectoriel</strong>.
+<code class="docutils literal notranslate"><span class="pre">np.array</span></code> construit un tableau à partir d’une liste, et <code class="docutils literal notranslate"><span class="pre">np.diff</span></code> renvoie les
+différences entre éléments successifs. Ce programme affiche <code class="docutils literal notranslate"><span class="pre">[3.</span> <span class="pre">0.]</span></code>, puis <code class="docutils literal notranslate"><span class="pre">[9.</span> <span class="pre">0.]</span></code> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="etape-b8-facultative-listes-des-coordonnees">
+<h3>Étape B8 (facultative) · Listes des coordonnées<a class="headerlink" href="#etape-b8-facultative-listes-des-coordonnees" title="Lien vers cette rubrique">#</a></h3>
+<p>numpy calcule sur une colonne entière : il faut une liste par coordonnée, <code class="docutils literal notranslate"><span class="pre">liste_x</span></code> et
+<code class="docutils literal notranslate"><span class="pre">liste_y</span></code>, en plus des tuples. numpy est installé avec Anaconda, dans <code class="docutils literal notranslate"><span class="pre">base</span></code>.</p>
+<p><strong>Consignes</strong></p>
+<ol class="arabic simple">
+<li><p>Sous la ligne <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">pathlib</span> <span class="pre">import</span> <span class="pre">Path</span></code>, ajouter une ligne vide, puis la ligne <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">numpy</span> <span class="pre">as</span> <span class="pre">np</span></code>.</p></li>
+<li><p>Sous la ligne <code class="docutils literal notranslate"><span class="pre">temps</span> <span class="pre">=</span> <span class="pre">[]</span></code>, créer deux listes vides, <code class="docutils literal notranslate"><span class="pre">liste_x</span></code> et <code class="docutils literal notranslate"><span class="pre">liste_y</span></code>.</p></li>
+<li><p>Dans le bloc <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">options.distance</span> <span class="pre">or</span> <span class="pre">options.vitesse:</span></code> de la boucle de lecture, ajouter <code class="docutils literal notranslate"><span class="pre">float(x)</span></code> à <code class="docutils literal notranslate"><span class="pre">liste_x</span></code> et <code class="docutils literal notranslate"><span class="pre">float(y)</span></code> à <code class="docutils literal notranslate"><span class="pre">liste_y</span></code>.</p></li>
+<li><p>Enregistrer le fichier, puis lancer <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">stats_trace.py</span> <span class="pre">trace.csv</span> <span class="pre">--distance</span></code>.</p></li>
+</ol>
+<p><strong>Test</strong></p>
+<p>Le programme s’exécute sans erreur.</p>
+</section>
+<section id="etape-b8-facultative-calcul-avec-numpy">
+<h3>Étape B8 (facultative) · Calcul avec numpy<a class="headerlink" href="#etape-b8-facultative-calcul-avec-numpy" title="Lien vers cette rubrique">#</a></h3>
+<p><strong>Consignes</strong></p>
+<ol class="arabic simple">
+<li><p>Sous <code class="docutils literal notranslate"><span class="pre">distance_parcourue</span></code>, écrire la fonction <code class="docutils literal notranslate"><span class="pre">distance_parcourue_numpy(liste_x,</span> <span class="pre">liste_y)</span></code>, qui convertit les deux listes en tableaux <code class="docutils literal notranslate"><span class="pre">x</span></code> et <code class="docutils literal notranslate"><span class="pre">y</span></code>, puis renvoie <code class="docutils literal notranslate"><span class="pre">np.sum(np.sqrt(np.diff(x)</span> <span class="pre">**</span> <span class="pre">2</span> <span class="pre">+</span> <span class="pre">np.diff(y)</span> <span class="pre">**</span> <span class="pre">2))</span></code>.</p></li>
+<li><p>Dans le bloc <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">options.distance:</span></code> de la fin du fichier, sous l’affichage de la distance, afficher <code class="docutils literal notranslate"><span class="pre">distance</span> <span class="pre">parcourue,</span> <span class="pre">numpy</span> <span class="pre">:</span> </code>, suivi de <code class="docutils literal notranslate"><span class="pre">distance_parcourue_numpy(liste_x,</span> <span class="pre">liste_y)</span></code> avec un chiffre après la virgule, puis <code class="docutils literal notranslate"> <span class="pre">m</span></code>.</p></li>
+<li><p>Enregistrer le fichier.</p></li>
+</ol>
+<p><strong>Test</strong></p>
+<!-- [[[cog td.sortie("b8", "trace.csv", "--distance")]]] -->
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ python stats_trace.py trace.csv --distance
+altitude minimale : 78.8 m
+altitude maximale : 129.5 m
+max - min : 50.7 m
+cumul en hausse : 98.4 m
+cumul en baisse : 50.3 m
+distance parcourue : 1906.7 m
+distance parcourue, numpy : 1906.7 m
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+<p><strong>Commit</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git add stats_trace.py
+git commit -m "La distance calculée avec numpy"
+</pre></div>
+</div>
+<p>Solution : <a class="reference internal" href="#solution-de-l-etape-b8">étape B8</a>.</p>
+</section>
+</section>
+</section>
+<section id="solutions">
+<h1>Solutions<a class="headerlink" href="#solutions" title="Lien vers cette rubrique">#</a></h1>
+<section id="lecture-des-blocs-de-modification">
+<h2>Lecture des blocs de modification<a class="headerlink" href="#lecture-des-blocs-de-modification" title="Lien vers cette rubrique">#</a></h2>
+<p>Une solution suit l’ordre des consignes : une explication, puis les lignes qu’elle
+décrit. Elle ne donne que les lignes qui changent, comme dans cet extrait de l’étape
+B2 :</p>
+<!-- [[[cog td.modif("b2.1")]]] -->
+<div class="highlight-modif notranslate"><div class="highlight"><pre><span></span>    8 analyseur.add_argument("-s", "--seuil", type=float, default=0,
+    9                        help="variation ignorée sous ce seuil, en mètres")
+<span class="gi">+++</span>
+<span class="gi">analyseur.add_argument("--distance", action="store_true",</span>
+<span class="gi">                       help="affiche la distance parcourue")</span>
+<span class="gi">+++</span>
+   12 options = analyseur.parse_args()
+   13
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+<p>Les lignes en vert, entre deux lignes <code class="docutils literal notranslate"><span class="pre">+++</span></code>, sont à ajouter. Les lignes en rouge,
+entre deux lignes <code class="docutils literal notranslate"><span class="pre">---</span></code>, sont à supprimer. Les autres lignes ne changent pas et
+indiquent l’endroit de la modification. Le signe <code class="docutils literal notranslate"><span class="pre">…</span></code> remplace des lignes qui ne
+changent pas.</p>
+<p>Le nombre en tête d’une ligne est le numéro de la ligne dans VS Code, quand les
+modifications sont faites de haut en bas. Une ligne à ajouter n’a pas de numéro. Si
+le fichier n’a pas les mêmes lignes vides que le guide, les numéros diffèrent de
+quelques lignes, et les lignes qui ne changent pas permettent de retrouver l’endroit.</p>
+<p>Les lignes à ajouter se copient telles quelles, avec leur indentation, sans les
+lignes <code class="docutils literal notranslate"><span class="pre">+++</span></code>.</p>
+</section>
+<section id="solution-de-l-etape-a1">
+<h2>Solution de l’étape A1<a class="headerlink" href="#solution-de-l-etape-a1" title="Lien vers cette rubrique">#</a></h2>
+<p>Décompresser l’archive dans le dossier <code class="docutils literal notranslate"><span class="pre">info01</span></code> du Bureau, puis aller dans le dossier
+du TD :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd ~/Desktop/info01
+unzip info01-cours4.zip
+cd cours4/4a_trace
+</pre></div>
+</div>
+<p>Créer le dossier du projet, puis y copier le programme et les traces. <code class="docutils literal notranslate"><span class="pre">mkdir</span></code> crée un
+dossier. <code class="docutils literal notranslate"><span class="pre">cp</span></code> copie le fichier nommé en premier dans le dossier nommé en second.
+<code class="docutils literal notranslate"><span class="pre">*.csv</span></code> désigne tous les fichiers dont le nom se termine par <code class="docutils literal notranslate"><span class="pre">.csv</span></code>. Une commande qui
+réussit n’affiche rien.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mkdir travail/stats_trace
+cp depart/stats_trace.py travail/stats_trace/
+cp depart/*.csv travail/stats_trace/
+</pre></div>
+</div>
+<p>Lister ensuite le dossier du projet :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ls travail/stats_trace
+</pre></div>
+</div>
+<p>Erreur fréquente : <code class="docutils literal notranslate"><span class="pre">cp</span></code> lancé depuis <code class="docutils literal notranslate"><span class="pre">travail/</span></code>. <code class="docutils literal notranslate"><span class="pre">pwd</span></code> montre le dossier courant, qui
+doit être <code class="docutils literal notranslate"><span class="pre">4a_trace/</span></code>.</p>
+</section>
+<section id="solution-de-l-etape-a2">
+<h2>Solution de l’étape A2<a class="headerlink" href="#solution-de-l-etape-a2" title="Lien vers cette rubrique">#</a></h2>
+<p>Le dossier ouvert est le projet : l’explorateur, à gauche, montre ses fichiers, et le
+terminal s’ouvre dans ce dossier. Les réglages suivants datent du TD 2a, et sont à
+refaire si le test de l’étape échoue.</p>
+<p><strong>Invite PowerShell (<code class="docutils literal notranslate"><span class="pre">PS</span></code>).</strong> Le terminal est PowerShell. Ouvrir la palette de
+commandes (<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">P</span></code>), taper <code class="docutils literal notranslate"><span class="pre">default</span> <span class="pre">profile</span></code>, choisir « Terminal: Select
+Default Profile », puis « Git Bash ». Fermer le terminal (icône de corbeille), puis
+en ouvrir un nouveau.</p>
+<p><strong>Invite sans <code class="docutils literal notranslate"><span class="pre">(base)</span></code>.</strong> conda n’est pas encore réglé dans Git Bash sur
+ce poste. Le régler une fois, puis fermer le terminal et en ouvrir un nouveau :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>source /c/ProgramData/anaconda3/etc/profile.d/conda.sh
+conda init bash
+</pre></div>
+</div>
+<p><strong>Espaces invisibles.</strong> Ouvrir les réglages (<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">,</span></code>), taper <code class="docutils literal notranslate"><span class="pre">render</span> <span class="pre">whitespace</span></code> dans la zone de recherche, et choisir <code class="docutils literal notranslate"><span class="pre">all</span></code> pour « Editor: Render
+Whitespace ». Sur un thème sombre, les points et les flèches se voient mal : passer à un
+thème clair (<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">K</span></code>, puis <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">T</span></code>), et choisir « Light Modern ».</p>
+</section>
+<section id="solution-de-l-etape-a3">
+<h2>Solution de l’étape A3<a class="headerlink" href="#solution-de-l-etape-a3" title="Lien vers cette rubrique">#</a></h2>
+<p>Créer le dépôt, puis régler le nom et l’adresse. Le poste est partagé : le nom et
+l’adresse sont réglés pour ce dépôt seulement, sans <code class="docutils literal notranslate"><span class="pre">--global</span></code>.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git init
+git config user.name "Prénom Nom"
+git config user.email "prenom.nom@exemple.fr"
+</pre></div>
+</div>
+<p>Dans l’explorateur de VS Code, créer le fichier <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> (icône New File), y
+écrire la ligne <code class="docutils literal notranslate"><span class="pre">resume.txt</span></code>, puis enregistrer. Afficher ensuite l’état du dépôt :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git status
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> liste <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>, <code class="docutils literal notranslate"><span class="pre">stats_trace.py</span></code>, <code class="docutils literal notranslate"><span class="pre">trace.csv</span></code> et <code class="docutils literal notranslate"><span class="pre">trace_2.csv</span></code> parmi
+les fichiers non suivis. Faire alors le premier commit, puis afficher l’historique :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git add .
+git commit -m "Le programme de départ et les traces"
+git log --oneline
+</pre></div>
+</div>
+</section>
+<section id="solution-de-l-etape-b1">
+<h2>Solution de l’étape B1<a class="headerlink" href="#solution-de-l-etape-b1" title="Lien vers cette rubrique">#</a></h2>
+<p><strong>Première erreur.</strong> Python s’arrête sur cette erreur :</p>
+<!-- [[[cog td.sortie("depart", "trace.csv")]]] -->
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ python stats_trace.py trace.csv
+  File "C:\Users\eleve\Desktop\info01\cours4\4a_trace\travail\stats_trace\stats_trace.py", line 18
+    for ligne in fichier
+                        ^
+SyntaxError: expected ':'
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+<p><code class="docutils literal notranslate"><span class="pre">SyntaxError:</span> <span class="pre">expected</span> <span class="pre">':'</span></code> signale un deux-points manquant : une ligne <code class="docutils literal notranslate"><span class="pre">for</span></code> se
+termine par <code class="docutils literal notranslate"><span class="pre">:</span></code>. Corriger la ligne 18 et enregistrer :</p>
+<!-- [[[cog td.modif("b1.1")]]] -->
+<div class="highlight-modif notranslate"><div class="highlight"><pre><span></span>   16 with open(FICHIER, encoding="utf-8") as fichier:
+   17     fichier.readline()
+<span class="gd">---</span>
+<span class="gd">   18     for ligne in fichier</span>
+<span class="gd">---</span>
+<span class="gi">+++</span>
+<span class="gi">    for ligne in fichier:</span>
+<span class="gi">+++</span>
+   19         x, y, ele, time = ligne.strip().split(",")
+   20 		altitudes.append(float(ele))
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git add stats_trace.py
+git commit -m "Correction : le deux-points de la boucle"
+</pre></div>
+</div>
+<p><strong>Seconde erreur.</strong> Relancer le programme. Python s’arrête sur une seconde erreur :</p>
+<!-- [[[cog td.sortie("b1.1", "trace.csv")]]] -->
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ python stats_trace.py trace.csv
+  File "C:\Users\eleve\Desktop\info01\cours4\4a_trace\travail\stats_trace\stats_trace.py", line 20
+    altitudes.append(float(ele))
+TabError: inconsistent use of tabs and spaces in indentation
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+<p>Python s’arrête sur la première erreur qu’il rencontre : la seconde n’apparaît qu’une
+fois la première corrigée.</p>
+<p><code class="docutils literal notranslate"><span class="pre">TabError</span></code> signale un mélange d’espaces et de tabulations dans l’indentation d’un
+même bloc. La ligne 20 commence par deux flèches (deux tabulations), et la ligne 19
+par des points (des espaces). Effacer les flèches, puis les remplacer par huit
+espaces :</p>
+<!-- [[[cog td.modif("b1.2")]]] -->
+<div class="highlight-modif notranslate"><div class="highlight"><pre><span></span>   18     for ligne in fichier:
+   19         x, y, ele, time = ligne.strip().split(",")
+<span class="gd">---</span>
+<span class="gd">   20 		altitudes.append(float(ele))</span>
+<span class="gd">---</span>
+<span class="gi">+++</span>
+<span class="gi">        altitudes.append(float(ele))</span>
+<span class="gi">+++</span>
+   21
+   22 print(f"altitude minimale : {min(altitudes):.1f} m")
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git add stats_trace.py
+git commit -m "Correction : l'indentation de la ligne 20"
+</pre></div>
+</div>
+</section>
+<section id="solution-de-l-etape-b2">
+<h2>Solution de l’étape B2<a class="headerlink" href="#solution-de-l-etape-b2" title="Lien vers cette rubrique">#</a></h2>
+<p><strong>Déclaration de l’option.</strong> <code class="docutils literal notranslate"><span class="pre">add_argument</span></code> déclare <code class="docutils literal notranslate"><span class="pre">--distance</span></code> à la suite de <code class="docutils literal notranslate"><span class="pre">--seuil</span></code>,
+avant <code class="docutils literal notranslate"><span class="pre">parse_args</span></code>. Les deux tirets disparaissent du nom de la valeur lue :
+<code class="docutils literal notranslate"><span class="pre">--distance</span></code> donne <code class="docutils literal notranslate"><span class="pre">options.distance</span></code>.</p>
+<!-- [[[cog td.modif("b2.1")]]] -->
+<div class="highlight-modif notranslate"><div class="highlight"><pre><span></span>    8 analyseur.add_argument("-s", "--seuil", type=float, default=0,
+    9                        help="variation ignorée sous ce seuil, en mètres")
+<span class="gi">+++</span>
+<span class="gi">analyseur.add_argument("--distance", action="store_true",</span>
+<span class="gi">                       help="affiche la distance parcourue")</span>
+<span class="gi">+++</span>
+   12 options = analyseur.parse_args()
+   13
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+<p><strong>Affichage du message.</strong> Ajouter le bloc <code class="docutils literal notranslate"><span class="pre">if</span></code> à la fin du fichier. Il n’affiche le
+message que si la commande contient l’option.</p>
+<!-- [[[cog td.modif("b2.2")]]] -->
+<div class="highlight-modif notranslate"><div class="highlight"><pre><span></span>   43 with open("resume.txt", "a", encoding="utf-8") as sortie:
+   44     sortie.write(f"{FICHIER.name} : seuil {SEUIL}, hausse {hausse:.1f} m, baisse {baisse:.1f} m\n")
+<span class="gi">+++</span>
+
+<span class="gi">if options.distance:</span>
+<span class="gi">    print("distance : calcul manquant")</span>
+<span class="gi">+++</span>
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+</section>
+<section id="solution-de-l-etape-b3">
+<h2>Solution de l’étape B3<a class="headerlink" href="#solution-de-l-etape-b3" title="Lien vers cette rubrique">#</a></h2>
+<p><strong>Création de la liste.</strong> La liste est vide au départ, comme <code class="docutils literal notranslate"><span class="pre">altitudes</span></code>.</p>
+<!-- [[[cog td.modif("b3.1")]]] -->
+<div class="highlight-modif notranslate"><div class="highlight"><pre><span></span>   16
+   17 altitudes = []
+<span class="gi">+++</span>
+<span class="gi">points = []</span>
+<span class="gi">+++</span>
+   19 with open(FICHIER, encoding="utf-8") as fichier:
+   20     fichier.readline()
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+<p><strong>Remplissage de la liste.</strong> Le bloc <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">options.distance:</span></code> est dans la boucle de lecture, au
+même niveau d’indentation que <code class="docutils literal notranslate"><span class="pre">altitudes.append</span></code>. <code class="docutils literal notranslate"><span class="pre">float</span></code> convertit chaque texte lu en
+nombre. Les parenthèses intérieures forment le tuple : <code class="docutils literal notranslate"><span class="pre">append</span></code> reçoit un seul
+argument, le tuple des trois nombres.</p>
+<!-- [[[cog td.modif("b3.2")]]] -->
+<div class="highlight-modif notranslate"><div class="highlight"><pre><span></span>   22         x, y, ele, time = ligne.strip().split(",")
+   23         altitudes.append(float(ele))
+<span class="gi">+++</span>
+<span class="gi">        if options.distance:</span>
+<span class="gi">            points.append((float(x), float(y), float(ele)))</span>
+<span class="gi">+++</span>
+   26
+   27 print(f"altitude minimale : {min(altitudes):.1f} m")
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+<p><strong>Contrôle des valeurs lues.</strong> <code class="docutils literal notranslate"><span class="pre">len</span></code> donne le nombre d’éléments d’une liste, et
+l’indice 0 désigne le premier élément, ici le premier tuple. Ces deux affichages sont
+provisoires : l’étape B4 les retire.</p>
+<!-- [[[cog td.modif("b3.3")]]] -->
+<div class="highlight-modif notranslate"><div class="highlight"><pre><span></span>   48
+   49 if options.distance:
+<span class="gi">+++</span>
+<span class="gi">    print(f"positions lues : {len(points)}")</span>
+<span class="gi">    print(f"position 0 : {points[0]}")</span>
+<span class="gi">+++</span>
+   52     print("distance : calcul manquant")
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+</section>
+<section id="solution-de-l-etape-b4">
+<h2>Solution de l’étape B4<a class="headerlink" href="#solution-de-l-etape-b4" title="Lien vers cette rubrique">#</a></h2>
+<p><strong>Import du module.</strong> Ajouter l’import en tête du fichier, avec les autres.</p>
+<!-- [[[cog td.modif("b4.1")]]] -->
+<div class="highlight-modif notranslate"><div class="highlight"><pre><span></span>    2
+    3 import argparse
+<span class="gi">+++</span>
+<span class="gi">import math</span>
+<span class="gi">+++</span>
+    5 from pathlib import Path
+    6
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+<p><strong>Écriture de la fonction.</strong> Écrire la fonction avant le code qui l’appelle. Les paramètres
+<code class="docutils literal notranslate"><span class="pre">point1</span></code> et <code class="docutils literal notranslate"><span class="pre">point2</span></code> reçoivent les deux tuples donnés à l’appel. <code class="docutils literal notranslate"><span class="pre">x1,</span> <span class="pre">y1,</span> <span class="pre">altitude1</span> <span class="pre">=</span> <span class="pre">point1</span></code> sépare les trois valeurs du premier point, et <code class="docutils literal notranslate"><span class="pre">return</span></code> renvoie la distance à
+l’endroit de l’appel. <code class="docutils literal notranslate"><span class="pre">altitude1</span></code> et <code class="docutils literal notranslate"><span class="pre">altitude2</span></code> ne servent pas au calcul.</p>
+<!-- [[[cog td.modif("b4.2")]]] -->
+<div class="highlight-modif notranslate"><div class="highlight"><pre><span></span>    4 import math
+    5 from pathlib import Path
+<span class="gi">+++</span>
+
+
+<span class="gi">def distance_entre(point1, point2):</span>
+<span class="gi">    """La distance horizontale entre deux points (x, y, altitude), en mètres."""</span>
+<span class="gi">    x1, y1, altitude1 = point1</span>
+<span class="gi">    x2, y2, altitude2 = point2</span>
+<span class="gi">    return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)</span>
+
+<span class="gi">+++</span>
+   14
+   15 analyseur = argparse.ArgumentParser(description="Statistiques d'une trace GPS.")
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+<p><strong>Essai de la fonction.</strong> Le premier affichage appelle la fonction sur un triangle
+dont l’hypoténuse est connue : un résultat différent de <code class="docutils literal notranslate"><span class="pre">5.0</span></code> désigne une erreur dans
+la formule. Le second l’appelle sur les deux premières positions de la trace,
+<code class="docutils literal notranslate"><span class="pre">points[0]</span></code> et <code class="docutils literal notranslate"><span class="pre">points[1]</span></code>, et la variable <code class="docutils literal notranslate"><span class="pre">premier_segment</span></code> reçoit la valeur renvoyée.
+Ces trois lignes remplacent les affichages de l’étape B3.</p>
+<!-- [[[cog td.modif("b4.3")]]] -->
+<div class="highlight-modif notranslate"><div class="highlight"><pre><span></span>   57
+   58 if options.distance:
+<span class="gd">---</span>
+<span class="gd">   59     print(f"positions lues : {len(points)}")</span>
+<span class="gd">   60     print(f"position 0 : {points[0]}")</span>
+<span class="gd">---</span>
+<span class="gi">+++</span>
+<span class="gi">    print(f"essai, 5.0 attendu : {distance_entre((0, 0, 0), (3, 4, 0))}")</span>
+<span class="gi">    premier_segment = distance_entre(points[0], points[1])</span>
+<span class="gi">    print(f"premier segment : {premier_segment:.1f} m")</span>
+<span class="gi">+++</span>
+   62     print("distance : calcul manquant")
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+</section>
+<section id="solution-de-l-etape-b5">
+<h2>Solution de l’étape B5<a class="headerlink" href="#solution-de-l-etape-b5" title="Lien vers cette rubrique">#</a></h2>
+<p><strong>Écriture de la fonction, avec un affichage provisoire.</strong> Le total part de 0. La boucle
+commence à <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">=</span> <span class="pre">1</span></code>, parce que la position 0 n’a pas de position précédente, et
+s’arrête à la dernière position. La variable <code class="docutils literal notranslate"><span class="pre">segment</span></code> reçoit la distance entre la
+position <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">-</span> <span class="pre">1</span></code> et la position <code class="docutils literal notranslate"><span class="pre">i</span></code>. Le <code class="docutils literal notranslate"><span class="pre">print</span></code> de la boucle montre le total après
+chaque segment. La ligne <code class="docutils literal notranslate"><span class="pre">return</span></code> est au niveau de <code class="docutils literal notranslate"><span class="pre">for</span></code>, hors de la boucle : indentée
+dans la boucle, elle arrêterait la fonction après le premier segment.</p>
+<!-- [[[cog td.modif("b5.1")]]] -->
+<div class="highlight-modif notranslate"><div class="highlight"><pre><span></span>   11     x2, y2, altitude2 = point2
+   12     return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
+<span class="gi">+++</span>
+
+
+<span class="gi">def distance_parcourue(points):</span>
+<span class="gi">    """La somme des longueurs des segments de la trace, en mètres."""</span>
+<span class="gi">    total = 0</span>
+<span class="gi">    for i in range(1, len(points)):</span>
+<span class="gi">        segment = distance_entre(points[i - 1], points[i])</span>
+<span class="gi">        total = total + segment</span>
+<span class="gi">        print(f"position {i}, cumul : {total:.1f}")</span>
+<span class="gi">    return total</span>
+<span class="gi">+++</span>
+   23
+   24
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+<p><strong>Affichage du résultat final.</strong> Remplacer les affichages de l’étape B4 et le message
+<code class="docutils literal notranslate"><span class="pre">distance</span> <span class="pre">:</span> <span class="pre">calcul</span> <span class="pre">manquant</span></code> par l’appel de la fonction et l’affichage du résultat.</p>
+<!-- [[[cog td.modif("b5.2")]]] -->
+<div class="highlight-modif notranslate"><div class="highlight"><pre><span></span>   67
+   68 if options.distance:
+<span class="gd">---</span>
+<span class="gd">   69     print(f"essai, 5.0 attendu : {distance_entre((0, 0, 0), (3, 4, 0))}")</span>
+<span class="gd">   70     premier_segment = distance_entre(points[0], points[1])</span>
+<span class="gd">   71     print(f"premier segment : {premier_segment:.1f} m")</span>
+<span class="gd">   72     print("distance : calcul manquant")</span>
+<span class="gd">---</span>
+<span class="gi">+++</span>
+<span class="gi">    distance = distance_parcourue(points)</span>
+<span class="gi">    print(f"distance parcourue : {distance:.1f} m")</span>
+<span class="gi">+++</span>
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+<p>Le premier test montre le total après chaque segment :</p>
+<!-- [[[cog td.sortie("b5.2", "trace.csv", "--distance", debut=8, fin=2)]]] -->
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ python stats_trace.py trace.csv --distance
+altitude minimale : 78.8 m
+altitude maximale : 129.5 m
+max - min : 50.7 m
+cumul en hausse : 98.4 m
+cumul en baisse : 50.3 m
+position 1, cumul : 18.8
+position 2, cumul : 63.4
+position 3, cumul : 105.6
+…
+position 59, cumul : 1906.7
+distance parcourue : 1906.7 m
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+<p><strong>Retrait de l’affichage provisoire.</strong> Une fois les valeurs contrôlées, supprimer le
+<code class="docutils literal notranslate"><span class="pre">print</span></code> de la boucle.</p>
+<!-- [[[cog td.modif("b5.3")]]] -->
+<div class="highlight-modif notranslate"><div class="highlight"><pre><span></span>   19         segment = distance_entre(points[i - 1], points[i])
+   20         total = total + segment
+<span class="gd">---</span>
+<span class="gd">   21         print(f"position {i}, cumul : {total:.1f}")</span>
+<span class="gd">---</span>
+   21     return total
+   22
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+</section>
+<section id="solution-de-l-etape-b6">
+<h2>Solution de l’étape B6<a class="headerlink" href="#solution-de-l-etape-b6" title="Lien vers cette rubrique">#</a></h2>
+<p><strong>Déclaration de l’option.</strong> Déclarer <code class="docutils literal notranslate"><span class="pre">--vitesse</span></code> comme <code class="docutils literal notranslate"><span class="pre">--distance</span></code>.</p>
+<!-- [[[cog td.modif("b6.1")]]] -->
+<div class="highlight-modif notranslate"><div class="highlight"><pre><span></span>   28 analyseur.add_argument("--distance", action="store_true",
+   29                        help="affiche la distance parcourue")
+<span class="gi">+++</span>
+<span class="gi">analyseur.add_argument("--vitesse", action="store_true",</span>
+<span class="gi">                       help="affiche la vitesse moyenne")</span>
+<span class="gi">+++</span>
+   32 options = analyseur.parse_args()
+   33
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+<p><strong>Affichage du message.</strong> Ajouter un second bloc <code class="docutils literal notranslate"><span class="pre">if</span></code> à la fin du fichier. Les deux blocs
+sont séparés, pour que chaque option fonctionne sans l’autre.</p>
+<!-- [[[cog td.modif("b6.2")]]] -->
+<div class="highlight-modif notranslate"><div class="highlight"><pre><span></span>   70     distance = distance_parcourue(points)
+   71     print(f"distance parcourue : {distance:.1f} m")
+<span class="gi">+++</span>
+
+<span class="gi">if options.vitesse:</span>
+<span class="gi">    print("vitesse : calcul manquant")</span>
+<span class="gi">+++</span>
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+<p><strong>Import du module.</strong> <code class="docutils literal notranslate"><span class="pre">datetime</span></code> s’importe sans installation, comme <code class="docutils literal notranslate"><span class="pre">math</span></code>.
+<code class="docutils literal notranslate"><span class="pre">FORMAT_TEMPS</span></code> s’écrit en majuscules, comme <code class="docutils literal notranslate"><span class="pre">FICHIER</span></code> et <code class="docutils literal notranslate"><span class="pre">SEUIL</span></code>.</p>
+<!-- [[[cog td.modif("b6.3")]]] -->
+<div class="highlight-modif notranslate"><div class="highlight"><pre><span></span>    3 import argparse
+    4 import math
+<span class="gi">+++</span>
+<span class="gi">from datetime import datetime</span>
+<span class="gi">+++</span>
+    6 from pathlib import Path
+<span class="gi">+++</span>
+
+<span class="gi">FORMAT_TEMPS = "%Y/%m/%d %H:%M:%S+00"</span>
+<span class="gi">+++</span>
+    9
+   10
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+<p><strong>Écriture de la fonction.</strong> Elle convertit les deux textes en dates, puis renvoie en
+secondes la durée qui les sépare.</p>
+<!-- [[[cog td.modif("b6.4")]]] -->
+<div class="highlight-modif notranslate"><div class="highlight"><pre><span></span>   23         total = total + segment
+   24     return total
+<span class="gi">+++</span>
+
+
+<span class="gi">def secondes_ecoulees(debut, fin):</span>
+<span class="gi">    """Le temps en secondes entre deux valeurs de la colonne time."""</span>
+<span class="gi">    date_debut = datetime.strptime(debut, FORMAT_TEMPS)</span>
+<span class="gi">    date_fin = datetime.strptime(fin, FORMAT_TEMPS)</span>
+<span class="gi">    return (date_fin - date_debut).total_seconds()</span>
+<span class="gi">+++</span>
+   32
+   33
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+<p><strong>Essai de la fonction.</strong> Deux valeurs à 30 secondes d’écart donnent un résultat connu.</p>
+<!-- [[[cog td.modif("b6.5")]]] -->
+<div class="highlight-modif notranslate"><div class="highlight"><pre><span></span>   82
+   83 if options.vitesse:
+<span class="gi">+++</span>
+<span class="gi">    essai = secondes_ecoulees("2026/10/04 08:00:00+00", "2026/10/04 08:00:30+00")</span>
+<span class="gi">    print(f"essai, 30.0 attendu : {essai}")</span>
+<span class="gi">+++</span>
+   86     print("vitesse : calcul manquant")
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+<p><strong>Création de la liste des temps.</strong> Créer <code class="docutils literal notranslate"><span class="pre">temps</span></code> à côté de la liste <code class="docutils literal notranslate"><span class="pre">points</span></code>.</p>
+<!-- [[[cog td.modif("b6.6")]]] -->
+<div class="highlight-modif notranslate"><div class="highlight"><pre><span></span>   47 altitudes = []
+   48 points = []
+<span class="gi">+++</span>
+<span class="gi">temps = []</span>
+<span class="gi">+++</span>
+   50 with open(FICHIER, encoding="utf-8") as fichier:
+   51     fichier.readline()
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+<p><strong>Remplissage de la liste.</strong> Avec <code class="docutils literal notranslate"><span class="pre">--vitesse</span></code> seule, la boucle doit aussi garder les positions :
+la condition devient <code class="docutils literal notranslate"><span class="pre">options.distance</span> <span class="pre">or</span> <span class="pre">options.vitesse</span></code>. La variable <code class="docutils literal notranslate"><span class="pre">time</span></code> existe
+depuis le TD 3a, sans avoir servi jusqu’ici. Le texte reste tel quel, et
+<code class="docutils literal notranslate"><span class="pre">secondes_ecoulees</span></code> le convertit.</p>
+<!-- [[[cog td.modif("b6.7")]]] -->
+<div class="highlight-modif notranslate"><div class="highlight"><pre><span></span>   53         x, y, ele, time = ligne.strip().split(",")
+   54         altitudes.append(float(ele))
+<span class="gd">---</span>
+<span class="gd">   55         if options.distance:</span>
+<span class="gd">---</span>
+<span class="gi">+++</span>
+<span class="gi">        if options.distance or options.vitesse:</span>
+<span class="gi">+++</span>
+   56             points.append((float(x), float(y), float(ele)))
+<span class="gi">+++</span>
+<span class="gi">            temps.append(time)</span>
+<span class="gi">+++</span>
+   58
+   59 print(f"altitude minimale : {min(altitudes):.1f} m")
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+<p><strong>Calcul du temps total.</strong> <code class="docutils literal notranslate"><span class="pre">temps[-1]</span></code> désigne la dernière valeur, et <code class="docutils literal notranslate"><span class="pre">temps[0]</span></code> la
+première. Le format <code class="docutils literal notranslate"><span class="pre">:.0f</span></code> affiche le nombre sans chiffre après la virgule.</p>
+<!-- [[[cog td.modif("b6.8")]]] -->
+<div class="highlight-modif notranslate"><div class="highlight"><pre><span></span>   84
+   85 if options.vitesse:
+<span class="gd">---</span>
+<span class="gd">   86     essai = secondes_ecoulees("2026/10/04 08:00:00+00", "2026/10/04 08:00:30+00")</span>
+<span class="gd">   87     print(f"essai, 30.0 attendu : {essai}")</span>
+<span class="gd">---</span>
+<span class="gi">+++</span>
+<span class="gi">    temps_total = secondes_ecoulees(temps[0], temps[-1])</span>
+<span class="gi">    print(f"temps total : {temps_total:.0f} s")</span>
+<span class="gi">+++</span>
+   88     print("vitesse : calcul manquant")
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+<p><strong>Affichage du résultat final.</strong> Le bloc appelle <code class="docutils literal notranslate"><span class="pre">distance_parcourue</span></code> sans recopier sa
+boucle, puis divise la distance par le temps. <code class="docutils literal notranslate"><span class="pre">vitesse</span> <span class="pre">*</span> <span class="pre">3.6</span></code> convertit la vitesse en
+km/h pour l’affichage.</p>
+<!-- [[[cog td.modif("b6.9")]]] -->
+<div class="highlight-modif notranslate"><div class="highlight"><pre><span></span>   85 if options.vitesse:
+   86     temps_total = secondes_ecoulees(temps[0], temps[-1])
+<span class="gd">---</span>
+<span class="gd">   87     print(f"temps total : {temps_total:.0f} s")</span>
+<span class="gd">   88     print("vitesse : calcul manquant")</span>
+<span class="gd">---</span>
+<span class="gi">+++</span>
+<span class="gi">    distance = distance_parcourue(points)</span>
+<span class="gi">    vitesse = distance / temps_total</span>
+<span class="gi">    print(f"vitesse moyenne : {vitesse:.2f} m/s, soit {vitesse * 3.6:.1f} km/h")</span>
+<span class="gi">+++</span>
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+</section>
+<section id="solution-de-l-etape-b7">
+<h2>Solution de l’étape B7<a class="headerlink" href="#solution-de-l-etape-b7" title="Lien vers cette rubrique">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">..</span></code> désigne le dossier parent : <code class="docutils literal notranslate"><span class="pre">../../</span></code> remonte de <code class="docutils literal notranslate"><span class="pre">travail/stats_trace/</span></code> à
+<code class="docutils literal notranslate"><span class="pre">4a_trace/</span></code>. Le <code class="docutils literal notranslate"><span class="pre">.</span></code> final désigne le dossier courant.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cp ../../depart/modeles/README.md .
+</pre></div>
+</div>
+<p>Après avoir complété le README, faire le commit, puis poser l’étiquette. Une étiquette
+git, un <em>tag</em>, nomme un commit : <code class="docutils literal notranslate"><span class="pre">v1.0</span></code> désigne la version finale sans chercher son
+identifiant.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git add README.md
+git commit -m "Un README"
+git tag -a v1.0 -m "Première version"
+git log --oneline
+</pre></div>
+</div>
+</section>
+<section id="solution-de-l-etape-b8">
+<h2>Solution de l’étape B8<a class="headerlink" href="#solution-de-l-etape-b8" title="Lien vers cette rubrique">#</a></h2>
+<p><strong>Import de numpy.</strong> numpy ne fait pas partie de la bibliothèque standard : son import
+se place après les autres, séparé par une ligne vide.</p>
+<!-- [[[cog td.modif("b8.1")]]] -->
+<div class="highlight-modif notranslate"><div class="highlight"><pre><span></span>    5 from datetime import datetime
+    6 from pathlib import Path
+<span class="gi">+++</span>
+
+<span class="gi">import numpy as np</span>
+<span class="gi">+++</span>
+    9
+   10 FORMAT_TEMPS = "%Y/%m/%d %H:%M:%S+00"
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+<p><strong>Création des deux listes.</strong> Elles sont vides au départ, comme <code class="docutils literal notranslate"><span class="pre">points</span></code> et <code class="docutils literal notranslate"><span class="pre">temps</span></code>.</p>
+<!-- [[[cog td.modif("b8.2")]]] -->
+<div class="highlight-modif notranslate"><div class="highlight"><pre><span></span>   50 points = []
+   51 temps = []
+<span class="gi">+++</span>
+<span class="gi">liste_x = []</span>
+<span class="gi">liste_y = []</span>
+<span class="gi">+++</span>
+   54 with open(FICHIER, encoding="utf-8") as fichier:
+   55     fichier.readline()
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+<p><strong>Remplissage des listes.</strong> Les listes reçoivent les mêmes coordonnées que les tuples,
+rangées par colonne. La sortie reste celle de l’étape B6 : les listes ne servent pas
+encore.</p>
+<!-- [[[cog td.modif("b8.3")]]] -->
+<div class="highlight-modif notranslate"><div class="highlight"><pre><span></span>   60             points.append((float(x), float(y), float(ele)))
+   61             temps.append(time)
+<span class="gi">+++</span>
+<span class="gi">            liste_x.append(float(x))</span>
+<span class="gi">            liste_y.append(float(y))</span>
+<span class="gi">+++</span>
+   64
+   65 print(f"altitude minimale : {min(altitudes):.1f} m")
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+<p><strong>Écriture de la fonction.</strong> <code class="docutils literal notranslate"><span class="pre">np.diff(x)</span></code> contient les écarts <code class="docutils literal notranslate"><span class="pre">x[1]</span> <span class="pre">-</span> <span class="pre">x[0]</span></code>, <code class="docutils literal notranslate"><span class="pre">x[2]</span> <span class="pre">-</span> <span class="pre">x[1]</span></code>,
+et ainsi de suite : l’écart en X de chacun des 59 segments. <code class="docutils literal notranslate"><span class="pre">**</span></code>, <code class="docutils literal notranslate"><span class="pre">+</span></code> et <code class="docutils literal notranslate"><span class="pre">np.sqrt</span></code>
+s’appliquent à chaque élément, et <code class="docutils literal notranslate"><span class="pre">np.sum</span></code> additionne les 59 longueurs.</p>
+<!-- [[[cog td.modif("b8.4")]]] -->
+<div class="highlight-modif notranslate"><div class="highlight"><pre><span></span>   25         total = total + segment
+   26     return total
+<span class="gi">+++</span>
+
+
+<span class="gi">def distance_parcourue_numpy(liste_x, liste_y):</span>
+<span class="gi">    """La même somme, calculée par numpy sur les colonnes x et y."""</span>
+<span class="gi">    x = np.array(liste_x)</span>
+<span class="gi">    y = np.array(liste_y)</span>
+<span class="gi">    return np.sum(np.sqrt(np.diff(x) ** 2 + np.diff(y) ** 2))</span>
+<span class="gi">+++</span>
+   34
+   35
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+<p><strong>Comparaison des deux calculs.</strong> Afficher le résultat de numpy sous celui de
+<code class="docutils literal notranslate"><span class="pre">distance_parcourue</span></code>. Les deux calculs donnent la même distance.</p>
+<!-- [[[cog td.modif("b8.5")]]] -->
+<div class="highlight-modif notranslate"><div class="highlight"><pre><span></span>   95     distance = distance_parcourue(points)
+   96     print(f"distance parcourue : {distance:.1f} m")
+<span class="gi">+++</span>
+<span class="gi">    distance_numpy = distance_parcourue_numpy(liste_x, liste_y)</span>
+<span class="gi">    print(f"distance parcourue, numpy : {distance_numpy:.1f} m")</span>
+<span class="gi">+++</span>
+   99
+  100 if options.vitesse:
+</pre></div>
+</div>
+<!-- [[[end]]] -->
+</section>
+<section id="le-programme-a-la-fin-du-td">
+<h2>Le programme à la fin du TD<a class="headerlink" href="#le-programme-a-la-fin-du-td" title="Lien vers cette rubrique">#</a></h2>
+<!-- [[[cog td.programme("b6")]]] -->
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">"""Statistiques d'une trace GPS."""</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">argparse</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="n">FORMAT_TEMPS</span> <span class="o">=</span> <span class="s2">"%Y/%m/</span><span class="si">%d</span><span class="s2"> %H:%M:%S+00"</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">distance_entre</span><span class="p">(</span><span class="n">point1</span><span class="p">,</span> <span class="n">point2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""La distance horizontale entre deux points (x, y, altitude), en mètres."""</span>
+    <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">altitude1</span> <span class="o">=</span> <span class="n">point1</span>
+    <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">altitude2</span> <span class="o">=</span> <span class="n">point2</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">y2</span> <span class="o">-</span> <span class="n">y1</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">distance_parcourue</span><span class="p">(</span><span class="n">points</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""La somme des longueurs des segments de la trace, en mètres."""</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">)):</span>
+        <span class="n">segment</span> <span class="o">=</span> <span class="n">distance_entre</span><span class="p">(</span><span class="n">points</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="n">segment</span>
+    <span class="k">return</span> <span class="n">total</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">secondes_ecoulees</span><span class="p">(</span><span class="n">debut</span><span class="p">,</span> <span class="n">fin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Le temps en secondes entre deux valeurs de la colonne time."""</span>
+    <span class="n">date_debut</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">debut</span><span class="p">,</span> <span class="n">FORMAT_TEMPS</span><span class="p">)</span>
+    <span class="n">date_fin</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">fin</span><span class="p">,</span> <span class="n">FORMAT_TEMPS</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">date_fin</span> <span class="o">-</span> <span class="n">date_debut</span><span class="p">)</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span>
+
+
+<span class="n">analyseur</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">"Statistiques d'une trace GPS."</span><span class="p">)</span>
+<span class="n">analyseur</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">"fichier"</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">"le fichier CSV de la trace"</span><span class="p">)</span>
+<span class="n">analyseur</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">"-s"</span><span class="p">,</span> <span class="s2">"--seuil"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                       <span class="n">help</span><span class="o">=</span><span class="s2">"variation ignorée sous ce seuil, en mètres"</span><span class="p">)</span>
+<span class="n">analyseur</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">"--distance"</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">"store_true"</span><span class="p">,</span>
+                       <span class="n">help</span><span class="o">=</span><span class="s2">"affiche la distance parcourue"</span><span class="p">)</span>
+<span class="n">analyseur</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">"--vitesse"</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">"store_true"</span><span class="p">,</span>
+                       <span class="n">help</span><span class="o">=</span><span class="s2">"affiche la vitesse moyenne"</span><span class="p">)</span>
+<span class="n">options</span> <span class="o">=</span> <span class="n">analyseur</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+<span class="n">FICHIER</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">fichier</span><span class="p">)</span>
+<span class="n">SEUIL</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">seuil</span>
+
+<span class="n">altitudes</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">points</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">temps</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">FICHIER</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">fichier</span><span class="p">:</span>
+    <span class="n">fichier</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">ligne</span> <span class="ow">in</span> <span class="n">fichier</span><span class="p">:</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">ele</span><span class="p">,</span> <span class="n">time</span> <span class="o">=</span> <span class="n">ligne</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">","</span><span class="p">)</span>
+        <span class="n">altitudes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">ele</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">distance</span> <span class="ow">or</span> <span class="n">options</span><span class="o">.</span><span class="n">vitesse</span><span class="p">:</span>
+            <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="n">ele</span><span class="p">)))</span>
+            <span class="n">temps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"altitude minimale : </span><span class="si">{</span><span class="nb">min</span><span class="p">(</span><span class="n">altitudes</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> m"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"altitude maximale : </span><span class="si">{</span><span class="nb">max</span><span class="p">(</span><span class="n">altitudes</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> m"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"max - min : </span><span class="si">{</span><span class="nb">max</span><span class="p">(</span><span class="n">altitudes</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">min</span><span class="p">(</span><span class="n">altitudes</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> m"</span><span class="p">)</span>
+
+<span class="n">hausse</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">baisse</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">reference</span> <span class="o">=</span> <span class="n">altitudes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">altitude</span> <span class="ow">in</span> <span class="n">altitudes</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+    <span class="n">ecart</span> <span class="o">=</span> <span class="n">altitude</span> <span class="o">-</span> <span class="n">reference</span>
+    <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">ecart</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">SEUIL</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">ecart</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">hausse</span> <span class="o">=</span> <span class="n">hausse</span> <span class="o">+</span> <span class="n">ecart</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">baisse</span> <span class="o">=</span> <span class="n">baisse</span> <span class="o">-</span> <span class="n">ecart</span>
+        <span class="n">reference</span> <span class="o">=</span> <span class="n">altitude</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"cumul en hausse : </span><span class="si">{</span><span class="n">hausse</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> m"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"cumul en baisse : </span><span class="si">{</span><span class="n">baisse</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> m"</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"resume.txt"</span><span class="p">,</span> <span class="s2">"a"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">sortie</span><span class="p">:</span>
+    <span class="n">sortie</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">FICHIER</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> : seuil </span><span class="si">{</span><span class="n">SEUIL</span><span class="si">}</span><span class="s2">, hausse </span><span class="si">{</span><span class="n">hausse</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> m, baisse </span><span class="si">{</span><span class="n">baisse</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> m</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">distance</span><span class="p">:</span>
+    <span class="n">distance</span> <span class="o">=</span> <span class="n">distance_parcourue</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"distance parcourue : </span><span class="si">{</span><span class="n">distance</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> m"</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">vitesse</span><span class="p">:</span>
+    <span class="n">temps_total</span> <span class="o">=</span> <span class="n">secondes_ecoulees</span><span class="p">(</span><span class="n">temps</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">temps</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">distance</span> <span class="o">=</span> <span class="n">distance_parcourue</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+    <span class="n">vitesse</span> <span class="o">=</span> <span class="n">distance</span> <span class="o">/</span> <span class="n">temps_total</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"vitesse moyenne : </span><span class="si">{</span><span class="n">vitesse</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> m/s, soit </span><span class="si">{</span><span class="n">vitesse</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">3.6</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> km/h"</span><span class="p">)</span>
+</pre></div>
+</div>
+<!-- [[[end]]] --></section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../../../index.html"
+       title="page précédente">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">précédent</p>
+        <p class="prev-next-title">Séance 4 — Projet d’application 1</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../../../cours5_v2/index.html"
+       title="page suivante">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">suivant</p>
+        <p class="prev-next-title">Séance 5 — Réutiliser des programmes et des bibliothèques</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">TD 4a — Un script Python, pas à pas</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#presentation-du-td">Présentation du TD</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objectif-du-td">Objectif du TD</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-programme">Le programme</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-trace-gps">La trace GPS</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#materiel-du-td">Matériel du TD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methode-de-travail">Méthode de travail</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-test-a-chaque-etape">Un test à chaque étape</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#les-etapes">Les étapes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-notions-employees">Les notions employées</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#enonce">Énoncé</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-a1-dossier-du-projet">Étape A1 · Dossier du projet</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-a2-projet-dans-vs-code">Étape A2 · Projet dans VS Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-a3-depot-git">Étape A3 · Dépôt git</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b1-correction-du-programme-de-depart">Étape B1 · Correction du programme de départ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b2-option-de-distance">Étape B2 · Option de distance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b3-lecture-des-positions-x-et-y">Étape B3 · Lecture des positions X et Y</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b4-distance-entre-deux-points">Étape B4 · Distance entre deux points</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b4-fonction-distance-entre">Étape B4 · Fonction distance_entre</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b4-essai-de-la-fonction">Étape B4 · Essai de la fonction</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b5-distance-parcourue">Étape B5 · Distance parcourue</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b5-fonction-distance-parcourue">Étape B5 · Fonction distance_parcourue</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b5-appel-de-la-fonction">Étape B5 · Appel de la fonction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b5-resultat-final">Étape B5 · Résultat final</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b6-calcul-de-la-vitesse-moyenne">Étape B6 · Calcul de la vitesse moyenne</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b6-option-de-vitesse">Étape B6 · Option de vitesse</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b6-fonction-secondes-ecoulees">Étape B6 · Fonction secondes_ecoulees</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b6-temps-total">Étape B6 · Temps total</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b6-vitesse-moyenne">Étape B6 · Vitesse moyenne</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b7-facultative-readme-et-etiquette">Étape B7 (facultative) · README et étiquette</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b8-facultative-distance-calculee-avec-numpy">Étape B8 (facultative) · Distance calculée avec numpy</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b8-facultative-listes-des-coordonnees">Étape B8 (facultative) · Listes des coordonnées</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-b8-facultative-calcul-avec-numpy">Étape B8 (facultative) · Calcul avec numpy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#solutions">Solutions</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-des-blocs-de-modification">Lecture des blocs de modification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-de-l-etape-a1">Solution de l’étape A1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-de-l-etape-a2">Solution de l’étape A2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-de-l-etape-a3">Solution de l’étape A3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-de-l-etape-b1">Solution de l’étape B1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-de-l-etape-b2">Solution de l’étape B2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-de-l-etape-b3">Solution de l’étape B3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-de-l-etape-b4">Solution de l’étape B4</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-de-l-etape-b5">Solution de l’étape B5</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-de-l-etape-b6">Solution de l’étape B6</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-de-l-etape-b7">Solution de l’étape B7</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-de-l-etape-b8">Solution de l’étape B8</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#le-programme-a-la-fin-du-td">Le programme à la fin du TD</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par 1re année géomatique
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, module info01 — CC-BY-4.0.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

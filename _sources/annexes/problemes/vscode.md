@@ -1,0 +1,306 @@
+---
+title: Problèmes avec VS Code
+---
+
+La configuration de VS Code est dans [VS Code](../configuration/vscode.md),
+[Python et environnement conda](../configuration/vscode_python.md) et
+[VS Code : notebooks](../configuration/vscode_notebooks.md).
+
+(dep-vscode)=
+## Problèmes
+
+(dep-v1)=
+### V1. VS Code n'est pas dans le menu Démarrer
+
+Ce qu'on voit
+: Le menu Démarrer ne propose rien pour `visual studio code` ni pour `code`.
+
+Vérifier
+: Dans un `cmd`, `dir "%LOCALAPPDATA%\Programs\Microsoft VS Code\Code.exe"`
+  puis `dir "%ProgramFiles%\Microsoft VS Code\Code.exe"`.
+
+Solution
+: Si l'un des deux fichiers existe, double-cliquer dessus dans
+  l'explorateur, puis clic droit sur l'icône de la barre des tâches,
+  « Épingler à la barre des tâches ». Si aucun n'existe, VS Code n'est pas
+  sur le poste : prévenir l'enseignant.
+
+(dep-v2)=
+### V2. VS Code ne trouve pas Python selon d'où on l'a lancé
+
+Ce qu'on voit
+: Lancé depuis Navigator, VS Code propose `base` et son terminal trouve
+  `python`. Lancé depuis le menu Démarrer, ni l'un ni l'autre. Ou l'inverse
+  selon les réglages déjà faits.
+
+Cause
+: Un programme reçoit de celui qui le lance la liste des dossiers où
+  chercher les commandes. Navigator, qui s'exécute dans `base`, transmet à VS
+  Code une liste qui contient Anaconda ; le menu Démarrer transmet celle du
+  compte, qui ne le contient pas ({ref}`A2 <dep-a2>`).
+
+Solution
+: Toujours lancer VS Code depuis le menu Démarrer, une fois l'interpréteur
+  et le terminal réglés ([Python et environnement
+  conda](../configuration/vscode_python.md)). Le résultat ne dépend alors ni de Navigator ni d'une fenêtre
+  ouverte avant.
+
+(dep-v3)=
+### V3. L'extension Python ne s'installe pas
+
+Ce qu'on voit
+: Le panneau Extensions reste vide, ou affiche « We cannot connect to the
+  Extensions Marketplace », ou l'installation ne finit pas.
+
+Cause
+: Les extensions viennent d'un serveur. Sans session réseau
+  ({ref}`R1 <dep-r1>`) ou derrière un proxy ({ref}`R2 <dep-r2>`), VS Code
+  ne l'atteint pas.
+
+Vérifier
+: Ouvrir <https://marketplace.visualstudio.com> dans Firefox.
+
+Solution
+: Ouvrir la session réseau et relancer l'installation. Sans réseau, une
+  extension s'installe depuis un fichier `.vsix` : panneau Extensions,
+  bouton `…` en haut, « Install from VSIX… ». L'extension Python en
+  demande deux autres, Pylance et Python Debugger, à installer de la même
+  façon [à décider : fournir les `.vsix` avec l'archive du TD].
+
+(dep-v4)=
+### V4. « Restricted Mode » : l'extension Python ne fait rien
+
+Ce qu'on voit
+: « Restricted Mode » en bas de la fenêtre. « Python: Select Interpreter »
+  n'est pas dans la palette. Aucun terminal ne s'ouvre, ou VS Code demande
+  d'abord si on fait confiance au dossier.
+
+Cause
+: Le dossier ouvert n'a pas été approuvé, et l'extension Python ne se
+  charge que dans un dossier approuvé.
+
+Solution
+: Cliquer sur « Restricted Mode » en bas de la fenêtre, puis « Trust ». Ou
+  palette, « Workspaces: Manage Workspace Trust ».
+
+(dep-v5)=
+### V5. Le terminal de VS Code affiche une erreur dès qu'il s'ouvre
+
+Ce qu'on voit
+: À chaque nouveau terminal, une ligne de commande s'écrit toute seule,
+  puis `… activate.ps1 cannot be loaded because running scripts is disabled
+  on this system` ({ref}`A7 <dep-a7>`), `'conda' n'est pas reconnu`
+  ({ref}`A2 <dep-a2>`), ou `CondaError: Run 'conda init' before 'conda
+  activate'`. L'invite ne commence pas par `(base)`.
+
+Cause
+: Le terminal est un PowerShell, qui refuse par défaut le script d'activation
+  sur les postes de la salle ({ref}`A7 <dep-a7>`). Ou le terminal est un
+  « Command Prompt » ordinaire, où l'extension Python tape `conda activate base` :
+  cette commande ne fonctionne dans un `cmd` qu'après un `conda init cmd.exe`,
+  rarement fait sur les postes.
+
+Solution
+: Faire de Git Bash le terminal par défaut : palette, « Terminal: Select
+  Default Profile », « Git Bash », puis fermer ce terminal et en ouvrir un
+  nouveau ([Python et environnement
+  conda](../configuration/vscode_python.md)). Si l'invite ne commence pas
+  par `(base)` : {ref}`A3 <dep-a3>`.
+
+  Avec le profil de secours « Anaconda Prompt », si l'erreur reste :
+  vérifier que le fichier a été enregistré, que
+  l'onglet du terminal s'appelle « Anaconda Prompt », que les chemins sont
+  ceux du raccourci « Anaconda Prompt », et faire palette, « Developer: Reload
+  Window ». Si le fichier de réglages est souligné en rouge :
+  {ref}`V10 <dep-v10>`.
+
+(dep-v6)=
+### V6. « Python: Select Interpreter » ne propose pas Anaconda
+
+Ce qu'on voit
+: La liste ne contient que « Enter interpreter path… », ou des Python qui
+  ne sont pas celui d'Anaconda (`C:\Python27`, le Python du Microsoft
+  Store).
+
+Cause
+: L'extension cherche Anaconda à plusieurs endroits du poste, dont
+  `C:\ProgramData\anaconda3`. Elle ne le trouve pas quand il est installé
+  ailleurs, ou quand la recherche a échoué une fois et que son résultat
+  est resté en cache ([Comment VS Code gère les
+  environnements](../notions/vscode_environnements.md)).
+
+Solution
+: Cliquer « Enter interpreter path… », puis coller le chemin
+  `C:\ProgramData\anaconda3\python.exe`, et appuyer sur Entrée. « Find… » ouvre
+  une fenêtre de choix, qui n'affiche pas `C:\ProgramData`, un dossier masqué.
+  Si la recherche a échoué une fois : palette, « Python: Clear Cache and Reload
+  Window », puis {ref}`V13 <dep-v13>` si la liste reste fausse. Pour que la liste devienne
+  complète (avec les environnements du TD 1h) : le réglage
+  `python.condaPath`, décrit dans [Fichiers de
+  réglages](../configuration/vscode_reglages.md), puis « Developer: Reload
+  Window ». Le chemin exact est celui du raccourci « Anaconda Prompt »
+  ({ref}`A1 <dep-a1>`).
+
+(dep-v8)=
+### V8. `ModuleNotFoundError` alors que le paquet est installé
+
+Ce qu'on voit
+: `ModuleNotFoundError: No module named 'pandas'` (ou un autre), alors que
+  `conda list` dit que le paquet est là.
+
+Cause
+: Le paquet est dans un environnement, et le programme s'exécute dans un
+  autre. Trois choix indépendants désignent l'environnement : l'interpréteur
+  (bouton Run), le terminal (ce qui y est activé), le noyau du notebook.
+
+Vérifier
+: Dans chacun des trois, `import sys; print(sys.executable)` : les chemins
+  doivent être identiques. `conda list -n <env> <paquet>` dit dans quel
+  environnement le paquet est.
+
+Solution
+: Choisir le même environnement aux trois endroits ([Python et
+  environnement conda](../configuration/vscode_python.md),
+  {ref}`J4 <dep-j4>`), ou installer le paquet dans celui qui s'exécute :
+  `conda install -n <env> -c conda-forge <paquet>`.
+
+(dep-v9)=
+### V9. Le raccourci clavier du terminal ne répond pas
+
+Ce qu'on voit
+: `Ctrl` + `ù` n'ouvre rien, ou ouvre autre chose.
+
+Cause
+: Le raccourci dépend de la disposition du clavier, et le poste n'a pas
+  forcément celle attendue.
+
+Solution
+: Menu Terminal, New Terminal. Ou palette, « Terminal: Create New
+  Terminal ».
+
+(dep-v10)=
+### V10. Le fichier de réglages est souligné en rouge, ou ne s'enregistre pas
+
+Ce qu'on voit
+: « Unable to write into user settings. Please open the user settings to
+  correct errors/warnings in it and try again ». Ou un réglage ajouté qui
+  ne produit rien, avec une ligne soulignée en rouge dans `settings.json`.
+
+Cause
+: Une erreur de syntaxe dans le fichier : virgule manquante entre deux
+  réglages, virgule en trop avant l'accolade finale, barre oblique inverse
+  simple dans un chemin.
+
+Vérifier
+: Palette, « Preferences: Open User Settings (JSON) ». Le panneau Problems
+  (`Ctrl` + `Maj` + `M`) indique la ligne.
+
+Solution
+: Corriger la ligne indiquée. Chaque réglage est séparé du suivant par une
+  virgule ; le dernier n'en a pas ; les chemins s'écrivent avec `\\`. En
+  cas de doute, passer par l'interface : palette, « Preferences: Open
+  Settings (UI) », qui écrit le fichier elle-même.
+
+(dep-v11)=
+### V11. « Error loading webview: Could not register service worker »
+
+Ce qu'on voit
+: À l'ouverture de l'aperçu Markdown (`Ctrl` + `Maj` + `V`), d'un
+  notebook ou de la page des réglages, un cadre vide avec `Error loading
+  webview: Error: Could not register service worker: InvalidStateError:
+  Failed to register a ServiceWorker: The document is in an invalid
+  state`.
+
+Cause
+: Ces vues sont des pages web internes, servies par un programme de cache
+  du navigateur intégré, le *service worker*. Son cache est dans le profil
+  du compte, `C:\Users\<nom>\AppData\Roaming\Code\Service Worker`. Quand
+  il a été écrit par une version antérieure de VS Code, la version en
+  place ne parvient plus à l'enregistrer. Sur les postes de la salle, le
+  profil date de la création de l'image, et VS Code a été mis à jour plusieurs
+  fois depuis.
+
+Vérifier
+: Dans l'explorateur de fichiers, la date de modification du dossier
+  `Service Worker` est antérieure au dernier démarrage de VS Code.
+
+Solution
+: D'abord palette, « Developer: Reload Webviews », qui corrige parfois l'erreur
+  pour la session. Sinon, fermer VS Code entièrement, puis dans un `cmd`
+  supprimer les caches, que VS Code recrée au démarrage suivant :
+
+  ```
+  rmdir /s /q "%APPDATA%\Code\Service Worker"
+  rmdir /s /q "%APPDATA%\Code\Cache"
+  rmdir /s /q "%APPDATA%\Code\Code Cache"
+  rmdir /s /q "%APPDATA%\Code\CachedData"
+  rmdir /s /q "%APPDATA%\Code\GPUCache"
+  ```
+
+  Les réglages (`User\`), les extensions et l'historique des fichiers
+  ouverts ne sont pas dans ces dossiers. Relancer VS Code et rouvrir
+  l'aperçu. Si l'erreur reste, un antivirus ou une stratégie empêche
+  l'écriture dans `Service Worker` : lancer `code --verbose` depuis un
+  `cmd` affiche le refus dans la console.
+
+(dep-v12)=
+### V12. « Git Bash » n'est pas proposé parmi les terminaux de VS Code
+
+Ce qu'on voit
+: « Terminal: Select Default Profile » ne propose que PowerShell et Command
+  Prompt.
+
+Cause
+: VS Code cherche les terminaux à son démarrage. Il ne devine le chemin de
+  Git Bash que si Git for Windows est installé dans un dossier nommé `Git`
+  ([Git Bash : une fenêtre, bash et des programmes](../notions/git_bash.md)).
+
+Vérifier
+: Dans un `cmd`, `dir "C:\Program Files\Git\bin\bash.exe"`.
+
+Solution
+: Fermer VS Code et le relancer. S'il reste absent et que le fichier existe,
+  recopier le profil « Git Bash » de [Fichiers de
+  réglages](../configuration/vscode_reglages.md). Si le fichier n'existe pas,
+  voir les solutions de secours de [Git et Git
+  Bash](../configuration/git.md).
+
+(dep-v13)=
+### V13. Un interpréteur supprimé reste proposé, ou un environnement nouveau n'apparaît pas
+
+Ce qu'on voit
+: Après la suppression ou la recréation d'un environnement, un interpréteur qui
+  n'existe plus reste proposé, ou un environnement nouveau n'apparaît pas dans
+  la liste.
+
+Cause
+: VS Code et ses extensions gardent des informations d'une session à
+  l'autre : la liste des environnements trouvés, l'interpréteur choisi pour
+  chaque dossier, le noyau de chaque notebook. Ces informations peuvent ne plus correspondre au poste.
+
+Solution
+: D'abord palette, « Python: Clear Cache and Reload Window ». La commande vide
+  le cache de l'extension Python et recharge la fenêtre.
+
+  Si le problème reste, fermer VS Code, puis lancer l'un des deux scripts
+  suivants depuis le dossier où il a été enregistré :
+
+  - {download}`vider_cache_vscode.bat <../configuration/fichiers/vider_cache_vscode.bat>`,
+    dans l'invite de commandes d'Anaconda : `vider_cache_vscode.bat` ;
+  - {download}`vider_cache_vscode.sh <../configuration/fichiers/vider_cache_vscode.sh>`, dans
+    Git Bash, et aussi sous macOS et Linux : `bash vider_cache_vscode.sh`.
+
+  Chaque script vérifie d'abord que VS Code est fermé. Il supprime ensuite
+  des dossiers de `%APPDATA%\Code`, le dossier de VS Code dans le compte :
+
+  | Dossiers | Contenu | Supprimés |
+  |---|---|---|
+  | `Cache`, `CachedData`, `CachedExtensionVSIXs`, `Code Cache`, `GPUCache` | les caches de l'application | toujours |
+  | `User\workspaceStorage` | l'état de chaque dossier ouvert : interpréteur choisi, noyau des notebooks, onglets ouverts | avec l'option `--tout` |
+  | `User\globalStorage\ms-python.python`, `ms-python.vscode-python-envs`, `ms-toolsai.jupyter` | les données des extensions Python, Python Environments et Jupyter | avec l'option `--tout` |
+
+  Les scripts ne touchent ni aux réglages (`settings.json`), ni aux
+  extensions installées. Après l'option `--tout`, l'interpréteur et le noyau
+  sont à choisir de nouveau dans chaque dossier. Les noms des dossiers
+  viennent de l'organisation habituelle de VS Code [à vérifier sur un poste
+  de la salle].

@@ -1,0 +1,62 @@
+---
+title: VS Code
+subtitle: Installer VS Code chez soi, régler le terminal et les chemins de conda
+---
+
+Télécharger VS Code sur <https://code.visualstudio.com>. Sous Windows,
+prendre le « User Installer » : il s'installe dans le profil, sans droits
+d'administrateur. Puis suivre les pages de la salle, [VS
+Code](../configuration/vscode.md) et [Python et environnement
+conda](../configuration/vscode_python.md), en changeant les chemins comme
+le décrit cette page.
+
+## Les réglages du compte sous Windows
+
+Les réglages de la salle ([Fichiers de
+réglages](../configuration/vscode_reglages.md)) nomment
+`C:\ProgramData\anaconda3`. Avec Miniforge, ils deviennent, en remplaçant
+`<nom>` par le nom du dossier du compte (`echo %USERPROFILE%`, dans la
+Miniforge Prompt, affiche le chemin complet) :
+
+```json
+{
+  "python.condaPath": "C:\\Users\\<nom>\\miniforge3\\Scripts\\conda.exe",
+  "python.defaultInterpreterPath": "C:\\Users\\<nom>\\miniforge3\\envs\\info01\\python.exe",
+  "python-envs.defaultEnvManager": "ms-python.python:conda",
+  "python-envs.defaultPackageManager": "ms-python.python:conda",
+  "terminal.integrated.profiles.windows": {
+    "Miniforge Prompt": {
+      "path": "C:\\Windows\\System32\\cmd.exe",
+      "args": ["/K", "C:\\Users\\<nom>\\miniforge3\\Scripts\\activate.bat", "C:\\Users\\<nom>\\miniforge3"]
+    }
+  },
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "editor.renderWhitespace": "all",
+  "files.autoSave": "afterDelay"
+}
+```
+
+`python.defaultInterpreterPath` désigne le Python de `info01`,
+l'environnement du module ([Python et conda](conda.md)). Git Bash est le
+terminal par défaut, comme dans la salle, et n'a pas besoin de profil
+([Git et éditeurs de texte](git_outils.md)). S'il n'est pas proposé :
+{ref}`V12 <dep-v12>`. Le profil
+« Miniforge Prompt » sert de secours, et reprend la cible du raccourci du même
+nom, dans le menu Démarrer.
+
+## Le terminal selon le système
+
+Sous macOS et Linux, le terminal de VS Code lit les fichiers que
+l'installateur de Miniforge a modifiés, et l'invite commence par `(base)`.
+Il n'y a rien à régler. L'extension Python trouve en général conda dans
+`~/miniforge3`. Sinon, donner son chemin complet dans `python.condaPath` :
+`/Users/<nom>/miniforge3/bin/conda` sous macOS,
+`/home/<nom>/miniforge3/bin/conda` sous Linux.
+
+Sous Windows, le terminal par défaut de VS Code est un PowerShell, et le réglage
+ci-dessus le remplace par Git Bash. Pour y activer conda, taper une fois les
+commandes de [Python et conda](conda.md), section conda dans les autres
+terminaux. Pour garder PowerShell, suivre {ref}`Anaconda, section conda dans un
+terminal <conda-terminal>`, onglet PowerShell. Sans cela, le terminal affiche
+`activate.ps1 cannot be loaded because running scripts is disabled`
+({ref}`A7 <dep-a7>`).

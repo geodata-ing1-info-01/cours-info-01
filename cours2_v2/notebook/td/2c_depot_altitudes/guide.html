@@ -1,0 +1,1968 @@
+
+<!DOCTYPE html>
+
+
+<html lang="fr" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>TD 2c — Un dépôt git pour altitudes.py &#8212; Introduction à l&#39;informatique</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/modif.css?v=b5c10e7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pages.css?v=e087e64c" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../../../_static/documentation_options.js?v=72dce1d2"></script>
+    <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../../../../_static/translations.js?v=e6b791cb"></script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cours2_v2/notebook/td/2c_depot_altitudes/guide';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="../../../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Recherche" href="../../../../search.html" />
+    <link rel="next" title="Séance 3 — Fichiers, chemins et programme en ligne de commande" href="../../../../cours3_v2/index.html" />
+    <link rel="prev" title="TD 2b — Trois programmes fautifs" href="../2b_erreurs/guide.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="fr"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../../../_static/searchtools.js"></script>
+    <script src="../../../../_static/language_data.js"></script>
+    <script src="../../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Passer au contenu principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Haut de page</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Alerte de version"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navigation dans le site">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="Sur cette page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction à l'informatique</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../index.html">
+                    Introduction à l’informatique
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Avant les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/poste.html">Premiers tests du poste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/donnees.html">Récupérer les fichiers d’une séance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/python.html">Anaconda et JupyterLab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../avant/vscode.html">VS Code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Après les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../apres/sauvegarder.html">Sauvegarder son travail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../apres/s_entrainer.html">S’entraîner : jeux et exercices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Séances</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours1_v2/index.html">Séance 1 — Logiciels, fichiers, terminal et premier programme</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/01_logiciels_stockage.html">Matériel, logiciels, fichiers et stockage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/02_terminal.html">Le terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/03_premier_programme.html">Premier programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1_v2/notebook/04_notebook.html">Un notebook et la syntaxe de Markdown</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours1_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1b_terminal/guide.html">TD 1b — Rejouer le TD 1a mais en ligne de commande</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1c_programme/guide.html">TD 1c — Lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1_v2/notebook/td/1d_notebook/guide.html">TD 1d — Un notebook dans JupyterLab</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../../index.html">Séance 2 — Éditeur de code et git local</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../01_editeur_de_code.html">L’éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../03_git_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../../travaux_diriges.html">Travaux dirigés de la séance 2</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../2a_vscode/guide.html">TD 2a — Configurer VS Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../2b_erreurs/guide.html">TD 2b — Trois programmes fautifs</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">TD 2c — Un dépôt git pour altitudes.py</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cours3_v2/index.html">Séance 3 — Fichiers, chemins et programme en ligne de commande</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours4_v2/index.html">Séance 4 — Projet d’application 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours4_v2/notebook/td/4a_trace/guide.html">TD 4a — Un script Python, pas à pas</a></li>
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours5_v2/index.html">Séance 5 — Réutiliser des programmes et des bibliothèques</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5_v2/notebook/td/5a_distribution/guide.html">TD 5a — L’emplacement de votre distribution Python</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5_v2/notebook/td/5b_environnement/guide.html">TD 5b — Un environnement pour le programme</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5_v2/notebook/td/5c_description/guide.html">TD 5c — Décrire l’installation pour un autre poste</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5_v2/notebook/td/5d_noyau/guide.html">TD 5d — Le noyau de l’environnement</a></li>
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cours6_v2/index.html">Séance 6 — Forge, mots de passe et secrets</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours7_v2/index.html">Séance 7 — Projet d’application 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours7_v2/notebook/td/7a_trace/guide.html">TD 7a — Une pull request sur son dépôt GitHub</a></li>
+
+
+
+
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Annexes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/configuration/index.html">Configuration des postes de la salle</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/anaconda.html">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/git.html">Git et Git Bash</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../annexes/configuration/vscode.html">VS Code</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_python.html">Python et environnement conda</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_notebooks.html">Notebooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../annexes/configuration/vscode_reglages.html">Fichiers de réglages</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/spyder.html">Spyder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/configuration/jupyterlab.html">JupyterLab sans Navigator</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/poste_personnel/index.html">Configuration d’un ordinateur personnel</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/conda.html">Python et conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/git_outils.html">Git et éditeurs de texte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/poste_personnel/vscode.html">VS Code</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/notions/index.html">Notions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/outils.html">Choisir entre JupyterLab, Spyder et VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/notebooks.html">Les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/terminaux.html">Les terminaux en ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/variables_environnement.html">Variables d’environnement et recherche des programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/environnements.html">Les environnements conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/vscode_environnements.html">Comment VS Code gère les environnements Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/notions/git_bash.html">Git Bash : une fenêtre, bash et des programmes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/faq.html">FAQ</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/reseau.html">Problèmes de réseau et de compte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/bureautique.html">Problèmes avec les logiciels de texte et de bureautique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/anaconda.html">Problèmes avec Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/jupyterlab.html">Problèmes avec JupyterLab et les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/vscode.html">Problèmes avec VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/problemes/git.html">Problèmes avec git et Git Bash</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../annexes/plus_loin/index.html">Pour aller plus loin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/gestionnaires.html">venv, uv et pixi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/cpp.html">C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/programme_interpreteur.html">Programme, application et interpréteur</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../annexes/plus_loin/processeur.html">Le processeur et la carte graphique</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Archive 2026</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours1/index.html">Séance 1, 2026 — Logiciel, programmation et formats de fichier</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/01_logiciels_et_formats.html">Logiciels et formats de fichier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/02_programmation.html">Programmation et éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/03_markdown_notebook.html">Markdown et notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/04_bibliotheques_environnements.html">Bibliothèques et environnements Python</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours1/notebook/travaux_diriges.html">Travaux dirigés de la séance 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1b_archive_odt/guide.html">TD 1b — Un .odt est une archive ZIP (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1c_vscode_python/guide.html">TD 1c — Configurer l’éditeur de code, et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1d_erreurs/guide.html">TD 1d — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1e_hello_cpp/guide.html">TD 1e — Le même programme en C++ (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1f_markdown/guide.html">TD 1f — Mettre en forme une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1g_notebooks/guide.html">TD 1g — Le notebook, ouvert de trois façons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1h_recette/guide.html">TD 1h — Installer un projet Python, et décrire son installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1i_noyaux/guide.html">TD 1i — Le client, le noyau, et où ils sont installés (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours1/notebook/td/1j_trajet/guide.html">TD 1j — Installer un projet en lisant son README (facultatif)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours1/notebook/05_comparer_versions.html">Annexe — Comparer deux versions d’un fichier</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours2/index.html">Séance 2, 2026 — Ligne de commande et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/01_ligne_de_commande.html">La ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/02_depot_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/03_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours2/notebook/04_lire_et_tenir_un_depot.html">Lire et tenir un dépôt</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2a_premier_depot/guide.html">TD 2a — Un premier dépôt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2b_branches/guide.html">TD 2b — Branches et fusions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2c_annuler/guide.html">TD 2c — Annuler et remettre à jour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2d_conflits/guide.html">TD 2d — Créer et résoudre un conflit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours2/notebook/td/2e_livrer/guide.html">TD 2e — Publier une version</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours3/index.html">Séance 3, 2026 — Chemins, fichiers et ligne de commande</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/01_chemins_programmes.html">Chemins et programmes externes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/02_fichiers_encodage.html">Fichiers et encodage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours3/notebook/03_du_notebook_au_programme.html">Du notebook au programme</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours3/notebook/travaux_diriges.html">Travaux dirigés de la séance 3</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours3/notebook/td/3e_markdown/guide.html">TD 3e — Une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours3/notebook/td/3f_cli/guide.html">TD 3f — Une ligne de commande pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours4/index.html">Séance 4, 2026 — Projet d’application 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../cours4/notebook/travaux_diriges.html">Travaux dirigés du projet 4</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours4/notebook/td/4a_recette/guide.html">TD 4a — Un script Python, pas à pas</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../../../cours4/notebook/td/4b_paquet/guide.html">TD 4b — Un programme installable</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours5/index.html">Séance 5, 2026 — Matériel, réseau, mots de passe, clés SSH et secrets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/01_materiel.html">Le matériel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/02_reseau.html">Le réseau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/03_prouver_qui_lon_est.html">Prouver qui l’on est</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/04_secrets.html">Les secrets de vos programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours5/notebook/travaux_diriges.html">Travaux dirigés de la séance 5</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cours6/index.html">Séance 6, 2026 — La forge, sur le dépôt du projet 4</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../cours7/index.html">Séance 7, 2026 — Projet d’application 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours7/notebook/td/7a_recette/guide.html">TD 7a — Compléter un projet GitHub, par des pull requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cours7/notebook/td/7b_train/guide.html">TD 7b — Reprendre et compléter le projet d’un autre</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Thème">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Thème" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Clair"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Sombre"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="Paramètres système"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>Paramètres système</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Clair</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Sombre</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>TD 2c — Un dépôt git pour altitudes.py</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rappels-avant-de-commencer">Rappels avant de commencer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-0-copie-du-programme">Étape 0 · Copie du programme</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#copie-du-programme-dans-travail">0.1 Copie du programme dans <code class="docutils literal notranslate"><span class="pre">travail/</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ouverture-de-travail-dans-vs-code">0.2 Ouverture de <code class="docutils literal notranslate"><span class="pre">travail/</span></code> dans VS Code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lancement-du-programme">0.3 Lancement du programme</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-1-depot-et-premier-commit">Étape 1 · Dépôt et premier commit</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creation-du-depot">1.1 Création du dépôt</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nom-et-adresse-de-l-auteur">1.2 Nom et adresse de l’auteur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etat-du-depot-avant-le-premier-commit">1.3 État du dépôt avant le premier commit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-premier-commit">1.4 Le premier commit</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-2-modification-et-commit">Étape 2 · Modification et commit</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-2-modification-du-programme">Étape 2 · Modification du programme</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#altitudes-extremes">2.1 Altitudes extrêmes</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-2-comparaison-et-commit">Étape 2 · Comparaison et commit</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#etat-du-depot-apres-la-modification">2.2 État du dépôt après la modification</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-avec-le-dernier-commit">2.3 Différence avec le dernier commit</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#le-commit">2.4 Le commit</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-3-annulation-d-une-modification">Étape 3 · Annulation d’une modification</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ligne-abimee">3.1 Ligne abîmée</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#restauration-du-fichier">3.2 Restauration du fichier</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-4-readme-et-fichier-de-notes">Étape 4 · README et fichier de notes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-4-ajout-d-un-fichier-readme">Étape 4 · Ajout d’un fichier README</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#le-fichier-readme-md">4.1 Le fichier <code class="docutils literal notranslate"><span class="pre">README.md</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-4-fichier-a-ignorer">Étape 4 · Fichier à ignorer</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#un-fichier-de-notes">4.2 Un fichier de notes</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#le-fichier-gitignore">4.3 Le fichier <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#le-commit-de-gitignore">4.4 Le commit de <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-5-branche-et-fusion">Étape 5 · Branche et fusion</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-5-enonce-branche-et-fusion">Étape 5 · Énoncé : branche et fusion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-5-solution-creation-d-une-branche">Étape 5 · Solution : création d’une branche</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creation-de-la-branche">5.1 Création de la branche</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#le-denivele-cumule">5.2 Le dénivelé cumulé</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-5-solution-fusion-de-la-branche">Étape 5 · Solution : fusion de la branche</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#retour-sur-master">5.3 Retour sur <code class="docutils literal notranslate"><span class="pre">master</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#un-commit-sur-master">5.4 Un commit sur <code class="docutils literal notranslate"><span class="pre">master</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fusion">5.5 Fusion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-6-conflit-de-fusion">Étape 6 · Conflit de fusion</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-6-meme-ligne-sur-deux-branches">Étape 6 · Même ligne sur deux branches</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#deux-modifications-de-la-meme-ligne">6.1 Deux modifications de la même ligne</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-6-resolution-du-conflit">Étape 6 · Résolution du conflit</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fusion-en-conflit">6.2 Fusion en conflit</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contenu-du-fichier">6.3 Contenu du fichier</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resolution">6.4 Résolution</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fin-de-la-fusion">6.5 Fin de la fusion</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-6-graphe-du-depot">Étape 6 · Graphe du dépôt</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dessin-du-graphe">6.6 Dessin du graphe</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-7-pour-aller-plus-loin-une-seconde-copie-du-depot">Étape 7 · Pour aller plus loin : une seconde copie du dépôt</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#copie-du-depot">7.1 Copie du dépôt</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-depot-d-origine">7.2 Le dépôt d’origine</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-commit-dans-la-copie">7.3 Un commit dans la copie</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recuperation-du-commit-dans-travail">7.4 Récupération du commit dans <code class="docutils literal notranslate"><span class="pre">travail/</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-le-td-fait-constater">Ce que le TD fait constater</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#index-et-commit">Index et commit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fichier-ignore">Fichier ignoré</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#restauration-d-un-fichier">Restauration d’un fichier</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#branches-et-fusion">Branches et fusion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graphe-du-depot-a-la-fin-de-l-etape-6">Graphe du dépôt à la fin de l’étape 6</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#copies-d-un-depot">Copies d’un dépôt</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#annexe-les-commandes-du-td">Annexe · Les commandes du TD</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="td-2c-un-depot-git-pour-altitudes-py">
+<h1>TD 2c — Un dépôt git pour altitudes.py<a class="headerlink" href="#td-2c-un-depot-git-pour-altitudes-py" title="Lien vers cette rubrique">#</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Les fichiers des TD de la séance sont dans l’archive <a href="../../../../telechargements/info01-cours2.zip">info01-cours2.zip</a>.</p>
+</div>
+<p>Ce guide détaille les étapes du TD 2c. Le TD versionne avec git <code class="docutils literal notranslate"><span class="pre">altitudes.py</span></code>,
+le programme du cours 1 : un premier commit, des modifications comparées, un
+README, un fichier de notes tenu hors du dépôt, puis une branche, une fusion et
+un conflit. Au fil du TD, le programme calcule en plus les altitudes extrêmes,
+leur écart et le dénivelé cumulé. Le code de ces calculs est fourni, car le TD porte sur
+git. Le TD dure une quarantaine de minutes. L’étape 7 est pour ceux qui ont fini.</p>
+<p>Le code de ce guide se copie depuis <code class="docutils literal notranslate"><span class="pre">guide_2c_depot_altitudes.html</span></code>, ouvert dans
+un navigateur, ou depuis <code class="docutils literal notranslate"><span class="pre">guide.ipynb</span></code>, ouvert dans JupyterLab. Copié depuis le
+PDF, il perd ses indentations.</p>
+<p>Pour chaque étape, le guide donne :</p>
+<ul class="simple">
+<li><p>les commandes à taper, dans l’ordre ;</p></li>
+<li><p>ce que git affiche en retour, en français ;</p></li>
+<li><p>comment vérifier que la commande a fonctionné, et quoi faire sinon.</p></li>
+</ul>
+<p>Les sorties de ce guide ont été relevées avec git 2.43 en français. Sur un
+poste où git est en anglais, les messages sont les mêmes, en anglais : le
+guide donne entre parenthèses les phrases anglaises à reconnaître. Les
+identifiants de commit (<code class="docutils literal notranslate"><span class="pre">64ed213</span></code>…) sont différents sur chaque poste.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Étape</p></th>
+<th class="head"><p>Objectif</p></th>
+<th class="head"><p>Action</p></th>
+<th class="head"><p>Commits à la fin</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#etape-0-copie-du-programme">0</a></p></td>
+<td><p>séparer le travail des fichiers livrés</p></td>
+<td><p>copier le programme dans <code class="docutils literal notranslate"><span class="pre">travail/</span></code>, l’ouvrir dans VS Code</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#etape-1-depot-et-premier-commit">1</a></p></td>
+<td><p>créer un dépôt et enregistrer un premier état</p></td>
+<td><p>créer le dépôt, faire le premier commit</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#etape-2-modification-et-commit">2</a></p></td>
+<td><p>lire une différence, puis l’enregistrer</p></td>
+<td><p>modifier le programme, lire la différence, faire un commit</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#etape-3-annulation-d-une-modification">3</a></p></td>
+<td><p>annuler une modification non enregistrée</p></td>
+<td><p>abîmer une ligne, puis la restaurer</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#etape-4-readme-et-fichier-de-notes">4</a></p></td>
+<td><p>décrire le projet, et ne pas versionner les notes personnelles</p></td>
+<td><p>écrire un README, ignorer le fichier de notes</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#etape-5-branche-et-fusion">5</a></p></td>
+<td><p>développer un calcul sur une branche, puis fusionner</p></td>
+<td><p>ajouter le dénivelé cumulé sur une branche, puis fusionner la branche</p></td>
+<td><p>7</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#etape-6-conflit-de-fusion">6</a></p></td>
+<td><p>résoudre un conflit de fusion</p></td>
+<td><p>modifier la même ligne sur deux branches, puis résoudre le conflit</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#etape-7-pour-aller-plus-loin-une-seconde-copie-du-depot">7</a></p></td>
+<td><p>copier un dépôt, et récupérer un commit fait dans la copie</p></td>
+<td><p>pour aller plus loin : copier le dépôt, puis récupérer un commit de la copie</p></td>
+<td><p>11</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Si le temps manque en séance, s’arrêter après l’étape 5 ; l’étape 6 se
+fait ensuite avec ce guide.</p>
+<section id="rappels-avant-de-commencer">
+<h2>Rappels avant de commencer<a class="headerlink" href="#rappels-avant-de-commencer" title="Lien vers cette rubrique">#</a></h2>
+<p><strong>VS Code et son terminal.</strong> Tout le TD se fait dans VS Code : l’explorateur
+à gauche, le fichier ouvert au centre, le terminal Git Bash en bas. Le
+terminal s’ouvre par le menu Terminal, New Terminal. Le TD 2a a fait de
+Git Bash le terminal par défaut ; si le terminal ouvert est PowerShell,
+choisir « Git Bash » dans la liste ouverte par la flèche à côté du <code class="docutils literal notranslate"><span class="pre">+</span></code>.</p>
+<p><img alt="VS Code, le dossier travail ouvert, et le terminal Git Bash" src="../../../../_images/vscode.png" /></p>
+<p><strong>L’invite de Git Bash.</strong> Elle tient sur plusieurs lignes : <code class="docutils literal notranslate"><span class="pre">(base)</span></code>, puis
+<code class="docutils literal notranslate"><span class="pre">eleve&#64;POSTE</span> <span class="pre">MINGW64</span></code> suivi du dossier courant, puis <code class="docutils literal notranslate"><span class="pre">$</span></code>. Une fois le dépôt
+créé, Git Bash ajoute à la fin du dossier courant le nom de la branche,
+entre parenthèses : <code class="docutils literal notranslate"><span class="pre">~/…/travail</span> <span class="pre">(master)</span></code>.</p>
+<p><strong>Enregistrer.</strong> Le réglage <code class="docutils literal notranslate"><span class="pre">files.autoSave</span></code> du TD 2a enregistre les
+fichiers automatiquement, après une seconde. Sans lui, <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">S</span></code> après chaque
+modification : git lit le fichier enregistré sur le disque.</p>
+<p><strong>La commande à taper en cas de doute.</strong> <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> affiche la
+branche courante, les fichiers qui ont changé, et les commandes qui
+s’appliquent. La taper avant de demander de l’aide.</p>
+<p><strong>L’aide de git.</strong> Chaque commande du TD est <code class="docutils literal notranslate"><span class="pre">git</span></code> suivi d’une
+sous-commande : <code class="docutils literal notranslate"><span class="pre">init</span></code>, <code class="docutils literal notranslate"><span class="pre">add</span></code>, <code class="docutils literal notranslate"><span class="pre">commit</span></code>… <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">-h</span></code> affiche dans le
+terminal les options de <code class="docutils literal notranslate"><span class="pre">add</span></code> ; <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">--help</span></code> ouvre la page complète du
+manuel dans le navigateur.</p>
+<p><strong>Les trois zones de git.</strong> Le schéma ci-dessous sert à toutes les étapes.
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> place un fichier dans l’index ; <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code> enregistre l’index
+dans le dépôt.</p>
+<p><img alt="Les trois zones de git" src="../../../../_images/zones.png" /></p>
+<p><strong>Un éditeur s’ouvre dans le terminal.</strong> Si une commande git ouvre un
+écran avec des <code class="docutils literal notranslate"><span class="pre">~</span></code> en début de ligne, l’éditeur vim est ouvert, pour
+écrire un message. Taper <code class="docutils literal notranslate"><span class="pre">Échap</span></code>, puis <code class="docutils literal notranslate"><span class="pre">:wq</span></code> et <code class="docutils literal notranslate"><span class="pre">Entrée</span></code> pour garder le message
+proposé, ou <code class="docutils literal notranslate"><span class="pre">:q!</span></code> et <code class="docutils literal notranslate"><span class="pre">Entrée</span></code> pour abandonner. Le guide donne chaque message
+par <code class="docutils literal notranslate"><span class="pre">-m</span></code> pour éviter cet écran.</p>
+</section>
+<section id="etape-0-copie-du-programme">
+<h2>Étape 0 · Copie du programme<a class="headerlink" href="#etape-0-copie-du-programme" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>Objectif :</strong> copier <code class="docutils literal notranslate"><span class="pre">altitudes.py</span></code> dans <code class="docutils literal notranslate"><span class="pre">travail/</span></code>, ouvrir ce dossier dans VS Code, et lancer
+le programme.</p>
+</div></blockquote>
+<p>Le dossier du TD est dans l’archive de la séance :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>~/Desktop/info01/cours2/
+├── README.md
+└── 2c_depot_altitudes/
+    ├── depart/
+    │   └── altitudes.py
+    ├── travail/                        vide
+    ├── td_2c_depot_altitudes.pdf       la feuille du TD
+    ├── guide_2c_depot_altitudes.pdf    ce guide, en PDF
+    ├── guide_2c_depot_altitudes.html   ce guide, en page web
+    ├── guide.ipynb                     ce guide, en notebook
+    └── illustrations/                  les images du guide
+</pre></div>
+</div>
+<section id="copie-du-programme-dans-travail">
+<h3>0.1 Copie du programme dans <code class="docutils literal notranslate"><span class="pre">travail/</span></code><a class="headerlink" href="#copie-du-programme-dans-travail" title="Lien vers cette rubrique">#</a></h3>
+<p>Dans le terminal de VS Code, se placer dans le dossier du TD, puis copier
+le programme :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd ~/Desktop/info01/cours2/2c_depot_altitudes
+cp depart/altitudes.py travail/
+</pre></div>
+</div>
+<p><strong>Test</strong> : <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">travail</span></code> affiche <code class="docutils literal notranslate"><span class="pre">altitudes.py</span></code>.</p>
+</section>
+<section id="ouverture-de-travail-dans-vs-code">
+<h3>0.2 Ouverture de <code class="docutils literal notranslate"><span class="pre">travail/</span></code> dans VS Code<a class="headerlink" href="#ouverture-de-travail-dans-vs-code" title="Lien vers cette rubrique">#</a></h3>
+<p>Menu File, Open Folder…, puis choisir <code class="docutils literal notranslate"><span class="pre">cours2\2c_depot_altitudes\travail</span></code>. VS Code se
+rouvre sur ce dossier ; ouvrir un terminal (menu Terminal, New Terminal).</p>
+<p><strong>Test</strong> : l’explorateur montre le fichier ; dans le
+terminal, <code class="docutils literal notranslate"><span class="pre">pwd</span></code> affiche un chemin qui se termine par
+<code class="docutils literal notranslate"><span class="pre">2c_depot_altitudes/travail</span></code>.</p>
+<p>Le dépôt se crée dans le dossier courant du terminal. Si <code class="docutils literal notranslate"><span class="pre">pwd</span></code> affiche un
+autre dossier, <code class="docutils literal notranslate"><span class="pre">cd</span></code> jusqu’à <code class="docutils literal notranslate"><span class="pre">travail/</span></code> avant l’étape 1.</p>
+</section>
+<section id="lancement-du-programme">
+<h3>0.3 Lancement du programme<a class="headerlink" href="#lancement-du-programme" title="Lien vers cette rubrique">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python altitudes.py
+</pre></div>
+</div>
+<p><strong>Test</strong> : le programme affiche</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>moyenne : 93.7 m
+</pre></div>
+</div>
+<p>Ce programme est celui du cours 1, déjà lancé au TD 2a.</p>
+</section>
+</section>
+<section id="etape-1-depot-et-premier-commit">
+<h2>Étape 1 · Dépôt et premier commit<a class="headerlink" href="#etape-1-depot-et-premier-commit" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>Objectif :</strong> créer un dépôt git dans <code class="docutils literal notranslate"><span class="pre">travail/</span></code>, et y enregistrer <code class="docutils literal notranslate"><span class="pre">altitudes.py</span></code> par un
+premier commit.</p>
+</div></blockquote>
+<section id="creation-du-depot">
+<h3>1.1 Création du dépôt<a class="headerlink" href="#creation-du-depot" title="Lien vers cette rubrique">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git init
+</pre></div>
+</div>
+<p>git affiche d’abord une dizaine de lignes qui commencent par <code class="docutils literal notranslate"><span class="pre">astuce:</span></code>
+(<code class="docutils literal notranslate"><span class="pre">hint:</span></code> en anglais), sur le nom de la branche initiale : les ignorer. La
+dernière ligne est :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Dépôt Git vide initialisé dans …/2c_depot_altitudes/travail/.git/
+</pre></div>
+</div>
+<p>(« Initialized empty Git repository in … ».) Puis :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ls -a
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>.
+..
+altitudes.py
+.git
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">.git</span></code> est le dépôt : un dossier caché, qui contiendra l’historique. Les
+fichiers du dossier n’ont pas changé.</p>
+<p><strong>Test</strong> : l’invite se termine maintenant par <code class="docutils literal notranslate"><span class="pre">(master)</span></code>.</p>
+<p>Si <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span></code> a été tapé dans un autre dossier (<code class="docutils literal notranslate"><span class="pre">2c_depot_altitudes/</span></code> par
+exemple), supprimer le <code class="docutils literal notranslate"><span class="pre">.git</span></code> créé par erreur (<code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">-rf</span> <span class="pre">.git</span></code>, dans ce
+dossier-là), puis revenir dans <code class="docutils literal notranslate"><span class="pre">travail/</span></code> et recommencer.</p>
+</section>
+<section id="nom-et-adresse-de-l-auteur">
+<h3>1.2 Nom et adresse de l’auteur<a class="headerlink" href="#nom-et-adresse-de-l-auteur" title="Lien vers cette rubrique">#</a></h3>
+<p>Chaque commit porte le nom et l’adresse de son auteur. Les postes de la
+salle sont partagés : le réglage se fait dans le dépôt, sans <code class="docutils literal notranslate"><span class="pre">--global</span></code>, et
+ne vaut que pour lui.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git config user.name "Prénom Nom"
+git config user.email "prenom.nom@ensg.eu"
+</pre></div>
+</div>
+<p>Remplacer par vos nom et adresse. Aucun message ne s’affiche.</p>
+<p><strong>Test</strong> : <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">user.name</span></code> affiche le nom.</p>
+</section>
+<section id="etat-du-depot-avant-le-premier-commit">
+<h3>1.3 État du dépôt avant le premier commit<a class="headerlink" href="#etat-du-depot-avant-le-premier-commit" title="Lien vers cette rubrique">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git status
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Sur la branche master
+
+Aucun commit
+
+Fichiers non suivis:
+  (utilisez "git add &lt;fichier&gt;..." pour inclure dans ce qui sera validé)
+	altitudes.py
+
+aucune modification ajoutée à la validation mais des fichiers non suivis sont présents (utilisez "git add" pour les suivre)
+</pre></div>
+</div>
+<p>Le fichier est « non suivi » (« Untracked files ») : il est dans le dossier,
+mais aucun commit ne l’a encore enregistré.</p>
+</section>
+<section id="le-premier-commit">
+<h3>1.4 Le premier commit<a class="headerlink" href="#le-premier-commit" title="Lien vers cette rubrique">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git add altitudes.py
+git status
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Sur la branche master
+
+Aucun commit
+
+Modifications qui seront validées :
+  (utilisez "git rm --cached &lt;fichier&gt;..." pour désindexer)
+	nouveau fichier : altitudes.py
+</pre></div>
+</div>
+<p>Le fichier est dans l’index (« Changes to be committed »). Le
+commit enregistre l’index, avec un message qui décrit ce qu’il apporte :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git commit -m "Ajoute le calcul de la moyenne"
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[master (commit racine) 64ed213] Ajoute le calcul de la moyenne
+ 1 file changed, 8 insertions(+)
+ create mode 100644 altitudes.py
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">64ed213</span></code> est le début de l’identifiant du commit ; le vôtre est différent.</p>
+<p><strong>Test</strong> :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git log --oneline
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>64ed213 Ajoute le calcul de la moyenne
+</pre></div>
+</div>
+<p>Si <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code> affiche « Identité d’auteur inconnue » (« Author identity
+unknown »), l’étape 1.2 n’a pas été faite dans ce dépôt : la faire, puis
+refaire le <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code>.</p>
+</section>
+</section>
+<section id="etape-2-modification-et-commit">
+<h2>Étape 2 · Modification et commit<a class="headerlink" href="#etape-2-modification-et-commit" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>Objectif :</strong> remplacer dans <code class="docutils literal notranslate"><span class="pre">altitudes.py</span></code> le calcul de la moyenne par les altitudes extrêmes,
+afficher les modifications, puis les enregistrer par un commit.</p>
+</div></blockquote>
+<section id="etape-2-modification-du-programme">
+<h3>Étape 2 · Modification du programme<a class="headerlink" href="#etape-2-modification-du-programme" title="Lien vers cette rubrique">#</a></h3>
+<section id="altitudes-extremes">
+<h4>2.1 Altitudes extrêmes<a class="headerlink" href="#altitudes-extremes" title="Lien vers cette rubrique">#</a></h4>
+<p>Dans <code class="docutils literal notranslate"><span class="pre">altitudes.py</span></code>, remplacer la première ligne par :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">"""Altitudes extrêmes d'une série de mesures."""</span>
+</pre></div>
+</div>
+<p>Remplacer ensuite les lignes de <code class="docutils literal notranslate"><span class="pre">total</span> <span class="pre">=</span> <span class="pre">0</span></code> jusqu’au <code class="docutils literal notranslate"><span class="pre">print</span></code> par ces trois
+lignes :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"altitude minimale : </span><span class="si">{</span><span class="nb">min</span><span class="p">(</span><span class="n">altitudes</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> m"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"altitude maximale : </span><span class="si">{</span><span class="nb">max</span><span class="p">(</span><span class="n">altitudes</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> m"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"max - min : </span><span class="si">{</span><span class="nb">max</span><span class="p">(</span><span class="n">altitudes</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">min</span><span class="p">(</span><span class="n">altitudes</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> m"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">min</span></code> et <code class="docutils literal notranslate"><span class="pre">max</span></code> sont des fonctions de Python, qui reçoivent la liste.</p>
+<p><strong>Le format <code class="docutils literal notranslate"><span class="pre">:.1f</span></code>.</strong> Python écrit la valeur entre accolades arrondie à un
+chiffre après la virgule : <code class="docutils literal notranslate"><span class="pre">.1</span></code> fixe le nombre de chiffres, <code class="docutils literal notranslate"><span class="pre">f</span></code> demande
+l’écriture décimale. Pour <code class="docutils literal notranslate"><span class="pre">2/3</span></code>, Python écrit <code class="docutils literal notranslate"><span class="pre">0.7</span></code> avec <code class="docutils literal notranslate"><span class="pre">:.1f</span></code>, et
+<code class="docutils literal notranslate"><span class="pre">0.6666666666666666</span></code> sans format.</p>
+<p>Enregistrer, puis lancer le programme :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python altitudes.py
+</pre></div>
+</div>
+<p><strong>Test</strong> : le programme affiche</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>altitude minimale : 79.6 m
+altitude maximale : 103.2 m
+max - min : 23.6 m
+</pre></div>
+</div>
+</section>
+</section>
+<section id="etape-2-comparaison-et-commit">
+<h3>Étape 2 · Comparaison et commit<a class="headerlink" href="#etape-2-comparaison-et-commit" title="Lien vers cette rubrique">#</a></h3>
+<section id="etat-du-depot-apres-la-modification">
+<h4>2.2 État du dépôt après la modification<a class="headerlink" href="#etat-du-depot-apres-la-modification" title="Lien vers cette rubrique">#</a></h4>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git status
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Sur la branche master
+Modifications qui ne seront pas validées :
+  (utilisez "git add &lt;fichier&gt;..." pour mettre à jour ce qui sera validé)
+  (utilisez "git restore &lt;fichier&gt;..." pour annuler les modifications dans le répertoire de travail)
+	modifié :         altitudes.py
+
+aucune modification n'a été ajoutée à la validation (utilisez "git add" ou "git commit -a")
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">altitudes.py</span></code> est modifié dans le dossier de travail, et pas encore dans
+l’index (« Changes not staged for commit »). Les deux commandes proposées
+entre parenthèses sont celles des étapes 2.4 et 3.</p>
+</section>
+<section id="difference-avec-le-dernier-commit">
+<h4>2.3 Différence avec le dernier commit<a class="headerlink" href="#difference-avec-le-dernier-commit" title="Lien vers cette rubrique">#</a></h4>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git diff
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>diff --git a/altitudes.py b/altitudes.py
+index 81bd4a3..6e3cc79 100644
+--- a/altitudes.py
++++ b/altitudes.py
+@@ -1,8 +1,6 @@
+-"""Moyenne d'une série d'altitudes, à la main plutôt qu'avec sum()."""
++"""Altitudes extrêmes d'une série de mesures."""
+ 
+ altitudes = [79.6, 103.2, 98.3]
+-total = 0
+-for altitude in altitudes:
+-    total = total + altitude
+-moyenne = total / len(altitudes)
+-print(f"moyenne : {moyenne:.1f} m")
++print(f"altitude minimale : {min(altitudes):.1f} m")
++print(f"altitude maximale : {max(altitudes):.1f} m")
++print(f"max - min : {max(altitudes) - min(altitudes):.1f} m")
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">a/</span></code> est la version du dernier commit, <code class="docutils literal notranslate"><span class="pre">b/</span></code> celle du disque. Les lignes qui
+commencent par <code class="docutils literal notranslate"><span class="pre">-</span></code> sont les anciennes, celles qui commencent par <code class="docutils literal notranslate"><span class="pre">+</span></code> les nouvelles ;
+les autres lignes sont le contexte. <code class="docutils literal notranslate"><span class="pre">&#64;&#64;</span> <span class="pre">-1,8</span> <span class="pre">+1,6</span> <span class="pre">&#64;&#64;</span></code> indique que le passage
+commence à la ligne 1, et fait 8 lignes avant et 6 lignes après.</p>
+<p>La même différence se lit dans VS Code : panneau Source Control, dans la barre
+de gauche (<code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">G</span></code>), puis clic sur <code class="docutils literal notranslate"><span class="pre">altitudes.py</span></code>.</p>
+<p><img alt="La comparaison d'altitudes.py dans VS Code" src="../../../../_images/diff.png" /></p>
+</section>
+<section id="le-commit">
+<h4>2.4 Le commit<a class="headerlink" href="#le-commit" title="Lien vers cette rubrique">#</a></h4>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git add altitudes.py
+git commit -m "Remplace la moyenne par les altitudes extrêmes"
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[master 726d93f] Remplace la moyenne par les altitudes extrêmes
+ 1 file changed, 4 insertions(+), 6 deletions(-)
+</pre></div>
+</div>
+<p>Une ligne modifiée compte pour une ligne retirée et une ligne ajoutée. Le
+calcul de la moyenne n’est plus dans le fichier ; il reste dans le premier
+commit.</p>
+<p><strong>Test</strong> :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git log --oneline
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>726d93f Remplace la moyenne par les altitudes extrêmes
+64ed213 Ajoute le calcul de la moyenne
+</pre></div>
+</div>
+<p>Le commit le plus récent est en haut. <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code>, sans option, donne aussi
+l’identifiant complet, l’auteur et la date de chaque commit ; <code class="docutils literal notranslate"><span class="pre">q</span></code> quitte
+l’affichage s’il ne tient pas dans le terminal.</p>
+</section>
+</section>
+</section>
+<section id="etape-3-annulation-d-une-modification">
+<h2>Étape 3 · Annulation d’une modification<a class="headerlink" href="#etape-3-annulation-d-une-modification" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>Objectif :</strong> introduire une erreur dans <code class="docutils literal notranslate"><span class="pre">altitudes.py</span></code>, puis revenir à la version du dernier
+commit.</p>
+</div></blockquote>
+<section id="ligne-abimee">
+<h3>3.1 Ligne abîmée<a class="headerlink" href="#ligne-abimee" title="Lien vers cette rubrique">#</a></h3>
+<p>Dans <code class="docutils literal notranslate"><span class="pre">altitudes.py</span></code>, à la ligne <code class="docutils literal notranslate"><span class="pre">altitude</span> <span class="pre">maximale</span></code>, remplacer <code class="docutils literal notranslate"><span class="pre">max(altitudes)</span></code> par
+<code class="docutils literal notranslate"><span class="pre">max(altitude)</span></code>, et enregistrer. Puis :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python altitudes.py
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>altitude minimale : 79.6 m
+Traceback (most recent call last):
+  File "…/2c_depot_altitudes/travail/altitudes.py", line 5, in &lt;module&gt;
+    print(f"altitude maximale : {max(altitude):.1f} m")
+                                     ^^^^^^^^
+NameError: name 'altitude' is not defined. Did you mean: 'altitudes'?
+</pre></div>
+</div>
+<p>Le programme s’arrête à cette ligne, comme les programmes fautifs du TD 2b.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git diff
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>diff --git a/altitudes.py b/altitudes.py
+index 6e3cc79..688525d 100644
+--- a/altitudes.py
++++ b/altitudes.py
+@@ -2,5 +2,5 @@
+ 
+ altitudes = [79.6, 103.2, 98.3]
+ print(f"altitude minimale : {min(altitudes):.1f} m")
+-print(f"altitude maximale : {max(altitudes):.1f} m")
++print(f"altitude maximale : {max(altitude):.1f} m")
+ print(f"max - min : {max(altitudes) - min(altitudes):.1f} m")
+</pre></div>
+</div>
+</section>
+<section id="restauration-du-fichier">
+<h3>3.2 Restauration du fichier<a class="headerlink" href="#restauration-du-fichier" title="Lien vers cette rubrique">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git restore altitudes.py
+git status
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Sur la branche master
+rien à valider, la copie de travail est propre
+</pre></div>
+</div>
+<p>(« nothing to commit, working tree clean ».)</p>
+<p><strong>Test</strong> : <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">altitudes.py</span></code> affiche de nouveau ses trois lignes.</p>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">restore</span></code> remet le fichier dans l’état du dernier commit : la
+modification est perdue, et aucune commande ne la retrouve. git ne peut
+restaurer que ce qui a été enregistré par un commit.</p>
+</section>
+</section>
+<section id="etape-4-readme-et-fichier-de-notes">
+<h2>Étape 4 · README et fichier de notes<a class="headerlink" href="#etape-4-readme-et-fichier-de-notes" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>Objectif :</strong> décrire le programme dans un fichier <code class="docutils literal notranslate"><span class="pre">README.md</span></code>, et l’enregistrer par un commit
+; écrire ses notes de travail dans <code class="docutils literal notranslate"><span class="pre">notes.txt</span></code>, et exclure ce fichier des commits.</p>
+</div></blockquote>
+<section id="etape-4-ajout-d-un-fichier-readme">
+<h3>Étape 4 · Ajout d’un fichier README<a class="headerlink" href="#etape-4-ajout-d-un-fichier-readme" title="Lien vers cette rubrique">#</a></h3>
+<section id="le-fichier-readme-md">
+<h4>4.1 Le fichier <code class="docutils literal notranslate"><span class="pre">README.md</span></code><a class="headerlink" href="#le-fichier-readme-md" title="Lien vers cette rubrique">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">README.md</span></code>, à la racine d’un projet, décrit ce qu’il fait et comment s’en
+servir. Dans VS Code : explorateur, clic droit sur un endroit vide, « New
+File… », nom <code class="docutils literal notranslate"><span class="pre">README.md</span></code>. Y écrire ces lignes, puis enregistrer :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># Altitudes
+
+Ce programme affiche des statistiques sur une série d'altitudes, en mètres.
+
+## Utilisation
+
+Écrire les altitudes dans la liste `altitudes`, puis lancer `python altitudes.py`.
+</pre></div>
+</div>
+<p>La syntaxe est celle des cellules de texte du cours 1. Afficher l’aperçu du
+fichier dans VS Code : <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Maj</span></code> + <code class="docutils literal notranslate"><span class="pre">V</span></code>.</p>
+<p><strong>Test</strong> : l’aperçu montre deux titres et deux paragraphes.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git add README.md
+git commit -m "Ajoute un README"
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[master 4097d87] Ajoute un README
+ 1 file changed, 7 insertions(+)
+ create mode 100644 README.md
+</pre></div>
+</div>
+</section>
+</section>
+<section id="etape-4-fichier-a-ignorer">
+<h3>Étape 4 · Fichier à ignorer<a class="headerlink" href="#etape-4-fichier-a-ignorer" title="Lien vers cette rubrique">#</a></h3>
+<section id="un-fichier-de-notes">
+<h4>4.2 Un fichier de notes<a class="headerlink" href="#un-fichier-de-notes" title="Lien vers cette rubrique">#</a></h4>
+<p>Dans VS Code : explorateur, clic droit sur un endroit vide, « New File… »,
+nom <code class="docutils literal notranslate"><span class="pre">notes.txt</span></code>. Y écrire la liste des tâches à venir, puis enregistrer :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>À faire :
+- ajouter le dénivelé cumulé
+- lire les altitudes dans un fichier texte
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git status
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Sur la branche master
+Fichiers non suivis:
+  (utilisez "git add &lt;fichier&gt;..." pour inclure dans ce qui sera validé)
+	notes.txt
+
+aucune modification ajoutée à la validation mais des fichiers non suivis sont présents (utilisez "git add" pour les suivre)
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">notes.txt</span></code> sert à la personne qui travaille, et ne fait pas partie du
+programme. Au cours 6, le dépôt est partagé : les autres membres du projet
+n’ont pas à recevoir ces notes.</p>
+</section>
+<section id="le-fichier-gitignore">
+<h4>4.3 Le fichier <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code><a class="headerlink" href="#le-fichier-gitignore" title="Lien vers cette rubrique">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> est un fichier texte, à la racine du dépôt. Chaque ligne est
+un motif de noms de fichiers que <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> n’affiche plus et que
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> n’ajoute pas. Son
+nom commence par un point, sans autre extension.</p>
+<p>Dans VS Code : explorateur, clic droit sur un endroit vide, « New File… »,
+nom <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>. Y écrire une ligne, puis enregistrer :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>notes.txt
+</pre></div>
+</div>
+<p>Un motif peut contenir <code class="docutils literal notranslate"><span class="pre">*</span></code>, qui remplace n’importe quelle suite de caractères,
+comme dans Git Bash au cours 1.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git status
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Sur la branche master
+Fichiers non suivis:
+  (utilisez "git add &lt;fichier&gt;..." pour inclure dans ce qui sera validé)
+	.gitignore
+
+aucune modification ajoutée à la validation mais des fichiers non suivis sont présents (utilisez "git add" pour les suivre)
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">notes.txt</span></code> n’apparaît plus. <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> est un
+fichier du projet comme un autre : il se versionne.</p>
+</section>
+<section id="le-commit-de-gitignore">
+<h4>4.4 Le commit de <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code><a class="headerlink" href="#le-commit-de-gitignore" title="Lien vers cette rubrique">#</a></h4>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git add .gitignore
+git commit -m "Ignore le fichier de notes"
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[master ccd2363] Ignore le fichier de notes
+ 1 file changed, 1 insertion(+)
+ create mode 100644 .gitignore
+</pre></div>
+</div>
+<p><strong>Test</strong> :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git status
+ls
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Sur la branche master
+rien à valider, la copie de travail est propre
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>altitudes.py
+notes.txt
+README.md
+</pre></div>
+</div>
+<p>La fin du guide explique ces deux sorties, dans <a class="reference internal" href="#fichier-ignore">Fichier
+ignoré</a>.</p>
+</section>
+</section>
+</section>
+<section id="etape-5-branche-et-fusion">
+<h2>Étape 5 · Branche et fusion<a class="headerlink" href="#etape-5-branche-et-fusion" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>Objectif :</strong> créer la branche <code class="docutils literal notranslate"><span class="pre">cumul</span></code> et y ajouter le dénivelé cumulé ; revenir sur <code class="docutils literal notranslate"><span class="pre">master</span></code>
+et y compléter la description du programme ; fusionner <code class="docutils literal notranslate"><span class="pre">cumul</span></code> dans <code class="docutils literal notranslate"><span class="pre">master</span></code>.</p>
+</div></blockquote>
+<section id="etape-5-enonce-branche-et-fusion">
+<h3>Étape 5 · Énoncé : branche et fusion<a class="headerlink" href="#etape-5-enonce-branche-et-fusion" title="Lien vers cette rubrique">#</a></h3>
+<p>Le dénivelé cumulé est la somme des écarts d’altitude d’un point au suivant,
+avec un total pour les hausses et un total pour les baisses.</p>
+<ol class="arabic simple">
+<li><p>Chercher les commandes dans les diapositives « Les branches » et
+« Fusionner deux branches : git merge, git rebase ».</p></li>
+<li><p>Faire l’étape seul, sans lire les deux sections suivantes.</p></li>
+<li><p>Comparer avec la solution, dans <a class="reference internal" href="#etape-5-solution-creation-d-une-branche">Étape 5 · Solution : création d’une
+branche</a> et <a class="reference internal" href="#etape-5-solution-fusion-de-la-branche">Étape 5 · Solution :
+fusion de la branche</a>.</p></li>
+</ol>
+<p>Le pseudo-code ci-dessous décrit le calcul à ajouter à la fin de
+<code class="docutils literal notranslate"><span class="pre">altitudes.py</span></code>, sur <code class="docutils literal notranslate"><span class="pre">cumul</span></code> ; la solution donne son code Python.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>hausse ← 0 ; baisse ← 0
+pour chaque altitude, à partir de la deuxième :
+    écart ← altitude − altitude précédente
+    si écart &gt; 0 :
+        hausse ← hausse + écart
+    sinon :
+        baisse ← baisse − écart
+afficher hausse et baisse
+</pre></div>
+</div>
+<p>Sur <code class="docutils literal notranslate"><span class="pre">master</span></code>, la première ligne devient :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">"""Altitudes extrêmes et dénivelé cumulé d'une série de mesures."""</span>
+</pre></div>
+</div>
+<p><strong>Test</strong> : <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span> <span class="pre">--oneline</span> <span class="pre">--graph</span></code> montre la fusion.</p>
+</section>
+<section id="etape-5-solution-creation-d-une-branche">
+<h3>Étape 5 · Solution : création d’une branche<a class="headerlink" href="#etape-5-solution-creation-d-une-branche" title="Lien vers cette rubrique">#</a></h3>
+<section id="creation-de-la-branche">
+<h4>5.1 Création de la branche<a class="headerlink" href="#creation-de-la-branche" title="Lien vers cette rubrique">#</a></h4>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git branch
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>* master
+</pre></div>
+</div>
+<p>Une seule branche, <code class="docutils literal notranslate"><span class="pre">master</span></code>, marquée d’une étoile : la branche courante.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git checkout -b cumul
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Basculement sur la nouvelle branche 'cumul'
+</pre></div>
+</div>
+<p>(« Switched to a new branch “cumul” ».)</p>
+<p><strong>Test</strong> : l’invite se termine par <code class="docutils literal notranslate"><span class="pre">(cumul)</span></code>, et la barre
+d’état de VS Code, en bas à gauche, affiche <code class="docutils literal notranslate"><span class="pre">cumul</span></code>.</p>
+<p><img alt="La branche courante dans VS Code" src="../../../../_images/branche.png" /></p>
+</section>
+<section id="le-denivele-cumule">
+<h4>5.2 Le dénivelé cumulé<a class="headerlink" href="#le-denivele-cumule" title="Lien vers cette rubrique">#</a></h4>
+<p>À la fin d”<code class="docutils literal notranslate"><span class="pre">altitudes.py</span></code>, ajouter une ligne vide, puis ces lignes :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">hausse</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">baisse</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">altitudes</span><span class="p">)):</span>
+    <span class="n">ecart</span> <span class="o">=</span> <span class="n">altitudes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">altitudes</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">ecart</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">hausse</span> <span class="o">=</span> <span class="n">hausse</span> <span class="o">+</span> <span class="n">ecart</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">baisse</span> <span class="o">=</span> <span class="n">baisse</span> <span class="o">-</span> <span class="n">ecart</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"cumul en hausse : </span><span class="si">{</span><span class="n">hausse</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> m"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"cumul en baisse : </span><span class="si">{</span><span class="n">baisse</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> m"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Enregistrer, puis lancer le programme :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python altitudes.py
+</pre></div>
+</div>
+<p><strong>Test</strong> : le programme affiche</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>altitude minimale : 79.6 m
+altitude maximale : 103.2 m
+max - min : 23.6 m
+cumul en hausse : 23.6 m
+cumul en baisse : 4.9 m
+</pre></div>
+</div>
+<p>Sur les trois altitudes, 79.6, 103.2 et 98.3 : une hausse de 23.6 m, puis une
+baisse de 4.9 m.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git add altitudes.py
+git commit -m "Ajoute le dénivelé cumulé"
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[cumul e0e07c5] Ajoute le dénivelé cumulé
+ 1 file changed, 11 insertions(+)
+</pre></div>
+</div>
+</section>
+</section>
+<section id="etape-5-solution-fusion-de-la-branche">
+<h3>Étape 5 · Solution : fusion de la branche<a class="headerlink" href="#etape-5-solution-fusion-de-la-branche" title="Lien vers cette rubrique">#</a></h3>
+<section id="retour-sur-master">
+<h4>5.3 Retour sur <code class="docutils literal notranslate"><span class="pre">master</span></code><a class="headerlink" href="#retour-sur-master" title="Lien vers cette rubrique">#</a></h4>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git checkout master
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Basculement sur la branche 'master'
+</pre></div>
+</div>
+<p><strong>Test</strong> : dans VS Code, <code class="docutils literal notranslate"><span class="pre">altitudes.py</span></code> se termine de nouveau par la ligne
+<code class="docutils literal notranslate"><span class="pre">max</span> <span class="pre">-</span> <span class="pre">min</span></code>. Puis :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python altitudes.py
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>altitude minimale : 79.6 m
+altitude maximale : 103.2 m
+max - min : 23.6 m
+</pre></div>
+</div>
+<p>La fin du guide explique ce changement, dans <a class="reference internal" href="#branches-et-fusion">Branches et
+fusion</a>.</p>
+</section>
+<section id="un-commit-sur-master">
+<h4>5.4 Un commit sur <code class="docutils literal notranslate"><span class="pre">master</span></code><a class="headerlink" href="#un-commit-sur-master" title="Lien vers cette rubrique">#</a></h4>
+<p>Dans <code class="docutils literal notranslate"><span class="pre">altitudes.py</span></code>, remplacer la première ligne par la ligne suivante, puis
+enregistrer :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">"""Altitudes extrêmes et dénivelé cumulé d'une série de mesures."""</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git add altitudes.py
+git commit -m "Complète la description du programme"
+git log --oneline --graph --all --decorate
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>* f42a619 (HEAD -&gt; master) Complète la description du programme
+| * e0e07c5 (cumul) Ajoute le dénivelé cumulé
+|/  
+* ccd2363 Ignore le fichier de notes
+* 4097d87 Ajoute un README
+* 726d93f Remplace la moyenne par les altitudes extrêmes
+* 64ed213 Ajoute le calcul de la moyenne
+</pre></div>
+</div>
+<p>Chaque <code class="docutils literal notranslate"><span class="pre">*</span></code> est un commit ; les traits dessinent les deux branches, parties
+du même commit <code class="docutils literal notranslate"><span class="pre">ccd2363</span></code>. <code class="docutils literal notranslate"><span class="pre">HEAD</span> <span class="pre">-&gt;</span> <span class="pre">master</span></code> : la branche courante est
+<code class="docutils literal notranslate"><span class="pre">master</span></code>.</p>
+</section>
+<section id="fusion">
+<h4>5.5 Fusion<a class="headerlink" href="#fusion" title="Lien vers cette rubrique">#</a></h4>
+<p>La fusion se lance depuis la branche qui reçoit, ici <code class="docutils literal notranslate"><span class="pre">master</span></code> :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git merge cumul -m "Fusionne le dénivelé cumulé"
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Fusion automatique de altitudes.py
+Merge made by the 'ort' strategy.
+ altitudes.py | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+</pre></div>
+</div>
+<p><strong>Test</strong> : <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">altitudes.py</span></code> affiche de nouveau le cumul, et la première
+ligne d”<code class="docutils literal notranslate"><span class="pre">altitudes.py</span></code> est la description complétée. Puis :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git log --oneline --graph
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>*   5e694de Fusionne le dénivelé cumulé
+|\  
+| * e0e07c5 Ajoute le dénivelé cumulé
+* | f42a619 Complète la description du programme
+|/  
+* ccd2363 Ignore le fichier de notes
+* 4097d87 Ajoute un README
+* 726d93f Remplace la moyenne par les altitudes extrêmes
+* 64ed213 Ajoute le calcul de la moyenne
+</pre></div>
+</div>
+<p><img alt="Le graphe avant et après la fusion" src="../../../../_images/graphe_fusion.png" /></p>
+<p>Sans <code class="docutils literal notranslate"><span class="pre">-m</span></code>, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span></code> ouvre l’éditeur vim pour le message du commit de
+fusion : <code class="docutils literal notranslate"><span class="pre">Échap</span></code>, puis <code class="docutils literal notranslate"><span class="pre">:wq</span></code> et <code class="docutils literal notranslate"><span class="pre">Entrée</span></code> gardent le message proposé.</p>
+<p>La fin du guide explique cette fusion, dans <a class="reference internal" href="#branches-et-fusion">Branches et
+fusion</a>.</p>
+</section>
+</section>
+</section>
+<section id="etape-6-conflit-de-fusion">
+<h2>Étape 6 · Conflit de fusion<a class="headerlink" href="#etape-6-conflit-de-fusion" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>Objectif :</strong> modifier la même ligne de <code class="docutils literal notranslate"><span class="pre">altitudes.py</span></code> sur <code class="docutils literal notranslate"><span class="pre">master</span></code> et sur une nouvelle
+branche, <code class="docutils literal notranslate"><span class="pre">mesure-4</span></code>, puis fusionner <code class="docutils literal notranslate"><span class="pre">mesure-4</span></code> dans <code class="docutils literal notranslate"><span class="pre">master</span></code> en gardant les deux altitudes
+ajoutées ; dessiner ensuite le graphe du dépôt, et le comparer à celui que git affiche.</p>
+</div></blockquote>
+<section id="etape-6-meme-ligne-sur-deux-branches">
+<h3>Étape 6 · Même ligne sur deux branches<a class="headerlink" href="#etape-6-meme-ligne-sur-deux-branches" title="Lien vers cette rubrique">#</a></h3>
+<section id="deux-modifications-de-la-meme-ligne">
+<h4>6.1 Deux modifications de la même ligne<a class="headerlink" href="#deux-modifications-de-la-meme-ligne" title="Lien vers cette rubrique">#</a></h4>
+<p>La troisième ligne d”<code class="docutils literal notranslate"><span class="pre">altitudes.py</span></code> est :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">altitudes</span> <span class="o">=</span> <span class="p">[</span><span class="mf">79.6</span><span class="p">,</span> <span class="mf">103.2</span><span class="p">,</span> <span class="mf">98.3</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Sur une nouvelle branche, ajouter <code class="docutils literal notranslate"><span class="pre">92.5</span></code> à la fin de la liste :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git checkout -b mesure-4
+</pre></div>
+</div>
+<p>Modifier la ligne, enregistrer, puis :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git add altitudes.py
+git commit -m "Ajoute la mesure 92.5"
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[mesure-4 a24c0bb] Ajoute la mesure 92.5
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+</pre></div>
+</div>
+<p>Sur <code class="docutils literal notranslate"><span class="pre">master</span></code>, ajouter <code class="docutils literal notranslate"><span class="pre">123.7</span></code> à la fin de la liste, sur la même ligne :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git checkout master
+</pre></div>
+</div>
+<p>Modifier la ligne, enregistrer, puis :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git add altitudes.py
+git commit -m "Ajoute la mesure 123.7"
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[master 41493a5] Ajoute la mesure 123.7
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+</pre></div>
+</div>
+</section>
+</section>
+<section id="etape-6-resolution-du-conflit">
+<h3>Étape 6 · Résolution du conflit<a class="headerlink" href="#etape-6-resolution-du-conflit" title="Lien vers cette rubrique">#</a></h3>
+<section id="fusion-en-conflit">
+<h4>6.2 Fusion en conflit<a class="headerlink" href="#fusion-en-conflit" title="Lien vers cette rubrique">#</a></h4>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git merge mesure-4
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Fusion automatique de altitudes.py
+CONFLIT (contenu) : Conflit de fusion dans altitudes.py
+La fusion automatique a échoué ; réglez les conflits et validez le résultat.
+</pre></div>
+</div>
+<p>(« CONFLICT (content): Merge conflict in altitudes.py ».) Les deux branches
+ont modifié la même ligne : git arrête la fusion et
+écrit les deux versions dans le fichier.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git status
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Sur la branche master
+Vous avez des chemins non fusionnés.
+  (réglez les conflits puis lancez "git commit")
+  (utilisez "git merge --abort" pour annuler la fusion)
+
+Chemins non fusionnés :
+  (utilisez "git add &lt;fichier&gt;..." pour marquer comme résolu)
+	modifié des deux côtés :  altitudes.py
+
+aucune modification n'a été ajoutée à la validation (utilisez "git add" ou "git commit -a")
+</pre></div>
+</div>
+<p>L’invite affiche <code class="docutils literal notranslate"><span class="pre">(master|MERGING)</span></code> : une fusion est en cours.</p>
+</section>
+<section id="contenu-du-fichier">
+<h4>6.3 Contenu du fichier<a class="headerlink" href="#contenu-du-fichier" title="Lien vers cette rubrique">#</a></h4>
+<p>Le début d”<code class="docutils literal notranslate"><span class="pre">altitudes.py</span></code> est maintenant :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>"""Altitudes extrêmes et dénivelé cumulé d'une série de mesures."""
+
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+altitudes = [79.6, 103.2, 98.3, 123.7]
+=======
+altitudes = [79.6, 103.2, 98.3, 92.5]
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; mesure-4
+</pre></div>
+</div>
+<p>Entre <code class="docutils literal notranslate"><span class="pre">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span> <span class="pre">HEAD</span></code> et <code class="docutils literal notranslate"><span class="pre">=======</span></code>, la ligne de la branche courante,
+<code class="docutils literal notranslate"><span class="pre">master</span></code> ; entre <code class="docutils literal notranslate"><span class="pre">=======</span></code> et <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="pre">mesure-4</span></code>, celle de la branche
+fusionnée. VS Code colore les deux versions et affiche quatre actions
+au-dessus du bloc.</p>
+<p><img alt="Le conflit dans VS Code" src="../../../../_images/conflit.png" /></p>
+<p>Lancer le programme :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python altitudes.py
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>  File "…/2c_depot_altitudes/travail/altitudes.py", line 3
+    &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+    ^^
+SyntaxError: invalid syntax
+</pre></div>
+</div>
+<p>La fin du guide explique cette erreur, dans <a class="reference internal" href="#branches-et-fusion">Branches et
+fusion</a>.</p>
+</section>
+<section id="resolution">
+<h4>6.4 Résolution<a class="headerlink" href="#resolution" title="Lien vers cette rubrique">#</a></h4>
+<p>La bonne ligne garde les deux mesures : aucune des deux versions ne convient
+telle quelle. Remplacer les cinq lignes du bloc (marqueurs compris) par la seule
+ligne :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">altitudes</span> <span class="o">=</span> <span class="p">[</span><span class="mf">79.6</span><span class="p">,</span> <span class="mf">103.2</span><span class="p">,</span> <span class="mf">98.3</span><span class="p">,</span> <span class="mf">92.5</span><span class="p">,</span> <span class="mf">123.7</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Enregistrer. Vérifier qu’il ne reste aucun marqueur : <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">F</span></code> dans
+VS Code, chercher <code class="docutils literal notranslate"><span class="pre">&lt;&lt;&lt;&lt;</span></code>, puis <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;&gt;</span></code> et <code class="docutils literal notranslate"><span class="pre">====</span></code> ; la recherche affiche
+« No results ». Puis :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python altitudes.py
+</pre></div>
+</div>
+<p><strong>Test</strong> : le programme affiche</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>altitude minimale : 79.6 m
+altitude maximale : 123.7 m
+max - min : 44.1 m
+cumul en hausse : 54.8 m
+cumul en baisse : 10.7 m
+</pre></div>
+</div>
+</section>
+<section id="fin-de-la-fusion">
+<h4>6.5 Fin de la fusion<a class="headerlink" href="#fin-de-la-fusion" title="Lien vers cette rubrique">#</a></h4>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git add altitudes.py
+git status
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Sur la branche master
+Tous les conflits sont réglés mais la fusion n'est pas terminée.
+  (utilisez "git commit" pour terminer la fusion)
+
+Modifications qui seront validées :
+	modifié :         altitudes.py
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git commit -m "Fusionne les deux mesures"
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[master e0c82f8] Fusionne les deux mesures
+</pre></div>
+</div>
+<p>Pour abandonner une fusion en conflit au lieu de la résoudre :
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span> <span class="pre">--abort</span></code> rend l’état d’avant le <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span></code>.</p>
+</section>
+</section>
+<section id="etape-6-graphe-du-depot">
+<h3>Étape 6 · Graphe du dépôt<a class="headerlink" href="#etape-6-graphe-du-depot" title="Lien vers cette rubrique">#</a></h3>
+<section id="dessin-du-graphe">
+<h4>6.6 Dessin du graphe<a class="headerlink" href="#dessin-du-graphe" title="Lien vers cette rubrique">#</a></h4>
+<p>Avant de taper la commande suivante, dessiner sur papier le graphe du
+dépôt : une pastille par commit, une flèche de chaque commit vers son ou
+ses parents, et le nom de chaque branche à côté du commit qu’elle désigne,
+comme sur les diapositives du cours. Puis comparer avec le dessin de git :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git log --oneline --graph --all --decorate
+</pre></div>
+</div>
+<p>Le graphe attendu est à la fin du guide, dans <a class="reference internal" href="#graphe-du-depot-a-la-fin-de-l-etape-6">Graphe du dépôt à la fin de
+l’étape 6</a> : le lire après avoir
+fait le dessin.</p>
+<p><strong>Test</strong> : <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span></code> liste les trois branches :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>  cumul
+* master
+  mesure-4
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="etape-7-pour-aller-plus-loin-une-seconde-copie-du-depot">
+<h2>Étape 7 · Pour aller plus loin : une seconde copie du dépôt<a class="headerlink" href="#etape-7-pour-aller-plus-loin-une-seconde-copie-du-depot" title="Lien vers cette rubrique">#</a></h2>
+<blockquote>
+<div><p><strong>Objectif :</strong> obtenir une seconde copie du dépôt de <code class="docutils literal notranslate"><span class="pre">travail/</span></code> par <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code>, y faire un
+commit, puis récupérer ce commit dans <code class="docutils literal notranslate"><span class="pre">travail/</span></code>.</p>
+</div></blockquote>
+<p>Le dossier <code class="docutils literal notranslate"><span class="pre">.git</span></code> contient tout l’historique du projet. <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code> crée
+une copie complète du dépôt, dans un autre dossier ou sur un autre
+support, comme une clé USB. <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code> fait ensuite passer des commits d’un
+dépôt à l’autre. La forge du cours 6 est un dépôt de plus, sur un serveur.</p>
+<section id="copie-du-depot">
+<h3>7.1 Copie du dépôt<a class="headerlink" href="#copie-du-depot" title="Lien vers cette rubrique">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd ..
+git clone travail copie
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Clonage dans 'copie'...
+fait.
+</pre></div>
+</div>
+<p>(« Cloning into “copie”… done. ») <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">..</span></code> remonte dans
+<code class="docutils literal notranslate"><span class="pre">2c_depot_altitudes/</span></code> ; <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code> y crée <code class="docutils literal notranslate"><span class="pre">copie/</span></code>, à côté de <code class="docutils literal notranslate"><span class="pre">travail/</span></code>.
+Pour copier le dépôt sur une clé USB, donner en second argument un dossier
+de la clé, par exemple <code class="docutils literal notranslate"><span class="pre">/e/altitudes</span></code> pour le lecteur <code class="docutils literal notranslate"><span class="pre">E:</span></code>.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd copie
+ls -a
+git log --oneline -3
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>.
+..
+altitudes.py
+.git
+.gitignore
+README.md
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>e0c82f8 Fusionne les deux mesures
+41493a5 Ajoute la mesure 123.7
+a24c0bb Ajoute la mesure 92.5
+</pre></div>
+</div>
+<p>La copie a son propre dossier <code class="docutils literal notranslate"><span class="pre">.git</span></code>, avec les mêmes commits et les mêmes
+identifiants. <code class="docutils literal notranslate"><span class="pre">notes.txt</span></code>, ignoré, n’a pas été copié.</p>
+</section>
+<section id="le-depot-d-origine">
+<h3>7.2 Le dépôt d’origine<a class="headerlink" href="#le-depot-d-origine" title="Lien vers cette rubrique">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git remote -v
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>origin	…/2c_depot_altitudes/travail (fetch)
+origin	…/2c_depot_altitudes/travail (push)
+</pre></div>
+</div>
+<p>La copie garde le chemin du dépôt dont elle vient, sous le nom <code class="docutils literal notranslate"><span class="pre">origin</span></code>.
+Au cours 6, <code class="docutils literal notranslate"><span class="pre">origin</span></code> désigne le dépôt de la forge.</p>
+</section>
+<section id="un-commit-dans-la-copie">
+<h3>7.3 Un commit dans la copie<a class="headerlink" href="#un-commit-dans-la-copie" title="Lien vers cette rubrique">#</a></h3>
+<p>Le réglage de l’étape 1.2 est écrit dans <code class="docutils literal notranslate"><span class="pre">travail/.git</span></code>, et <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code> ne
+le copie pas : dans la copie, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">user.name</span></code> n’affiche rien. Le
+refaire :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git config user.name "Prénom Nom"
+git config user.email "prenom.nom@ensg.eu"
+</pre></div>
+</div>
+<p>Ouvrir <code class="docutils literal notranslate"><span class="pre">copie/altitudes.py</span></code> dans VS Code (menu File, Open File…), ajouter <code class="docutils literal notranslate"><span class="pre">127.7</span></code> à la
+fin de la liste, puis enregistrer :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">altitudes</span> <span class="o">=</span> <span class="p">[</span><span class="mf">79.6</span><span class="p">,</span> <span class="mf">103.2</span><span class="p">,</span> <span class="mf">98.3</span><span class="p">,</span> <span class="mf">92.5</span><span class="p">,</span> <span class="mf">123.7</span><span class="p">,</span> <span class="mf">127.7</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git add altitudes.py
+git commit -m "Ajoute la mesure 127.7"
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[master 2a47e60] Ajoute la mesure 127.7
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+</pre></div>
+</div>
+<p>Ce commit n’existe que dans <code class="docutils literal notranslate"><span class="pre">copie/</span></code>.</p>
+</section>
+<section id="recuperation-du-commit-dans-travail">
+<h3>7.4 Récupération du commit dans <code class="docutils literal notranslate"><span class="pre">travail/</span></code><a class="headerlink" href="#recuperation-du-commit-dans-travail" title="Lien vers cette rubrique">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>cd ../travail
+git pull ../copie master
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Depuis ../copie
+ * branch            master     -&gt; FETCH_HEAD
+Mise à jour e0c82f8..2a47e60
+Fast-forward
+ altitudes.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">../copie</span> <span class="pre">master</span></code> récupère les commits de la branche <code class="docutils literal notranslate"><span class="pre">master</span></code> du
+dépôt <code class="docutils literal notranslate"><span class="pre">../copie</span></code> et les fusionne dans la branche courante. <code class="docutils literal notranslate"><span class="pre">travail/</span></code>
+n’avait pas de commit nouveau : git avance <code class="docutils literal notranslate"><span class="pre">master</span></code> jusqu’au commit de la
+copie (« Fast-forward »), sans commit de fusion.</p>
+<p><strong>Test</strong> :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git log --oneline -3
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>2a47e60 Ajoute la mesure 127.7
+e0c82f8 Fusionne les deux mesures
+41493a5 Ajoute la mesure 123.7
+</pre></div>
+</div>
+<p>Le même identifiant, <code class="docutils literal notranslate"><span class="pre">2a47e60</span></code>, dans les deux dépôts. Dans VS Code,
+la liste de <code class="docutils literal notranslate"><span class="pre">travail/altitudes.py</span></code> se termine par la mesure ajoutée dans la copie.</p>
+</section>
+</section>
+<section id="ce-que-le-td-fait-constater">
+<h2>Ce que le TD fait constater<a class="headerlink" href="#ce-que-le-td-fait-constater" title="Lien vers cette rubrique">#</a></h2>
+<p>À lire après avoir fait les étapes.</p>
+<section id="index-et-commit">
+<h3>Index et commit<a class="headerlink" href="#index-et-commit" title="Lien vers cette rubrique">#</a></h3>
+<p>Un commit enregistre l’index. <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> choisit ce qui entre dans le
+prochain commit ; <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code> l’enregistre. Entre les deux, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code>
+affiche la zone de chaque fichier (étapes 1, 2 et 4).</p>
+</section>
+<section id="fichier-ignore">
+<h3>Fichier ignoré<a class="headerlink" href="#fichier-ignore" title="Lien vers cette rubrique">#</a></h3>
+<p>Les notes personnelles ne se versionnent pas. <code class="docutils literal notranslate"><span class="pre">notes.txt</span></code> sert à la
+personne qui travaille, et ne fait pas partie du programme. <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> le
+tient hors du dépôt (étape 4.3). À la fin de l’étape 4, le fichier de notes
+est dans le dossier, et <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> ne l’affiche pas.</p>
+</section>
+<section id="restauration-d-un-fichier">
+<h3>Restauration d’un fichier<a class="headerlink" href="#restauration-d-un-fichier" title="Lien vers cette rubrique">#</a></h3>
+<p>git ne restaure que ce qu’il a enregistré. <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">restore</span></code> remet la
+version du dernier commit ; une modification jamais enregistrée par un
+commit ne se retrouve pas (étape 3).</p>
+</section>
+<section id="branches-et-fusion">
+<h3>Branches et fusion<a class="headerlink" href="#branches-et-fusion" title="Lien vers cette rubrique">#</a></h3>
+<p>Une branche porte une variante. Changer de branche remplace les fichiers du
+dossier par ceux du dernier commit de la branche, ce qui change ce que le
+programme affiche (étape 5.3) : de retour sur <code class="docutils literal notranslate"><span class="pre">master</span></code>, le programme n’affiche
+plus le dénivelé cumulé, qui reste enregistré sur <code class="docutils literal notranslate"><span class="pre">cumul</span></code>.</p>
+<p>La fusion réunit des modifications de lignes différentes sans rien demander
+(étape 5.5) : les deux branches ont modifié <code class="docutils literal notranslate"><span class="pre">altitudes.py</span></code>, sur des lignes
+différentes, et git a réuni les deux modifications dans un commit de fusion.
+Sur la même ligne, elle s’arrête, et la personne qui fusionne décide
+(étape 6). Les marqueurs ne sont pas du Python : tant qu’ils restent dans le
+fichier, le programme ne se lance plus (étape 6.3).</p>
+</section>
+<section id="graphe-du-depot-a-la-fin-de-l-etape-6">
+<h3>Graphe du dépôt à la fin de l’étape 6<a class="headerlink" href="#graphe-du-depot-a-la-fin-de-l-etape-6" title="Lien vers cette rubrique">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>*   e0c82f8 (HEAD -&gt; master) Fusionne les deux mesures
+|\  
+| * a24c0bb (mesure-4) Ajoute la mesure 92.5
+* | 41493a5 Ajoute la mesure 123.7
+|/  
+*   5e694de Fusionne le dénivelé cumulé
+|\  
+| * e0e07c5 (cumul) Ajoute le dénivelé cumulé
+* | f42a619 Complète la description du programme
+|/  
+* ccd2363 Ignore le fichier de notes
+* 4097d87 Ajoute un README
+* 726d93f Remplace la moyenne par les altitudes extrêmes
+* 64ed213 Ajoute le calcul de la moyenne
+</pre></div>
+</div>
+<p>git dessine le graphe de haut en bas, le commit le plus récent en haut.
+Dix commits, dont deux fusions.</p>
+</section>
+<section id="copies-d-un-depot">
+<h3>Copies d’un dépôt<a class="headerlink" href="#copies-d-un-depot" title="Lien vers cette rubrique">#</a></h3>
+<p>Chaque copie d’un dépôt contient tout l’historique. <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code> copie
+tous les commits, et <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code> fait passer les nouveaux commits d’un dépôt
+à l’autre. Le réglage de l’auteur est propre à chaque dépôt (étape 7).</p>
+</section>
+</section>
+<section id="annexe-les-commandes-du-td">
+<h2>Annexe · Les commandes du TD<a class="headerlink" href="#annexe-les-commandes-du-td" title="Lien vers cette rubrique">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Commande</p></th>
+<th class="head"><p>Effet</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span></code></p></td>
+<td><p>crée un dépôt dans le dossier courant</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">user.name</span> <span class="pre">&quot;…&quot;</span></code></p></td>
+<td><p>règle le nom de l’auteur, pour ce dépôt</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code></p></td>
+<td><p>affiche l’état du dépôt : branche, fichiers modifiés, zone de chacun</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">fichier</span></code></p></td>
+<td><p>place le fichier dans l’index</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&quot;message&quot;</span></code></p></td>
+<td><p>enregistre l’index comme une nouvelle version</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span> <span class="pre">--oneline</span></code></p></td>
+<td><p>liste les commits, un par ligne</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span> <span class="pre">--oneline</span> <span class="pre">--graph</span> <span class="pre">--all</span> <span class="pre">--decorate</span></code></p></td>
+<td><p>affiche le graphe de toutes les branches, avec leurs noms</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span></code></p></td>
+<td><p>montre les lignes modifiées depuis le dernier commit</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">restore</span> <span class="pre">fichier</span></code></p></td>
+<td><p>remet le fichier dans l’état du dernier commit</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span></code></p></td>
+<td><p>liste les branches</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">nom</span></code></p></td>
+<td><p>crée une branche et s’y place</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">nom</span></code></p></td>
+<td><p>change de branche</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span> <span class="pre">nom</span></code></p></td>
+<td><p>fusionne la branche <code class="docutils literal notranslate"><span class="pre">nom</span></code> dans la branche courante</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span> <span class="pre">--abort</span></code></p></td>
+<td><p>abandonne une fusion en conflit</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">source</span> <span class="pre">copie</span></code></p></td>
+<td><p>copie le dépôt <code class="docutils literal notranslate"><span class="pre">source</span></code> dans le dossier <code class="docutils literal notranslate"><span class="pre">copie</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">-v</span></code></p></td>
+<td><p>affiche le dépôt d’origine d’une copie</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">dépôt</span> <span class="pre">branche</span></code></p></td>
+<td><p>récupère les commits d’une branche d’un autre dépôt, et les fusionne</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../2b_erreurs/guide.html"
+       title="page précédente">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">précédent</p>
+        <p class="prev-next-title">TD 2b — Trois programmes fautifs</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../../../cours3_v2/index.html"
+       title="page suivante">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">suivant</p>
+        <p class="prev-next-title">Séance 3 — Fichiers, chemins et programme en ligne de commande</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rappels-avant-de-commencer">Rappels avant de commencer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-0-copie-du-programme">Étape 0 · Copie du programme</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#copie-du-programme-dans-travail">0.1 Copie du programme dans <code class="docutils literal notranslate"><span class="pre">travail/</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ouverture-de-travail-dans-vs-code">0.2 Ouverture de <code class="docutils literal notranslate"><span class="pre">travail/</span></code> dans VS Code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lancement-du-programme">0.3 Lancement du programme</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-1-depot-et-premier-commit">Étape 1 · Dépôt et premier commit</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creation-du-depot">1.1 Création du dépôt</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nom-et-adresse-de-l-auteur">1.2 Nom et adresse de l’auteur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etat-du-depot-avant-le-premier-commit">1.3 État du dépôt avant le premier commit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-premier-commit">1.4 Le premier commit</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-2-modification-et-commit">Étape 2 · Modification et commit</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-2-modification-du-programme">Étape 2 · Modification du programme</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#altitudes-extremes">2.1 Altitudes extrêmes</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-2-comparaison-et-commit">Étape 2 · Comparaison et commit</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#etat-du-depot-apres-la-modification">2.2 État du dépôt après la modification</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-avec-le-dernier-commit">2.3 Différence avec le dernier commit</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#le-commit">2.4 Le commit</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-3-annulation-d-une-modification">Étape 3 · Annulation d’une modification</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ligne-abimee">3.1 Ligne abîmée</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#restauration-du-fichier">3.2 Restauration du fichier</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-4-readme-et-fichier-de-notes">Étape 4 · README et fichier de notes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-4-ajout-d-un-fichier-readme">Étape 4 · Ajout d’un fichier README</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#le-fichier-readme-md">4.1 Le fichier <code class="docutils literal notranslate"><span class="pre">README.md</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-4-fichier-a-ignorer">Étape 4 · Fichier à ignorer</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#un-fichier-de-notes">4.2 Un fichier de notes</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#le-fichier-gitignore">4.3 Le fichier <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#le-commit-de-gitignore">4.4 Le commit de <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-5-branche-et-fusion">Étape 5 · Branche et fusion</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-5-enonce-branche-et-fusion">Étape 5 · Énoncé : branche et fusion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-5-solution-creation-d-une-branche">Étape 5 · Solution : création d’une branche</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creation-de-la-branche">5.1 Création de la branche</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#le-denivele-cumule">5.2 Le dénivelé cumulé</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-5-solution-fusion-de-la-branche">Étape 5 · Solution : fusion de la branche</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#retour-sur-master">5.3 Retour sur <code class="docutils literal notranslate"><span class="pre">master</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#un-commit-sur-master">5.4 Un commit sur <code class="docutils literal notranslate"><span class="pre">master</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fusion">5.5 Fusion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-6-conflit-de-fusion">Étape 6 · Conflit de fusion</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-6-meme-ligne-sur-deux-branches">Étape 6 · Même ligne sur deux branches</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#deux-modifications-de-la-meme-ligne">6.1 Deux modifications de la même ligne</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-6-resolution-du-conflit">Étape 6 · Résolution du conflit</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fusion-en-conflit">6.2 Fusion en conflit</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contenu-du-fichier">6.3 Contenu du fichier</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resolution">6.4 Résolution</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fin-de-la-fusion">6.5 Fin de la fusion</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-6-graphe-du-depot">Étape 6 · Graphe du dépôt</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dessin-du-graphe">6.6 Dessin du graphe</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etape-7-pour-aller-plus-loin-une-seconde-copie-du-depot">Étape 7 · Pour aller plus loin : une seconde copie du dépôt</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#copie-du-depot">7.1 Copie du dépôt</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-depot-d-origine">7.2 Le dépôt d’origine</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-commit-dans-la-copie">7.3 Un commit dans la copie</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recuperation-du-commit-dans-travail">7.4 Récupération du commit dans <code class="docutils literal notranslate"><span class="pre">travail/</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ce-que-le-td-fait-constater">Ce que le TD fait constater</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#index-et-commit">Index et commit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fichier-ignore">Fichier ignoré</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#restauration-d-un-fichier">Restauration d’un fichier</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#branches-et-fusion">Branches et fusion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graphe-du-depot-a-la-fin-de-l-etape-6">Graphe du dépôt à la fin de l’étape 6</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#copies-d-un-depot">Copies d’un dépôt</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#annexe-les-commandes-du-td">Annexe · Les commandes du TD</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par 1re année géomatique
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, module info01 — CC-BY-4.0.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,859 @@
+
+<!DOCTYPE html>
+
+
+<html lang="fr" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Introduction &#8212; Introduction à l&#39;informatique</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/modif.css?v=b5c10e7e" />
+    <link rel="stylesheet" type="text/css" href="_static/pages.css?v=e087e64c" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="_static/documentation_options.js?v=72dce1d2"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="_static/translations.js?v=e6b791cb"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'introduction';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="_static/favicon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Premiers tests du poste" href="avant/poste.html" />
+    <link rel="prev" title="Introduction à l’informatique" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="fr"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Passer au contenu principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Haut de page</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Alerte de version"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navigation dans le site">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="Sur cette page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Introduction à l'informatique</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Introduction à l’informatique
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Avant les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="avant/poste.html">Premiers tests du poste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="avant/donnees.html">Récupérer les fichiers d’une séance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="avant/python.html">Anaconda et JupyterLab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="avant/vscode.html">VS Code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Après les séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="apres/sauvegarder.html">Sauvegarder son travail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apres/s_entrainer.html">S’entraîner : jeux et exercices</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Séances</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="cours1_v2/index.html">Séance 1 — Logiciels, fichiers, terminal et premier programme</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="cours1_v2/notebook/01_logiciels_stockage.html">Matériel, logiciels, fichiers et stockage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cours1_v2/notebook/02_terminal.html">Le terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cours1_v2/notebook/03_premier_programme.html">Premier programme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cours1_v2/notebook/04_notebook.html">Un notebook et la syntaxe de Markdown</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="cours1_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="cours1_v2/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cours1_v2/notebook/td/1b_terminal/guide.html">TD 1b — Rejouer le TD 1a mais en ligne de commande</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cours1_v2/notebook/td/1c_programme/guide.html">TD 1c — Lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cours1_v2/notebook/td/1d_notebook/guide.html">TD 1d — Un notebook dans JupyterLab</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="cours2_v2/index.html">Séance 2 — Éditeur de code et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="cours2_v2/notebook/01_editeur_de_code.html">L’éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cours2_v2/notebook/03_git_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cours2_v2/notebook/04_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="cours2_v2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="cours2_v2/notebook/td/2a_vscode/guide.html">TD 2a — Configurer VS Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cours2_v2/notebook/td/2b_erreurs/guide.html">TD 2b — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cours2_v2/notebook/td/2c_depot_altitudes/guide.html">TD 2c — Un dépôt git pour altitudes.py</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="cours3_v2/index.html">Séance 3 — Fichiers, chemins et programme en ligne de commande</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="cours4_v2/index.html">Séance 4 — Projet d’application 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="cours4_v2/notebook/td/4a_trace/guide.html">TD 4a — Un script Python, pas à pas</a></li>
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="cours5_v2/index.html">Séance 5 — Réutiliser des programmes et des bibliothèques</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="cours5_v2/notebook/td/5a_distribution/guide.html">TD 5a — L’emplacement de votre distribution Python</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="cours5_v2/notebook/td/5b_environnement/guide.html">TD 5b — Un environnement pour le programme</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="cours5_v2/notebook/td/5c_description/guide.html">TD 5c — Décrire l’installation pour un autre poste</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="cours5_v2/notebook/td/5d_noyau/guide.html">TD 5d — Le noyau de l’environnement</a></li>
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="cours6_v2/index.html">Séance 6 — Forge, mots de passe et secrets</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="cours7_v2/index.html">Séance 7 — Projet d’application 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="cours7_v2/notebook/td/7a_trace/guide.html">TD 7a — Une pull request sur son dépôt GitHub</a></li>
+
+
+
+
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Annexes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="annexes/configuration/index.html">Configuration des postes de la salle</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="annexes/configuration/anaconda.html">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="annexes/configuration/git.html">Git et Git Bash</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="annexes/configuration/vscode.html">VS Code</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="annexes/configuration/vscode_python.html">Python et environnement conda</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexes/configuration/vscode_notebooks.html">Notebooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexes/configuration/vscode_reglages.html">Fichiers de réglages</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="annexes/configuration/spyder.html">Spyder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="annexes/configuration/jupyterlab.html">JupyterLab sans Navigator</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="annexes/poste_personnel/index.html">Configuration d’un ordinateur personnel</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="annexes/poste_personnel/conda.html">Python et conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="annexes/poste_personnel/git_outils.html">Git et éditeurs de texte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="annexes/poste_personnel/vscode.html">VS Code</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="annexes/notions/index.html">Notions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="annexes/notions/outils.html">Choisir entre JupyterLab, Spyder et VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="annexes/notions/notebooks.html">Les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="annexes/notions/terminaux.html">Les terminaux en ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="annexes/notions/variables_environnement.html">Variables d’environnement et recherche des programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="annexes/notions/environnements.html">Les environnements conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="annexes/notions/vscode_environnements.html">Comment VS Code gère les environnements Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="annexes/notions/git_bash.html">Git Bash : une fenêtre, bash et des programmes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="annexes/faq.html">FAQ</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="annexes/problemes/reseau.html">Problèmes de réseau et de compte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="annexes/problemes/bureautique.html">Problèmes avec les logiciels de texte et de bureautique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="annexes/problemes/anaconda.html">Problèmes avec Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="annexes/problemes/jupyterlab.html">Problèmes avec JupyterLab et les notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="annexes/problemes/vscode.html">Problèmes avec VS Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="annexes/problemes/git.html">Problèmes avec git et Git Bash</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="annexes/plus_loin/index.html">Pour aller plus loin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="annexes/plus_loin/gestionnaires.html">venv, uv et pixi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="annexes/plus_loin/cpp.html">C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="annexes/plus_loin/programme_interpreteur.html">Programme, application et interpréteur</a></li>
+<li class="toctree-l2"><a class="reference internal" href="annexes/plus_loin/processeur.html">Le processeur et la carte graphique</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Archive 2026</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="cours1/index.html">Séance 1, 2026 — Logiciel, programmation et formats de fichier</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="cours1/notebook/01_logiciels_et_formats.html">Logiciels et formats de fichier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cours1/notebook/02_programmation.html">Programmation et éditeur de code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cours1/notebook/03_markdown_notebook.html">Markdown et notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cours1/notebook/04_bibliotheques_environnements.html">Bibliothèques et environnements Python</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="cours1/notebook/travaux_diriges.html">Travaux dirigés de la séance 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="cours1/notebook/td/1a_formats/guide.html">TD 1a — Fichiers, formats et extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cours1/notebook/td/1b_archive_odt/guide.html">TD 1b — Un .odt est une archive ZIP (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cours1/notebook/td/1c_vscode_python/guide.html">TD 1c — Configurer l’éditeur de code, et lancer un programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cours1/notebook/td/1d_erreurs/guide.html">TD 1d — Trois programmes fautifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cours1/notebook/td/1e_hello_cpp/guide.html">TD 1e — Le même programme en C++ (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cours1/notebook/td/1f_markdown/guide.html">TD 1f — Mettre en forme une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cours1/notebook/td/1g_notebooks/guide.html">TD 1g — Le notebook, ouvert de trois façons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cours1/notebook/td/1h_recette/guide.html">TD 1h — Installer un projet Python, et décrire son installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cours1/notebook/td/1i_noyaux/guide.html">TD 1i — Le client, le noyau, et où ils sont installés (facultatif)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cours1/notebook/td/1j_trajet/guide.html">TD 1j — Installer un projet en lisant son README (facultatif)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="cours1/notebook/05_comparer_versions.html">Annexe — Comparer deux versions d’un fichier</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="cours2/index.html">Séance 2, 2026 — Ligne de commande et git local</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="cours2/notebook/01_ligne_de_commande.html">La ligne de commande</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cours2/notebook/02_depot_local.html">Git et le dépôt local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cours2/notebook/03_branches.html">Branches, fusion et conflits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cours2/notebook/04_lire_et_tenir_un_depot.html">Lire et tenir un dépôt</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="cours2/notebook/travaux_diriges.html">Travaux dirigés de la séance 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="cours2/notebook/td/2a_premier_depot/guide.html">TD 2a — Un premier dépôt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cours2/notebook/td/2b_branches/guide.html">TD 2b — Branches et fusions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cours2/notebook/td/2c_annuler/guide.html">TD 2c — Annuler et remettre à jour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cours2/notebook/td/2d_conflits/guide.html">TD 2d — Créer et résoudre un conflit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cours2/notebook/td/2e_livrer/guide.html">TD 2e — Publier une version</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="cours3/index.html">Séance 3, 2026 — Chemins, fichiers et ligne de commande</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="cours3/notebook/01_chemins_programmes.html">Chemins et programmes externes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cours3/notebook/02_fichiers_encodage.html">Fichiers et encodage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cours3/notebook/03_du_notebook_au_programme.html">Du notebook au programme</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="cours3/notebook/travaux_diriges.html">Travaux dirigés de la séance 3</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="cours3/notebook/td/3e_markdown/guide.html">TD 3e — Une recette en Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cours3/notebook/td/3f_cli/guide.html">TD 3f — Une ligne de commande pour la recette</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="cours4/index.html">Séance 4, 2026 — Projet d’application 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="cours4/notebook/travaux_diriges.html">Travaux dirigés du projet 4</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="cours4/notebook/td/4a_recette/guide.html">TD 4a — Un script Python, pas à pas</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="cours4/notebook/td/4b_paquet/guide.html">TD 4b — Un programme installable</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="cours5/index.html">Séance 5, 2026 — Matériel, réseau, mots de passe, clés SSH et secrets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="cours5/notebook/01_materiel.html">Le matériel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cours5/notebook/02_reseau.html">Le réseau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cours5/notebook/03_prouver_qui_lon_est.html">Prouver qui l’on est</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cours5/notebook/04_secrets.html">Les secrets de vos programmes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cours5/notebook/travaux_diriges.html">Travaux dirigés de la séance 5</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="cours6/index.html">Séance 6, 2026 — La forge, sur le dépôt du projet 4</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="cours7/index.html">Séance 7, 2026 — Projet d’application 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="cours7/notebook/td/7a_recette/guide.html">TD 7a — Compléter un projet GitHub, par des pull requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cours7/notebook/td/7b_train/guide.html">TD 7b — Reprendre et compléter le projet d’un autre</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Thème">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Thème" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Clair"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Sombre"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="Paramètres système"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>Paramètres système</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Clair</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Sombre</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introduction</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objectif-du-module">Objectif du module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#progression-du-module">Progression du module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notions-reprises-d-une-seance-a-l-autre">Notions reprises d’une séance à l’autre</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hors-du-module">Hors du module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#organisation">Organisation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#competences-visees">Compétences visées</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apres-le-module">Après le module</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Lien vers cette rubrique">#</a></h1>
+<section id="objectif-du-module">
+<h2>Objectif du module<a class="headerlink" href="#objectif-du-module" title="Lien vers cette rubrique">#</a></h2>
+<p>Plusieurs cours de votre formation de 1re année demandent de lancer un code
+fourni, ou d’écrire vous-mêmes des scripts et de les rendre, parfois en
+équipe. Cela demande de savoir :</p>
+<ul class="simple">
+<li><p>lancer un script ou un programme en ligne de commande, dans un terminal ;</p></li>
+<li><p>manipuler les fichiers en entrée et en sortie de ces programmes ;</p></li>
+<li><p>ouvrir un projet de code dans un éditeur de code ou dans JupyterLab, et
+configurer ces outils sur les postes de l’école ;</p></li>
+<li><p>écrire un script qui fonctionne sur un autre poste, et décrire ce qu’il
+faut y installer pour le lancer ;</p></li>
+<li><p>versionner son code avec git, et le partager pour y travailler à
+plusieurs.</p></li>
+</ul>
+<p>Les mêmes opérations reviennent dans tous les cours où l’informatique sert
+d’outil de travail. Ces cours supposent ces opérations acquises, mais aucun
+ne les enseigne en soi.</p>
+<p>Ce module INFO-01 a pour objectif principal de vous les apprendre, pour que
+vous arriviez dans les cours de programmation et dans les TD qui emploient
+Python sans perdre de temps sur l’outillage.</p>
+</section>
+<section id="progression-du-module">
+<h2>Progression du module<a class="headerlink" href="#progression-du-module" title="Lien vers cette rubrique">#</a></h2>
+<p>Les séances vont de l’utilisation de programmes existants à l’écriture d’un
+programme, puis à sa livraison à une autre personne. Les séances 4 et 7
+sont des TD d’application des séances qui les précèdent.</p>
+<figure class="align-default" id="id1">
+<img alt="Trois colonnes reliées par des flèches. Utiliser des programmes et des fichiers : séance 1, logiciels, fichiers, terminal et premier programme. Développer un programme, seul puis à plusieurs : séance 2, éditeur de code et git local ; séance 3, fichiers, chemins et programme en ligne de commande ; séance 4, projet d'application 1. Livrer un programme à une autre personne : séance 5, réutiliser des programmes et des bibliothèques ; séance 6, forge, mots de passe et secrets ; séance 7, projet d'application 2." src="_images/progression.svg" />
+<figcaption>
+<p><span class="caption-text">Les sept séances du module. En brun, les deux TD d’application.</span><a class="headerlink" href="#id1" title="Lien vers cette image">#</a></p>
+</figcaption>
+</figure>
+<dl class="simple myst">
+<dt>Utiliser des programmes (séance 1)</dt><dd><p>La séance rappelle le fonctionnement d’un ordinateur, puis présente deux
+notions employées dans tout le module : les logiciels, qu’on utilise ou
+qu’on écrit, et les fichiers, qui contiennent les données lues et produites
+par les programmes.</p>
+</dd>
+<dd><p>Elle fait ensuite découvrir la ligne de commande. Git s’utilise en ligne de
+commande, comme les programmes écrits dans la suite du module, car un tel
+programme est plus simple à écrire qu’un programme avec des fenêtres et des
+boutons.</p>
+</dd>
+<dt>Développer un programme (séances 2 à 4)</dt><dd><p>La séance 2 présente deux outils qui facilitent la programmation : un
+éditeur de code, VS Code, et git, qui enregistre les versions d’un projet
+et permet d’y travailler à plusieurs. Git se comprend surtout en le
+pratiquant, et il revient donc dans les séances suivantes, sur des
+exercices courts.</p>
+</dd>
+<dd><p>La séance 3 montre comment Python lit et écrit des fichiers, et comment
+écrire un script qui fonctionne sur d’autres données et sur le poste d’une
+autre personne. Elle emploie pour cela deux bibliothèques fournies avec
+Python, <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> pour les chemins et <code class="docutils literal notranslate"><span class="pre">argparse</span></code> pour les arguments de la
+ligne de commande.</p>
+</dd>
+<dd><p>La séance 4 est un TD d’application des trois premières séances : un
+script Python écrit pas à pas, avec un commit git par étape.</p>
+</dd>
+<dt>Livrer un programme (séances 5 à 7)</dt><dd><p>La séance 5 montre comment un programme Python lance un autre programme,
+comme on le ferait dans un terminal, et comment il emploie des
+bibliothèques à installer. Réutiliser un programme ou une bibliothèque
+évite de les réécrire, mais chaque poste qui lance le programme doit alors
+les installer. La séance présente donc les dépendances d’un programme, les
+environnements, et les fichiers qui décrivent l’installation pour un autre
+poste.</p>
+</dd>
+<dd><p>La séance 6 montre comment partager un dépôt git sur GitHub, un site qui
+héberge des dépôts (une forge). Elle présente en même temps la sécurité des échanges sur le web : mots de
+passe, clés et tokens, et secrets à garder hors du code.</p>
+</dd>
+<dd><p>La séance 7 est un TD d’application des séances 4 à 6 : une modification
+proposée par une pull request, sur un dépôt GitHub.</p>
+</dd>
+</dl>
+<p>Des notions générales d’informatique sont réparties au fil des séances : le
+matériel, la puissance de calcul et la consommation des appareils à la
+séance 1, les mémoires et les ordres de grandeur à la séance 3, la
+consommation et le coût des services en ligne à la séance 6.</p>
+</section>
+<section id="notions-reprises-d-une-seance-a-l-autre">
+<h2>Notions reprises d’une séance à l’autre<a class="headerlink" href="#notions-reprises-d-une-seance-a-l-autre" title="Lien vers cette rubrique">#</a></h2>
+<p>La ligne de commande et git ne s’apprennent qu’en les pratiquant souvent.
+Chaque séance reprend l’un des deux, ou les deux, sur un exercice court.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 10.0%" />
+<col style="width: 45.0%" />
+<col style="width: 45.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Séance</p></th>
+<th class="head"><p>Ligne de commande</p></th>
+<th class="head"><p>git</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>commandes de base, chemins</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>commandes git</p></td>
+<td><p>dépôt, commit, branche, fusion</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>arguments d’un programme : <code class="docutils literal notranslate"><span class="pre">argparse</span></code></p></td>
+<td><p>fusion d’une branche</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>dossier du projet, options du programme</p></td>
+<td><p>un commit par étape</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>appel d’un programme depuis Python : <code class="docutils literal notranslate"><span class="pre">subprocess</span></code>, <code class="docutils literal notranslate"><span class="pre">PATH</span></code></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td></td>
+<td><p>dépôt sur GitHub : <code class="docutils literal notranslate"><span class="pre">clone</span></code>, <code class="docutils literal notranslate"><span class="pre">push</span></code>, <code class="docutils literal notranslate"><span class="pre">pull</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>option <code class="docutils literal notranslate"><span class="pre">--profil</span></code></p></td>
+<td><p>branche, push, pull request</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Les TD reprennent aussi un même programme, qui calcule des statistiques sur
+des altitudes, puis sur une trace GPS. Chaque séance le complète avec les
+notions qu’elle présente. Le TD 6a, sur GitHub, fait exception.</p>
+<figure class="align-default" id="id2">
+<img alt="Quatre boîtes reliées par des flèches. altitudes.py, séances 1 à 3 : lancé, versionné, puis rendu portable. stats_trace.py, séance 4 : distance parcourue et vitesse moyenne d'une trace GPS. carte_trace.py, séance 5 : carte web de la trace, avec ogr2ogr et folium. Dépôt td7a-trace, séance 7 : une nouvelle option, ajoutée par une pull request." src="_images/programme_td.svg" />
+<figcaption>
+<p><span class="caption-text">Le programme des TD, de la séance 1 à la séance 7.</span><a class="headerlink" href="#id2" title="Lien vers cette image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="hors-du-module">
+<h2>Hors du module<a class="headerlink" href="#hors-du-module" title="Lien vers cette rubrique">#</a></h2>
+<p>L’algorithmique n’est pas traitée ici. Écrire un algorithme, choisir une
+structure de données et raisonner sur la complexité relèvent du cours de
+programmation, qui a lieu en parallèle. Le tableau donne des exemples de
+questions, et le cours qui les traite.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Question</p></th>
+<th class="head"><p>Traitée ici</p></th>
+<th class="head"><p>Traitée ailleurs</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Quel algorithme résout ce problème ?</p></td>
+<td></td>
+<td><p>cours de programmation</p></td>
+</tr>
+<tr class="row-odd"><td><p>Où mettre ce fichier, et sous quel nom ?</p></td>
+<td><p>oui</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Comment écrire cette boucle ?</p></td>
+<td></td>
+<td><p>cours de programmation</p></td>
+</tr>
+<tr class="row-odd"><td><p>Comment lancer ce script sur une autre machine ?</p></td>
+<td><p>oui</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Comment retrouver la version qui fonctionnait ?</p></td>
+<td><p>oui</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Les deux cours se complètent : le cours de programmation porte sur le code
+lui-même, ce module sur les fichiers, les outils et l’environnement qui le
+font fonctionner.</p>
+</section>
+<section id="organisation">
+<h2>Organisation<a class="headerlink" href="#organisation" title="Lien vers cette rubrique">#</a></h2>
+<p>Le module compte sept séances de deux heures. Chaque séance alterne des
+explications courtes et des TD faits sur machine. Les séances 4 et 7 se
+terminent par un travail à rendre : le dossier du projet avec son historique
+git, puis un dépôt GitHub avec sa pull request fusionnée.</p>
+<p>Les fichiers des TD sont dans une archive par séance, <code class="docutils literal notranslate"><span class="pre">info01-cours&lt;n&gt;.zip</span></code>,
+à copier sur le poste en début de séance. Les TD des séances 1, 2, 4, 5 et 7
+ont un guide détaillé, dans l’archive et dans la page de leur séance.</p>
+</section>
+<section id="competences-visees">
+<h2>Compétences visées<a class="headerlink" href="#competences-visees" title="Lien vers cette rubrique">#</a></h2>
+<p>À la fin du module, vous savez :</p>
+<ul class="simple">
+<li><p>lancer un programme et agir sur des fichiers dans un terminal (séance 1) ;</p></li>
+<li><p>reconnaître ce que contient un fichier, indépendamment de son extension
+(séances 1 et 3) ;</p></li>
+<li><p>ouvrir un projet dans un éditeur de code et vous y retrouver (séance 2) ;</p></li>
+<li><p>enregistrer votre travail avec git, revenir à une version antérieure et
+fusionner une branche (séances 2 et 3) ;</p></li>
+<li><p>écrire un script Python qui lit des fichiers et en produit d’autres, qui
+reçoit ses paramètres en ligne de commande, et qui fonctionne sur un autre
+poste que le vôtre (séance 3) ;</p></li>
+<li><p>installer une bibliothèque dans un environnement, et décrire cet
+environnement pour qu’une autre personne l’installe (séance 5) ;</p></li>
+<li><p>publier un dépôt sur GitHub, et y proposer une modification par une pull
+request (séances 6 et 7) ;</p></li>
+<li><p>protéger vos accès aux services en ligne, et garder les secrets hors du
+code (séance 6).</p></li>
+</ul>
+</section>
+<section id="apres-le-module">
+<h2>Après le module<a class="headerlink" href="#apres-le-module" title="Lien vers cette rubrique">#</a></h2>
+<p>Le module introduit ces notions sans les couvrir en entier. Elles
+s’acquièrent en les pratiquant ensuite, dans les TD et les projets des
+autres cours, chaque fois qu’un travail demande d’écrire ou de lancer du
+code. La page <a class="reference internal" href="apres/s_entrainer.html"><span class="std std-doc">S’entraîner</span></a> propose des jeux et des
+exercices sur la ligne de commande et git.</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="page précédente">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">précédent</p>
+        <p class="prev-next-title">Introduction à l’informatique</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="avant/poste.html"
+       title="page suivante">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">suivant</p>
+        <p class="prev-next-title">Premiers tests du poste</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objectif-du-module">Objectif du module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#progression-du-module">Progression du module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notions-reprises-d-une-seance-a-l-autre">Notions reprises d’une séance à l’autre</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hors-du-module">Hors du module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#organisation">Organisation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#competences-visees">Compétences visées</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apres-le-module">Après le module</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par 1re année géomatique
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, module info01 — CC-BY-4.0.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
